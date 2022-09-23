@@ -59,21 +59,27 @@
 
         <div class="result"></div>
         <div>
-
-            <p> the value is: {{ data.type }} </p>
-            <p> the value is: {{ data.project_id }} </p>
-            <p> the value is: {{ data.private_key_id }} </p>
-            <p> the value is: {{ data.private_key }} </p>
-            <p> the value is: {{ data.client_email }} </p>
-            <p> the value is: {{ data.client_id }} </p>   
-            <p> the value is: {{ data.auth_uri }} </p>
-            <p> the value is: {{ data.token_uri }} </p>
-            <p> the value is: {{ data.auth_provider_x509_cert_url }} </p>
-            <p> the value is: {{ data.client_x509_cert_url }} </p>
-            
-
+            <p> TYPE : {{ data.type }} </p>
+            <p> PROJECT_ID : {{ data.project_id }} </p>
+            <p> PRIVATE_KEY_ID : {{ data.private_key_id }} </p>
+            <p> PRIVATE_KEY : {{ data.private_key }} </p>
+            <p> CLIENT_EMAIL : {{ data.client_email }} </p>
+            <p> CLIENT_ID : {{ data.client_id }} </p>   
+            <p> AUTH_URI : {{ data.auth_uri }} </p>
+            <p> TOKEN_URI : {{ data.token_uri }} </p>
+            <p> X509_CERT_URL : {{ data.auth_provider_x509_cert_url }} </p>
+            <p> CLIENT_X509_CERT_URL : {{ data.client_x509_cert_url }} </p>
         </div>
 
+        <div>
+
+            {% for model in models.items() %}
+
+                <p> the value is: {{ model }} </p>
+                
+            {% endfor %}
+
+        </div>
         <!-- Load TFLite Task Library -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/tasks@0.0.1-alpha.8"></script>
         <!-- Javascript - main engine -->
