@@ -58,6 +58,12 @@
         </main>
 
         <div class="result"></div>
+        <div>
+            {% for element in data %}
+            {{ element['project_id'] }}
+             {% endfor %}
+
+        </div>
 
         <!-- Load TFLite Task Library -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/tasks@0.0.1-alpha.8"></script>
