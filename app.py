@@ -43,7 +43,7 @@ gcp_sa_credentials = {
 
 creditials_json = json.dumps(gcp_sa_credentials)
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=gcp_sa_credentials #'/content/amina-bucket-service-account.json'
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=creditials_json # gcp_sa_credentials #'/content/amina-bucket-service-account.json'
 
 @app.route('/')
 def home():
