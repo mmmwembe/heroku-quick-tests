@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, redirect, url_for, request, j
 from flask_bootstrap import Bootstrap
 from functools import wraps
 from flask_pymongo import PyMongo
+import json
 from google.cloud import storage 
 # from google.oauth2 import service_account
 # from googleapiclient import discovery
@@ -27,7 +28,7 @@ gcp_token_uri = os.environ["TOKEN_URI"]
 gcp_auth_provider_x509_cert_url = os.environ["AUTH_PROVIDER_X509_CERT_URL"]
 gcp_client_x509_cert_url =os.environ["CLIENT_X509_CERT_URL"]
 
-gcp_sa_credentials={
+gcp_sa_credentials = {
   "type": os.environ["TYPE"],
   "project_id": os.environ["PROJECT_ID"],
   "private_key_id": os.environ["PRIVATE_KEY_ID"],
@@ -39,6 +40,8 @@ gcp_sa_credentials={
   "auth_provider_x509_cert_url": os.environ["AUTH_PROVIDER_X509_CERT_URL"],
   "client_x509_cert_url": os.environ["CLIENT_X509_CERT_URL"]
 }
+
+creditials_json = json.dumps(gcp_sa_credentials)
 
 @app.route('/')
 def home():
