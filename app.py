@@ -2,9 +2,9 @@ from flask import Flask, render_template, session, redirect, url_for, request, j
 from flask_bootstrap import Bootstrap
 from functools import wraps
 from flask_pymongo import PyMongo
-from google.oauth2 import service_account
-from googleapiclient import discovery
-from google.cloud import storage as dns
+# from google.oauth2 import service_account
+# from googleapiclient import discovery
+# from google.cloud import storage as dns
 import os
 
 
