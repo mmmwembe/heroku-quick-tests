@@ -43,9 +43,11 @@ gcp_sa_credentials = {
 
 creditials_json = json.dumps(gcp_sa_credentials)
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=gcp_sa_credentials #'/content/amina-bucket-service-account.json'
+
 @app.route('/')
 def home():
-  return render_template('classify-images.html', data=gcp_sa_credentials)
+  return render_template('classify-images.html', data=gcp_sa_credentials, env_json = os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
 
 
 if __name__ == '__main__':
