@@ -21,10 +21,6 @@ bootstrap = Bootstrap(app)
 try:
   cluster = MongoClient(os.environ["MONGODB_URL"])
 
-  db = cluster["amina_db"]
-  users_collection = db["user_login_system"]
-  pre_approved_email_addresses = db["pre_approved_email_addresses"]
-  smart_contracts = db["smart_contracts"]
 except:
   pass
 
@@ -38,11 +34,16 @@ except:
 
 # LOGIN and START SESSION
 
-email='mmm111@hotmail.com'
-user_info = users_collection.find_one({"email": email})
+# email='mmm111@hotmail.com'
+
+# db = cluster["amina_db"]
+# users_collection = db["user_login_system"]
+# pre_approved_email_addresses = db["pre_approved_email_addresses"]
+# smart_contracts = db["smart_contracts"]
+# user_info = users_collection.find_one({"email": email})
 # print(user_info)
-del user_info['password']
-session['user'] = user_info
+# del user_info['password']
+session['user'] = 'user_info'
 
 
 
