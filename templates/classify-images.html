@@ -240,8 +240,9 @@
 
                     <div class="col-6">
 
-                        Upload Images
-
+                        <p><strong>  Upload Images</strong></p>
+                        <p></p>
+                        
                         <form method="post" action="/" enctype="multipart/form-data">
                             <div class="input-group">
                                 <input class="form-control form-control-lg" id="imgLoader" type="file" name="files[]" multiple="true" autocomplete="off" required>
@@ -263,9 +264,46 @@
                   
                 <hr/>
 
+                <div class="row">
 
+                    <div class="col-6">
 
+                        <div class="ScrollStyle">
+          
+                            <div class="col-3 col-s-3">
+                      
+                              {% if images_in_dir %}
+                      
+                              {% for row in images_in_dir|batch(4) %}
+                              <div class="row">
+                      
+                                {% for column_img in row %}  
+                      
+                                  <div class="gallery_column">
+                                    <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%">
+                                  </div>
+                      
+                                {% endfor %}
+                      
+                              </div>
+                              {% endfor %}
+                      
+                            {% endif %}
+                          </div>
+                      
+                        </div>
 
+                    </div>
+                  
+                    <div class="col-6">
+                  
+                   </div>
+                    
+                    <div class="col-6">
+            
+                    </div>
+                    
+                </div>
 
 
             </div>
