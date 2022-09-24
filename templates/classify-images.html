@@ -107,7 +107,13 @@
         <div>
             SESSION USER INFO
 
-            {{session['user']}}
+            {% if session['user'] %}
+
+             {{ session['user'] }}
+
+            {% endif %}
+
+
 
         </div>
 

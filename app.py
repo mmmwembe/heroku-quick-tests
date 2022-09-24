@@ -43,7 +43,7 @@ except:
 # user_info = users_collection.find_one({"email": email})
 # print(user_info)
 # del user_info['password']
-session['user'] = 'user_info'
+# session['user'] = 'user_info'
 
 
 
@@ -105,14 +105,19 @@ def home():
 
   PUBLIC_URLS_ARRAY = []
 
-  for image in list_of_images:
-    filepath_of_file_to_upload = os.path.join(IMAGES_DIR,image)
-    bucket_name ="amina-files"
-    bucket_sub_dir_path="dust/user2/"
-    allowable_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
- 
-    blob_public_url = upload_file_to_bucket(bucket_name, bucket_sub_dir_path, filepath_of_file_to_upload, allowable_file_types_array)
-    PUBLIC_URLS_ARRAY.append(blob_public_url)
+  try:
+
+    for image in list_of_images:
+      filepath_of_file_to_upload = os.path.join(IMAGES_DIR,image)
+      bucket_name ="amina-files"
+      bucket_sub_dir_path="dust/user2/"
+      allowable_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+  
+      blob_public_url = upload_file_to_bucket(bucket_name, bucket_sub_dir_path, filepath_of_file_to_upload, allowable_file_types_array)
+      PUBLIC_URLS_ARRAY.append(blob_public_url)
+  
+  except:
+    pass
 
 
   return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY)
