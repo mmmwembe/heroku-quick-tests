@@ -17,13 +17,13 @@ from datetime import timedelta
 
 cluster =''
 app = Flask(__name__)
-# app.secret_key = b'\xcc^\x91\xea\x17-^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
+app.secret_key = b'\xcc^\x91\xea\x17-^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
 app.config["SESSION_PERMANENT"] = True
 app.config["SESSION_TYPE"] = "filesystem"
-app.config['SECRET_KEY'] = os.urandom(24)
+# app.config['SECRET_KEY'] = os.urandom(24)
 # this is important or wont work
-app.config['SESSION_COOKIE_NAME'] = "my_session"
-app.permanent_session_lifetime = timedelta(minutes=5)
+# app.config['SESSION_COOKIE_NAME'] = "my_session"
+# app.permanent_session_lifetime = timedelta(minutes=5)
 Session(app)
 
 # Bootstrap
@@ -119,7 +119,7 @@ pre_approved_email_addresses = db["pre_approved_email_addresses"]
 
 user_info = users_collection.find_one({"email": email})
 
-GCP_BUCKET_DICT = user_info["gcp_bucket_dict"]
+GCP_BUCKET_DICT = user_info["gcp_bucket_dict"]["bucket_name"]
 # print(user_info)
 del user_info["password"]
 # session['user'] = user_info
