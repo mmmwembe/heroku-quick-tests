@@ -119,7 +119,7 @@ pre_approved_email_addresses = db["pre_approved_email_addresses"]
 
 user_info = users_collection.find_one({"email": email})
 
-GCP_BUCKET_DICT = user_info["gcp_bucket_dict"]["bucket_name"]
+GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
 # print(user_info)
 del user_info["password"]
 # session['user'] = user_info
@@ -140,8 +140,8 @@ def home():
   # model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
   PUBLIC_URLS_ARRAY = model_urls
 
-
-  return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY, user_info = GCP_BUCKET_DICT )
+  return render_template('classify-images.html')
+  # return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY, user_info = GCP_BUCKET_DICT )
 
 
 if __name__ == '__main__':
