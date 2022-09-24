@@ -351,10 +351,11 @@
             
             <div class="col-3 col-s-12">
               {% if images_in_dir %}
-                {% for image in images_in_dir %}
+                {% for row in images_in_dir|batch(4) %}
                   <div class="row">
-                         {{ image }}
-                    <img src="{{ image }}" style="width:25%">
+                    {% for column_img in row %}  
+                    <img src="{{ column_img }}" style="width:100%">
+                    {% endfor %}                    
                   </div>
                 {% endfor %}
             {% endif %}
