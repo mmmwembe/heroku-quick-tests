@@ -55,23 +55,25 @@
                     </div>
                 </div>
 
-                <hr/>
-
+                <div class="row">
+                    <hr/>
+                </div>
                 <div class="row">
 
                     <div class="col-6">
 
-                  
+                        <form method="post" action="/" enctype="multipart/form-data">
+                            <div class="input-group">
+                                <input class="form-control form-control-lg" id="imgLoader" type="file" name="files[]" multiple="true" autocomplete="off" required>
+                                <input type="submit" value="Submit" class="btn btn-primary">
+                            </div>
+                        </form> 
+
                     </div>
                   
                     <div class="col-6">
                   
-                        <form method="post" action="/" enctype="multipart/form-data">
-                            <div class="input-group">
-                                <input class="form-control form-control-lg" id="imgLoader" type="file" name="files[]" multiple="true" autocomplete="off" required>
-                                <button type="button" class="btn btn-secondary btn-lg btn-block">Submit</button>
-                            </div>
-                        </form> 
+
                   
                   </div>
                     
