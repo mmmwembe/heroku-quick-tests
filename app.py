@@ -20,7 +20,7 @@ app.secret_key = b'\xcc^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
 bootstrap = Bootstrap(app)
 
 try:
-  cluster = MongoClient('mongodb+srv://mmm111:Password123@3megacluster.cnmlv.mongodb.net/db?retryWrites=true&w=majority')
+  cluster = MongoClient(os.environ["MONGODB_URL"])
 except:
   pass
 
