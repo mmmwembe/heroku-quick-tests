@@ -10,7 +10,8 @@ from google.cloud import storage
 # from googleapiclient import discovery
 # from google.cloud import storage as dns
 import os
-from flask_session import Session 
+from flask_session import Session
+from datetime import timedelta 
 # app.secret_key = 'A0AKR5TGD\ R~XHH!jmN]LWX/,?RT'
 
 
@@ -22,6 +23,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 app.config['SECRET_KEY'] = os.urandom(24)
 # this is important or wont work
 app.config['SESSION_COOKIE_NAME'] = "my_session"
+app.permanent_session_lifetime = timedelta(minutes=5)
 Session(app)
 
 # Bootstrap
