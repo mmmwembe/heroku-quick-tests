@@ -104,8 +104,8 @@
         </div>
 
 
-        <div>
-            SESSION USER INFO
+        <div>   
+            <p> SESSION USER INFO </p>
 
             {% if session['user'] %}
 
@@ -113,13 +113,16 @@
 
             {% endif %}
 
+        </div>
+
+        <div>
+            <p> USER_INFO </p>
 
             {% if user_info %}
 
              {{ user_info }}
 
-            {% endif %}
-
+              {% endif %}
 
         </div>
 

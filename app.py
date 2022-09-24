@@ -10,10 +10,16 @@ from google.cloud import storage
 # from googleapiclient import discovery
 # from google.cloud import storage as dns
 import os
+from flask_session import Session 
+# app.secret_key = 'A0AKR5TGD\ R~XHH!jmN]LWX/,?RT'
+
 
 cluster =''
 app = Flask(__name__)
 app.secret_key = b'\xcc^\x91\xea\x17-^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
+app.config["SESSION_PERMANENT"] = True
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 # Bootstrap
 bootstrap = Bootstrap(app)
