@@ -89,6 +89,26 @@ def upload_file_to_bucket(bucket_name, bucket_sub_dir_path, path_of_file_to_uplo
     #returns a public url
     return blob.public_url
 
+def upload_multiple_local_files_to_gcp_return_public_urls(local_dir_images_dir, bucket_name, bucket_sub_dir_path, allowable_file_types_array):
+  # Example arguments
+  #  local_dir_images_dir='static/project-test-images/dust'
+  #  bucket_name ="amina-files"
+  #  bucket_sub_dir_path="dust/user2/"
+  #  allowable_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+  public_urls_array = []
+  try:
+
+    list_of_images = os.listdir(local_dir_images_dir)
+    for image in list_of_images:
+      filepath_of_file_to_upload = os.path.join(local_dir_images_dir,image)
+      blob_public_url = upload_file_to_bucket(bucket_name, bucket_sub_dir_path, filepath_of_file_to_upload, allowable_file_types_array)
+      public_urls_array.append(blob_public_url)
+  
+  except:
+    pass  
+
+  return public_urls_array
+
 
 @app.route('/')
 def home():
@@ -99,25 +119,7 @@ def home():
 
   model_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
   # model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
-
-  IMAGES_DIR='static/project-test-images/dust'
-  list_of_images = os.listdir(IMAGES_DIR)
-
-  PUBLIC_URLS_ARRAY = []
-
-  try:
-
-    for image in list_of_images:
-      filepath_of_file_to_upload = os.path.join(IMAGES_DIR,image)
-      bucket_name ="amina-files"
-      bucket_sub_dir_path="dust/user2/"
-      allowable_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
-  
-      blob_public_url = upload_file_to_bucket(bucket_name, bucket_sub_dir_path, filepath_of_file_to_upload, allowable_file_types_array)
-      PUBLIC_URLS_ARRAY.append(blob_public_url)
-  
-  except:
-    pass
+  PUBLIC_URLS_ARRAY = model_urls
 
 
   return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY)
