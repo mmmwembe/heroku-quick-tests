@@ -2,6 +2,8 @@ from flask import Flask, render_template, session, redirect, url_for, request, j
 from flask_bootstrap import Bootstrap
 from functools import wraps
 from flask_pymongo import PyMongo
+import pymongo
+from pymongo import MongoClient
 import json
 from google.cloud import storage 
 # from google.oauth2 import service_account
@@ -9,13 +11,18 @@ from google.cloud import storage
 # from google.cloud import storage as dns
 import os
 
-
+cluster =''
 app = Flask(__name__)
 app.secret_key = b'\xcc^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
 
 
 # Bootstrap
 bootstrap = Bootstrap(app)
+
+try:
+  cluster = MongoClient('mongodb+srv://mmm111:Password123@3megacluster.cnmlv.mongodb.net/db?retryWrites=true&w=majority')
+except:
+  pass
 
 gcp_type = os.environ["TYPE"]
 gcp_project_id = os.environ["PROJECT_ID"] 
@@ -47,6 +54,7 @@ creditials_json = json.dumps(gcp_sa_credentials)
 
 @app.route('/')
 def home():
+
   model_urls =[]
   client = storage.Client()
   # for blob in client.list_blobs('2021_sign_language_detector_tfjs', prefix=''):
@@ -57,7 +65,7 @@ def home():
       # print('public url ', public_url) 
 
 
-  return render_template('classify-images.html', data=gcp_sa_credentials, models = model_urls)
+  return render_template('classify-images.html', data=gcp_sa_credentials, models = model_urls, db = cluster["amina_db"])
 
 
 if __name__ == '__main__':
