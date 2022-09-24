@@ -122,7 +122,7 @@ def home():
   PUBLIC_URLS_ARRAY = model_urls
 
 
-  return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY)
+  return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY, user_info=user_info )
 
 
 if __name__ == '__main__':
