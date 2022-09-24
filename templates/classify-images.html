@@ -59,16 +59,20 @@
 
         <div class="result"></div>
         <div>
-            <p> TYPE : {{ data.type }} </p>
-            <p> PROJECT_ID : {{ data.project_id }} </p>
-            <p> PRIVATE_KEY_ID : {{ data.private_key_id }} </p>
-            <p> PRIVATE_KEY : {{ data.private_key }} </p>
-            <p> CLIENT_EMAIL : {{ data.client_email }} </p>
-            <p> CLIENT_ID : {{ data.client_id }} </p>   
-            <p> AUTH_URI : {{ data.auth_uri }} </p>
-            <p> TOKEN_URI : {{ data.token_uri }} </p>
-            <p> X509_CERT_URL : {{ data.auth_provider_x509_cert_url }} </p>
-            <p> CLIENT_X509_CERT_URL : {{ data.client_x509_cert_url }} </p>
+            {% if data is defined %}
+
+                <p> TYPE : {{ data.type }} </p>
+                <p> PROJECT_ID : {{ data.project_id }} </p>
+                <p> PRIVATE_KEY_ID : {{ data.private_key_id }} </p>
+                <p> PRIVATE_KEY : {{ data.private_key }} </p>
+                <p> CLIENT_EMAIL : {{ data.client_email }} </p>
+                <p> CLIENT_ID : {{ data.client_id }} </p>   
+                <p> AUTH_URI : {{ data.auth_uri }} </p>
+                <p> TOKEN_URI : {{ data.token_uri }} </p>
+                <p> X509_CERT_URL : {{ data.auth_provider_x509_cert_url }} </p>
+                <p> CLIENT_X509_CERT_URL : {{ data.client_x509_cert_url }} </p>
+
+            {% endif %}
         </div>
 
         <div>
