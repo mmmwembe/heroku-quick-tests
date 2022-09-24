@@ -34,16 +34,16 @@ except:
 
 # LOGIN and START SESSION
 
-# email='mmm111@hotmail.com'
+email='mmm111@hotmail.com'
 
-# db = cluster["amina_db"]
-# users_collection = db["user_login_system"]
-# pre_approved_email_addresses = db["pre_approved_email_addresses"]
-# smart_contracts = db["smart_contracts"]
-# user_info = users_collection.find_one({"email": email})
+db = cluster["amina_db"]
+users_collection = db["user_login_system"]
+pre_approved_email_addresses = db["pre_approved_email_addresses"]
+
+user_info = users_collection.find_one({"email": email})
 # print(user_info)
-# del user_info['password']
-# session['user'] = 'user_info'
+del user_info['password']
+session['user'] = user_info
 
 
 
