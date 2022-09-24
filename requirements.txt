@@ -4,6 +4,7 @@ colorama==0.4.4
 dnspython==2.1.0
 dominate==2.6.0
 Flask==2.0.1
+flask-session
 Flask-Bootstrap==3.3.7.1
 Flask-Login==0.5.0
 Flask-PyMongo==2.3.0
