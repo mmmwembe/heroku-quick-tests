@@ -50,24 +50,3 @@ gcp_sa_credentials = {
 
 creditials_json = json.dumps(gcp_sa_credentials)
 
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"]=creditials_json # gcp_sa_credentials #'/content/amina-bucket-service-account.json'
-
-@app.route('/')
-def home():
-
-  model_urls =[]
-  client = storage.Client()
-  # for blob in client.list_blobs('2021_sign_language_detector_tfjs', prefix=''):
-  for blob in client.list_blobs('2021_tflite_glitch_models', prefix='stack-plume-dust-classification/'):
-    public_url = blob.public_url
-    if public_url.endswith(tuple(["tflite", "h5", "keras"])):
-      model_urls.append(public_url)
-      # print('public url ', public_url) 
-
-
-  return render_template('classify-images.html', data=gcp_sa_credentials, models = model_urls, db = cluster["amina_db"])
-
-
-if __name__ == '__main__':
-    
-    app.run()

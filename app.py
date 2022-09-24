@@ -24,6 +24,19 @@ except:
   pass
 
 
+def get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array):
+  # Example usage:
+  #   bucket_name = '2021_tflite_glitch_models'
+  #   sub_directory_path ='stack-plume-dust-classification/'
+  #   target_file_types_array = ["tflite", "h5", "keras"]...another example: target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+  returned_public_urls =[]
+  client = storage.Client()
+  for blob in client.list_blobs(bucket_name, prefix=sub_directory_path):
+    public_url = blob.public_url
+    if public_url.endswith(tuple(target_file_types_array)):
+      returned_public_urls.append(public_url)
+
+  return returned_public_urls
 
 
 
@@ -31,15 +44,8 @@ except:
 @app.route('/')
 def home():
 
-  model_urls =[]
-  client = storage.Client()
-  # for blob in client.list_blobs('2021_sign_language_detector_tfjs', prefix=''):
-  for blob in client.list_blobs('2021_tflite_glitch_models', prefix='stack-plume-dust-classification/'):
-    public_url = blob.public_url
-    if public_url.endswith(tuple(["tflite", "h5", "keras"])):
-      model_urls.append(public_url)
-      # print('public url ', public_url) 
-
+  model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
+  
 
   return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"])
 
