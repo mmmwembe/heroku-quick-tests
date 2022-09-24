@@ -333,9 +333,9 @@
               
                         {% for column_img in row %}  
               
-                          <!--div class="gallery_column"-->
+                          <div class="gallery_column">
                             <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:25%">
-                          <!--/div-->
+                          </div>
               
                         {% endfor %}
               
@@ -354,7 +354,7 @@
                 {% for image in images_in_dir %}
                   <div class="row">
                          {{ image }}
-                    <img src="{{ image }}">
+                    <img src="{{ image }}" style="width:25%">
                   </div>
                 {% endfor %}
             {% endif %}
