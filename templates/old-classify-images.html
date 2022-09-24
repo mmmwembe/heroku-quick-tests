@@ -266,8 +266,6 @@
 
 
 
-
-
             </div>
         </main>
 
@@ -275,63 +273,21 @@
 
 
 
-
-        <hr/>
-
-        <div class="row">
-
-            <div class="ScrollStyle">
-          
-                <div class="col-3 col-s-3">
-          
-                  {% if images_in_dir %}
-          
-                  {% for row in images_in_dir|batch(4) %}
-                  <div class="row">
-          
-                    {% for column_img in row %}  
-          
-                      <div class="gallery_column">
-                        <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%">
-                      </div>
-          
-                    {% endfor %}
-          
-                  </div>
-                  {% endfor %}
-          
-                {% endif %}
-              </div>
-          
-            </div>
-           
-          </div>
-          
-            <div class="col-6 col-s-9">
-            </div>
-            
-            <div class="col-3 col-s-12">
-              {% if images_in_dir %}
-                {% for image in images_in_dir %}
-                  <div class="row">
-                         {{ image }}
-                    <img src="{{ image }}">
-                  </div>
-                {% endfor %}
-            {% endif %}
-          
-            </div>
-            
-          </div>
-
-
-
-          <hr/>
-
-
-
         <div>
+            {% if data is defined %}
 
+                <p> TYPE : {{ data.type }} </p>
+                <p> PROJECT_ID : {{ data.project_id }} </p>
+                <p> PRIVATE_KEY_ID : {{ data.private_key_id }} </p>
+                <p> PRIVATE_KEY : {{ data.private_key }} </p>
+                <p> CLIENT_EMAIL : {{ data.client_email }} </p>
+                <p> CLIENT_ID : {{ data.client_id }} </p>   
+                <p> AUTH_URI : {{ data.auth_uri }} </p>
+                <p> TOKEN_URI : {{ data.token_uri }} </p>
+                <p> X509_CERT_URL : {{ data.auth_provider_x509_cert_url }} </p>
+                <p> CLIENT_X509_CERT_URL : {{ data.client_x509_cert_url }} </p>
+
+            {% endif %}
         </div>
 
         <div>
@@ -346,18 +302,42 @@
 
         <div>
 
+            <p> the value is: {{ db }} </p>
+
         </div>
-      
+
+        
         <div>
 
+            {% for image in image_list %}
+
+                <p> The image file is: {{ image }} </p>
+                <img src="{{ image }}">
+
+            {% endfor %}
 
         </div>
+
 
         <div>   
+            <p> SESSION USER INFO </p>
+
+            {% if session %}
+
+             {{ session }}
+
+            {% endif %}
 
         </div>
 
         <div>
+            <p> USER_INFO </p>
+
+            {% if user_info %}
+
+             {{ user_info }}
+
+              {% endif %}
 
         </div>
 

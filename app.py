@@ -1,4 +1,5 @@
-from flask import Flask, render_template, session, redirect, url_for, request, jsonify
+from flask import Flask, render_template, session, redirect, url_for, request, jsonify,flash
+from werkzeug.utils import secure_filename
 from flask_bootstrap import Bootstrap
 from functools import wraps
 from flask_pymongo import PyMongo
@@ -13,6 +14,18 @@ import os
 from flask_session import Session
 from datetime import timedelta 
 # app.secret_key = 'A0AKR5TGD\ R~XHH!jmN]LWX/,?RT'
+
+#===========================================================
+# USER DIRECTORIES
+#===========================================================
+active_folder ="dogs"
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+UPLOAD_FOLDER = 'static/uploads/'
+IMAGES_FOLDER = 'static/images/'
+USER_IMAGES_DIR = 'static/images/user_2/user_images'
+USER_CROPPED_IMG_DIR = 'static/images/user_2/cropped-labels'
+USER_CURRENT_IMG_WORKING_SUBDIR ='static/images/user_2/user_images/dog'
+USER_CROPPED_IMG_WORKING_SUBDIR ='static/images/user_2/cropped-labels/dog'
 
 
 cluster =''
@@ -108,6 +121,17 @@ def upload_multiple_local_files_to_gcp_return_public_urls(local_dir_images_dir, 
 
   return public_urls_array
 
+def allowed_file(filename):
+	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def get_images_list(dir):
+  images_list_raw = os.listdir(dir)
+  images_list_filtered =[]
+  for image in images_list_raw:
+    if image.lower().endswith(tuple(["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"])):
+      image_path = os.path.join(dir, image)
+      images_list_filtered.append(image_path) 
+  return images_list_filtered
 #===========================================================
 # LOGIN and START SESSION
 #===========================================================
@@ -143,6 +167,22 @@ def home():
   return render_template('classify-images.html')
   # return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY, user_info = GCP_BUCKET_DICT )
 
+
+
+@app.route('/', methods=['POST'])
+def upload_image():
+	if 'files[]' not in request.files:
+		flash('No file part')
+		return redirect(request.url)
+	files = request.files.getlist('files[]')
+	file_names = []
+	for file in files:
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			file_names.append(filename)
+			file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
+
+	return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
 if __name__ == '__main__':
     
