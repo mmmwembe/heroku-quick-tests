@@ -20,6 +20,11 @@ bootstrap = Bootstrap(app)
 
 try:
   cluster = MongoClient(os.environ["MONGODB_URL"])
+
+  db = cluster["amina_db"]
+  users_collection = db["user_login_system"]
+  pre_approved_email_addresses = db["pre_approved_email_addresses"]
+  smart_contracts = db["smart_contracts"]
 except:
   pass
 
@@ -29,6 +34,18 @@ except:
 # 3) Gave service account permissions: (a) Storage Admin and (b) Storage Legacy Bucket Reader permissions
 # 3) See amina-google-cloud-storage.ipynb in GCP Colab for other steps
 # 4) Uploaded credentials json to Heroku using buildpack and guidance from https://devdojo.com/bryanborge/adding-google-cloud-credentials-to-heroku
+
+
+# LOGIN and START SESSION
+
+email='mmm111@hotmail.com'
+user_info = users_collection.find_one({"email": email})
+# print(user_info)
+del user_info['password']
+session['user'] = user_info
+
+
+
 
 
 def get_public_url_files_array_from_google_cloud_storage(bucket_name, bucket_sub_directory_path, target_file_types_array):
