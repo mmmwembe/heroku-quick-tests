@@ -266,50 +266,6 @@
                 <hr/>
 
                 <div class="row">
-
-                    <div class="col-6">
-
-                        <div class="ScrollStyle">
-          
-                            <div class="col-3 col-s-3">
-                      
-                              {% if images_in_dir %}
-                      
-                              {% for row in images_in_dir|batch(4) %}
-                              <div class="row">
-                      
-                                {% for column_img in row %}  
-                      
-                                  <div class="gallery_column">
-                                    <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%">
-                                  </div>
-                      
-                                {% endfor %}
-                      
-                              </div>
-                              {% endfor %}
-                      
-                            {% endif %}
-                          </div>
-                      
-                        </div>
-
-                    </div>
-                  
-                    <div class="col-6">
-                  
-                   </div>
-                    
-                    <div class="col-6">
-            
-                    </div>
-                    
-                </div>
-
-              
-                <hr/>
-
-                <div class="row">
                     NEW ROW ADDED
                     <!--div class="col-3 col-s-12"-->
                     <div class="col-md-8 col-md-70">
@@ -364,39 +320,8 @@
 
         <hr/>
 
-        <div class="row">
-   
-          </div>
+        <div class="row"></div>
           
-            <div class="col-6 col-s-9">
-
-                <div class="ScrollStyle">
-          
-                    <div class="col-3 col-s-3">
-              
-                      {% if images_in_dir %}
-              
-                      {% for row in images_in_dir|batch(4) %}
-                      <div class="row">
-              
-                        {% for column_img in row %}  
-              
-                          <div class="gallery_column">
-                            <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:25%">
-                          </div>
-              
-                        {% endfor %}
-              
-                      </div>
-                      {% endfor %}
-              
-                    {% endif %}
-                  </div>
-              
-                </div>
-
-            </div>
-            
             <div class="col-3 col-s-12">
               {% if images_in_dir %}
                 {% for row in images_in_dir|batch(4) %}
