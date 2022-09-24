@@ -20,7 +20,6 @@ bootstrap = Bootstrap(app)
 
 try:
   cluster = MongoClient(os.environ["MONGODB_URL"])
-
 except:
   pass
 
@@ -31,23 +30,12 @@ except:
 # 3) See amina-google-cloud-storage.ipynb in GCP Colab for other steps
 # 4) Uploaded credentials json to Heroku using buildpack and guidance from https://devdojo.com/bryanborge/adding-google-cloud-credentials-to-heroku
 
-
-# LOGIN and START SESSION
-
-email='mmm111@hotmail.com'
-
-db = cluster["amina_db"]
-users_collection = db["user_login_system"]
-pre_approved_email_addresses = db["pre_approved_email_addresses"]
-
-user_info = users_collection.find_one({"email": email})
-# print(user_info)
-del user_info['password']
-# session['user'] = user_info
-
-
-
-
+def start_session(_user):
+    # passes the entire user object /dictionary to session. Then we delete password from the session object
+    del _user['password']
+    session['logged_in'] = True
+    session['user'] = _user
+    # return jsonify(_user), 200
 
 def get_public_url_files_array_from_google_cloud_storage(bucket_name, bucket_sub_directory_path, target_file_types_array):
   # Example usage:
@@ -109,6 +97,24 @@ def upload_multiple_local_files_to_gcp_return_public_urls(local_dir_images_dir, 
 
   return public_urls_array
 
+#===========================================================
+# LOGIN and START SESSION
+#===========================================================
+email='mmm111@hotmail.com'
+
+db = cluster["amina_db"]
+users_collection = db["user_login_system"]
+pre_approved_email_addresses = db["pre_approved_email_addresses"]
+
+user_info = users_collection.find_one({"email": email})
+# print(user_info)
+del user_info['password']
+# session['user'] = user_info
+if user_info:
+  try:
+    start_session(user_info)
+  except:
+    pass
 
 @app.route('/')
 def home():
