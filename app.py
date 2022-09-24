@@ -124,6 +124,7 @@ def upload_multiple_local_files_to_gcp_return_public_urls(local_dir_images_dir, 
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 def get_images_list(dir):
   images_list_raw = os.listdir(dir)
   images_list_filtered =[]
@@ -132,6 +133,25 @@ def get_images_list(dir):
       image_path = os.path.join(dir, image)
       images_list_filtered.append(image_path) 
   return images_list_filtered
+
+
+def create_dir(dir):
+  # If directory doe not exist, create it
+  isExist = os.path.exists(dir)
+  if not isExist:
+    # Create a new directory because it does not exist 
+    os.makedirs(dir)
+
+try:
+  create_dir(UPLOAD_FOLDER)
+  create_dir(IMAGES_FOLDER)
+  create_dir(USER_IMAGES_DIR)
+  create_dir(USER_CROPPED_IMG_DIR)
+  create_dir(USER_CURRENT_IMG_WORKING_SUBDIR)
+  create_dir(USER_CROPPED_IMG_WORKING_SUBDIR)
+except:
+  pass
+    
 #===========================================================
 # LOGIN and START SESSION
 #===========================================================
