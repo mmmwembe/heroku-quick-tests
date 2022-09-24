@@ -46,20 +46,30 @@ def get_public_url_files_array_from_google_cloud_storage(bucket_name, bucket_sub
   return returned_public_urls
 
 
-def upload_file_to_bucket(bucket_name, bucket_sub_dir_path, filename_of_file_being_uploaded, path_of_file_to_upload):
+def upload_file_to_bucket(bucket_name, bucket_sub_dir_path, path_of_file_to_upload, allowable_file_types_array):
     """ Upload data to a bucket"""
     # The blob in the bucket is given the filename of the file being uploaded. 
+    # Example use:
+    # bucket_name ="amina-files"
+    # bucket_sub_dir_path ="user_id/user-images/dog"
+    # path_of_file_to_upload = "/static/images/dog_01.png"
+    # allowable_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
     returned_public_urls =[]
     client = storage.Client()
 
     bucket = client.get_bucket(bucket_name)
+    
+    # filename_of_file_being_uploaded =  os.path.basename(path_of_file_to_upload)
+    filepath, filename_of_file_being_uploaded = os.path.split(path_of_file_to_upload)
+
     blob_full_path = os.path.join(bucket_sub_dir_path, filename_of_file_being_uploaded)
-    blob = bucket.blob(filename_of_file_being_uploaded)
-    blob.upload_from_filename(path_of_file_to_upload)
+
+    blob = bucket.blob(blob_full_path)
+    if filename_of_file_being_uploaded.endswith(tuple(allowable_file_types_array)):
+      blob.upload_from_filename(path_of_file_to_upload)
     
     #returns a public url
     return blob.public_url
-
 
 
 @app.route('/')
@@ -70,14 +80,24 @@ def home():
   target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 
   model_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+  # model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
 
   IMAGES_DIR='static/project-test-images/dust'
   list_of_images = os.listdir(IMAGES_DIR)
 
-  # model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
-  
+  PUBLIC_URLS_ARRAY = []
 
-  return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = list_of_images)
+  for image in list_of_images:
+    filepath_of_file_to_upload = os.path.join(IMAGES_DIR,image)
+    bucket_name ="amina-files"
+    bucket_sub_dir_path="dust/user2/"
+    allowable_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+ 
+    blob_public_url = upload_file_to_bucket(bucket_name, bucket_sub_dir_path, filepath_of_file_to_upload, allowable_file_types_array)
+    PUBLIC_URLS_ARRAY.append(blob_public_url)
+
+
+  return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY)
 
 
 if __name__ == '__main__':
