@@ -43,7 +43,7 @@ pre_approved_email_addresses = db["pre_approved_email_addresses"]
 user_info = users_collection.find_one({"email": email})
 # print(user_info)
 del user_info['password']
-session['user'] = user_info
+# session['user'] = user_info
 
 
 
