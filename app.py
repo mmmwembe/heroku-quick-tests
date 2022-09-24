@@ -18,7 +18,7 @@ cluster =''
 app = Flask(__name__)
 # app.secret_key = b'\xcc^\x91\xea\x17-^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
 app.config["SESSION_PERMANENT"] = True
-# app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_TYPE"] = "filesystem"
 app.config['SECRET_KEY'] = os.urandom(24)
 # this is important or wont work
 app.config['SESSION_COOKIE_NAME'] = "my_session"
