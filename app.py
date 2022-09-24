@@ -23,6 +23,13 @@ try:
 except:
   pass
 
+# NOTES - Connecting Heroku to Google Cloud Storage
+# 1) Setup bucket on gcp in project
+# 2) Created service account and downloaded jsons credentials
+# 3) Gave service account permissions: (a) Storage Admin and (b) Storage Legacy Bucket Reader permissions
+# 3) See amina-google-cloud-storage.ipynb in GCP Colab for other steps
+# 4) Uploaded credentials json to Heroku using buildpack and guidance from https://devdojo.com/bryanborge/adding-google-cloud-credentials-to-heroku
+
 
 def get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array):
   # Example usage:
@@ -44,7 +51,13 @@ def get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_direct
 @app.route('/')
 def home():
 
-  model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
+  bucket_name ="amina-files"
+  sub_directory_path="dust/user2/"
+  target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+
+  model_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+
+  # model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
   
 
   return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"])
