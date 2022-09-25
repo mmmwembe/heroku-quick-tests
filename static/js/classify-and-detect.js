@@ -48,24 +48,23 @@ async function start() {
 
     document.querySelector("#predict-button").addEventListener("click", async () => {
 
-        // Run inference on an image.
-        // const predictions = await model.predict(img);
-        const predictions = await classification_model.predict(img);
-        // console.log(predictions.classes);
-
+        /*
+        // Run inference on an image for classification.
+        const predictions_from_classifier = await classification_model.predict(img);
         // Show the results.
-
-
-        results_JSON = create_json_from_predictions(predictions)
-
+        results_JSON = create_json_from_predictions_classification(predictions_from_classifier)
         datatable.clear();
         datatable.rows.add(results_JSON);
         datatable.draw();
+        */
+        classify_image(classification_model, img)
+
+
     });
 
 }
 
-function create_json_from_predictions(preds){
+function create_json_from_predictions_classification(preds){
     var jsonArr = [];
     var json_object
     
@@ -75,6 +74,18 @@ function create_json_from_predictions(preds){
        }
       return jsonArr
     }
+
+function classify_image(model, image_source){
+
+        const predictions = await model.predict(image_source);
+        // Show the results.
+        results_JSON = create_json_from_predictions_classification(predictions)
+        datatable.clear();
+        datatable.rows.add(results_JSON);
+        datatable.draw();
+
+}
+
 
             
 img_thumbnails = document.getElementsByClassName('gallery_column');
