@@ -239,7 +239,7 @@ img {
                       <strong><a href = "/"> Image Classification </a> </strong>
                     </div>
                     <div class="col-sm">
-                        <strong><a href = "{{ url_for('static', filename='detect-objects-new.html') }}"> Object Detection </a> </strong>
+                        <strong><a href = "{{ url_for('detection) }}"> Object Detection </a> </strong>
                         
                     </div>
                     <div class="col-sm">
@@ -388,48 +388,6 @@ img {
         </div>
 
 
-
-        <script>
-
-            /*
-
-            window.addEventListener("load", function(){
-
-            var img_thumbnails = null
-            
-            img_thumbnails = document.getElementsByClassName('gallery_column');
-            for(let i = 0; i < img_thumbnails.length; i++) {
-              img_thumbnails[i].addEventListener("click", function(e) {
-                       // alert('thumbnail num ' + i + ' ' + e.target.src);
-            
-                        img_url = e.target.src
-
-                        document.getElementById('selected-image').src = img_url;
-            
-                        // set_new_background_image(img_url)
-            
-                        // alert(img_url)
-            
-              })
-            }
-            
-            function geturl(full_url)
-            {
-                var imgurl = '/' + full_url.substr(full_url.indexOf('/', 8) + 1)
-            
-              alert(imgurl)
-            
-              return imgurl
-            
-            }
-            
-            
-            }); 
-
-            */
-
-            </script>
-
         <!-- Load TFLite Task Library -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js" type="text/javascript"></script>
         <!-- Load the coco-ssd model to use to recognize things in images -->
@@ -437,6 +395,6 @@ img {
     
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.8/dist/tf-tflite.min.js"></script>
         <!-- Javascript - main engine -->
-        <script src="{{ url_for('static', filename ='js/detect-objects-new.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename ='js/detection.js') }}" crossorigin="anonymous"></script>
     </body>
 </html>
