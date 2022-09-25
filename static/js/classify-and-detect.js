@@ -49,9 +49,8 @@ async function start() {
     document.querySelector("#predict-button").addEventListener("click", async () => {
 
         
-        // Run inference on an image for classification.
+        // Run inference on an image for classification and show the results.
         const predictions_from_classifier = await classification_model.predict(img);
-        // Show the results.
         results_JSON = create_json_from_predictions_classification(predictions_from_classifier)
         datatable.clear();
         datatable.rows.add(results_JSON);
@@ -93,18 +92,19 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
 
     // Wait for 2 seconds (2000 milisecond) before re-analysing the image
-    /*
+
     setTimeout(function (){
   
-        const predictions = await model.predict(document.querySelector("#selected-image"));
-        results_JSON = create_json_from_predictions(predictions)
+        // Run inference on an image for classification and show the results.
+        const predictions_from_classifier = await classification_model.predict(img);
+        results_JSON = create_json_from_predictions_classification(predictions_from_classifier)
         datatable.clear();
         datatable.rows.add(results_JSON);
         datatable.draw();
                   
       }, 2000);
 
-      */
+      
 
 
 
