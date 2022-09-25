@@ -227,7 +227,9 @@ def upload_image():
 			blob.upload_from_string(file.read(), content_type=file.content_type)
 			# blob.upload_from_file(file.file, content_type=file.content_type, rewind=True)
 			blob_public_url = blob.public_url 
-			returned_public_urls.append(blob_public_url)   
+			gcs_url = "https://storage.cloud.google.com/{}/{}{}".format(bucket_name,filename)
+			# returned_public_urls.append(blob_public_url)   
+			returned_public_urls.append(gcs_url)      
       
 	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 
