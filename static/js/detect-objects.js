@@ -4,7 +4,9 @@ async function start() {
     var input = document.getElementById("image-selector");
     const resultDiv = document.querySelector(".result");
     const pct_confidence = document.querySelector("#pct_confidence"); 
+
     let results_JSON =[];
+    let results_JSON_obj_detection =[];
     var children = [];
     var threshold = 0.5
     let x = 50 
@@ -15,7 +17,7 @@ async function start() {
         columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
         searching: false,ordering: false,lengthChange: false} );
 
-    var datatable_obj_detection =  $('#results-datatable-object-detection').DataTable( {data: results_JSON,
+    var datatable_obj_detection =  $('#results-datatable-object-detection').DataTable( {data: results_JSON_obj_detection,
             columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
             searching: false,ordering: false,lengthChange: false} );
 
@@ -151,6 +153,7 @@ async function start() {
 
         // results_JSON = create_json_from_predictions(predictions)
         results_JSON = create_json_for_object_detection(predictions)
+        results_JSON_obj_detection = results_JSON
 
         // update_caption_and_bbox_colors()
 
@@ -160,7 +163,7 @@ async function start() {
 
         // Object detection
         datatable_obj_detection.clear();
-        datatable_obj_detection.rows.add(results_JSON);
+        datatable_obj_detection.rows.add(results_JSON_obj_detection);
         datatable_obj_detection.draw();
 
     });

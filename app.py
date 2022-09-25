@@ -192,7 +192,7 @@ def home():
   # model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
 
 
-  return render_template('classify-images.html', images_in_dir = gcp_active_directory_file_urls)
+  return render_template('classify-and-detect.html', images_in_dir = gcp_active_directory_file_urls)
   # return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY, user_info = GCP_BUCKET_DICT )
   # return render_template('classify-images.html', images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
