@@ -43,7 +43,7 @@ async function start() {
         // Run inference on an image.
         // const predictions = await model.predict(img);
         const predictions = await model.predict(document.querySelector("#selected-image"));
-        console.log(predictions.classes);
+        // console.log(predictions.classes);
 
         // Show the results.
         // resultDiv.textContent = predictions.classes.map((c) => `${c.className}: ${c.score.toFixed(3)}`).join(", ");
@@ -80,6 +80,20 @@ for(let i = 0; i < img_thumbnails.length; i++) {
     // searching: false,ordering: false,lengthChange: false} );
     // var firstColumnHeader = $('#results-datatable thead th');
     // firstColumnHeader.css('background', '#252526');
+
+
+    // Wait for 2 seconds (2000 milisecond) before re-analysing the image
+    setTimeout(function (){
+  
+        const predictions = await model.predict(document.querySelector("#selected-image"));
+        results_JSON = create_json_from_predictions(predictions)
+        datatable.clear();
+        datatable.rows.add(results_JSON);
+        datatable.draw();
+                  
+      }, 2000);
+
+
 
    })
 }
