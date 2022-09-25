@@ -243,7 +243,7 @@ def upload_image():
 
 @app.route('/object-detection/')
 def object_detection():
-  return render_template('detect-objects.html')
+  return render_template('detect-objects-new.html')
 
 
 if __name__ == '__main__':
