@@ -184,15 +184,15 @@ if user_info:
 @app.route('/')
 def home():
 
-  bucket_name ="amina-files"
-  sub_directory_path="dust/user2/"
-  target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+  # bucket_name ="amina-files"
+  # sub_directory_path="dust/user2/"
+  # target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 
-  model_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+  gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
   # model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
-  PUBLIC_URLS_ARRAY = model_urls
 
-  return render_template('classify-images.html')
+
+  return render_template('classify-images.html', images_in_dir = gcp_active_directory_file_urls)
   # return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY, user_info = GCP_BUCKET_DICT )
 
 
