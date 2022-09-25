@@ -252,10 +252,13 @@
                         <p><strong>  Upload Images</strong></p>
                         <p></p>
                         
+                        
                         <form method="post" action="/" enctype="multipart/form-data">
                             <div class="input-group">
                                 <input class="form-control form-control-lg" id="imgLoader" type="file" name="files[]" multiple="true" autocomplete="off" required>
                                 <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
+                                <p><strong>  Uploading image(s) to :</strong></p>
+                                <i id="current-upload-folder" class="fa-solid fa-folder"><strong>dog</strong></i>
                             </div>
                         </form> 
 
@@ -309,8 +312,6 @@
 
             </div>
         </main>
-
-
 
 
 
