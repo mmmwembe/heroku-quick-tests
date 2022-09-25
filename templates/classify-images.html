@@ -318,7 +318,7 @@
                         {% for row in images_in_dir|batch(4) %}
                             <div class="row">
                             {% for column_img in row %}  
-                            <img src="{{ column_img }}" style="float: left; width: 25%; padding: 5px;">
+                            <img src="{{ column_img }}" style="float: left; width: 100%; padding: 5px;">
                             {% endfor %}                    
                             </div>
                         {% endfor %}
