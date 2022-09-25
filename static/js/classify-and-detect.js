@@ -75,58 +75,34 @@ function create_json_from_predictions_classification(preds){
         
 img_thumbnails = document.getElementsByClassName('gallery_column');
 
-/*
-for(let i = 0; i < img_thumbnails.length; i++) {
-   img_thumbnails[i].addEventListener("click", function(e) {
-   var img_url = e.target.src
-   document.getElementById('selected-image').src = img_url;
-
-    // Regenerate datatable so it maintains its font color
-    // datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
-    // searching: false,ordering: false,lengthChange: false} );
-    // var firstColumnHeader = $('#results-datatable thead th');
-    // firstColumnHeader.css('background', '#252526');
-
-
-    // Wait for 2 seconds (2000 milisecond) before re-analysing the image
-
-
-
-    setTimeout(function (){
-  
-        // Run inference on an image for classification and show the results.
-        const predictions_from_classifier = await classification_model.predict(img);
-        results_JSON = create_json_from_predictions_classification(predictions_from_classifier)
-        datatable.clear();
-        datatable.rows.add(results_JSON);
-        datatable.draw();
-                  
-      }, 2000);
-
-
-
-   })
-*/
-   
-
    for(let i = 0; i < img_thumbnails.length; i++) {
-    img_thumbnails[i].addEventListener("click", async (e) => {
+
+       img_thumbnails[i].addEventListener("click", async (e) => {
 
         var img_url = e.target.src
         document.getElementById('selected-image').src = img_url;
 
-        // const predictions = await model.predict(img);
-        const predictions = await classification_model.predict(document.getElementById('selected-image'));
-        results_JSON = create_json_from_predictions_classification(predictions)
-        datatable.clear();
-        datatable.rows.add(results_JSON);
-        datatable.draw();
+        delay(1000).then(() => {
+
+                // const predictions = await model.predict(img);
+                const predictions = await classification_model.predict(document.getElementById('selected-image'));
+                results_JSON = create_json_from_predictions_classification(predictions)
+                datatable.clear();
+                datatable.rows.add(results_JSON);
+                datatable.draw();
+       });
+
+
     });
 
 
+}
 
 
 
+function delay(time_in_miliseconds) {
+    //delay(1000).then(() => console.log('ran after 1 second1 passed'));
+    return new Promise(resolve => setTimeout(resolve, time_in_miliseconds));
 }
 
 
