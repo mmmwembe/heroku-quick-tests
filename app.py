@@ -241,7 +241,7 @@ def upload_image():
 	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
-@app.route('/object-detection/', methods=['POST'])
+@app.route('/', methods=['POST'])
 def object_detection():
 	if 'files[]' not in request.files:
 		flash('No file part')
