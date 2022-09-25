@@ -31,10 +31,11 @@ async function start() {
 
     //$('#results-datatable').css('color', 'black');
 
-    document.querySelector("#predict-button").disabled = true;
+    // document.querySelector("#predict-button").disabled = true;
 
     // --------------------------
     // Classification Model
+    //---------------------------
 
     // Load the TFLite model - Load the model from a custom url with other options (optional).
     const classification_model = await tfTask.ImageClassification.CustomModel.TFLite.load({
@@ -42,8 +43,9 @@ async function start() {
     });
 
 
-
-
+    // --------------------------
+    // Object Detection Model
+    //--------------------------
    // MODEL INFORMATION - Mwembeshi 9/12/2022
     // Google Drive: DUST-SUN-FOG-CLEAR
     // Model Directory: model-object-detection
