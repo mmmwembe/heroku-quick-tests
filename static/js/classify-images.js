@@ -83,6 +83,7 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
 
     // Wait for 2 seconds (2000 milisecond) before re-analysing the image
+    /*
     setTimeout(function (){
   
         const predictions = await model.predict(document.querySelector("#selected-image"));
@@ -92,6 +93,8 @@ for(let i = 0; i < img_thumbnails.length; i++) {
         datatable.draw();
                   
       }, 2000);
+
+      */
 
 
 
