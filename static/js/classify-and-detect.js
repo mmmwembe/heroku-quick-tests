@@ -82,7 +82,7 @@ img_thumbnails = document.getElementsByClassName('gallery_column');
         var img_url = e.target.src
         document.getElementById('selected-image').src = img_url;
 
-
+        /*
 
         // const predictions = await model.predict(img);
         const predictions = await classification_model.predict(document.getElementById('selected-image'));
@@ -91,7 +91,7 @@ img_thumbnails = document.getElementsByClassName('gallery_column');
         datatable.rows.add(results_JSON);
         datatable.draw();
 
-
+        */
 
     });
 
