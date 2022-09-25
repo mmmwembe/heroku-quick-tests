@@ -319,7 +319,7 @@
         <script>
 
             window.addEventListener("load", function(){
-                
+
             var img_thumbnails = null
             
             img_thumbnails = document.getElementsByClassName('gallery_column');
@@ -328,10 +328,12 @@
                        // alert('thumbnail num ' + i + ' ' + e.target.src);
             
                         img_url = e.target.src
+
+                        document.getElementById('selected-image').src = img_url;
             
                         // set_new_background_image(img_url)
             
-                        alert(img_url)
+                        // alert(img_url)
             
               })
             }
