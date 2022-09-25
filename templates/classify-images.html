@@ -309,43 +309,29 @@
                     </div>
                 </div>
 
+                <hr/>
+
+                <div class="row">
+
+                    <div class="col-3 col-s-12">
+                        {% if images_in_dir %}
+                        {% for row in images_in_dir|batch(4) %}
+                            <div class="row">
+                            {% for column_img in row %}  
+                            <img src="{{ column_img }}" style="float: left; width: 25%; padding: 5px;">
+                            {% endfor %}                    
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                  </div>
+
+                </div>
+
 
             </div>
         </main>
 
-        <div class="result"></div>
-
-
-
-
-        <hr/>
-
-        <div class="row"></div>
-          
-            <div class="col-3 col-s-12">
-              {% if images_in_dir %}
-                {% for row in images_in_dir|batch(4) %}
-                  <div class="row">
-                    {% for column_img in row %}  
-                    <img src="{{ column_img }}" style="float: left; width: 25%; padding: 5px;">
-                    {% endfor %}                    
-                  </div>
-                {% endfor %}
-            {% endif %}
-          
-            </div>
-            
-          </div>
-
-
-
-          <hr/>
-
-
-
-        <div>
-
-        </div>
 
         <div>
 
@@ -357,24 +343,8 @@
 
         </div>
 
-        <div>
-
-        </div>
-      
-        <div>
 
 
-        </div>
-
-        <div>   
-
-        </div>
-
-        <div>
-
-        </div>
-
-       
 
         <!-- Load TFLite Task Library -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/tasks@0.0.1-alpha.8"></script>
