@@ -316,6 +316,46 @@
 
 
 
+        <script>
+
+            window.addEventListener("load", function(){
+                
+            var img_thumbnails = null
+            
+            img_thumbnails = document.getElementsByClassName('gallery_column');
+            for(let i = 0; i < img_thumbnails.length; i++) {
+              img_thumbnails[i].addEventListener("click", function(e) {
+                       // alert('thumbnail num ' + i + ' ' + e.target.src);
+            
+                        img_url = e.target.src
+            
+                        // set_new_background_image(img_url)
+            
+                        alert(img_url)
+            
+              })
+            }
+            
+            function geturl(full_url)
+            {
+                var imgurl = '/' + full_url.substr(full_url.indexOf('/', 8) + 1)
+            
+              alert(imgurl)
+            
+              return imgurl
+            
+            }
+            
+            
+            }); 
+            </script>
+
+
+
+
+        
+
+
 
         <!-- Load TFLite Task Library -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/tasks@0.0.1-alpha.8"></script>
