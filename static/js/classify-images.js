@@ -8,6 +8,8 @@ async function start() {
         columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
         searching: false,ordering: false,lengthChange: false} );
 
+    $('#results-datatable').css('color', 'black');
+
     // Load the TFLite model - Load the model from a custom url with other options (optional).
     const model = await tfTask.ImageClassification.CustomModel.TFLite.load({
         model: "https://storage.googleapis.com/2021_tflite_glitch_models/stack-plume-dust-classification/model_classifier.tflite",
