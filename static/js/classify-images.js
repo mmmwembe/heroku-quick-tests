@@ -9,8 +9,8 @@ async function start() {
     datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
         searching: false,ordering: false,lengthChange: false} );
 
-    var firstColumnHeader = $('#results-datatable thead th:first-child');
-    firstColumnHeader.css('background', '#FCD116');
+    var firstColumnHeader = $('#results-datatable thead th:first-row');
+    firstColumnHeader.css('background', '#252526');
 
     //$('#results-datatable').css('color', 'black');
 
@@ -68,8 +68,8 @@ for(let i = 0; i < img_thumbnails.length; i++) {
     // Regenerate datatable so it maintains its font color
     // datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
     // searching: false,ordering: false,lengthChange: false} );
-    var firstColumnHeader = $('#results-datatable thead th:first-child');
-    firstColumnHeader.css('background', '#FCD116');
+    var firstColumnHeader = $('#results-datatable thead th:first-row');
+    firstColumnHeader.css('background', '#252526');
 
    })
 }
