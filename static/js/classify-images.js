@@ -2,7 +2,16 @@ async function start() {
     const img = document.querySelector("#selected-image");
     var input = document.getElementById("image-selector");
     const resultDiv = document.querySelector(".result");
+    const div_active_folder = document.getElementById("upload-folder");
+    const form_hidden_field_current_folder = document.getElementById("current_folder");
+
+
+
+
     var img_thumbnails = null
+    var active_folder = document.getElementById("upload-folder").value;
+    alert('active folder ' + active_folder)
+
     let results_JSON =[];
     var datatable = null;
 
