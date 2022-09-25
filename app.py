@@ -207,7 +207,7 @@ def upload_image():
 	returned_public_urls =[]
 	client = storage.Client()
 	bucket = client.get_bucket(bucket_name)
-	sub_dir_path_with_active_folder = os.path.join(bucket_name,sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
   # https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-python
   # https://buraksenol.medium.com/pass-images-to-html-without-saving-them-as-files-using-python-flask-b055f29908a
   # https://cloud.google.com/appengine/docs/flexible/python/using-cloud-storage
