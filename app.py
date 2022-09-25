@@ -208,10 +208,16 @@ def upload_image():
 	client = storage.Client()
 	bucket = client.get_bucket(bucket_name)
 	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+  # https://devdojo.com/bryanborge/adding-google-cloud-credentials-to-heroku
   # https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-python
   # https://buraksenol.medium.com/pass-images-to-html-without-saving-them-as-files-using-python-flask-b055f29908a
   # https://cloud.google.com/appengine/docs/flexible/python/using-cloud-storage
   # https://github.com/googleapis/google-cloud-python/issues/3655
+  # https://stackoverflow.com/questions/20015550/read-file-data-without-saving-it-in-flask
+  # https://github.com/GoogleCloudPlatform/python-docs-samples/blob/main/notebooks/rendered/cloud-storage-client-library.md
+  # https://buraksenol.medium.com/pass-images-to-html-without-saving-them-as-files-using-python-flask-b055f29908a
+  # https://cloud.google.com/storage/docs/samples/storage-file-upload-from-memory
+  # https://buraksenol.medium.com/pass-images-to-html-without-saving-them-as-files-using-python-flask-b055f29908a
 	for file in files:
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
@@ -227,7 +233,8 @@ def upload_image():
 			blob.upload_from_string(file.read(), content_type=file.content_type)
 			# blob.upload_from_file(file.file, content_type=file.content_type, rewind=True)
 			blob_public_url = blob.public_url 
-			gcs_url = "https://storage.cloud.google.com/{}/{}".format(bucket_name,blob_full_path)
+			# gcs_url = "https://storage.cloud.google.com/{}/{}".format(bucket_name,blob_full_path)
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url)      
       
