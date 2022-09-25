@@ -4,9 +4,9 @@ async function start() {
     const resultDiv = document.querySelector(".result");
     var img_thumbnails = null
     let results_JSON =[];
+    var datatable = null;
 
-    var datatable =  $('#results-datatable').DataTable( {data: results_JSON,
-        columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
+    datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
         searching: false,ordering: false,lengthChange: false} );
 
     //$('#results-datatable').css('color', 'black');
@@ -61,6 +61,11 @@ for(let i = 0; i < img_thumbnails.length; i++) {
    img_thumbnails[i].addEventListener("click", function(e) {
    var img_url = e.target.src
     document.getElementById('selected-image').src = img_url;
+
+    // Regenerate datatable so it maintains its font color
+    datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
+    searching: false,ordering: false,lengthChange: false} );
+    
    })
 }
     
