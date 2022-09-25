@@ -13,9 +13,7 @@ async function start() {
     // alert('active folder ' + active_folder)
 
     let results_JSON =[];
-    var datatable = null;
-
-    datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
+    var datatable = datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
         searching: false,ordering: false,lengthChange: false} );
 
     var firstColumnHeader = $('#results-datatable thead th');
@@ -73,7 +71,7 @@ img_thumbnails = document.getElementsByClassName('gallery_column');
 for(let i = 0; i < img_thumbnails.length; i++) {
    img_thumbnails[i].addEventListener("click", function(e) {
    var img_url = e.target.src
-    document.getElementById('selected-image').src = img_url;
+   document.getElementById('selected-image').src = img_url;
 
     // Regenerate datatable so it maintains its font color
     // datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
