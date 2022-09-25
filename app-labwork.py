@@ -50,3 +50,33 @@ gcp_sa_credentials = {
 
 creditials_json = json.dumps(gcp_sa_credentials)
 
+
+@app.route('/', methods=['POST'])
+def upload_image():
+	if 'files[]' not in request.files:
+		flash('No file part')
+		return redirect(request.url)
+	files = request.files.getlist('files[]')
+	file_names = []
+	for file in files:
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			file_names.append(filename)
+			file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
+
+	return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
+
+@app.route('/', methods=['POST'])
+def upload_image():
+	if 'files[]' not in request.files:
+		flash('No file part')
+		return redirect(request.url)
+	files = request.files.getlist('files[]')
+	file_names = []
+	for file in files:
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			file_names.append(filename)
+			file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
+
+	return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))

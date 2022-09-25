@@ -151,7 +151,7 @@ try:
   create_dir(USER_CROPPED_IMG_WORKING_SUBDIR)
 except:
   pass
-    
+
 #===========================================================
 # LOGIN and START SESSION
 #===========================================================
@@ -164,6 +164,14 @@ pre_approved_email_addresses = db["pre_approved_email_addresses"]
 user_info = users_collection.find_one({"email": email})
 
 GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
+bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+CURRENTLY_ACTIVE_FOLDER ="dog"
+
+# GCP_STORAGE_TARGET_PATH = os.path.join(path, "Downloads", "file.txt", "/home")
+
+
 # print(user_info)
 del user_info["password"]
 # session['user'] = user_info
@@ -188,7 +196,6 @@ def home():
   # return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY, user_info = GCP_BUCKET_DICT )
 
 
-
 @app.route('/', methods=['POST'])
 def upload_image():
 	if 'files[]' not in request.files:
@@ -196,13 +203,24 @@ def upload_image():
 		return redirect(request.url)
 	files = request.files.getlist('files[]')
 	file_names = []
+
+	returned_public_urls =[]
+	client = storage.Client()
+	bucket = client.get_bucket(bucket_name)
+	sub_dir_path_with_active_folder = os.path.join(bucket_name,sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
 	for file in files:
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
+			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
 			file_names.append(filename)
-			file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
+			# file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
+			blob = bucket.blob(blob_full_path)
+			blob.upload_from_filename(file)
+			blob_public_url = blob.public_url 
+			returned_public_urls.append(blob_public_url)   
+      
+	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 
-	return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
 if __name__ == '__main__':
     
