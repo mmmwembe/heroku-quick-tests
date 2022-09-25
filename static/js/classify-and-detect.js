@@ -58,7 +58,7 @@ async function start() {
 function analyze_image(){
 
     // get classification predictions and update the table
-    classify_image(classification_model, img)
+    classify_image()
 
 }
 
@@ -73,9 +73,9 @@ function create_json_from_predictions_classification(preds){
       return jsonArr
     }
 
-async function classify_image(model, image_source) {
+async function classify_image() {
 
-    const predictions_from_classifier = await model.predict(image_source);
+    const predictions_from_classifier = await classification_model.predict(img);
     results_JSON = create_json_from_predictions_classification(predictions_from_classifier)
     datatable.clear();
     datatable.rows.add(results_JSON);
