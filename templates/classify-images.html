@@ -266,8 +266,8 @@
                 <hr/>
 
                 <div class="row">
-                    NEW ROW ADDED
-                    <!--div class="col-3 col-s-12"-->
+
+
                     <div class="col-md-8 col-md-70">
    
                         <div class="ScrollStyle">
@@ -294,72 +294,10 @@
                         </div>
                         
                     </div>
-                    <div class="col-md-4 col-md-30">
-                        <div class="col">
-                            <h2 class="ml-3">Labels</h2>
-                            <hr />
-                            <ol id="prediction-list"></ol>
-                            <div id="results-box">
-                                <div id="top-prediction"></div>
-                            </div>
-                            <div>
-                                <table id="results-datatable" class="table table-striped table-bordered" width="100%"></table>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <hr/>
-
-                <div class="row">
-
-                    <div class="col-3 col-s-12">
-                        {% if images_in_dir %}
-                        {% for row in images_in_dir|batch(4) %}
-                            <div class="row">
-                            {% for column_img in row %}  
-                            <img src="{{ column_img }}" style="float: left; width: 100%; padding: 5px;">
-                            {% endfor %}                    
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-
-                  </div>
-
-                </div>
-
-                <div class="row">
-
-                    <div class="container">
-
-                        {% if images_in_dir %}
-
-                           {% for row in images_in_dir|batch(4) %}
-
-                                <div class="row-eq-height">
-
-                                    {% for column_img in row %}  
-
-                                        <div class="col-sm gallery_column">
-                                            <img id="thumbnail" src="{{ column_img }}" width="25%">
-                                        </div>
-
-                                    {% endfor %}
-
-                                </div>
-                                
-
-
-                            
-                           {% endfor %}
-
-                      {% endif %}
-
-                    <div>
-
-
-                </div>
-
 
             </div>
         </main>
