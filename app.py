@@ -241,42 +241,12 @@ def upload_image():
 	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
-@app.route('/', methods=['POST'])
+@app.route('/object_detection/', methods=['POST'])
 def object_detection():
-	if 'files[]' not in request.files:
-		flash('No file part')
-		return redirect(request.url)
-	files = request.files.getlist('files[]')
-	file_names = []
-
-	returned_public_urls =[]
-	client = storage.Client()
-	bucket = client.get_bucket(bucket_name)
-	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-
-	for file in files:
-		if file and allowed_file(file.filename):
-			filename = secure_filename(file.filename)
-			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
-			file_names.append(filename)
-			file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
-			FILE_TO_UPLOAD = file.read()
-			blob = bucket.blob(blob_full_path)
-			# blob = bucket.blob(filename)
-			# blob.upload_from_filename(FILE_TO_UPLOAD)
-			# blob.upload_from_string(file.read())
-			file.seek(0)
-			blob.upload_from_string(file.read(), content_type=file.content_type)
-			# blob.upload_from_file(file.file, content_type=file.content_type, rewind=True)
-			blob_public_url = blob.public_url 
-			# gcs_url = "https://storage.cloud.google.com/{}/{}".format(bucket_name,blob_full_path)
-			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
-			# returned_public_urls.append(blob_public_url)   
-			returned_public_urls.append(gcs_url)      
-
+    
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
       
-	return render_template('detect-objects-new.html', filenames=file_names, images_in_dir=gcp_active_directory_file_urls)
+	return render_template('detect-objects-new.html', images_in_dir=gcp_active_directory_file_urls)
 
 
 if __name__ == '__main__':

@@ -170,6 +170,12 @@ async function start() {
 
 }
 
+
+
+
+
+
+
 function create_json_from_predictions(preds){
     var jsonArr = [];
     var json_object
@@ -261,6 +267,12 @@ function create_json_for_object_detection(preds){
     }
 
     return jsonArr 
+
+
+
+
+
+    
 }
 
 start();
