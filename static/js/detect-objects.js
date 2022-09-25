@@ -15,6 +15,10 @@ async function start() {
         columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
         searching: false,ordering: false,lengthChange: false} );
 
+    var datatable_obj_detection =  $('#results-datatable-object-detection').DataTable( {data: results_JSON,
+            columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
+            searching: false,ordering: false,lengthChange: false} );
+
     // Load the TFLite model - Load the model from a custom url with other options (optional).
     //const model = await tfTask.ImageClassification.CustomModel.TFLite.load({
     //    model: "https://storage.googleapis.com/2021_tflite_glitch_models/stack-plume-dust-classification/model_classifier.tflite",
@@ -153,6 +157,11 @@ async function start() {
         datatable.clear();
         datatable.rows.add(results_JSON);
         datatable.draw();
+
+        // Object detection
+        datatable_obj_detection.clear();
+        datatable_obj_detection.rows.add(results_JSON);
+        datatable_obj_detection.draw();
 
     });
 
