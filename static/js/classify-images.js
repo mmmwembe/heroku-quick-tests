@@ -2,13 +2,14 @@ async function start() {
     const img = document.querySelector("#selected-image");
     var input = document.getElementById("image-selector");
     const resultDiv = document.querySelector(".result");
+    var img_thumbnails = null
     let results_JSON =[];
 
     var datatable =  $('#results-datatable').DataTable( {data: results_JSON,
         columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
         searching: false,ordering: false,lengthChange: false} );
 
-    $('#results-datatable').css('color', 'black');
+    //$('#results-datatable').css('color', 'black');
 
     // Load the TFLite model - Load the model from a custom url with other options (optional).
     const model = await tfTask.ImageClassification.CustomModel.TFLite.load({
@@ -53,5 +54,17 @@ function create_json_from_predictions(preds){
        }
       return jsonArr
     }
+
+            
+img_thumbnails = document.getElementsByClassName('gallery_column');
+for(let i = 0; i < img_thumbnails.length; i++) {
+   img_thumbnails[i].addEventListener("click", function(e) {
+   var img_url = e.target.src
+    document.getElementById('selected-image').src = img_url;
+   })
+}
+    
+
+    
 
 start();
