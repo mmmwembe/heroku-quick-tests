@@ -255,6 +255,13 @@
 
                 <div class="row">
 
+                    <p> <strong>  Create/Choose folder to upload files to :
+                        <a id="upload-folder" href="#" class="btn btn-info btn-lg">
+                          <span class="glyphicon glyphicon-folder-open"></span>  dog
+                        </a>
+                        </strong>
+                    </p> 
+
                     <div class="col-6">
 
                         <p><strong>  Upload Images</strong></p>
@@ -264,6 +271,7 @@
                                 <input class="form-control form-control-lg" id="imgLoader" type="file" name="files[]" multiple="true" autocomplete="off" required>
                                 <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
                             </div>
+                            <input type="hidden" id="current_folder" name="current_folder" value="">
                         </form> 
 
                     </div>
@@ -281,12 +289,6 @@
                   
                 <hr/>
 
-                <p> <strong>  Choose folder to upload to :
-                    <a id="upload-folder" href="#" class="btn btn-info btn-lg">
-                      <span class="glyphicon glyphicon-folder-open"></span>  dog
-                    </a>
-                    </strong>
-                </p> 
 
                 <div class="row">
 
