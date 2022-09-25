@@ -114,10 +114,10 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
         var img_url = e.target.src
         document.getElementById('selected-image').src = img_url;
-        
+
         // const predictions = await model.predict(img);
-        const predictions_from_classifier = await classification_model.predict(img);
-        results_JSON = create_json_from_predictions_classification(predictions_from_classifier)
+        const predictions = await classification_model.predict(document.getElementById('selected-image'));
+        results_JSON = create_json_from_predictions_classification(predictions)
         datatable.clear();
         datatable.rows.add(results_JSON);
         datatable.draw();
