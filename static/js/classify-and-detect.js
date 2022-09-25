@@ -36,26 +36,24 @@ async function start() {
         model: "https://storage.googleapis.com/2021_tflite_glitch_models/stack-plume-dust-classification/model_classifier.tflite",
     });
 
-    input.addEventListener("change", preview_image);
 
-    function preview_image(event) {
-        var reader = new FileReader();
-        reader.onload = function () {
-            img.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
 
     // Analyze image
-    document.querySelector("#predict-button").addEventListener("click", analyze_image);
+    document.querySelector("#predict-button").addEventListener("click",async () => {
 
-
-
+        // const predictions = await model.predict(img);
+        const predictions_from_classifier = await classification_model.predict(img);
+        results_JSON = create_json_from_predictions_classification(predictions_from_classifier)
+        datatable.clear();
+        datatable.rows.add(results_JSON);
+        datatable.draw();
+    });
 
 }
 
 
-function analyze_image(){
+
+async function analyze_image(){
 
     // get classification predictions and update the table
     classify_image()
@@ -71,36 +69,10 @@ function create_json_from_predictions_classification(preds){
         jsonArr.push(json_object);
        }
       return jsonArr
-    }
-
-async function classify_image() {
-
-    const predictions_from_classifier = await classification_model.predict(img);
-    results_JSON = create_json_from_predictions_classification(predictions_from_classifier)
-    datatable.clear();
-    datatable.rows.add(results_JSON);
-    datatable.draw();
 
 }
-
-/*
-async () => {
 
         
-    // Run inference on an image for classification and show the results.
-    const predictions_from_classifier = await classification_model.predict(img);
-    results_JSON = create_json_from_predictions_classification(predictions_from_classifier)
-    datatable.clear();
-    datatable.rows.add(results_JSON);
-    datatable.draw();
-  
-    // classify_image(classification_model, img)
-
-
-}
-*/
-
-            
 img_thumbnails = document.getElementsByClassName('gallery_column');
 for(let i = 0; i < img_thumbnails.length; i++) {
    img_thumbnails[i].addEventListener("click", function(e) {
@@ -116,6 +88,8 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
     // Wait for 2 seconds (2000 milisecond) before re-analysing the image
 
+    /*
+
     setTimeout(function (){
   
         // Run inference on an image for classification and show the results.
@@ -127,7 +101,7 @@ for(let i = 0; i < img_thumbnails.length; i++) {
                   
       }, 2000);
 
-      
+      */
 
 
 
