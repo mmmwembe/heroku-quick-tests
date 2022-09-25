@@ -48,7 +48,7 @@ async function start() {
 
     document.querySelector("#predict-button").addEventListener("click", async () => {
 
-        /*
+        
         // Run inference on an image for classification.
         const predictions_from_classifier = await classification_model.predict(img);
         // Show the results.
@@ -56,8 +56,8 @@ async function start() {
         datatable.clear();
         datatable.rows.add(results_JSON);
         datatable.draw();
-        */
-        classify_image(classification_model, img)
+      
+        // classify_image(classification_model, img)
 
 
     });
@@ -75,16 +75,7 @@ function create_json_from_predictions_classification(preds){
       return jsonArr
     }
 
-function classify_image(model, image_source){
 
-        const predictions = await model.predict(image_source);
-        // Show the results.
-        results_JSON = create_json_from_predictions_classification(predictions)
-        datatable.clear();
-        datatable.rows.add(results_JSON);
-        datatable.draw();
-
-}
 
 
             
