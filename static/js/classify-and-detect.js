@@ -82,15 +82,15 @@ img_thumbnails = document.getElementsByClassName('gallery_column');
         var img_url = e.target.src
         document.getElementById('selected-image').src = img_url;
 
-        delay(1000).then(() => {
 
-                // const predictions = await model.predict(img);
-                const predictions = await classification_model.predict(document.getElementById('selected-image'));
-                results_JSON = create_json_from_predictions_classification(predictions)
-                datatable.clear();
-                datatable.rows.add(results_JSON);
-                datatable.draw();
-       });
+
+        // const predictions = await model.predict(img);
+        const predictions = await classification_model.predict(document.getElementById('selected-image'));
+        results_JSON = create_json_from_predictions_classification(predictions)
+        datatable.clear();
+        datatable.rows.add(results_JSON);
+        datatable.draw();
+
 
 
     });
