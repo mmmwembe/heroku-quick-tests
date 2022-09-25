@@ -10,7 +10,7 @@ async function start() {
 
     var img_thumbnails = null
     var active_folder = document.getElementById("upload-folder").value;
-    alert('active folder ' + active_folder)
+    // alert('active folder ' + active_folder)
 
     let results_JSON =[];
     var datatable = null;
