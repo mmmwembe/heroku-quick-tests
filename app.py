@@ -211,6 +211,7 @@ def upload_image():
   # https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-python
   # https://buraksenol.medium.com/pass-images-to-html-without-saving-them-as-files-using-python-flask-b055f29908a
   # https://cloud.google.com/appengine/docs/flexible/python/using-cloud-storage
+  # https://github.com/googleapis/google-cloud-python/issues/3655
 	for file in files:
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
@@ -222,7 +223,8 @@ def upload_image():
 			blob = bucket.blob(filename)
 			# blob.upload_from_filename(FILE_TO_UPLOAD)
 			# blob.upload_from_string(file.read())
-			blob.upload_from_string(file.read(), content_type=file.content_type)
+			content = file.read()
+			blob.upload_from_string(content.seek(0), content_type=file.content_type)
 			blob_public_url = blob.public_url 
 			returned_public_urls.append(blob_public_url)   
       
