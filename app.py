@@ -214,8 +214,9 @@ def upload_image():
 			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
 			file_names.append(filename)
 			# file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
+			FILE_TO_UPLOAD = file.read()
 			blob = bucket.blob(blob_full_path)
-			blob.upload_from_filename(file)
+			blob.upload_from_filename(FILE_TO_UPLOAD)
 			blob_public_url = blob.public_url 
 			returned_public_urls.append(blob_public_url)   
       
