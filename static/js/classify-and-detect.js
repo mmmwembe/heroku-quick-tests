@@ -74,6 +74,8 @@ function create_json_from_predictions_classification(preds){
 
         
 img_thumbnails = document.getElementsByClassName('gallery_column');
+
+/*
 for(let i = 0; i < img_thumbnails.length; i++) {
    img_thumbnails[i].addEventListener("click", function(e) {
    var img_url = e.target.src
@@ -88,7 +90,7 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
     // Wait for 2 seconds (2000 milisecond) before re-analysing the image
 
-    /*
+
 
     setTimeout(function (){
   
@@ -101,12 +103,45 @@ for(let i = 0; i < img_thumbnails.length; i++) {
                   
       }, 2000);
 
-      */
-
 
 
    })
+*/
+   
+
+   for(let i = 0; i < img_thumbnails.length; i++) {
+    img_thumbnails[i].addEventListener("click", async (e) => {
+
+        var img_url = e.target.src
+        document.getElementById('selected-image').src = img_url;
+        
+        // const predictions = await model.predict(img);
+        const predictions_from_classifier = await classification_model.predict(img);
+        results_JSON = create_json_from_predictions_classification(predictions_from_classifier)
+        datatable.clear();
+        datatable.rows.add(results_JSON);
+        datatable.draw();
+    });
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
     
