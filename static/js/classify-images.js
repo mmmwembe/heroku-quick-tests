@@ -63,9 +63,11 @@ for(let i = 0; i < img_thumbnails.length; i++) {
     document.getElementById('selected-image').src = img_url;
 
     // Regenerate datatable so it maintains its font color
-    datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
-    searching: false,ordering: false,lengthChange: false} );
-    
+    // datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
+    // searching: false,ordering: false,lengthChange: false} );
+    var firstColumnHeader = $('##results-datatable thead th:first-child');
+    firstColumnHeader.css('background', '#FCD116');
+
    })
 }
     
