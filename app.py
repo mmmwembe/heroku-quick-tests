@@ -224,7 +224,8 @@ def upload_image():
 			# blob.upload_from_filename(FILE_TO_UPLOAD)
 			# blob.upload_from_string(file.read())
 			content = file.read()
-			blob.upload_from_string(content.seek(0), content_type=file.content_type)
+			# blob.upload_from_string(content, content_type=file.content_type, rewind =True)
+			blob.upload_from_file(file.file, content_type=file.content_type, rewind=True)
 			blob_public_url = blob.public_url 
 			returned_public_urls.append(blob_public_url)   
       
