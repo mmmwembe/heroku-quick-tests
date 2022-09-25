@@ -31,11 +31,32 @@ async function start() {
 
     //$('#results-datatable').css('color', 'black');
 
+    document.querySelector("#predict-button").disabled = true;
+
+    // --------------------------
+    // Classification Model
+
     // Load the TFLite model - Load the model from a custom url with other options (optional).
     const classification_model = await tfTask.ImageClassification.CustomModel.TFLite.load({
         model: "https://storage.googleapis.com/2021_tflite_glitch_models/stack-plume-dust-classification/model_classifier.tflite",
     });
 
+
+
+
+   // MODEL INFORMATION - Mwembeshi 9/12/2022
+    // Google Drive: DUST-SUN-FOG-CLEAR
+    // Model Directory: model-object-detection
+    // Model URL: /content/drive/MyDrive/DUST-SUN-FOG-CLEAR/model-object-detection/model-obj-detect-dust-sun-fog-clear-blurry-rain-snow.tflite
+    // Google Cloud URL: https://storage.googleapis.com/2021_tflite_glitch_models/dust-sun-fog-clear-rain-snow-blurry/model-obj-detect-dust-sun-fog-clear-blurry-rain-snow.tflite
+
+    var obj_detection_model = undefined;
+    // https://tfhub.dev/tensorflow/lite-model/ssd_mobilenet_v1/1/metadata/2?lite-format=tflite   
+    // https://storage.googleapis.com/2021_tflite_glitch_models/stack-plume-dust-object-detection/obj-detection-dust-model.tflite
+    tflite.ObjectDetector.create("https://storage.googleapis.com/2021_tflite_glitch_models/dust-sun-fog-clear-rain-snow-blurry/model-obj-detect-dust-sun-fog-clear-blurry-rain-snow.tflite").then((loadedModel) => {
+       obj_detection_model = loadedModel;
+       document.querySelector("#predict-button").disabled = false;
+    });
 
 
     // Analyze image
@@ -96,30 +117,66 @@ img_thumbnails = document.getElementsByClassName('gallery_column');
     });
 
 
+
+
+
+
+    function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
+
+
+    function remove_bboxes_and_labels(){
+
+        // Remove labels
+        var elms1 = document.querySelectorAll("[id='p-label']");
+        for(var i = 0; i < elms1.length; i++) 
+        // elms[i].style.display='none'; 
+          elms1[i]?.remove()
+
+        // Remove labels
+        var elms2 = document.querySelectorAll("[id='bbox-highlighter']");
+        for(var i = 0; i < elms2.length; i++) 
+          // elms[i].style.display='none'; 
+            elms2[i]?.remove()        
+
+    }
+
+
+    function update_caption_and_bbox_colors(){
+
+        // Remove labels
+        var elms1 = document.querySelectorAll("[id='p-label']");
+        for(var i = 0; i < elms1.length; i++) 
+        // elms[i].style.display='none'; 
+         // elms1[i]?.remove()
+         alert('p-label '+ elms1[i].getAttribute('label'))
+         // alert('p-label')
+
+        // Remove labels
+        var elms2 = document.querySelectorAll("[id='bbox-highlighter']");
+        for(var i = 0; i < elms2.length; i++) 
+          // elms[i].style.display='none'; 
+          //  elms2[i]?.remove()   
+          // alert('bbox-highlighter')
+          // elms2[i].style["border"] = "10px dashed #C2175B;"
+          elms2[i].setAttribute("border","10px dashed #C2175B")
+
+    }
+
+
+    function delay(time_in_miliseconds) {
+        //delay(1000).then(() => console.log('ran after 1 second1 passed'));
+        return new Promise(resolve => setTimeout(resolve, time_in_miliseconds));
+    }
+  
+    
+
+
 }
 
 
-
-function delay(time_in_miliseconds) {
-    //delay(1000).then(() => console.log('ran after 1 second1 passed'));
-    return new Promise(resolve => setTimeout(resolve, time_in_miliseconds));
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    
 
 start();
