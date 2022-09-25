@@ -41,7 +41,8 @@ async function start() {
     document.querySelector("#predict-button").addEventListener("click", async () => {
 
         // Run inference on an image.
-        const predictions = await model.predict(img);
+        // const predictions = await model.predict(img);
+        const predictions = await model.predict(document.querySelector("#selected-image"));
         console.log(predictions.classes);
 
         // Show the results.
