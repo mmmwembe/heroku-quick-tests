@@ -249,6 +249,16 @@ def detection():
 	return render_template('detection.html', images_in_dir=gcp_active_directory_file_urls)
 
 
+@app.route('/classify/', methods=['POST'])
+def classify():
+    
+	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+      
+	return render_template('classify-images.html', images_in_dir=gcp_active_directory_file_urls)
+
+
+
+
 if __name__ == '__main__':
     
     app.run()
