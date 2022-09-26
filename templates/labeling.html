@@ -943,7 +943,7 @@ function set_new_background_image(imageUrl){
 
 clearCanvasBackground()
 
-refreshCanvasContainer(canvas_parent_width,canvas_parent_height)
+// refreshCanvasContainer(canvas_parent_width,canvas_parent_height)
 
 getCanvasSize()
 
@@ -1075,7 +1075,7 @@ function refreshCanvasContainer(c_width, c_height)
    //var c_width = canvas_parent_width
   //var c_height = canvas_parent_height
 
-    // $( "#canvasHolder").load(window.location.href + " #canvasHolder");
+    $( "#canvasHolder").load(window.location.href + " #canvasHolder");
     $("#canvasHolder").css("width",c_width)
     $("#canvasHolder").css("height",c_height)
 
