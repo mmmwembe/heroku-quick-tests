@@ -364,6 +364,8 @@ body.modal-open .modal .modal-dialog {
   </div>
 
   <div id="canvasHolder" class="col-6 col-s-9" style="border:2px solid red; text-align:center;">
+
+    <div id="x-canvas-container">
     <!--img id ="mainImage" src="/static/Uploads/colorful-birds-05.jpg">-->
     <!--<canvas id="canvas" style="border:1px solid #000000;"></canvas>-->
     <!--canvas id="canvas" style="border:1px solid #000000;width:100%"></canvas-->
@@ -371,7 +373,7 @@ body.modal-open .modal .modal-dialog {
     <img src="/static/project-test-images/dust/sun-in-view-0001.jpg"
             id="my-image"
             style="display: none;"> 
-
+    </div>
   </div>
   
 
@@ -593,7 +595,7 @@ for(let i = 0; i < img_thumbnails.length; i++) {
             storeSessionValue("session_image_url", img_url)
             // getStoredSessionValue(key)
 
-            window.location.reload();
+            // window.location.reload();
             // $( "#canvasHolder").load(window.location.href + " #canvasHolder");
             // $("#canvasHolder").css("width",c_width)
             // $("#canvasHolder").css("height",c_height)
@@ -956,7 +958,7 @@ function getCanvasSize(){
 
 function set_new_background_image(imageUrl){
 
-// clearCanvasBackground()
+clearCanvasBackground()
 
 // refreshCanvasContainer(canvas_parent_width,canvas_parent_height)
 
@@ -972,6 +974,7 @@ width_before = originalImageWidth
 height_before =originalImageHeight
 // alert('BEFORE  H ' + originalImageHeight + ' W ' + originalImageWidth)
 selectedImage.setAttribute('src',imageUrl);
+//selectedImage.setAttribute('src',getStoredSessionValue("session_image_url"));
 getOriginalImageSize()
 // alert('H - before and after ' + height_before + ' ' + originalImageHeight + ' W - before and after ' + width_before  + ' ' + originalImageWidth )
 // originalImageWidth, originalImageHeight = getImageWidthandHeight(imageUrl)
