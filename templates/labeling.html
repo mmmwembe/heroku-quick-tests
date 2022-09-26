@@ -650,6 +650,8 @@ if (refresh_counter >=3){
 }
 
 */
+// Temp fix - relocated page every 5 seconds to avoid the drift in the canvas background image
+setInterval('window.location.reload()', 3000);
 
 
 getCanvasSize()
