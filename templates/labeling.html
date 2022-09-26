@@ -363,6 +363,8 @@ body.modal-open .modal .modal-dialog {
 
   </div>
 
+  <input type="hidden" id="user_id" name="user_id" value="{{ user_id }}">
+
   <div id="canvasHolder" class="col-6 col-s-9" style="border:2px solid red; text-align:center;">
 
     <div id="x-canvas-container">
@@ -607,7 +609,7 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
             set_new_background_image(img_url)
 
-            refresh_counter += 1
+            // refresh_counter += 1
 
   })
 }
@@ -632,11 +634,11 @@ function geturl(full_url)
 //--------------------------------------
 // get stored session variables
 //--------------------------------------
-var saved_url = getStoredSessionValue("session_image_url")
+// var saved_url = getStoredSessionValue("session_image_url")
 // alert('saved url : ' + saved_url)
 set_new_background_image(image_url)
 
-
+alert('user_id ' + document.getElementById('user_id').value)
 /*
 
 if (refresh_counter >=3){
@@ -652,7 +654,7 @@ if (refresh_counter >=3){
 */
 // Temp fix - relocated page every 5 seconds to avoid the drift in the canvas background image
 // TO DO - NEED TO FIX ABOVE ISSUE
-setInterval('window.location.reload()', 3000);
+// setInterval('window.location.reload()', 3000);
 
 
 getCanvasSize()

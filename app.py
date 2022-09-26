@@ -175,6 +175,8 @@ pre_approved_email_addresses = db["pre_approved_email_addresses"]
 
 user_info = users_collection.find_one({"email": email})
 
+user_id = user_info["_id"]
+
 GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
 bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
 sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
@@ -278,7 +280,7 @@ def labelling():
   
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
  
-	return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls)
+	return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id)
 
 
 @app.route('/saveCroppedImage', methods=['POST','GET'])
