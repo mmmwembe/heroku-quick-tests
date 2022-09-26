@@ -363,7 +363,7 @@ body.modal-open .modal .modal-dialog {
 
   </div>
 
-  <div id="canvasHolder" class="col-6 col-s-9" style="border:2px solid red; text-align:center; width:100%;">
+  <div id="canvasHolder" class="col-6 col-s-9" style="border:2px solid red; text-align:center;">
     <!--img id ="mainImage" src="/static/Uploads/colorful-birds-05.jpg">-->
     <!--<canvas id="canvas" style="border:1px solid #000000;"></canvas>-->
     <!--canvas id="canvas" style="border:1px solid #000000;width:100%"></canvas-->
@@ -943,7 +943,7 @@ function set_new_background_image(imageUrl){
 
 clearCanvasBackground()
 
-refreshCanvasContainer()
+refreshCanvasContainer(canvas_parent_width,canvas_parent_height)
 
 getCanvasSize()
 
@@ -1070,9 +1070,15 @@ function getRandomInt(min, max) {
 }
 
 
-function refreshCanvasContainer()
+function refreshCanvasContainer(c_width, c_height)
 { 
-    $( "#canvasHolder" ).load(window.location.href + " #canvasHolder" );
+   //var c_width = canvas_parent_width
+  //var c_height = canvas_parent_height
+
+    $( "#canvasHolder").load(window.location.href + " #canvasHolder");
+    $("#canvasHolder").css("width",c_width)
+    $("#canvasHolder").css("height",c_height)
+
 }
 
 
