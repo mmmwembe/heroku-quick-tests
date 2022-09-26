@@ -322,7 +322,7 @@
                                 {% for column_img in row %}  
                       
                                   <div class="gallery_column">
-                                    <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%" crossorigin="anonymous">
+                                    <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%" data-index="{{loop.index}}" crossorigin="anonymous">
                                   </div>
                       
                                 {% endfor %}
