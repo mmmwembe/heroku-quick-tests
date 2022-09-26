@@ -273,9 +273,9 @@ def classify():
       
 	return render_template('classify-images.html', images_in_dir=gcp_active_directory_file_urls)
 
-@app.route('/labelling/', methods=['POST','GET'])
+@app.route('/labeling/', methods=['POST','GET'])
 def labelling():   
-	return render_template('labelling.html')
+	return render_template('labeling.html')
 
 
 @app.route('/saveCroppedImage', methods=['POST','GET'])
