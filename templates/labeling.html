@@ -564,6 +564,7 @@ var final_canvas_width = null
 var final_canvas_height = null
 var final_image_width = null
 var final_image_height = null
+var refresh_counter = 0
 
  
 canvas_parent = document.getElementById('canvasHolder')
@@ -602,11 +603,11 @@ for(let i = 0; i < img_thumbnails.length; i++) {
             // window.localStorage.setItem("session_image_url", img_url);
 
             // canvas_parent.location.reload();
-            $('#x-canvas-container').load(document.URL +  ' #x-canvas-container');
+            // $('#x-canvas-container').load(document.URL +  '  #x-canvas-container');
 
-            // set_new_background_image(img_url)
-            var stored_image_url = getStoredSessionValue("session_image_url")
-            set_new_background_image(stored_image_url )
+            set_new_background_image(img_url)
+
+            refresh_counter += 1
 
   })
 }
@@ -634,6 +635,21 @@ function geturl(full_url)
 var saved_url = getStoredSessionValue("session_image_url")
 // alert('saved url : ' + saved_url)
 set_new_background_image(image_url)
+
+
+/*
+
+if (refresh_counter >=3){
+
+  window.location.reload();
+
+  var stored_image_url = getStoredSessionValue("session_image_url")
+  set_new_background_image(stored_image_url)
+
+  refresh_counter = 0
+}
+
+*/
 
 
 getCanvasSize()
