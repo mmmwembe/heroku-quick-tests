@@ -963,7 +963,7 @@ var new_width_ratio = originalImageWidth/canvasWidth
 var new_height_ratio = originalImageHeight/canvasHeight
 
 // Creating the image instance 
-var background_image = new fabric.Image(selectedImage, {top: 'top',left: 'left', originX: 'left', originY: 'top',  angle: 0}); 
+var background_image = new fabric.Image(selectedImage, {top: 0,left: 0, originX: 'left', originY: 'top',  angle: 0}); 
 
 if (new_height_ratio >= new_width_ratio){
   background_image.scaleToHeight(canvasHeight);
@@ -976,6 +976,7 @@ if (new_height_ratio < new_width_ratio){
  var new_width = originalImageWidth * background_image.scaleX
 
 canvas.setBackgroundImage(background_image);
+// https://www.demo2s.com/javascript/javascript-fabric-js-fit-the-background-image-to-canvas-size.html
 // canvas.setBackgroundImage(background_image, canvas.renderAll.bind(canvas), {top: 'top',left: 'left', originX: 'left', originY: 'top', crossOrigin: 'anonymous'});
 canvas.setDimensions({width:new_width, height:new_height})
 canvas.renderAll();
