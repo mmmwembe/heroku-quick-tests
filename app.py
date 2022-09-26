@@ -241,7 +241,7 @@ def upload_image():
 	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
-@app.route('/detection/', methods=['POST'])
+@app.route('/detection/', methods=['POST','GET'])
 def detection():
     
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
