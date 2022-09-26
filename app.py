@@ -13,6 +13,9 @@ from google.cloud import storage
 import os
 from flask_session import Session
 from datetime import timedelta 
+import base64
+from PIL import Image
+from io import BytesIO
 # app.secret_key = 'A0AKR5TGD\ R~XHH!jmN]LWX/,?RT'
 
 #===========================================================
@@ -124,6 +127,15 @@ def upload_multiple_local_files_to_gcp_return_public_urls(local_dir_images_dir, 
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def getImageNameAndExtension(image_name):
+    file_name, ext = os.path.splitext(image_name)
+    return file_name, ext
+
+def get_filename_and_extension(file_path):
+  """ This function splits a filepath to a filename and extension
+    It takes as an argument the file path and outputs the filename and the extension"""
+  filename, ext = os.path.splitext(file_path)
+  return filename, ext
 
 def get_images_list(dir):
   images_list_raw = os.listdir(dir)
@@ -167,6 +179,11 @@ GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
 bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
 sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
 target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+
+cropped_images_subdir = user_info["gcp_bucket_dict"]["cropped_images_subdir"]
+cropped_canvas_jsons_subdir = user_info["gcp_bucket_dict"]["cropped_canvas_jsons_subdir"]
+cropped_images_csv_files = user_info["gcp_bucket_dict"]["cropped_images_csv_files"]
+
 CURRENTLY_ACTIVE_FOLDER ="dog"
 
 # GCP_STORAGE_TARGET_PATH = os.path.join(path, "Downloads", "file.txt", "/home")
@@ -255,6 +272,39 @@ def classify():
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
       
 	return render_template('classify-images.html', images_in_dir=gcp_active_directory_file_urls)
+
+@app.route('/labelling/', methods=['POST','GET'])
+def labelling():   
+	return render_template('labelling.html')
+
+
+@app.route('/saveCroppedImage', methods=['POST','GET'])
+def saveCroppedImage():
+
+    if request.method =='POST':
+
+        user_id = request.form['user_id']
+        image_name= request.form['image_name']
+        label_num= request.form['label_num']
+        currentFolder= request.form['current_folder']
+        file_name, extension = getImageNameAndExtension(image_name)
+
+        cropped_image_dataURL = request.form['imgBase64']
+        # print(cropped_image_dataURL)
+        # save cropped imageBase64 string as PNG image
+        cropped_image_file_path = 'static/images/' + user_id + '/cropped-labels/'+ currentFolder + '/' + file_name +  extension.replace(".", "-") + '-' + label_num + '.png'
+        # cropped_image_file_path = 'static/images/'  + file_name + extension.replace(".", "-") + '-' + label_num + '.png'
+
+        img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
+        img.save(cropped_image_file_path)
+        # saveImageBase42StringAsImage(cropped_image_dataURL)
+
+        # static/images/user1/canvas_jsons
+        
+        # encoded_string = base64.b64encode(cropped_image_dataURL)
+   
+    return jsonify(result = 'success', url=cropped_image_file_path)
+
 
 
 

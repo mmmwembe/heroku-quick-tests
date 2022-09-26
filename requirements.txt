@@ -36,6 +36,7 @@ google-resumable-media
 googleapis-common-protos
 httplib2
 idna
+Pillow
 protobuf
 pyasn1
 pyasn1-modules
