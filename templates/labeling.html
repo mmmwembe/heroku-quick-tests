@@ -563,6 +563,9 @@ var final_canvas_height = null
 var final_image_width = null
 var final_image_height = null
 
+var session_image_url = "";
+
+
  
 canvas_parent = document.getElementById('canvasHolder')
 canvas_parent_width = canvas_parent.clientWidth; // offsetWidth; 
@@ -590,14 +593,19 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
             img_url = e.target.src
 
-            $( "#canvasHolder").load(window.location.href + " #canvasHolder");
-            $("#canvasHolder").css("width",c_width)
-            $("#canvasHolder").css("height",c_height)
+            storeSessionValue("session_image_url", img_url)
+            // getStoredSessionValue(key)
+
+            window.location.reload();
+            // $( "#canvasHolder").load(window.location.href + " #canvasHolder");
+            // $("#canvasHolder").css("width",c_width)
+            // $("#canvasHolder").css("height",c_height)
+            // window.localStorage.setItem("session_image_url", img_url);
 
             // canvas_parent.location.reload();
             //set_new_background_image(img_url)
             // set_new_background_image2(img_url)
-            set_new_background_image(img_url)
+  // set_new_background_image(img_url)
             // updateCanvasBackgroundImage2(img_url)
             //alert(img_url)
             //var img_url2 = geturl(img_url)
@@ -622,8 +630,13 @@ function geturl(full_url)
 set_new_background_image(image_url)
 // updateCanvasBackgroundImage2(image_url)
 
+//--------------------------------------
+// get stored session variables
+//--------------------------------------
+var saved_url = getStoredSessionValue("session_image_url")
+alert('saved url : ' + saved_url)
 
-
+set_new_background_image(image_url)
 
 
 getCanvasSize()
@@ -1085,6 +1098,22 @@ function refreshCanvasContainer(c_width, c_height)
     $("#canvasHolder").css("width",c_width)
     $("#canvasHolder").css("height",c_height)
 
+}
+
+function storeSessionValue(key, value) {
+    if (localStorage) {
+        localStorage.setItem(key, value);
+    } else {
+        $.cookies.set(key, value);
+    }
+}
+
+function getStoredSessionValue(key) {
+    if (localStorage) {
+        return localStorage.getItem(key);
+    } else {
+        return $.cookies.get(key);
+    }
 }
 
 
