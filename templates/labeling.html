@@ -976,12 +976,7 @@ if (new_height_ratio < new_width_ratio){
  var new_width = originalImageWidth * background_image.scaleX
 
 // canvas.setBackgroundImage(background_image);
-canvas.setBackgroundImage(background_image, canvas.renderAll.bind(canvas), {
-                top: top,
-                left: left,
-                originX: 'left',
-                originY: 'top',
-});
+canvas.setBackgroundImage(background_image, canvas.renderAll.bind(canvas), {top: top,left: left,originX: 'left', originY: 'top'});
 canvas.setDimensions({width:new_width, height:new_height})
 canvas.renderAll();
 
