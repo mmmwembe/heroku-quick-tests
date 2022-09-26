@@ -182,6 +182,9 @@ bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
 sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
 target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 
+sub_dir_user_images_for_labeling = user_info["gcp_bucket_dict"]["user_images_subdir"]
+allowed_image_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+
 cropped_images_subdir = user_info["gcp_bucket_dict"]["cropped_images_subdir"]
 cropped_canvas_jsons_subdir = user_info["gcp_bucket_dict"]["cropped_canvas_jsons_subdir"]
 cropped_images_csv_files = user_info["gcp_bucket_dict"]["cropped_images_csv_files"]
@@ -259,6 +262,39 @@ def upload_image():
       
 	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
+
+@app.route('/', methods=['POST'])
+def upload_images_for_labeling():
+	if 'files-images-to-label[]' not in request.files:
+		flash('No file part')
+		return redirect(request.url)
+	files = request.files.getlist('files-images-to-label[]')
+	file_names = []
+
+	returned_public_urls =[]
+	client = storage.Client()
+	bucket = client.get_bucket(bucket_name)
+	sub_dir_path_with_active_folder = os.path.join(sub_dir_user_images_for_labeling,CURRENTLY_ACTIVE_FOLDER)
+
+	for file in files:
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+			file_names.append(filename)
+			file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
+			FILE_TO_UPLOAD = file.read()
+			blob = bucket.blob(blob_full_path)
+			file.seek(0)
+			blob.upload_from_string(file.read(), content_type=file.content_type)
+			blob_public_url = blob.public_url 
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path) 
+			returned_public_urls.append(gcs_url) 
+
+
+	gcp_public_urls_images_for_labeling = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_user_images_for_labeling, allowed_image_types_array)       
+      
+	return render_template('classify-images.html', filenames=file_names, images_in_dir=gcp_public_urls_images_for_labeling)
+
 
 @app.route('/detection/', methods=['POST','GET'])
 def detection():
