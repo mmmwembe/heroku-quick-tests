@@ -73,7 +73,7 @@ for(let i = 0; i < img_thumbnails.length; i++) {
    var img_url = e.target.src
    document.getElementById('selected-image').src = img_url;
 
-   alert("image index = " + element.getAttribute('data-index'));
+   alert("image index = " + e.target.getAttribute('data-index'));
 
     // Regenerate datatable so it maintains its font color
     // datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
