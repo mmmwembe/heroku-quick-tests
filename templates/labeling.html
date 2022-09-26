@@ -602,9 +602,7 @@ for(let i = 0; i < img_thumbnails.length; i++) {
             // window.localStorage.setItem("session_image_url", img_url);
 
             // canvas_parent.location.reload();
-
-            var x = document.getElementById('x-canvas-container').innerHTML;
-            document.getElementById('x-canvas-container').innerHTML = x;
+            $('#x-canvas-container').load(document.URL +  '#x-canvas-container');
 
             set_new_background_image(img_url)
 
