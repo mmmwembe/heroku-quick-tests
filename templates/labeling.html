@@ -338,84 +338,28 @@ body.modal-open .modal .modal-dialog {
 
    <!--THUMBNAIL GALLERY STARTS HERE -->
    <!-- The four columns -->
-  <div class="ScrollStyle">
+   <div class="ScrollStyle">
+                      
+    {% if images_in_dir %}
 
-      <div class="row">
-          <div class="gallery_column">
-            <img id="thumbnail" src="/static/project-test-images/gallery/clean factory-0011.jpg" alt="Nature" style="width:100%">
-          </div>
-          <div class="gallery_column">
-            <img id="thumbnail"  src="/static/project-test-images/gallery/clean factory-0015.jpg" alt="Snow" style="width:100%">
-          </div>
-          <div class="gallery_column">
-            <img src="/static/project-test-images/gallery/img_mountains.jpg" alt="Mountains" style="width:100%" >
-          </div>
-          <div class="gallery_column">
-            <img src="/static/project-test-images/gallery/img_lights.jpg" alt="Lights" style="width:100%">
-          </div>
-      </div>
-
-      <div class="row">
-        <div class="gallery_column">
-          <img src="/static/project-test-images/gallery/img_nature.jpg" alt="Nature" style="width:100%" onclick="myFunction(this);">
-        </div>
-        <div class="gallery_column">
-          <img src="/static/project-test-images/gallery/img_snow.jpg" alt="Snow" style="width:100%" onclick="myFunction(this);">
-        </div>
-        <div class="gallery_column">
-          <img src="/static/project-test-images/gallery/img_mountains.jpg" alt="Mountains" style="width:100%" onclick="myFunction(this);">
-        </div>
-        <div class="gallery_column">
-          <img src="/static/project-test-images/gallery/img_lights.jpg" alt="Lights" style="width:100%" onclick="myFunction(this);">
-        </div>
-    </div>
-
+    {% for row in images_in_dir|batch(4) %}
     <div class="row">
-      <div class="gallery_column">
-        <img src="/static/project-test-images/gallery/img_nature.jpg" alt="Nature" style="width:100%" onclick="myFunction(this);">
-      </div>
-      <div class="gallery_column">
-        <img src="/static/project-test-images/gallery/img_snow.jpg" alt="Snow" style="width:100%" onclick="myFunction(this);">
-      </div>
-      <div class="gallery_column">
-        <img src="/static/project-test-images/gallery/img_mountains.jpg" alt="Mountains" style="width:100%" onclick="myFunction(this);">
-      </div>
-      <div class="gallery_column">
-        <img src="/static/project-test-images/gallery/img_lights.jpg" alt="Lights" style="width:100%" onclick="myFunction(this);">
-      </div>
-  </div>
 
-  <div class="row">
-    <div class="gallery_column">
-      <img src="/static/project-test-images/gallery/img_nature.jpg" alt="Nature" style="width:100%" onclick="myFunction(this);">
+      {% for column_img in row %}  
+
+        <div class="gallery_column">
+          <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%" crossorigin="anonymous">
+        </div>
+
+      {% endfor %}
+
     </div>
-    <div class="gallery_column">
-      <img src="/static/project-test-images/gallery/img_snow.jpg" alt="Snow" style="width:100%" onclick="myFunction(this);">
-    </div>
-    <div class="gallery_column">
-      <img src="/static/project-test-images/gallery/img_mountains.jpg" alt="Mountains" style="width:100%" onclick="myFunction(this);">
-    </div>
-    <div class="gallery_column">
-      <img src="/static/project-test-images/gallery/img_lights.jpg" alt="Lights" style="width:100%" onclick="myFunction(this);">
-    </div>
+    {% endfor %}
+
+  {% endif %}
+
+
 </div>
-
-<div class="row">
-  <div class="gallery_column">
-    <img src="/static/project-test-images/gallery/img_nature.jpg" alt="Nature" style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="gallery_column">
-    <img src="/static/project-test-images/gallery/img_snow.jpg" alt="Snow" style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="gallery_column">
-    <img src="/static/project-test-images/gallery/img_mountains.jpg" alt="Mountains" style="width:100%" onclick="myFunction(this);">
-  </div>
-  <div class="gallery_column">
-    <img src="/static/project-test-images/gallery/img_lights.jpg" alt="Lights" style="width:100%" onclick="myFunction(this);">
-  </div>
-</div>
-
-  </div>
 
   </div>
 
@@ -1132,7 +1076,6 @@ function getRandomInt(min, max) {
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.8/dist/tf-tflite.min.js"></script>
-<script src="/static/js/detect-objects-labeling.js"></script>
 <script src="{{ url_for('static', filename='labeling.js') }}"></script>
 
 </body>

@@ -275,7 +275,10 @@ def classify():
 
 @app.route('/labeling/', methods=['POST','GET'])
 def labelling():   
-	return render_template('labeling.html')
+  
+	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+ 
+	return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls)
 
 
 @app.route('/saveCroppedImage', methods=['POST','GET'])
