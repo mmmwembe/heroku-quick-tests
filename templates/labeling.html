@@ -590,7 +590,11 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
             img_url = e.target.src
 
-            canvas_parent.location.reload();
+            $( "#canvasHolder").load(window.location.href + " #canvasHolder");
+            $("#canvasHolder").css("width",c_width)
+            $("#canvasHolder").css("height",c_height)
+
+            // canvas_parent.location.reload();
             //set_new_background_image(img_url)
             // set_new_background_image2(img_url)
             set_new_background_image(img_url)
