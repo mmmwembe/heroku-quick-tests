@@ -604,7 +604,9 @@ for(let i = 0; i < img_thumbnails.length; i++) {
             // canvas_parent.location.reload();
             $('#x-canvas-container').load(document.URL +  ' #x-canvas-container');
 
-            set_new_background_image(img_url)
+            // set_new_background_image(img_url)
+            var stored_image_url = getStoredSessionValue("session_image_url")
+            set_new_background_image(stored_image_url )
 
   })
 }
