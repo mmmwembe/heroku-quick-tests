@@ -220,11 +220,18 @@ def home():
 
 @app.route('/', methods=['POST'])
 def upload_image():
-	if 'files[]' not in request.files and request.form.get('images-for-testing') == 'images-for-testing':
+	if 'files[]' not in request.files:
 		flash('No file part')
 		return redirect(request.url)
 	files = request.files.getlist('files[]')
 	file_names = []
+ 
+	if request.form.get('images-for-testing') == 'images-for-testing':
+   # Sett bucket path to user's testing images directory
+		bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+   
 
 	returned_public_urls =[]
 	client = storage.Client()
@@ -259,7 +266,11 @@ def upload_image():
 			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url)      
-      
+   
+	if request.form.get('images-for-testing') == 'images-for-testing':
+
+		return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
+
 	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
