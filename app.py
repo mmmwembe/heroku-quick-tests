@@ -280,7 +280,8 @@ def upload_image():
 	elif request.form.get('which-form') == 'models-classification': 
 			return render_template('models.html', filenames=file_names, images_in_dir=returned_public_urls)
  
-	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
+	return jsonify({"which-form" : request.form.get('which-form') })
+ # return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
 
