@@ -213,7 +213,7 @@ body.modal-open .modal .modal-dialog {
           <strong><a href="/labeling/">Labeling</a> </strong>
         </div>
         <div class="col-sm">
-          <strong><a href = "#"> AI Models </a> </strong>
+          <strong><a href = "#"> Models </a> </strong>
       </div>
       <div class="col-sm">
         <strong><a href="#">Data</a> </strong>
@@ -310,7 +310,7 @@ body.modal-open .modal .modal-dialog {
       {% for column_img in row %}  
 
         <div class="gallery_column">
-          <img id="thumbnail" src="/static/project-icons/models-icon.png" data-classification-model-url ="{{ column_img }}" alt="Model" style="width:100%" crossorigin="anonymous">
+          <img id="thumbnail" src="/static/project-icons/models-icon.png" data-modelurl ="{{ column_img }}" alt="Model" style="width:100%" crossorigin="anonymous">
         </div>
 
       {% endfor %}
@@ -548,11 +548,12 @@ for(let i = 0; i < img_thumbnails.length; i++) {
   img_thumbnails[i].addEventListener("click", function(e) {
            // alert('thumbnail num ' + i + ' ' + e.target.src);
 
-            img_url = e.target.src
+            // img_url = e.target.src
+            var model_url = event.target.getAttribute('data-modelurl');
 
-            storeSessionValue("classification_model_url", img_url)
+            storeSessionValue("classification_model_url", model_url)
 
-            alert("URL of classification model = " + e.target.getAttribute('data-classification-model-url'));
+            alert("URL of classification model = " + model_url);
             // getStoredSessionValue(key)
 
             // window.location.reload();
