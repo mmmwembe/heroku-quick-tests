@@ -226,13 +226,18 @@ def upload_image():
 	files = request.files.getlist('files[]')
 	file_names = []
  
-	if request.form.get('images-for-testing') == 'images-for-testing':
+	if request.form.get('images-for-testing-classification') == 'images-for-testing-classification':
+   # Sett bucket path to user's testing images directory
+		bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+
+	if request.form.get('images-for-labeling') == 'images-for-labeling':
    # Sett bucket path to user's testing images directory
 		bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
 		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
 		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
    
-
 	returned_public_urls =[]
 	client = storage.Client()
 	bucket = client.get_bucket(bucket_name)
@@ -267,41 +272,16 @@ def upload_image():
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url)      
    
-	if request.form.get('images-for-testing') == 'images-for-testing':
+	if request.form.get('images-for-labeling') == 'images-for-labeling':
 
 		return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
 
+	if request.form.get('images-for-testing-classification') == 'images-for-testing-classification':
+
+		return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
+
 	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
-
-@app.route('/', methods=['POST'])
-def upload_images_for_labeling():
-	if 'files[]' not in request.files and request.form.get('images-for-labeling') == 'images-for-labeling':
-		flash('No file part')
-		return redirect(request.url)
-	files = request.files.getlist('files[]')
-	file_names = []
-
-	returned_public_urls =[]
-	client = storage.Client()
-	bucket = client.get_bucket(bucket_name)
-	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-	for file in files:
-		if file and allowed_file(file.filename):
-			filename = secure_filename(file.filename)
-			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
-			file_names.append(filename)
-			file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
-			FILE_TO_UPLOAD = file.read()
-			blob = bucket.blob(blob_full_path)
-			file.seek(0)
-			blob.upload_from_string(file.read(), content_type=file.content_type)
-			blob_public_url = blob.public_url 
-			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
-			returned_public_urls.append(gcs_url)      
-      
-	return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
-
 
 @app.route('/detection/', methods=['POST','GET'])
 def detection():
