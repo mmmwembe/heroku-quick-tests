@@ -375,6 +375,15 @@ def labeling():
 	return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id)
 
 
+@app.route('/models/', methods=['POST','GET'])
+def models():
+     
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
+	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+      
+	return render_template('models.html', images_in_dir=gcp_active_directory_file_urls)
+
 @app.route('/saveCroppedImage', methods=['POST','GET'])
 def saveCroppedImage():
 
