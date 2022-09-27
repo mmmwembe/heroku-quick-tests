@@ -232,11 +232,14 @@ def upload_image():
 	bucket = client.get_bucket(bucket_name)
 	if request.form.get('which-form') == 'images-for-labeling':
 		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 	elif request.form.get('which-form') == 'images-for-testing-object-detection': 
 		sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]  
 	elif request.form.get('which-form') == 'images-for-testing-classification': 
 		sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
-    
+		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+      
 	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
 
 	for file in files:
@@ -252,7 +255,17 @@ def upload_image():
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url)      
    
-	# return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
+	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+ 
+	if request.form.get('which-form') == 'images-for-labeling':
+			return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)   
+
+	elif request.form.get('which-form') == 'images-for-testing-object-detection': 
+			return render_template('detection.html', filenames=file_names, images_in_dir=returned_public_urls)
+ 
+	elif request.form.get('which-form') == 'images-for-testing-classification':    
+			return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
+ 
 	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
