@@ -382,7 +382,7 @@ body.modal-open .modal .modal-dialog {
             <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
         </div>
         <input type="hidden" id="current_folder" name="current_folder" value="">
-        <input type="hidden" name="which-form" value="images-for-labeling">
+        <input type="hidden" name="which-form" value="models-classification">
     </form> 
 
   </div>
@@ -522,6 +522,7 @@ var final_canvas_height = null
 var final_image_width = null
 var final_image_height = null
 var refresh_counter = 0
+var labels_Table_Array = []
 
  
 canvas_parent = document.getElementById('canvasHolder')
@@ -554,6 +555,15 @@ for(let i = 0; i < img_thumbnails.length; i++) {
             storeSessionValue("classification_model_url", model_url)
 
             alert("URL of classification model = " + model_url);
+
+
+           var label = get_file_name(model_url)
+           var elapsed_time_seconds = Math.floor(Math.random() * 11);
+
+            var label_item = {'index': i, 'label': label, 'duration': elapsed_time_seconds}
+
+            labels_Table_Array.push(label_item)
+    
             // getStoredSessionValue(key)
 
             // window.location.reload();
@@ -568,8 +578,10 @@ for(let i = 0; i < img_thumbnails.length; i++) {
             // set_new_background_image(img_url)
 
             // refresh_counter += 1
-
   })
+
+  buildTable(labels_Table_Array)
+
 }
 
 function geturl(full_url)
@@ -1092,6 +1104,38 @@ function getStoredSessionValue(key) {
         return $.cookies.get(key);
     }
 }
+
+function buildTable(data){
+		var table = document.getElementById('myTable')
+        table.innerHTML = ''
+		for (var i = 0; i < data.length; i++){
+            // <td>${data[i].index}</td>
+            //<td><a id="${data[i].index}" href="#"  onclick="href_onclick(this.id)">${data[i].index}</a></td>
+			var row = `<tr class = "align-middle">        
+                            <td><button id="${data[i].index}" onclick="hello()" type="button" class="btn btn-outline-dark">${data[i].index}</button></td>
+							<td>${data[i].label}</td>
+							<td>${data[i].duration}</td>
+					  </tr>`
+			table.innerHTML += row
+
+
+		}
+}
+
+
+function get_file_name(url){
+
+  var filename = url.substring(url.lastIndexOf('/')+1);
+
+   return filename
+
+}
+
+
+
+
+
+
 
 
 }); 
