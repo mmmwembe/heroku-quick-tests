@@ -218,8 +218,43 @@ def home():
   # return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY, user_info = GCP_BUCKET_DICT )
   # return render_template('classify-images.html', images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
+
+
 @app.route('/', methods=['POST'])
 def upload_image():
+	if 'files[]' not in request.files:
+		flash('No file part')
+		return redirect(request.url)
+	files = request.files.getlist('files[]')
+	file_names = []
+	returned_public_urls =[]
+	client = storage.Client()
+	bucket = client.get_bucket(bucket_name)
+	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+
+	for file in files:
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+			file_names.append(filename)
+			blob = bucket.blob(blob_full_path)
+			file.seek(0)
+			blob.upload_from_string(file.read(), content_type=file.content_type)
+			blob_public_url = blob.public_url 
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+			# returned_public_urls.append(blob_public_url)   
+			returned_public_urls.append(gcs_url)      
+   
+	# return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
+	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
+	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
+
+
+
+
+
+@app.route('/xxxxx', methods=['POST'])
+def upload_image_xxxx():
 	if 'files[]' not in request.files:
 		flash('No file part')
 		return redirect(request.url)
