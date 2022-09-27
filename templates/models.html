@@ -310,7 +310,7 @@ body.modal-open .modal .modal-dialog {
       {% for column_img in row %}  
 
         <div class="gallery_column">
-          <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%" crossorigin="anonymous">
+          <img id="thumbnail" src="/static/project-icons/models-icon.png" data-classification-model-url ="{{ column_img }}" alt="Model" style="width:100%" crossorigin="anonymous">
         </div>
 
       {% endfor %}
@@ -550,7 +550,9 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
             img_url = e.target.src
 
-            storeSessionValue("session_image_url", img_url)
+            storeSessionValue("classification_model_url", img_url)
+
+            alert("URL of classification model = " + e.target.getAttribute('data-classification-model-url'));
             // getStoredSessionValue(key)
 
             // window.location.reload();
@@ -562,7 +564,7 @@ for(let i = 0; i < img_thumbnails.length; i++) {
             // canvas_parent.location.reload();
             // $('#x-canvas-container').load(document.URL +  '  #x-canvas-container');
 
-            set_new_background_image(img_url)
+            // set_new_background_image(img_url)
 
             // refresh_counter += 1
 
