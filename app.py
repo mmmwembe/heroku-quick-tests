@@ -254,7 +254,7 @@ def upload_image():
 			filename = secure_filename(file.filename)
 			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
 			file_names.append(filename)
-			file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
+			# file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
 			FILE_TO_UPLOAD = file.read()
 			blob = bucket.blob(blob_full_path)
 			# blob = bucket.blob(filename)
