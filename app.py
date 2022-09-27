@@ -209,7 +209,9 @@ def home():
   # bucket_name ="amina-files"
   # sub_directory_path="dust/user2/"
   # target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
-
+  sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+  target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+  
   gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
   # model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
 
@@ -260,9 +262,9 @@ def upload_image():
 			blob_public_url = blob.public_url 
 			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
 			# returned_public_urls.append(blob_public_url)   
-			returned_public_urls.append(gcs_url)      
-   
-	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+			# returned_public_urls.append(gcs_url)      
+	returned_public_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array) 
+	# gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
  
  # TO DO - Update the images_in_dir below to point to gcp_active_directory_file_urls
 	if request.form.get('which-form') == 'images-for-labeling':
@@ -345,7 +347,9 @@ def upload_image_xxxx():
 
 @app.route('/detection/', methods=['POST','GET'])
 def detection():
-    
+  
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
       
 	return render_template('detection.html', images_in_dir=gcp_active_directory_file_urls)
@@ -353,14 +357,18 @@ def detection():
 
 @app.route('/classify/', methods=['POST','GET'])
 def classify():
-    
+  
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]      
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
       
 	return render_template('classify-images.html', images_in_dir=gcp_active_directory_file_urls)
 
 @app.route('/labeling/', methods=['POST','GET'])
-def labelling():   
-  
+def labelling(): 
+    
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
  
 	return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id)
