@@ -293,7 +293,7 @@ def upload_images_for_labeling():
 
 	gcp_public_urls_images_for_labeling = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_user_images_for_labeling, allowed_image_types_array)       
       
-	return render_template('laeeling.html', filenames=file_names, images_in_dir=gcp_public_urls_images_for_labeling)
+	return render_template('labeling.html', filenames=file_names, images_in_dir=gcp_public_urls_images_for_labeling)
 
 
 @app.route('/detection/', methods=['POST','GET'])
