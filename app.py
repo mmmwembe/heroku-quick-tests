@@ -228,13 +228,11 @@ def upload_image():
  
 	if request.form.get('images-for-testing-classification') == 'images-for-testing-classification':
    # Sett bucket path to user's testing images directory
-		bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
 		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
 		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 
 	if request.form.get('images-for-labeling') == 'images-for-labeling':
    # Sett bucket path to user's testing images directory
-		bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
 		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
 		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
    
