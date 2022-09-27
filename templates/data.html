@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labeling Images </title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/521/fabric.min.js"></script>
+<script src="https://www.marvinj.org/releases/marvinj-1.0.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.canvas {
+  width: 100%;
+  height: auto;
+  display:block;
+  padding: 0;
+  margin: auto;
+}
+.canvas-container { 
+  margin:0 auto ;
+}
+
+.row:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+
+@media only screen and (min-width: 768px) {
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+
+.header {
+  background-color: #252526;
+  color: #ffffff;
+  padding: 15px;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 8px;
+  margin-bottom: 7px;
+  background-color :#35363A;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.menu li:hover {
+  background-color: #5854DC;
+}
+
+.aside {
+  background-color: #9ACD32;
+  padding: 15px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.footer {
+  background-color: #252526;
+  color: #ffffff;
+  text-align: center;
+  font-size: 18px;
+  padding: 15px;
+}
+
+th{ 
+   color:#fff;
+  }
+
+th, td {
+    font-size: 15px;   
+    font-weight: bold;
+}
+
+#myTable tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+#myTable tr:hover {
+    background-color: #ccc;
+}
+#myTable th {
+    background-color: #fff;
+}
+#myTable td:hover {
+    cursor: pointer;
+}
+
+.modal-header {
+     color: white;
+     background-color: rgb(97, 101, 102);  
+}
+
+.modal-body {
+     color: rgb(10, 10, 10);
+     background-color: rgb(222, 228, 230);  
+}
+
+body.modal-open .modal {
+    display: flex !important;
+    height: 100%;
+} 
+
+body.modal-open .modal .modal-dialog {
+    margin: auto;
+}
+
+
+
+/*      Thumbnail Gallery Styles         */
+
+* {box-sizing: border-box;}
+
+/* The grid: Four equal columns that floats next to each other */
+.gallery_column {float: left; width: 25%; padding: 5px;}
+
+/* Style the images inside the grid */
+.gallery_column img {opacity: 0.8; cursor: pointer; }
+
+.gallery_column img:hover {opacity: 1;}
+
+/* Clear floats after the columns */
+.row:after {content: "";display: table;clear: both;}
+
+.ScrollStyle
+{
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="header">
+
+    <div class="row">
+
+        <div class="col-sm">
+           <h1>Amina</h1>
+        </div>
+        <div class="col-sm">
+            Shape:
+            <select id="shape">
+            <option value="rect">Rectangle</option>
+            </select> 
+        </div>
+        <div class="col-sm">
+            Color:
+            <select id="color">
+            <option value="#83f52c">Green</option>
+            <option value="#0dd5fc">Blue</option> 
+            <option value="#f3f313">Yellow</option>
+            <option value="#ff0099">Pink</option>
+            </select>
+        </div>
+        <div class="col-sm">
+            <button class="btn btn-danger" onclick="window.location.href='';">View Images</button>
+        </div>
+        <div class="col-sm">
+            <button id="btnSubmit" class="btn btn-primary" onclick="window.location.href='';">Upload Images</button>
+        </div>
+        <div class="col-sm">
+          <button class="btn btn-danger" onclick="window.location.href='';">Home</button>
+      </div>
+      <div class="col-sm">
+          <button id="btnSubmit" class="btn btn-primary" onclick="window.location.href='';">Pay Me</button>
+      </div>       
+        <div class="col-sm">
+          <h2 id="total_number_of_labels"></h2>
+        </div>
+
+        <div class="col-sm">
+          <h2 id="today_total_duration"></h2>
+        </div>
+
+        <div class="col-sm">
+          <h2 id="date"></h2>
+        </div>
+    
+      </div>
+
+  <h1 id="amina_heading"></h1>
+  <div id="object_info"></div>
+  <div id="string_content"></div>
+  <div id ="object_selected"></div>
+  <div id="object_created"></div>
+  <div id="output"></div>
+  <div id="output2"></div>
+  <div id="output3"></div>
+  <div id="output5"></div>
+  <div id="output_normalized_values"></div>
+  <div id="amina_heading"></div>
+
+</div>
+
+<div class="row">
+
+   <!-- Modal for Creating A New Folder -->
+  <div class="container mt-3">
+  
+    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#createFolderModal">
+      <i class="fa-solid fa-folder-plus"></i> Create Folder 
+    </button>
+  </div>
+  
+  <!-- The Modal -->
+  <div class="modal" id="createFolderModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Folder name</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+  
+          <div>
+            <i class="fa-solid fa-folder"></i>
+            <!-- <label for="foldername">Folder name</label>-->
+            <input id="foldername"
+                   placeholder="label"
+                   class="">
+          </div>
+  
+  
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button id="createFolderBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">Create Folder</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+   <!-- Modal for Creating A New Folder Ends Here -->
+
+
+  <div class="col-3 col-s-3 menu">
+    <ul id="folders-list">
+      <li>
+        <span class="glyphicon glyphicon-menu-down"></span> Dogs
+        <span class="badge bg-primary rounded-pill"  title="Number of images">14</span>
+        <span class="badge bg-success rounded-pill"  title="Labeled images">10</span> 
+      </li>
+      <li>
+        <span class="glyphicon glyphicon-menu-right"></span> 
+          Chickens
+         <span class="badge bg-primary rounded-pill"   title="Number of images">10</span>
+         <span class="badge bg-success rounded-pill"   title="Labeled images">10</span>          
+       </li>
+      <li>
+        <span class="glyphicon glyphicon-menu-down"></span>          
+          Fish
+          <span class="badge bg-primary rounded-pill"   title="Number of images">100</span>
+          <span class="badge bg-success rounded-pill"   title="Labeled images">5</span>          
+      </li>
+      <li>
+        <span class="glyphicon glyphicon-menu-up"></span>          
+          Cars
+          <span class="badge bg-primary rounded-pill"   title="Number of images">100</span> 
+          <span class="badge bg-success rounded-pill"   title="Labeled images">100</span>            
+      </li>
+
+    </ul>
+
+   <!--THUMBNAIL GALLERY STARTS HERE -->
+   <!-- The four columns -->
+   <div class="ScrollStyle">
+                      
+    {% if images_in_dir %}
+
+    {% for row in images_in_dir|batch(4) %}
+    <div class="row">
+
+      {% for column_img in row %}  
+
+        <div class="gallery_column">
+          <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%" crossorigin="anonymous">
+        </div>
+
+      {% endfor %}
+
+    </div>
+    {% endfor %}
+
+  {% endif %}
+
+
+</div>
+
+  </div>
+
+  <input type="hidden" id="user_id" name="user_id" value="{{ user_id }}">
+
+  <div id="canvasHolder" class="col-6 col-s-9" style="border:2px solid red; text-align:center;">
+
+    <div id="x-canvas-container">
+    <!--img id ="mainImage" src="/static/Uploads/colorful-birds-05.jpg">-->
+    <!--<canvas id="canvas" style="border:1px solid #000000;"></canvas>-->
+    <!--canvas id="canvas" style="border:1px solid #000000;width:100%"></canvas-->
+    <canvas id="canvas" style="width:100%"></canvas>
+    <img src="/static/project-test-images/dust/sun-in-view-0001.jpg"
+            id="my-image"
+            style="display: none;"> 
+    </div>
+  </div>
+  
+
+  <div class="col-3 col-s-12">
+    <div class="aside">
+      <h2 id="image_header">Dog/Image01.jpg</h2>
+      <p>
+        <div class="container" text-center-align>
+            <table class="table table-striped">
+                <tr  class="bg-info">
+                    <th>Show/Hide</th>
+                    <th>Label</th>
+                    <th>Duration (Sec) </th>
+                </tr>
+            
+                <tbody id="myTable">
+                    
+                </tbody>
+            </table>
+      </div>
+      </p>
+
+      <p></p>
+      <h5 id="table_num_of_labels"></h5>
+      <h5 id="table_total_duration"></h5>
+      <p></p>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-3 col-s-3">
+
+  </div>
+
+  <div class="col-6 col-s-9">
+
+    <p><strong>  Upload Images</strong></p>
+    <p></p>
+    <form method="post" action="/" enctype="multipart/form-data">
+        <div class="input-group">
+            <input class="form-control form-control-lg" id="imgLoader" type="file" name="files" multiple="true" autocomplete="off" required>
+            <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
+        </div>
+        <input type="hidden" id="current_folder" name="current_folder" value="">
+        <input type="hidden" name="which-form" value="images-for-labeling">
+    </form> 
+
+  </div>
+
+</div>
+  
+  <div class="col-3 col-s-12">
+
+    <form method="post" action="/">
+      <input type="submit" name="crop_image_btn" value="crop_image" class="btn btn-primary">
+  </form>
+  <button id="x_btn" type="button" class="btn btn-success">Cropping Image - Fabric JS</button>
+
+  </div>
+  
+</div>
+
+
+<div class="footer">
+
+<p>
+        <button type="button" class="btn btn-primary btn-lg"  id="previousBtn">
+        <span class="glyphicon glyphicon-triangle-left"></span> Prev
+        </button>
+       
+        <button type="button" class="btn btn-success btn-lg" id="nextBtn">
+        <span class="glyphicon glyphicon-triangle-right"></span>   Next
+        </button>
+</p> 
+
+</div>
+
+<div class="div">
+</div>
+<div id="show_canvas_json">show json image</div>
+<!--img id="test" height="50" width="150">test image</div-->
+
+<div id="sp"> space</div>
+
+
+<div class="row">
+
+  <div class="col-3 col-s-3">
+    <div id="canvas_width"></div>
+    <div id="canvas_height"></div>
+    <div id="canvas_parent_width"></div>
+    <div id="canvas_parent_height"></div>
+  </div>
+
+  <div class="col-6 col-s-9">
+    <div id="image_width"></div>
+    <div id="image_height"></div>
+  </div>
+  
+  <div class="col-3 col-s-12">
+    <div id="width_ratio"></div>
+    <div id="height_ratio"></div>
+  </div>
+  
+</div>
+
+
+<div class="row">
+
+  <div class="ScrollStyle">
+
+      <div class="col-3 col-s-3">
+
+        {% if images_in_dir %}
+
+        {% for row in images_in_dir|batch(4) %}
+        <div class="row">
+
+          {% for column_img in row %}  
+
+            <div class="gallery_column">
+              <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%">
+            </div>
+
+          {% endfor %}
+
+        </div>
+        {% endfor %}
+
+      {% endif %}
+    </div>
+
+  </div>
+ 
+</div>
+
+  <div class="col-6 col-s-9">
+  </div>
+  
+  <div class="col-3 col-s-12">
+    {% if images_in_dir %}
+      {% for image in images_in_dir %}
+        <div class="row">
+               {{ image }}
+          <img src="{{ image }}">
+        </div>
+      {% endfor %}
+  {% endif %}
+
+  </div>
+  
+</div>
+
+
+
+<script>
+window.addEventListener("load", function(){
+
+  // https://roytuts.com/upload-and-display-multiple-images-using-python-and-flask/
+  // https://www.demo2s.com/javascript/javascript-fabric-js-number-a-grid-fabrics.html
+
+var canvas = null
+var canvasWidth = null
+var canvasHeight = null
+var originalImageWidth = null
+var originalImageHeight = null
+var width_ratio = null   // image-width to canvas-width ratio
+var height_ratio = null  // image-height to canvas-height ratio
+var new_img_width = null
+var new_img_height = null
+var num_of_images = null
+var image_url ="/static/project-test-images/dust/clean factory-0025.jpg"
+// var image_url="https://dust-sun-fog-clear-rain-snow.herokuapp.com/static/project-test-images/gallery/img_nature.jpg"
+var img_thumbnails = null
+var selectedImage = null
+
+var canvas_parent = null
+var canvas_parent_width = null
+var canvas_parent_height = null
+var final_canvas_width = null
+var final_canvas_height = null
+var final_image_width = null
+var final_image_height = null
+var refresh_counter = 0
+
+ 
+canvas_parent = document.getElementById('canvasHolder')
+canvas_parent_width = canvas_parent.clientWidth; // offsetWidth; 
+canvas_parent_height = canvas_parent.clientHeight; // offsetHeight;
+
+//var thumbnail = document.getElementById('thumbnail')
+//thumbnail.addEventListener("click", function(e) {
+//  alert(e.target.src);
+
+  // reset the canvas to original dimensions
+  // canvas.setAttribute("class", "canvas");
+//})
+
+var x_btn = document.getElementById('x_btn')
+x_btn.addEventListener("click", function(e) {
+   alert("you clicked the x_btn mate!!!")
+   //crop_image(user_id, image_name, label_num, WORKING_LABELS_FOLDER)
+
+})
+  
+img_thumbnails = document.getElementsByClassName('gallery_column');
+for(let i = 0; i < img_thumbnails.length; i++) {
+  img_thumbnails[i].addEventListener("click", function(e) {
+           // alert('thumbnail num ' + i + ' ' + e.target.src);
+
+            img_url = e.target.src
+
+            storeSessionValue("session_image_url", img_url)
+            // getStoredSessionValue(key)
+
+            // window.location.reload();
+            // $( "#canvasHolder").load(window.location.href + " #canvasHolder");
+            // $("#canvasHolder").css("width",c_width)
+            // $("#canvasHolder").css("height",c_height)
+            // window.localStorage.setItem("session_image_url", img_url);
+
+            // canvas_parent.location.reload();
+            // $('#x-canvas-container').load(document.URL +  '  #x-canvas-container');
+
+            set_new_background_image(img_url)
+
+            // refresh_counter += 1
+
+  })
+}
+
+function geturl(full_url)
+{
+	var imgurl = '/' + full_url.substr(full_url.indexOf('/', 8) + 1)
+
+  alert(imgurl)
+
+  return imgurl
+
+}
+
+// var canvas = new fabric.Canvas('canvas');
+
+// set_new_background_image(image_url)
+// set_new_background_image2(image_url)
+// set_new_background_image(image_url)
+// updateCanvasBackgroundImage2(image_url)
+
+//--------------------------------------
+// get stored session variables
+//--------------------------------------
+// var saved_url = getStoredSessionValue("session_image_url")
+// alert('saved url : ' + saved_url)
+set_new_background_image(image_url)
+
+alert('user_id ' + document.getElementById('user_id').value)
+/*
+
+if (refresh_counter >=3){
+
+  window.location.reload();
+
+  var stored_image_url = getStoredSessionValue("session_image_url")
+  set_new_background_image(stored_image_url)
+
+  refresh_counter = 0
+}
+
+*/
+// Temp fix - relocated page every 5 seconds to avoid the drift in the canvas background image
+// TO DO - NEED TO FIX ABOVE ISSUE
+// setInterval('window.location.reload()', 3000);
+
+
+getCanvasSize()
+document.getElementById("canvas_width").innerHTML = "canvas width : " + canvasWidth;
+document.getElementById("canvas_height").innerHTML = "canvas height: " + canvasHeight;     
+
+document.getElementById("canvas_parent_width").innerHTML = "canvas parent width : " + canvas_parent_width;
+document.getElementById("canvas_parent_height").innerHTML = "canvas parent height: " + canvas_parent_height;    
+
+
+//canvas = this.__canvas = new fabric.Canvas('canvas', { selection: false, width: canvasWidth, height: canvasHeight });
+// new fabric.StaticCanvas('c');
+//fabric.Object.prototype.transparentCorners = false;
+
+// Getting the image 
+selectedImage = document.getElementById('my-image'); 
+var img = document.getElementById('my-image'); 
+
+getOriginalImageSize()
+document.getElementById("image_width").innerHTML = "original image width : " + originalImageWidth;
+document.getElementById("image_height").innerHTML = "original height: " + originalImageHeight;  
+
+document.getElementById("width_ratio").innerHTML = "img_width to canvas-width : " + originalImageWidth/canvasWidth;
+document.getElementById("height_ratio").innerHTML = "img_height to canvas-height : " + originalImageHeight/canvasHeight;  
+
+
+width_ratio = originalImageWidth/canvasWidth
+height_ratio = originalImageHeight/canvasHeight
+
+
+// updateCanvasBackgroundImage2(img_url)
+
+// https://ourcodeworld.com/articles/read/681/how-to-set-a-background-image-to-a-fabric-js-canvas
+
+/*
+
+// Creating the image instance 
+ var geeks = new fabric.Image(img, {left: 0, top: 0, angle: 0}); 
+
+ if (height_ratio >= width_ratio){
+   geeks.scaleToHeight(canvasHeight);
+   }
+ if (height_ratio < width_ratio){
+    geeks.scaleToWidth(canvasWidth);
+    }
+  
+  new_img_height = originalImageHeight*geeks.scaleY
+  new_img_width = originalImageWidth*geeks.scaleX
+
+  canvas.setBackgroundImage(geeks);
+  // canvas.add(geeks); 
+ canvas.setDimensions({width:new_img_width, height:new_img_height})
+ canvas.renderAll();
+// canvas.centerObject(geeks);
+
+// alert(' new img height : ' + new_img_height  + ' new img width ' + new_img_width)
+
+ // canvas = this.__canvas = new fabric.Canvas('canvas', { selection: true, width: canvasWidth, height: canvasHeight });
+ // fabric.Object.prototype.transparentCorners = false;
+
+ */
+/*
+var rect1 = new fabric.Rect({left: 0,top: 0,width: 150,height: 50,fill: 'green',angle: 0,opacity: 0.5});
+var rect2 = new fabric.Rect({left: 150,top: 0,width: 150,height: 50,fill: 'yellow',angle: 0,opacity: 0.3});
+var rect3 = new fabric.Rect({left: 300,top: 0,width: 150,height: 50,fill: 'blue',angle: 0,opacity: 0.5});
+var rect4 = new fabric.Rect({left: 0,top: 50,width: 150,height: 50,fill: 'magenta',angle: 0,opacity: 0.75});
+var rect5 = new fabric.Rect({left: 0,top: 100,width: 150,height: 50,fill: 'gray',angle: 0,opacity: 0.80});
+
+ var group = new fabric.Group([rect1,rect2,rect3,rect4,rect5])
+ canvas.add(group);
+ canvas.renderAll()
+*/
+ //var rect1 = new fabric.Rect({left: 100,top: 0,width: 50,height: new_img_height,fill: 'green',angle: 0,opacity: 0.1});
+ //var rect2 = new fabric.Rect({left: 200,top: 0,width: 50,height: new_img_height,fill: 'green',angle: 0,opacity: 0.3});
+ //var rect3 = new fabric.Rect({left: 300,top: 0,width: 50,height: new_img_height,fill: 'green',angle: 0,opacity: 0.5});
+ //var rect4 = new fabric.Rect({left: 400,top: 0,width: 50,height: new_img_height,fill: 'green',angle: 0,opacity: 0.75});
+ //var rect5 = new fabric.Rect({left: 500,top: 0,width: 50,height: new_img_height,fill: 'green',angle: 0,opacity: 0.80});
+
+ //var group = new fabric.Group([rect1,rect2,rect3,rect4,rect5])
+ // canvas.add(group);
+ // canvas.renderAll()
+
+// updateCanvasBackgroundImage(img_url)
+// document.getElementById("image_width").innerHTML = "original image width : " + originalImageWidth;
+// document.getElementById("image_height").innerHTML = "original height: " + originalImageHeight;  
+
+const png_all_canvas = canvas.toDataURL('png')
+const cropped_png_canvas = canvas.toDataURL({format: 'png',left: 0,top: 0,width: 150,height: 50});
+const jpg_all_canvas = canvas.toDataURL({format: 'jpeg',quality: 0.3})
+
+// document.getElementById('test').src = canvas.toDataURL('image/png');
+// document.getElementById('test').src = cropped_png_canvas;
+// canvas.toDataURL({format: 'png',left: 0,top: 0,width: new_img_width,height: new_img_height});
+// document.getElementById("test'").width = new_img_width
+// document.getElementById("test'").height = new_img_height
+
+
+// SAVE CROPPED IMAGE
+var user_id ='user2'
+var image_name = img.getAttribute("src").split("/").reverse()[0]
+var label_num = Date.now() // 1
+var WORKING_LABELS_FOLDER="dog"
+
+// alert('image name '+ image_name)
+
+// Section of image on canvas to be cropped out and saved in the cropped-images
+// cropped_image_dataURL = canvas.toDataURLWithCropping('png', { y: rect.top, x: rect.left, width: rect.width, height: rect.height, quality: 1 })
+// https://stackoverflow.com/questions/40083942/fabricjs-set-clipped-object-as-background-to-canvas-after-clipping
+
+// crop_image(user_id, image_name, label_num, WORKING_LABELS_FOLDER)
+
+function add_group_of_rects(){
+
+  var rect1 = new fabric.Rect({left: 0,top: 0,width: 150,height: 50,fill: 'green',angle: 0,opacity: 0.5});
+  var rect2 = new fabric.Rect({left: 150,top: 0,width: 150,height: 50,fill: 'yellow',angle: 0,opacity: 0.3});
+  var rect3 = new fabric.Rect({left: 300,top: 0,width: 150,height: 50,fill: 'blue',angle: 0,opacity: 0.5});
+  var rect4 = new fabric.Rect({left: 0,top: 50,width: 150,height: 50,fill: 'magenta',angle: 0,opacity: 0.75});
+  var rect5 = new fabric.Rect({left: 0,top: 100,width: 150,height: 50,fill: 'gray',angle: 0,opacity: 0.80});
+
+ var group = new fabric.Group([rect1,rect2,rect3,rect4,rect5])
+ canvas.add(group);
+ canvas.renderAll()
+
+}
+
+function auto_add_group_rects(){
+
+  // var rect_group =[]
+  var rect_group = new fabric.Group([])
+  var rect_width = 150
+  var rect_height = 50
+  var rect_name = null
+  var x_value = null, y_value = null
+
+  var opacity_rect_width = null // 50 + getRandomInt(-20, 20) 
+  var opacity_rect_height = 50
+  var opacity_value = null
+  var x_value_opacity = null
+  var y_value_opacity = null
+  var opacity_fill_color ='#232D38'  // Black diesel
+  var opacity_array =[0,0.05,0.10,0.15,0.20,0.25,0.30,0.35,0.40,0.45,0.50,0.55,0.60,0.65,0.70,0.75,0.80,0.85,0.90,0.95,1.00]
+  var opacity_frame_of_interest = null
+  var x_min = null, y_min = null, x_max = null, y_max = null
+  var norm_x_min = null,norm_y_min = null,norm_x_max = null,norm_y_max = null
+  var AI_READY_NORMALIZED_ARRAY = []
+  var AI_READY_RAW_DATA =[] 
+
+
+
+
+  var num_columns = Math.floor(canvas.width/rect_width)
+  // var num_rows = Math.floor(final_image_height/rect_height)
+  var num_rows = Math.floor(canvas.height/rect_height)
+  //var num_rows = Math.floor( canvasHeight/rect_height)
+ 
+  var counter = 0
+
+  for (var y = 0; y < num_rows; y++) {
+
+   for (var x = 0; x < num_columns; x++) {
+
+    x_value = x * rect_width;
+    y_value = y * rect_height;
+
+    x_value_opacity = x_value + (rect_width/2) + getRandomInt(-40, 10) 
+    y_value_opacity = y_value
+    opacity_rect_width =  50 + getRandomInt(-20, 20) 
+
+    opacity_value = opacity_array[6] // 0.05
+    opacity_label = opacity_value * 100
+    
+
+
+
+
+    rect_name = "rect" + counter
+
+    var rectx = new fabric.Rect({left: x_value,top: y_value, width: rect_width,height: rect_height,angle: 0, fill: '', stroke:'#0dd5fc',strokeWidth: 2})
+
+    // TODO crop and save this image as a jpeg
+
+    // TODO define new rect for opacity of plume 
+    
+    var rect_plume = new fabric.Rect({left: x_value_opacity,top: y_value, width: opacity_rect_width,height: rect_height,angle: 0, fill: opacity_fill_color, opacity: opacity_value,stroke:'',strokeWidth: ''})
+
+    // opacity region of interest
+    x_min = rect_plume.get("left")
+    y_min = rect_plume.get("top")
+    x_max = rect_plume.get("left") + rect_plume.get("width")
+    y_max = rect_plume.get("top") + rect_plume.get("height")
+
+    norm_x_min = rect_plume.get("left")/rectx.get("width")
+    norm_y_min = rect_plume.get("top")/rectx.get("height")
+    norm_x_max = (rect_plume.get("left") + rect_plume.get("width"))/rectx.get("width")
+    norm_y_max = (rect_plume.get("top") + rect_plume.get("height"))/rectx.get("height")
+
+    var IMAGE_URL = getFilename(canvas.backgroundImage.getSrc())
+
+    // TODO - update the Image URLs to align with the saved image url on the drive
+
+    var ai_ready_normalized_data = { 'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': opacity_label , 'norm_x_min': norm_x_min, 'norm_y_min': norm_y_min, 'norm_x_tr' : '', 'norm_y_tr' :'', 'norm_x_max' : norm_x_max, 'norm_y_max' : norm_y_max, 'norm_x_bl': '', 'norm_y_bl':'' }
+    var ai_ready_raw_data = {'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': opacity_label, 'x_min': x_min, 'y_min': y_min, 'x_tr' : '', 'y_tr': '', 'x_max' : x_max, 'y_max' : y_max, 'x_bl': '', 'y_bl':  ''}
+
+    var label_ROI_rect = new fabric.Rect({
+            left: x_min,
+            top: y_min,
+            fill: '',
+            width: x_max - x_min,
+            height: y_max - y_min,
+            stroke: 'red',
+            strokeDashArray: [3, 3]
+        });
+
+    rect_group.addWithUpdate(rectx);
+    rect_group.addWithUpdate(rect_plume);
+    // rect_group.addWithUpdate(label_ROI_rect);
+    
+    AI_READY_NORMALIZED_ARRAY.push(ai_ready_normalized_data);
+    AI_READY_RAW_DATA.push(ai_ready_raw_data);
+
+    // rect_group.push(rect_name) = new fabric.Rect({left: x_value,top: y_value, width: rect_width,height: rect_height,angle: 0});
+
+    counter +=1
+
+   }  
+
+
+}
+
+// https://buraksenol.medium.com/pass-images-to-html-without-saving-them-as-files-using-python-flask-b055f29908a
+
+
+canvas.add(rect_group);
+canvas.renderAll()
+
+const JSON_STRING_AI_READY_NORMALIZED_ARRAY = JSON.stringify(AI_READY_NORMALIZED_ARRAY);
+//alert(JSON_STRING_AI_READY_NORMALIZED_ARRAY)
+
+//canvas.backgroundImage
+var image_name_from_url = getFilename(canvas.backgroundImage.getSrc())
+
+var fname = get_filename_without_ext(image_name_from_url)
+
+// alert('filename ' +  fname)
+  
+}
+
+function getFilename(fullPath) {
+  return fullPath.replace(/^.*[\\\/]/, '');
+}
+
+function get_filename_without_ext(file_url){
+
+  var parts = file_url.split(".");
+  fname = parts[0];
+
+  return fname
+}
+
+function crop_image(user_id, image_name, label_num, working_labels_dir) {
+
+      rect_to_crop = new fabric.Rect({left: 0,top: 0,width: 150,height: 50,angle: 0});
+      cropped_image_dataURL = canvas.toDataURL({
+                            format: 'image/png',
+                            left: rect_to_crop.left,      //  canvas.offsetLeft,
+                            top: rect_to_crop.top,        // canvas.offsetTop,
+                            width: rect_to_crop.width,
+                            height: rect_to_crop.height,
+                            selection: false
+                        })
+
+      // Remove data:image/png;base64, at beginning of the cropped_image_dataURL string
+      cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
+      // var imgBase64 = cropped_image_dataURL
+
+      // Save image to server
+      saveCroppedSection()
+
+}
+
+function crop_image_save_as_jpeg(user_id, image_name, label_num, working_labels_dir, rectangle_to_crop) {
+
+
+cropped_image_dataURL = canvas.toDataURL({
+                      format: 'image/jpeg',
+                      left: rectangle_to_crop.left,      //  canvas.offsetLeft,
+                      top: rectangle_to_crop.top,        // canvas.offsetTop,
+                      width: rectangle_to_crop.width,
+                      height: rectangle_to_crop.height,
+                      selection: false
+                  })
+
+// Remove data:image/png;base64, at beginning of the cropped_image_dataURL string
+// cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
+// var imgBase64 = cropped_image_dataURL
+
+// Save image to server
+saveCroppedSection()
+
+}
+
+
+
+function getOriginalImageSize(){
+        var myImg = document.querySelector("#my-image");
+        originalImageWidth = myImg.naturalWidth;
+        originalImageHeight  = myImg.naturalHeight;
+       // alert("Original width=" + originalImageWidth + ", " + "Original height=" + originalImageHeight);
+}
+
+
+function getCanvasSize(){
+        var myCanvas = document.querySelector("#canvas");
+        // canvasWidth = myCanvas.clientWidth;
+        // canvasHeight = myCanvas.clientHeight;
+        canvasWidth = 0.95*canvas_parent_width;  //myCanvas.clientWidth;
+        canvasHeight = 0.95*canvas_parent_height; // myCanvas.clientHeight;
+        // alert("Canvas width=" + canvasWidth + ", " + "Canvas height=" + canvasHeight);   
+}
+
+
+function set_new_background_image(imageUrl){
+
+clearCanvasBackground()
+
+// refreshCanvasContainer(canvas_parent_width,canvas_parent_height)
+
+getCanvasSize()
+
+// Initialize a simple canvas
+canvas = new fabric.Canvas("canvas", { selection: false, width: canvasWidth, height: canvasHeight });
+
+// var img_width = null, img_height = null
+selectedImage = document.getElementById('my-image'); 
+getOriginalImageSize()
+width_before = originalImageWidth
+height_before =originalImageHeight
+// alert('BEFORE  H ' + originalImageHeight + ' W ' + originalImageWidth)
+selectedImage.setAttribute('src',imageUrl);
+//selectedImage.setAttribute('src',getStoredSessionValue("session_image_url"));
+getOriginalImageSize()
+// alert('H - before and after ' + height_before + ' ' + originalImageHeight + ' W - before and after ' + width_before  + ' ' + originalImageWidth )
+// originalImageWidth, originalImageHeight = getImageWidthandHeight(imageUrl)
+
+var new_width_ratio = originalImageWidth/canvasWidth
+var new_height_ratio = originalImageHeight/canvasHeight
+
+// Creating the image instance 
+var background_image = new fabric.Image(selectedImage, {top: 0,left: 0, originX: 'left', originY: 'top',  angle: 0}); 
+
+if (new_height_ratio >= new_width_ratio){
+  background_image.scaleToHeight(canvasHeight);
+  }
+if (new_height_ratio < new_width_ratio){
+  background_image.scaleToWidth(canvasWidth);
+   }
+ 
+ var new_height = originalImageHeight * background_image.scaleY
+ var new_width = originalImageWidth * background_image.scaleX
+
+// canvas.setBackgroundImage(background_image);
+// https://www.demo2s.com/javascript/javascript-fabric-js-fit-the-background-image-to-canvas-size.html
+canvas.setBackgroundImage(background_image, canvas.renderAll.bind(canvas), {top: 0,left: 0, originX: 'left', originY: 'top', crossOrigin: 'anonymous'});
+canvas.setDimensions({width:new_width, height:new_height})
+canvas.renderAll();
+
+final_canvas_width = canvas.width
+final_canvas_height = canvas.height
+final_image_width = new_width
+final_image_height = new_height 
+
+// Add group of rects for testing purposes
+// add_group_of_rects()
+
+auto_add_group_rects()
+
+// alert(' canvas width : image width ' + final_canvas_width +' : ' + final_image_width + ' canvas height : image height ' +  + final_canvas_height +' : ' + final_image_height)
+
+
+}
+
+
+function getImageWidthandHeight(url) { 
+    var img_width = null
+    var img_height = null  
+    var img = new Image();
+    img.onload = function() {
+        img_width = this.width
+        img_height = this.height 
+    };
+    img.src = url;
+
+    return img_width, img_height
+}
+
+function clearCanvasBackground() {
+  if (canvas) {
+    canvas.setBackgroundImage(null);
+    canvas.setBackgroundColor('');
+    canvas.renderAll();
+  }
+}
+
+function myFunction(imgs) {
+  //var expandImg = document.getElementById("expandedImg");
+  // var imgText = document.getElementById("imgtext");
+  // expandImg.src = imgs.src;
+  // imgText.innerHTML = imgs.alt;
+  alert(imgs.src)
+  // expandImg.parentElement.style.display = "block";
+}
+
+function saveCroppedSection(){
+
+$.ajax({
+    type: "POST",
+    url: "/saveCroppedImage",
+    data: { 
+       imgBase64: cropped_image_dataURL,
+       user_id : user_id, 
+       image_name : image_name,
+       label_num : label_num,
+       current_folder: WORKING_LABELS_FOLDER
+    },
+    success: function(data) {
+      var new_url = data.url
+      alert('cropped-image-dataURL : ' + JSON.stringify(new_url))
+    }
+
+  });
+
+}
+
+
+function enableClickThumbnailImages(){
+
+  img_thumbnails = document.getElementsByClassName('gallery_column');
+
+  for(let i = 0; i < img_thumbnails.length; i++) {
+        img_thumbnails[i].addEventListener("click", function(e) {
+          alert('thumbnail num ' + i + ' ' + e.target.src);
+  })
+}
+}
+
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+
+
+function refreshCanvasContainer(c_width, c_height)
+{ 
+   //var c_width = canvas_parent_width
+  //var c_height = canvas_parent_height
+
+    $( "#canvasHolder").load(window.location.href + " #canvasHolder");
+    $("#canvasHolder").css("width",c_width)
+    $("#canvasHolder").css("height",c_height)
+
+}
+
+function storeSessionValue(key, value) {
+    if (localStorage) {
+        localStorage.setItem(key, value);
+    } else {
+        $.cookies.set(key, value);
+    }
+}
+
+function getStoredSessionValue(key) {
+    if (localStorage) {
+        return localStorage.getItem(key);
+    } else {
+        return $.cookies.get(key);
+    }
+}
+
+
+}); 
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js" type="text/javascript"></script>
+<!-- Load the coco-ssd model to use to recognize things in images -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.8/dist/tf-tflite.min.js"></script>
+<script src="{{ url_for('static', filename='labeling.js') }}"></script>
+
+</body>
+</html>
