@@ -346,8 +346,8 @@ body.modal-open .modal .modal-dialog {
                   {% for item in images_in_dir %}
                   <tr class = "align-middle">        
                     <td><button id=" {{ loop.counter }}" onclick="" type="button" class="btn btn-outline-dark"> {{loop.counter}}</button></td>
-                    <td>${{ item | basename }}</td>
-                    <td>${data[i].duration}</td>
+                    <td>{{ item }}</td>
+                    <td>{{ loop.counter }}</td>
                   </tr>
                   {% endfor %}
 
