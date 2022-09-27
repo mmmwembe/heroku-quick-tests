@@ -228,13 +228,12 @@ def upload_image():
  
 	if request.form.get('images-for-testing-classification') == 'images-for-testing-classification':
    # Sett bucket path to user's testing images directory
-		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
-		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+		which_form = 'images-for-testing-classification'
+
 
 	if request.form.get('images-for-labeling') == 'images-for-labeling':
    # Sett bucket path to user's testing images directory
-		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
-		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+		which_form = 'images-for-labeling'
    
 	returned_public_urls =[]
 	client = storage.Client()
@@ -270,15 +269,14 @@ def upload_image():
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url)      
    
-	if request.form.get('images-for-labeling') == 'images-for-labeling':
+	#if request.form.get('images-for-labeling') == 'images-for-labeling':
+	#	return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
 
-		return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
+	#if request.form.get('images-for-testing-classification') == 'images-for-testing-classification':
+	#	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 
-	if request.form.get('images-for-testing-classification') == 'images-for-testing-classification':
-
-		return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
-
-	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
+	return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
+	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
 @app.route('/detection/', methods=['POST','GET'])
