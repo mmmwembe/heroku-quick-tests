@@ -342,7 +342,15 @@ body.modal-open .modal .modal-dialog {
                 </tr>
             
                 <tbody id="myTable">
-                    
+
+                  {% for item in images_in_dir %}
+                  <tr class = "align-middle">        
+                    <td><button id=" {{ loop.counter }}" onclick="" type="button" class="btn btn-outline-dark"> {{loop.counter}}</button></td>
+                    <td>${{ item | basename }}</td>
+                    <td>${data[i].duration}</td>
+                  </tr>
+                  {% endfor %}
+
                 </tbody>
             </table>
       </div>
@@ -557,12 +565,12 @@ for(let i = 0; i < img_thumbnails.length; i++) {
             alert("URL of classification model = " + model_url);
 
 
-           var label = get_file_name(model_url)
-           var elapsed_time_seconds = Math.floor(Math.random() * 11);
+           // var label = get_file_name(model_url)
+           //var elapsed_time_seconds = Math.floor(Math.random() * 11);
 
-            var label_item = {'index': i, 'label': label, 'duration': elapsed_time_seconds}
+            //var label_item = {'index': i, 'label': label, 'duration': elapsed_time_seconds}
 
-            labels_Table_Array.push(label_item)
+            // labels_Table_Array.push(label_item)
     
             // getStoredSessionValue(key)
 
