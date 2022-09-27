@@ -230,6 +230,13 @@ def upload_image():
 	returned_public_urls =[]
 	client = storage.Client()
 	bucket = client.get_bucket(bucket_name)
+	if request.form.get('which-form') == 'images-for-labeling':
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+	elif request.form.get('which-form') == 'images-for-testing-object-detection': 
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+	elif request.form.get('which-form') == 'images-for-testing-classification': 
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+    
 	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
 
 	for file in files:
