@@ -220,7 +220,7 @@ def home():
 
 @app.route('/', methods=['POST'])
 def upload_image():
-	if 'files[]' not in request.files:
+	if 'files[]' not in request.files and request.form.get('images-for-testing') == 'images-for-testing':
 		flash('No file part')
 		return redirect(request.url)
 	files = request.files.getlist('files[]')
@@ -265,17 +265,16 @@ def upload_image():
 
 @app.route('/', methods=['POST'])
 def upload_images_for_labeling():
-	if 'files-images-to-label[]' not in request.files:
+	if 'files[]' not in request.files and request.form.get('images-for-labeling') == 'images-for-labeling':
 		flash('No file part')
 		return redirect(request.url)
-	files = request.files.getlist('files-images-to-label[]')
+	files = request.files.getlist('files[]')
 	file_names = []
 
 	returned_public_urls =[]
 	client = storage.Client()
 	bucket = client.get_bucket(bucket_name)
-	sub_dir_path_with_active_folder = os.path.join(sub_dir_user_images_for_labeling,CURRENTLY_ACTIVE_FOLDER)
-
+	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
 	for file in files:
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
@@ -287,13 +286,10 @@ def upload_images_for_labeling():
 			file.seek(0)
 			blob.upload_from_string(file.read(), content_type=file.content_type)
 			blob_public_url = blob.public_url 
-			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path) 
-			returned_public_urls.append(gcs_url) 
-
-
-	gcp_public_urls_images_for_labeling = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_user_images_for_labeling, allowed_image_types_array)       
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+			returned_public_urls.append(gcs_url)      
       
-	return render_template('labeling.html', filenames=file_names, images_in_dir=gcp_public_urls_images_for_labeling)
+	return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
 
 
 @app.route('/detection/', methods=['POST','GET'])
