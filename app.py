@@ -368,16 +368,12 @@ def upload_model2():
   
 	data = request.files
 	if 'models[]' not in request.files:
-		#bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-		#sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir
-		#client = storage.Client()
-		#bucket_tmp = client.get_bucket(os.path.join(bucket_name, sub_directory_path,CURRENTLY_ACTIVE_FOLDER))
 		return redirect(request.url)
 
 	files = request.files.getlist('models[]')
 	file_names = []
 	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
 	# target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 	target_file_types_array = ["tflite"]
 	returned_public_urls =[]
@@ -400,7 +396,7 @@ def upload_model2():
    
 	#gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)   
  
-	return render_template('upload-test.html',data = sub_directory_path)
+	return render_template('upload-test.html',data = returned_public_urls)
 	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
