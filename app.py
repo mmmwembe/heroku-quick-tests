@@ -311,7 +311,7 @@ def upload_image():
 
 @app.route('/upload_model/', methods=['POST','GET'])
 def upload_model():
-	if 'models[]' not in request.files:
+	if 'file' not in request.files:
 		flash('No model file part')
 		return redirect(request.url)
 	files = request.files.getlist('models[]')
@@ -362,6 +362,18 @@ def upload_model():
 	return render_template('upload-test.html', filenames=file_names, images_in_dir=returned_public_urls)
 	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
+
+@app.route('/upload_model2/', methods=['POST','GET'])
+def upload_model2():
+  
+	data = request.files
+
+	return render_template('upload-test.html', data = data)
+	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
+	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
+
+
+
 
 @app.route('/detection/', methods=['POST','GET'])
 def detection():
