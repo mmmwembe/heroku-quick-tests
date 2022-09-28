@@ -367,7 +367,7 @@ def upload_model():
 def upload_model2():
   
 	data = request.files
-	if 'models' not in request.files:
+	if 'models[]' not in request.files:
 		flash('No model files uploaded')
 		return redirect(request.url)
 
