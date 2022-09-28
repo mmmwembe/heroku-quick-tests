@@ -222,6 +222,9 @@
                   <div class="col-sm">
                     <strong><a href="#">Data</a> </strong>
                   </div>
+                  <div class="col-sm">
+                    <strong><a href="#">Models Upload</a> </strong>
+                  </div>   
 
                 </div>
 
@@ -252,6 +255,36 @@
                         {{ data }}
                         
                         <img id="selected-image" src="{{ url_for('static', filename='project-test-images/dust/test-image1.JPG') }}" height="400" width="600" crossorigin="anonymous"/>
+
+
+
+                        <div class="container" text-center-align>
+                            <table class="table table-striped">
+                                <tr  class="bg-info">
+                                    <th>Icon</th>
+                                    <th>File</th>
+                                    <th>URL</th>
+                                </tr>
+                            
+                                <!--https://stackoverflow.com/questions/68163067/multi-row-in-table-by-using-jinja2-->
+                                <tbody id="myTable">
+                
+                                  {% for item in data %}
+                                  <tr class = "align-middle">        
+                                    <td>
+                                        <div class="gallery_column">
+                                            <img id="class_model" src="/static/project-icons/icon-model.svg" style="width:15%" data-url="{{ item }}" crossorigin="anonymous">
+                                        </div>
+                                    </td>
+                                    <td>{{ item }}</td>
+                                    <td>{{ loop.counter }}</td>
+                                  </tr>
+                                  {% endfor %}
+                
+                                </tbody>
+                            </table>
+                      </div>
+
                     </div>
                     <div class="col-md-4 col-md-30">
                         <div class="col">
@@ -414,6 +447,6 @@
         <!-- Load TFLite Task Library -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/tasks@0.0.1-alpha.8"></script>
         <!-- Javascript - main engine -->
-        <script src="{{ url_for('static', filename ='js/classify-images.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename ='js/upload-test.js') }}" crossorigin="anonymous"></script>
     </body>
 </html>
