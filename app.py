@@ -379,8 +379,21 @@ def upload_model2():
 	client = storage.Client()
 	bucket = client.get_bucket(bucket_name)
 	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+
+	for file in files:
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+			blob = bucket.blob(blob_full_path)
+			file.seek(0)
+			blob.upload_from_string(file.read(), content_type=file.content_type)
+			blob_public_url = blob.public_url 
+			# gcs_url = "https://storage.cloud.google.com/{}/{}".format(bucket_name,blob_full_path)
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+			# returned_public_urls.append(blob_public_url)   
+			returned_public_urls.append(gcs_url)    
  
-	return render_template('upload-test.html', data = sub_dir_path_with_active_folder)
+	return render_template('upload-test.html', data = blob_full_path)
 	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
