@@ -112,10 +112,58 @@ async function start() {
 
 
 
+    function create_json_for_object_detection(preds){
 
-
-
-
+        var jsonArr = [];
+        var json_object
+    
+        for (let i = 0; i < preds.length; i++) {
+    
+            const currentObject = preds[i];
+    
+            if (currentObject.classes[0].probability > 0.5) {        
+            // if (currentObject.classes[0].probability > threshold) {
+    
+                label = currentObject.classes[0].className
+                confidence = Math.round(parseFloat(currentObject.classes[0].probability) * 100) + "%"; 
+    
+                json_object = [i+1,label, confidence]; 
+                jsonArr.push(json_object);
+    
+                const p = document.createElement("p");
+                p.setAttribute("id","p-label");
+                p.setAttribute('label', label);
+                // p.setAttribute('style', 'background-color:#218838;');
+    
+                p.innerText =label +  " - with " + confidence + " confidence.";
+    
+                p.style = "margin-left: " + currentObject.boundingBox.originX + "px; margin-top: " + (currentObject.boundingBox.originY - 10) + "px; width: " + (currentObject.boundingBox.width - 10) + "px; top: 0; left: 0;";
+          
+                const highlighter = document.createElement("div");
+                highlighter.setAttribute("id", "bbox-highlighter");
+                highlighter.setAttribute("class", "highlighter");
+                highlighter.setAttribute('label', label);
+                // highlighter.setAttribute('style', 'background-color:darkblue;');
+    
+                highlighter.style ="left: " +
+                  currentObject.boundingBox.originX + "px; top: " +
+                  currentObject.boundingBox.originY + "px; width: " +
+                  currentObject.boundingBox.width +   "px; height: " +
+                  currentObject.boundingBox.height +  "px;";
+          
+                imageView.appendChild(highlighter);
+                imageView.appendChild(p);
+    
+                //children.push(highlighter);
+                //children.push(p);
+    
+            }
+        }
+    
+        return jsonArr 
+    
+    
+    }
 
 
 
@@ -123,68 +171,5 @@ async function start() {
 
 
 
-
-function create_json_for_object_detection(preds){
-
-    var jsonArr = [];
-    var json_object
-
-    for (let i = 0; i < preds.length; i++) {
-
-        const currentObject = preds[i];
-
-        if (currentObject.classes[0].probability > 0.5) {        
-        // if (currentObject.classes[0].probability > threshold) {
-
-            label = currentObject.classes[0].className
-            confidence = Math.round(parseFloat(currentObject.classes[0].probability) * 100) + "%"; 
-
-            json_object = [i+1,label, confidence]; 
-            jsonArr.push(json_object);
-
-            const p = document.createElement("p");
-            p.setAttribute("id","p-label");
-            p.setAttribute('label', label);
-            // p.setAttribute('style', 'background-color:#218838;');
-
-            p.innerText =label +  " - with " + confidence + " confidence.";
-
-            p.style = "margin-left: " + currentObject.boundingBox.originX + "px; margin-top: " + (currentObject.boundingBox.originY - 10) + "px; width: " + (currentObject.boundingBox.width - 10) + "px; top: 0; left: 0;";
-      
-            const highlighter = document.createElement("div");
-            highlighter.setAttribute("id", "bbox-highlighter");
-            highlighter.setAttribute("class", "highlighter");
-            highlighter.setAttribute('label', label);
-            // highlighter.setAttribute('style', 'background-color:darkblue;');
-
-            const myStyles = `
-            background: rgba(0, 255, 0, 0.25);
-            border: 5px dashed #C2175B;
-            z-index: 1;
-            position: absolute;
-          `;
-            highlighter.style ="left: " +
-              currentObject.boundingBox.originX + "px; top: " +
-              currentObject.boundingBox.originY + "px; width: " +
-              currentObject.boundingBox.width +   "px; height: " +
-              currentObject.boundingBox.height +  "px;";
-      
-            imageView.appendChild(highlighter);
-            imageView.appendChild(p);
-
-            //children.push(highlighter);
-            //children.push(p);
-
-        }
-    }
-
-    return jsonArr 
-
-
-}
-
-
-
-    
 
 start();
