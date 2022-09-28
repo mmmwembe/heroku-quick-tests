@@ -11,7 +11,7 @@ async function start() {
 
     let results_JSON =[];
     var threshold = 0.5
-    var datatable = datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
+    var datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
         searching: false,ordering: false,lengthChange: false} );
 
     var firstColumnHeader = $('#results-datatable thead th');
