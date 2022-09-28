@@ -146,3 +146,67 @@ def upload_files_to_gcp(sub_directory_path,active_folder,):
       image_path = os.path.join(dir, image)
       images_list_filtered.append(image_path) 
   return images_list_filtered
+
+
+
+@app.route('/', methods=['POST'])
+def upload_image():
+	if 'files[]' not in request.files:
+		flash('No file part')
+		return redirect(request.url)
+	files = request.files.getlist('files[]')
+	file_names = []
+	returned_public_urls =[]
+	models_urls =[]
+	client = storage.Client()
+	bucket = client.get_bucket(bucket_name)
+	if request.form.get('which-form') == 'images-for-labeling':
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+	elif request.form.get('which-form') == 'images-for-testing-object-detection': 
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]  
+	elif request.form.get('which-form') == 'images-for-testing-classification': 
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+	elif request.form.get('which-form') == 'models-object-detection': 
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"]
+		target_file_types_array = ["tflite"]  
+	elif request.form.get('which-form') == 'models-classification': 
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"]
+		target_file_types_array = ["tflite"]  
+   
+	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+
+	for file in files:
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+			file_names.append(filename)
+			blob = bucket.blob(blob_full_path)
+			file.seek(0)
+			blob.upload_from_string(file.read(), content_type=file.content_type)
+			blob_public_url = blob.public_url 
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+			# returned_public_urls.append(blob_public_url)   
+			# returned_public_urls.append(gcs_url)      
+	returned_public_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array) 
+	# gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+ 
+ # TO DO - Update the images_in_dir below to point to gcp_active_directory_file_urls
+	if request.form.get('which-form') == 'images-for-labeling':
+			return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)   
+
+	elif request.form.get('which-form') == 'images-for-testing-object-detection': 
+			return render_template('detection.html', filenames=file_names, images_in_dir=returned_public_urls)
+ 
+	elif request.form.get('which-form') == 'images-for-testing-classification':    
+			return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
+	elif request.form.get('which-form') == 'models-object-detection': 
+			return render_template('models.html', filenames=file_names, images_in_dir=returned_public_urls) 
+	elif request.form.get('which-form') == 'models-classification': 
+			return render_template('models.html', filenames=file_names, images_in_dir=returned_public_urls)
+ 
+	return jsonify({"which-form" : request.form.get('which-form') })
+ # return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
+	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
