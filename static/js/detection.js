@@ -42,7 +42,7 @@ async function start() {
             return;
         }
         // Run inference on an image.
-        const predictions = model.detect(img);
+        const predictions = model.detect(document.querySelector("#selected-image"));
 
         // Remove bounding boxes and labels from previous frame
         remove_bboxes_and_labels()
@@ -61,7 +61,7 @@ async function start() {
     for(let i = 0; i < img_thumbnails.length; i++) {
        img_thumbnails[i].addEventListener("click", function(e) {
        var img_url = e.target.src
-       
+
        remove_bboxes_and_labels()
 
        document.getElementById('selected-image').src = img_url;
