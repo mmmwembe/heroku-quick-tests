@@ -155,15 +155,16 @@ def create_dir(dir):
     os.makedirs(dir)
     
 def upload_files_to_gcp(name_of_bucket, subdir_path, active_folder, files_to_upload, allowed_file_types):
-	returned_public_urls =[]
+	public_urls_returned =[]
 	file_names =[]
-	ALLOWED_EXTENSIONS = set(allowed_file_types)
+	# ALLOWED_EXTENSIONS = set(allowed_file_types)
 	client = storage.Client()
 	bucket = client.get_bucket(name_of_bucket)
 	sub_dir_path_with_active_folder = os.path.join(subdir_path,active_folder)
 
 	for file in files_to_upload:
-		if file and allowed_file(file.filename):
+		#if file and allowed_file(file.filename):
+		if file and (file.filename).lower().endswith(tuple(allowed_file_types)):    
 			filename = secure_filename(file.filename)
 			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
 			file_names.append(filename)
@@ -174,9 +175,9 @@ def upload_files_to_gcp(name_of_bucket, subdir_path, active_folder, files_to_upl
 			# gcs_url = "https://storage.cloud.google.com/{}/{}".format(bucket_name,blob_full_path)
 			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
 			# returned_public_urls.append(blob_public_url)   
-			returned_public_urls.append(gcs_url)
+			public_urls_returned.append(gcs_url)
    
-	return returned_public_urls    
+	return public_urls_returned   
     
 
 try:
@@ -281,7 +282,7 @@ def upload_image():
   
 		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
   
-		return render_template('classify-images.html', filenames=file_names, images_in_dir=gcp_public_urls)  
+		return render_template('classify-images.html', filenames=[], images_in_dir=gcp_public_urls)  
    
 	elif request.form.get('which-form') == 'models-object-detection': 
 		sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"]
@@ -299,7 +300,7 @@ def upload_image():
   
 		return render_template('models.html', filenames=file_names, images_in_dir=gcp_public_urls)    
    
-	return redirect(request.url)
+	# return redirect(request.url)
  # return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
