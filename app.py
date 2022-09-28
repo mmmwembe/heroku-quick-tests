@@ -309,7 +309,7 @@ def upload_image():
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
 
-@app.route('/', methods=['POST'])
+@app.route('/upload_model/', methods=['POST','GET'])
 def upload_model():
 	if 'models[]' not in request.files:
 		flash('No model file part')
