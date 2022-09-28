@@ -393,7 +393,7 @@ def upload_model2():
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url)    
  
-	return render_template('upload-test.html', data = blob_full_path)
+	return render_template('upload-test.html', data = returned_public_urls)
 	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
