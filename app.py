@@ -154,31 +154,6 @@ def create_dir(dir):
     # Create a new directory because it does not exist 
     os.makedirs(dir)
     
-def upload_files_to_gcp(name_of_bucket, subdir_path, active_folder, files_to_upload, allowed_file_types):
-	public_urls_returned =[]
-	file_names =[]
-	# ALLOWED_EXTENSIONS = set(allowed_file_types)
-	client = storage.Client()
-	bucket = client.get_bucket(name_of_bucket)
-	sub_dir_path_with_active_folder = os.path.join(subdir_path,active_folder)
-
-	for file in files_to_upload:
-		#if file and allowed_file(file.filename):
-		if file and (file.filename).lower().endswith(tuple(allowed_file_types)):    
-			filename = secure_filename(file.filename)
-			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
-			file_names.append(filename)
-			blob = bucket.blob(blob_full_path)
-			file.seek(0)
-			blob.upload_from_string(file.read(), content_type=file.content_type)
-			blob_public_url = blob.public_url 
-			# gcs_url = "https://storage.cloud.google.com/{}/{}".format(bucket_name,blob_full_path)
-			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
-			# returned_public_urls.append(blob_public_url)   
-			public_urls_returned.append(gcs_url)
-   
-	return public_urls_returned   
-    
 
 try:
   create_dir(UPLOAD_FOLDER)
@@ -218,6 +193,35 @@ cropped_images_csv_files = user_info["gcp_bucket_dict"]["cropped_images_csv_file
 CURRENTLY_ACTIVE_FOLDER ="dog"
 
 # GCP_STORAGE_TARGET_PATH = os.path.join(path, "Downloads", "file.txt", "/home")
+
+
+def upload_files_to_gcp(name_of_bucket, subdir_path, active_folder, files_to_upload, allowed_file_types):
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	public_urls_returned =[]
+	file_names =[]
+	# ALLOWED_EXTENSIONS = set(allowed_file_types)
+	client = storage.Client()
+	bucket = client.get_bucket(name_of_bucket)
+	sub_dir_path_with_active_folder = os.path.join(subdir_path,active_folder)
+
+	for file in files_to_upload:
+		#if file and allowed_file(file.filename):
+		if file and (file.filename).lower().endswith(tuple(allowed_file_types)):    
+			filename = secure_filename(file.filename)
+			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+			file_names.append(filename)
+			blob = bucket.blob(blob_full_path)
+			file.seek(0)
+			blob.upload_from_string(file.read(), content_type=file.content_type)
+			blob_public_url = blob.public_url 
+			# gcs_url = "https://storage.cloud.google.com/{}/{}".format(bucket_name,blob_full_path)
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+			# returned_public_urls.append(blob_public_url)   
+			public_urls_returned.append(gcs_url)
+   
+	return public_urls_returned   
+ 
+
 
 
 # print(user_info)
