@@ -381,7 +381,7 @@ def upload_model2():
 	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
 
 	for file in files:
-		if file and allowed_file(file.filename):
+		if file and (file.filename).lower().endswith(tuple(target_file_types_array)):
 			filename = secure_filename(file.filename)
 			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
 			blob = bucket.blob(blob_full_path)
@@ -393,7 +393,7 @@ def upload_model2():
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url)    
  
-	return render_template('upload-test.html', data = returned_public_urls)
+	return render_template('upload-test.html', data = sub_dir_path_with_active_folder)
 	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
