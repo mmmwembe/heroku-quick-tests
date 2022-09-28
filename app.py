@@ -367,6 +367,9 @@ def upload_model():
 def upload_model2():
   
 	data = request.files
+	if 'models' not in request.files:
+		flash('No model files uploaded')
+		return redirect(request.url)
 
 	return render_template('upload-test.html', data = data)
 	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
