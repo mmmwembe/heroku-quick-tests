@@ -237,12 +237,16 @@ def home():
   # target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
   sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
   target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+  sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+  gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+  return render_template('classify-images.html', filenames=[], images_in_dir = gcp_active_directory_file_urls)     
   
-  gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+  
+  #gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
   # model_urls =get_public_url_files_array_from_google_cloud_storage('2021_tflite_glitch_models', 'stack-plume-dust-classification/', ["tflite", "h5", "keras"])
 
-  # return render_template('detection.html', images_in_dir = gcp_active_directory_file_urls)
-  return render_template('classify-images.html', images_in_dir = gcp_active_directory_file_urls)
+	# return render_template('detection.html', images_in_dir = gcp_active_directory_file_urls)
+  #return render_template('classify-images.html', images_in_dir = gcp_active_directory_file_urls)
   # return render_template('classify-images.html',models = model_urls, db = cluster["amina_db"], image_list = PUBLIC_URLS_ARRAY, user_info = GCP_BUCKET_DICT )
   # return render_template('classify-images.html', images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
