@@ -294,7 +294,7 @@
 
                         <p><strong>  Upload Images</strong></p>
                         <p></p>
-                        <form method="post" action="{{ url_for('models_upload') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ url_for('upload_model') }}" enctype="multipart/form-data">
                             <div class="input-group">
                                 <input class="form-control form-control-lg" id="imgLoader" type="file" name="models[]" multiple="true" autocomplete="off" required>
                                 <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
