@@ -309,23 +309,16 @@ def upload_image():
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
 
-@app.route('/xxxxx', methods=['POST'])
-def upload_image_xxxx():
-	if 'files[]' not in request.files:
-		flash('No file part')
+@app.route('/', methods=['POST'])
+def upload_model():
+	if 'models[]' not in request.files:
+		flash('No model file part')
 		return redirect(request.url)
-	files = request.files.getlist('files[]')
+	files = request.files.getlist('models[]')
 	file_names = []
- 
-	if request.form.get('images-for-testing-classification') == 'images-for-testing-classification':
-   # Sett bucket path to user's testing images directory
-		which_form = 'images-for-testing-classification'
-
-
-	if request.form.get('images-for-labeling') == 'images-for-labeling':
-   # Sett bucket path to user's testing images directory
-		which_form = 'images-for-labeling'
-   
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 	returned_public_urls =[]
 	client = storage.Client()
 	bucket = client.get_bucket(bucket_name)
@@ -366,7 +359,7 @@ def upload_image_xxxx():
 	#if request.form.get('images-for-testing-classification') == 'images-for-testing-classification':
 	#	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 
-	return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
+	return render_template('upload-test.html', filenames=file_names, images_in_dir=returned_public_urls)
 	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
@@ -407,6 +400,18 @@ def models():
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
       
 	return render_template('models.html', images_in_dir=gcp_active_directory_file_urls)
+
+
+@app.route('/models_upload/', methods=['POST','GET'])
+def models_upload():
+  
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]  
+	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+      
+	return render_template('upload-test.html', images_in_dir=gcp_active_directory_file_urls)
+
 
 @app.route('/saveCroppedImage', methods=['POST','GET'])
 def saveCroppedImage():
