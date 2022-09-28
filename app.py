@@ -395,7 +395,7 @@ def upload_model2():
    
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)   
  
-	return render_template('upload-test.html', data = gcp_active_directory_file_urls)
+	return render_template('upload-test.html',images_in_dir = gcp_active_directory_file_urls,  data = gcp_active_directory_file_urls)
 	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
