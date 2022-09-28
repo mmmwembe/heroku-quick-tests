@@ -373,7 +373,7 @@ def upload_model2():
 	files = request.files.getlist('models[]')
 	file_names = []
 	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir "] # user_models_detection_subdir user_images_subdir
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir
  
 	# target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 	target_file_types_array = ["tflite"]
