@@ -374,7 +374,8 @@ def upload_model2():
 	file_names = []
 	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
 	sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
-	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+	# target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+	target_file_types_array = ["tflite"]
 	returned_public_urls =[]
 	client = storage.Client()
 	bucket = client.get_bucket(bucket_name)
