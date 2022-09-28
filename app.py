@@ -367,7 +367,10 @@ def upload_model():
 def upload_model2():
   
 	data = request.files
-	if 'models[]' not in request.files:
+	if 'models34567[]' not in request.files:
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir
+		client = storage.Client()
+		bucket_tmp = client.get_bucket(os.path.join(bucket_name, sub_directory_path,CURRENTLY_ACTIVE_FOLDER))
 		return redirect(request.url)
 
 	files = request.files.getlist('models[]')
