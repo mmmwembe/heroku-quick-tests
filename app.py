@@ -368,10 +368,19 @@ def upload_model2():
   
 	data = request.files
 	if 'models[]' not in request.files:
-		flash('No model files uploaded')
 		return redirect(request.url)
 
-	return render_template('upload-test.html', data = data)
+	files = request.files.getlist('models[]')
+	file_names = []
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+	returned_public_urls =[]
+	client = storage.Client()
+	bucket = client.get_bucket(bucket_name)
+	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+ 
+	return render_template('upload-test.html', data = sub_dir_path_with_active_folder)
 	# return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
 	#return render_template('classify-images.html', filenames=file_names, images_in_dir=get_images_list(USER_CURRENT_IMG_WORKING_SUBDIR))
 
