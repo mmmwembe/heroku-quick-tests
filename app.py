@@ -248,6 +248,15 @@ if user_info:
 #  subdir, filename = os.path.split(url)
 #  return filename
 
+def get_labels_from_tflite_model_zipfile(model_file_url):
+  labels =''
+  with urlopen(model_file_url) as f:
+    with BytesIO(f.read()) as b, ZipFile(b) as myzipfile:
+      labelmap_txt_file = myzipfile.open('labelmap.txt')
+      labels = labelmap_txt_file.read().decode('utf-8').replace('\n', ',').rstrip(',')
+      # print(labels)
+  return labels
+
 @app.route('/')
 def home():
 
@@ -448,9 +457,9 @@ def upload_detection_tflite_model():
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url) 
    
-	#gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)   
+	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)   
  
-	return render_template('upload-test.html',data_detection = returned_public_urls)
+	return render_template('upload-test.html',data_detection = gcp_active_directory_file_urls)
 
 
 @app.route('/detection/', methods=['POST','GET'])
