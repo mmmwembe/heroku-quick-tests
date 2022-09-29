@@ -495,11 +495,16 @@ def upload_detection_tflite_model():
 		detection_models_info = model_info_array(detection_models_urls, 'object detection')
 	except:
 		pass
-	# classification_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, classification_sub_directory_path , target_file_types_array)
-	# classification_models_info = model_info_array(classification_models_urls, 'classification') 
+
+	classification_models_urls =[]
+	classification_models_info =[]
+	try:
+		classification_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, classification_sub_directory_path , target_file_types_array)
+		classification_models_info = model_info_array(classification_models_urls, 'classification')
+	except:
+		pass 
  
- 
-	return render_template('upload-test.html',data_detection = detection_models_urls, detection_models_info = detection_models_info )
+	return render_template('upload-test.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
 
 
 @app.route('/detection/', methods=['POST','GET'])

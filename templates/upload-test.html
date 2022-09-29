@@ -274,7 +274,7 @@
                                 <!--https://stackoverflow.com/questions/68163067/multi-row-in-table-by-using-jinja2-->
                                 <tbody id="myTable">
                 
-                                  {% for model in detection_models_info  %}
+                                  {% for model in classification_models_info  %}
                                   <tr class = "align-middle">        
                                     <td>
                                         <div>
@@ -283,9 +283,9 @@
                                     </td>
                                     <td> {{ model.model_name }} </td>
                                     <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
-                                    <td><button id="deploy-btn" class="btn btn-success" data-model=" {{ model.model_url }}">Deploy Model</button></td>
-                                    <td><button id="info-btn" class="btn btn-info" data-model=" {{ model.model_url }}">View  Edit</button></td>
-                                    <td><button id="delete-btn" class="btn btn-danger" data-model=" {{ model.model_url }}">Delete Model</button></td>
+                                    <td><button id="classifier-deploy-btn" class="btn btn-success" data-model=" {{ model.model_url }}">Deploy Model</button></td>
+                                    <td><button id="classifier-info-btn" class="btn btn-info" data-model=" {{ model.model_url }}">View  Edit</button></td>
+                                    <td><button id="classifier-delete-btn" class="btn btn-danger" data-model=" {{ model.model_url }}">Delete Model</button></td>
                                   </tr>
                                   {% endfor %}
                 
@@ -399,9 +399,9 @@
                                     </td>
                                     <td> {{ model.model_name }} </td>
                                     <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
-                                    <td><button id="deploy-btn" class="btn btn-success" data-model=" {{ model.model_url }}">Deploy Model</button></td>
-                                    <td><button id="info-btn" class="btn btn-info" data-model=" {{ model.model_url }}">View  Edit</button></td>
-                                    <td><button id="delete-btn" class="btn btn-danger" data-model=" {{ model.model_url }}">Delete Model</button></td>
+                                    <td><button id="detection-deploy-btn" class="btn btn-success" data-model=" {{ model.model_url }}">Deploy Model</button></td>
+                                    <td><button id="detection-info-btn" class="btn btn-info" data-model=" {{ model.model_url }}">View  Edit</button></td>
+                                    <td><button id="detection-delete-btn" class="btn btn-danger" data-model=" {{ model.model_url }}">Delete Model</button></td>
                                   </tr>
                                   {% endfor %}
                 
