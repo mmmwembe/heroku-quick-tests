@@ -487,10 +487,14 @@ def upload_detection_tflite_model():
 			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url) 
-
-	detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, detection_sub_directory_path, target_file_types_array)
-	detection_models_info = model_info_array(detection_models_urls, 'object detection')
-
+   
+	detection_models_info =[]
+	detection_models_info =[]
+	try:
+		detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, detection_sub_directory_path, target_file_types_array)
+		detection_models_info = model_info_array(detection_models_urls, 'object detection')
+	except:
+		pass
 	# classification_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, classification_sub_directory_path , target_file_types_array)
 	# classification_models_info = model_info_array(classification_models_urls, 'classification') 
  
