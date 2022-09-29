@@ -376,7 +376,7 @@
                                 <!--https://stackoverflow.com/questions/68163067/multi-row-in-table-by-using-jinja2-->
                                 <tbody id="myTable">
                 
-                                  {% for item in data %}
+                                  {% for item in data_detection %}
                                   <tr class = "align-middle">        
                                     <td>
                                         <div>
@@ -422,9 +422,9 @@
 
                         <p><strong>  Upload Object Detection Model(s) [tflite]</strong></p>
                         <p></p>
-                        <form method="post" action="{{ url_for('upload_model2') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ url_for('upload_model3') }}" enctype="multipart/form-data">
                             <div class="input-group">
-                                <input class="form-control form-control-lg" id="modelLoader" type="file" name="models[]" multiple="true" autocomplete="off" required>
+                                <input class="form-control form-control-lg" id="modelLoader" type="file" name="models_detection[]" multiple="true" autocomplete="off" required>
                                 <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
                             </div>
                             <input type="hidden" id="current_folder" name="current_folder" value="">
