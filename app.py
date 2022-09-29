@@ -476,9 +476,9 @@ def upload_detection_tflite_model():
 			returned_public_urls.append(gcs_url) 
    
 	detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
-	model_info_detection = model_info_array(detection_models_urls, 'object detection')
+	detection_models_info = model_info_array(detection_models_urls, 'object detection')
  
-	return render_template('upload-test.html',data_detection = detection_models_urls)
+	return render_template('upload-test.html',data_detection = detection_models_urls, detection_models_info = detection_models_info )
 
 
 @app.route('/detection/', methods=['POST','GET'])

@@ -364,6 +364,7 @@
                         <h2 class="ml-3">Object Detection Models</h2>
 
                         <div class="container" text-center-align>
+
                             <table class="table table-striped">
                                 <tr  class="bg-info">
                                     <th>Icon</th>
@@ -395,6 +396,16 @@
                                 </tbody>
                             </table>
                       </div>
+
+                      {% for model in detection_models_info %}
+
+                      {{ model.model_url }} 
+                      {{ model.model_name }} 
+                      {{ model.model_type }} 
+                      {{ model.labels }}         
+                      
+
+                      {% endfor %}
 
                     </div>
                     <div class="col-md-4 col-md-30">
