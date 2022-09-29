@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <!-- 1. include required files -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/loadingio/ldLoader@v1.0.0/dist/ldld.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/loadingio/ldLoader@v1.0.0/dist/ldld.min.js"></script>
+<body>
+    
+<!-- 2. add a node for loader -->
+<div id="my-loader" class="text-danger ldld bare"  style="width: 35px; height:35px; color: #29C44D"></div>
+<button id="spinnerButton" onclick="Start()" data-spinning="on">Click me</button>
+<script>
+
+
+window.addEventListener('load', (event) => {
+
+    /* 3. create a new ldLoader object with the newly added node */
+    var ldld = new ldLoader({ root: "#my-loader" }); 
+    /* 4. active this loader */
+    const spinnerBtn = document.getElementById("spinnerButton")
+
+    // alert(spinnerBtn.dataset.spinning)
+
+    if (spinnerBtn.getAttribute('data-spinning')=="on"){
+        ldld.on();
+    }
+    else {
+        ldld.off();
+    }
+
+    setTimeout(stop, 5000);
+
+    const interval = setInterval(function() {
+
+    if (spinnerBtn.getAttribute('data-spinning')=="off"){
+
+              ldld.off();
+    }
+
+    }, 100);
+
+
+    
+    function Start() {
+       ldld.on();
+     }
+
+    function stop() {
+        spinnerBtn.setAttribute('data-spinning', 'off');
+    }
+
+
+});
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
