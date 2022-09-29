@@ -204,6 +204,7 @@
         <main>
             <div class="container mt-5">
 
+                <!--------------------------------------Classification Model--------------------------------------------->
 
                 <div class="row">
 
@@ -230,7 +231,6 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <!--div class="progress progress-bar progress-bar-striped progress-bar-animated mb-2">Loading Model...</div-->
                     </div>
                 </div>
                 <div class="row">
@@ -250,9 +250,10 @@
                     </div>
                 </div>
                 <div class="row">
+
                     <div class="col-md-8 col-md-70">
     
-                        <h2 class="ml-3">Predictions</h2>
+                        <h2 class="ml-3">Classification Models</h2>
 
                         <div class="container" text-center-align>
                             <table class="table table-striped">
@@ -290,17 +291,11 @@
                 <div class="row">
                     <div class="col-6">
 
-                        <p> <strong> Create/Choose folder to upload files to :
-                            <a id="upload-folder" href="#" class="btn btn-info btn-lg">
-                              <span class="glyphicon glyphicon-folder-open"></span>  dog
-                            </a>
-                            </strong>
-                        </p> 
-
                     </div>
+
                     <div class="col-6 text-center">
                         <!--button id="predict-button" class="btn btn-success float-right">Classify Image</button-->
-                        <button id="predict-button" class="btn btn-success">Classify Image</button>
+                        <!--button id="predict-button" class="btn btn-success">Classify Image</button-->
                     </div>
                 </div>
 
@@ -313,7 +308,141 @@
 
                     <div class="col-6">
 
-                        <p><strong>  Upload Images</strong></p>
+                        <p><strong>  Upload Classification Model(s) [tflite]</strong></p>
+                        <p></p>
+                        <form method="post" action="{{ url_for('upload_model2') }}" enctype="multipart/form-data">
+                            <div class="input-group">
+                                <input class="form-control form-control-lg" id="modelLoader" type="file" name="models[]" multiple="true" autocomplete="off" required>
+                                <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
+                            </div>
+                            <input type="hidden" id="current_folder" name="current_folder" value="">
+                            <input type="hidden" name="which-form" value="images-for-testing-classification">
+                        </form> 
+
+                    </div>
+                  
+                    <div class="col-6">
+
+
+                   </div>
+                    
+                    <div class="col-6">
+
+                    </div>
+                    
+                </div>
+                  
+                <hr/>
+
+                <div class="row">
+
+                </div>
+                <hr/>
+
+                <!--------------------------------------Object Detection Model--------------------------------------------->
+
+                <div class="row">
+
+                    <div class="col-sm">
+                      <strong>Image Classification</strong>   
+                    </div>
+                    <div class="col-sm">
+                        <strong><a href = "/detection/"> Object Detection </a> </strong>
+                    </div>
+                    <div class="col-sm">
+                      <strong><a href="/labeling/">Labeling</a> </strong>
+                    </div>
+                    <div class="col-sm">
+                      <strong><a href = "/models/"> Models </a> </strong>
+                  </div>
+                  <div class="col-sm">
+                    <strong><a href="#">Data</a> </strong>
+                  </div>
+                  <div class="col-sm">
+                    <strong><a href="#">Models Upload</a> </strong>
+                  </div>   
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                      <div id="imageView" class="imageViewer">
+                        <input id="image-selector" class="form-control border-0" type="file" accept="image/*" style="display: none"/>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                        
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-8 col-md-70">
+    
+                        <h2 class="ml-3">Object Detection Models</h2>
+
+                        <div class="container" text-center-align>
+                            <table class="table table-striped">
+                                <tr  class="bg-info">
+                                    <th>Icon</th>
+                                    <th>File</th>
+                                    <th>URL</th>
+                                </tr>
+                            
+                                <!--https://stackoverflow.com/questions/68163067/multi-row-in-table-by-using-jinja2-->
+                                <tbody id="myTable">
+                
+                                  {% for item in data %}
+                                  <tr class = "align-middle">        
+                                    <td>
+                                        <div>
+                                            <img id="detection_model" src="/static/project-icons/models-icon.png" style="width:100%; height:100%;" data-url="{{ item }}" crossorigin="anonymous">
+                                        </div>
+                                    </td>
+                                    <td>{{ item }}</td>
+                                    <td>{{ loop.counter }}</td>
+                                  </tr>
+                                  {% endfor %}
+                
+                                </tbody>
+                            </table>
+                      </div>
+
+                    </div>
+                    <div class="col-md-4 col-md-30">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+
+                    </div>
+
+                    <div class="col-6 text-center">
+                        <!--button id="predict-button" class="btn btn-success float-right">Classify Image</button-->
+                        <!--button id="predict-button" class="btn btn-success">Classify Image</button-->
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div class="row">
+                </div>
+
+                <div class="row">
+
+                    <div class="col-6">
+
+                        <p><strong>  Upload Object Detection Model(s) [tflite]</strong></p>
                         <p></p>
                         <form method="post" action="{{ url_for('upload_model2') }}" enctype="multipart/form-data">
                             <div class="input-group">
@@ -340,39 +469,15 @@
                 <hr/>
 
 
-                <div class="row">
 
 
-                    <div class="col-md-8 col-md-70">
-   
-                        <div class="ScrollStyle">
-                      
-                              {% if images_in_dir %}
-                      
-                              {% for row in images_in_dir|batch(4) %}
-                              <div class="row row-eq-height">
-                      
-                                {% for column_img in row %}  
-                      
-                                  <div class="gallery_column">
-                                    <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%" data-index="{{loop.index}}" crossorigin="anonymous">
-                                  </div>
-                      
-                                {% endfor %}
-                      
-                              </div>
-                              {% endfor %}
-                      
-                            {% endif %}
 
-                      
-                        </div>
-                        
-                    </div>
 
-                </div>
 
-                <hr/>
+
+
+
+
 
             </div>
         </main>
@@ -387,48 +492,6 @@
 
         </div>
 
-
-
-        <script>
-
-            /*
-
-            window.addEventListener("load", function(){
-
-            var img_thumbnails = null
-            
-            img_thumbnails = document.getElementsByClassName('gallery_column');
-            for(let i = 0; i < img_thumbnails.length; i++) {
-              img_thumbnails[i].addEventListener("click", function(e) {
-                       // alert('thumbnail num ' + i + ' ' + e.target.src);
-            
-                        img_url = e.target.src
-
-                        document.getElementById('selected-image').src = img_url;
-            
-                        // set_new_background_image(img_url)
-            
-                        // alert(img_url)
-            
-              })
-            }
-            
-            function geturl(full_url)
-            {
-                var imgurl = '/' + full_url.substr(full_url.indexOf('/', 8) + 1)
-            
-              alert(imgurl)
-            
-              return imgurl
-            
-            }
-            
-            
-            }); 
-
-            */
-
-            </script>
 
         <!-- Load TFLite Task Library -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/tasks@0.0.1-alpha.8"></script>
