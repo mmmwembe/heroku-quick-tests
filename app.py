@@ -257,6 +257,24 @@ def get_labels_from_tflite_model_zipfile(model_file_url):
       # print(labels)
   return labels
 
+def get_filename_from_path(file_url):
+  file_name = os.path.basename(file_url)
+  return file_name
+
+def model_info_array(models_urls, model_type):
+  # model type is either 'object detection' or 'classification'
+  new_models_array = []
+  for _model_url in models_urls:
+    model_item ={
+      'labels': get_labels_from_tflite_model_zipfile(_model_url), 
+      'model_url': _model_url,
+      'model_name': get_filename_from_path(_model_url),
+      'model_type' : model_type
+      }
+    new_models_array.append(model_item)
+
+  return new_models_array
+
 @app.route('/')
 def home():
 
@@ -457,9 +475,10 @@ def upload_detection_tflite_model():
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url) 
    
-	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)   
+	detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+	model_info_detection = model_info_array(detection_models_urls, 'object detection')
  
-	return render_template('upload-test.html',data_detection = gcp_active_directory_file_urls)
+	return render_template('upload-test.html',data_detection = detection_models_urls)
 
 
 @app.route('/detection/', methods=['POST','GET'])
