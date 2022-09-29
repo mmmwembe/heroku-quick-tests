@@ -233,6 +233,8 @@ if user_info:
   except:
     pass
 
+# context processor for jinja2
+# 
 @app.context_processor
 def context_file_name(url):
   subdir, filename = os.path.split(url)
