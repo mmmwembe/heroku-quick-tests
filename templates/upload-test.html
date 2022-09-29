@@ -259,30 +259,39 @@
                         <h2 class="ml-3">Classification Models</h2>
 
                         <div class="container" text-center-align>
+
+
                             <table class="table table-striped">
                                 <tr  class="bg-info">
                                     <th>Icon</th>
                                     <th>File</th>
-                                    <th>URL</th>
+                                    <th>Labels</th>                                    
+                                    <th>Deploy</th>
+                                    <th>Info</th>
+                                    <th>Delete</th>                                                                        
                                 </tr>
                             
                                 <!--https://stackoverflow.com/questions/68163067/multi-row-in-table-by-using-jinja2-->
                                 <tbody id="myTable">
                 
-                                  {% for item in data %}
+                                  {% for model in classification_models_info  %}
                                   <tr class = "align-middle">        
                                     <td>
                                         <div>
-                                            <img id="class_model" src="/static/project-icons/models-icon.png" style="width:100%; height:100%;" data-url="{{ item }}" crossorigin="anonymous">
+                                            <img id="detection_model" src="/static/project-icons/icon-model-object-detection.png" data-modelurl = " {{ model.model_url }} " style="width:100%; height:100%;"  crossorigin="anonymous">
                                         </div>
                                     </td>
-                                    <td>{{ item }}</td>
-                                    <td>{{ loop.counter }}</td>
+                                    <td> {{ model.model_name }} </td>
+                                    <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
+                                    <td><button id="deploy-btn" class="btn btn-success" data-model=" {{ model.model_url }}">Deploy Model</button></td>
+                                    <td><button id="info-btn" class="btn btn-info" data-model=" {{ model.model_url }}">View/Edit</button></td>
+                                    <td><button id="delete-btn" class="btn btn-danger" data-model=" {{ model.model_url }}">Delete</button></td>
                                   </tr>
                                   {% endfor %}
                 
                                 </tbody>
                             </table>
+
                       </div>
 
                     </div>
