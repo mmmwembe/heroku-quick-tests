@@ -368,6 +368,7 @@
                                 <tr  class="bg-info">
                                     <th>Icon</th>
                                     <th>File</th>
+                                    <th>Labels</th>                                    
                                     <th>Deploy</th>
                                     <th>Info</th>
                                     <th>Delete</th>                                                                        
@@ -384,6 +385,7 @@
                                         </div>
                                     </td>
                                     <td>{{ item }}</td>
+                                    <td>{{ loop.counter }}</td>
                                     <td><button id="deploy-btn" class="btn btn-success">Deploy Model</button></td>
                                     <td><button id="info-btn" class="btn btn-info">View/Edit</button></td>
                                     <td><button id="delete-btn" class="btn btn-danger">Delete</button></td>
@@ -422,7 +424,7 @@
 
                         <p><strong>  Upload Object Detection Model(s) [tflite]</strong></p>
                         <p></p>
-                        <form method="post" action="{{ url_for('upload_model3') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ url_for('upload_detection_tflite_model') }}" enctype="multipart/form-data">
                             <div class="input-group">
                                 <input class="form-control form-control-lg" id="modelLoader" type="file" name="models_detection[]" multiple="true" autocomplete="off" required>
                                 <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
