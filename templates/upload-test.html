@@ -278,7 +278,7 @@
                                   <tr class = "align-middle">        
                                     <td>
                                         <div>
-                                            <img id="detection_model" src="/static/project-icons/icon-model-object-detection.png" data-modelurl = " {{ model.model_url }} " style="width:100%; height:100%;"  crossorigin="anonymous">
+                                            <img id="classification_model" src="/static/project-icons/models-icon.png" data-modelurl = " {{ model.model_url }} " style="width:100%; height:100%;"  crossorigin="anonymous">
                                         </div>
                                     </td>
                                     <td> {{ model.model_name }} </td>
@@ -322,9 +322,9 @@
 
                         <p><strong>  Upload Classification Model(s) [tflite]</strong></p>
                         <p></p>
-                        <form method="post" action="{{ url_for('upload_model2') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ url_for('upload_classification_tflite_model') }}" enctype="multipart/form-data">
                             <div class="input-group">
-                                <input class="form-control form-control-lg" id="modelLoader" type="file" name="models[]" multiple="true" autocomplete="off" required>
+                                <input class="form-control form-control-lg" id="modelLoader" type="file" name="models_classification[]" multiple="true" autocomplete="off" required>
                                 <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
                             </div>
                             <input type="hidden" id="current_folder" name="current_folder" value="">

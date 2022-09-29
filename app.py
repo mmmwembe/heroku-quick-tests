@@ -466,7 +466,7 @@ def upload_detection_tflite_model():
 	files = request.files.getlist('models_detection[]')
 	file_names = []
 	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	# sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
 	target_file_types_array = ["tflite"]
 	returned_public_urls =[]
 	client = storage.Client()
@@ -506,6 +506,55 @@ def upload_detection_tflite_model():
  
 	return render_template('upload-test.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
 
+@app.route('/upload_classification_tflite_model/', methods=['POST','GET'])
+def upload_classification_tflite_model():
+  
+	data = request.files
+	if 'models_classification[]' not in request.files:
+		return redirect(request.url)
+
+	files = request.files.getlist('models_classification[]')
+	file_names = []
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	# sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	target_file_types_array = ["tflite"]
+	returned_public_urls =[]
+	client = storage.Client()
+	bucket = client.get_bucket(bucket_name)
+	# sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
+
+	for file in files:
+		if file and (file.filename).lower().endswith(tuple(target_file_types_array)):
+			filename = secure_filename(file.filename)
+			blob_full_path = os.path.join(classification_sub_directory_path, filename)
+			blob = bucket.blob(blob_full_path)
+			file.seek(0)
+			blob.upload_from_string(file.read(), content_type=file.content_type)
+			blob_public_url = blob.public_url 
+			# gcs_url = "https://storage.cloud.google.com/{}/{}".format(bucket_name,blob_full_path)
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+			# returned_public_urls.append(blob_public_url)   
+			returned_public_urls.append(gcs_url) 
+   
+	detection_models_info =[]
+	detection_models_info =[]
+	try:
+		detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, detection_sub_directory_path, target_file_types_array)
+		detection_models_info = model_info_array(detection_models_urls, 'object detection')
+	except:
+		pass
+
+	classification_models_urls =[]
+	classification_models_info =[]
+	try:
+		classification_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, classification_sub_directory_path , target_file_types_array)
+		classification_models_info = model_info_array(classification_models_urls, 'classification')
+	except:
+		pass 
+ 
+	return render_template('upload-test.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
 
 @app.route('/detection/', methods=['POST','GET'])
 def detection():
