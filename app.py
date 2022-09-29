@@ -18,6 +18,10 @@ from PIL import Image
 from io import BytesIO
 # app.secret_key = 'A0AKR5TGD\ R~XHH!jmN]LWX/,?RT'
 
+from urllib.request import urlopen
+from io import BytesIO
+from zipfile import ZipFile
+
 
 
 #===========================================================
