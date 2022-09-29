@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for, request, jsonify,flash
+from flask import Flask, render_template, session, redirect, url_for, request, jsonify,flash, Blueprint
 from werkzeug.utils import secure_filename
 from flask_bootstrap import Bootstrap
 from functools import wraps
@@ -17,6 +17,8 @@ import base64
 from PIL import Image
 from io import BytesIO
 # app.secret_key = 'A0AKR5TGD\ R~XHH!jmN]LWX/,?RT'
+
+
 
 #===========================================================
 # USER DIRECTORIES
@@ -44,6 +46,8 @@ Session(app)
 
 # Bootstrap
 bootstrap = Bootstrap(app)
+
+# blueprintObj = Blueprint("blueprintObject", __name__, template_folder='templates')
 
 try:
   cluster = MongoClient(os.environ["MONGODB_URL"])
@@ -235,11 +239,10 @@ if user_info:
 
 # context processor for jinja2
 # 
-@app.context_processor
-def context_file_name(url):
-  subdir, filename = os.path.split(url)
-  return filename
-
+#@app.context_processor
+#def context_file_name(url):
+#  subdir, filename = os.path.split(url)
+#  return filename
 
 @app.route('/')
 def home():
