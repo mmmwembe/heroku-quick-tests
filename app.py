@@ -233,6 +233,12 @@ if user_info:
   except:
     pass
 
+@app.context_processor
+def context_file_name(url):
+  subdir, filename = os.path.split(url)
+  return filename
+
+
 @app.route('/')
 def home():
 
