@@ -265,8 +265,10 @@ def model_info_array(models_urls, model_type):
   # model type is either 'object detection' or 'classification'
   new_models_array = []
   for _model_url in models_urls:
+    labels = get_labels_from_tflite_model_zipfile(_model_url)
     model_item ={
-      'labels': get_labels_from_tflite_model_zipfile(_model_url), 
+      'labels': labels, 
+      'truncated_labels': truncate_labels(labels, 75),
       'model_url': _model_url,
       'model_name': get_filename_from_path(_model_url),
       'model_type' : model_type
@@ -274,6 +276,16 @@ def model_info_array(models_urls, model_type):
     new_models_array.append(model_item)
 
   return new_models_array
+
+
+def truncate_labels(labels, x_value):
+  # x_value = integer length for truncating labels
+  # eg. x_value = 75
+  truncated_labels = labels[:x_value] + (labels[x_value:] and '...')
+  
+  return truncated_labels
+
+
 
 @app.route('/')
 def home():

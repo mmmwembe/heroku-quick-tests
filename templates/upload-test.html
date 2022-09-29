@@ -389,7 +389,7 @@
                                         </div>
                                     </td>
                                     <td> {{ model.model_name }} </td>
-                                    <td> {{ model.labels }}</td>
+                                    <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
                                     <td><button id="deploy-btn" class="btn btn-success" data-model=" {{ model.model_url }}">Deploy Model</button></td>
                                     <td><button id="info-btn" class="btn btn-info" data-model=" {{ model.model_url }}">View/Edit</button></td>
                                     <td><button id="delete-btn" class="btn btn-danger" data-model=" {{ model.model_url }}">Delete</button></td>
