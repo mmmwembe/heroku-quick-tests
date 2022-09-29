@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="148.87mm" height="144.82mm" version="1.1" viewBox="0 0 148.87 144.82" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs/><g transform="translate(-34.496 -69.202)"><ellipse class="background-shadow" cx="108.93" cy="141.61" rx="71.498" ry="69.551" fill="#29c44d" stroke-width=".161"/><ellipse cx="108.93" cy="141.61" rx="74.436" ry="72.41" fill="url(#background-fill)" stroke-width=".161"/><ellipse cx="108.93" cy="141.61" rx="68.07" ry="66.217" fill="url(#circle-fill)" stroke="url(#circle-stroke)" stroke-width=".644"/><g transform="matrix(.19589 0 0 .19055 110.11 143.9)"><g stroke-width="24"><line class="line-shadow" x1="-168" x2="20" y1="-92" y2="-180"/><line class="line-shadow" x1="-168" x2="20" y1="92" y2="-180"/><line class="line-shadow" x1="-168" x2="20" y1="-92" y2="-60"/><line class="line-shadow" x1="-168" x2="20" y1="92" y2="-60"/><line class="line-shadow" x1="-168" x2="20" y1="-92" y2="60"/><line class="line-shadow" x1="-168" x2="20" y1="92" y2="60"/><line class="line-shadow" x1="-168" x2="20" y1="-92" y2="180"/><line class="line-shadow" x1="-168" x2="20" y1="92" y2="180"/><line class="line-shadow" x1="20" x2="208" y1="-180"/><line class="line-shadow" x1="20" x2="208" y1="-60"/><line class="line-shadow" x1="20" x2="208" y1="60"/><line class="line-shadow" x1="20" x2="208" y1="180"/></g><g transform="translate(-168,-92)"><circle class="node-shadow" r="40"/></g><g transform="translate(-168,92)"><circle class="node-shadow" r="40"/></g><g transform="translate(20,-180)"><circle class="node-shadow" r="40"/></g><g transform="translate(20,-60)"><circle class="node-shadow" r="40"/></g><g transform="translate(20,60)"><circle class="node-shadow" r="40"/></g><g transform="translate(20,180)"><circle class="node-shadow" r="40"/></g><g transform="translate(208)"><circle class="node-shadow" r="40"/></g></g><g stroke-width="4.6368"><line class="line-border" x1="76.023" x2="112.85" y1="124.08" y2="107.31"/><line class="line-border" x1="76.023" x2="112.85" y1="159.14" y2="107.31"/><line class="line-border" x1="76.023" x2="112.85" y1="124.08" y2="130.18"/><line class="line-border" x1="76.023" x2="112.85" y1="159.14" y2="130.18"/><line class="line-border" x1="76.023" x2="112.85" y1="124.08" y2="153.04"/><line class="line-border" x1="76.023" x2="112.85" y1="159.14" y2="153.04"/><line class="line-border" x1="76.023" x2="112.85" y1="124.08" y2="175.91"/><line class="line-border" x1="76.023" x2="112.85" y1="159.14" y2="175.91"/><line class="line-border" x1="112.85" x2="149.68" y1="107.31" y2="141.61"/><line class="line-border" x1="112.85" x2="149.68" y1="130.18" y2="141.61"/><line class="line-border" x1="112.85" x2="149.68" y1="153.04" y2="141.61"/><line class="line-border" x1="112.85" x2="149.68" y1="175.91" y2="141.61"/></g><g stroke-width="1.932"><line class="line" x1="76.023" x2="112.85" y1="124.08" y2="107.31"/><line class="line" x1="76.023" x2="112.85" y1="159.14" y2="107.31"/><line class="line" x1="76.023" x2="112.85" y1="124.08" y2="130.18"/><line class="line" x1="76.023" x2="112.85" y1="159.14" y2="130.18"/><line class="line" x1="76.023" x2="112.85" y1="124.08" y2="153.04"/><line class="line" x1="76.023" x2="112.85" y1="159.14" y2="153.04"/><line class="line" x1="76.023" x2="112.85" y1="124.08" y2="175.91"/><line class="line" x1="76.023" x2="112.85" y1="159.14" y2="175.91"/><line class="line" x1="112.85" x2="149.68" y1="107.31" y2="141.61"/><line class="line" x1="112.85" x2="149.68" y1="130.18" y2="141.61"/><line class="line" x1="112.85" x2="149.68" y1="153.04" y2="141.61"/><line class="line" x1="112.85" x2="149.68" y1="175.91" y2="141.61"/></g><g transform="matrix(.19589 0 0 .19055 76.023 124.08)"><circle class="node-border" r="50"/><circle class="node" r="38" fill="#008000"/></g><g stroke-width=".1932"><ellipse class="node-border" cx="76.023" cy="159.14" rx="9.7943" ry="9.5276"/><ellipse class="node" cx="76.023" cy="159.14" rx="7.4436" ry="7.241" fill="#008000"/><ellipse class="node-border" cx="112.85" cy="107.31" rx="9.7943" ry="9.5276"/><ellipse class="node" cx="112.85" cy="107.31" rx="7.4436" ry="7.241" fill="#008000"/><ellipse class="node-border" cx="112.85" cy="130.18" rx="9.7943" ry="9.5276"/><ellipse class="node" cx="112.85" cy="130.18" rx="7.4436" ry="7.241" fill="#008000"/><ellipse class="node-border" cx="112.85" cy="153.04" rx="9.7943" ry="9.5276"/><ellipse class="node" cx="112.85" cy="153.04" rx="7.4436" ry="7.241" fill="#008000"/><ellipse class="node-border" cx="112.85" cy="175.91" rx="9.7943" ry="9.5276"/><ellipse class="node" cx="112.85" cy="175.91" rx="7.4436" ry="7.241" fill="#008000"/><ellipse class="node-border" cx="149.68" cy="141.61" rx="9.7943" ry="9.5276"/><ellipse class="node" cx="149.68" cy="141.61" rx="7.4436" ry="7.241" fill="#008000"/></g></g><style>
+        .background-shadow {
+            filter: url(#background-dropshadow);
+        }
+        .node-border {
+            fill: #eeeeee;
+            opacity: 1.0;
+        }
+        .node {
+            fill: #307295;
+            opacity: 1;
+        }
+        .node-shadow {
+            filter: url(#node-dropshadow);
+            opacity: 0.3;
+        }
+        .line-border {
+            stroke: #000000;
+            opacity: 0.2;
+        }
+        .line {
+            stroke: #eeeeee;
+            opacity: 1.0;
+        }
+        .line-shadow {
+            stroke: #000000;
+            filter: url(#node-dropshadow);
+            opacity: 0.2;
+        }
+    </style></svg>
