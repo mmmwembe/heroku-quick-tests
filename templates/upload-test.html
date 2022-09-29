@@ -378,18 +378,18 @@
                                 <!--https://stackoverflow.com/questions/68163067/multi-row-in-table-by-using-jinja2-->
                                 <tbody id="myTable">
                 
-                                  {% for item in data_detection %}
+                                  {% for model in detection_models_info  %}
                                   <tr class = "align-middle">        
                                     <td>
                                         <div>
-                                            <img id="detection_model" src="/static/project-icons/icon-model-object-detection.png" style="width:100%; height:100%;" data-url="{{ item }}" crossorigin="anonymous">
+                                            <img id="detection_model" src="/static/project-icons/icon-model-object-detection.png" data-modelurl = " {{ model.model_url }} " style="width:100%; height:100%;"  crossorigin="anonymous">
                                         </div>
                                     </td>
-                                    <td>{{ item }}</td>
-                                    <td>{{ loop.counter }}</td>
-                                    <td><button id="deploy-btn" class="btn btn-success">Deploy Model</button></td>
-                                    <td><button id="info-btn" class="btn btn-info">View/Edit</button></td>
-                                    <td><button id="delete-btn" class="btn btn-danger">Delete</button></td>
+                                    <td> {{ model.model_name }} </td>
+                                    <td> {{ model.labels }}</td>
+                                    <td><button id="deploy-btn" class="btn btn-success" data-model=" {{ model.model_url }}">Deploy Model</button></td>
+                                    <td><button id="info-btn" class="btn btn-info" data-model=" {{ model.model_url }}">View/Edit</button></td>
+                                    <td><button id="delete-btn" class="btn btn-danger" data-model=" {{ model.model_url }}">Delete</button></td>
                                   </tr>
                                   {% endfor %}
                 
@@ -397,15 +397,6 @@
                             </table>
                       </div>
 
-                      {% for model in detection_models_info %}
-
-                      {{ model.model_url }} 
-                      {{ model.model_name }} 
-                      {{ model.model_type }} 
-                      {{ model.labels }}         
-                      
-
-                      {% endfor %}
 
                     </div>
                     <div class="col-md-4 col-md-30">
