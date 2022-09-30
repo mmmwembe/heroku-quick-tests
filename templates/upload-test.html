@@ -190,11 +190,11 @@
     }
 
     .table_cell_background {
-      width: 100px;
-      height: 100px;
+      width: 75px;
+      height: 75px;
       background-image: url('/static/project-icons/delete-button-png-28580.png');
-      background-repeat:no-repeat;background-size:100px 100px;
-      border: 1px solid black;
+      background-repeat:no-repeat;background-size:75px 75px;
+      /* border: 1px solid black;*/
     }
 
     /*      Thumbnail Gallery Styles         */
@@ -311,7 +311,7 @@
                                     <td><button id="classifier-deploy-btn" class="btn btn-success modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy">Deploy Model</button></td>
                                     <td><button id="classifier-info-btn" class="btn btn-info modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="view">View  Edit</button></td>
                                     <td><button id="classifier-delete-btn" class="btn btn-danger modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
-                                    <td class="table_cell_background" id="#new_delete_model_btn" data-model=" {{ model.model_url }}"> NEW DELETE </td>
+                                    <td class="table_cell_background" id="#new_delete_model_btn" data-model=" {{ model.model_url }}"> </td>
                                 </tr>
                                   {% endfor %}
                 
