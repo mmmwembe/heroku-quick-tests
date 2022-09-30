@@ -553,9 +553,17 @@
 
                 }
         
-            }, 2000);
+            }, 1000);
         
         });
+
+
+        // stop spinner after 5 seconds
+        setTimeout(() => {
+
+        loading_dot_io_spinner.off();  
+
+         }, "5000")
 
 
         const modelButtons = document.getElementsByClassName('modelbtn');
