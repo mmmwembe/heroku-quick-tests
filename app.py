@@ -653,6 +653,9 @@ def models_upload():
 @app.route('/delete_model/', methods=['POST','GET'])
 def delete_model():
   
+	if request.method == 'GET':
+		pass
+
 	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
 	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
 	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
@@ -660,7 +663,8 @@ def delete_model():
  
 	try:
    # data = json.loads(request.data) 
-		data = json.loads(request.data)
+		# data = json.loads(request.data)
+		data = request.get_json(force=True)
 		model_url = data.get("model_url",None)
 		bucket_url_path='https://storage.googleapis.com/amina-files/'
 
@@ -683,7 +687,9 @@ def delete_model():
 		classification_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, classification_sub_directory_path , target_file_types_array)
 		classification_models_info = model_info_array(classification_models_urls, 'classification')
 	except:
-		pass 
+		pass
+
+ 
       
 	return render_template('upload-test.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
