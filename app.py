@@ -704,7 +704,7 @@ def NewDeleteModel():
         model_type= request.form['model_type']
         task = request.form['task']
         
-        everything = "model_url: " + model_url + "model_name : " + model_name + " model_type: " + " task :" + task
+        everything = "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
 
     return jsonify(result = 'success', everything=everything)
 
