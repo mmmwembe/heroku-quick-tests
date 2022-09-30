@@ -558,17 +558,18 @@
         });
 
 
-        const detection_deploy_btn = document.getElementById("detection-deploy-btn");
+        // const button = document.getElementById("detection-deploy-btn");
+        const mybutton = document.getElementsByClassName('btn');
 
         // img_thumbnails = document.getElementById('gallery_column');
-        for(let i = 0; i < detection_deploy_btn.length; i++) {
-        detection_deploy_btn[i].addEventListener("click", function(e) {
+        for(let i = 0; i < mybutton.length; i++) {
+            mybutton[i].addEventListener("click", function(e) {
 
-            var btn_clicked = e.target
-            var detection_model_url = btn_clicked.getAttribute('data-model')
-            storeSessionValue("deployed_detection_model_url", detection_model_url)
+            var btn_clicked = e.target.dataset.model
+            // var detection_model_url = btn_clicked.getAttribute('data-model')
+            // storeSessionValue("deployed_detection_model_url", detection_model_url)
 
-            alert('deploy detection model ' + ' ' + detection_model_url);
+            alert('deploy detection model ' + ' ' + btn_clicked);
 
            })
         }
