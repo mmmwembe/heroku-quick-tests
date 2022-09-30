@@ -188,8 +188,14 @@
         cursor: pointer;
         opacity: 0.6
     }
-    
-    
+    .btn-info:hover {
+        cursor: pointer;
+        opacity: 0.6
+    }   
+    .btn-danger:hover {
+        cursor: pointer;
+        opacity: 0.6
+    }   
     /*      Thumbnail Gallery Styles         */
     
     * {box-sizing: border-box;}
@@ -593,16 +599,13 @@
 
             if (task =="delete"){
 
-                const delete_url ="/delete_model/"
+                deleteModel(model_url,model_name, model_type,task)
+
+                // const delete_url ="/delete_model/"
 
                 // simpleFetchPost(delete_url, body)
 
-                $.ajax({
-                    type: "POST", 
-                    url: "/delete_model/"
-                    data : JSON.stringify(body),
-                    contentType: "application/json",
-                });
+                // $.ajax({type: "POST", url: "/delete_model/"data : JSON.stringify(body),contentType: "application/json",});
 
             }
 
@@ -645,6 +648,31 @@
                 } else {
                     return $.cookies.get(key);
                 }
+            }
+
+
+            //const body ={ "model_url": model_url, "model_name": model_name, "model_type": model_type, "task": task }
+            // /NewDeleteModel/
+
+            function deleteModel(model_url,model_name, model_type,task){
+
+            $.ajax({
+                type: "POST",
+                url: "/NewDeleteModel",
+                dataType: 'json',
+                data: { 
+                model_url: model_url,
+                model_name : model_name, 
+                model_type : model_type,
+                task : task,
+                },
+                success: function(data) {
+                var everything = data.everything
+                alert('Everything sent to server  : ' + JSON.stringify(everything))
+                }
+
+            });
+
             }
 
         </script>

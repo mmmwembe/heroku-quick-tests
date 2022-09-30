@@ -694,6 +694,21 @@ def delete_model():
 	return render_template('upload-test.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
 
+@app.route('/NewDeleteModel/', methods=['POST','GET'])
+def NewDeleteModel():
+
+    if request.method =='POST':
+
+        model_url = request.form['model_url']
+        model_name= request.form['model_name']
+        model_type= request.form['model_type']
+        task = request.form['task']
+        
+        everything = "model_url: " + model_url + "model_name : " + model_name + " model_type: " + " task :" + task
+
+    return jsonify(result = 'success', everything=everything)
+
+
 @app.route('/saveCroppedImage', methods=['POST','GET'])
 def saveCroppedImage():
 
