@@ -184,7 +184,7 @@
         margin: auto;
     }
     
-    .btn .btn-danger .btn-info .btn-success:hover {
+    .btn .btn-danger .btn-info .btn-success .modelbtn:hover {
         cursor: pointer;
         opacity: 0.6
     }
@@ -294,9 +294,9 @@
                                     </td>
                                     <td> {{ model.model_name }} </td>
                                     <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
-                                    <td><button id="classifier-deploy-btn" class="btn btn-success" data-model=" {{ model.model_url }}">Deploy Model</button></td>
-                                    <td><button id="classifier-info-btn" class="btn btn-info" data-model=" {{ model.model_url }}">View  Edit</button></td>
-                                    <td><button id="classifier-delete-btn" class="btn btn-danger" data-model=" {{ model.model_url }}">Delete Model</button></td>
+                                    <td><button id="classifier-deploy-btn" class="btn btn-success modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy">Deploy Model</button></td>
+                                    <td><button id="classifier-info-btn" class="btn btn-info modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="view">View  Edit</button></td>
+                                    <td><button id="classifier-delete-btn" class="btn btn-danger modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
                                   </tr>
                                   {% endfor %}
                 
@@ -410,9 +410,9 @@
                                     </td>
                                     <td> {{ model.model_name }} </td>
                                     <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
-                                    <td><button id="detection-deploy-btn" class="btn btn-success" data-model=" {{ model.model_url }}">Deploy Model</button></td>
-                                    <td><button id="detection-info-btn" class="btn btn-info" data-model=" {{ model.model_url }}">View  Edit</button></td>
-                                    <td><button id="detection-delete-btn" class="btn btn-danger" data-model=" {{ model.model_url }}">Delete Model</button></td>
+                                    <td><button id="detection-deploy-btn" class="btn btn-success modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="deploy">Deploy Model</button></td>
+                                    <td><button id="detection-info-btn" class="btn btn-info modelbtn" data-model=" {{ model.model_url }}"  data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="view">View  Edit</button></td>
+                                    <td><button id="detection-delete-btn" class="btn btn-danger modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
                                   </tr>
                                   {% endfor %}
                 
@@ -558,22 +558,46 @@
         });
 
 
-        // const button = document.getElementById("detection-deploy-btn");
-        const mybutton = document.getElementsByClassName('btn');
+        const modelButtons = document.getElementsByClassName('modelbtn');
 
-        // img_thumbnails = document.getElementById('gallery_column');
-        for(let i = 0; i < mybutton.length; i++) {
-            mybutton[i].addEventListener("click", function(e) {
+        for(let i = 0; i < modelButtons.length; i++) {
+            modelButtons[i].addEventListener("click", function(e) {
 
-            var btn_clicked = e.target.dataset.model
+            var model_url = e.target.dataset.model
+            var model_name = e.target.dataset.modelname
+            var model_type = e.target.dataset.model_type
+            var task =  e.target.dataset.task
+
+            const body ={ "model_url": model_url, "model_name": model_name, "model_type": model_type, "task": task }
             // var detection_model_url = btn_clicked.getAttribute('data-model')
             // storeSessionValue("deployed_detection_model_url", detection_model_url)
 
-            alert('deploy detection model ' + ' ' + btn_clicked);
+            alert('deploy model  ' + ' ' + model_url);
+            alert('model name : ' + ' ' + model_name + ' model_type : ' + model_type  + ' task : ' + task );
+
+
+            if (task =="delete-model"){
+
+                const delete_url ="/delete_model"
+
+                simpleFetchPost(delete_url, body)
+
+            }
+
+
 
            })
         }
 
+        
+            function simpleFetchPost(url, body){
+
+            fetch(url, {
+                method: "post", 
+                body: JSON.stringify(body), 
+                headers: {"Content-Type": "application/json"}
+                }) 
+            }
 
 
             function storeSessionValue(key, value) {
