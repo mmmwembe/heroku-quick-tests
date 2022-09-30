@@ -188,14 +188,15 @@
         cursor: pointer;
         opacity: 0.6
     }
-    .btn-info:hover {
-        cursor: pointer;
-        opacity: 0.6
-    }   
-    .btn-danger:hover {
-        cursor: pointer;
-        opacity: 0.6
-    }   
+
+    .table_cell_background {
+      width: 100px;
+      height: 100px;
+      background-image: url('/static/project-icons/delete-button-png-28580.png');
+      background-repeat:no-repeat;background-size:100px 100px;
+      border: 1px solid black;
+    }
+
     /*      Thumbnail Gallery Styles         */
     
     * {box-sizing: border-box;}
@@ -291,7 +292,8 @@
                                     <th>Labels</th>                                    
                                     <th>Deploy</th>
                                     <th>Info</th>
-                                    <th>Delete</th>                                                                        
+                                    <th>Delete</th>    
+                                    <th>New Delete</th>                                                                           
                                 </tr>
                             
                                 <!--https://stackoverflow.com/questions/68163067/multi-row-in-table-by-using-jinja2-->
@@ -309,7 +311,8 @@
                                     <td><button id="classifier-deploy-btn" class="btn btn-success modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy">Deploy Model</button></td>
                                     <td><button id="classifier-info-btn" class="btn btn-info modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="view">View  Edit</button></td>
                                     <td><button id="classifier-delete-btn" class="btn btn-danger modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
-                                  </tr>
+                                    <td class="table_cell_background" id="#new_delete_model_btn" data-model=" {{ model.model_url }}"> NEW DELETE </td>
+                                </tr>
                                   {% endfor %}
                 
                                 </tbody>
@@ -579,6 +582,27 @@
          }, "5000")
 
 
+        const table_cell_background = document.getElementsByClassName('table_cell_background')
+
+        for(let i = 0; i < table_cell_background.length; i++) {
+            table_cell_background[i].addEventListener("click", function(e) {
+
+                var model_url = e.target.dataset.model
+                alert('new button model url ' + model_url)
+
+            })
+
+        }
+
+
+
+
+
+     
+
+
+
+
         const modelButtons = document.getElementsByClassName('modelbtn');
 
         for(let i = 0; i < modelButtons.length; i++) {
@@ -590,6 +614,12 @@
             var task =  e.target.dataset.task
 
             const body ={ "model_url": model_url, "model_name": model_name, "model_type": model_type, "task": task }
+
+            $table.on('click-cell.bs.table', function (e, field, value, row, $element) { 
+
+                alert('field  ' + field + ' value : ' + value  + 'row :' + row  + 'element : ' + $element);            
+                console.log(field) console.log(value) console.log(row) console.log($element) 
+            })
             // var detection_model_url = btn_clicked.getAttribute('data-model')
             // storeSessionValue("deployed_detection_model_url", detection_model_url)
 
@@ -675,9 +705,13 @@
 
             }
 
+            function colorChanger(el){
+                el.style.backgroundColor = '#007d00';
+            }
 
 
-            
+
+
 
         </script>
 
