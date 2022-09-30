@@ -587,11 +587,27 @@
 
             if (task =="delete"){
 
-                const delete_url ="/delete_model"
+                const delete_url ="/delete_model/"
 
-                simpleFetchPost(delete_url, body)
+                // simpleFetchPost(delete_url, body)
+
+                $.ajax({
+                    type: "POST", 
+                    url: "/delete_model/"
+                    data : JSON.stringify(body),
+                    contentType: "application/json",
+                });
 
             }
+
+            if (task =="deploy") && (model_type =="classification") {
+                storeSessionValue("classification_model_url", model_url)
+            }
+            if (task =="deploy") && (model_type =="object detection") {
+                storeSessionValue("detection_model_url", model_url)
+            }
+
+
 
 
 

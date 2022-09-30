@@ -53,7 +53,34 @@ async function start() {
         datatable.draw();
     });
 
+
+    // check if the new selected classification model has been deployed
+
+    var stored_classification_model = getStoredSessionValue("classification_model_url")
+    alert(' stored classification model : ' + stored_classification_model)
+
+
+
 }
+
+function storeSessionValue(key, value) {
+    if (localStorage) {
+        localStorage.setItem(key, value);
+    } else {
+        $.cookies.set(key, value);
+    }
+}
+
+function getStoredSessionValue(key) {
+    if (localStorage) {
+        return localStorage.getItem(key);
+    } else {
+        return $.cookies.get(key);
+    }
+}
+
+
+
 
 function create_json_from_predictions(preds){
     var jsonArr = [];

@@ -658,7 +658,8 @@ def delete_model():
 	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
 	target_file_types_array = ["tflite"]
  
-	try: 
+	try:
+   # data = json.loads(request.data) 
 		data = json.loads(request.data)
 		model_url = data.get("model_url",None)
 		bucket_url_path='https://storage.googleapis.com/amina-files/'
