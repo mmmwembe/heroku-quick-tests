@@ -229,8 +229,37 @@ def upload_files_to_gcp(name_of_bucket, subdir_path, active_folder, files_to_upl
    
 	return public_urls_returned   
  
+ 
+def delete_file_from_gcp_bucket(bucket_name, blob_name):
+    """Deletes a blob from the bucket."""
+    # bucket_name = "your-bucket-name"
+    # blob_name = "your-object-name"
+    storage_client = storage.Client()
 
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(blob_name)
+    blob.delete()
 
+    print(f"Blob {blob_name} deleted.") 
+    
+    
+    
+
+def delete_file_from_gcpbucket(bucket_name, model_url, bucket_url_path):
+    """Deletes a blob from the bucket."""
+    # bucket_name = "your-bucket-name"
+    # model_url = "your-object-name"
+    # blobname = model_url.split('https://storage.googleapis.com/amina-files/')
+    
+    blob_name = model_url.split(bucket_url_path)
+    
+    storage_client = storage.Client()
+
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(blob_name)
+    blob.delete()
+
+    print(f"Blob {blob_name} deleted.") 
 
 # print(user_info)
 del user_info["password"]
@@ -602,6 +631,42 @@ def models_upload():
 	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
 	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
 	target_file_types_array = ["tflite"]
+ 
+	detection_models_info =[]
+	detection_models_info =[]
+	try:
+		detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, detection_sub_directory_path, target_file_types_array)
+		detection_models_info = model_info_array(detection_models_urls, 'object detection')
+	except:
+		pass
+
+	classification_models_urls =[]
+	classification_models_info =[]
+	try:
+		classification_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, classification_sub_directory_path , target_file_types_array)
+		classification_models_info = model_info_array(classification_models_urls, 'classification')
+	except:
+		pass 
+      
+	return render_template('upload-test.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
+
+@app.route('/delete_model/', methods=['POST','GET'])
+def delete_model():
+  
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
+	target_file_types_array = ["tflite"]
+ 
+	try: 
+		data = json.loads(request.data)
+		model_url = data.get("model_url",None)
+		bucket_url_path='https://storage.googleapis.com/amina-files/'
+
+		delete_file_from_gcpbucket(bucket_name, model_url, bucket_url_path)
+  
+	except:
+		pass
  
 	detection_models_info =[]
 	detection_models_info =[]
