@@ -169,6 +169,11 @@ async function start() {
     }
 
 
+    var stored_detection_model = getStoredSessionValue("detection_model_url")
+    alert(' stored detection model : ' + stored_detection_model)
+
+
+
 
 } // End of async function start()
 
