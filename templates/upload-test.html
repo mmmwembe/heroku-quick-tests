@@ -537,7 +537,8 @@
             // start spinner if data-spinning = "on"
         
             if (detection_model_uploadBtn.getAttribute('data-spinning')=="on"){
-                loading_dot_io_spinner.on();
+                // loading_dot_io_spinner.on();
+                loading_dot_io_spinner.off();
             }
             else {
                 loading_dot_io_spinner.off();
@@ -561,7 +562,7 @@
         // stop spinner after 5 seconds
         setTimeout(() => {
 
-        loading_dot_io_spinner.off();  
+          loading_dot_io_spinner.off();  
 
          }, "5000")
 
