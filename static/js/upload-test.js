@@ -40,7 +40,7 @@ window.addEventListener('load', (event) => {
         var model_type = $('#model_type' +model_id ).val()
         var task = $('task' +model_id ).val()
 
-        // alert('model_id : ' + model_id + '  model_name : ' + model_name + ' model_type :' + model_type)
+        alert('model_id : ' + model_id + '  model_name : ' + model_name + ' model_type :' + model_type  + ' task ' + task)
         alert(' Changing Model being Deployed....')
         
 
