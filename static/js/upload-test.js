@@ -3,13 +3,15 @@ window.addEventListener('load', (event) => {
 
     $('.xModelDeleteButton').on('click', function(){
 
-        var model_url = $(this).attr('model_url')
-        var model_name = $(this).attr('model_name')
-        var model_type = $(this).attr('model_type')
-        var task = $(this).attr('task')
+        //var model_url = $(this).attr('model_url')
+        //var model_name = $(this).attr('model_name')
+        //var model_type = $(this).attr('model_type')
+        //var task = $(this).attr('task')
+        var btn_index = $(this).attr('btn_index')
 
-        alert('model name : ' + model_name)
+        alert('button index : ' + btn_index)
 
+        /*
         req = $.ajax({
                 url: '/NewDeleteModel/',
                 type: 'POST',
@@ -20,6 +22,8 @@ window.addEventListener('load', (event) => {
         {
         alert('Data from Server :' + data.everything)
         });
+
+        */
 
     }); // End of .xModelDeleteButton on click event
 
@@ -46,7 +50,7 @@ window.addEventListener('load', (event) => {
 
 
 
-    
+
 
 }); // End Window Load Event
 
