@@ -26,7 +26,7 @@ async function start() {
             if (task =="delete"){
 
                 // deleteModel(model_url,model_name, model_type,task)
-                // alert('delete model clicked' + model_url)
+                alert('DELETE MODEL CLICKED ' + model_url)
                 // deleteModel(model_url,model_name, model_type,task)
 
             }
