@@ -55,7 +55,7 @@ async function start() {
 
     $.ajax({
         type: "POST",
-        url: "/NewDeleteModel",
+        url: "/NewDeleteModel/",
         dataType: 'json',
         data: { 
             model_url: model_url,
