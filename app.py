@@ -719,7 +719,7 @@ def NewDeleteModel():
 	try:                            
 		model_from_get_args = request.args.get('model_name')
 	except:
-		pass  
+		pass   
 	#if request.method =='POST':
    
 		# request_data = request.args.get('dataToPost', None, type=str) # request.get_json()
