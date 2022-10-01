@@ -91,14 +91,15 @@ async function start() {
 
 
 
-    
     deleteForm.onsubmit = async (e) => {
 
         e.preventDefault();
 
-        var model = $(this).attr('data-model')
+        alert('It gets here mate!!!')
 
-        alert('model +++' + model )
+        //var model = $(this).attr('data-model')
+
+        // alert('model +++' + model )
 
         /*
 
