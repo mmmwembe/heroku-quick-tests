@@ -96,7 +96,8 @@ async function start() {
 
         alert('BEFORE ')
 
-        var model = $(this).attr('src')
+        // var model = $(this).attr('src')
+        var model = $(this).data('model')
 
         alert('DATA MODEL ' + model)
 
