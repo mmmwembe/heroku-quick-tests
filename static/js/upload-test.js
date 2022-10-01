@@ -40,23 +40,23 @@ window.addEventListener('load', (event) => {
         var model_type = $('#model_type' +model_id ).val()
         var task = $('task' +model_id ).val()
 
-        alert('model_id : ' + model_id + '  model_name : ' + model_name + ' model_type :' + model_type)
+        // alert('model_id : ' + model_id + '  model_name : ' + model_name + ' model_type :' + model_type)
 
-        /*
-        req = $.ajax({
-                url: '/NewDeleteModel/',
-                type: 'POST',
-                data: { model_url : model_url, model_name : model_name, model_type : model_type, task : task }
-            });
+        
+        if ((task =="deploy") && (model_type =="classification")) {
+            storeSessionValue("classification_model_url", model_url)
+            alert(' Deployed classification model updated ')
+        }
+        if ((task =="deploy") && (model_type =="object detection")) {
+            storeSessionValue("detection_model_url", model_url)
+            alert(' Deployed Object Detection model updated ')
+        }
 
-        req.done(function(data)
-        {
-        alert('Data from Server :' + data.everything)
-        });
 
-        */
     }); 
 
+
+    // View and Edit Model Info
 
     $('.xViewModelInfo').on('click', function(e){
 
@@ -69,46 +69,27 @@ window.addEventListener('load', (event) => {
 
         alert('model_id : ' + model_id + '  model_name : ' + model_name + ' model_type :' + model_type)
 
-        /*
-        req = $.ajax({
-                url: '/NewDeleteModel/',
-                type: 'POST',
-                data: { model_url : model_url, model_name : model_name, model_type : model_type, task : task }
-            });
 
-        req.done(function(data)
-        {
-        alert('Data from Server :' + data.everything)
-        });
 
-        */
     }); 
 
 
 
+    function storeSessionValue(key, value) {
+        if (localStorage) {
+            localStorage.setItem(key, value);
+        } else {
+            $.cookies.set(key, value);
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    function getStoredSessionValue(key) {
+        if (localStorage) {
+            return localStorage.getItem(key);
+        } else {
+            return $.cookies.get(key);
+        }
+    }
 
 
 }); // End Window Load Event
