@@ -708,7 +708,10 @@ def delete_model():
 
 def NewDeleteModel():
   
-	if request.method =='POST':
+	model_name_from_post_form = request.form.get('model_name')                            
+	model_from_get_args = request.args.get('model_name')
+  
+	#if request.method =='POST':
    
 		# request_data = request.args.get('dataToPost', None, type=str) # request.get_json()
 		#model_url = request_data['model_url']
@@ -718,21 +721,21 @@ def NewDeleteModel():
     
 		#data = request.get()
 		# form_id = request.form.get('id')
-		args =request.view_args
+		#args =request.view_args
 		# content = request.json
 		# model_url = content['model_url']
 		# model_url = request.form['data-model']
 		#model_name = request.form['model_name']
 		#model_type = request.form['model_type']
 		#task = request.form['task']
-		everything="POST METHOD : model_url " +  str(args) # +  model_url 
+	everything="POST data  :" + model_name_from_post_form +  "GET data  :" + model_from_get_args
 		##everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
    
-	else:
+	#else:
    
-		args =request.view_args
+	# args =request.view_args
    
-		everything="GET METHOD : "  + str(args)
+	everything="GET METHOD : "  + str(args)
 		#pass
 
 	return jsonify(everything=everything)
