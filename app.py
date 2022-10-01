@@ -708,9 +708,18 @@ def delete_model():
 
 def NewDeleteModel():
   
-	model_name_from_post_form = request.form.get('model_name')                            
-	model_from_get_args = request.args.get('model_name')
+	model_name_from_post_form =''
+	model_from_get_args=''
   
+	try:
+		model_name_from_post_form = request.form.get('model_name')                            
+	except:
+		pass  
+
+	try:                            
+		model_from_get_args = request.args.get('model_name')
+	except:
+		pass  
 	#if request.method =='POST':
    
 		# request_data = request.args.get('dataToPost', None, type=str) # request.get_json()
