@@ -108,19 +108,19 @@ async function start() {
         $.ajax({
             type: "POST",
             url: "/NewDeleteModel/",
-            dataType: 'json',
+            dataType: "json",
             data: { 
                 model_url: model_url,
                 model_name : model_name, 
                 model_type : model_type,
                 task : task,
             },
-            /*
+  
                 success: function(data) {
                 var everything = data.everything
                 alert('Everything sent to server  : ' + JSON.stringify(everything))
             }
-            */
+
     
         });
 
