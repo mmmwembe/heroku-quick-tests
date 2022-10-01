@@ -65,8 +65,8 @@ async function start() {
             if (task =="delete"){
 
                 // deleteModel(model_url,model_name, model_type,task)
-                alert('delete model clicked' + model_url)
-                // deleteModel(model_url,model_name, model_type,task)
+                // alert('delete model clicked' + model_url)
+                deleteModel(model_url,model_name, model_type,task)
 
             }
 
@@ -104,9 +104,9 @@ async function start() {
             model_type : model_type,
             task : task,
         },
-        success: function(data) {
-        var everything = data.everything
-        alert('Everything sent to server  : ' + JSON.stringify(everything))
+            success: function(data) {
+            var everything = data.everything
+            alert('Everything sent to server  : ' + JSON.stringify(everything))
         }
 
     });
