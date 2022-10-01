@@ -7,7 +7,7 @@ window.addEventListener('load', (event) => {
         //var model_name = $(this).attr('model_name')
         //var model_type = $(this).attr('model_type')
         //var task = $(this).attr('task')
-        var btn_index = $(this).attr('btn_index')
+        var btn_index = $(this).attr('id')
 
         alert('button index : ' + btn_index)
 
