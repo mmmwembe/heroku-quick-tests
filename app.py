@@ -700,11 +700,11 @@ def NewDeleteModel():
   
 	if request.method =='POST':
    
-		request_data = request.args.get('dataToPost') # request.get_json()
-		model_url = request_data['model_url']
-		model_name = request_data['model_name']
-		model_type = request_data['model_type']
-		task = request_data['task']
+		request_data = request.args.get('dataToPost', None, type=str) # request.get_json()
+		#model_url = request_data['model_url']
+		#model_name = request_data['model_name']
+		#model_type = request_data['model_type']
+		#task = request_data['task']
     
 		#data = request.get()
 		# form_id = request.form.get('id')
