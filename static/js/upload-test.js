@@ -113,11 +113,9 @@ async function start() {
 
         // $.post("/NewDeleteModel/", dataToPost)
 
-        $.post("/NewDeleteModel/", function(dataToPost, status){
-            alert('status from post : ' + status);
-        });
+        // $.post("/NewDeleteModel/", function(dataToPost, status){alert('status from post : ' + status);});
 
-        $.post("demo_test_post.asp",
+        $.post("/NewDeleteModel/",
         {
             model_url: model_url,
             model_name: model_name,

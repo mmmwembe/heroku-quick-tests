@@ -719,7 +719,10 @@ def NewDeleteModel():
 		##everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
    
 	else:
-		everything="GET METHOD"
+   
+		args =request.view_args
+   
+		everything="GET METHOD : "  + str(args)
 		#pass
 
 	return jsonify(everything=everything)
