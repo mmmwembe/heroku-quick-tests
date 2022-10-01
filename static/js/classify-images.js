@@ -46,6 +46,12 @@ async function start() {
        if (isTFlite  === true)  {
 
          alert('Yes it contains a tflite model')
+
+         MODEL_URL = isTFlite
+
+         model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: MODEL_URL, });
+
+
        } 
        else {
 
