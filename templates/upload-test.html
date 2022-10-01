@@ -324,14 +324,20 @@
                               <input type="hidden" id="task{{ model.model_index }}" value="{{ model.task }}">
                               <button type="submit" model_id ="{{ model.model_index }}" class="xDeployModel" style="background:url('/static/project-icons/deploy-model-icon.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                             </div>
-                          </form>
-
                          </td>
                         
-                        <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/view-model-info.png" width="auto;" height="auto;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="view"> </td>
-                        
+                        <!--td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/view-model-info.png" width="auto;" height="auto;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="view"> </td-->           
                         <td>
-                          
+                          <div class="form-group">
+                            <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
+                            <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
+                            <input type="hidden" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
+                            <input type="hidden" id="task{{ model.model_index }}" value="{{ model.task }}">
+                            <button type="submit" model_id ="{{ model.model_index }}" class="xViewModelInfo" style="background:url('/static/project-icons/view-model-info.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+                          </div>
+                       </td>
+
+                        <td>
                           <div class="form-group">
                             <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
                             <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
@@ -339,7 +345,8 @@
                             <input type="hidden" id="task{{ model.model_index }}" value="{{ model.task }}">
                             <button type="submit" model_id ="{{ model.model_index }}" class="xModelDeleteButton" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                           </div>
-                        </form>
+                        </td>
+                      
 <!--
                           <form id="deleteForm" data-model=" {{ model.model_url }}" name='deleteForm' onsubmit='redirect();return false;' data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete" method="GET" action="/NewDeleteModel/?model_name={{ model.model_name }}&model_type={{ model.model_type }}">  
                             <input type="image" name="submit_delete" value="delete" onclick="document.forms['deleteForm'].submit();" src="/static/project-icons/delete-icon-48x48-bluish.png" width="50px;" height="50px;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">
@@ -347,7 +354,7 @@
                           </form>
 
 -->
-                        </td>
+                        
                         <!--https://stackoverflow.com/questions/14199788/how-do-i-use-an-image-as-a-submit-button-->
                         <!--method="GET" action="/NewDeleteModel/?model_name={{ model.model_name }}&model_type={{ model.model_type }}"-->
                         <!--td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/delete-icon-48x48-bluish.png" width="50px;" height="50px;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete"> </td-->
