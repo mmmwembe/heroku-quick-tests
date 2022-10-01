@@ -542,13 +542,180 @@
 
         window.addEventListener('load', (event) => {
 
-
-
-
             
-    
 
-        })
+            const detection_model_uploadBtn = document.getElementById("detection_model_uploadBtn");
+            /* 3. create a new ldLoader object with the newly added node */
+            //var ldld = new ldLoader({ root: "#my-loader" }); 
+            var loading_dot_io_spinner = new ldLoader({ root: "#loading_dot_io_spinner" }); 
+            /* 4. active this loader */
+  
+        
+            // start spinner if data-spinning = "on"
+        
+            if (detection_model_uploadBtn.getAttribute('data-spinning')=="on"){
+                // loading_dot_io_spinner.on();
+                loading_dot_io_spinner.off();
+            }
+            else {
+                loading_dot_io_spinner.off();
+            }
+        
+            // check value of data-spinning every second and if value ="off" stop spinner
+
+            const interval = setInterval(function() {
+        
+                if (detection_model_uploadBtn.getAttribute('data-spinning')=="off"){
+
+                    loading_dot_io_spinner.off();
+
+                }
+        
+            }, 1000);
+        
+        });
+
+
+        // stop spinner after 5 seconds
+        setTimeout(() => {
+
+          loading_dot_io_spinner.off();  
+
+         }, "5000")
+
+
+        const table_cell_background = document.getElementsByClassName('table_cell_background')
+
+        for(let i = 0; i < table_cell_background.length; i++) {
+            table_cell_background[i].addEventListener("click", function(e) {
+
+                var model_url = e.target.dataset.model
+                alert('new button model url ' + model_url)
+
+            })
+
+        }
+
+
+
+
+        // https://jsfiddle.net/fjykowtL/25/
+     
+        $("#modelResultsTable").on('click-cell.bs.table', function (e, field, value, row, $element) { 
+
+            alert('field  ' + field + ' value : ' + value  + 'row :' + row  );            
+                // console.log(field) console.log(value) console.log(row) console.log($element) 
+
+            })
+
+
+
+        const modelButtons = document.getElementsByClassName('modelbtn');
+
+        for(let i = 0; i < modelButtons.length; i++) {
+            modelButtons[i].addEventListener("click", function(e) {
+
+            var model_url = e.target.dataset.model
+            var model_name = e.target.dataset.modelname
+            var model_type = e.target.dataset.model_type
+            var task =  e.target.dataset.task
+
+            const body ={ "model_url": model_url, "model_name": model_name, "model_type": model_type, "task": task }
+
+  
+            // var detection_model_url = btn_clicked.getAttribute('data-model')
+            // storeSessionValue("deployed_detection_model_url", detection_model_url)
+
+            alert('deploy model  ' + ' ' + model_url);
+            alert('model name : ' + ' ' + model_name + ' model_type : ' + model_type  + ' task : ' + task );
+
+
+            if (task =="delete"){
+
+                deleteModel(model_url,model_name, model_type,task)
+
+                // const delete_url ="/delete_model/"
+
+                // simpleFetchPost(delete_url, body)
+
+                // $.ajax({type: "POST", url: "/delete_model/"data : JSON.stringify(body),contentType: "application/json",});
+
+            }
+
+            if (task =="deploy") && (model_type =="classification") {
+                storeSessionValue("classification_model_url", model_url)
+            }
+            if (task =="deploy") && (model_type =="object detection") {
+                storeSessionValue("detection_model_url", model_url)
+            }
+
+
+
+
+
+           })
+        }
+
+
+            function simpleFetchPost(url, body){
+
+            fetch(url, {
+                method: "post", 
+                body: JSON.stringify(body), 
+                headers: {"Content-Type": "application/json"}
+                }) 
+            }
+
+
+            function storeSessionValue(key, value) {
+                if (localStorage) {
+                    localStorage.setItem(key, value);
+                } else {
+                    $.cookies.set(key, value);
+                }
+            }
+
+            function getStoredSessionValue(key) {
+                if (localStorage) {
+                    return localStorage.getItem(key);
+                } else {
+                    return $.cookies.get(key);
+                }
+            }
+
+
+            //const body ={ "model_url": model_url, "model_name": model_name, "model_type": model_type, "task": task }
+            // /NewDeleteModel/
+
+            function deleteModel(model_url,model_name, model_type,task){
+
+            $.ajax({
+                type: "POST",
+                url: "/NewDeleteModel/",
+                dataType: 'json',
+                data: { 
+                    model_url: model_url,
+                    model_name : model_name, 
+                    model_type : model_type,
+                    task : task,
+                },
+                success: function(data) {
+                var everything = data.everything
+                alert('Everything sent to server  : ' + JSON.stringify(everything))
+                }
+
+            });
+
+            }
+
+            function colorChanger(el){
+                el.style.backgroundColor = '#007d00';
+            }
+
+
+
+
+
         </script>
 
 
