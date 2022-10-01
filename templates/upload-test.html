@@ -310,8 +310,8 @@
                                     <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
                                     <td><button id="classifier-deploy-btn" class="btn btn-success modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy">Deploy Model</button></td>
                                     <td><button id="classifier-info-btn" class="btn btn-info modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="view">View  Edit</button></td>
-                                    <td><button id="classifier-delete-btn" class="btn btn-danger modelbtn delete_column" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
-                                    <td class="table_cell_background" id="#new_delete_model_btn" data-model=" {{ model.model_url }}"> </td>
+                                    <td><button id="classifier-delete-btn" class="btn btn-danger modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
+                                    <td id="#new_delete_model_btn" data-model=" {{ model.model_url }}"><img class="table_delete_cell" src="/static/project-icons/delete-button-png-28580.png" width="75px;" height="75px;">   </td>
                                 </tr>
                                   {% endfor %}
                 
