@@ -41,16 +41,21 @@ window.addEventListener('load', (event) => {
         var task = $('task' +model_id ).val()
 
         // alert('model_id : ' + model_id + '  model_name : ' + model_name + ' model_type :' + model_type)
-
+        alert(' Changing Model being Deployed....')
         
+        /*
         if ((task =="deploy") && (model_type =="classification")) {
             storeSessionValue("classification_model_url", model_url)
             alert(' Deployed classification model updated ')
         }
+
+
         if ((task =="deploy") && (model_type =="object detection")) {
             storeSessionValue("detection_model_url", model_url)
             alert(' Deployed Object Detection model updated ')
         }
+
+        */
 
 
     }); 
@@ -91,6 +96,11 @@ window.addEventListener('load', (event) => {
         }
     }
 
+
+
+
+
+    
 
 }); // End Window Load Event
 
