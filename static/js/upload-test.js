@@ -27,7 +27,7 @@ async function start() {
 
                 // deleteModel(model_url,model_name, model_type,task)
                 // alert('delete model clicked' + model_url)
-                deleteModel(model_url,model_name, model_type,task)
+                // deleteModel(model_url,model_name, model_type,task)
 
             }
 
@@ -102,21 +102,28 @@ async function start() {
         var task = $(this).data('task')
      
         // alert(' Model URL ' + model_url )
-        //alert(' model name : ' + model_name +  ' model type ' + model_type +  ' task :' + task)
+        alert(' model name : ' + model_name +  ' model type ' + model_type +  ' task :' + task)
 
         var dataToPost = { 
             "model_url": model_url,
             "model_name" : model_name, 
             "model_type" : model_type,
-            "task" : task,
+            "task" : task
         }
 
-        
+        // $.post("/NewDeleteModel/", dataToPost)
+
+        $.post("/NewDeleteModel/", function(dataToPost, status){
+            alert('status from post : ' + status);
+        });
+
+        /*
+
         $.ajax({
             type: "POST",
             url: "/NewDeleteModel/",
             contentType: 'application/json',
-            dataType: "json",
+            dataType: 'json',
             data:JSON.stringify(dataToPost),
                 success: function(data) {
                 var everything = data.everything
@@ -125,6 +132,8 @@ async function start() {
 
     
         });
+
+        */
 
     
         e.preventDefault();

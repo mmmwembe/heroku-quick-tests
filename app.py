@@ -694,7 +694,7 @@ def delete_model():
 	return render_template('upload-test.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
 
-@app.route('/NewDeleteModel/', methods=['POST'])
+@app.route('/NewDeleteModel/', methods=['POST','GET'])
 
 def NewDeleteModel():
   
@@ -715,7 +715,7 @@ def NewDeleteModel():
 		#model_name = request.form['model_name']
 		#model_type = request.form['model_type']
 		#task = request.form['task']
-		everything="POST METHOD : model_url " +  model_url 
+		everything="POST METHOD : model_url " # +  model_url 
 		##everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
    
 	else:
