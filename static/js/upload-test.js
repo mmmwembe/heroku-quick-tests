@@ -1,7 +1,6 @@
-async function start() {
+window.addEventListener('load', (event) => {
 
 
-    
     $('.xModelDeleteButton').on('click', function(){
 
         var model_url = $(this).attr('model_url')
@@ -22,14 +21,32 @@ async function start() {
         alert('Data from Server :' + data.everything)
         });
 
-    });
+    }); // End of .xModelDeleteButton on click event
 
 
 
 
 
 
-}
-  
 
-start();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+}); // End Window Load Event
+
