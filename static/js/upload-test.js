@@ -1,7 +1,7 @@
 async function start() {
 
 
-
+   /*
     const modelButtons = document.getElementsByClassName('modelbtn');
 
     for(let i = 0; i < modelButtons.length; i++) {
@@ -37,16 +37,16 @@ async function start() {
 
     }
 
-
+  */
 
     task_btns = document.getElementsByClassName('actions_column');
 
             for(let i = 0; i < task_btns.length; i++) {
                 
-                task_btns[i].addEventListener("click", function(e) {
+            task_btns[i].addEventListener("click", function(e) {
 
             // var _cell = e.target
-            alert("cell model = " + e.target.getAttribute('data-model'));
+            alert("model-url :" + e.target.getAttribute('data-model') +  "task : " + e.target.getAttribute('data-task'));
 
     })
 

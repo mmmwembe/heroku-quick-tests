@@ -326,10 +326,15 @@
                                     </td>
                                     <td> {{ model.model_name }} </td>
                                     <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
+                                    <!--
                                     <td><button id="classifier-deploy-btn" class="btn btn-success modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy">Deploy Model</button></td>
                                     <td><button id="classifier-info-btn" class="btn btn-info modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="view">View  Edit</button></td>
                                     <td><button id="classifier-delete-btn" class="btn btn-danger modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
-                                    <td id="#new_delete_model_btn" data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/delete-button-png-28580.png" width="50px;" height="50px;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">   </td>
+                                    -->
+                                    <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/deploy-model-icon.png" width="50px;" height="50px;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy">   </td>
+                                    <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/view-model-info.png" width="50px;" height="50px;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="view">   </td>
+                                    <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/delete-model-icon-48x48.png" width="50px;" height="50px;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete"> </td>
+                                    <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/delete-button-png-28580.png" width="50px;" height="50px;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">   </td>
                                 </tr>
                                   {% endfor %}
                 
