@@ -48,26 +48,59 @@ async function start() {
             // var _cell = e.target
             alert("model-url :" + e.target.getAttribute('data-model') +  "task : " + e.target.getAttribute('data-task'));
 
+            var model_url = e.target.dataset.model
+            var model_name = e.target.dataset.modelname
+            var model_type = e.target.dataset.model_type
+            var task =  e.target.dataset.task
+
+            const body ={ "model_url": model_url, "model_name": model_name, "model_type": model_type, "task": task }
+
+  
+            // var detection_model_url = btn_clicked.getAttribute('data-model')
+            // storeSessionValue("deployed_detection_model_url", detection_model_url)
+
+            // alert('deploy model  ' + ' ' + model_url);
+            // alert('model name : ' + ' ' + model_name + ' model_type : ' + model_type  + ' task : ' + task );
+
+            if (task =="delete"){
+
+                // deleteModel(model_url,model_name, model_type,task)
+                alert('delete model clicked')
+
+            }
+
+            if ((task =="deploy") && (model_type =="classification")) {
+                storeSessionValue("classification_model_url", model_url)
+            }
+            if ((task =="deploy") && (model_type =="object detection")) {
+                storeSessionValue("detection_model_url", model_url)
+            }
+
+
+
+            if (task =="view"){
+
+                // deleteModel(model_url,model_name, model_type,task)
+                alert('view model info clicked')
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
     })
 
    }
 
-   /*
 
-   image_btns = document.getElementsByClassName('actions_column');
-
-   for(let i = 0; i < image_btns.length; i++) {
-       
-   image_btns[i].addEventListener("click", function(e) {
-
-   // var _cell = e.target
-   alert("model-url :" + e.target.getAttribute('data-model') +  "task : " + e.target.getAttribute('data-task'));
-
-})
-
-}
-
-*/
 
 
 
