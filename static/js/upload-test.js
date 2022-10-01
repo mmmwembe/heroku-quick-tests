@@ -52,6 +52,7 @@ async function start() {
 
    }
 
+   /*
 
    image_btns = document.getElementsByClassName('actions_column');
 
@@ -66,6 +67,7 @@ async function start() {
 
 }
 
+*/
 
 
 

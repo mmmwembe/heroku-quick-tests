@@ -561,6 +561,56 @@
 
         </div>
 
+
+
+
+
+
+
+
+
+        <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <br>
+                <table class="table">
+                  <colgroup>
+                    <col class="col-md-1">
+                    <col class="col-md-3">
+                    <col class="col-md-5">
+                    <col class="col-md-1">
+                    <col class="col-md-1">
+                    <col class="col-md-1">
+                  </colgroup>
+                  <tr >
+                    <th>Icon</th>
+                    <th>File</th>
+                    <th>Labels</th>                                    
+                    <th>Deploy</th>
+                    <th>Info</th>
+                    <th>Delete</th>                                                                              
+                </tr>
+                  <tbody>
+
+                    {% for model in classification_models_info  %}
+
+                    <tr>
+                        <td> <img id="classification_model" class="actions_column" src="/static/project-icons/models-icon.png" data-model = " {{ model.model_url }} " data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy" style="width:50px; height:50px;"  crossorigin="anonymous"></td>
+                        <td>{{ model.model_name }}</td>
+                        <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
+                        <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/deploy-model-icon.png" width="auto;" height="auto;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy"></td>
+                        <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/view-model-info.png" width="auto;" height="auto;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="view"> </td>
+                        <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/delete-model-icon-48x48.png" width="50px;" height="50px;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete"> </td>
+                   </tr>
+                    
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
         <script>
 
 
