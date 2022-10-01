@@ -599,7 +599,12 @@
 
         // https://jsfiddle.net/fjykowtL/25/
      
+        $("#modelResultsTable").on('click-cell.bs.table', function (e, field, value, row, $element) { 
 
+            alert('field  ' + field + ' value : ' + value  + 'row :' + row  );            
+                // console.log(field) console.log(value) console.log(row) console.log($element) 
+                
+            })
 
 
 
@@ -615,11 +620,7 @@
 
             const body ={ "model_url": model_url, "model_name": model_name, "model_type": model_type, "task": task }
 
-            $("#modelResultsTable").on('click-cell.bs.table', function (e, field, value, row, $element) { 
-
-                alert('field  ' + field + ' value : ' + value  + 'row :' + row  ;            
-                // console.log(field) console.log(value) console.log(row) console.log($element) 
-            })
+  
             // var detection_model_url = btn_clicked.getAttribute('data-model')
             // storeSessionValue("deployed_detection_model_url", detection_model_url)
 
