@@ -53,7 +53,18 @@ async function start() {
    }
 
 
+   image_btns = document.getElementsByClassName('actions_column');
 
+   for(let i = 0; i < image_btns.length; i++) {
+       
+   image_btns[i].addEventListener("click", function(e) {
+
+   // var _cell = e.target
+   alert("model-url :" + e.target.getAttribute('data-model') +  "task : " + e.target.getAttribute('data-task'));
+
+})
+
+}
 
 
 
