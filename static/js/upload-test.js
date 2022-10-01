@@ -1,15 +1,15 @@
 window.addEventListener('load', (event) => {
 
 
-    $('.xModelDeleteButton').on('click', function(){
+    $('.xModelDeleteButton').on('click', function(e){
 
         //var model_url = $(this).attr('model_url')
         //var model_name = $(this).attr('model_name')
         //var model_type = $(this).attr('model_type')
         //var task = $(this).attr('task')
-        var btn_index = $(this).attr('id')
+        var model_id = $(this).attr('model_id')
 
-        alert('button index : ' + btn_index)
+        alert('button index : ' + model_id)
 
         /*
         req = $.ajax({
