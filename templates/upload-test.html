@@ -321,10 +321,10 @@
                           
                           
                           <div class="form-group">
-                            <input type="hidden" name="model_url" value="{{ model.model_url }}">
-                            <input type="hidden" name="model_name" value="{{ model.model_name }}">
-                            <input type="hidden" name="model_type" value="{{ model.model_type }}">
-                            <input type="hidden" name="task" value="{{ model.task }}">
+                            <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
+                            <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
+                            <input type="hidden" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
+                            <input type="hidden" id="task{{ model.model_index }}" value="{{ model.task }}">
                             <button type="submit" model_id ="{{ model.model_index }}" class="xModelDeleteButton" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                           </div>
                         </form>

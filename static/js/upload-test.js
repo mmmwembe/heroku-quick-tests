@@ -10,8 +10,12 @@ window.addEventListener('load', (event) => {
         //var model_type = $(this).attr('model_type')
         //var task = $(this).attr('task')
         var model_id = $(this).attr('model_id')
+        var model_url = $('#model_url' +model_id ).val()
+        var model_name = $('#model_name' +model_id ).val()
+        var model_type = $('#model_type' +model_id ).val()
+        var task = $('task' +model_id ).val()
 
-        alert('button index : ' + model_id)
+        alert('model_Id : ' + model_id + '  model_name : ' + model_name + ' model_type :' + model_type)
 
         /*
         req = $.ajax({
