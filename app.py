@@ -744,7 +744,7 @@ def NewDeleteModel():
    
 	# args =request.view_args
    
-	everything="GET METHOD : "  + str(args)
+	#everything="GET METHOD : "  + str(args)
 		#pass
 
 	return jsonify(everything=everything)
