@@ -694,29 +694,35 @@ def delete_model():
 	return render_template('upload-test.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
 
-@app.route('/NewDeleteModel/', methods=['POST','GET'])
+@app.route('/NewDeleteModel/', methods=['POST'])
 
 def NewDeleteModel():
   
 	if request.method =='POST':
+   
+		request_data = request.get_json()
+		model_url = request_data['model_url']
+		model_name = request_data['model_name']
+		model_type = request_data['model_type']
+		task = request_data['task']
     
 		#data = request.get()
 		# form_id = request.form.get('id')
-		args =request.view_args
+		#args =request.view_args
 		# content = request.json
 		# model_url = content['model_url']
 		# model_url = request.form['data-model']
 		#model_name = request.form['model_name']
 		#model_type = request.form['model_type']
 		#task = request.form['task']
-		everything="POST METHOD " + str(args) # form_id #+ model_url 
+		everything="POST METHOD : model_url " +  model_url 
 		##everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
    
 	else:
 		everything="GET METHOD"
 		#pass
 
-	return jsonify(result = 'success', everything=everything)
+	return jsonify(everything=everything)
 
 
 @app.route('/saveCroppedImage', methods=['POST','GET'])
