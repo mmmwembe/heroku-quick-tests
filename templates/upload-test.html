@@ -318,7 +318,7 @@
                         <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/deploy-model-icon.png" width="auto;" height="auto;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy"></td>
                         <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/view-model-info.png" width="auto;" height="auto;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="view"> </td>
                         <td> 
-                          <form id="deleteForm" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete"  method="post" action="/NewDeleteModel/?model_name={{ model.model_name }}&model_type={{ model.model_type }}">
+                          <form id="deleteForm" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete"  method="GET" action="/NewDeleteModel/?model_name={{ model.model_name }}&model_type={{ model.model_type }}">
                             <input type="image" name="submit_delete" value="delete" src="/static/project-icons/delete-icon-48x48-bluish.png" width="50px;" height="50px;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">
                           </form>
                         </td>
