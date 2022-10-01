@@ -704,26 +704,30 @@ def delete_model():
 	return render_template('upload-test.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
 
-@app.route('/NewDeleteModel/', methods=['POST','GET'])
+@app.route('/NewDeleteModel/', methods=['POST'])
 
 def NewDeleteModel():
   
-	model_name_from_post_form =''
-	model_from_get_args=''
+	#model_name_from_post_form =''
+	#model_from_get_args=''
   
-	try:
-		model_name_from_post_form = request.form.get('model_name')                            
-	except:
-		pass  
+	#try:
+	#	model_name_from_post_form = request.form.get('model_name')                            
+	#except:
+	#	pass  
 
-	try:                            
-		model_from_get_args = request.args.get('model_name')
-	except:
-		pass   
-	#if request.method =='POST':
-   
+	#try:                            
+	#	model_from_get_args = request.args.get('model_name')
+	#except:
+	#	pass   
+	if request.method =='POST':
+
+		model_url = request.form['model_url']  
+		model_name = request.form['model_name']  
+		model_type = request.form['model_type']    
+		task = request.form['task']         
 		# request_data = request.args.get('dataToPost', None, type=str) # request.get_json()
-		#model_url = request_data['model_url']
+		# model_url = request_data['model_url']
 		#model_name = request_data['model_name']
 		#model_type = request_data['model_type']
 		#task = request_data['task']
@@ -737,7 +741,7 @@ def NewDeleteModel():
 		#model_name = request.form['model_name']
 		#model_type = request.form['model_type']
 		#task = request.form['task']
-	everything="POST data  :" + str(model_name_from_post_form) +  "GET data  :" + str(model_from_get_args)
+	everything="POST data from Server; Model name: " + str(model_name) 
 		##everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
    
 	#else:
