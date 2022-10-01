@@ -44,13 +44,13 @@ window.addEventListener('load', (event) => {
         alert(' Changing Model being Deployed....')
         
 
-        if ((task =="deploy") && (model_type =="classification")) {
+        if ((model_type =="classification")) {
             storeSessionValue("classification_model_url", model_url)
             alert(' Deployed classification model updated ')
         }
 
 
-        if ((task =="deploy") && (model_type =="object detection")) {
+        if ((model_type =="object detection")) {
             storeSessionValue("detection_model_url", model_url)
             alert(' Deployed Object Detection model updated ')
         }
