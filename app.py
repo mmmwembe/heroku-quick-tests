@@ -701,11 +701,13 @@ def NewDeleteModel():
 	if request.method =='POST':
     
 		#data = request.get()
+		content = request.json
+		model_url = content['model_url']
 		# model_url = request.form['data-model']
 		#model_name = request.form['model_name']
 		#model_type = request.form['model_type']
 		#task = request.form['task']
-		everything="POST METHOD" 
+		everything="POST METHOD" + model_url 
 		##everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
    
 	else:
