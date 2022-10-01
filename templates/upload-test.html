@@ -310,7 +310,7 @@
                                     <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
                                     <td><button id="classifier-deploy-btn" class="btn btn-success modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy">Deploy Model</button></td>
                                     <td><button id="classifier-info-btn" class="btn btn-info modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="view">View  Edit</button></td>
-                                    <td><button id="classifier-delete-btn" class="btn btn-danger modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
+                                    <td><button id="classifier-delete-btn" class="btn btn-danger modelbtn delete_column" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
                                     <td class="table_cell_background" id="#new_delete_model_btn" data-model=" {{ model.model_url }}"> </td>
                                 </tr>
                                   {% endfor %}
@@ -427,7 +427,7 @@
                                     <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
                                     <td><button id="detection-deploy-btn" class="btn btn-success modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="deploy">Deploy Model</button></td>
                                     <td><button id="detection-info-btn" class="btn btn-info modelbtn" data-model=" {{ model.model_url }}"  data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="view">View  Edit</button></td>
-                                    <td><button id="detection-delete-btn" class="btn btn-danger modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
+                                    <td><button id="detection-delete-btn" class="btn btn-danger modelbtn delete_column" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
                                   </tr>
                                   {% endfor %}
                 

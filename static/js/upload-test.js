@@ -33,13 +33,28 @@ async function start() {
 
 
 
-
-
-
-
-
-
         })
+
+
+
+
+                   
+delete_cells_btns = document.getElementsByClassName('table_delete_cell');
+
+for(let i = 0; i < delete_cells_btns.length; i++) {
+    
+  delete_cells_btns[i].addEventListener("click", function(e) {
+
+   // var _cell = e.target
+   alert("cell model = " + e.target.getAttribute('data-model'));
+
+
+
+   })
+
+
+
+
 
     }
 
