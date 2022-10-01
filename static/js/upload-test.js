@@ -91,7 +91,23 @@ async function start() {
 
 
 
-    deleteForm.onsubmit = async (e) => {
+    $( "deleteForm" ).submit(function( e ) {
+
+
+        var model = $(this).attr('data-model')
+
+        alert('DATA MODEL ' + model)
+
+
+       
+
+        e.preventDefault();
+      });
+   
+
+
+
+    S('dlisso').onsubmit = async (e) => {
 
         e.preventDefault();
 
