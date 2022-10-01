@@ -117,6 +117,17 @@ async function start() {
             alert('status from post : ' + status);
         });
 
+        $.post("demo_test_post.asp",
+        {
+            model_url: model_url,
+            model_name: model_name,
+            model_type: model_type,
+            task: task
+        },
+        function(data,status){
+          alert("Data: " + data + "\nStatus: " + status);
+        });
+
         /*
 
         $.ajax({
