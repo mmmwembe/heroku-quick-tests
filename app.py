@@ -701,11 +701,14 @@ def NewDeleteModel():
   if request.method =='POST':
     
     model_url = request.form['model_url']
-    model_name= request.form['model_name']
-    model_type= request.form['model_type']
+    model_name = request.form['model_name']
+    model_type = request.form['model_type']
     task = request.form['task']
     
     everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
+  
+  else:
+    pass
 
   return jsonify(result = 'success', everything=everything)
 
