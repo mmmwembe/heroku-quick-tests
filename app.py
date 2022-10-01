@@ -700,16 +700,17 @@ def NewDeleteModel():
   
 	if request.method =='POST':
     
+		content = request.get_json()
 		#model_url = request.form['model_url']
 		#model_name = request.form['model_name']
 		#model_type = request.form['model_type']
 		#task = request.form['task']
-		everything="testing testing 1,2,3"
+		everything="content : " + content
 		##everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
    
 	else:
-		everything="everything 5-6-7-8-9-10"
-		#pass
+		# everything="everything 5-6-7-8-9-10"
+		pass
 
 	return jsonify(result = 'success', everything=everything)
 

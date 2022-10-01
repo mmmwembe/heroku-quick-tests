@@ -245,9 +245,10 @@
        
     </head>
     <body>
-
         <main>
             <div class="container mt-5">
+
+                <!--------------------------------------Classification Model--------------------------------------------->
 
                 <div class="row">
 
@@ -271,8 +272,303 @@
                   </div>   
 
                 </div>
-           </div>
+
+                <!--
+
+                <div class="row">
+                    <div class="col-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                      <div id="imageView" class="imageViewer">
+                        <input id="image-selector" class="form-control border-0" type="file" accept="image/*" style="display: none"/>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                        <button id="predict-button" class="btn btn-success float-right">Classify Image</button>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+                        <div class="progress progress-bar progress-bar-striped progress-bar-animated mb-2">Loading Model...</div>
+                    </div>
+                </div>
+
+                    -->
+
+                <div class="row">
+
+
+                    <div class="col-md-8 col-md-70">
+    
+                        <h2 class="ml-3">Classification Models</h2>
+
+                        <div class="container" text-center-align>
+
+
+                            <table class="table table-striped" id="modelResultsTable">
+                                <tr  class="bg-info">
+                                    <th>Icon</th>
+                                    <th>File</th>
+                                    <th>Labels</th>                                    
+                                    <th>Deploy</th>
+                                    <th>Info</th>
+                                    <th>Delete</th>    
+                                    <th>New Delete</th>                                                                           
+                                </tr>
+                            
+                                <!--https://stackoverflow.com/questions/68163067/multi-row-in-table-by-using-jinja2-->
+                                <tbody id="myTable">
+                
+                                  {% for model in classification_models_info  %}
+                                  <tr class = "align-middle">        
+                                    <td>
+                                        <div>
+                                            <img id="classification_model" class="gallery_column" src="/static/project-icons/models-icon.png" data-model = " {{ model.model_url }} " data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy" style="width:50px; height:50px;"  crossorigin="anonymous">
+                                        </div>
+                                    </td>
+                                    <td> {{ model.model_name }} </td>
+                                    <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
+                                    <!--
+                                    <td><button id="classifier-deploy-btn" class="btn btn-success modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy">Deploy Model</button></td>
+                                    <td><button id="classifier-info-btn" class="btn btn-info modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="view">View  Edit</button></td>
+                                    <td><button id="classifier-delete-btn" class="btn btn-danger modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
+                                    -->
+                                    <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/deploy-model-icon.png" width="auto;" height="auto;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="deploy">   </td>
+                                    <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/view-model-info.png" width="auto;" height="auto;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="view">   </td>
+                                    <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/delete-model-icon-48x48.png" width="auto;" height="auto;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete"> </td>
+                                    <td data-model=" {{ model.model_url }}" style="width:50px; height:50px;"><img class="actions_column" src="/static/project-icons/delete-model-icon-48x48.png" width="50px;" height="50px;" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}"  data-model_type="{{ model.model_type }}"  data-task="delete">   </td>
+                                </tr>
+                                  {% endfor %}
+                
+                                </tbody>
+                            </table>
+
+                      </div>
+
+                    </div>
+                    <div class="col-md-4 col-md-30">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+
+                    </div>
+
+                    <div class="col-6 text-center">
+                        <!--button id="predict-button" class="btn btn-success float-right">Classify Image</button-->
+                        <!--button id="predict-button" class="btn btn-success">Classify Image</button-->
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div class="row">
+                </div>
+
+                <div class="row">
+
+                    <div class="col-6">
+
+                        <p><strong>  Upload Classification Model(s) [tflite]</strong></p>
+                        <p></p>
+                        <form method="post" action="{{ url_for('upload_classification_tflite_model') }}" enctype="multipart/form-data">
+                            <div class="input-group">
+                                <input class="form-control form-control-lg" id="modelLoader" type="file" name="models_classification[]" multiple="true" autocomplete="off" required>
+                                <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
+                            </div>
+                            <input type="hidden" id="current_folder" name="current_folder" value="">
+                            <input type="hidden" name="which-form" value="images-for-testing-classification">
+                        </form> 
+
+                    </div>
+                  
+                    <div class="col-6">
+
+
+                   </div>
+                    
+                    <div class="col-6">
+
+                    </div>
+                    
+                </div>
+                  
+                <hr/>
+
+                <div class="row">
+
+                </div>
+                <hr/>
+
+                <!--------------------------------------Object Detection Model--------------------------------------------->
+
+                <div class="row">
+                    <div class="col-12">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6">
+                        
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-8 col-md-70">
+    
+                        <h2 class="ml-3">Object Detection Models</h2>
+
+                        <div class="container" text-center-align>
+
+                            <table class="table table-striped">
+                                <tr  class="bg-info">
+                                    <th>Icon</th>
+                                    <th>File</th>
+                                    <th>Labels</th>                                    
+                                    <th>Deploy</th>
+                                    <th>Info</th>
+                                    <th>Delete</th>                                                                        
+                                </tr>
+                            
+                                <!--https://stackoverflow.com/questions/68163067/multi-row-in-table-by-using-jinja2-->
+                                <tbody id="myTable">
+                
+                                  {% for model in detection_models_info  %}
+                                  <tr class = "align-middle">        
+                                    <td>
+                                        <div>
+                                            <img id="detection_model" src="/static/project-icons/icon-model-object-detection.png" data-modelurl = " {{ model.model_url }} " style="width:50px; height:50px;"  crossorigin="anonymous">
+                                        </div>
+                                    </td>
+                                    <td> {{ model.model_name }} </td>
+                                    <td data-all-labels="{{ model.labels }}"> {{ model.truncated_labels }}</td>
+                                    <td><button id="detection-deploy-btn" class="btn btn-success modelbtn" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="deploy">Deploy Model</button></td>
+                                    <td><button id="detection-info-btn" class="btn btn-info modelbtn" data-model=" {{ model.model_url }}"  data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="view">View  Edit</button></td>
+                                    <td><button id="detection-delete-btn" class="btn btn-danger modelbtn delete_column" data-model=" {{ model.model_url }}" data-modelname="{{ model.model_name }}" data-model_type="{{ model.model_type }}"  data-task="delete">Delete Model</button></td>
+                                  </tr>
+                                  {% endfor %}
+                
+                                </tbody>
+                            </table>
+                      </div>
+
+
+                    </div>
+                    <div class="col-md-4 col-md-30">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+
+                    </div>
+
+                    <div class="col-6 text-center">
+                        <!--button id="predict-button" class="btn btn-success float-right">Classify Image</button-->
+                        
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div class="row">
+                </div>
+
+                <div class="row">
+
+                    <div class="col-6">
+
+                        <p><strong>  Upload Object Detection Model(s) [tflite]</strong></p>
+                        <p></p>
+                        <form method="post" action="{{ url_for('upload_detection_tflite_model') }}" enctype="multipart/form-data">
+                            <div class="input-group">
+                                <input class="form-control form-control-lg" id="modelLoader" type="file" name="models_detection[]" multiple="true" autocomplete="off" required>
+                                <input id="detection_model_uploadBtn" type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;" {% if detection_models_info %} data-spinning="on" {% else %} data-spinning="off" {% endif %}>
+                                <!-- 2. add a node for loader -->
+                                <div id="loading_dot_io_spinner" class="text-danger ldld bare"  style="width: 35px; height:35px; color: #29C44D"></div>
+                            </div>
+                            <input type="hidden" id="current_folder" name="current_folder" value="">
+                            <input type="hidden" name="which-form" value="images-for-testing-classification">
+                        </form> 
+
+                    </div>
+                  
+                    <div class="col-6">
+
+
+                   </div>
+                    
+                    <div class="col-6">
+
+                    </div>
+                    
+                </div>
+                  
+                <hr/>
+
+                <div class="row">
+
+                    <div class="col-sm">
+                        <strong><a href="/classify/">Image Classification</a> </strong>  
+                    </div>
+                    <div class="col-sm">
+                        <strong><a href = "/detection/"> Object Detection </a> </strong>
+                    </div>
+                    <div class="col-sm">
+                      <strong><a href="/labeling/">Labeling</a> </strong>
+                    </div>
+                    <div class="col-sm">
+                      <strong><a href = "/models/"> Models </a> </strong>
+                  </div>
+                  <div class="col-sm">
+                    <strong><a href="#">Data</a> </strong>
+                  </div>
+                  <div class="col-sm">
+                    <strong><a href="#">Models Upload</a> </strong>
+                  </div>   
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
         </main>
+
+
+
+            {% for model in models %}
+
+                <p> the value is: {{ model }} </p>
+
+            {% endfor %}
+
+        </div>
+
+
+
+
+
 
        <!----------------------------------------------------------------------------------------------------------
                                                 CLASSIFICATION MODEL
