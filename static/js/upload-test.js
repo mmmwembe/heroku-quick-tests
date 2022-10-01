@@ -65,7 +65,8 @@ async function start() {
             if (task =="delete"){
 
                 // deleteModel(model_url,model_name, model_type,task)
-                alert('delete model clicked')
+                // alert('delete model clicked')
+                deleteModel(model_url,model_name, model_type,task)
 
             }
 
@@ -85,28 +86,32 @@ async function start() {
 
             }
 
-
-
-
-
-
-
-
-
-
-
-
     })
 
    }
 
 
 
+   function deleteModel(model_url,model_name, model_type,task){
 
+    $.ajax({
+        type: "POST",
+        url: "/NewDeleteModel/",
+        dataType: 'json',
+        data: { 
+            model_url: model_url,
+            model_name : model_name, 
+            model_type : model_type,
+            task : task,
+        },
+        success: function(data) {
+        var everything = data.everything
+        alert('Everything sent to server  : ' + JSON.stringify(everything))
+        }
 
+    });
 
-
-
+    }
 
     
     function storeSessionValue(key, value) {
