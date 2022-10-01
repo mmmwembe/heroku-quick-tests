@@ -43,7 +43,7 @@ window.addEventListener('load', (event) => {
         // alert('model_id : ' + model_id + '  model_name : ' + model_name + ' model_type :' + model_type)
         alert(' Changing Model being Deployed....')
         
-        /*
+
         if ((task =="deploy") && (model_type =="classification")) {
             storeSessionValue("classification_model_url", model_url)
             alert(' Deployed classification model updated ')
@@ -55,7 +55,7 @@ window.addEventListener('load', (event) => {
             alert(' Deployed Object Detection model updated ')
         }
 
-        */
+    
 
 
     }); 
@@ -100,7 +100,7 @@ window.addEventListener('load', (event) => {
 
 
 
-    
+
 
 }); // End Window Load Event
 
