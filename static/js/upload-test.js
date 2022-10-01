@@ -94,21 +94,35 @@ async function start() {
     $("#deleteForm").submit(function( e ) {
 
 
-        alert('BEFORE ')
+        // alert('BEFORE ')
 
         var model_url = $(this).data('model')
         var model_name = $(this).data('modelname')
         var model_type = $(this).data('model_type')
         var task = $(this).data('task')
      
-        alert(' Model URL ' + model_url )
-        alert(' model name : ' + model_name +  ' model type ' + model_type +  ' task :' + task)
+        // alert(' Model URL ' + model_url )
+        //alert(' model name : ' + model_name +  ' model type ' + model_type +  ' task :' + task)
+
+
+        $.ajax({
+            type: "POST",
+            url: "/NewDeleteModel/",
+            dataType: 'json',
+            data: { 
+                model_url: model_url,
+                model_name : model_name, 
+                model_type : model_type,
+                task : task,
+            },
+                success: function(data) {
+                var everything = data.everything
+                alert('Everything sent to server  : ' + JSON.stringify(everything))
+            }
+    
+        });
 
     
-
-
-       
-
         e.preventDefault();
       });
    
