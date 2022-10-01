@@ -647,7 +647,17 @@ def models_upload():
 		classification_models_info = model_info_array(classification_models_urls, 'classification')
 	except:
 		pass 
-      
+
+	if request.method == 'GET':
+   
+		if (request.args.get('submit_delete')):
+			# return redirect(url_for('NewDeleteModel'))
+			model_name = request.args.get('model_name')
+			model_type = request.args.get('model_type')
+			return redirect(url_for('NewDeleteModel', model_name=model_name, model_type=model_type))
+   
+
+  
 	return render_template('upload-test.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
 @app.route('/delete_model/', methods=['POST','GET'])
