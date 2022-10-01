@@ -701,7 +701,7 @@ def NewDeleteModel():
 	if request.method =='POST':
     
 		#data = request.get()
-		model_url = request.form['data-model']
+		# model_url = request.form['data-model']
 		#model_name = request.form['model_name']
 		#model_type = request.form['model_type']
 		#task = request.form['task']
