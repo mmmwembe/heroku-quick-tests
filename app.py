@@ -708,7 +708,8 @@ def NewDeleteModel():
 		##everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
    
 	else:
-		pass
+		everything="everything 5-6-7-8-9-10"
+		#pass
 
 	return jsonify(result = 'success', everything=everything)
 
