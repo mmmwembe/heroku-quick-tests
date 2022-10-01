@@ -46,14 +46,14 @@ async function start() {
             task_btns[i].addEventListener("click", function(e) {
 
             // var _cell = e.target
-            alert("model-url :" + e.target.getAttribute('data-model') +  "task : " + e.target.getAttribute('data-task'));
+            // alert("model-url :" + e.target.getAttribute('data-model') +  "task : " + e.target.getAttribute('data-task'));
 
             var model_url = e.target.dataset.model
             var model_name = e.target.dataset.modelname
             var model_type = e.target.dataset.model_type
             var task =  e.target.dataset.task
 
-            const body ={ "model_url": model_url, "model_name": model_name, "model_type": model_type, "task": task }
+            // const body ={ "model_url": model_url, "model_name": model_name, "model_type": model_type, "task": task }
 
   
             // var detection_model_url = btn_clicked.getAttribute('data-model')
