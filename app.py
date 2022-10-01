@@ -293,6 +293,7 @@ def get_filename_from_path(file_url):
 def model_info_array(models_urls, model_type):
   # model type is either 'object detection' or 'classification'
   new_models_array = []
+  index = 0
   for _model_url in models_urls:
     labels = get_labels_from_tflite_model_zipfile(_model_url)
     model_item ={
@@ -300,9 +301,11 @@ def model_info_array(models_urls, model_type):
       'truncated_labels': truncate_labels(labels, 75),
       'model_url': _model_url,
       'model_name': get_filename_from_path(_model_url),
-      'model_type' : model_type
+      'model_type' : model_type,
+      'model_index': index
       }
     new_models_array.append(model_item)
+    index +=1
 
   return new_models_array
 
