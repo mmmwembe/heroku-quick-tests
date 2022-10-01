@@ -20,8 +20,56 @@ async function start() {
         alert('deploy model_url  ' + ' ' + model_url);
         alert('model name : ' + ' ' + model_name + ' model_type : ' + model_type  + ' task : ' + task );
 
+
+
+        if (task =="delete"){
+
+            // deleteModel(model_url,model_name, model_type,task)
+
+            storeSessionValue("classification_model_url", model_url)
+
+
+        }
+
+
+
+
+
+
+
+
+
         })
 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    function storeSessionValue(key, value) {
+        if (localStorage) {
+            localStorage.setItem(key, value);
+        } else {
+            $.cookies.set(key, value);
+        }
+    }
+
+    function getStoredSessionValue(key) {
+        if (localStorage) {
+            return localStorage.getItem(key);
+        } else {
+            return $.cookies.get(key);
+        }
     }
 
 
