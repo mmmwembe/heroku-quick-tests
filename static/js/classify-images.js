@@ -4,6 +4,8 @@ async function start() {
     const resultDiv = document.querySelector(".result");
     const div_active_folder = document.getElementById("upload-folder");
     const form_hidden_field_current_folder = document.getElementById("current_folder");
+    var MODEL_URL = "https://storage.googleapis.com/2021_tflite_glitch_models/stack-plume-dust-classification/model_classifier.tflite"
+    var model = null
 
 
 
@@ -22,9 +24,36 @@ async function start() {
     //$('#results-datatable').css('color', 'black');
 
     // Load the TFLite model - Load the model from a custom url with other options (optional).
-    const model = await tfTask.ImageClassification.CustomModel.TFLite.load({
-        model: "https://storage.googleapis.com/2021_tflite_glitch_models/stack-plume-dust-classification/model_classifier.tflite",
-    });
+
+    // const model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: MODEL_URL,});
+    model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: MODEL_URL, });
+
+
+/*
+    if ("classification_model_url" in localStorage) {
+        alert('yes - classification model is in storage');
+    } else {
+        alert('no');
+    }
+
+*/
+
+
+    if (localStorage.getItem("classification_model_url")) {
+
+        var isTFlite = localStorage.getItem("classification_model_url").includes("tflite");
+       
+       if (isTFlite  === true)  {
+
+         alert('Yes it contains a tflite model')
+       } 
+       else {
+
+         alert('NO - it does not contain a tflite model')
+       }
+    }
+
+    /*
 
     input.addEventListener("change", preview_image);
 
@@ -35,6 +64,7 @@ async function start() {
         };
         reader.readAsDataURL(event.target.files[0]);
     }
+    */
 
     document.querySelector("#predict-button").addEventListener("click", async () => {
 
