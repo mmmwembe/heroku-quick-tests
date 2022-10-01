@@ -737,7 +737,7 @@ def NewDeleteModel():
 		#model_name = request.form['model_name']
 		#model_type = request.form['model_type']
 		#task = request.form['task']
-	everything="POST data  :" + model_name_from_post_form +  "GET data  :" + model_from_get_args
+	everything="POST data  :" + str(model_name_from_post_form) +  "GET data  :" + str(model_from_get_args)
 		##everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
    
 	#else:
