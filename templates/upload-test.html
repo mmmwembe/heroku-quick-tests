@@ -579,7 +579,7 @@
               <div class="col-md-12">
                 <br>
 
-                <h2 class="ml-3">Predictions</h2>
+                <h2 class="ml-3">Classification Models</h2>
 
                 <table class="table">
                   <colgroup>
@@ -593,7 +593,7 @@
                   <thead style="color:#fff;background-color:black">
                     <tr>
                         <th>Icon</th>
-                        <th>File</th>
+                        <th>Model Filename</th>
                         <th>Labels</th>                                    
                         <th>Deploy</th>
                         <th>Info</th>
@@ -620,6 +620,37 @@
               </div>
             </div>
           </div>
+
+
+          <div class="row">
+
+            <div class="col-6">
+
+                <p><strong>  Upload Classification Model(s) [tflite]</strong></p>
+                <p></p>
+                <form method="post" action="{{ url_for('upload_classification_tflite_model') }}" enctype="multipart/form-data">
+                    <div class="input-group">
+                        <input class="form-control form-control-lg" id="modelLoader" type="file" name="models_classification[]" multiple="true" autocomplete="off" required>
+                        <input type="submit" value="Submit" class="btn btn-dark" style="margin-left: 10px;">
+                    </div>
+                    <input type="hidden" id="current_folder" name="current_folder" value="">
+                    <input type="hidden" name="which-form" value="images-for-testing-classification">
+                </form> 
+
+            </div>
+          
+            <div class="col-6">
+
+
+           </div>
+            
+            <div class="col-6">
+
+            </div>
+            
+        </div>
+          
+        <hr/>
 
           <hr />
 
