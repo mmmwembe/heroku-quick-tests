@@ -115,16 +115,18 @@ async function start() {
                 model_type : model_type,
                 task : task,
             },
+            /*
                 success: function(data) {
                 var everything = data.everything
                 alert('Everything sent to server  : ' + JSON.stringify(everything))
             }
+            */
     
         });
 
     
         e.preventDefault();
-        
+
       });
    
 
