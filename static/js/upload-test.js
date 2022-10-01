@@ -91,8 +91,10 @@ async function start() {
 
 
 
-    $( "deleteForm" ).submit(function( e ) {
+    $("#deleteForm").submit(function( e ) {
 
+
+        alert('BEFORE ')
 
         var model = $(this).attr('data-model')
 
@@ -107,40 +109,7 @@ async function start() {
 
 
 
-    S('dlisso').onsubmit = async (e) => {
 
-        e.preventDefault();
-
-        alert('It gets here mate!!!')
-
-        //var model = $(this).attr('data-model')
-
-        // alert('model +++' + model )
-
-        /*
-
-        var form = document.querySelector("#deleteForm")[0];
-  
-        data = {
-            model_url : document.querySelectorAll('[data-model]').value,
-            model_name : document.querySelectorAll('[data-modelname]').value,
-            model_type : document.querySelectorAll('[data-model_type]').value,
-            task : document.querySelectorAll('[data-task]').value           
-         }
-  
-        let response = await fetch('/NewDeleteModel/', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify(data),
-          })
-  
-          let text = await response.text(); 
-          alert('response from server ' + text)
-
-          */
-      };
 
 
 
