@@ -321,7 +321,7 @@
                               <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
                               <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
                               <input type="hidden" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
-                              <input type="hidden" id="task{{ model.model_index }}" value="{{ model.task }}">
+                              <input type="hidden" id="task{{ model.model_index }}" value="deploy">
                               <button type="submit" model_id ="{{ model.model_index }}" class="xDeployModel" style="background:url('/static/project-icons/deploy-model-icon.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                             </div>
                           </form>
@@ -333,7 +333,7 @@
                             <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
                             <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
                             <input type="hidden" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
-                            <input type="hidden" id="task{{ model.model_index }}" value="{{ model.task }}">
+                            <input type="hidden" id="task{{ model.model_index }}" value="view">
                             <button type="submit" model_id ="{{ model.model_index }}" class="xViewModelInfo" style="background:url('/static/project-icons/view-model-info.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                           </div>
                         </form>
@@ -344,7 +344,7 @@
                             <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
                             <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
                             <input type="hidden" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
-                            <input type="hidden" id="task{{ model.model_index }}" value="{{ model.task }}">
+                            <input type="hidden" id="task{{ model.model_index }}" value="delete">
                             <button type="submit" model_id ="{{ model.model_index }}" class="xModelDeleteButton" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                           </div>
                         </form>
