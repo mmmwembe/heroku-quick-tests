@@ -711,8 +711,11 @@ def delete_model():
 def deleteModel():
 
 	task = request.form.get('which-task') 
+	model_name = request.form.get('model_name')  
+	model_url = request.form.get('model_url')  
+	model_type = request.form.get('model_type')  
 
-	return render_template('upload-test.html', result=task)
+	return render_template('upload-test.html', task=task, model_name=model_name, model_url=model_url, model_type = model_type)
 
 
 

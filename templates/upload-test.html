@@ -246,7 +246,10 @@
     </head>
     <body>
 
-      {{ result }}
+      {{ task }}
+      {{ model_name }}
+      {{ model_url }}
+      {{ model_type }}
 
         <main>
             <div class="container mt-5">
@@ -347,6 +350,10 @@
                             <div class="input-group">
                               <input type="submit" value="Delete" class="btn btn-dark" style="margin-left: 10px;">
                                 <input type="hidden" name="which-task" value="delete-model">
+                                <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
+                                <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
+                                <input type="hidden" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
+                                <input type="hidden" id="task{{ model.model_index }}" value="delete">
                             </div>
                         </form> 
 
