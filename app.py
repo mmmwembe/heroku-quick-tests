@@ -707,8 +707,7 @@ def delete_model():
 	return render_template('upload-test.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
 
-
-@app.route('/', methods=['POST'])
+@app.route('/deleteModel/', methods=['POST'])
 def deleteModel():
 
 	task = request.form.get('which-task') 
