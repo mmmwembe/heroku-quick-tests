@@ -712,7 +712,7 @@ def deleteModel():
 
 	task = request.form.get('which-task') 
 
-	return jsonify('upload-test.html', result=task)
+	return render_template('upload-test.html', result=task)
 
 
 
