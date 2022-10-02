@@ -716,7 +716,29 @@ def deleteModel():
 	model_type = request.form.get('model_type')  
 	_task2 = request.form.get('task')  
 
-	return render_template('upload-test.html', task=task, model_name=model_name, model_url=model_url, model_type = model_type, task2 = _task2)
+
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
+	target_file_types_array = ["tflite"]
+ 
+	detection_models_info =[]
+	detection_models_info =[]
+	try:
+		detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, detection_sub_directory_path, target_file_types_array)
+		detection_models_info = model_info_array(detection_models_urls, 'object detection')
+	except:
+		pass
+
+	classification_models_urls =[]
+	classification_models_info =[]
+	try:
+		classification_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, classification_sub_directory_path , target_file_types_array)
+		classification_models_info = model_info_array(classification_models_urls, 'classification')
+	except:
+		pass  
+
+	return render_template('upload-test.html', task=task, model_name=model_name, model_url=model_url, model_type = model_type, task2 = _task2, classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
 
 
