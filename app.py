@@ -722,6 +722,18 @@ def deleteModel():
 	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
 	target_file_types_array = ["tflite"]
  
+ 
+ # Delete Model
+	if model_type == 'object detection':
+		blob_name = os.path.join(detection_sub_directory_path, model_name)		
+	elif model_type == 'classification':
+		blob_name = os.path.join(classification_sub_directory_path, model_name)		   
+
+	delete_file_from_gcp_bucket(bucket_name, blob_name)
+	# bucket_url_path = 'https://storage.googleapis.com/amina-files/'
+	# delete_file_from_gcpbucket(bucket_name, model_url, bucket_url_path)
+  # Get updated lists of models in bucket subdirectories
+ 
 	detection_models_info =[]
 	detection_models_info =[]
 	try:
