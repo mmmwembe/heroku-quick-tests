@@ -434,14 +434,16 @@
                     <col class="col-md-1">
                   </colgroup>
                   <thead style="color:black;background-color:#F05537">
+                    {% if detection_models_info  %}
                     <tr>
-                        <th>Icon</th>
+                        <th></th>
                         <th>Model Filename</th>
                         <th>Labels</th>                                    
                         <th>Deploy</th>
                         <th>Info</th>
                         <th>Delete</th>                                                                              
                     </tr>
+                    {% endif %}
                 </thead>
                   <tbody>
 
