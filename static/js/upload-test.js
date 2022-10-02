@@ -1,5 +1,6 @@
 window.addEventListener('load', (event) => {
 
+/*
 
     $('.xModelDeleteButton').on('click', function(e){
 
@@ -27,7 +28,7 @@ window.addEventListener('load', (event) => {
 
     }); // End of .xModelDeleteButton on click event
 
-
+*/
 
     // Deploy Model
     
