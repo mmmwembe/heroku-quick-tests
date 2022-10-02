@@ -651,60 +651,8 @@ def models_upload():
 	except:
 		pass 
 
-	if request.method == 'GET':
-   
-		if (request.args.get('submit_delete')):
-			# return redirect(url_for('NewDeleteModel'))
-			model_name = request.args.get('model_name')
-			model_type = request.args.get('model_type')
-			return redirect(url_for('NewDeleteModel', model_name=model_name, model_type=model_type))
-   
-
   
-	return render_template('upload-test.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
-
-@app.route('/delete_model/', methods=['POST','GET'])
-def delete_model():
-  
-	if request.method == 'GET':
-		pass
-
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
-	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
-	target_file_types_array = ["tflite"]
- 
-	try:
-   # data = json.loads(request.data) 
-		# data = json.loads(request.data)
-		data = request.get_json(force=True)
-		model_url = data.get("model_url",None)
-		bucket_url_path='https://storage.googleapis.com/amina-files/'
-
-		delete_file_from_gcpbucket(bucket_name, model_url, bucket_url_path)
-  
-	except:
-		pass
- 
-	detection_models_info =[]
-	detection_models_info =[]
-	try:
-		detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, detection_sub_directory_path, target_file_types_array)
-		detection_models_info = model_info_array(detection_models_urls, 'object detection')
-	except:
-		pass
-
-	classification_models_urls =[]
-	classification_models_info =[]
-	try:
-		classification_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, classification_sub_directory_path , target_file_types_array)
-		classification_models_info = model_info_array(classification_models_urls, 'classification')
-	except:
-		pass
-
- 
-      
-	return render_template('upload-test.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
+	return render_template('models.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
 
 @app.route('/deleteModel/', methods=['POST'])
@@ -750,58 +698,7 @@ def deleteModel():
 	except:
 		pass  
 
-	return render_template('upload-test.html', task=task, model_name=model_name, model_url=model_url, model_type = model_type, task2 = _task2, classification_models_info = classification_models_info, detection_models_info = detection_models_info)
-
-
-
-@app.route('/NewDeleteModel/', methods=['POST'])
-
-def NewDeleteModel():
-  
-	#model_name_from_post_form =''
-	#model_from_get_args=''
-  
-	#try:
-	#	model_name_from_post_form = request.form.get('model_name')                            
-	#except:
-	#	pass  
-
-	#try:                            
-	#	model_from_get_args = request.args.get('model_name')
-	#except:
-	#	pass   
-	if request.method =='POST':
-
-		model_url = request.form['model_url']  
-		model_name = request.form['model_name']  
-		model_type = request.form['model_type']    
-		task = request.form['task']         
-		# request_data = request.args.get('dataToPost', None, type=str) # request.get_json()
-		# model_url = request_data['model_url']
-		#model_name = request_data['model_name']
-		#model_type = request_data['model_type']
-		#task = request_data['task']
-    
-		#data = request.get()
-		# form_id = request.form.get('id')
-		#args =request.view_args
-		# content = request.json
-		# model_url = content['model_url']
-		# model_url = request.form['data-model']
-		#model_name = request.form['model_name']
-		#model_type = request.form['model_type']
-		#task = request.form['task']
-		everything="POST data from Server; Model name: " + str(model_name) 
-		##everything = "INFORMATION FROM SERVER - " + "model_url: " + model_url + "model_name : " + model_name + " model_type: " + model_type + " task :" + task
-   
-	#else:
-   
-	# args =request.view_args
-   
-	#everything="GET METHOD : "  + str(args)
-		#pass
-
-	return jsonify(everything=everything)
+	return render_template('models.html', task=task, model_name=model_name, model_url=model_url, model_type = model_type, task2 = _task2, classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
 
 @app.route('/saveCroppedImage', methods=['POST','GET'])
