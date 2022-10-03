@@ -193,19 +193,23 @@ window.addEventListener('load', (event) => {
 
         document.getElementById('selected-image').src = img_url;
 
-
-        var img_height = $("#selected-image").height();
-        var img_width = $("#selected-image").width();
-
-        var imageView_height= $("#imageView").height();
-        var imageView_width = $("#imageView").width();
-
-
-        alert(' Actual image h/w: ' + img_height +'/' + img_width + '     imageView h/w: ' +  imageView_height +'/' + imageView_width  )
-
-
-
    })
+
+
+
+   var img_height = $("#selected-image").height();
+   var img_width = $("#selected-image").width();
+
+   var imageView_height= $("#imageView").height();
+   var imageView_width = $("#imageView").width();
+
+
+   alert(' Actual image h/w: ' + img_height +'/' + img_width + '     imageView h/w: ' +  imageView_height +'/' + imageView_width  )
+
+
+
+
+
 }
 
 
