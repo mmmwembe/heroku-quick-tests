@@ -44,6 +44,7 @@ window.addEventListener('load', (event) => {
 
 
         if (!model) {
+          alert('There is no model mate...something changed real bad')
             return;
         }
 
