@@ -1,7 +1,7 @@
 window.addEventListener('load', (event) => {
 
-    const imageView = document.querySelector("#imageView");    
-    const img = document.querySelector("#selected-image");
+    var imageView = document.querySelector("#imageView");    
+    var img = document.querySelector("#selected-image");
     let results_JSON =[];
     const predictButton = document.querySelector("#predict-button")
     var model = undefined;
@@ -188,10 +188,12 @@ window.addEventListener('load', (event) => {
 
         // First remove previous labels
         remove_bboxes_and_labels()
+ 
+        var img = document.querySelector("#selected-image");
 
         var img_url = e.target.src
 
-        document.getElementById('selected-image').src = img_url;
+        img.src = img_url;
 
         get_size_of_image_vs_imageview()
 
@@ -210,21 +212,22 @@ window.addEventListener('load', (event) => {
         var imageView_width = $("#imageView").width();
 
 
-        var before = 'Actual image h/w: ' + img_height +'/' + img_width + '     imageView h/w: ' +  imageView_height +'/' + imageView_width 
+        var before = 'BEFORE  Actual image h/w: ' + img_height +'/' + img_width + '     imageView h/w: ' +  imageView_height +'/' + imageView_width 
 
+  
         $("#imageView").css("width", img_width);
         $("#imageView").css("height", img_height);
 
         var imageView_height= $("#imageView").height();
         var imageView_width = $("#imageView").width();
 
-        var after= 'Actual image h/w: ' + img_height +'/' + img_width + '     imageView h/w: ' +  imageView_height +'/' + imageView_width 
+        var after= 'AFTER Actual image h/w: ' + img_height +'/' + img_width + '     imageView h/w: ' +  imageView_height +'/' + imageView_width 
 
         $("#before").html(before);
         $("#after").html(after);
 
 
-        
+
     }
 
 
