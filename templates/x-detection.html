@@ -134,11 +134,14 @@ th, td {
     width:100%; border: 1px solid black; border-collapse: collapse;
 }
 
-/* Styles for the Labels             */
+/* Styles for the Labels and selected image           */
 
-img {
-              max-width: 600px;
-              height: auto;
+        img {
+            width: auto;
+            height: auto;
+            max-height:400px; 
+            max-width:600px;
+            aspect-ratio: attr(width) / attr(height);
             }
 
             .imageViewer {
