@@ -55,6 +55,8 @@ window.addEventListener('load', (event) => {
 
         results_JSON = create_json_for_object_detection(predictions)
 
+        alert('results_JSON: ' + JSON.stringify(results_JSON))
+
        // update_caption_and_bbox_colors()
         datatable.clear();
         datatable.rows.add(results_JSON);
