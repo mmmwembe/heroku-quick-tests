@@ -179,10 +179,15 @@ window.addEventListener('load', (event) => {
 
     for(let i = 0; i < img_thumbnails.length; i++) {
 
-        
+
 
         img_thumbnails[i].addEventListener("click", function(e) {
+
+        // First remove previous labels
+        remove_bboxes_and_labels()
+
         var img_url = e.target.src
+
         document.getElementById('selected-image').src = img_url;
 
    })
