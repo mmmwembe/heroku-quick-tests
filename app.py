@@ -536,7 +536,7 @@ def upload_detection_tflite_model():
 	except:
 		pass 
  
-	return render_template('upload-test.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
+	return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
 
 @app.route('/upload_classification_tflite_model/', methods=['POST','GET'])
 def upload_classification_tflite_model():
@@ -586,7 +586,7 @@ def upload_classification_tflite_model():
 	except:
 		pass 
  
-	return render_template('upload-test.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
+	return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
 
 @app.route('/detection/', methods=['POST','GET'])
 def detection():
@@ -595,7 +595,7 @@ def detection():
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
       
-	return render_template('detection.html', images_in_dir=gcp_active_directory_file_urls)
+	return render_template('x-detection.html', images_in_dir=gcp_active_directory_file_urls)
 
 
 @app.route('/classify/', methods=['POST','GET'])
