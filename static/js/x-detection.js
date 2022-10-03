@@ -208,9 +208,23 @@ window.addEventListener('load', (event) => {
      
         var imageView_height= $("#imageView").height();
         var imageView_width = $("#imageView").width();
-     
-     
-        alert(' Actual image h/w: ' + img_height +'/' + img_width + '     imageView h/w: ' +  imageView_height +'/' + imageView_width  )
+
+
+        var before = 'Actual image h/w: ' + img_height +'/' + img_width + '     imageView h/w: ' +  imageView_height +'/' + imageView_width 
+
+        $("#imageView").css("width", img_width);
+        $("#imageView").css("height", img_height);
+
+        var imageView_height= $("#imageView").height();
+        var imageView_width = $("#imageView").width();
+
+        var after= 'Actual image h/w: ' + img_height +'/' + img_width + '     imageView h/w: ' +  imageView_height +'/' + imageView_width 
+
+        $("#before").html(before);
+        $("#after").html(after);
+
+
+        
     }
 
 
