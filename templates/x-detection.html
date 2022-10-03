@@ -133,38 +133,56 @@ th, td {
 
     width:100%; border: 1px solid black; border-collapse: collapse;
 }
-#myTable tr {
-    background-color: #eee;
-    border-top: 1px solid #fff;
-}
-#myTable tr:hover {
-    background-color: #ccc;
-}
-#myTable th {
-    background-color: #fff;
-}
-#myTable td:hover {
-    cursor: pointer;
-}
 
-.modal-header {
-     color: white;
-     background-color: rgb(97, 101, 102);  
-}
+/* Styles for the Labels             */
 
-.modal-body {
-     color: rgb(10, 10, 10);
-     background-color: rgb(222, 228, 230);  
-}
+img {
+              max-width: 600px;
+              height: auto;
+            }
 
-body.modal-open .modal {
-    display: flex !important;
-    height: 100%;
-} 
+            .imageViewer {
+                position: relative;
+                float: left;
+                width: calc(100% - 20px);  /*  100% */
+                margin: 10px;
+                cursor: pointer;
+            }
+        
+            .imageViewer p {
+                position: absolute;
+                padding: 5px;
+                background-color: #218838;
+                color: #fff;
+                border: 2px solid #218838;
+                z-index: 2;
+                font-size: 12px;
+            }
+            
+            .highlighter {
+                border: 2px solid #218838;
+                z-index: 1;
+                position: absolute;
+            }
 
-body.modal-open .modal .modal-dialog {
-    margin: auto;
-}
+
+            .imageViewer2 p2 {
+                position: absolute;
+                padding: 5px;
+                background-color: rgba(255, 111, 0, 0.85);
+                color: #fff;
+                border: 1px dashed rgba(255, 255, 255, 0.7);
+                z-index: 2;
+                font-size: 12px;
+            }
+            
+            .highlighter2 {
+                background: rgba(0, 255, 0, 0.25);
+                border: 5px dashed #C2175B;
+                z-index: 1;
+                position: absolute;
+            }
+
 
 /*      Thumbnail Gallery Styles         */
 
