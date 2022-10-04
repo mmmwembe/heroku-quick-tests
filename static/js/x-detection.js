@@ -118,6 +118,31 @@ window.addEventListener('load', (event) => {
     }
 
 
+    function removeAllLabels_Original(){
+        const elements = document.getElementsByClassName("card");
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+    }
+
+
+    function removeAllLabels(){
+
+        const elements = document.querySelectorAll("[id='p-label']");
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+
+        const elements2 = document.querySelectorAll("[id='bbox-highlighter']");
+        while(elements2.length > 0){
+            elements2[0].parentNode.removeChild(elements2[0]);
+        }
+
+
+    }
+
+
+
 
     function remove_bboxes_and_labels(){
 
@@ -187,7 +212,8 @@ window.addEventListener('load', (event) => {
         img_thumbnails[i].addEventListener("click", function(e) {
 
         // First remove previous labels
-        remove_bboxes_and_labels()
+        removeAllLabels()
+        //remove_bboxes_and_labels()
  
         var img = document.querySelector("#selected-image");
 
@@ -195,13 +221,18 @@ window.addEventListener('load', (event) => {
 
         img.src = img_url;
 
+        $(".main-image").load(" .main-image")
+
         get_size_of_image_vs_imageview()
 
    })
 
 }
-
-
+  
+  // -------------------------------------------------------
+  // RELOAD DIV WITHOUT REFRESHING WHOLE PAGE
+  // http://jsfiddle.net/6nLa19be/7/
+  // ---------------------------------------------------------
     function get_size_of_image_vs_imageview(){
 
 
