@@ -266,6 +266,7 @@ function updateTestImage(image_url){
     $.ajax({
         type: "POST",
         url: "/updateTestImage/",
+        contentType: 'application/json;charset=UTF-8',
         data: { 
            img_url: image_url,
            model_type : 'object detection'
