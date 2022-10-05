@@ -106,8 +106,11 @@ window.addEventListener('load', (event) => {
                 currentObject.boundingBox.width +   "px; height: " +
                 currentObject.boundingBox.height +  "px;";
         
-                imageView.appendChild(highlighter);
-                imageView.appendChild(p);
+                //imageView.appendChild(highlighter);
+                //imageView.appendChild(p);
+
+                img.appendChild(highlighter);
+                img.appendChild(p);
 
                 //children.push(highlighter);
                 //children.push(p);
@@ -220,9 +223,9 @@ window.addEventListener('load', (event) => {
 
         var img_url = e.target.src
 
-        $("#imageView").load(" #imageView");
+        // $("#imageView").load(" #imageView");
 
-        img.src = img_url;
+        // img.src = img_url;
 
         $(".main-image").load(" .main-image")
 
