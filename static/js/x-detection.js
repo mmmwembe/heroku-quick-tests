@@ -237,8 +237,18 @@ window.addEventListener('load', (event) => {
 
         // get_size_of_image_vs_imageview()
 
+        resize_imageView()
+
    })
 
+}
+
+function resize_imageView(){
+
+
+    $("#imageView").load(" #imageView");
+
+    
 }
 
 
