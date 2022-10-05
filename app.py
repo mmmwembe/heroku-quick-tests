@@ -700,6 +700,17 @@ def deleteModel():
 
 	return render_template('models.html', task=task, model_name=model_name, model_url=model_url, model_type = model_type, task2 = _task2, classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
+@app.route('/updateTestImage/', methods=['POST'])
+def updateTestImage():
+
+	task = request.form.get('which-task') 
+	model_name = request.form.get('model_name')  
+	model_url = request.form.get('model_url')  
+	model_type = request.form.get('model_type')  
+	_task2 = request.form.get('task')  
+ 
+	return render_template('x-detection.html', )
+ 
 
 @app.route('/saveCroppedImage', methods=['POST','GET'])
 def saveCroppedImage():

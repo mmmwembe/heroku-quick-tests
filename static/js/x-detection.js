@@ -104,9 +104,9 @@ window.addEventListener('load', (event) => {
     
 
                 highlighter.style =" left: " + currentObject.boundingBox.originX +  "px; " + 
-                                   " top: " + currentObject.boundingBox.originY + "px; " + 
-                                   " width: " + currentObject.boundingBox.width +   "px; " +
-                                   " height: " + currentObject.boundingBox.height +  "px;";
+                          " top: " + currentObject.boundingBox.originY + "px; " + 
+                          " width: " + currentObject.boundingBox.width +   "px; " +
+                          " height: " + currentObject.boundingBox.height +  "px;";
         
                 imageView.appendChild(highlighter);
                 imageView.appendChild(p);
@@ -242,6 +242,11 @@ window.addEventListener('load', (event) => {
 
         // resize_imageView()
 
+        updateTestImage(img_url)
+
+
+        
+
    })
 
 }
@@ -252,6 +257,26 @@ function resize_imageView(){
     $("#imageView").load(" #imageView");
 
 
+}
+
+
+
+function updateTestImage(image_url){
+
+    $.ajax({
+        type: "POST",
+        url: "/updateTestImage",
+        data: { 
+           img_url: image_url,
+           model_type : 'object detection'
+        },
+        success: function(data) {
+          var new_url = data.img_url
+          alert('the next image is  : ' + JSON.stringify(new_url))
+        }
+    
+      });
+    
 }
 
 
