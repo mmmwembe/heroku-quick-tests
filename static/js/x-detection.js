@@ -245,7 +245,7 @@ window.addEventListener('load', (event) => {
         updateTestImage(img_url)
 
 
-        
+
 
    })
 
@@ -265,7 +265,7 @@ function updateTestImage(image_url){
 
     $.ajax({
         type: "POST",
-        url: "/updateTestImage",
+        url: "/updateTestImage/",
         data: { 
            img_url: image_url,
            model_type : 'object detection'

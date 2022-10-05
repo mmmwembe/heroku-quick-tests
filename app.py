@@ -703,13 +703,10 @@ def deleteModel():
 @app.route('/updateTestImage/', methods=['POST'])
 def updateTestImage():
 
-	task = request.form.get('which-task') 
-	model_name = request.form.get('model_name')  
-	model_url = request.form.get('model_url')  
-	model_type = request.form.get('model_type')  
-	_task2 = request.form.get('task')  
+	img_url = request.form.get('img_url') 
+	model_type = request.form.get('model_type') 
  
-	return render_template('x-detection.html', )
+	return render_template('x-detection.html', img_url = img_url, model_type = model_type)
  
 
 @app.route('/saveCroppedImage', methods=['POST','GET'])
