@@ -224,7 +224,14 @@ window.addEventListener('load', (event) => {
 
         // $("#imageView").load(" #imageView");
 
-        // img.src = img_url;
+         img.src = img_url;
+
+         var img_height = $("#selected-image").height();
+         var img_width = $("#selected-image").width();
+
+         $("#imageView").css("width", img_width);
+         $("#imageView").css("height", img_height);
+
 
         $(".main-image").load(" .main-image")
 
