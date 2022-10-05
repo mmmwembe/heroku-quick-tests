@@ -100,17 +100,16 @@ window.addEventListener('load', (event) => {
                 highlighter.setAttribute('label', label);
     
 
-                highlighter.style ="left: " +
-                currentObject.boundingBox.originX + "px; top: " +
-                currentObject.boundingBox.originY + "px; width: " +
-                currentObject.boundingBox.width +   "px; height: " +
-                currentObject.boundingBox.height +  "px;";
+                highlighter.style =" left: " + currentObject.boundingBox.originX +  "px; " + 
+                                   " top: " + currentObject.boundingBox.originY + "px; " + 
+                                   " width: " + currentObject.boundingBox.width +   "px; " +
+                                   " height: " + currentObject.boundingBox.height +  "px;";
         
-                //imageView.appendChild(highlighter);
-                //imageView.appendChild(p);
+                imageView.appendChild(highlighter);
+                imageView.appendChild(p);
 
-                img.appendChild(highlighter);
-                img.appendChild(p);
+                //img.appendChild(highlighter);
+                //img.appendChild(p);
 
                 //children.push(highlighter);
                 //children.push(p);
