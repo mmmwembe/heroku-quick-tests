@@ -92,7 +92,10 @@ window.addEventListener('load', (event) => {
 
                 p.innerText =label +  " - with " + confidence + " confidence.";
 
-                p.style = "margin-left: " + currentObject.boundingBox.originX + "px; margin-top: " + (currentObject.boundingBox.originY - 10) + "px; width: " + (currentObject.boundingBox.width - 10) + "px; top: 0; left: 0;";
+                p.style = "margin-left: " + currentObject.boundingBox.originX + "px; " + 
+                          "margin-top: " + (currentObject.boundingBox.originY - 10) + "px; " + 
+                          "width: " + (currentObject.boundingBox.width - 10) + "px; " + 
+                          "top: 0; left: 0;";
         
                 const highlighter = document.createElement("div");
                 highlighter.setAttribute("id", "bbox-highlighter");
