@@ -258,7 +258,7 @@ window.addEventListener('load', (event) => {
         $("#imageView").css("width", img_width);
         $("#imageView").css("height", img_height);
 
-        $("#imageView").load(" #imageView");
+        // $("#imageView").load(" #imageView");
 
         var imageView_height= $("#imageView").height();
         var imageView_width = $("#imageView").width();
