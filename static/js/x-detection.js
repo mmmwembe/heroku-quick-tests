@@ -222,7 +222,7 @@ window.addEventListener('load', (event) => {
 
         img.src = img_url;
 
-        // $(".main-image").load(" .main-image")
+        $(".main-image").load(" .main-image")
 
         $("#imageView").load(" #imageView");
 
