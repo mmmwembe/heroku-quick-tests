@@ -218,6 +218,41 @@ return labelCard;
 }
 
 
+function simpleCard3(){
+
+var colors = ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
+
+var random_color = colors[Math.floor(Math.random() * colors.length)].toString() + ';';
+
+var labels = ['Tomato', 'Popcorn', 'Sugar','Mango', 'Kandolo', 'Football'];
+var random_label = labels[Math.floor(Math.random() * labels.length)].toString() + ';';
+
+
+
+const labelCard = document.createElement('div')
+labelCard.className ="card"
+ 
+var top = randomInteger(0, 100).toString() + 'px;';
+var left = randomInteger(20, 200).toString() + 'px;';
+var width = randomInteger(50, 350).toString() + 'px;'; 
+var height = randomInteger(50, 100).toString() + 'px;'; 
+
+
+// labelCard.style="top: -40px; left: 0px; width: 250px; height:340px; border: 3px solid green; z-index: 2; position: absolute; background-color: transparent;";
+labelCard.style="top: " + top +  "left: "+ left + " width: " + width + " height: "  + height + " border: 3px solid " + random_color + " z-index: 2; position: absolute; background-color: transparent;";
+const labelHeader = document.createElement('div')
+labelHeader.className="card-header"
+labelHeader.style="background-color: " + random_color + " color: white;  top: 0; left: 0;"
+labelHeader.innerHTML ="<strong> "+ random_label + " </strong>";
+labelHeader.style.fontSize = "12";
+
+labelCard.append(labelHeader);
+
+return labelCard;
+
+}
+
+
 function randomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }

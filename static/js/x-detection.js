@@ -52,7 +52,8 @@ window.addEventListener('load', (event) => {
         const predictions = model.detect(img);
 
         // Remove bounding boxes and labels from previous frame
-        remove_bboxes_and_labels()
+        // remove_bboxes_and_labels()
+        removeAllLabels()
 
         results_JSON = create_json_for_object_detection(predictions)
 
@@ -64,38 +65,6 @@ window.addEventListener('load', (event) => {
         datatable.draw();
 
     });
-
-    function simpleCard2(){
-
-        var colors = ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
-      
-        var random_color = colors[Math.floor(Math.random() * colors.length)].toString() + ';';
-      
-        var labels = ['Tomato', 'Popcorn', 'Sugar','Mango', 'Kandolo', 'Football'];
-        var random_label = labels[Math.floor(Math.random() * labels.length)].toString() + ';';
-      
-      
-        
-        const labelCard = document.createElement('div')
-        labelCard.className ="card"
-         
-        var top = randomInteger(0, 100).toString() + 'px;';
-        var left = randomInteger(20, 200).toString() + 'px;';
-        var width = randomInteger(50, 150).toString() + 'px;'; 
-        var height = randomInteger(50, 100).toString() + 'px;'; 
-      
-      
-        // labelCard.style="top: -40px; left: 0px; width: 250px; height:340px; border: 3px solid green; z-index: 2; position: absolute; background-color: transparent;";
-        labelCard.style="top: " + top +  "left: "+ left + " width: " + width + " height: "  + height + " border: 3px solid " + random_color + " z-index: 2; position: absolute; background-color: transparent;";
-        const labelHeader = document.createElement('div')
-        labelHeader.className="card-header"
-        labelHeader.style="background-color: " + random_color + " color: white; "
-        labelHeader.innerHTML ="<strong> "+ random_label + " </strong>";
-        // labelHeader.style.fontSize = "x-large";
-      
-        labelCard.append(labelHeader);
-      
-      return labelCard;
 
     
     function create_json_for_object_detection(preds){
@@ -260,6 +229,14 @@ window.addEventListener('load', (event) => {
    })
 
 }
+
+
+
+
+
+
+
+
   
   // -------------------------------------------------------
   // RELOAD DIV WITHOUT REFRESHING WHOLE PAGE
@@ -281,7 +258,7 @@ window.addEventListener('load', (event) => {
         $("#imageView").css("width", img_width);
         $("#imageView").css("height", img_height);
 
-        $("#imageView").load(" #imageView")
+        $("#imageView").load(" #imageView");
 
         var imageView_height= $("#imageView").height();
         var imageView_width = $("#imageView").width();
