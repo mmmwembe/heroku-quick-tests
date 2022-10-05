@@ -222,9 +222,11 @@ window.addEventListener('load', (event) => {
 
         img.src = img_url;
 
-        $(".main-image").load(" .main-image")
+        // $(".main-image").load(" .main-image")
 
-        get_size_of_image_vs_imageview()
+        $("#imageView").load(" #imageView");
+
+        // get_size_of_image_vs_imageview()
 
    })
 
