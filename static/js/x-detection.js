@@ -224,7 +224,7 @@ window.addEventListener('load', (event) => {
 
         // $("#imageView").load(" #imageView");
 
-         img.src = img_url;
+         img.src = img_url +"?"+ + new Date().getTime();
 
          var img_height = $("#selected-image").height();
          var img_width = $("#selected-image").width();
@@ -248,7 +248,7 @@ function resize_imageView(){
 
     $("#imageView").load(" #imageView");
 
-    
+
 }
 
 
