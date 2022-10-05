@@ -199,7 +199,7 @@ function simpleCard2(){
    
   var top = randomInteger(0, 100).toString() + 'px;';
   var left = randomInteger(20, 200).toString() + 'px;';
-  var width = randomInteger(50, 150).toString() + 'px;'; 
+  var width = randomInteger(50, 350).toString() + 'px;'; 
   var height = randomInteger(50, 100).toString() + 'px;'; 
 
 
@@ -207,9 +207,9 @@ function simpleCard2(){
   labelCard.style="top: " + top +  "left: "+ left + " width: " + width + " height: "  + height + " border: 3px solid " + random_color + " z-index: 2; position: absolute; background-color: transparent;";
   const labelHeader = document.createElement('div')
   labelHeader.className="card-header"
-  labelHeader.style="background-color: " + random_color + " color: white; "
+  labelHeader.style="background-color: " + random_color + " color: white;  top: 0; left: 0;"
   labelHeader.innerHTML ="<strong> "+ random_label + " </strong>";
-  // labelHeader.style.fontSize = "x-large";
+  labelHeader.style.fontSize = "12";
 
   labelCard.append(labelHeader);
 
