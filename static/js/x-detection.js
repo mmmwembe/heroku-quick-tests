@@ -220,11 +220,11 @@ window.addEventListener('load', (event) => {
 
         var img_url = e.target.src
 
+        $("#imageView").load(" #imageView");
+
         img.src = img_url;
 
         $(".main-image").load(" .main-image")
-
-        $("#imageView").load(" #imageView");
 
         // get_size_of_image_vs_imageview()
 
