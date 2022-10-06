@@ -602,7 +602,7 @@ def detection():
       
 	return render_template('x-detection.html', images_in_dir=gcp_active_directory_file_urls, img_url = img_url)
 
-@app.route('/x-detection/', methods=['POST','GET'])
+@app.route('/x_detection/', methods=['POST','GET'])
 def x_detection():
 	img_url =''
 	sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]

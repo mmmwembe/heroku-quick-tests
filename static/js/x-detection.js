@@ -242,7 +242,7 @@ window.addEventListener('load', (event) => {
 
         // resize_imageView()
 
-        window.location.href = "/x-detection.html?image=" + img_url; 
+        window.location.href = "/detection/?image=" + img_url; 
 
         // updateTestImage(img_url)
 
