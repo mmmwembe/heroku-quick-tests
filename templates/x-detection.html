@@ -285,9 +285,9 @@ th, td {
 
         <div id="imageView" class="imageViewer"  style="position: relative; border:3px solid yellow; "> <!--border:3px solid blue; width:auto; height: auto;-->
 
-            {% if img_url is defined %}
+            {% if img_url|length %}
 
-                {{ img_url }}
+         <img id="selected-image" class="main-image" src=" {{ img_url }}" style="border:3px dashed purple"/>
 
                 {% else %}
                 
