@@ -225,6 +225,15 @@ window.addEventListener('load', (event) => {
 
         var img_url = e.target.src
 
+
+        let data = new FormData()
+        data.append('image_url' : img_url)
+        data.append('description': 'Posting form object')
+        fetch("/detection/", {
+            "method": "POST",
+            "body": data,
+        });
+
         // $("#imageView").load(" #imageView");
 
         // img.src = img_url +"?"+ + new Date().getTime();
