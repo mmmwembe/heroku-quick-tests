@@ -227,16 +227,16 @@ window.addEventListener('load', (event) => {
 
         // $("#imageView").load(" #imageView");
 
-         img.src = img_url +"?"+ + new Date().getTime();
+        // img.src = img_url +"?"+ + new Date().getTime();
 
-         var img_height = $("#selected-image").height();
-         var img_width = $("#selected-image").width();
+        // var img_height = $("#selected-image").height();
+        // var img_width = $("#selected-image").width();
 
-         $("#imageView").css("width", img_width);
-         $("#imageView").css("height", img_height);
+        // $("#imageView").css("width", img_width);
+        // $("#imageView").css("height", img_height);
 
 
-        $(".main-image").load(" .main-image")
+        // $(".main-image").load(" .main-image")
 
         // get_size_of_image_vs_imageview()
 
