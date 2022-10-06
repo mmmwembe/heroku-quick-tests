@@ -593,14 +593,18 @@ def upload_classification_tflite_model():
 @app.route('/detection/', methods=['POST','GET'])
 def detection():
 	img_url =''
+	post_img_url =''
 	sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
  
 	if request.method =='GET':
 		img_url = request.args.get('image') 
+
+	if request.method =='POST':
+		post_img_url = request.form.get('image_url') 
       
-	return render_template('x-detection.html', images_in_dir=gcp_active_directory_file_urls, img_url = img_url)
+	return render_template('x-detection.html', images_in_dir=gcp_active_directory_file_urls, img_url = img_url, post_img_url = post_img_url)
 
 @app.route('/classify/', methods=['POST','GET'])
 def classify():
