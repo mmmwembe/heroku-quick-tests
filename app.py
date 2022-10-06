@@ -601,10 +601,10 @@ def detection():
 	if request.method =='GET':
 		img_url = request.args.get('image') 
 
-	if request.method =='POST':
-		post_img_url = request.form.get('image_url') 
+	#if request.method =='POST':
+	#	post_img_url = request.form.get('image_url') 
       
-	return render_template('x-detection.html', images_in_dir=gcp_active_directory_file_urls, img_url = img_url, post_img_url = post_img_url)
+	return render_template('x-detection.html', images_in_dir=gcp_active_directory_file_urls, img_url = img_url)
 
 @app.route('/classify/', methods=['POST','GET'])
 def classify():

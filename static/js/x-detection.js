@@ -225,7 +225,7 @@ window.addEventListener('load', (event) => {
 
         var img_url = e.target.src
 
-
+       /*
         let data = new FormData()
         data.append('image_url' : img_url)
         data.append('description': 'Posting form object')
@@ -233,6 +233,8 @@ window.addEventListener('load', (event) => {
             "method": "POST",
             "body": data,
         });
+
+        */
 
         // $("#imageView").load(" #imageView");
 
