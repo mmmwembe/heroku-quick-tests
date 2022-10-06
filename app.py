@@ -588,6 +588,8 @@ def upload_classification_tflite_model():
  
 	return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
 
+
+
 @app.route('/detection/', methods=['POST','GET'])
 def detection():
 	img_url =''
@@ -600,6 +602,17 @@ def detection():
       
 	return render_template('x-detection.html', images_in_dir=gcp_active_directory_file_urls, img_url = img_url)
 
+@app.route('/x-detection/', methods=['POST','GET'])
+def x_detection():
+	img_url =''
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
+	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+ 
+	if request.method =='get':
+		img_url = request.args.get('image') 
+      
+	return render_template('x-detection.html', images_in_dir=gcp_active_directory_file_urls, img_url = img_url)
 
 @app.route('/classify/', methods=['POST','GET'])
 def classify():
