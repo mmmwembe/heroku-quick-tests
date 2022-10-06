@@ -285,15 +285,24 @@ th, td {
 
         <div id="imageView" class="imageViewer"  style="position: relative; border:3px solid yellow; "> <!--border:3px solid blue; width:auto; height: auto;-->
 
-            {% if img_url|length %}
 
+              {% if img_url is none %}   
+
+               This is the none option
+
+                    {% else %}
+
+                  {{ img_url }}
+
+                   {% endif %}
+
+
+         <!--
          <img id="selected-image" class="main-image" src=" {{ img_url }}" style="border:3px dashed purple"/>
-
-                {% else %}
-                
+   
           <img id="selected-image" class="main-image" src="/static/project-test-images/dust/test-image1.JPG" style="border:3px dashed purple"/>
                             
-                {% endif %}
+         -->
 
 
 
