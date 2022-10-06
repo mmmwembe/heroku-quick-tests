@@ -285,7 +285,17 @@ th, td {
 
         <div id="imageView" class="imageViewer"  style="position: relative; border:3px solid yellow; "> <!--border:3px solid blue; width:auto; height: auto;-->
 
-            <img id="selected-image" class="main-image" src="/static/project-test-images/dust/test-image1.JPG" style="border:3px dashed purple"/>
+            {% if img_url is defined %}
+
+                {{img_url }}
+
+                {% else %}
+                
+          <img id="selected-image" class="main-image" src="/static/project-test-images/dust/test-image1.JPG" style="border:3px dashed purple"/>
+                            
+                {% endif %}
+
+
 
         </div>
     </div>
