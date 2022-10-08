@@ -628,11 +628,29 @@ def labeling():
 @app.route('/models/', methods=['POST','GET'])
 def models():
      
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
-	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
-	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
-      
-	return render_template('models.html', images_in_dir=gcp_active_directory_file_urls)
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
+	target_file_types_array = ["tflite"]
+ 
+	detection_models_info =[]
+	detection_models_info =[]
+	try:
+		detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, detection_sub_directory_path, target_file_types_array)
+		detection_models_info = model_info_array(detection_models_urls, 'object detection')
+	except:
+		pass
+
+	classification_models_urls =[]
+	classification_models_info =[]
+	try:
+		classification_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, classification_sub_directory_path , target_file_types_array)
+		classification_models_info = model_info_array(classification_models_urls, 'classification')
+	except:
+		pass 
+
+  
+	return render_template('models.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
 
 
 @app.route('/models_upload/', methods=['POST','GET'])
