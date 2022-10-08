@@ -6,24 +6,21 @@ window.addEventListener('load', (event) => {
     const predictButton = document.querySelector("#predict-button")
     var model = undefined;
 
+    /*
     JSON_TEST = [
         [1, "Chicken", "90.4%"],
         [2, "Rat", "54.4%"],
         [3, "Rabbit", "80%"],
         [4, "Mango", "75%"]
     ]
+   */
+
+    // $(document).ready(function () { $('#GradingTable').DataTable();});
+
+    // results_JSON = JSON_TEST
 
 
-    $(document).ready(function () {
-        $('#GradingTable').DataTable();
-    });
-
-    results_JSON = JSON_TEST
-
-
-    var datatable =  $('#results-datatable').DataTable( {data: results_JSON,
-        columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }],
-        searching: false,ordering: false,lengthChange: false} );
+    // var datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }], searching: false,ordering: false,lengthChange: false} );
     
     
     predictButton.disabled = true;
@@ -57,12 +54,12 @@ window.addEventListener('load', (event) => {
 
         results_JSON = create_json_for_object_detection(predictions)
 
-        alert('results_JSON: ' + JSON.stringify(results_JSON))
+        // alert('results_JSON: ' + JSON.stringify(results_JSON))
 
        // update_caption_and_bbox_colors()
-        datatable.clear();
-        datatable.rows.add(results_JSON);
-        datatable.draw();
+       // datatable.clear();
+       // datatable.rows.add(results_JSON);
+       // datatable.draw();
 
 
         // New Table Update
@@ -194,6 +191,7 @@ window.addEventListener('load', (event) => {
 
 }
 
+/*
 function resize_imageView(){
 
 
@@ -223,6 +221,7 @@ function updateTestImage(image_url){
     
 }
 
+*/
 
 function buildTable(data){
     var table = document.getElementById('myTable')
