@@ -45,19 +45,33 @@ window.addEventListener('load', (event) => {
         alert(' Changing Model being Deployed....')
         
 
-        if ((model_type =="classification")) {
+        //if ((model_type =="classification")) {
+        if(model_url.includes("tflite")){
             storeSessionValue("classification_model_url", model_url)
             alert(' Deployed classification model updated ')
         }
 
 
-        if ((model_type =="object detection")) {
+    }); 
+
+
+    $('.xDeployDetectionModel').on('click', function(e){
+
+
+        var model_id = $(this).attr('model_id')
+        var model_url = $('#model_url' +model_id ).val()
+        var model_name = $('#model_name' +model_id ).val()
+        var model_type = $('#model_type' +model_id ).val()
+        var task = $('task' +model_id ).val()
+
+        alert('model_id : ' + model_id + '  model_name : ' + model_name + ' model_type :' + model_type  + ' task ' + task)
+        alert(' Changing Model being Deployed....')
+        
+
+        if(model_url.includes("tflite")){
             storeSessionValue("detection_model_url", model_url)
-            alert(' Deployed Object Detection model updated ')
+            alert(' Deployed Object Detection model updated ')     
         }
-
-    
-
 
     }); 
 
@@ -100,7 +114,7 @@ window.addEventListener('load', (event) => {
     function getFileExtension(file_path){
 
         return file_path.split('.').pop();
-        
+
     }
 
 
