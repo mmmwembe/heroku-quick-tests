@@ -77,6 +77,18 @@ window.addEventListener('load', (event) => {
             alert(' Deployed Object Detection model updated ')     
         }
 
+        // Store model with model_url, labels and model_type
+        const detectionModelObject = {
+            model_url : model_url,
+            labels : labels,
+            model_type : "object detection"
+          }
+
+        localStorage.setItem("detectionModelObject", JSON.stringify(detectionModelObject));
+
+
+
+
     }); 
 
 

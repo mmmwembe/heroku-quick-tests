@@ -7,6 +7,7 @@ window.addEventListener('load', (event) => {
     var model = undefined;
     var DEFAULT_MODEL ="https://storage.googleapis.com/2021_tflite_glitch_models/dust-sun-fog-clear-rain-snow-blurry/model-obj-detect-dust-sun-fog-clear-blurry-rain-snow.tflite"
     var SELECTED_MODEL =""
+    var LABELS_MODEL_TRAINED_ON=""
 
     /*
     JSON_TEST = [
@@ -37,7 +38,14 @@ window.addEventListener('load', (event) => {
 
          SELECTED_MODEL = localStorage.getItem("detection_model_url")
 
+         let detectionModelObject = window.localStorage.getItem("detectionModelObject");
+
+         LABELS_MODEL_TRAINED_ON = detectionModelObject["labels"]
+
+
+
          alert('SELECTED MODEL ' + SELECTED_MODEL)
+         alert('SELECTED MODEL LABELS ' +  LABELS_MODEL_TRAINED_ON)
 
 	  // Load Model
 
