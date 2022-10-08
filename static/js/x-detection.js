@@ -33,13 +33,13 @@ window.addEventListener('load', (event) => {
 
         var isTFlite = localStorage.getItem("detection_model_url").includes("tflite");
 
-        alert('isTFLite model ' + isTFlite )
+
        
        if (isTFlite  === true)  {
 
-      
-
          SELECTED_MODEL = localStorage.getItem("detection_model_url")
+
+         alert('SELECTED MODEL ' + SELECTED_MODEL)
 
 	  // Load Model
 
