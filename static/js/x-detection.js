@@ -40,9 +40,9 @@ window.addEventListener('load', (event) => {
 
          let detectionModelObject = window.localStorage.getItem("detectionModelObject");
 
-         LABELS_MODEL_TRAINED_ON = detectionModelObject["labels"]
+         json_obj_detection_model = JSON.parse(detectionModelObject)
 
-
+         LABELS_MODEL_TRAINED_ON = json_obj_detection_model["labels"]
 
          alert('SELECTED MODEL ' + SELECTED_MODEL)
          alert('SELECTED MODEL LABELS ' +  LABELS_MODEL_TRAINED_ON)
