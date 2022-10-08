@@ -10,7 +10,7 @@ window.addEventListener('load', (event) => {
     var LABELS_MODEL_TRAINED_ON=""
     var LABELS_JSON_ARRAY =[]
 
-    var colors = ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
+    var colors = ['#218838','#065FD4','#01ACF4','#FF0000', '#232D38','#81BC06','#F35325','#FFBA08'] // ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
     var random_color = colors[Math.floor(Math.random() * colors.length)].toString() + '';
 
     /*
