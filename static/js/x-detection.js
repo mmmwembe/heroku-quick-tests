@@ -8,6 +8,7 @@ window.addEventListener('load', (event) => {
     var DEFAULT_MODEL ="https://storage.googleapis.com/2021_tflite_glitch_models/dust-sun-fog-clear-rain-snow-blurry/model-obj-detect-dust-sun-fog-clear-blurry-rain-snow.tflite"
     var SELECTED_MODEL =""
     var LABELS_MODEL_TRAINED_ON=""
+    var LABELS_JSON_ARRAY =[]
 
     /*
     JSON_TEST = [
@@ -23,7 +24,7 @@ window.addEventListener('load', (event) => {
     // results_JSON = JSON_TEST
 
 
-    // var datatable =  $('#results-datatable').DataTable( {data: results_JSON, columns: [{ title: "#" },{ title: "Class/Label" },{ title: "Confidence" }], searching: false,ordering: false,lengthChange: false} );
+    var datatable =  $('#results-datatable').DataTable( {data: LABELS_JSON_ARRAY, columns: [{ title: "#" },{ title: "Label" },{ title: "Color" }], searching: true,ordering: false,lengthChange: false} );
     
     
     predictButton.disabled = true;
@@ -48,11 +49,18 @@ window.addEventListener('load', (event) => {
          // alert('SELECTED MODEL LABELS ' +  LABELS_MODEL_TRAINED_ON)
 
          const SPLIT_LABELS = LABELS_MODEL_TRAINED_ON.split(/[, ]+/);
+
+         var label_json_object
          for (let i = 0; i < SPLIT_LABELS.length; i++) { 
             const _label = SPLIT_LABELS[i];
-            alert(_label)
+
+            label_json_object = [i+1,_label]; 
+            LABELS_JSON_ARRAY.push(label_json_object);
           }
 
+          datatable.clear();
+          datatable.rows.add(LABELS_JSON_ARRAY);
+          datatable.draw();
 
 
 	  // Load Model
