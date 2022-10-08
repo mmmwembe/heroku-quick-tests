@@ -29,6 +29,57 @@ window.addEventListener('load', (event) => {
 
     // Upload Model
 
+    if (localStorage.getItem("detection_model_url")) {
+
+        var isTFlite = localStorage.getItem("detection_model_url").includes("tflite");
+       
+       if (isTFlite  === true)  {
+
+         alert('Yes it contains a tflite model')
+
+         SELECTED_MODEL = isTFlite
+
+	  // Load Model
+
+    	    tflite.ObjectDetector.create(SELECTED_MODEL).then((loadedModel) => {
+
+        	 model = loadedModel;
+
+        	document.querySelector("#predict-button").disabled = false;
+
+    	  });
+
+
+
+       } 
+
+
+      else if (DEFAULT_MODEL.includes("tflite")) {
+        //  Load default model
+
+           tflite.ObjectDetector.create(DEFAULT_MODEL).then((loadedModel) => {
+
+        	 model = loadedModel;
+
+        	document.querySelector("#predict-button").disabled = false;
+
+    	  });
+
+
+      }
+
+
+       else {
+
+         // No model and de-activate the predict button
+         var model = undefined;
+
+         document.querySelector("#predict-button").disabled = true;
+
+       }
+    }
+
+
     // If SELECTED_MODEL exists, then load the SELECTED MODEL else load DEFAULT_MODEL if one exists
 
     if (typeof SELECTED_MODEL === 'string' && str.trim().length === 0) {
@@ -43,7 +94,7 @@ window.addEventListener('load', (event) => {
 
 
 
-     model = loadModel(DEFAULT_MODEL)
+     // model = loadModel(DEFAULT_MODEL)
 
 /*
     tflite.ObjectDetector.create("https://storage.googleapis.com/2021_tflite_glitch_models/dust-sun-fog-clear-rain-snow-blurry/model-obj-detect-dust-sun-fog-clear-blurry-rain-snow.tflite").then((loadedModel) => {
