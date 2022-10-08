@@ -360,11 +360,10 @@ function hello() {
     }
 
 
-    function loadModel(model_url){
-
+    async function loadModel(model_url){
 
             // Upload Model
-    tflite.ObjectDetector.create(model_url).then((loadedModel) => {
+        tflite.ObjectDetector.create(model_url).then((loadedModel) => {
 
         model = loadedModel;
 
