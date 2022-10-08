@@ -253,7 +253,17 @@ window.addEventListener('load', (event) => {
 
         // resize_imageView()
 
-        window.location.href = "/detection/?image=" + img_url; 
+        /// window.location.href = "/detection/?image=" + img_url; 
+
+        fetch(img_url)
+        .then(res => res.blob()) // Gets the response and returns it as a blob
+        .then(blob => {
+          let objectURL = URL.createObjectURL(blob);
+          let myImage = new Image();
+          myImage.src = objectURL;
+          document.getElementById('selected-image').appendChild(myImage)
+          //document.getElementById('myImg').appendChild(myImage)
+      });
 
         // updateTestImage(img_url)
 
