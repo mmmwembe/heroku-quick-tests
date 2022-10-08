@@ -325,7 +325,8 @@
                             <div class="form-group">
                               <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
                               <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
-                              <input type="hidden" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
+                               <!--input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="{{ model.model_type }}"--> 
+                               <input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="classification"> 
                               <input type="hidden" id="task{{ model.model_index }}" name="deploy" value="deploy">
                               <button type="submit" model_id ="{{ model.model_index }}" class="xDeployModel" style="background:url('/static/project-icons/deploy-model-icon.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                             </div>
@@ -337,7 +338,8 @@
                           <div class="form-group">
                             <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
                             <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
-                            <input type="hidden" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
+                               <!--input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="{{ model.model_type }}"--> 
+                               <input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="classification"> 
                             <input type="hidden" id="task{{ model.model_index }}" name="view" value="view">
                             <button type="submit" model_id ="{{ model.model_index }}" class="xViewModelInfo" style="background:url('/static/project-icons/view-model-info.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                           </div>
@@ -352,7 +354,8 @@
                                 <input type="hidden" name="which-task" value="delete-model">
                                 <input type="hidden" name="model_url" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
                                 <input type="hidden" name="model_name" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
-                                <input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
+                               <!--input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="{{ model.model_type }}"--> 
+                               <input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="classification"> 
                                 <input type="hidden" name="task" id="task{{ model.model_index }}" value="delete">
                             </div>
                         </form> 
@@ -453,7 +456,8 @@
                             <div class="form-group">
                               <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
                               <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
-                              <input type="hidden" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
+                               <!--input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="{{ model.model_type }}"--> 
+                              <input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="object detection"> 
                               <input type="hidden" id="task{{ model.model_index }}" name="deploy" value="deploy">
                               <button type="submit" model_id ="{{ model.model_index }}" class="xDeployModel" style="background:url('/static/project-icons/deploy-model-icon.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                             </div>
@@ -465,7 +469,8 @@
                           <div class="form-group">
                             <input type="hidden" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
                             <input type="hidden" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
-                            <input type="hidden" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
+                         <!--input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="{{ model.model_type }}"--> 
+                         <input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="object detection"> 
                             <input type="hidden" id="task{{ model.model_index }}" name="view" value="view">
                             <button type="submit" model_id ="{{ model.model_index }}" class="xViewModelInfo" style="background:url('/static/project-icons/view-model-info.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                           </div>
@@ -480,7 +485,8 @@
                                 <input type="hidden" name="which-task" value="delete-model">
                                 <input type="hidden" name="model_url" id="model_url{{ model.model_index }}" value="{{ model.model_url }}">
                                 <input type="hidden" name="model_name" id="model_name{{ model.model_index }}" value="{{ model.model_name }}">
-                                <input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="{{ model.model_type }}">
+                                <!--input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="{{ model.model_type }}"--> 
+                                <input type="hidden" name="model_type" id="model_type{{ model.model_index }}" value="object detection"> 
                                 <input type="hidden" name="task" id="task{{ model.model_index }}" value="delete">
                             </div>
                         </form> 
@@ -514,7 +520,7 @@
                         <div id="loading_dot_io_spinner" class="text-danger ldld bare"  style="width: 35px; height:35px; color: #29C44D"></div>
                     </div>
                     <input type="hidden" id="current_folder" name="current_folder" value="">
-                    <input type="hidden" name="which-form" value="images-for-testing-classification">
+                    <input type="hidden" name="which-form" value="images-for-testing-detection">
                 </form> 
 
             </div>
