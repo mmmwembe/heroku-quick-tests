@@ -37,17 +37,17 @@ window.addEventListener('load', (event) => {
 
          SELECTED_MODEL = localStorage.getItem("detection_model_url")
 
-         alert('SELECTED MODEL ' + SELECTED_MODEL)
+         // alert('SELECTED MODEL ' + SELECTED_MODEL)
 
 	  // Load Model
 
-    	    tflite.ObjectDetector.create(SELECTED_MODEL).then((loadedModel) => {
+    	 tflite.ObjectDetector.create(SELECTED_MODEL).then((loadedModel) => {
 
         	 model = loadedModel;
 
         	document.querySelector("#predict-button").disabled = false;
 
-    	  });
+    	});
 
 
 
@@ -57,7 +57,7 @@ window.addEventListener('load', (event) => {
       else if (DEFAULT_MODEL.includes("tflite")) {
         //  Load default model
 
-        alert(' It gets to the default Model')
+        // alert(' It gets to the default Model')
 
            tflite.ObjectDetector.create(DEFAULT_MODEL).then((loadedModel) => {
 
@@ -85,17 +85,7 @@ window.addEventListener('load', (event) => {
     }
 
 
-    // If SELECTED_MODEL exists, then load the SELECTED MODEL else load DEFAULT_MODEL if one exists
 
-    if (typeof SELECTED_MODEL === 'string' && str.trim().length === 0) {
-        // console.log('string is empty');
-        // No model has been selected
-        alert('NO model has been selected')
-
-      } else {
-        // console.log('string is NOT empty');
-        alert(' A model has been selected ')
-      }
 
 
 
