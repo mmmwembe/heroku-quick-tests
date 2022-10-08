@@ -37,7 +37,7 @@ window.addEventListener('load', (event) => {
 
          SELECTED_MODEL = localStorage.getItem("detection_model_url")
 
-         // alert('SELECTED MODEL ' + SELECTED_MODEL)
+         alert('SELECTED MODEL ' + SELECTED_MODEL)
 
 	  // Load Model
 
