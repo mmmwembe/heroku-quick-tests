@@ -205,7 +205,7 @@ th, td {
 
         {{ img_url }}
 
-        post image         {{ post_img_url }}
+        post image         {{ 0}}
 
     </div>
 
@@ -419,6 +419,58 @@ th, td {
     </div>
 
 
+ <!-- Table showing the labels to allow marking whether correct or not-->
+
+    <div class="container" >
+            
+        <div class="row">
+
+            <div class="col-sm">
+
+            </div>
+            <div class="col-sm">
+
+
+
+                <div>
+                    <h2>Grade the Predictions</h2>
+                    <p>
+                      <div class="container" text-center-align>
+                          <table class="table table-striped">
+                              <tr  class="bg-info">
+                                  <th>Show/Hide</th>
+                                  <th>Label</th>
+                                  <th>Confidence</th>
+                                  <th>Correct</th>
+                                  <th>Wrong</th>
+                                  <th>Comment</th>
+                              </tr>
+                          
+                              <tbody id="myTable">
+                                  
+                              </tbody>
+                          </table>
+                    </div>
+                    </p>
+                  </div>
+
+
+
+
+            </div>
+
+            <div class="col-sm">
+  
+            </div>
+
+        </div>
+        
+    </div>
+
+
+
+
+
     <div class="footer">
 
 
@@ -457,6 +509,7 @@ th, td {
                 </div>
 
             </div>
+
         </div>
 
 
@@ -468,7 +521,15 @@ th, td {
     </div>
 
 
-</div>
+   </div>
+
+
+
+
+
+
+
+
 
         <!-- Load TFLite Task Library -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js" type="text/javascript"></script>
