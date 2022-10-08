@@ -52,6 +52,8 @@ window.addEventListener('load', (event) => {
         // remove_bboxes_and_labels()
         removeAllLabels()
 
+        removeAllLabels()
+
         results_JSON = create_json_for_object_detection(predictions)
 
         // alert('results_JSON: ' + JSON.stringify(results_JSON))
