@@ -64,7 +64,7 @@ window.addEventListener('load', (event) => {
         var model_type = $('#model_type' +model_id ).val()
         var task = $('task' +model_id ).val()
 
-        var labels =  $('#detection_labels_data' + model_id).attr('data-data-all-labels');
+        var labels =  $('#detection_labels_data' + model_id).attr('data-all-labels');
 
         alert('detection labels : ' + labels)
 
