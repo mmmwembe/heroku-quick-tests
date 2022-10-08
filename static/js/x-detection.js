@@ -45,7 +45,15 @@ window.addEventListener('load', (event) => {
          LABELS_MODEL_TRAINED_ON = json_obj_detection_model["labels"]
 
          alert('SELECTED MODEL ' + SELECTED_MODEL)
-         alert('SELECTED MODEL LABELS ' +  LABELS_MODEL_TRAINED_ON)
+         // alert('SELECTED MODEL LABELS ' +  LABELS_MODEL_TRAINED_ON)
+
+         const SPLIT_LABELS = LABELS_MODEL_TRAINED_ON.split(/[, ]+/);
+         for (let i = 0; i < SPLIT_LABELS.length; i++) { 
+            const _label = SPLIT_LABELS[i];
+            alert(_label)
+          }
+
+
 
 	  // Load Model
 
