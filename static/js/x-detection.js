@@ -32,7 +32,7 @@ window.addEventListener('load', (event) => {
         ],
 
         columnDefs: [
-            { "width": "20%", "targets": 0 }   // Make first column 20% of the width
+            { width: "20%", targets: 0 }   // Make first column 20% of the width
         ],
         searching: true,ordering: false,lengthChange: false} );
     
