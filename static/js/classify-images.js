@@ -4,11 +4,14 @@ async function start() {
     const resultDiv = document.querySelector(".result");
     const div_active_folder = document.getElementById("upload-folder");
     const form_hidden_field_current_folder = document.getElementById("current_folder");
-    var MODEL_URL = "https://storage.googleapis.com/2021_tflite_glitch_models/stack-plume-dust-classification/model_classifier.tflite"
+    var DEFAULT_MODEL = "https://storage.googleapis.com/2021_tflite_glitch_models/stack-plume-dust-classification/model_classifier.tflite"
+    var SELECTED_MODEL =null
     var model = null
 
 
 
+
+    document.querySelector("#predict-button").disabled = true;
 
     var img_thumbnails = null
     var active_folder = document.getElementById("upload-folder").value;
@@ -26,7 +29,7 @@ async function start() {
     // Load the TFLite model - Load the model from a custom url with other options (optional).
 
     // const model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: MODEL_URL,});
-    model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: MODEL_URL, });
+    // model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: MODEL_URL, });
 
 
 /*
@@ -45,20 +48,39 @@ async function start() {
        
        if (isTFlite  === true)  {
 
-         alert('Yes it contains a tflite model')
+        // alert('Yes it contains a tflite model')
 
-         MODEL_URL = isTFlite
+         SELECTED_MODEL = localStorage.getItem("classification_model_url")
 
-         model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: MODEL_URL, });
+         model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: SELECTED_MODEL, });
+
+         document.querySelector("#predict-button").disabled = false;
 
 
        } 
+
+       else if (isTFlite  === false && DEFAULT_MODEL.includes("tflite")) {
+        //  Load default model
+
+             model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: DEFAULT_MODEL, });
+
+             document.querySelector("#predict-button").disabled = false
+
+      }
+
+
        else {
 
-         alert('NO - it does not contain a tflite model')
-       }
-    }
+         // No model and de-activate the predict button
+         // alert(' It doesnt see any model')
 
+         var model = undefined;
+
+         document.querySelector("#predict-button").disabled = true;
+
+       }
+
+    }
     /*
 
     input.addEventListener("change", preview_image);
@@ -93,7 +115,7 @@ async function start() {
     // check if the new selected classification model has been deployed
 
     var stored_classification_model = getStoredSessionValue("classification_model_url")
-    alert(' stored classification model : ' + stored_classification_model)
+    // alert(' stored classification model : ' + stored_classification_model)
 
 
 
