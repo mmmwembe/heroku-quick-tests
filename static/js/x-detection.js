@@ -26,6 +26,17 @@ window.addEventListener('load', (event) => {
 
     var datatable =  $('#results-datatable').DataTable( {data: LABELS_JSON_ARRAY, columns: [{ title: "#" },{ title: "Label" }], searching: true,ordering: false,lengthChange: false} );
     
+    $('#results-datatable').DataTable({
+        // ...
+        "createdRow": function(row, data, dataIndex) {
+          if (data["column_index"] == "column_value") {
+            $(row).css("background-color", "Black");
+            $(row).addClass("warning");
+          }
+        },
+        // ...
+      });
+
     
     predictButton.disabled = true;
 
