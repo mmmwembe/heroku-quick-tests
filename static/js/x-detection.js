@@ -160,7 +160,8 @@ window.addEventListener('load', (event) => {
                 p.setAttribute('label', label);
                 p.setAttribute('style', 'background-color:#218838;');
 
-                p.innerText =label +  " - with " + confidence + " confidence.";
+                // p.innerText =label +  " - with " + confidence + " confidence.";
+                p.innerText =label +  " - " + confidence;
 
                 p.style = "margin-left: " + currentObject.boundingBox.originX + "px; " + 
                           "margin-top: " + (currentObject.boundingBox.originY - 10) + "px; " + 
