@@ -129,6 +129,14 @@ window.addEventListener('load', (event) => {
     }
 
 
+    function removeAllLabels_Original(){
+        const elements = document.getElementsByClassName("card");
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+    }
+
+
     function removeAllLabels(){
 
         const elements = document.querySelectorAll("[id='p-label']");
@@ -141,6 +149,50 @@ window.addEventListener('load', (event) => {
             elements2[0].parentNode.removeChild(elements2[0]);
         }
 
+
+    }
+
+
+
+
+    function remove_bboxes_and_labels(){
+
+        // Remove labels
+        var elms1 = document.querySelectorAll("[id='p-label']");
+        for(var i = 0; i < elms1.length; i++) 
+        // elms[i].style.display='none'; 
+          elms1[i]?.remove()
+
+        // Remove labels
+        var elms2 = document.querySelectorAll("[id='bbox-highlighter']");
+        for(var i = 0; i < elms2.length; i++) 
+          // elms[i].style.display='none'; 
+            elms2[i]?.remove()        
+
+    }
+
+
+    function update_caption_and_bbox_colors(){
+
+        // Remove labels
+        var elms1 = document.querySelectorAll("[id='p-label']");
+        for(var i = 0; i < elms1.length; i++) 
+        // elms[i].style.display='none'; 
+         // elms1[i]?.remove()
+         alert('p-label '+ elms1[i].getAttribute('label'))
+         // alert('p-label')
+
+        // Remove labels
+        var elms2 = document.querySelectorAll("[id='bbox-highlighter']");
+        for(var i = 0; i < elms2.length; i++) 
+          // elms[i].style.display='none'; 
+          //  elms2[i]?.remove()   
+          // alert('bbox-highlighter')
+          // elms2[i].style["border"] = "10px dashed #C2175B;"
+          elms2[i].setAttribute("border","10px dashed #C2175B")
+
+          
+          // alert('highligther ' + elms2[i].getAttribute('label'))     
 
     }
 
@@ -178,6 +230,36 @@ window.addEventListener('load', (event) => {
 
         var img_url = e.target.src
 
+       /*
+        let data = new FormData()
+        data.append('image_url' : img_url)
+        data.append('description': 'Posting form object')
+        fetch("/detection/", {
+            "method": "POST",
+            "body": data,
+        });
+
+        */
+
+        // $("#imageView").load(" #imageView");
+
+        // img.src = img_url +"?"+ + new Date().getTime();
+
+        // var img_height = $("#selected-image").height();
+        // var img_width = $("#selected-image").width();
+
+        // $("#imageView").css("width", img_width);
+        // $("#imageView").css("height", img_height);
+
+
+        // $(".main-image").load(" .main-image")
+
+        // get_size_of_image_vs_imageview()
+
+        // resize_imageView()
+
+        /// window.location.href = "/detection/?image=" + img_url; 
+
         fetch(img_url)
         .then(res => res.blob()) // Gets the response and returns it as a blob
         .then(blob => {
@@ -188,6 +270,10 @@ window.addEventListener('load', (event) => {
           //document.getElementById('myImg').appendChild(myImage)
           img.src = objectURL;
       });
+
+        // updateTestImage(img_url)
+
+
 
 
    })
@@ -291,13 +377,6 @@ $('.xWrongBtn').on('click', function(e){
 
 }); 
 
-
-
-function hello() {
-
-    alert('Hello from the check box')
-    
-}
 
 
 
