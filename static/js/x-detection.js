@@ -30,10 +30,14 @@ window.addEventListener('load', (event) => {
             { id:"title",   header:{ text:"#", css:{ "background":"#AFA"}} },
             { id:"title",   header:{ text:"Label", css:"my_datatable_style"} }
         ],
+
+        columnDefs: [
+            { "width": "20%", "targets": 0 }   // Make first column 20% of the width
+        ],
         searching: true,ordering: false,lengthChange: false} );
     
 
-        
+
     predictButton.disabled = true;
 
     // Upload Model
