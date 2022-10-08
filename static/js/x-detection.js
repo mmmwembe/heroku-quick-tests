@@ -523,7 +523,7 @@ function hello() {
         labelHeader.style = "position: absolute; top: "  + (top - 20) + "px;" +  
                                                 " left: " + left + "px;"  + 
                                                 " width: " + width +  "px;" + 
-                                                " height: 20px;" + "color: white; padding: 0 0px; background-color:" + label_color + "; border: 3px solid  " + label_color + "; cursor: pointer;"
+                                                " height: 20px; line-height: 20px; color: white; padding: 0 0px; background-color:" + label_color + "; border: 3px solid  " + label_color + "; cursor: pointer;"
         labelHeader.innerHTML ="<strong> "+ label + "-" + confidence + " </strong>";
         labelCard.append(labelHeader);
 
