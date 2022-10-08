@@ -32,10 +32,12 @@ window.addEventListener('load', (event) => {
     if (localStorage.getItem("detection_model_url")) {
 
         var isTFlite = localStorage.getItem("detection_model_url").includes("tflite");
+
+        alert('isTFLite model ' + isTFlite )
        
        if (isTFlite  === true)  {
 
-         alert('Yes it contains a tflite model')
+      
 
          SELECTED_MODEL = isTFlite
 
@@ -57,6 +59,8 @@ window.addEventListener('load', (event) => {
       else if (DEFAULT_MODEL.includes("tflite")) {
         //  Load default model
 
+        alert(' It gets to the default Model')
+
            tflite.ObjectDetector.create(DEFAULT_MODEL).then((loadedModel) => {
 
         	 model = loadedModel;
@@ -72,11 +76,14 @@ window.addEventListener('load', (event) => {
        else {
 
          // No model and de-activate the predict button
+         alert(' It doesnt see any model')
+
          var model = undefined;
 
          document.querySelector("#predict-button").disabled = true;
 
        }
+
     }
 
 
