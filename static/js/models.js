@@ -64,6 +64,10 @@ window.addEventListener('load', (event) => {
         var model_type = $('#model_type' +model_id ).val()
         var task = $('task' +model_id ).val()
 
+        var labels =  $('#detection_labels_data' + model_id).attr('data-data-all-labels');
+
+        alert('detection labels : ' + labels)
+
         alert('model_id : ' + model_id + '  model_name : ' + model_name + ' model_type :' + model_type  + ' task ' + task)
         alert(' Changing Model being Deployed....')
         
