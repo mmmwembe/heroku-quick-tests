@@ -24,7 +24,7 @@ window.addEventListener('load', (event) => {
     // results_JSON = JSON_TEST
 
 
-    var datatable =  $('#results-datatable').DataTable( {data: LABELS_JSON_ARRAY, columns: [{ title: "#" },{ title: "Label" },{ title: "Color" }], searching: true,ordering: false,lengthChange: false} );
+    var datatable =  $('#results-datatable').DataTable( {data: LABELS_JSON_ARRAY, columns: [{ title: "#" },{ title: "Label" }], searching: true,ordering: false,lengthChange: false} );
     
     
     predictButton.disabled = true;
