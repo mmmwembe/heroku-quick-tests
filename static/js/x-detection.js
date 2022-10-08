@@ -39,7 +39,7 @@ window.addEventListener('load', (event) => {
 
       
 
-         SELECTED_MODEL = isTFlite
+         SELECTED_MODEL = localStorage.getItem("detection_model_url")
 
 	  // Load Model
 
