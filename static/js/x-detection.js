@@ -522,10 +522,10 @@ function hello() {
 
         const labelHeader = document.createElement('label')
         labelHeader.className="label-header"
-        labelHeader.style = "position: absolute; top: "  + (top - 20) + "px;" +  
+        labelHeader.style = "position: absolute; top: "  + (top - 25) + "px;" +  
                                                 " left: " + left + "px;"  + 
                                                 " width: " + width +  "px;" + 
-                                                " height: 20px; line-height: 20px; color: white; padding: 0 0px; background-color:" + label_color + "; border: 3px solid  " + label_color + "; cursor: pointer;"
+                                                " height: 25px; line-height: 25px; color: white; padding: 0 0px; background-color:" + label_color + "; border: 3px solid  " + label_color + "; cursor: pointer;  text-align: center;"
         labelHeader.innerHTML ="<strong> "+ label + "-" + confidence + " </strong>";
         labelCard.append(labelHeader);
 
