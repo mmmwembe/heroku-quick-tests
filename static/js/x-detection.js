@@ -23,21 +23,17 @@ window.addEventListener('load', (event) => {
 
     // results_JSON = JSON_TEST
 
+    // columns: [{ title: "#" },{ title: "Label" }], 
 
-    var datatable =  $('#results-datatable').DataTable( {data: LABELS_JSON_ARRAY, columns: [{ title: "#" },{ title: "Label" }], searching: true,ordering: false,lengthChange: false} );
+    var datatable =  $('#results-datatable').DataTable( {data: LABELS_JSON_ARRAY, 
+        columns:[
+            { id:"title",   header:{ text:"#", css:{ "background":"#AFA"}} },
+            { id:"title",   header:{ text:"Label", css:"my_datatable_style"} }
+        ],
+        searching: true,ordering: false,lengthChange: false} );
     
-    $('#results-datatable').DataTable({
-        // ...
-        "createdRow": function(row, data, dataIndex) {
-          if (data["column_index"] == "column_value") {
-            $(row).css("background-color", "Black");
-            $(row).addClass("warning");
-          }
-        },
-        // ...
-      });
 
-    
+        
     predictButton.disabled = true;
 
     // Upload Model

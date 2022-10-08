@@ -193,6 +193,14 @@ th, td {
     overflow-y: scroll;
 }
 
+.my_datatable_style{
+        background-color:#FFAAAA;
+        background:#009966;
+        color:white;
+        font-weight:bold;
+}
+
+
 </style>
 
 </head>
@@ -351,7 +359,30 @@ th, td {
             -->
 
             <div>
-                <table id="results-datatable" class="table table-striped table-bordered" style="border: 1px solid black; border-collapse: collapse;" width="70%"></table>
+                <table id="results-datatable" class="table table-striped table-bordered" style="border: 1px solid black; border-collapse: collapse;" width="70%">
+                    <thead>
+                        <tr>
+                            <th>#</th>                            
+                            <th>Label</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--
+                        <tr>
+                            <td>1</td>                            
+                            <td>dust</td>
+                        </tr>
+                         -->
+            
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>                            
+                            <th>Label</th>
+                        </tr>
+                    </tfoot>
+                
+                </table>
             </div>
 
 
