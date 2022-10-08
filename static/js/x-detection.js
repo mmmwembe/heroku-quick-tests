@@ -159,6 +159,7 @@ window.addEventListener('load', (event) => {
         //removeAllLabels()
 
         removeAllCustomLabels()
+        removeAllCustomLabels()
 
         results_JSON = create_json_for_object_detection(predictions)
 
@@ -314,7 +315,8 @@ window.addEventListener('load', (event) => {
         img_thumbnails[i].addEventListener("click", function(e) {
 
         // First remove previous labels
-        removeAllLabels()
+        // removeAllLabels()
+        removeAllCustomLabels()
         //remove_bboxes_and_labels()
  
         var img = document.querySelector("#selected-image");
