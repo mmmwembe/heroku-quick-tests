@@ -263,6 +263,7 @@ window.addEventListener('load', (event) => {
           myImage.src = objectURL;
           document.getElementById('selected-image').appendChild(myImage)
           //document.getElementById('myImg').appendChild(myImage)
+          img.src = objectURL;
       });
 
         // updateTestImage(img_url)
