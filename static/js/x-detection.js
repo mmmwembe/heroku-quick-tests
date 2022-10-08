@@ -242,13 +242,13 @@ function buildTable(data){
                         </td>
 
                         <td>
-                            <div class="form-group">
-                                <button type="submit" id ="${data[i][0]}" label_index ="${data[i][0]}" class="xWrongBtn" style="background:url('/static/project-icons/icons8-cross-mark-48.png'); width: 30px; height: 30px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
-                            </div></form>
+
+                          <button type="submit" id ="${data[i][0]}" label_index ="${data[i][0]}" class="xWrongBtn" style="background:url('/static/project-icons/icons8-cross-mark-48.png'); width: 30px; height: 30px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+
                         </td>
 
                         <td>
-                        <input type="text" id="labelComment${data[i][0]}" name="labelComment">
+                        <input type="text" id="${data[i][0]}" name="labelComment">
                         </td>
 
                   </tr>`
@@ -296,7 +296,7 @@ $('.xWrongBtn').on('click', function(e){
 function hello() {
 
     alert('Hello from the check box')
-    
+
 }
 
 
