@@ -97,6 +97,12 @@ window.addEventListener('load', (event) => {
         }
     }
 
+    function getFileExtension(file_path){
+
+        return file_path.split('.').pop();
+        
+    }
+
 
 
 
