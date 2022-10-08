@@ -323,13 +323,13 @@ function buildTable(data){
 
                         <td>
                             <div class="form-group">
-                                <button type="submit" id="correctBtn${data[i][0]}" label_index ="${data[i][0]}" class="xCorrectBtn" style="background:url('/static/project-icons/icons8-checkmark-64.png'); width: 30px; height: 30px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+                                <button type="submit" id="${data[i][0]}" label_index ="${data[i][0]}" class="xCorrectBtn" style="background:url('/static/project-icons/icons8-checkmark-64.png'); width: 30px; height: 30px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                             </div></form>
                         </td>
 
                         <td>
                             <div class="form-group">
-                                <button type="submit" id ="wrongBtn${data[i][0]}" label_index ="${data[i][0]}" class="xWrongBtn" style="background:url('/static/project-icons/icons8-cross-mark-48.png'); width: 30px; height: 30px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+                                <button type="submit" id ="${data[i][0]}" label_index ="${data[i][0]}" class="xWrongBtn" style="background:url('/static/project-icons/icons8-cross-mark-48.png'); width: 30px; height: 30px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                             </div></form>
                         </td>
 
@@ -353,11 +353,12 @@ $('.xCorrectBtn').on('click', function(e){
 
 
     var label_index = $(this).attr('label_index')
-    var label = $('#label' +label_index ).val()
-    var confidence = $('#confidence' + label_index ).val()
+    // var label = $('#label' +label_index ).val()
+    // var confidence = $('#confidence' + label_index ).val()
+    alert('Correct Btn - label_index ' + label_index)
 
 
-    alert('button clicked: CORRECT '  + '  label index : ' + label_index  + ' confidence : ' + confidence)
+    //alert('button clicked: CORRECT '  + '  label index : ' + label_index  + ' confidence : ' + confidence)
 
 }); 
 
@@ -366,11 +367,13 @@ $('.xWrongBtn').on('click', function(e){
 
 
     var label_index = $(this).attr('label_index')
-    var label = $('#label' +label_index ).val()
-    var confidence = $('#confidence' + label_index ).val()
+    //var label = $('#label' +label_index ).val()
+    //var confidence = $('#confidence' + label_index ).val()
+
+    alert('Wrong button - label index ' + label_index)
     
 
-    alert('button clicked: WRONG '  + '  label index : ' + label_index  + ' confidence : ' + confidence)
+    // alert('button clicked: WRONG '  + '  label index : ' + label_index  + ' confidence : ' + confidence)
 
 }); 
 
