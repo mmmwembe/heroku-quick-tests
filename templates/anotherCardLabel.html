@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Label</title>
+
+    <style>
+
+     div.wrapper {
+        position: relative;
+        border: 2px solid cornflowerblue;
+        margin-top: 20px;
+        padding: 20px 10px 10px;
+      }
+      div.wrapper label {
+        color: white;
+        line-height: 20px;
+        padding: 0 5px;
+        position: absolute;
+        background-color: cornflowerblue;
+        top: -10px;
+        left: 10px;
+      }
+
+    </style>
+</head>
+<link href="/static/js/jquery.toolbar.js" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/static/js/jquery.toolbar.js"></script>
+<body>
+
+    <div class="container">
+
+
+        <div class="row" style="margin-top: 200px;">
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm">
+
+            <button id="reloadBtn" style="width:150px; height: 100px; background-color: green;">Reload Image</button>
+         
+          </div>
+
+          <div class="col-sm">
+
+
+
+                     <!--div id="imageView" style="position: relative;float: left; margin: 0px; cursor: pointer; border:3px solid yellow;"-->
+                    <div id="imageView" style="position: relative; border:3px solid yellow;">
+                    
+                        <img id="selected-image" class="main-image" src="/static/project-test-images/dust/clean factory-0011.jpg" style="border:5px double black;" />
+
+                    </div>
+                        
+          </div>
+
+          <div class="col-sm">
+            2
+          </div>
+        </div>
+      </div>
+
+
+      
+      
+      <!--
+      
+      <div class="customLabel">
+        <label style="position: absolute; top: 30px;left: 10px; height: 20px; width: 200px;  color: white; padding: 0 0px; background-color: red; border: 3px solid red;"><strong> Dust - 90% </strong></label>
+        <div style="position: absolute; top: 50px; ; left:10px; width: 200px;  height: 100px; border: 3px solid red; background-color: transparent; z-index: 2;">
+        </div>
+      </div>
+    -->
+
+
+
+      <script>
+
+
+window.addEventListener("load", function(){
+
+
+    const main_image = document.getElementById('selected-image');
+    const image_view = document.getElementById('imageView');
+
+
+
+
+    testLabels()
+
+
+
+
+
+
+
+
+
+      function testLabels(){
+
+        // TESTING THE LABELING
+
+        // 1) Add Labels to Image
+        addLabels();
+
+        // 2) Remove labels after 5 seconds
+        //setTimeout(remove_labelCards2, 5000);
+
+        // setTimeout(removeAllLabels,5000)
+
+        // 3) Add labels after another 10 seconds
+
+        //setTimeout(addLabels, 15000);
+
+        // 4) Remove labels after another 10 seconds
+        // setTimeout(remove_labelCards, 25000);
+
+        }
+
+
+        function randomInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+
+        function removeAllLabels(){
+            const elements = document.getElementsByClassName("customLabel");
+            while(elements.length > 0){
+                elements[0].parentNode.removeChild(elements[0]);
+            }
+        }
+
+
+        function addLabels(){
+
+        for (let i = 0; i < 3; i++) {
+
+            var mylabel = LabelCard()
+
+            image_view.appendChild(mylabel)
+
+         }
+        }
+
+
+        function LabelCard(){
+
+        var colors = ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
+
+        var random_color = colors[Math.floor(Math.random() * colors.length)].toString() + ';';
+
+        var labels = ['Tomato', 'Popcorn', 'Sugar','Mango', 'Kandolo', 'Football'];
+        var random_label = labels[Math.floor(Math.random() * labels.length)].toString();
+
+        var label_num = Math.floor(Math.random() * 100)
+
+
+        var top = randomInteger(50, 500).toString();
+        var left = randomInteger(20, 1000).toString();
+        var width = randomInteger(300, 500).toString(); 
+        var height = randomInteger(150, 800).toString(); 
+
+        var label = "label" + label_num
+
+
+
+        const labelCard = document.createElement('div')
+        labelCard.className ="customLabel"
+        labelCard.id = label
+        labelCard.setAttribute("label_name", "customLabel"+ label_num)
+        labelCard.setAttribute("label_index", label_num)
+        labelCard.setAttribute("label", label)
+
+        const labelHeader = document.createElement('label')
+        labelHeader.className="label-header"
+        labelHeader.style = "position: absolute; top: "  + (top - 20) + "px;" +  
+                                                " left: " + left + "px;"  + 
+                                                " width: " + width +  "px;" + 
+                                                " height: 20px;" + "color: white; padding: 0 0px; background-color:" + random_color + "; border: 3px solid  " + random_color + "; cursor: pointer;"
+        labelHeader.innerHTML ="<strong> "+ random_label + " </strong>";
+        labelCard.append(labelHeader);
+
+        const boundingBox = document.createElement('div')
+        boundingBox.style = "position: absolute; top: " + top + "px; ; left: "+  left + "px; width: " + width + "px;  height: " + height + "px; border: 3px solid " + random_color + "; background-color: transparent; z-index: 2; cursor: pointer;"
+        labelCard.append(boundingBox);
+
+        labelCard.addEventListener("click", function(){
+
+            // alert('You clicked a label ' + this.id)
+
+            $(this).attr('id');
+
+            var label_name =  labelCard.getAttribute("label_name")
+            // alert('label name ' + label_name)
+
+            var label = labelCard.labelHeader.getAttribute("label_name")
+
+            $(this).fadeOut();
+            $(this).fadeIn();
+           // $(this).att(this.id);
+
+
+
+
+        });
+
+
+
+
+        labelCard.addEventListener('mouseenter', (e) => {
+
+            $(this).fadeOut();
+            $(this).fadeIn();
+
+        });
+
+        labelCard.addEventListener('mouseenter', (e) => {
+
+            $(this).fadeOut();
+            $(this).fadeIn();
+ 
+        });
+
+        /*
+
+        const tooltipbar = document.createElement('div')
+        tooltipbar.id ="toolbar-options"
+        tooltipbar.className ="hidden"
+
+        const anchor1 = document.getElementById('anchor1')
+        anchor1.href ="#"
+        anchor1.className ="fa fa-plane"
+        const anchor2 = document.getElementById('anchor2')
+        anchor2.href ="#"
+        anchor2.className ="fa fa-car"
+        const anchor3 = document.getElementById('anchor3')
+        anchor3.href ="#"
+        anchor3.className ="fa fa-bicycle"
+
+        tooltipbar.append(anchor1)
+        tooltipbar.append(anchor2)
+        tooltipbar.append(anchor3)
+
+        labelCard.append(tooltipbar)
+
+        */
+
+        return labelCard
+
+       }
+
+
+
+
+
+
+
+
+       function LabelCard(label_num, label_color, label, top, left, width, height){
+
+        const labelCard = document.createElement('div')
+        labelCard.className ="customLabel"
+        labelCard.id = label
+        labelCard.setAttribute("label_name", "customLabel"+ label_num)
+        labelCard.setAttribute("label_index", label_num)
+        labelCard.setAttribute("label", label)
+
+        const labelHeader = document.createElement('label')
+        labelHeader.className="label-header"
+        labelHeader.style = "position: absolute; top: "  + (top - 20) + "px;" +  
+                                                " left: " + left + "px;"  + 
+                                                " width: " + width +  "px;" + 
+                                                " height: 20px;" + "color: white; padding: 0 0px; background-color:" + label_color + "; border: 3px solid  " + label_color + "; cursor: pointer;"
+        labelHeader.innerHTML ="<strong> "+ label + " </strong>";
+        labelCard.append(labelHeader);
+
+        const boundingBox = document.createElement('div')
+        boundingBox.style = "position: absolute; top: " + top + "px; ; left: "+  left + "px; width: " + width + "px;  height: " + height + "px; border: 3px solid " + label_color + "; background-color: transparent; z-index: 2; cursor: pointer;"
+        labelCard.append(boundingBox);
+
+        labelCard.addEventListener("click", function(){
+
+            // alert('You clicked a label ' + this.id)
+            $(this).attr('id');
+
+            var label_name =  labelCard.getAttribute("label_name")
+            // alert('label name ' + label_name)
+            var label = labelCard.labelHeader.getAttribute("label_name")
+
+            $(this).fadeOut();
+            $(this).fadeIn();
+
+        });
+
+
+        labelCard.addEventListener('mouseenter', (e) => {
+
+            $(this).fadeOut();
+            $(this).fadeIn();
+
+        });
+
+        labelCard.addEventListener('mouseenter', (e) => {
+
+            $(this).fadeOut();
+            $(this).fadeIn();
+
+        });
+
+
+        return labelCard
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
+      </script>
+    
+</body>
+</html>

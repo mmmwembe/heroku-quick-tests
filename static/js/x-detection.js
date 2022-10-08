@@ -10,6 +10,9 @@ window.addEventListener('load', (event) => {
     var LABELS_MODEL_TRAINED_ON=""
     var LABELS_JSON_ARRAY =[]
 
+    var colors = ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
+    var random_color = colors[Math.floor(Math.random() * colors.length)].toString() + '';
+
     /*
     JSON_TEST = [
         [1, "Chicken", "90.4%"],
@@ -151,9 +154,11 @@ window.addEventListener('load', (event) => {
 
         // Remove bounding boxes and labels from previous frame
         // remove_bboxes_and_labels()
-        removeAllLabels()
+        // removeAllLabels()
 
-        removeAllLabels()
+        //removeAllLabels()
+
+        removeAllCustomLabels()
 
         results_JSON = create_json_for_object_detection(predictions)
 
@@ -173,6 +178,44 @@ window.addEventListener('load', (event) => {
 
     
     function create_json_for_object_detection(preds){
+
+        var jsonArr = [];
+        var json_object
+
+        for (let i = 0; i < preds.length; i++) {
+
+            const currentObject = preds[i];
+
+            if (currentObject.classes[0].probability > 0.5) {        
+            // if (currentObject.classes[0].probability > threshold) {
+
+                label = currentObject.classes[0].className
+                confidence = Math.round(parseFloat(currentObject.classes[0].probability) * 100) + "%";
+
+                // Bounding Box dimensions
+                top =currentObject.boundingBox.originY 
+                left = currentObject.boundingBox.originX
+                width = currentObject.boundingBox.width
+                height=currentObject.boundingBox.height 
+
+                label_num = i
+                label_color = colors[Math.floor(Math.random() * colors.length)].toString();
+
+                var newLabel = LabelCard(label_num, label_color, label, confidence, top, left, width, height)
+               
+                json_object = [i,label, confidence]; 
+                jsonArr.push(json_object);
+
+                imageView.appendChild(newLabel);
+
+            }
+        }
+
+        return jsonArr 
+    }
+
+
+    function create_json_for_object_detection_ORIGINAL(preds){
 
         var jsonArr = [];
         var json_object
@@ -228,7 +271,6 @@ window.addEventListener('load', (event) => {
 
         return jsonArr 
     }
-
 
     function removeAllLabels(){
 
@@ -459,6 +501,82 @@ function hello() {
 
     }
 
+
+
+
+    //-------------------------------------------------------------------------------
+    //   New Labeling Function
+    //------------------------------------------------------------------------------
+
+    
+    function LabelCard(label_num, label_color, label, confidence, top, left, width, height){
+
+        const labelCard = document.createElement('div')
+        labelCard.className ="customLabel"
+        labelCard.id = label
+        labelCard.setAttribute("label_name", "customLabel"+ label_num)
+        labelCard.setAttribute("label_index", label_num)
+        labelCard.setAttribute("label", label)
+
+        const labelHeader = document.createElement('label')
+        labelHeader.className="label-header"
+        labelHeader.style = "position: absolute; top: "  + (top - 20) + "px;" +  
+                                                " left: " + left + "px;"  + 
+                                                " width: " + width +  "px;" + 
+                                                " height: 20px;" + "color: white; padding: 0 0px; background-color:" + label_color + "; border: 3px solid  " + label_color + "; cursor: pointer;"
+        labelHeader.innerHTML ="<strong> "+ label + "-" + confidence + " </strong>";
+        labelCard.append(labelHeader);
+
+        const boundingBox = document.createElement('div')
+        boundingBox.style = "position: absolute; top: " + top + "px; ; left: "+  left + "px; width: " + width + "px;  height: " + height + "px; border: 3px solid " + label_color + "; background-color: transparent; z-index: 2; cursor: pointer;"
+        labelCard.append(boundingBox);
+
+        labelCard.addEventListener("click", function(){
+
+            // alert('You clicked a label ' + this.id)
+            $(this).attr('id');
+
+            var label_name =  labelCard.getAttribute("label_name")
+            // alert('label name ' + label_name)
+            var label = labelCard.labelHeader.getAttribute("label_name")
+
+            $(this).fadeOut();
+            $(this).fadeIn();
+
+        });
+
+
+        labelCard.addEventListener('mouseenter', (e) => {
+
+            $(this).fadeOut();
+            $(this).fadeIn();
+
+        });
+
+        labelCard.addEventListener('mouseenter', (e) => {
+
+            $(this).fadeOut();
+            $(this).fadeIn();
+
+        });
+
+
+        return labelCard
+
+        }
+
+
+        // Remove all Custom Labels
+
+        function removeAllCustomLabels(){
+            const elements = document.getElementsByClassName("customLabel");
+            while(elements.length > 0){
+                elements[0].parentNode.removeChild(elements[0]);
+            }
+        }
+
+
+ 
 
 
 
