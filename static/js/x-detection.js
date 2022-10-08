@@ -9,8 +9,9 @@ window.addEventListener('load', (event) => {
     var SELECTED_MODEL =""
     var LABELS_MODEL_TRAINED_ON=""
     var LABELS_JSON_ARRAY =[]
+    var LABELS_COLOR_MAP = {}
 
-    var colors = ['#218838','#065FD4','#01ACF4','#FF0000', '#232D38','#81BC06','#F35325','#FFBA08'] // ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
+    var colors = ['#218838','#065FD4','#01ACF4','#FF0000', '#232D38','#81BC06','#F35325','#FFBA08','#3150CC'] // ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
     var random_color = colors[Math.floor(Math.random() * colors.length)].toString() + '';
 
     /*
@@ -59,14 +60,17 @@ window.addEventListener('load', (event) => {
 
          LABELS_MODEL_TRAINED_ON = json_obj_detection_model["labels"]
 
-         alert('SELECTED MODEL ' + SELECTED_MODEL)
+         // alert('SELECTED MODEL ' + SELECTED_MODEL)
          // alert('SELECTED MODEL LABELS ' +  LABELS_MODEL_TRAINED_ON)
+         LABELS_COLOR_MAP = {}
 
          const SPLIT_LABELS = LABELS_MODEL_TRAINED_ON.split(/[, ]+/);
 
          var label_json_object
          for (let i = 0; i < SPLIT_LABELS.length; i++) { 
             const _label = SPLIT_LABELS[i];
+
+            LABELS_COLOR_MAP[_label] = generateDarkColor() // Use colors from colors array to ensure colors are always the same for the given label (TODO)
 
             label_json_object = [i+1,_label]; 
             LABELS_JSON_ARRAY.push(label_json_object);
@@ -202,7 +206,7 @@ window.addEventListener('load', (event) => {
                 label_num = i
                 label_color = colors[Math.floor(Math.random() * colors.length)].toString();
 
-                var newLabel = LabelCard(label_num, label_color, label, confidence, top, left, width, height)
+                var newLabel = LabelCard(label_num,LABELS_COLOR_MAP, label, confidence, top, left, width, height)
                
                 json_object = [i,label, confidence]; 
                 jsonArr.push(json_object);
@@ -511,7 +515,9 @@ function hello() {
     //------------------------------------------------------------------------------
 
     
-    function LabelCard(label_num, label_color, label, confidence, top, left, width, height){
+    function LabelCard(label_num, labels_color_map, label, confidence, top, left, width, height){
+
+        var label_color = labels_color_map[label]
 
         const labelCard = document.createElement('div')
         labelCard.className ="customLabel"
@@ -577,6 +583,16 @@ function hello() {
             }
         }
 
+
+        // Generate Dark Colors
+
+        function generateDarkColor() {
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += Math.floor(Math.random() * 10);
+            }
+            return color;
+         }
 
  
 

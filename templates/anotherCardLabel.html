@@ -87,6 +87,40 @@ window.addEventListener("load", function(){
     const main_image = document.getElementById('selected-image');
     const image_view = document.getElementById('imageView');
 
+    var colors = ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
+    var labels = ['Tomato', 'Popcorn', 'Sugar','Mango', 'Kandolo', 'Football'];
+    var LABEL_COLOR_MAP ={}
+
+    for (let i = 0; i < colors.length; i++) {
+
+        var _label = labels[i]
+        var _color = colors[i]
+
+        LABEL_COLOR_MAP[_label] = _color
+
+        // alert(' label : '+ key +  ' color ' + value)
+
+
+     }
+
+
+     // alert('LAB COLOR MAP : ' + JSON.stringify(LABEL_COLOR_MAP))
+
+     labels = ['Tomato', 'Popcorn', 'Sugar','Mango', 'Kandolo', 'Football'];
+
+     for (let i = 0; i < labels.length; i++) {
+
+            var _label = labels[i]
+            var _color = LABEL_COLOR_MAP[_label]
+
+       alert(' label : '+ _label +  ' color ' + _color)
+     }
+
+
+
+
+
+
 
 
 
@@ -315,6 +349,15 @@ window.addEventListener("load", function(){
         return labelCard
 
         }
+
+
+        function generateDarkColor() {
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += Math.floor(Math.random() * 10);
+            }
+            return color;
+         }
 
 
 
