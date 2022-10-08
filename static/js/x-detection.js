@@ -318,18 +318,18 @@ function buildTable(data){
         //<td><a id="${data[i].index}" href="#"  onclick="href_onclick(this.id)">${data[i].index}</a></td>
         var row = `<tr class = "align-middle">        
                         <td><button id="${data[i][0]}" onclick="hello()" type="button" class="btn btn-outline-dark">${data[i][0]}</button></td>
-                        <td>${data[i][1]}</td>
-                        <td>${data[i][2]}</td>
+                        <td id="label${data[i][0]}">${data[i][1]}</td>
+                        <td id="confidence${data[i][0]}">${data[i][2]}</td>
 
                         <td>
                             <div class="form-group">
-                                <button type="submit" label_index ="${data[i][0]}" class="xCorrectBtn" style="background:url('/static/project-icons/icons8-checkmark-64.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+                                <button type="submit" id="correctBtn${data[i][0]}" label_index ="${data[i][0]}" class="xCorrectBtn" style="background:url('/static/project-icons/icons8-checkmark-64.png'); width: 30px; height: 30px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                             </div></form>
                         </td>
 
                         <td>
                             <div class="form-group">
-                                <button type="submit" label_index ="${data[i][0]}" class="xWrongBtn" style="background:url('/static/project-icons/icons8-cross-mark-48.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+                                <button type="submit" id ="wrongBtn${data[i][0]}" label_index ="${data[i][0]}" class="xWrongBtn" style="background:url('/static/project-icons/icons8-cross-mark-48.png'); width: 30px; height: 30px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                             </div></form>
                         </td>
 
@@ -345,6 +345,34 @@ function buildTable(data){
 }
 
 
+// ----------------------------------------------------------
+//     Manipulating Data from New Table
+//------------------------------------------------------------
+
+$('.xCorrectBtn').on('click', function(e){
+
+
+    var label_index = $(this).attr('label_index')
+    var label = $('#label' +label_index ).val()
+    var confidence = $('#confidence' + label_index ).val()
+
+
+    alert('button clicked: CORRECT '  + '  label index : ' + label_index  + ' confidence : ' + confidence)
+
+}); 
+
+
+$('.xWrongBtn').on('click', function(e){
+
+
+    var label_index = $(this).attr('label_index')
+    var label = $('#label' +label_index ).val()
+    var confidence = $('#confidence' + label_index ).val()
+    
+
+    alert('button clicked: WRONG '  + '  label index : ' + label_index  + ' confidence : ' + confidence)
+
+}); 
 
 
 
