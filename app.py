@@ -335,12 +335,15 @@ def model_info_array(models_urls, model_type):
   new_models_array = []
   index = 0
   for _model_url in models_urls:
-      
-    # labels = get_labels_from_tflite_model_zipfile(_model_url)
-    path_to_zip_file =_model_url
-    tmp_model_dir = user_local_models_tmp_dir
-    path_to_labelmap = getLabelFileFromClassificationModel(path_to_zip_file, tmp_model_dir)
-    labels = convertTxtLabelFileToLabels(path_to_labelmap)
+ 
+    if (model_type =="object detection"):
+        labels = get_labels_from_tflite_model_zipfile(_model_url)
+    else:
+        labels=''
+    #path_to_zip_file =_model_url
+    #tmp_model_dir = user_local_models_tmp_dir
+    #path_to_labelmap = getLabelFileFromClassificationModel(path_to_zip_file, tmp_model_dir)
+    #labels = convertTxtLabelFileToLabels(path_to_labelmap)
     
     model_item ={
       'labels': labels, 
@@ -353,7 +356,7 @@ def model_info_array(models_urls, model_type):
     new_models_array.append(model_item)
     
     # Delete all contents of the temp model directory to prepare for the next tflite to be unzipped to this location
-    deleteFilesInTempDir(tmp_model_dir)
+    #deleteFilesInTempDir(tmp_model_dir)
     
     index +=1
 
