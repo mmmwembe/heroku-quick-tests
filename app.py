@@ -335,11 +335,12 @@ def model_info_array(models_urls, model_type):
   new_models_array = []
   index = 0
   for _model_url in models_urls:
- 
-    if (model_type =="object detection"):
+      
+    try:
         labels = get_labels_from_tflite_model_zipfile(_model_url)
-    else:
+    except:
         labels=''
+        pass
     #path_to_zip_file =_model_url
     #tmp_model_dir = user_local_models_tmp_dir
     #path_to_labelmap = getLabelFileFromClassificationModel(path_to_zip_file, tmp_model_dir)
