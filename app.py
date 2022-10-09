@@ -633,7 +633,7 @@ def models():
 	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
 	target_file_types_array = ["tflite"]
  
-	detection_models_info =[]
+	detection_models_urls=[]
 	detection_models_info =[]
 	try:
 		detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, detection_sub_directory_path, target_file_types_array)
@@ -661,7 +661,7 @@ def models_upload():
 	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
 	target_file_types_array = ["tflite"]
  
-	detection_models_info =[]
+	detection_models_urls =[]
 	detection_models_info =[]
 	try:
 		detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, detection_sub_directory_path, target_file_types_array)
