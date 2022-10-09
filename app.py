@@ -21,6 +21,8 @@ from io import BytesIO
 from urllib.request import urlopen
 from io import BytesIO
 from zipfile import ZipFile
+import os
+import glob
 
 
 
@@ -154,6 +156,35 @@ def get_images_list(dir):
       images_list_filtered.append(image_path) 
   return images_list_filtered
 
+def getLabelFileFromClassificationModel(path_to_zip_file, tmp_dir_to_extract_to):
+  # Create a ZipFile Object and load sample.zip in it
+  with ZipFile(path_to_zip_file, 'r') as zipObj:
+    # Get a list of all archived file names from the zip
+    listOfFileNames = zipObj.namelist()
+    # Iterate over the file names
+    for fileName in listOfFileNames:
+      # Check filename endswith csv
+      if fileName.endswith('.txt'):
+        # Extract a single file from zip
+        zipObj.extract(fileName, tmp_dir_to_extract_to)
+        path_to_labelmap = os.path.join(tmp_dir_to_extract_to,fileName)
+           #print(path_to_labelmap)
+  return path_to_labelmap
+
+def convertTxtLabelFileToLabels(path_to_labelmap):
+  comma_seperated_labels =''
+  a_file = open(path_to_labelmap)
+  for line in a_file:
+    comma_seperated_labels+=line
+    # print(comma_seperated_labels)
+    labels = comma_seperated_labels.replace('\n', ',').rstrip(',')
+    # print(labels)
+  return labels
+
+def deleteFilesInTempDir(path_to_dir):
+  files = glob.glob(path_to_dir + '/*')
+  for f in files:
+    os.remove(f)
 
 def create_dir(dir):
   # If directory doe not exist, create it
@@ -170,6 +201,7 @@ try:
   create_dir(USER_CROPPED_IMG_DIR)
   create_dir(USER_CURRENT_IMG_WORKING_SUBDIR)
   create_dir(USER_CROPPED_IMG_WORKING_SUBDIR)
+  
 except:
   pass
 
@@ -197,6 +229,14 @@ allowed_image_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 cropped_images_subdir = user_info["gcp_bucket_dict"]["cropped_images_subdir"]
 cropped_canvas_jsons_subdir = user_info["gcp_bucket_dict"]["cropped_canvas_jsons_subdir"]
 cropped_images_csv_files = user_info["gcp_bucket_dict"]["cropped_images_csv_files"]
+
+user_local_models_tmp_dir = user_info["gcp_bucket_dict"]["user_local_models_tmp_dir"]
+
+
+try:
+  create_dir(user_local_models_tmp_dir) # This directory is used for processing tflite zipfiles to extract labels
+except:
+  pass
 
 CURRENTLY_ACTIVE_FOLDER ="dog"
 
@@ -295,7 +335,13 @@ def model_info_array(models_urls, model_type):
   new_models_array = []
   index = 0
   for _model_url in models_urls:
-    labels = get_labels_from_tflite_model_zipfile(_model_url)
+      
+    # labels = get_labels_from_tflite_model_zipfile(_model_url)
+    path_to_zip_file =_model_url
+    tmp_model_dir = user_local_models_tmp_dir
+    path_to_labelmap = getLabelFileFromClassificationModel(path_to_zip_file, tmp_model_dir)
+    labels = convertTxtLabelFileToLabels(path_to_labelmap)
+    
     model_item ={
       'labels': labels, 
       'truncated_labels': truncate_labels(labels, 75),
@@ -305,6 +351,10 @@ def model_info_array(models_urls, model_type):
       'model_index': index
       }
     new_models_array.append(model_item)
+    
+    # Delete all contents of the temp model directory to prepare for the next tflite to be unzipped to this location
+    deleteFilesInTempDir(tmp_model_dir)
+    
     index +=1
 
   return new_models_array
