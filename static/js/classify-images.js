@@ -6,7 +6,7 @@ async function start() {
     const form_hidden_field_current_folder = document.getElementById("current_folder");
     var DEFAULT_MODEL = "https://storage.googleapis.com/2021_tflite_glitch_models/stack-plume-dust-classification/model_classifier.tflite"
     var SELECTED_MODEL =null
-    var model = null
+    var model = undefined;
 
 
 
@@ -40,15 +40,12 @@ async function start() {
     }
 
 */
+      storeSessionValue("classification_model_url", "")
 
 
     if (localStorage.getItem("classification_model_url")) {
 
-        var isTFlite = localStorage.getItem("classification_model_url").includes("tflite");
-       
-       if (isTFlite  === true)  {
-
-        // alert('Yes it contains a tflite model')
+        if (localStorage.getItem("classification_model_url").includes("tflite")) {
 
          SELECTED_MODEL = localStorage.getItem("classification_model_url")
 
@@ -59,7 +56,7 @@ async function start() {
 
        } 
 
-       else if (isTFlite  === false && DEFAULT_MODEL.includes("tflite")) {
+       else { // if (DEFAULT_MODEL.includes("tflite")) 
         //  Load default model
 
              model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: DEFAULT_MODEL, });
@@ -67,18 +64,6 @@ async function start() {
              document.querySelector("#predict-button").disabled = false
 
       }
-
-
-       else {
-
-         // No model and de-activate the predict button
-         // alert(' It doesnt see any model')
-
-         var model = undefined;
-
-         document.querySelector("#predict-button").disabled = true;
-
-       }
 
     }
     /*
