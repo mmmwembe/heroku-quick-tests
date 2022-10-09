@@ -650,7 +650,7 @@ def models():
 		pass 
 
   
-	return render_template('models.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
+	return render_template('models.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info, classification_models_urls = classification_models_urls)
 
 
 @app.route('/models_upload/', methods=['POST','GET'])
@@ -678,7 +678,7 @@ def models_upload():
 		pass 
 
   
-	return render_template('models.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info)
+	return render_template('models.html', classification_models_info = classification_models_info, detection_models_info = detection_models_info, classification_models_urls = classification_models_urls)
 
 
 @app.route('/deleteModel/', methods=['POST'])
