@@ -29,7 +29,8 @@ async function start() {
     // Load the TFLite model - Load the model from a custom url with other options (optional).
 
     // const model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: MODEL_URL,});
-    // model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: MODEL_URL, });
+    model = await tfTask.ImageClassification.CustomModel.TFLite.load({model: DEFAULT_MODEL, });
+    document.querySelector("#predict-button").disabled = false;
 
 
 /*
@@ -40,7 +41,9 @@ async function start() {
     }
 
 */
-      storeSessionValue("classification_model_url", "")
+
+/*
+    storeSessionValue("classification_model_url", "")
 
 
     if (localStorage.getItem("classification_model_url")) {
@@ -66,6 +69,8 @@ async function start() {
       }
 
     }
+*/
+
     /*
 
     input.addEventListener("change", preview_image);
