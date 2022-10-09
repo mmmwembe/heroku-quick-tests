@@ -570,7 +570,7 @@ def upload_classification_tflite_model():
 			# returned_public_urls.append(blob_public_url)   
 			returned_public_urls.append(gcs_url) 
    
-	detection_models_info =[]
+	detection_models_urls =[]
 	detection_models_info =[]
 	try:
 		detection_models_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, detection_sub_directory_path, target_file_types_array)
