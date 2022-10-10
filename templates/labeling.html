@@ -557,6 +557,10 @@ for(let i = 0; i < img_thumbnails.length; i++) {
             img_url = e.target.src
 
             storeSessionValue("session_image_url", img_url)
+
+            // Reload the canvasHolder div
+
+           
             // getStoredSessionValue(key)
 
             // window.location.reload();
@@ -960,6 +964,11 @@ height_before =originalImageHeight
 // selectedImage.setAttribute('src',imageUrl);
 
 // -------------------NEW IMAGE UPLOAD --------------------------------
+getOriginalImageSize()
+
+// Reload div
+$('#canvasHolder').load(document.URL +  ' #canvasHolder')
+
 selectedImage = document.getElementById('my-image'); 
 
 fetch(imageUrl)
@@ -977,7 +986,7 @@ fetch(imageUrl)
   //---------------------------------------------------------------------
 
 //selectedImage.setAttribute('src',getStoredSessionValue("session_image_url"));
-getOriginalImageSize()
+
 // alert('H - before and after ' + height_before + ' ' + originalImageHeight + ' W - before and after ' + width_before  + ' ' + originalImageWidth )
 // originalImageWidth, originalImageHeight = getImageWidthandHeight(imageUrl)
 
