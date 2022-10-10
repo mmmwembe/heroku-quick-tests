@@ -817,6 +817,16 @@ def saveCroppedImage():
     return jsonify(result = 'success', url=cropped_image_file_path)
 
 
+@app.route('/image_url/', methods=['POST','GET'])
+def image_url():
+
+    if request.method =='POST':
+
+        image_url = request.form['image_url']
+        user_id = request.form['user_id']
+
+   
+    return jsonify(result = 'success', image_url = image_url)
 
 
 

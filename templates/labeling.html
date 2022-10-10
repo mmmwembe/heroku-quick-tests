@@ -560,6 +560,10 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
             // Reload the canvasHolder div
 
+            var user_id="1010101011"
+
+            postImageURL(img_url, user_id)
+
            
             // getStoredSessionValue(key)
 
@@ -1079,6 +1083,24 @@ $.ajax({
     success: function(data) {
       var new_url = data.url
       alert('cropped-image-dataURL : ' + JSON.stringify(new_url))
+    }
+
+  });
+
+}
+
+function postImageURL(img_url, user_id){
+
+$.ajax({
+    type: "POST",
+    url: "/image_url/",
+    data: { 
+       image_url: img_url,
+       user_id : user_id
+    },
+    success: function(data) {
+      var posted_image_url = data.image_url
+      alert('Posted Image URL : ' + JSON.stringify(posted_image_url))
     }
 
   });
