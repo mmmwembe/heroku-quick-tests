@@ -824,9 +824,10 @@ def image_url():
 
         image_url = request.form['image_url']
         user_id = request.form['user_id']
+        request_url = request.url
 
    
-    return jsonify(result = 'success', image_url = image_url)
+    return jsonify(result = 'success', image_url = image_url, request_url = request_url)
 
 
 

@@ -1100,7 +1100,9 @@ $.ajax({
     },
     success: function(data) {
       var posted_image_url = data.image_url
+      var request_url = data.request_url
       alert('Posted Image URL : ' + JSON.stringify(posted_image_url))
+      alert('request_url : ' + JSON.stringify(request_url))
     }
 
   });
