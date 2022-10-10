@@ -28,4 +28,62 @@ $(document).ready(function() {
 
     });
 
+
+    // https://codepen.io/subhasishwebdev/pen/jyOeya
+
+
+
+
+
+
+        var canvas = new fabric.Canvas('canvas');
+
+        var line, isDown, startPosition={}, rect,drawingMode=true;
+
+
+        canvas.on('mouse:down', function(event){
+        if (!drawingMode) return;
+            isDown = true;
+            console.log(event.e.clientX,event.e.clientY);
+            startPosition.x=event.e.clientX;
+            startPosition.y=event.e.clientY;
+            console.log(startPosition);
+                rect=new fabric.Rect({
+                    left:event.e.clientX,
+                    top:event.e.clientY,
+                    width:0,
+                    height:0,
+                    stroke:'red',
+                    strokeWidth:3,
+                    fill:''
+                });
+                canvas.add(rect);
+        });
+        canvas.on('mouse:move', function(event){
+            if (!isDown || !drawingMode) return;
+            rect.setWidth(Math.abs( event.e.clientX-startPosition.x ));
+            rect.setHeight(Math.abs( event.e.clientY -startPosition.y ));
+            canvas.renderAll();
+        });
+        canvas.on('mouse:up', function(){
+            isDown = false;
+            canvas.add(rect);
+        });
+        canvas.on('object:selected', function(){
+            drawingMode = false;
+        });
+        canvas.on('object:selected', function(){
+            drawingMode = false;
+        });
+        canvas.on('selection:cleared', function(){
+            drawingMode = true;
+        });
+
+
+
+
+
+
+
+
 });
