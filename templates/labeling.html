@@ -374,6 +374,8 @@ body.modal-open .modal .modal-dialog {
 
 <div class="row">
 
+  {{ image_url }}
+
   <div class="col-3 col-s-3">
 
   </div>
@@ -1090,6 +1092,20 @@ $.ajax({
 }
 
 function postImageURL(img_url, user_id){
+
+$.ajax({
+    type: "POST",
+    url: "/image_url/",
+    data: { 
+       image_url: img_url,
+       user_id : user_id
+    }
+
+  });
+
+}
+
+function postImageURL_Original(img_url, user_id){
 
 $.ajax({
     type: "POST",
