@@ -332,7 +332,7 @@ body.modal-open .modal .modal-dialog {
 
   <div id="canvasHolder" class="col-6 col-s-9" style="border:2px solid red; text-align:center;">
 
-    <div id="x-canvas-container">
+    <div id="x-canvas-container" style="border:2px solid orange; text-align:center;">
     <!--img id ="mainImage" src="/static/Uploads/colorful-birds-05.jpg">-->
     <!--<canvas id="canvas" style="border:1px solid #000000;"></canvas>-->
     <!--canvas id="canvas" style="border:1px solid #000000;width:100%"></canvas-->
@@ -961,8 +961,8 @@ height_before =originalImageHeight
 
 // --------------------PREVIOUS IMAGe UPLOAD---------------------------
 
-// selectedImage.setAttribute('src',imageUrl);
-RefreshCanvasHolderDiv(imageUrl)
+selectedImage.setAttribute('src',imageUrl);
+// RefreshCanvasHolderDiv(imageUrl)
 
 // -------------------NEW IMAGE UPLOAD --------------------------------
 
@@ -970,7 +970,7 @@ RefreshCanvasHolderDiv(imageUrl)
 // Reload div
 // $('#canvasHolder').load(document.URL +  ' #canvasHolder')
 
-selectedImage = document.getElementById('my-image'); 
+// selectedImage = document.getElementById('my-image'); 
 // selectedImage.src = objectURL;
 
 /*
