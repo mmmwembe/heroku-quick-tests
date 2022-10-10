@@ -1015,6 +1015,7 @@ if (new_height_ratio < new_width_ratio){
 // https://www.demo2s.com/javascript/javascript-fabric-js-fit-the-background-image-to-canvas-size.html
 canvas.setBackgroundImage(background_image, canvas.renderAll.bind(canvas), {top: 0,left: 0, originX: 'left', originY: 'top', crossOrigin: 'anonymous'});
 canvas.setDimensions({width:new_width, height:new_height})
+document.getElementById("x-canvas-container").style.textAlign ="center"
 canvas.renderAll();
 
 final_canvas_width = canvas.width
