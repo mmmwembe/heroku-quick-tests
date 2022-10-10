@@ -950,7 +950,7 @@ clearCanvasBackground()
 getCanvasSize()
 
 // Initialize a simple canvas
-canvas = new fabric.Canvas("canvas", { selection: false, width: canvasWidth, height: canvasHeight , stroke: 'green', strokeWidth: 3});
+canvas = new fabric.Canvas("canvas", { selection: false, width: canvasWidth, height: canvasHeight , top: 0,left: 0, originX: 'left', originY: 'top'});
 
 // var img_width = null, img_height = null
 selectedImage = document.getElementById('my-image'); 
@@ -1015,7 +1015,7 @@ if (new_height_ratio < new_width_ratio){
 // https://www.demo2s.com/javascript/javascript-fabric-js-fit-the-background-image-to-canvas-size.html
 canvas.setBackgroundImage(background_image, canvas.renderAll.bind(canvas), {top: 0,left: 0, originX: 'left', originY: 'top', crossOrigin: 'anonymous'});
 canvas.setDimensions({width:new_width, height:new_height})
-document.getElementById("x-canvas-container").style.textAlign ="center"
+// document.getElementById("x-canvas-container").style.textAlign ="center"
 canvas.renderAll();
 
 final_canvas_width = canvas.width
