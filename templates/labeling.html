@@ -434,7 +434,7 @@ body.modal-open .modal .modal-dialog {
 <div id="sp"> space</div>
 
 
-<div class="row">
+<!--div class="row">
 
   <div class="col-3 col-s-3">
     <div id="canvas_width"></div>
@@ -453,7 +453,7 @@ body.modal-open .modal .modal-dialog {
     <div id="height_ratio"></div>
   </div>
   
-</div>
+</div-->
 
 
 <div class="row">
@@ -640,11 +640,12 @@ if (refresh_counter >=3){
 
 
 getCanvasSize()
-document.getElementById("canvas_width").innerHTML = "canvas width : " + canvasWidth;
-document.getElementById("canvas_height").innerHTML = "canvas height: " + canvasHeight;     
 
-document.getElementById("canvas_parent_width").innerHTML = "canvas parent width : " + canvas_parent_width;
-document.getElementById("canvas_parent_height").innerHTML = "canvas parent height: " + canvas_parent_height;    
+//document.getElementById("canvas_width").innerHTML = "canvas width : " + canvasWidth;
+//document.getElementById("canvas_height").innerHTML = "canvas height: " + canvasHeight;     
+
+//document.getElementById("canvas_parent_width").innerHTML = "canvas parent width : " + canvas_parent_width;
+//document.getElementById("canvas_parent_height").innerHTML = "canvas parent height: " + canvas_parent_height;    
 
 
 //canvas = this.__canvas = new fabric.Canvas('canvas', { selection: false, width: canvasWidth, height: canvasHeight });
@@ -656,11 +657,11 @@ selectedImage = document.getElementById('my-image');
 var img = document.getElementById('my-image'); 
 
 getOriginalImageSize()
-document.getElementById("image_width").innerHTML = "original image width : " + originalImageWidth;
-document.getElementById("image_height").innerHTML = "original height: " + originalImageHeight;  
+//document.getElementById("image_width").innerHTML = "original image width : " + originalImageWidth;
+//document.getElementById("image_height").innerHTML = "original height: " + originalImageHeight;  
 
-document.getElementById("width_ratio").innerHTML = "img_width to canvas-width : " + originalImageWidth/canvasWidth;
-document.getElementById("height_ratio").innerHTML = "img_height to canvas-height : " + originalImageHeight/canvasHeight;  
+//document.getElementById("width_ratio").innerHTML = "img_width to canvas-width : " + originalImageWidth/canvasWidth;
+//document.getElementById("height_ratio").innerHTML = "img_height to canvas-height : " + originalImageHeight/canvasHeight;  
 
 
 width_ratio = originalImageWidth/canvasWidth
