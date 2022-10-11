@@ -466,14 +466,12 @@ body.modal-open .modal .modal-dialog {
   </div>
   
   <div class="col-3 col-s-12">
-    {% if images_in_dir %}
-      {% for image in images_in_dir %}
+
+
         <div class="row">
-               {{ image }}
-          <img src="{{ image }}">
+
         </div>
-      {% endfor %}
-  {% endif %}
+
 
   </div>
   
@@ -1052,8 +1050,8 @@ auto_add_group_rects()
 
 
 
-var cords = canvas._getLeftTopCoords();
-alert(' x ' + cords.x  +  ' y' + cords.y)
+//var cords = canvas._getLeftTopCoords();
+// alert(' x ' + cords.x  +  ' y' + cords.y)
 
 
 // alert(' canvas width : image width ' + final_canvas_width +' : ' + final_image_width + ' canvas height : image height ' +  + final_canvas_height +' : ' + final_image_height)
