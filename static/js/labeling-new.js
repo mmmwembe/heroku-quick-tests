@@ -3,7 +3,7 @@ window.addEventListener('load', (event) => {
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
-    //showFirstImage()
+    showFirstImage()
 
     for(let i = 0; i < img_thumbnails.length; i++) {
       img_thumbnails[i].addEventListener("click", function(e) {
