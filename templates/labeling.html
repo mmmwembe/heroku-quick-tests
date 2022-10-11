@@ -466,6 +466,15 @@ body.modal-open .modal .modal-dialog {
   </div>
   
   <div class="col-3 col-s-12">
+    {% if images_in_dir %}
+      {% for image in images_in_dir %}
+        <div class="row">
+               {{ image }}
+          <img src="{{ image }}">
+        </div>
+      {% endfor %}
+  {% endif %}
+
   </div>
   
 </div>
@@ -529,7 +538,7 @@ img_thumbnails = document.getElementsByClassName('gallery_column');
 
 if(img_thumbnails.length >=1){
 
-var first_image = img_thumbnails[0].src
+var first_image = img_thumbnails[0].getAttribute('src');
 
 alert(first_image)
 
