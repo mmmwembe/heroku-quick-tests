@@ -37,7 +37,7 @@ window.addEventListener('load', (event) => {
 
     function showFirstImage(){
         var first_img_div = document.getElementsByClassName('gallery_column')[0]
-        var first_img = first_img_div.getAttribute('src');
+        var first_img = first_img_div.src;
         alert(first_img)
     }
 
