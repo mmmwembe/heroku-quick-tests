@@ -643,6 +643,49 @@ def upload_classification_tflite_model():
 	return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
 
 
+@app.route('/upload_images_for_labeling/', methods=['POST','GET'])
+def upload_images_for_labeling():
+	if 'file' not in request.files:
+		flash('No image file uploaded')
+		return redirect(request.url)
+	files = request.files.getlist('images_for_labeling[]')
+	file_names = []
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+	returned_public_urls =[]
+	client = storage.Client()
+	bucket = client.get_bucket(bucket_name)
+	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+
+	for file in files:
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+			file_names.append(filename)
+			# file.save(os.path.join(USER_CURRENT_IMG_WORKING_SUBDIR, filename))
+			FILE_TO_UPLOAD = file.read()
+			blob = bucket.blob(blob_full_path)
+			# blob = bucket.blob(filename)
+			# blob.upload_from_filename(FILE_TO_UPLOAD)
+			# blob.upload_from_string(file.read())
+			file.seek(0)
+			blob.upload_from_string(file.read(), content_type=file.content_type)
+			# blob.upload_from_file(file.file, content_type=file.content_type, rewind=True)
+			blob_public_url = blob.public_url 
+			# gcs_url = "https://storage.cloud.google.com/{}/{}".format(bucket_name,blob_full_path)
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+			# returned_public_urls.append(blob_public_url)   
+			returned_public_urls.append(gcs_url)      
+   
+	#if request.form.get('images-for-labeling') == 'images-for-labeling':
+	#	return render_template('labeling.html', filenames=file_names, images_in_dir=returned_public_urls)
+
+	#if request.form.get('images-for-testing-classification') == 'images-for-testing-classification':
+	#	return render_template('classify-images.html', filenames=file_names, images_in_dir=returned_public_urls)
+
+	return render_template('labeling_new.html', filenames=file_names, images_in_dir=returned_public_urls)
+
 
 @app.route('/detection/', methods=['POST','GET'])
 def detection():
