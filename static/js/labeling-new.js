@@ -19,6 +19,18 @@ window.addEventListener('load', (event) => {
 
 
 
+    var fabricCanvas = new fabric.Canvas("fabricCanvas");
+    var remoteImageForFabric = new Image();
+    remoteImageForFabric.crossOrigin = "Anonymous";
+    remoteImageForFabric.src = "";
+    remoteImageForFabric.onload = function(loadedImage) {
+        var imgToDrawOnFabricCanvas = new fabric.Image(remoteImageForFabric);
+        fabricCanvas.add(imgToDrawOnFabricCanvas);
+    }
+    remoteImageForFabric.src = "https://images-na.ssl-images-amazon.com/images/S/aplus-seller-content-images-us-east-1/ATVPDKIKX0DER/A1GLDJYFYVCUE8/B0044FL7SG/kFRS1LS1QWWr._UX500_TTW_.jpg";
+
+
+
 
 
 
