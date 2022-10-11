@@ -426,7 +426,81 @@ body.modal-open .modal .modal-dialog {
 
 </div>
 
+<div class="div">
+</div>
+<div id="show_canvas_json">show json image</div>
+<!--img id="test" height="50" width="150">test image</div-->
 
+<div id="sp"> space</div>
+
+
+<div class="row">
+
+  <div class="col-3 col-s-3">
+    <div id="canvas_width"></div>
+    <div id="canvas_height"></div>
+    <div id="canvas_parent_width"></div>
+    <div id="canvas_parent_height"></div>
+  </div>
+
+  <div class="col-6 col-s-9">
+    <div id="image_width"></div>
+    <div id="image_height"></div>
+  </div>
+  
+  <div class="col-3 col-s-12">
+    <div id="width_ratio"></div>
+    <div id="height_ratio"></div>
+  </div>
+  
+</div>
+
+
+<div class="row">
+
+  <div class="ScrollStyle">
+
+      <div class="col-3 col-s-3">
+
+        {% if images_in_dir %}
+
+        {% for row in images_in_dir|batch(4) %}
+        <div class="row">
+
+          {% for column_img in row %}  
+
+            <div class="gallery_column">
+              <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%">
+            </div>
+
+          {% endfor %}
+
+        </div>
+        {% endfor %}
+
+      {% endif %}
+    </div>
+
+  </div>
+ 
+</div>
+
+  <div class="col-6 col-s-9">
+  </div>
+  
+  <div class="col-3 col-s-12">
+    {% if images_in_dir %}
+      {% for image in images_in_dir %}
+        <div class="row">
+               {{ image }}
+          <img src="{{ image }}">
+        </div>
+      {% endfor %}
+  {% endif %}
+
+  </div>
+  
+</div>
 
 
 
@@ -472,15 +546,13 @@ canvas_parent_height = canvas_parent.clientHeight; // offsetHeight;
   // reset the canvas to original dimensions
   // canvas.setAttribute("class", "canvas");
 //})
-/*
+
 var x_btn = document.getElementById('x_btn')
 x_btn.addEventListener("click", function(e) {
    alert("you clicked the x_btn mate!!!")
    //crop_image(user_id, image_name, label_num, WORKING_LABELS_FOLDER)
 
 })
-
-*/
   
 img_thumbnails = document.getElementsByClassName('gallery_column');
 for(let i = 0; i < img_thumbnails.length; i++) {
@@ -548,9 +620,7 @@ function geturl(full_url)
 // alert('saved url : ' + saved_url)
 set_new_background_image(image_url)
 
-// user_id = document.getElementById('user_id').value
-
-// alert('user_id ' + document.getElementById('user_id').value)
+alert('user_id ' + document.getElementById('user_id').value)
 /*
 
 if (refresh_counter >=3){
@@ -570,11 +640,11 @@ if (refresh_counter >=3){
 
 
 getCanvasSize()
-//document.getElementById("canvas_width").innerHTML = "canvas width : " + canvasWidth;
-//document.getElementById("canvas_height").innerHTML = "canvas height: " + canvasHeight;     
+document.getElementById("canvas_width").innerHTML = "canvas width : " + canvasWidth;
+document.getElementById("canvas_height").innerHTML = "canvas height: " + canvasHeight;     
 
-//document.getElementById("canvas_parent_width").innerHTML = "canvas parent width : " + canvas_parent_width;
-//document.getElementById("canvas_parent_height").innerHTML = "canvas parent height: " + canvas_parent_height;    
+document.getElementById("canvas_parent_width").innerHTML = "canvas parent width : " + canvas_parent_width;
+document.getElementById("canvas_parent_height").innerHTML = "canvas parent height: " + canvas_parent_height;    
 
 
 //canvas = this.__canvas = new fabric.Canvas('canvas', { selection: false, width: canvasWidth, height: canvasHeight });
@@ -586,11 +656,11 @@ selectedImage = document.getElementById('my-image');
 var img = document.getElementById('my-image'); 
 
 getOriginalImageSize()
-//document.getElementById("image_width").innerHTML = "original image width : " + originalImageWidth;
-//document.getElementById("image_height").innerHTML = "original height: " + originalImageHeight;  
+document.getElementById("image_width").innerHTML = "original image width : " + originalImageWidth;
+document.getElementById("image_height").innerHTML = "original height: " + originalImageHeight;  
 
-//document.getElementById("width_ratio").innerHTML = "img_width to canvas-width : " + originalImageWidth/canvasWidth;
-//document.getElementById("height_ratio").innerHTML = "img_height to canvas-height : " + originalImageHeight/canvasHeight;  
+document.getElementById("width_ratio").innerHTML = "img_width to canvas-width : " + originalImageWidth/canvasWidth;
+document.getElementById("height_ratio").innerHTML = "img_height to canvas-height : " + originalImageHeight/canvasHeight;  
 
 
 width_ratio = originalImageWidth/canvasWidth
