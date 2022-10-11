@@ -534,6 +534,17 @@ x_btn.addEventListener("click", function(e) {
   
 */
 img_thumbnails = document.getElementsByClassName('gallery_column');
+
+
+if(img_thumbnails.length >=1){
+
+var first_image = img_thumbnails[0].src
+document.getElementById('my-image').setAttribute('src',first_image);
+
+}
+
+
+
 for(let i = 0; i < img_thumbnails.length; i++) {
   img_thumbnails[i].addEventListener("click", function(e) {
            // alert('thumbnail num ' + i + ' ' + e.target.src);
