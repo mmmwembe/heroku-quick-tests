@@ -834,8 +834,8 @@ def image_url():
         gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
  
     # return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id, image_url = image_url)
-   
-    return jsonify(result = 'success', image_url = image_url, request_url = request_url)
+    return redirect('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id, image_url = image_url)   
+    # return jsonify(result = 'success', image_url = image_url, request_url = request_url)
 
 
 
