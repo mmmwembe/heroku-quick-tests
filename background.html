@@ -1,0 +1,53 @@
+<html>
+<head>
+  <title>Stretch BG Image - JSFiddle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.0.0-beta.7/fabric.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head><!--   w  ww   . d   e m   o  2 s    . c o    m-->
+<body>
+<div style="margin-top:20px;">
+    <label class="control-label">Add Background Image</label>
+    <input type="file" id="bg_image" />
+</div>
+<canvas id="canvas1" width="600" height="400" style="border:1px solid #000"></canvas>
+    <script type='text/javascript'>
+   $(function () {
+      var canvas1 = new fabric.Canvas('canvas1');
+            //Default
+      var canvas = canvas1;
+      canvas.backgroundColor = '#34AD39';
+    canvas.renderAll();
+      //Change background using Image
+        document.getElementById('bg_image').addEventListener('change', function (e) {
+            canvas.setBackgroundColor('', canvas.renderAll.bind(canvas));
+            canvas.setBackgroundImage(0, canvas.renderAll.bind(canvas));
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function (f) {
+                var data = f.target.result;
+                fabric.Image.fromURL(data, function (img) {
+                    img.set({
+                        width: canvas.getWidth(),
+                        height: canvas.getHeight(),
+                        originX: 'left',
+                        scaleX : canvas.getWidth()/img.width, //new update
+                        scaleY: canvas.getHeight()/img.height, //new update
+                        originY: 'top'
+                    });
+                    canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+                    /*canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+                        width: canvas.getWidth(),
+                        height: canvas.getHeight(),
+                        originX: 'left',
+                        originY: 'top',
+                        crossOrigin: 'anonymous'
+                    });*/
+                });
+            };
+            reader.readAsDataURL(file);
+        });
+   });
+  </script>
+</body>
+</html>
