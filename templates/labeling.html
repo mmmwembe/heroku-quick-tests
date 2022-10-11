@@ -538,13 +538,13 @@ img_thumbnails = document.getElementsByClassName('gallery_column');
 
 if(img_thumbnails.length >=1){
 
-var first_image = img_thumbnails[0].getAttribute('src');
+//var first_image = img_thumbnails[0].getAttribute('src');
 
-alert(first_image)
+//alert(first_image)
 
-document.getElementById('my-image').setAttribute('src',first_image);
+//document.getElementById('my-image').setAttribute('src',first_image);
 
-set_new_background_image(first_image)
+// set_new_background_image(first_image)
 
 }
 
@@ -1049,6 +1049,12 @@ final_image_height = new_height
 // add_group_of_rects()
 
 auto_add_group_rects()
+
+
+
+var cords = canvas._getLeftTopCoords();
+alert(' x ' + cords.x  +  ' y' + cords.y)
+
 
 // alert(' canvas width : image width ' + final_canvas_width +' : ' + final_image_width + ' canvas height : image height ' +  + final_canvas_height +' : ' + final_image_height)
 
