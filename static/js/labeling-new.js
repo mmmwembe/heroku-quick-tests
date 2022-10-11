@@ -1,6 +1,6 @@
 window.addEventListener('load', (event) => {
 
-
+    var fabricCanvas = new fabric.Canvas("fabricCanvas");
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
     // Show the first image from the thumbnails the main image
@@ -19,18 +19,19 @@ window.addEventListener('load', (event) => {
 
 
 
-    var fabricCanvas = new fabric.Canvas("fabricCanvas");
-    var remoteImageForFabric = new Image();
-    remoteImageForFabric.crossOrigin = "Anonymous";
-    remoteImageForFabric.src = "";
-    remoteImageForFabric.onload = function(loadedImage) {
-        var imgToDrawOnFabricCanvas = new fabric.Image(remoteImageForFabric);
-        fabricCanvas.add(imgToDrawOnFabricCanvas);
-    }
-    remoteImageForFabric.src = "https://images-na.ssl-images-amazon.com/images/S/aplus-seller-content-images-us-east-1/ATVPDKIKX0DER/A1GLDJYFYVCUE8/B0044FL7SG/kFRS1LS1QWWr._UX500_TTW_.jpg";
+   function updateFabricCanvasBackgroundImage(NEW_IMAGE_URL){
 
+        var remoteImageForFabric = new Image();
+        remoteImageForFabric.crossOrigin = "Anonymous";
+        remoteImageForFabric.src = "";
+        remoteImageForFabric.onload = function(loadedImage) {
+            var imgToDrawOnFabricCanvas = new fabric.Image(remoteImageForFabric);
+            fabricCanvas.add(imgToDrawOnFabricCanvas);
+        }
+        //remoteImageForFabric.src = "https://images-na.ssl-images-amazon.com/images/S/aplus-seller-content-images-us-east-1/ATVPDKIKX0DER/A1GLDJYFYVCUE8/B0044FL7SG/kFRS1LS1QWWr._UX500_TTW_.jpg";
+        remoteImageForFabric.src = NEW_IMAGE_URL;
 
-
+   }
 
 
 
@@ -52,7 +53,8 @@ window.addEventListener('load', (event) => {
     function showFirstImage(){
         var first_img_div = document.getElementsByClassName('gallery_column')[0]
         var first_img = first_img_div.getElementsByTagName('img')[0].src;
-        alert(first_img)
+        // alert(first_img)
+        updateFabricCanvasBackgroundImage(first_img)
     }
 
 
