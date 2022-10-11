@@ -553,7 +553,16 @@ for(let i = 0; i < img_thumbnails.length; i++) {
 
             $.post("/image_url/", { image_url: img_url, user_id : user_id})
              .done(function( data ) {
-               alert( "Data Loaded for Post Image URL: " + data.image_url );
+
+               // window.location.reload();
+
+               window.location.reload();
+
+               var posted_image_url = data.image_url
+
+               document.getElementById('my-image').setAttribute('src',posted_image_url);
+               // alert( "Data Loaded for Post Image URL: " + data.image_url );
+
               });
 
            
@@ -599,7 +608,7 @@ function geturl(full_url)
 // alert('saved url : ' + saved_url)
 set_new_background_image(image_url)
 
-alert('user_id ' + document.getElementById('user_id').value)
+// alert('user_id ' + document.getElementById('user_id').value)
 /*
 
 if (refresh_counter >=3){
