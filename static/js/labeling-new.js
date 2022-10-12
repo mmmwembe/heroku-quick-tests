@@ -28,8 +28,8 @@ window.addEventListener('load', (event) => {
         remoteImageForFabric.src = "";
         remoteImageForFabric.onload = function(loadedImage) {
 
-            orgWidth = loadedImage.width;
-            orgHeight = loadedImage.height;
+            orgWidth = remoteImageForFabric.width;
+            orgHeight = remoteImageForFabric.height;
             alert('Original Width : ' + orgWidth +" Original Height " + orgHeight)
 
             var imgToDrawOnFabricCanvas = new fabric.Image(remoteImageForFabric);
