@@ -1,20 +1,29 @@
 window.addEventListener('load', (event) => {
 
+    var MAX_CANVAS_WIDTH = 600
+    var MAX_CANVAS_HEIGHT = 400
+    var TARGET_CANVAS_WIDTH = null
+    var TARGET_CANVAS_HEIGHT = null
+
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
 
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
     // Show the first image from the thumbnails the main image
-
     showFirstImage()
+
+
+    image_dimensions = calculateAspectRatioFit(650, 450, 600, 400)
+
+    alert('new image width :' + image_dimensions.width)
 
     for(let i = 0; i < img_thumbnails.length; i++) {
       img_thumbnails[i].addEventListener("click", function(e) {
 
-                img_url = e.target.src
-
-                //alert(img_url)
+            img_url = e.target.src
+             updateFabricCanvasBackgroundImage(img_url)
+            //alert(img_url)
 
       })
     }
@@ -31,6 +40,9 @@ window.addEventListener('load', (event) => {
 
             orgWidth = imgToDrawOnFabricCanvas.width;
             orgHeight = imgToDrawOnFabricCanvas.height;
+
+            sourceImageWidth = imgToDrawOnFabricCanvas.width;
+            sourceImageHeight = imgToDrawOnFabricCanvas.height;
             // alert('Original Width : ' + orgWidth +" Original Height " + orgHeight)
 
             // Set Fabric Canvas width and height to original image dimensions
