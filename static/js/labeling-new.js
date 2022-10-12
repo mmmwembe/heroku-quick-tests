@@ -27,12 +27,12 @@ window.addEventListener('load', (event) => {
         remoteImageForFabric.crossOrigin = "Anonymous";
         remoteImageForFabric.src = "";
         remoteImageForFabric.onload = function(loadedImage) {
+            var imgToDrawOnFabricCanvas = new fabric.Image(remoteImageForFabric);
 
-            orgWidth = remoteImageForFabric.width;
-            orgHeight = remoteImageForFabric.height;
+            orgWidth = imgToDrawOnFabricCanvas.width;
+            orgHeight = imgToDrawOnFabricCanvas.height;
             alert('Original Width : ' + orgWidth +" Original Height " + orgHeight)
 
-            var imgToDrawOnFabricCanvas = new fabric.Image(remoteImageForFabric);
             fabricCanvas.add(imgToDrawOnFabricCanvas);
         }
         //remoteImageForFabric.src = "https://images-na.ssl-images-amazon.com/images/S/aplus-seller-content-images-us-east-1/ATVPDKIKX0DER/A1GLDJYFYVCUE8/B0044FL7SG/kFRS1LS1QWWr._UX500_TTW_.jpg";
