@@ -122,7 +122,8 @@ fabricCanvas.on('mouse:up', function(o){
 
 
 fabricCanvas.on('mouse:dblclick', (e1) => {
-    fabricCanvas.getActiveObject().remove();
+    // fabricCanvas.getActiveObject().remove();
+    fabricCanvas.remove(fabricCanvas.getActiveObject())
 });
 
 
