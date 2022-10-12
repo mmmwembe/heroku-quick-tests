@@ -111,9 +111,7 @@ fabricCanvas.on('mouse:move', function(o){
     rectangle.set({ width: Math.abs(origX - pointer.x) });
     rectangle.set({ height: Math.abs(origY - pointer.y) });
 
-    rectangle.on("mousedblclick", ()=>{
-        alert(' active Object ')
-    })
+    // rectangle.on("mousedblclick", ()=>{alert(' active Object ')})
     
     fabricCanvas.renderAll();
 });
@@ -122,6 +120,10 @@ fabricCanvas.on('mouse:up', function(o){
     isDown = false;
 });
 
+
+fabricCanvas.on('mouse:dblclick', (e1) => {
+    fabricCanvas.getActiveObject().remove();
+});
 
 
 
