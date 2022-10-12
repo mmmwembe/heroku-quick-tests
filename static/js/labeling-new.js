@@ -13,10 +13,7 @@ window.addEventListener('load', (event) => {
     // Show the first image from the thumbnails the main image
     showFirstImage()
 
-
-    image_dimensions = calculateAspectRatioFit(650, 450, 600, 400)
-
-    alert('new image width :' + image_dimensions.width)
+    // alert('new image width :' + image_dimensions.width)
 
     for(let i = 0; i < img_thumbnails.length; i++) {
       img_thumbnails[i].addEventListener("click", function(e) {
@@ -36,18 +33,21 @@ window.addEventListener('load', (event) => {
         remoteImageForFabric.crossOrigin = "Anonymous";
         remoteImageForFabric.src = "";
         remoteImageForFabric.onload = function(loadedImage) {
+
             var imgToDrawOnFabricCanvas = new fabric.Image(remoteImageForFabric);
 
-            orgWidth = imgToDrawOnFabricCanvas.width;
-            orgHeight = imgToDrawOnFabricCanvas.height;
+            //orgWidth = imgToDrawOnFabricCanvas.width;
+            // orgHeight = imgToDrawOnFabricCanvas.height;
 
             sourceImageWidth = imgToDrawOnFabricCanvas.width;
             sourceImageHeight = imgToDrawOnFabricCanvas.height;
             // alert('Original Width : ' + orgWidth +" Original Height " + orgHeight)
+            target_image_dimensions = calculateAspectRatioFit(sourceImageWidth, sourceImageHeight, MAX_CANVAS_WIDTH, MAX_CANVAS_HEIGHT)
+            TARGET_CANVAS_WIDTH = target_image_dimensions.width
+            TARGET_CANVAS_HEIGHT = target_image_dimensions.height
 
-            // Set Fabric Canvas width and height to original image dimensions
-
-            fabricCanvas.setDimensions({width:orgWidth, height:orgHeight});
+            // Set Fabric Canvas width and height to target width and height
+            fabricCanvas.setDimensions({width:TARGET_CANVAS_WIDTH, height:TARGET_CANVAS_HEIGHT});
 
             fabricCanvas.add(imgToDrawOnFabricCanvas);
         }
