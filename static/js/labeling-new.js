@@ -31,7 +31,11 @@ window.addEventListener('load', (event) => {
 
             orgWidth = imgToDrawOnFabricCanvas.width;
             orgHeight = imgToDrawOnFabricCanvas.height;
-            alert('Original Width : ' + orgWidth +" Original Height " + orgHeight)
+            // alert('Original Width : ' + orgWidth +" Original Height " + orgHeight)
+
+            // Set Fabric Canvas width and height to original image dimensions
+
+            fabricCanvas.setDimensions({width:orgWidth, height:orgHeight});
 
             fabricCanvas.add(imgToDrawOnFabricCanvas);
         }
