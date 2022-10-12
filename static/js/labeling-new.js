@@ -110,6 +110,11 @@ fabricCanvas.on('mouse:move', function(o){
     }
     rectangle.set({ width: Math.abs(origX - pointer.x) });
     rectangle.set({ height: Math.abs(origY - pointer.y) });
+
+    rectangle.on("mousedblclick", ()=>{
+        alert(' active Object ')
+    })
+    
     fabricCanvas.renderAll();
 });
 
@@ -137,18 +142,14 @@ fabricCanvas.on('mouse:up', function(o){
         var first_img_div = document.getElementsByClassName('gallery_column')[0]
         var first_img = first_img_div.getElementsByTagName('img')[0].src;
         // alert(first_img)
+        if(first_img){
         updateFabricCanvasBackgroundImage(first_img)
+        }
     }
 
 
 
-    fabricCanvas.on("mousedblclick", ()=>{
 
-        activeObject = fabricCanvas.getActiveObject();
-
-        alert(' active Object ' + activeObject)
-
-    }) 
 
 
 
