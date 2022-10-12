@@ -82,7 +82,7 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
 //---------------------------------------------------------------------------
 //      Draw Rectangle on Canvas
 //----------------------------------------------------------------------------
-
+// https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-with-fabric-js.html
 
  fabricCanvas.on('mouse:down', function(o){
     var pointer = fabricCanvas.getPointer(o.e);
@@ -93,8 +93,8 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
         left: origX,
         top: origY,
         fill: 'transparent',
-        stroke: 'red',
-        strokeWidth: 3,
+        stroke: 'green',
+        strokeWidth: 2,
     });
     fabricCanvas.add(rectangle);
 });
@@ -143,10 +143,21 @@ fabricCanvas.on('mouse:up', function(o){
 
 
     
+
+
+
+
+    fabricCanvas.dblclick(function(e) { 
+
+      activeObject = fabricCanvas.getActiveObject();
+
+      alert(' active Object ' + activeObject)
+
+    }); 
     
     
-    
-    
+    // Double click function for canvas
+    fabric = (function(f) { var nativeOn = f.on; var dblClickSubscribers = []; var nativeCanvas = f.Canvas;   f.Canvas = (function(domId, options) { var canvasDomElement = document.getElementById(domId); var c = new nativeCanvas(domId, options);   c.dblclick = function(handler) { dblClickSubscribers.push(handler) };   canvasDomElement.nextSibling.ondblclick = function(ev){ for(var i = 0; i < dblClickSubscribers.length; i++) { console.log(ev); dblClickSubscribers[i]({ e :ev }); } }; return c; });   return f; }(fabric)); 
     
     
     
