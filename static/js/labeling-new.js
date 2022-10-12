@@ -1,5 +1,7 @@
 window.addEventListener('load', (event) => {
 
+    // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
+
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
