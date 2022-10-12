@@ -36,8 +36,8 @@ window.addEventListener('load', (event) => {
 
             var imgToDrawOnFabricCanvas = new fabric.Image(remoteImageForFabric);
 
-            //orgWidth = imgToDrawOnFabricCanvas.width;
-            // orgHeight = imgToDrawOnFabricCanvas.height;
+           // Clear background image and everything on the canvas
+           fabricCanvas.remove.apply(fabricCanvas, fabricCanvas.getObjects().concat())
 
             sourceImageWidth = imgToDrawOnFabricCanvas.width;
             sourceImageHeight = imgToDrawOnFabricCanvas.height;
