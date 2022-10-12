@@ -49,7 +49,16 @@ window.addEventListener('load', (event) => {
             // Set Fabric Canvas width and height to target width and height
             fabricCanvas.setDimensions({width:TARGET_CANVAS_WIDTH, height:TARGET_CANVAS_HEIGHT});
 
-            fabricCanvas.add(imgToDrawOnFabricCanvas);
+            // fabricCanvas.add(imgToDrawOnFabricCanvas);
+
+            fabricCanvas.setBackgroundImage(imgToDrawOnFabricCanvas, fabricCanvas.renderAll.bind(fabricCanvas), {
+                scaleX: fabricCanvas.width / sourceImageWidth,
+                scaleY: fabricCanvas.height / sourceImageHeight 
+            });
+
+
+
+
         }
         //remoteImageForFabric.src = "https://images-na.ssl-images-amazon.com/images/S/aplus-seller-content-images-us-east-1/ATVPDKIKX0DER/A1GLDJYFYVCUE8/B0044FL7SG/kFRS1LS1QWWr._UX500_TTW_.jpg";
         remoteImageForFabric.src = NEW_IMAGE_URL;
