@@ -8,6 +8,11 @@ window.addEventListener('load', (event) => {
     var x_min, y_min, x_max, y_max;
     var norm_x_min,norm_y_min,norm_x_max,norm_y_max;
     var IMAGE_URL;
+    const MODE = {
+        drawing :  'drawing',
+        notDrawing : 'notDrawing'  // // notDrawing = {scaling rotating skewing resizing moving }
+    }
+    var currentMode = MODE.drawing
 
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
 
@@ -114,6 +119,9 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
 
 fabricCanvas.on('mouse:move', function(o){
     if (!isDown) return;
+
+    currentMode = MODE.drawing
+
     var pointer = fabricCanvas.getPointer(o.e);
     if(origX>pointer.x){
         rectangle.set({ left: Math.abs(pointer.x) });
@@ -130,13 +138,21 @@ fabricCanvas.on('mouse:move', function(o){
 });
 
 fabricCanvas.on('mouse:up', function(o){
-    isDown = false;
 
-    var canvas_height = fabricCanvas.height
-    var canvas_width =  fabricCanvas.width
-    // var object_index = fabricCanvas.getActiveObject().getZIndex()
 
-    alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width )
+    if (isDown && currentMode === MODE.drawing) {
+
+        var canvas_height = fabricCanvas.height
+        var canvas_width =  fabricCanvas.width
+        // var object_index = fabricCanvas.getActiveObject().getZIndex()
+    
+        alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width )
+    
+
+    };
+
+      isDown = false;
+      currentMode = MODE.notDrawing
 
 });
 
