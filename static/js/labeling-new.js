@@ -13,6 +13,8 @@ window.addEventListener('load', (event) => {
         notDrawing : 'notDrawing'  // // notDrawing = {scaling rotating skewing resizing moving }
     }
     var currentMode = MODE.drawing
+    var startTime, endTime, elapsed_time_seconds;
+    var total_duration = null, units_of_measure ='s', total_duration_array = [], date = null
 
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
 
@@ -103,6 +105,9 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
 // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-with-fabric-js.html
 
  fabricCanvas.on('mouse:down', function(o){
+
+    startTimer() 
+
     var pointer = fabricCanvas.getPointer(o.e);
     isDown = true;
     origX = pointer.x;
@@ -142,11 +147,13 @@ fabricCanvas.on('mouse:up', function(o){
 
     if (isDown && currentMode === MODE.drawing) {
 
+        endTimer()
+
         var canvas_height = fabricCanvas.height
         var canvas_width =  fabricCanvas.width
-        var object_index = rectangle.getZIndex()
+        var canvas_objects, last_object, last_object_index  = getObjectIndexOnCanvas()
     
-        alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width + 'Index of rectangle ' + object_index)
+        alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width + ' last object index ' + last_object_index )
     
 
     };
@@ -186,6 +193,54 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         IMAGE_URL = first_img
         updateFabricCanvasBackgroundImage(first_img)
         }
+    }
+
+
+
+    function startTimer() {
+        startTime = Date.now();
+    };
+      
+    function endTimer() {
+        endTime = Date.now();
+        var timeDiff = (endTime - startTime)/1000; //in seconds
+    
+        // to 2 decimal places 
+        elapsed_time_seconds = timeDiff.toFixed(2);
+        //console.log(seconds + " seconds");
+        total_duration_array.push(elapsed_time_seconds)
+        total_duration = sum_of_array(total_duration_array)
+       // $('#amina_heading').html(' Amina -  ' + total_duration + 's')
+    }
+    
+    
+    function sum_of_array(myarray){
+        let sum = 0;
+        for (let i = 0; i < myarray.length; i++) {
+            sum += parseFloat(myarray[i]);
+        }
+        return sum
+    }
+    
+    
+    function getObjectIndexOnCanvas(){
+        var last_object = null
+        var last_object_index = null
+    
+        canvas_objects = fabricCanvas._objects;
+    
+        if(canvas_objects.length !== 0){
+            
+            last_object = canvas_objects[canvas_objects.length -1]; //Get last object 
+            last_object_index = canvas_objects.length -1
+    
+        }
+        else {
+    
+            canvas_objects = null
+    
+        }
+        return canvas_objects, last_object, last_object_index 
     }
 
 
