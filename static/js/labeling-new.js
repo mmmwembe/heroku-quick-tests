@@ -179,7 +179,7 @@ fabricCanvas.on('mouse:up', function(o){
     
         // norm_data =  {'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': label, 'norm_x_min': norm_x_min, 'norm_y_min': norm_y_min, 'norm_x_tr' : '', 'norm_y_tr' :'', 'norm_x_max' : norm_x_max, 'norm_y_max' : norm_y_max, 'norm_x_bl': '', 'norm_y_bl':'', 'label_status' : LABEL_STATUS, 'ISODate': iso_date_timestamp }
     
-        alert(' NORMALIZED DATA ' + x_min + ' y_min ' + y_min + ' x_max' + x_max  + ' y_max' + y_max ) 
+        alert(' norm_x_min ' + norm_x_min + ' norm_y_min ' + norm_y_min + ' norm_x_max' + norm_x_max  + ' norm_y_max' + norm_y_max + ' iso timestamp ' + iso_date_timestamp) 
         // alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width + ' last object index ' + last_object_index )
     
     };
