@@ -182,8 +182,6 @@ fabricCanvas.on('mouse:up', function(o){
         norm_data =  {'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': label, 'norm_x_min': norm_x_min, 'norm_y_min': norm_y_min, 'norm_x_tr' : '', 'norm_y_tr' :'', 'norm_x_max' : norm_x_max, 'norm_y_max' : norm_y_max, 'norm_x_bl': '', 'norm_y_bl':'', 'label_status' : LABEL_STATUS, 'ISODate': iso_date_timestamp }
         // alert(' NORMALIZED DATA ' + JSON.stringify(norm_data))
 
-
-
         rectangle.set({ data: { 
             'originator': user_id,
             'label' : label,
@@ -192,6 +190,11 @@ fabricCanvas.on('mouse:up', function(o){
             'ai_ready_normalized_data' : norm_data,
             'timer_tracker': {'elapsed_time_seconds' : elapsed_time_seconds, 'total_duration_array': total_duration_array, 'total_duration': total_duration, 'units_of_measure' : units_of_measure},
           } })
+
+
+          var img_name = getFileName(IMAGE_URL)
+
+          alert('filename : ' + img_name)
     
     
     };
@@ -269,6 +272,15 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     
         }
         return canvas_objects, last_object, last_object_index 
+    }
+
+
+    function getFileName(url){
+
+        var filename = url.substring(url.lastIndexOf('/')+1);
+
+        return filename
+
     }
 
 
