@@ -57,6 +57,14 @@ window.addEventListener('load', (event) => {
             IMAGE_URL = img_url
             updateFabricCanvasBackgroundImage(img_url)
             //alert(img_url)
+            var img_name = getFileName(IMAGE_URL)
+
+
+            // Get stored canvas json and display on the canvas
+            if (getStoredSessionValue(img_name) !== null) {
+                const canvas_json = getStoredSessionValue(img_name);
+                fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
+            }
 
       })
     }
@@ -191,10 +199,27 @@ fabricCanvas.on('mouse:up', function(o){
             'timer_tracker': {'elapsed_time_seconds' : elapsed_time_seconds, 'total_duration_array': total_duration_array, 'total_duration': total_duration, 'units_of_measure' : units_of_measure},
           } })
 
+        // Save the data above to the Canvas
+        fabricCanvas.toJSON(['data'])
 
-          var img_name = getFileName(IMAGE_URL)
 
-          alert('filename : ' + img_name)
+        // save Canvas JSON to localStorage
+        const json = fabricCanvas.toJSON();
+        var canvas_json_string = JSON.stringify(json)
+
+        var img_name = getFileName(IMAGE_URL)
+
+        if (canvas_json_string !== null) {
+
+            storeSessionValue(img_name, canvas_json_string)
+
+        }
+
+          
+
+        // alert('filename : ' + img_name)
+
+
     
     
     };
@@ -281,6 +306,23 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         return filename
 
+    }
+
+
+    function storeSessionValue(key, value) {
+        if (localStorage) {
+            localStorage.setItem(key, value);
+        } else {
+            $.cookies.set(key, value);
+        }
+    }
+
+    function getStoredSessionValue(key) {
+        if (localStorage) {
+            return localStorage.getItem(key);
+        } else {
+            return $.cookies.get(key);
+        }
     }
 
 
