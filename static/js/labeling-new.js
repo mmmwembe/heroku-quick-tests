@@ -5,10 +5,22 @@ window.addEventListener('load', (event) => {
     var TARGET_CANVAS_WIDTH = null
     var TARGET_CANVAS_HEIGHT = null
     var rectangle, isDown, origX, origY;
+    var x_min, y_min, x_max, y_max;
+    var norm_x_min,norm_y_min,norm_x_max,norm_y_max;
+    var IMAGE_URL;
 
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
 
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
+    fabric.Object.prototype.set("field", "value");
+    fabric.Object.prototype.getAngleInRadians = function() {
+        return this.getAngle() / 180 * Math.PI;
+    };
+
+    fabric.Object.prototype.getZIndex = function() {
+        return this.fabricCanvas.getObjects().indexOf(this);
+    }
+
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
     // Show the first image from the thumbnails the main image
@@ -20,7 +32,8 @@ window.addEventListener('load', (event) => {
       img_thumbnails[i].addEventListener("click", function(e) {
 
             img_url = e.target.src
-             updateFabricCanvasBackgroundImage(img_url)
+            IMAGE_URL = img_url
+            updateFabricCanvasBackgroundImage(img_url)
             //alert(img_url)
 
       })
@@ -121,6 +134,7 @@ fabricCanvas.on('mouse:up', function(o){
 });
 
 
+// Delete the bounding box by double clicking the box
 fabricCanvas.on('mouse:dblclick', (e1) => {
     // fabricCanvas.getActiveObject().remove();
     fabricCanvas.remove(fabricCanvas.getActiveObject())
@@ -146,6 +160,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         var first_img = first_img_div.getElementsByTagName('img')[0].src;
         // alert(first_img)
         if(first_img){
+        IMAGE_URL = first_img
         updateFabricCanvasBackgroundImage(first_img)
         }
     }
