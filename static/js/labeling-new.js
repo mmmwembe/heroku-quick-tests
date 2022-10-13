@@ -5,6 +5,8 @@ window.addEventListener('load', (event) => {
     var TARGET_CANVAS_WIDTH = null
     var TARGET_CANVAS_HEIGHT = null
     var rectangle, isDown, origX, origY;
+    var label='label'
+    var LABEL_STATUS ="active"
     var x_min, y_min, x_max, y_max;
     var norm_x_min,norm_y_min,norm_x_max,norm_y_max;
     var IMAGE_URL;
@@ -15,6 +17,17 @@ window.addEventListener('load', (event) => {
     var currentMode = MODE.drawing
     var startTime, endTime, elapsed_time_seconds;
     var total_duration = null, units_of_measure ='s', total_duration_array = [], date = null
+
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const d = new Date()
+    var year = d.getFullYear();
+    var month = d.getMonth() + 1;
+    var month_text = months[d.getMonth()];
+    var day = d.getDate();
+    var today = new Date();
+    var ISODate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var Date_Month_Text = today.getDate() + '-' + month_text +'-'+ today.getFullYear()
+    var iso_date_timestamp 
 
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
 
@@ -152,10 +165,23 @@ fabricCanvas.on('mouse:up', function(o){
         var canvas_height = fabricCanvas.height
         var canvas_width =  fabricCanvas.width
         var canvas_objects, last_object, last_object_index  = getObjectIndexOnCanvas()
-    
-        alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width + ' last object index ' + last_object_index )
-    
 
+        x_min = rectangle.get("left")
+        y_min = rectangle.get("top")
+        x_max = rectangle.get("left") + rectangle.get("width")
+        y_max = rectangle.get("top")  + rectangle.get("height")
+    
+        norm_x_min = rectangle.get("left")/canvas_width
+        norm_y_min = rectangle.get("top")/canvas_height 
+        norm_x_max = (rectangle.get("left") + rectangle.get("width"))/canvas_width
+        norm_y_max = (rectangle.get("top") + rectangle.get("height"))/canvas_height 
+        iso_date_timestamp = new Date().toISOString()
+    
+        norm_data =  {'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': label, 'norm_x_min': norm_x_min, 'norm_y_min': norm_y_min, 'norm_x_tr' : '', 'norm_y_tr' :'', 'norm_x_max' : norm_x_max, 'norm_y_max' : norm_y_max, 'norm_x_bl': '', 'norm_y_bl':'', 'label_status' : LABEL_STATUS, 'ISODate': iso_date_timestamp }
+    
+        alert(' NORMALIZED DATA ' + JSON.jsonify(norm_data))
+        // alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width + ' last object index ' + last_object_index )
+    
     };
 
       isDown = false;

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <!-- Adding the Fabric JS Library-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/510/fabric.min.js"></script>
+</head>
+<body>
+   <h2>Resizing an object non-uniformly via corner points</h2>
+   <p>Hold the <b>ctrl</b> key and drag the object from its corners. The object will resize non-uniformly. </p>
+   <canvas id="canvas"></canvas>
+   <script>
+      // Initiate a canvas instance
+      var canvas = new fabric.Canvas("canvas", {
+         uniScaleKey: "ctrlKey",
+      });
+      // Creating an instance of the fabric.Rect class
+      var circle = new fabric.Circle({
+         left: 70,
+         top: 90,
+         radius: 40,
+         fill: "#006400",
+      });
+      // Adding it to the canvas
+      canvas.add(circle);
+      canvas.setWidth(document.body.scrollWidth);
+      canvas.setHeight(250);
+   </script>
+</body>
+</html>
