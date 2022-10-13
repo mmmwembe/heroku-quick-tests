@@ -29,6 +29,8 @@ window.addEventListener('load', (event) => {
     var Date_Month_Text = today.getDate() + '-' + month_text +'-'+ today.getFullYear()
     var iso_date_timestamp 
 
+    var user_id ="10101010102030232"
+
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
 
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
@@ -178,9 +180,19 @@ fabricCanvas.on('mouse:up', function(o){
         iso_date_timestamp = new Date().toISOString()
     
         norm_data =  {'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': label, 'norm_x_min': norm_x_min, 'norm_y_min': norm_y_min, 'norm_x_tr' : '', 'norm_y_tr' :'', 'norm_x_max' : norm_x_max, 'norm_y_max' : norm_y_max, 'norm_x_bl': '', 'norm_y_bl':'', 'label_status' : LABEL_STATUS, 'ISODate': iso_date_timestamp }
-        alert(' NORMALIZED DATA ' + JSON.stringify(norm_data))
-        // alert(' norm_x_min ' + norm_x_min + ' norm_y_min ' + norm_y_min + ' norm_x_max' + norm_x_max  + ' norm_y_max' + norm_y_max + ' iso timestamp ' + iso_date_timestamp) 
-        // alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width + ' last object index ' + last_object_index )
+        // alert(' NORMALIZED DATA ' + JSON.stringify(norm_data))
+
+
+
+        rectangle.set({ data: { 
+            'originator': user_id,
+            'label' : label,
+            'ISODate' : ISODate,
+            'date_month_text' : Date_Month_Text,
+            'ai_ready_normalized_data' : norm_data,
+            'timer_tracker': {'elapsed_time_seconds' : elapsed_time_seconds, 'total_duration_array': total_duration_array, 'total_duration': total_duration, 'units_of_measure' : units_of_measure},
+          } })
+    
     
     };
 
@@ -195,16 +207,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     // fabricCanvas.getActiveObject().remove();
     fabricCanvas.remove(fabricCanvas.getActiveObject())
 });
-
-
-
-
-
-
-
-
-
-
 
 
 
