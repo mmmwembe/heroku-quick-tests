@@ -134,9 +134,9 @@ fabricCanvas.on('mouse:up', function(o){
 
     var canvas_height = fabricCanvas.height
     var canvas_width =  fabricCanvas.width
-    var object_index = fabricCanvas.getActiveObject().getZIndex()
+    // var object_index = fabricCanvas.getActiveObject().getZIndex()
 
-    alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width + ' object index ' + object_index)
+    alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width )
 
 });
 
