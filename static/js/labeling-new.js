@@ -214,6 +214,10 @@ fabricCanvas.on('mouse:up', function(o){
             storeSessionValue(img_name, canvas_json_string)
 
         }
+        else {
+
+            storeSessionValue(img_name, null)
+        }
 
           
 
