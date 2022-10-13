@@ -131,6 +131,12 @@ fabricCanvas.on('mouse:move', function(o){
 
 fabricCanvas.on('mouse:up', function(o){
     isDown = false;
+
+    var canvas_height = fabricCanvas.height
+    var canvas_width =  fabricCanvas.width
+
+    alert('canvas height : ' + canvas_height + ' canvas_width ' + canvas_width)
+
 });
 
 
