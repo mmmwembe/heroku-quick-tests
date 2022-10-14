@@ -51,7 +51,8 @@ window.addEventListener('load', (event) => {
     var IMAGE_LIST = {}
     for(let i = 0; i < img_thumbnails.length; i++) {
       var imageURL = img_thumbnails[i].getElementsByTagName('img')[0].src;
-      alert(' image URL ' + imageURL)
+      // alert(' image URL ' + imageURL)
+      IMAGE_LIST[i] = imageURL
     }
 
     // Show the first image from the thumbnails the main image
