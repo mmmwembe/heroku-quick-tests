@@ -160,6 +160,9 @@ fabricCanvas.on('mouse:move', function(o){
     rectangle.set({ width: Math.abs(origX - pointer.x) });
     rectangle.set({ height: Math.abs(origY - pointer.y) });
 
+    // change cursor to hover
+    rectangle.set({ hoverCursor: "pointer"})
+
     // rectangle.on("mousedblclick", ()=>{alert(' active Object ')})
     
     fabricCanvas.renderAll();
@@ -209,7 +212,8 @@ fabricCanvas.on('mouse:up', function(o){
             fill: 'green',
             left: rectangle.get("left")+2,
             top: rectangle.get("top") + 2,
-            fontSize: 15
+            hoverCursor: "pointer"
+            //fontSize: 15
         });
         fabricCanvas.add(label_text);
         fabricCanvas.renderAll();
