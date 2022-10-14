@@ -28,6 +28,8 @@ window.addEventListener('load', (event) => {
     var ISODate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var Date_Month_Text = today.getDate() + '-' + month_text +'-'+ today.getFullYear()
     var iso_date_timestamp 
+    var current_img_index;
+    var NUM_OF_IMAGES;
 
     var user_id ="10101010102030232"
 
@@ -54,6 +56,8 @@ window.addEventListener('load', (event) => {
       // alert(' image URL ' + imageURL)
       IMAGE_LIST[i] = imageURL
     }
+    NUM_OF_IMAGES = img_thumbnails.length; 
+    alert(' Number of Images ' + NUM_OF_IMAGES)
 
     // Show the first image from the thumbnails the main image
     showFirstImage()
@@ -65,6 +69,7 @@ window.addEventListener('load', (event) => {
 
             img_url = e.target.src
             IMAGE_URL = img_url
+            current_img_index = i
             updateFabricCanvasBackgroundImage(img_url)
             //alert(img_url)
             var img_name = getFileName(IMAGE_URL)
