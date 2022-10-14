@@ -28,7 +28,7 @@ window.addEventListener('load', (event) => {
     var ISODate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var Date_Month_Text = today.getDate() + '-' + month_text +'-'+ today.getFullYear()
     var iso_date_timestamp 
-    var current_img_index;
+    var current_img_index = 0;
     var NUM_OF_IMAGES;
 
     var user_id ="10101010102030232"
@@ -57,7 +57,7 @@ window.addEventListener('load', (event) => {
       IMAGE_LIST[i] = imageURL
     }
     NUM_OF_IMAGES = img_thumbnails.length; 
-    alert(' Number of Images ' + NUM_OF_IMAGES)
+    // alert(' Number of Images ' + NUM_OF_IMAGES)
 
     // Show the first image from the thumbnails the main image
     showFirstImage()
@@ -367,8 +367,16 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
 
+    // ------------------------------------------
+    //          Download CSV File
+    //-------------------------------------------
 
 
+    document.getElementById("download-csv-button").onclick = function() {
+
+        alert(' download csv button clicked !!! ')
+       
+    };
 
 
 
