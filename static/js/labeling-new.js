@@ -202,6 +202,17 @@ fabricCanvas.on('mouse:up', function(o){
         // Save the data above to the Canvas
         fabricCanvas.toJSON(['data'])
 
+        // Add label to the rectangle
+        var label_text = new fabric.Text(label)
+        var label_height = label_text.height
+        label_text.set({
+            fill: 'green',
+            left: rectangle.get("left"),
+            top: rectangle.get("top") - label_height-1
+        });
+        fabricCanvas.add(label_text);
+        fabricCanvas.renderAll();
+
 
         // save Canvas JSON to localStorage
         const json = fabricCanvas.toJSON();
