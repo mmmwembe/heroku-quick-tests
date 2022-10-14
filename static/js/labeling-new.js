@@ -375,8 +375,18 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     document.getElementById("download-csv-button").onclick = function() {
 
         alert(' download csv button clicked !!! ')
-       
+
+        IMAGE_LIST.forEach(addToCSVFile);
+
+
     };
+
+    function addToCSVFile(image_url) {
+
+        image_file = getFileName(image_url)
+        alert(' image file name ' + image_file)
+        
+    }
 
 
 
