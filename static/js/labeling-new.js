@@ -35,6 +35,7 @@ window.addEventListener('load', (event) => {
 
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
     fabric.Object.prototype.set("field", "value");
+    fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.getAngleInRadians = function() {
         return this.getAngle() / 180 * Math.PI;
     };

@@ -1,0 +1,69 @@
+<html>
+<head>
+  <title>FabricJS Bounding Issue</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.1/fabric.min.js"></script>
+</head><!-- w  w  w  .   d e  m  o  2   s .  c  o    m-->
+<body>
+    <canvas id="c" width="600" height="600"></canvas>
+    <script type='text/javascript'>
+var canvas = new fabric.Canvas('c', {
+  width: 600,
+  height: 600
+});
+var bkgd = new Image();
+bkgd.crossOrigin = "anonymous";
+bkgd.src = 'https://upload.wikimedia.org/wikipedia/commons/e/eb/100_grid.PNG';
+bkgd.onload = function() {
+  canvas.backgroundColor = new fabric.Pattern({source: 'https://upload.wikimedia.org/wikipedia/commons/e/eb/100_grid.PNG'})
+  canvas.setBackgroundImage('https://upload.wikimedia.org/wikipedia/commons/e/eb/100_grid.PNG', canvas.renderAll.bind(canvas), {
+    backgroundImageOpacity: 0.5,
+    backgroundImageStretch: false,
+    originX: 'left',
+    originY: 'top',
+    crossOrigin: 'anonymous'
+  });
+  // object defaults
+  fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
+  fabric.Object.prototype.objectCaching = false;
+  var circle = new fabric.Circle({
+    radius: 50, fill: 'green', left: 100, top: 100
+  });
+  var triangle = new fabric.Triangle({
+    width: 100, height: 80, fill: 'blue', left: 200, top: 200
+  });
+  canvas.add(circle, triangle);
+}
+document.addEventListener('wheel', function(event) {
+  if(event.target.tagName == 'CANVAS') {
+    var evt = window.event || event;
+    var delta = evt.detail ? evt.detail * (-120) : evt.wheelDelta ? evt.deltaY : evt.deltaX ? evt.deltaX : evt.deltaY;
+    var curZoom = canvas.getZoom();
+    var newZoom = curZoom + delta / 1000;
+    var x = event.offsetX;
+    var y = event.offsetY;
+    if (newZoom > 0.3 && newZoom < 4) {
+      canvas.zoomToPoint({
+        x: x,
+        y: y
+      }, newZoom);
+    }
+    canvas.requestRenderAll();
+    canvas.calcOffset();
+  }
+}, false);
+$(document).keydown(function(e){
+  if (e.keyCode == 65 && e.metaKey) {
+    canvas.discardActiveObject();
+    var selection = [];
+    canvas.getObjects().forEach(function(o) {
+    selection.push(o);
+    });
+    var sel = new fabric.ActiveSelection(selection, { canvas: canvas });
+    canvas.setActiveObject(sel).requestRenderAll();
+  }
+});
+  </script>
+</body>
+</html>
