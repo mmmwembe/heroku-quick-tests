@@ -376,7 +376,15 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         //alert(' download csv button clicked !!! ')
 
-        IMAGE_LIST.forEach(addToCSVFile);
+        // IMAGE_LIST.forEach(addToCSVFile);
+
+        for(let i = 0; i < img_thumbnails.length; i++) {
+            var imageURL = img_thumbnails[i].getElementsByTagName('img')[0].src;
+
+            image_file = getFileName(imageURL)
+            alert(' image file name ' + image_file)
+            
+          }
 
 
     };
