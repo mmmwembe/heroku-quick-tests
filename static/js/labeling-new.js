@@ -207,9 +207,9 @@ fabricCanvas.on('mouse:up', function(o){
         var label_height = label_text.height
         label_text.set({
             fill: 'green',
-            left: rectangle.get("left")+1,
+            left: rectangle.get("left")+2,
             top: rectangle.get("top") + 2,
-            fontSize: 14
+            fontSize: 15
         });
         fabricCanvas.add(label_text);
         fabricCanvas.renderAll();
