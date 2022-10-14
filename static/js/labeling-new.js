@@ -60,7 +60,6 @@ window.addEventListener('load', (event) => {
             //alert(img_url)
             var img_name = getFileName(IMAGE_URL)
 
-
             // Get stored canvas json and display on the canvas
             if (getStoredSessionValue(img_name) !== null) {
                 const canvas_json = getStoredSessionValue(img_name);
@@ -211,21 +210,13 @@ fabricCanvas.on('mouse:up', function(o){
         var img_name = getFileName(IMAGE_URL)
 
         if (canvas_json_string !== null) {
-
             storeSessionValue(img_name, canvas_json_string)
-
         }
         else {
-
             storeSessionValue(img_name, null)
         }
 
-          
-
         // alert('filename : ' + img_name)
-
-
-    
     
     };
 
@@ -239,6 +230,20 @@ fabricCanvas.on('mouse:up', function(o){
 fabricCanvas.on('mouse:dblclick', (e1) => {
     // fabricCanvas.getActiveObject().remove();
     fabricCanvas.remove(fabricCanvas.getActiveObject())
+
+    // save Canvas JSON to localStorage
+    const json = fabricCanvas.toJSON();
+    var canvas_json_string = JSON.stringify(json)
+
+    var img_name = getFileName(IMAGE_URL)
+
+    if (canvas_json_string !== null) {
+        storeSessionValue(img_name, canvas_json_string)
+    }
+    else {
+        storeSessionValue(img_name, null)
+    }
+
 });
 
 
