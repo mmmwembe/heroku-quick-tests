@@ -37,6 +37,9 @@ window.addEventListener('load', (event) => {
 
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
     fabric.Object.prototype.set("field", "value");
+    // You can access this field through
+    // fabric.Object.prototype.Rect.field
+    // It returns "value"
     fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.getAngleInRadians = function() {
         return this.getAngle() / 180 * Math.PI;
@@ -386,7 +389,16 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
             if (getStoredSessionValue(image_file) !== null) {
                 const canvas_json = getStoredSessionValue(image_file);
-                alert('JSON STRING ' + JSON.stringify(canvas_json))
+                var tempCanvas = fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
+                var rects = tempCanvas.getObjects('rect')
+
+                for (rect in rects) {
+                    //return rect.get('width')
+                    alert(rect.get('width'))
+                }
+
+
+                //alert('JSON STRING ' + JSON.stringify(canvas_json))
                 //fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
             }
 
