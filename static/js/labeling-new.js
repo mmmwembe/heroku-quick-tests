@@ -382,8 +382,14 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             var imageURL = img_thumbnails[i].getElementsByTagName('img')[0].src;
 
             image_file = getFileName(imageURL)
-            alert(' image file name ' + image_file)
-            
+            //alert(' image file name ' + image_file)
+
+            if (getStoredSessionValue(image_file) !== null) {
+                const canvas_json = getStoredSessionValue(image_file);
+                alert('JSON STRING ' + JSON.stringify(canvas_json))
+                //fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
+            }
+
           }
 
 
