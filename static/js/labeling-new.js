@@ -246,7 +246,7 @@ fabricCanvas.on('mouse:up', function(o){
         fabricCanvas.renderAll();
 
          */
-        
+
         // save Canvas JSON to localStorage
         const json = fabricCanvas.toJSON();
         var canvas_json_string = JSON.stringify(json)
@@ -429,9 +429,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     var version = bbox.version
                     var originX = bbox.originX
 
-                    alert(JSON.stringify(bbox))
+                    // alert(JSON.stringify(bbox))
 
-                    alert('type ' + type + ' version ' + version + ' originX ' + originX)
+                    alert('ai_ready_normalized_data ' + JSON.stringify(ai_ready_normalized_data))
 
 
                 }
