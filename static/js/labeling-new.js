@@ -408,8 +408,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 keys.forEach(k => {
                 //if(data3[k].leadershipSkills.commander){
                 //    result[k] = data3[k]
-                  if (canvas_json_object[k].type =="rect"){
-                      alert(JSON.stringify(canvas_json_object[k].type =="rect"))
+                  if (canvas_json_object[k] =="rect"){
+                      alert(JSON.stringify(canvas_json_object[k]))
                 //    alert(' result[k] ' + JSON.stringify(result[k]["leadershipSkills"]))
                    }
                 //}
