@@ -496,7 +496,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         options || (options = { });
         this.callSuper('initialize', options);
         this.set('name', options.name || '');
-        this.set('label', options.label|| '');
+        this.set('label', options.label || '');
         this.set('label_font', options.label_font || '16px Arial');
         this.set('label_color', options.label_color || 'Black');
         this.set('originator', options.originator || '');
