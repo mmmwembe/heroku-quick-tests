@@ -433,7 +433,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                     // alert(JSON.stringify(bbox))
 
-                    alert('ISODate ' + JSON.stringify(ISODate))
+                    alert('ISODate ' + ISODate)
 
 
                 }
