@@ -4,6 +4,7 @@ window.addEventListener('load', (event) => {
     var MAX_CANVAS_HEIGHT = 400
     var TARGET_CANVAS_WIDTH = null
     var TARGET_CANVAS_HEIGHT = null
+    var BOUNDING_BOXES_ARRAY = []
     var rectangle, isDown, origX, origY;
     var label='label'
     var label_color = 'green'
@@ -422,14 +423,15 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 var bounding_boxes = jsonobj2.objects
 
-                downloadAsJSON(bounding_boxes,'boundingboxes.json')
-
+                
                 for (let i = 0; i < bounding_boxes.length; i++) {
                     var bbox = bounding_boxes[i]
 
                     var type = bbox.type
                     var version = bbox.version
                     var originX = bbox.originX
+
+                    BOUNDING_BOXES_ARRAY.push(bbox)
                     //var ai_ready_normalized_data = bbox.ai_ready_normalized_data
                     //var ISODate = bbox.ISODate
 
@@ -437,12 +439,32 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                     //alert('ISODate ' + ISODate)
 
-
                 }
+                
+                // Pretty-printing is implemented natively in JSON.stringify(). 
+                // var str = JSON.stringify(obj, null, 2); // spacing level = 2
+                all_bounding_boxes_json = JSON.parse(JSON.stringify(BOUNDING_BOXES_ARRAY, null, 2));
+                
+                var file_name_for_saving = 'my-data-' + iso_date_timestamp + '.json'
+
+                downloadAsJSON(all_bounding_boxes_json,file_name_for_saving)
+
+
                         
             }
 
-          }
+
+
+
+
+
+
+
+
+
+
+
+        }
 
 
     };
