@@ -461,7 +461,15 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             // Download as CSV
             var csv_file_name_for_saving = 'my-data-' + iso_date_timestamp + '.csv'
 
-            downloadAsCSV(all_bounding_boxes_json, csv_file_name_for_saving)
+            var csv_file = convertJSON2CSV(all_bounding_boxes_json)
+
+            alert(' csv file ' + csv_file)
+
+            // Save CSV_BLOB
+            // var csv_blob = new Blob([csv_file], { type: 'text/csv' });
+            // saveAs(csv_blob, csv_file_name_for_saving);
+
+            // downloadAsCSV(all_bounding_boxes_json, csv_file_name_for_saving)
 
     };
 
@@ -584,7 +592,32 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     // Double click function for canvas
   
-    
+    // ------------------------------------------------------------------------------------------
+    //                       Convert JSON object array to csv file
+    //-------------------------------------------------------------------------------------------
+
+    function convertJSON2CSV(json, filename){
+
+            var fields = Object.keys(json[0]) // Get field names from first array
+
+            var replacer = function(key, value) { return value === null ? '' : value } 
+
+            var csv = json.map(function(row){
+            return fields.map(function(fieldName){
+                return JSON.stringify(row[fieldName], replacer)
+            }).join(',')
+            })
+
+            csv.unshift(fields.join(',')) // add header column
+
+            csv = csv.join('\r\n');
+            
+            return csv
+        
+        }
+
+
+
     
     
 }); // End Window Load Event
