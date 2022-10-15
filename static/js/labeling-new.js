@@ -401,7 +401,16 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 for (let i = 0; i < bounding_boxes.length; i++) {
                     var bbox = bounding_boxes[i]
+
+                    var type = bbox.type
+                    var version = bbox.version
+                    var originX = bbox.originX
+
                     alert(JSON.stringify(bbox))
+
+                    alert('type ' + type + ' version ' + version + ' originX ' + originX)
+
+
                 }
                         
             }
