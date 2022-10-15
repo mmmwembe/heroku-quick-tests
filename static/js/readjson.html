@@ -88,9 +88,45 @@ let result ={}
 keys.forEach(k => {
   if(data3[k].leadershipSkills.commander){
       result[k] = data3[k]
-      alert(' result[k] ' + JSON.stringify(result[k]["leadershipSkills"]))
+      // alert(' result[k] ' + JSON.stringify(result[k]["leadershipSkills"]))
    }
 })
+
+
+var json1 = '{"objects":[{"type":"rect","originX":"center","originY":"center","left":300,"top":150,"width":150,"height":150,"fill":"#29477F","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":{"color":"rgba(94, 128, 191, 0.5)","blur":5,"offsetX":10,"offsetY":10},"visible":true,"clipTo":null,"rx":0,"ry":0,"x":0,"y":0},{"type":"circle","originX":"center","originY":"center","left":300,"top":400,"width":200,"height":200,"fill":"rgb(166,111,213)","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":{"color":"#5b238A","blur":20,"offsetX":-20,"offsetY":-10},"visible":true,"clipTo":null,"radius":100},{"type":"rect","originX":"center","originY":"center","left":300,"top":500,"width":150,"height":150,"fill":"#fbb802","overlayFill":null,"stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":{"color":"rgba(94, 128, 191, 0.5)","blur":5,"offsetX":10,"offsetY":10},"visible":true,"clipTo":null,"rx":0,"ry":0,"x":0,"y":0},{"type":"rect","originX":"left","originY":"top","left":368.31,"top":284.6,"width":126.33,"height":64.68,"fill":"rgba(0, 0, 0, 0)","stroke":"#ffffff","strokeWidth":3,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","fillRule":"nonzero","globalCompositeOperation":"source-over","rx":0,"ry":0} ],"background":""}';
+
+/*
+const obj = JSON.parse(json1);
+
+var jsonData = json1.objects
+
+for(var i in jsonData){
+    var key = i;
+    var val = jsonData[i];
+
+    alert(' new object ' + JSON.stringify(val))
+
+}
+
+*/
+
+
+var jsClean = json1.replace(/"objects"/, 'objects');
+var jsonObj = JSON.parse(JSON.stringify(jsClean));
+var jsonobj2 = eval('(' + jsonObj + ')');
+
+var bounding_boxes = jsonobj2.objects
+
+for (let i = 0; i < bounding_boxes.length; i++) {
+    var bbox = bounding_boxes[i]
+    alert(JSON.stringify(bbox))
+}
+
+// alert('alert ' +  JSON.stringify(jsonobj2.objects[1]))
+// jsonobj2.objects[0].type
+
+
+
 
 
 

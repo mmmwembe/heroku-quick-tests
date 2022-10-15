@@ -390,34 +390,19 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             if (getStoredSessionValue(image_file) !== null) {
                 const canvas_json_string = getStoredSessionValue(image_file);
                 const canvas_json_object = JSON.parse(canvas_json_string)
-                //var tempCanvas = fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
 
-                /*
 
-                var results=anvas_json_object.filter(obj=> obj.type== "rect");
-                //var rects = canvas_json.getObjects('rect')
+                var jsClean = canvas_json_object.replace(/"objects"/, 'objects');
+                var jsonObj = JSON.parse(JSON.stringify(jsClean));
+                var jsonobj2 = eval('(' + jsonObj + ')');
 
-                for (rect in results) {
-                    //return rect.get('width')
-                    alert(rect.get('width'))
+                var bounding_boxes = jsonobj2.objects
+
+                for (let i = 0; i < bounding_boxes.length; i++) {
+                    var bbox = bounding_boxes[i]
+                    alert(JSON.stringify(bbox))
                 }
-                */
-
-                let keys = Object.keys(canvas_json_object)
-                let result =[]
-                keys.forEach(k => {
-                //if(data3[k].leadershipSkills.commander){
-                //    result[k] = data3[k]
-                  if (canvas_json_object[k]){
-                      alert(JSON.stringify(canvas_json_object[k]))
-                //    alert(' result[k] ' + JSON.stringify(result[k]["leadershipSkills"]))
-                   }
-                //}
-                })
-
-
-                //alert('JSON STRING ' + JSON.stringify(canvas_json))
-                //fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
+                        
             }
 
           }
