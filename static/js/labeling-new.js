@@ -229,6 +229,8 @@ fabricCanvas.on('mouse:up', function(o){
             'timer_tracker': {'elapsed_time_seconds' : elapsed_time_seconds, 'total_duration_array': total_duration_array, 'total_duration': total_duration, 'units_of_measure' : units_of_measure},
           })
 
+          fabricCanvas.renderAll();
+
         /*
         // Save the data above to the Canvas
         fabricCanvas.toJSON(['data'])
@@ -413,11 +415,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             //alert(' image file name ' + image_file)
 
             if (getStoredSessionValue(image_file) !== null) {
-                const canvas_json_string = getStoredSessionValue(image_file);
-                const canvas_json_object = JSON.parse(canvas_json_string)
+                const new_canvas_json_string = getStoredSessionValue(image_file);
+                const canvas_json_object = JSON.parse(new_canvas_json_string )
 
 
-                var jsClean = canvas_json_string.replace(/"objects"/, 'objects');
+                var jsClean = new_canvas_json_string.replace(/"objects"/, 'objects');
                 var jsonObj = JSON.parse(JSON.stringify(jsClean));
                 var jsonobj2 = eval('(' + jsonObj + ')');
 
@@ -450,18 +452,43 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             // var str = JSON.stringify(obj, null, 2); // spacing level = 2
             all_bounding_boxes_json = JSON.parse(JSON.stringify(BOUNDING_BOXES_ARRAY, null, 2));
             
+            // Download as JSON
             var file_name_for_saving = 'my-data-' + iso_date_timestamp + '.json'
 
             downloadAsJSON(all_bounding_boxes_json,file_name_for_saving)
 
+            // Download as CSV
+            var csv_file_name_for_saving = 'my-data-' + iso_date_timestamp + '.csv'
+
+            downloadAsCSV(all_bounding_boxes_json, csv_file_name_for_saving)
 
     };
+
+    
 
     function addToCSVFile(image_url) {
 
         image_file = getFileName(image_url)
         alert(' image file name ' + image_file)
 
+    }
+
+    function ConvertToCSV(objArray) {
+        var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+        var str = '';
+
+        for (var i = 0; i < array.length; i++) {
+            var line = '';
+            for (var index in array[i]) {
+                if (line != '') line += ','
+
+                line += array[i][index];
+            }
+
+            str += line + '\r\n';
+        }
+
+        return str;
     }
 
 
@@ -480,11 +507,15 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         // Save the file
         saveAs(fileToSave, fileName);
 
+    }
 
+    function downloadAsCSV(new_json_object, filename){
 
+        var fileName = filename ? filename : 'myData.csv';
 
+        var csv_fileToSave = ConvertToCSV(new_json_object)
 
-
+        saveTextAs(csv_fileToSave, fileName);
     }
 
 
