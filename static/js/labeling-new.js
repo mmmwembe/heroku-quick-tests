@@ -440,31 +440,17 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     //alert('ISODate ' + ISODate)
 
                 }
-                
-                // Pretty-printing is implemented natively in JSON.stringify(). 
-                // var str = JSON.stringify(obj, null, 2); // spacing level = 2
-                all_bounding_boxes_json = JSON.parse(JSON.stringify(BOUNDING_BOXES_ARRAY, null, 2));
-                
-                var file_name_for_saving = 'my-data-' + iso_date_timestamp + '.json'
-
-                downloadAsJSON(all_bounding_boxes_json,file_name_for_saving)
-
-
-                        
+                       
             }
-
-
-
-
-
-
-
-
-
-
-
-
         }
+
+            // Pretty-printing is implemented natively in JSON.stringify(). 
+            // var str = JSON.stringify(obj, null, 2); // spacing level = 2
+            all_bounding_boxes_json = JSON.parse(JSON.stringify(BOUNDING_BOXES_ARRAY, null, 2));
+            
+            var file_name_for_saving = 'my-data-' + iso_date_timestamp + '.json'
+
+            downloadAsJSON(all_bounding_boxes_json,file_name_for_saving)
 
 
     };
@@ -537,10 +523,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             reviewer: this.get('reviewer'),
             qa: this.get('qa'),
             approved_true_false: this.get('approved_true_false'),
-            label: this.get('ISODate'),
-            label: this.get('date_month_text'),    
-            label: this.get('ai_ready_normalized_data'),
-            label: this.get('timer_tracker'),                                                                                                          
+            ISODate: this.get('ISODate'),
+            date_month_text: this.get('date_month_text'),    
+            ai_ready_normalized_data: this.get('ai_ready_normalized_data'),
+            timer_tracker: this.get('timer_tracker'),                                                                                                          
         });
         },
 
