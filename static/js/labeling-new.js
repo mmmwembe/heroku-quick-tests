@@ -388,7 +388,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             //alert(' image file name ' + image_file)
 
             if (getStoredSessionValue(image_file) !== null) {
-                const canvas_json_object = getStoredSessionValue(image_file);
+                const canvas_json_string = getStoredSessionValue(image_file);
+                const canvas_json_object = JSON.parse(canvas_json_string)
                 //var tempCanvas = fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
 
                 /*
@@ -407,7 +408,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 keys.forEach(k => {
                 //if(data3[k].leadershipSkills.commander){
                 //    result[k] = data3[k]
-                      alert(JSON.stringify(canvas_json_object[k]))
+                      alert(canvas_json_object[k])
                 //    alert(' result[k] ' + JSON.stringify(result[k]["leadershipSkills"]))
                 //}
                 })
