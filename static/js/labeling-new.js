@@ -34,7 +34,6 @@ window.addEventListener('load', (event) => {
     var user_id ="10101010102030232"
 
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
-
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
     fabric.Object.prototype.set("field", "value");
 
@@ -49,6 +48,12 @@ window.addEventListener('load', (event) => {
     fabric.Object.prototype.getZIndex = function() {
         return this.fabricCanvas.getObjects().indexOf(this);
     }
+
+    // -----------------------------------------------------------
+    //  Clear Local Storage - If needed during coding - update final
+    //------------------------------------------------------------
+    
+    clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
@@ -369,6 +374,19 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         }
     }
 
+    function removeStoredSessionVariable(key){
+
+        if (localStorage.getItem(key) != ''  || localStorage.getItem(key) != null){
+            localStorage.removeItem(key);
+        }
+    }
+
+    function clearEntireLocalStorage(){
+
+        localStorage.clear();
+
+    }
+
 
 
     // ------------------------------------------
@@ -427,20 +445,69 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     }
 
+
+    //------------------------------------------------------------------------------------
     // Add custom attributes to the rectangle so that we can retrieve them from the canvas
+    //------------------------------------------------------------------------------------
 
-        // Add new variables to rect
-    rectangle.toObject = (function(toObject) {
-        return function() {
-              return fabric.util.object.extend(toObject.call(this), {
-                ai_ready_normalized_data: this.ai_ready_normalized_data
-              });
-            };
-    })(rectangle.toObject);
-
-
+    fabric.BoundingBox = fabric.util.createClass(fabric.Rect, {
+        type: 'BoundingBox',
+        initialize: function(options) {
+        options || (options = { });
+        this.callSuper('initialize', options);
+        this.set('name', options.name || '');
+        this.set('label', options.label|| '');
+        this.set('label_font', options.label_font || '16px Arial');
+        this.set('label_color', options.label_color || 'Black');
+        this.set('originator', options.originator || '');
+        this.set('checker', options.checker || '');
+        this.set('reviewer', options.reviewer || '');
+        this.set('qa', options.qa|| '');
+        this.set('approved_true_false', options.approved_true_false || 'false');
+        this.set('ISODate', options.ISODate || '');
+        this.set('date_month_text', options.date_month_text || '');      
+        this.set('ai_ready_normalized_data', options.ai_ready_normalized_data || '');
+        this.set('timer_tracker', options.timer_tracker || '');
+                
+        },
     
+        toObject: function(options) {
+        return fabric.util.object.extend(this.callSuper('toObject'), {
+            name: this.get('name'),
+            selectable: this.get('selectable'),
+            label: this.get('label'),
+            label_font: this.get('label_font'),
+            label_color: this.get('label_color'),
+            originator: this.get('originator'),
+            checker: this.get('checker'),
+            reviewer: this.get('reviewer'),
+            qa: this.get('qa'),
+            approved_true_false: this.get('approved_true_false'),
+            label: this.get('ISODate'),
+            label: this.get('date_month_text'),    
+            label: this.get('ai_ready_normalized_data'),
+            label: this.get('timer_tracker'),                                                                                                          
+        });
+        },
+
+    _render: function(ctx) {
+        this.callSuper('_render', ctx);
     
+        //draw label text
+        ctx.font = this.label_font;
+        ctx.fillStyle = this.label_color;
+        var txtwidth=ctx.measureText(this.label).width;
+        ctx.fillText(this.label, -(this.width/2-this.width/2)-txtwidth/2, -this.height/2 + 20, this.width-10);
+        
+    }
+        
+    });
+
+    fabric.BoundingBox.fromObject = function(options) {
+        return new fabric.BoundingBox(options);
+    }
+
+
     // Double click function for canvas
   
     
