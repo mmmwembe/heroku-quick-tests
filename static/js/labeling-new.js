@@ -167,6 +167,8 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
         fill: 'transparent',
         stroke: label_color,
         strokeWidth: 2,
+        label : label,
+        label_color : label_color
     });
     fabricCanvas.add(rectangle);
 });
@@ -221,8 +223,6 @@ fabricCanvas.on('mouse:up', function(o){
 
         rectangle.set({
             'originator': user_id,
-            'label' : label,
-            'label_color' : label_color,
             'ISODate' : ISODate,
             'date_month_text' : Date_Month_Text,
             'ai_ready_normalized_data' : norm_data,
