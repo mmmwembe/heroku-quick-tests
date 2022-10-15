@@ -37,6 +37,7 @@ window.addEventListener('load', (event) => {
 
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
     fabric.Object.prototype.set("field", "value");
+
     // You can access this field through
     // fabric.Object.prototype.Rect.field
     // It returns "value"
@@ -417,7 +418,16 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     }
 
+    // Add custom attributes to the rectangle so that we can retrieve them from the canvas
 
+        // Add new variables to rect
+    rectangle.toObject = (function(toObject) {
+        return function() {
+              return fabric.util.object.extend(toObject.call(this), {
+                ai_ready_normalized_data: this.ai_ready_normalized_data
+              });
+            };
+    })(rectangle.toObject);
 
 
     
