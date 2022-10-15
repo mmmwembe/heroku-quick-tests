@@ -428,11 +428,12 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     var type = bbox.type
                     var version = bbox.version
                     var originX = bbox.originX
-                    var ai_ready_normalized_data = bbox.ai_ready_normalized_data
+                    //var ai_ready_normalized_data = bbox.ai_ready_normalized_data
+                    var ISODate = bbox.ISODate
 
                     // alert(JSON.stringify(bbox))
 
-                    alert('ai_ready_normalized_data ' + JSON.stringify(ai_ready_normalized_data))
+                    alert('ISODate ' + JSON.stringify(ISODate))
 
 
                 }
