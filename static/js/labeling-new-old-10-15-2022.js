@@ -6,7 +6,6 @@ window.addEventListener('load', (event) => {
     var TARGET_CANVAS_HEIGHT = null
     var rectangle, isDown, origX, origY;
     var label='label'
-    var label_color = 'green'
     var LABEL_STATUS ="active"
     var x_min, y_min, x_max, y_max;
     var norm_x_min,norm_y_min,norm_x_max,norm_y_max;
@@ -159,12 +158,11 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
     isDown = true;
     origX = pointer.x;
     origY = pointer.y;
-    // rectangle = new fabric.Rect({
-    rectangle = new fabric.BoundingBox({        
+    rectangle = new fabric.Rect({
         left: origX,
         top: origY,
         fill: 'transparent',
-        stroke: label_color,
+        stroke: 'green',
         strokeWidth: 2,
     });
     fabricCanvas.add(rectangle);
@@ -218,17 +216,15 @@ fabricCanvas.on('mouse:up', function(o){
         norm_data =  {'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': label, 'norm_x_min': norm_x_min, 'norm_y_min': norm_y_min, 'norm_x_tr' : '', 'norm_y_tr' :'', 'norm_x_max' : norm_x_max, 'norm_y_max' : norm_y_max, 'norm_x_bl': '', 'norm_y_bl':'', 'label_status' : LABEL_STATUS, 'ISODate': iso_date_timestamp }
         // alert(' NORMALIZED DATA ' + JSON.stringify(norm_data))
 
-        rectangle.set({
+        rectangle.set({ data: { 
             'originator': user_id,
             'label' : label,
-            'label_color' : label_color,
             'ISODate' : ISODate,
             'date_month_text' : Date_Month_Text,
             'ai_ready_normalized_data' : norm_data,
             'timer_tracker': {'elapsed_time_seconds' : elapsed_time_seconds, 'total_duration_array': total_duration_array, 'total_duration': total_duration, 'units_of_measure' : units_of_measure},
-          })
+          } })
 
-        /*
         // Save the data above to the Canvas
         fabricCanvas.toJSON(['data'])
 
@@ -245,8 +241,7 @@ fabricCanvas.on('mouse:up', function(o){
         fabricCanvas.add(label_text);
         fabricCanvas.renderAll();
 
-         */
-        
+
         // save Canvas JSON to localStorage
         const json = fabricCanvas.toJSON();
         var canvas_json_string = JSON.stringify(json)
