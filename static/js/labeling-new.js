@@ -227,8 +227,9 @@ fabricCanvas.on('mouse:up', function(o){
             'date_month_text' : Date_Month_Text,
             'ai_ready_normalized_data' : norm_data,
             'timer_tracker': {'elapsed_time_seconds' : elapsed_time_seconds, 'total_duration_array': total_duration_array, 'total_duration': total_duration, 'units_of_measure' : units_of_measure},
-          })
+        })
 
+          fabricCanvas.add(rectangle);
           fabricCanvas.renderAll();
 
         /*
@@ -464,7 +465,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     };
 
-    
+
 
     function addToCSVFile(image_url) {
 
