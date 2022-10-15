@@ -466,8 +466,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             alert(' csv file ' + csv_file)
 
             // Save CSV_BLOB
-            // var csv_blob = new Blob([csv_file], { type: 'text/csv' });
-            // saveAs(csv_blob, csv_file_name_for_saving);
+            var csv_blob = new Blob([csv_file], { type: 'text/csv' });
+            saveAs(csv_blob, csv_file_name_for_saving);
 
             // downloadAsCSV(all_bounding_boxes_json, csv_file_name_for_saving)
 
