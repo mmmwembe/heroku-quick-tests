@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+
+
+    const users = {
+        John: { username: 'johncam112', age:19 },
+        Daniel: { key: 'Dandandel1', age:21 },
+        Ruth: { key: 'rutie01', age:24 },
+        Joe: { key: 'Joemathuel', age:28 },
+        Ruth: { key: 'one', age:25 },
+        Ruth: { key: 'two', age:200 },
+        Ruth: { key: 'three', age:20 },
+    };
+
+    const selectedUsers = ['Ruth'];
+
+    const filteredUsers = Object.keys(users)
+        .filter(key => selectedUsers.includes(key))
+        .reduce((obj, key) => {
+            obj[key] = users[key];
+            return obj;
+    }, {});
+
+    //alert(JSON.stringify(filteredUsers));
+
+
+
+    let data = [
+        {id: "7B5B201E-35AA-48A1-B919-002445319F8B", name: "Naman Sabarwal"},
+        {id: "EA6672BA-4F7A-4214-A37F-00716CE698C9", name: "me name"},
+        {id: "01F29920-9206-42DF-8151-00A6A080C501", name: "Nitesh Negi"}
+    ]; // assume the data is in array 
+
+// let result = data.map( d => d.name );
+// alert(result);
+
+// let result2 = users.map( d => d.Ruth );
+// alert(result2);
+
+// let answers = users.keys(obj).map(key => obj['Ruth'])
+// alert(answers);
+
+/*
+yourObject = users
+
+const keys = Object.keys(yourObject);
+for (let i = 0; i < keys.length; i++) {
+  const key = keys[i];
+  if (key=='Ruth'){
+    alert(JSON.stringify(yourObject[key]))
+  }
+  //alert(key, JSON.stringify(yourObject[key]));
+}
+*/
+
+let data3 = {
+   "Card One": {
+     "colors": ["G", "R"],
+     "layout": "normal",
+     "leadershipSkills": {"brawl": false, "commander": true}
+   },
+      "Card Two": {
+     "colors": ["G", "R"],
+     "layout": "normal",
+     "leadershipSkills": {"brawl": false, "commander": true}
+   },
+      "Card Three": {
+     "colors": ["G", "R"],
+     "layout": "normal",
+     "leadershipSkills": {"brawl": false, "commander": true}
+   }
+}
+
+let keys = Object.keys(data3)
+let result ={}
+keys.forEach(k => {
+  if(data3[k].leadershipSkills.commander){
+      result[k] = data3[k]
+      alert(' result[k] ' + JSON.stringify(result[k]["leadershipSkills"]))
+   }
+})
+
+
+
+</script>
+
+
+</body>
+</html>
