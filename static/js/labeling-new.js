@@ -591,6 +591,22 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     }
 
 
+    // -----------------------------------------------------------------------------
+    //              Save Properties for Canvas
+    //------------------------------------------------------------------------------
+
+    fabric.Object.prototype.toObject = (function (toObject) {
+        return function (propertiesToInclude) {
+            propertiesToInclude = (propertiesToInclude || []).concat(
+              ['name', 'label', 'label_font', 'label_color', 'originator', 'checker', 
+               'reviewer', 'qa','approved_true_false', 'ISODate', 
+               'date_month_text', 'ai_ready_normalized_data', 'timer_tracker']
+            );
+            return toObject.apply(this, [propertiesToInclude]);
+        };
+    })(fabric.Object.prototype.toObject);
+
+
     // Double click function for canvas
   
     // ------------------------------------------------------------------------------------------
