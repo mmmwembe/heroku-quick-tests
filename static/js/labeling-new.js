@@ -430,9 +430,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     var type = bbox.type
                     var version = bbox.version
                     var originX = bbox.originX
+                    var ai_ready_normalized_data = bbox.ai_ready_normalized_dat
 
-                    BOUNDING_BOXES_ARRAY.push(bbox)
-                    //var ai_ready_normalized_data = bbox.ai_ready_normalized_data
+
+                    BOUNDING_BOXES_ARRAY.push(ai_ready_normalized_data)
+                    //a
                     //var ISODate = bbox.ISODate
 
                     //alert(JSON.stringify(bbox))
@@ -503,7 +505,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         this.set('checker', options.checker || '');
         this.set('reviewer', options.reviewer || '');
         this.set('qa', options.qa|| '');
-        this.set('approved_true_false', options.approved_true_false || 'false');
+        this.set('approved_true_false', options.approved_true_false || false);
         this.set('ISODate', options.ISODate || '');
         this.set('date_month_text', options.date_month_text || '');      
         this.set('ai_ready_normalized_data', options.ai_ready_normalized_data || '');
