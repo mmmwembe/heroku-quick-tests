@@ -392,7 +392,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 const canvas_json_object = JSON.parse(canvas_json_string)
 
 
-                var jsClean = canvas_json_object.replace(/"objects"/, 'objects');
+                var jsClean = canvas_json_string.replace(/"objects"/, 'objects');
                 var jsonObj = JSON.parse(JSON.stringify(jsClean));
                 var jsonobj2 = eval('(' + jsonObj + ')');
 
