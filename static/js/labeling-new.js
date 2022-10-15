@@ -422,6 +422,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 var bounding_boxes = jsonobj2.objects
 
+                downloadAsJSON(bounding_boxes,'boundingboxes.json')
+
                 for (let i = 0; i < bounding_boxes.length; i++) {
                     var bbox = bounding_boxes[i]
 
@@ -431,7 +433,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     //var ai_ready_normalized_data = bbox.ai_ready_normalized_data
                     //var ISODate = bbox.ISODate
 
-                    alert(JSON.stringify(bbox))
+                    //alert(JSON.stringify(bbox))
 
                     //alert('ISODate ' + ISODate)
 
@@ -449,6 +451,29 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         image_file = getFileName(image_url)
         alert(' image file name ' + image_file)
+
+    }
+
+
+    function downloadAsJSON(new_json_object, filename){
+
+        // https://stackoverflow.com/questions/19721439/download-json-object-as-a-file-from-browser
+        // var data = {key: 'value'};
+        //var fileName = 'myData.json';
+        var fileName = filename ? filename : 'myData.json';
+        
+        // Create a blob of the data
+        var fileToSave = new Blob([JSON.stringify(new_json_object)], {
+            type: 'application/json'
+        });
+        
+        // Save the file
+        saveAs(fileToSave, fileName);
+
+
+
+
+
 
     }
 
