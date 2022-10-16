@@ -971,10 +971,12 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 }
                 // Store the labels_color_map
-                storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
+               
 
                 // alert(' new label ' + new_label +  ' new color ' + new_color)
             }
+
+            storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
 
             // Hide the textarea
         // $("#labels_textarea").css("visibility", "hidden");
@@ -993,7 +995,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             $("#labels-error-message").html("")
 
 
-            alert('LABEL MAP AS STRING ')
+            // alert('LABEL MAP AS STRING ')
 
         }
         //alert('Labels to save ' + textarea_content)
