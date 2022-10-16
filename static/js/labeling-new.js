@@ -453,8 +453,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     var originX = bbox.originX
                     var ai_ready_normalized_data = bbox.ai_ready_normalized_data
 
+                   IF (Object.keys(ai_ready_normalized_data).length !== 0){
 
                     BOUNDING_BOXES_ARRAY.push(ai_ready_normalized_data)
+
+                   }
                     //a
                     //var ISODate = bbox.ISODate
 
@@ -481,7 +484,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
             var csv_file = convertJSON2CSV(all_bounding_boxes_json)
 
-            alert(' csv file ' + csv_file)
+            // alert(' csv file ' + csv_file)
 
             // Save CSV_BLOB
             var csv_blob = new Blob([csv_file], { type: 'text/csv' });
@@ -604,7 +607,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         
     });
 
-
+    // THIS WAS THE MISSING PIECE; FOR A LONG TIME THE BOUNDING BOXES COULD NOT BE LOADED WITH LOADFROMJSON UNTIL
+    // THIS REPLACED THE ONES BELOW
+    // https://gist.github.com/howtomakeaturn/453753be4e415c20ab501b3a6259b87d
     fabric.BoundingBox.fromObject = function(object, callback) {
         return fabric.Object._fromObject('BoundingBox', object, callback);
       };
