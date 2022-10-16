@@ -993,7 +993,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             $("#labels-error-message").html("")
 
 
-            alert('LABEL MAP AS STRING ' + JSON.jsonify(LABELS_COLOR_MAP))
+            alert('LABEL MAP AS STRING ' + JSON.stringify(LABELS_COLOR_MAP))
 
         }
         //alert('Labels to save ' + textarea_content)
