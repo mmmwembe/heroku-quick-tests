@@ -156,27 +156,36 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
 
     startTimer() 
 
-    var pointer = fabricCanvas.getPointer(o.e);
-    isDown = true;
-    origX = pointer.x;
-    origY = pointer.y;
-    // rectangle = new fabric.Rect({
-    rectangle = new fabric.BoundingBox({        
-        left: origX,
-        top: origY,
-        fill: 'transparent',
-        stroke: label_color,
-        strokeWidth: 2,
-        label : label,
-        label_color : label_color
-    });
-    fabricCanvas.add(rectangle);
+    if(current_label.length > 0 && current_color.length > 0){
+    // Only start drawing if both a label and label exist
+
+        var pointer = fabricCanvas.getPointer(o.e);
+        isDown = true;
+        origX = pointer.x;
+        origY = pointer.y;
+        // rectangle = new fabric.Rect({
+        rectangle = new fabric.BoundingBox({        
+            left: origX,
+            top: origY,
+            fill: 'transparent',
+            stroke: current_color,
+            strokeWidth: 2,
+            label : current_label,
+            label_color : current_color
+        });
+        fabricCanvas.add(rectangle);
+
+  }
+
 });
 
 fabricCanvas.on('mouse:move', function(o){
     if (!isDown) return;
 
     currentMode = MODE.drawing
+
+    if(current_label.length > 0 && current_color.length > 0){
+    // Only start drawing if both a label and label exist        
 
     var pointer = fabricCanvas.getPointer(o.e);
     if(origX>pointer.x){
@@ -194,6 +203,10 @@ fabricCanvas.on('mouse:move', function(o){
     // rectangle.on("mousedblclick", ()=>{alert(' active Object ')})
     
     fabricCanvas.renderAll();
+
+}
+
+
 });
 
 fabricCanvas.on('mouse:up', function(o){
@@ -202,6 +215,8 @@ fabricCanvas.on('mouse:up', function(o){
     if (isDown && currentMode === MODE.drawing) {
 
         endTimer()
+
+        if(current_label.length > 0 && current_color.length > 0){     
 
         var canvas_height = fabricCanvas.height
         var canvas_width =  fabricCanvas.width
@@ -218,7 +233,7 @@ fabricCanvas.on('mouse:up', function(o){
         norm_y_max = (rectangle.get("top")  + rectangle.get("height"))/canvas_height 
         iso_date_timestamp = new Date().toISOString()
     
-        norm_data =  {'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': label, 'norm_x_min': norm_x_min, 'norm_y_min': norm_y_min, 'norm_x_tr' : '', 'norm_y_tr' :'', 'norm_x_max' : norm_x_max, 'norm_y_max' : norm_y_max, 'norm_x_bl': '', 'norm_y_bl':'', 'label_status' : LABEL_STATUS, 'ISODate': iso_date_timestamp }
+        norm_data =  {'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': current_label, 'norm_x_min': norm_x_min, 'norm_y_min': norm_y_min, 'norm_x_tr' : '', 'norm_y_tr' :'', 'norm_x_max' : norm_x_max, 'norm_y_max' : norm_y_max, 'norm_x_bl': '', 'norm_y_bl':'', 'label_status' : LABEL_STATUS, 'ISODate': iso_date_timestamp }
         // alert(' NORMALIZED DATA ' + JSON.stringify(norm_data))
 
         rectangle.set({
@@ -266,6 +281,8 @@ fabricCanvas.on('mouse:up', function(o){
         }
 
         // alert('filename : ' + img_name)
+
+       }
     
     };
 
