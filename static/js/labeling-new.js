@@ -670,7 +670,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     // Restore label map if it exists in localStorage
 
 
-    alert(JSON.stringify(getStoredSessionValue("labels_color_map")))
+    alert(getStoredSessionValue("labels_color_map"))
 
     restore_LABELS_COLOR_MAP()
 
