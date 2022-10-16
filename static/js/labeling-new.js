@@ -668,6 +668,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     $("#cancel_button").attr("style", "display: none !important");
 
     // Restore label map if it exists in localStorage
+
+
+    alert(JSON.stringify(getStoredSessionValue("labels_color_map")))
+
     restore_LABELS_COLOR_MAP()
 
 
@@ -679,7 +683,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
        else {
                
-            LABELS_COLOR_MAP = JSON.parse(getStoredSessionValue("labels_color_map"))
+            LABELS_COLOR_MAP = getStoredSessionValue("labels_color_map")
 
            for (const [label, color] of Object.entries(LABELS_COLOR_MAP)) {
 
