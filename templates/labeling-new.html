@@ -437,9 +437,48 @@ body.modal-open .modal .modal-dialog {
 
 
     <div class="row">
+        <!----------------------------------------MODAL FOR CREATING PROJECT -------------------------------------------------->
+        <div class="container">
+            <!-- Trigger the modal with a button -->
+            <!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button-->
+          
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Create Project</h4>
+                    <button id="closeCornerBtn" type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+          
+                  <form>
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                     <div class="form-group">
+                       <label for="otp" style ="text-align: left"><strong>Enter Project Name</strong></label>
+                       <input type="text" class="form-control" id="project_name" name="project_name" required="true"> 
+                      </div>
+                  </div>
+            
+                  <!-- Modal footer -->
+          
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                      <button id="close" type="button" class="btn btn-danger" data-bs-dismiss="modal" style="margin-right:5px;">Close</button>
+                      <button id="createProjectBtn" type="button" class="btn btn-primary">Create Project</button>
+                  </div>
+          
+                </div>
+                
+              </div>
+            </div>
+            
+          </div>
 
-    </div>
-
+        </div>
+        <!----------------------------------------------------------------------------------------------------------------------------------->
 
 </div>
 
