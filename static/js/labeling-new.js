@@ -1033,11 +1033,12 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             project_id =""
             showProjectName_Modal()
 
+            alert(project_id)
+
             if (project_id.length > 0){
 
                 displayLabels()
 
-                post_project_and_labels_to_server()
             }
 
             else{
@@ -1104,6 +1105,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
             // alert('LABEL MAP AS STRING ')
+
+            post_project_and_labels_to_server()
 
     }
 
