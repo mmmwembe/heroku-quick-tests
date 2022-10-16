@@ -788,6 +788,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").css("border-radius","5px");
         $("#currentLabel").css("fontSize", "30px");
         $("#currentLabel").css("font-weight", "bold")
+        $("#currentLabel").css('color', 'white');
         $("#currentLabel").css("width", "130px");
         $("#currentLabel").css("margin", "5px");
         $("#currentLabel").html()
@@ -849,7 +850,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     //var textarea_content = document.getElementById('labels_textarea').value;
         if($("#labels_textarea").val().trim().length < 1)
         {
-            alert("Please Enter Labels...");
+            // alert("Please Enter Labels...");
+            $("#labels-error-message").html("Please Enter Labels...")
             return; 
         }
 
@@ -888,6 +890,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
             // Selete the first label as the initial label
             chooseInitialLabel()
+
+
+            $("#labels-error-message").html("")
 
         }
         //alert('Labels to save ' + textarea_content)
