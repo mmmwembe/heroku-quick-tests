@@ -650,13 +650,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     $("#addOrEdit_button").attr("style", "display: none !important");
     $("#cancel_button").attr("style", "display: none !important");
 
-    $('#save_button'). attr('onclick',new_save_imwe);
 
-    function new_save_imwe(){
-        alert('new save imwe')
-    }
+    $('#save_button').click(function(){            
+        alert('new save imwe - new one')
+    });
 
-    
     function showSelectedLabel(){
 
         current_label = $(this).attr('id')
