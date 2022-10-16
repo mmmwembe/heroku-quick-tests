@@ -677,7 +677,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     // Restore label map if it exists in localStorage
 
-  /*
+ 
 
     var new_map = JSON.parse(getStoredSessionValue("labels_color_map"))
     var new_jsonObj = JSON.parse(JSON.stringify(new_map));
@@ -685,7 +685,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     alert(JSON.stringify(new_map))
 
 
-
+ /*
 
 
    var new_map = JSON.parse(getStoredSessionValue("labels_color_map"))
@@ -858,7 +858,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").css("margin", "5px");
         $("#currentLabel").html()
         $("#currentLabel").html(_current_label)
-        $("#currentLabel").animate({height: '50px',width: '150px'},5000)
+        $("#currentLabel").animate({height: '50px',width: '200px'},5000)
 
     }
 
