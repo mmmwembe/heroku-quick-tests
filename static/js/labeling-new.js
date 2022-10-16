@@ -635,7 +635,311 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         }
 
 
+    // ------------------------------------------------------------------------------------------
+    //                     Add / Edit Labels for Labelling
+    //-------------------------------------------------------------------------------------------
+  
+    var original_textarea_content;
+    var new_textarea_content = []
+    var LABELS_COLOR_MAP = {}   // label (key) and color (value)
+    var current_label;
+    var current_color;
+
+    const  parentLabelClassItem = document.getElementById("newLabelParent")
+
+    $("#addOrEdit_button").attr("style", "display: none !important");
+    $("#cancel_button").attr("style", "display: none !important");
 
     
+    function showSelectedLabel(){
+
+        current_label = $(this).attr('id')
+        current_color = $(this).css("borderColor");
+        // alert(' You selected label ' + id)
+        
+
+        var all_labels = document.getElementsByClassName('labelclass');
+        for(let i = 0; i < all_labels.length; i++) {
+
+            if (all_labels[i].getAttribute("id").toString() === current_label.toString()){
+
+                $(this).css("backgroundColor",current_color);
+
+                showCurrentLabel(current_color, current_label)
+
+            }
+            else {
+
+                all_labels[i].style.backgroundColor ="transparent"
+            }
+
+        }
+
+    }
+
+
+    function chooseInitialLabel(){
+
+        // Choose the first label in the labels div as the first color
+        if (Object.keys(LABELS_COLOR_MAP).length > 0){
+
+        const firstColor = Object.values(LABELS_COLOR_MAP)[0];
+        const firstLabel = Object.keys(LABELS_COLOR_MAP)[0];
+
+        //alert('first label ' + firstLabel + 'first color ' + firstColor)
+
+        var all_labels = document.getElementsByClassName('labelclass');
+        var first_div = document.getElementById(firstLabel)
+
+        if(document.getElementById(firstLabel)){
+
+            $("#"+firstLabel).css("backgroundColor",firstColor);
+            showCurrentLabel(firstColor, firstLabel)
+        }
+
+        }
+
+    }
+
+    function updateLabelDivs(){
+
+        if (Object.keys(LABELS_COLOR_MAP).length > 0){
+
+            for (const [label, color] of Object.entries(LABELS_COLOR_MAP)) {
+
+                current_label = label.toString();
+                current_color = color.toString() +';';;
+
+                addNewLabel()
+                //alert('LABEL COLOR MAP ' + JSON.stringify(LABELS_COLOR_MAP))
+                // alert(' label  ' + label +  ' color ' + color)
+
+        }
+
+     }
+
+    }
+
+
+    function addOrEditLabels(){
+
+        // First remove all label divs (class = labelclass)
+        removeAllLabelDivs()
+
+        // Remove the current label display
+        $("#currentLabel").attr("style", "display: none !important");
+        $("#addOrEdit_button").attr("style", "display: none !important");
+        // Display the text area
+        $("#labels_textarea").attr("style", "display:  !important");
+        $("#labels_textarea").attr('class', 'scrollabletextbox');
+        $("#labels_textarea").css("backgroundColor","#F6F6F6");
+        $("#labels_textarea").css("border","6px outset #494848");
+        $("#labels_textarea").css("fontSize", "16px");
+        $("#labels_textarea").css("text-align", "left");
+
+        // Display Save and Cancel Buttons
+        $("#save_button").attr("style", "display:  !important");
+        $("#save_button").css("margin", "5px");
+        $("#save_button").css("width", "150px");
+        $("#cancel_button").attr("style", "display:  !important");
+        $("#cancel_button").css("margin", "5px");
+        $("#cancel_button").css("width", "150px");
+
+        // Create text that is line-separated
+
+        if (Object.keys(LABELS_COLOR_MAP).length > 0){
+
+                for (const [label, color] of Object.entries(LABELS_COLOR_MAP)) {
+                    current_label = label.toString();
+                    current_color = color.toString() +';';
+                    // string_of_labels += current_label.join("\n");
+                }
+
+        }
+
+   }
+
+
+    function showCurrentLabel(_current_color, _current_label){
+
+        $("#currentLabel").css("backgroundColor",_current_color);
+        $("#currentLabel").css("borderColor",_current_color);
+        $("#currentLabel").css("borderSize","3px");
+        $("#currentLabel").css("border-radius","5px");
+        $("#currentLabel").css("fontSize", "30px");
+        $("#currentLabel").css("font-weight", "bold")
+        $("#currentLabel").css("width", "130px");
+        $("#currentLabel").css("margin", "5px");
+        $("#currentLabel").html()
+        $("#currentLabel").html(_current_label)
+        $("#currentLabel").animate({height: '50px',width: '150px'},5000)
+
+    }
+
+
+    function cancelLabelChange(){
+
+        if (Object.keys(LABELS_COLOR_MAP).length > 0){
+
+        //  Re-populate textarea with original content
+
+        var string_of_labels="";
+
+            document.getElementById('labels_textarea').value =''
+
+            for (const [label, color] of Object.entries(LABELS_COLOR_MAP)) {
+
+                current_label = label.toString();
+                current_color = color.toString() +';';
+
+                if(current_label.length>0){
+                //string_of_labels += current_label + "\n"
+                document.getElementById('labels_textarea').value += current_label + '\r\n';
+
+                
+                }
+
+            }
+        
+            // Hide the textarea
+            $("#labels_textarea").attr("style", "display:  none  !important");  
+
+        // Display the label divs
+            updateLabelDivs()
+
+            // Selete the first label as the initial label
+            chooseInitialLabel()
+
+        }
+
+        // alert('Labels to save ' + textarea_content)
+        $("#cancel_button").attr("style", "display: none !important");
+        $("#save_button").attr("style", "display: none !important");
+        $("#addOrEdit_button").attr("style", "display:  !important");
+
+    }
+
+    function saveNewLabels(){
+
+    //var textarea_content = document.getElementById('labels_textarea').value;
+        if($("#labels_textarea").val().trim().length < 1)
+        {
+            alert("Please Enter Labels...");
+            return; 
+        }
+
+        else {
+
+            LABELS_COLOR_MAP = {}
+
+            //new_textarea_content = document.getElementById('labels_textarea').value;
+            new_textarea_content = $("#labels_textarea").val().split('\n');
+
+            for(let i = 0; i < new_textarea_content.length; i++) {
+
+                var new_label = new_textarea_content[i]
+                var new_color = generateDarkColor();
+
+                if (new_label.length > 0){
+
+                LABELS_COLOR_MAP[new_label] = new_color;
+
+                }
+                // Store the labels_color_map
+                storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
+
+                // alert(' new label ' + new_label +  ' new color ' + new_color)
+            }
+
+            // Hide the textarea
+        // $("#labels_textarea").css("visibility", "hidden");
+            $("#labels_textarea").attr("style", "display: none !important");
+            $("#save_button").attr("style", "display: none !important");
+            $("#cancel_button").attr("style", "display: none !important");
+            $("#currentLabel").attr("style", "display: show !important");
+            $("#addOrEdit_button").attr("style", "display:  !important");
+            // Create or Update the Label divs
+            updateLabelDivs()
+
+            // Selete the first label as the initial label
+            chooseInitialLabel()
+
+        }
+        //alert('Labels to save ' + textarea_content)
+    }
+
+
+
+    function addNewLabel(){
+
+    //var original_textarea_content = document.getElementById('labels_textarea').value;
+    //var colors = ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
+    //var random_color = colors[Math.floor(Math.random() * colors.length)].toString() + ';';
+    //var labels = ['Tomato', 'Popcorn', 'Sugar','Mango', 'Kandolo', 'Football'];
+    //var random_label = labels[Math.floor(Math.random() * labels.length)].toString();
+    // var new_color = setBackgroundColor().toString() + ';';
+
+    const newlabelClassItem = document.createElement('div')
+    newlabelClassItem.className ="labelclass"
+    newlabelClassItem.id = current_label
+    newlabelClassItem.style= "border: 3px solid " + current_color + " z-index: 2; background-color: transparent;  margin : 2px; border-radius: 10px; height: 35px;  width: 150px;";
+    newlabelClassItem.style.fontSize = "16";
+    newlabelClassItem.innerHTML ="<strong> "+ current_label + " </strong>";
+    newlabelClassItem.onclick = showSelectedLabel // function shows the selected label by highlighting background with the bordercolor
+    
+    parentLabelClassItem.append(newlabelClassItem)
+    
+    }
+
+
+    // Remove all Custom Labels
+    function removeAllLabelDivs(){
+        const elements = document.getElementsByClassName("labelclass");
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+    }
+
+    // Generate dark color for labelling
+    function generateDarkColor() {
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += Math.floor(Math.random() * 10);
+        }
+        return color;
+    }
+
+    function randDarkColor() {
+        var lum = -0.25;
+        var hex = String('#' + Math.random().toString(16).slice(2, 8).toUpperCase()).replace(/[^0-9a-f]/gi, '');
+        if (hex.length < 6) {
+            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+        }
+        var rgb = "#",
+            c, i;
+        for (i = 0; i < 3; i++) {
+            c = parseInt(hex.substr(i * 2, 2), 16);
+            c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+            rgb += ("00" + c).substr(c.length);
+        }
+        return rgb;
+    }
+
+    const getRandomNumber = (limit) => {
+    return Math.floor(Math.random() * limit);
+    };
+
+    const setBackgroundColor = () => {
+    const h = getRandomNumber(360);
+    const randomColor = `hsl(${h}deg, 50%, 10%)`;
+    return randomColor;
+
+    };
+
+  //-------------------------------------------------------------------------------------------
+
+
+
+
     
 }); // End Window Load Event

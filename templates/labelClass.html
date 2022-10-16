@@ -50,7 +50,7 @@
         <br>
         <button id="cancel_button" type="button" class="btn btn-danger" style="margin: 5px; width: 150px;"  onclick="cancelLabelChange()"> Cancel </button>
 
-</div>
+    </div>
 
 <script>
 
@@ -62,6 +62,8 @@ var current_color;
 
 const  parentLabelClassItem = document.getElementById("newLabelParent")
 
+$("#addOrEdit_button").attr("style", "display: none !important");
+$("#cancel_button").attr("style", "display: none !important");
 
 var labelClassItems = document.getElementsByClassName('labelclass');
 labelClassItems[0].onclick = getDiv
@@ -171,23 +173,13 @@ function addOrEditLabels(){
 
    if (Object.keys(LABELS_COLOR_MAP).length > 0){
 
-    var string_of_labels;
+        for (const [label, color] of Object.entries(LABELS_COLOR_MAP)) {
+            current_label = label.toString();
+            current_color = color.toString() +';';
+            // string_of_labels += current_label.join("\n");
+        }
 
-    for (const [label, color] of Object.entries(LABELS_COLOR_MAP)) {
-
-        current_label = label.toString();
-        current_color = color.toString() +';';
-
-        string_of_labels += current_label.join("\n");
-
-      }
-
-    }
-
-    alert('string of labels : ' + string_of_labels)
-
-
-
+   }
 
 }
 
@@ -204,7 +196,6 @@ function showCurrentLabel(_current_color, _current_label){
             $("#currentLabel").css("margin", "5px");
             $("#currentLabel").html()
             $("#currentLabel").html(_current_label)
-
             $("#currentLabel").animate({height: '50px',width: '150px'},5000)
 
 
@@ -213,10 +204,45 @@ function showCurrentLabel(_current_color, _current_label){
 
 function cancelLabelChange(){
 
-   
+    if (Object.keys(LABELS_COLOR_MAP).length > 0){
 
-    alert('Labels to save ' + textarea_content)
-  
+       //  Re-populate textarea with original content
+
+       var string_of_labels="";
+
+        document.getElementById('labels_textarea').value =''
+
+        for (const [label, color] of Object.entries(LABELS_COLOR_MAP)) {
+
+            current_label = label.toString();
+            current_color = color.toString() +';';
+
+            if(current_label.length>0){
+            //string_of_labels += current_label + "\n"
+             document.getElementById('labels_textarea').value += current_label + '\r\n';
+
+            
+            }
+
+        }
+    
+
+        // Hide the textarea
+        $("#labels_textarea").attr("style", "display:  none  !important");  
+
+       // Display the label divs
+        updateLabelDivs()
+
+        // Selete the first label as the initial label
+        chooseInitialLabel()
+
+
+    }
+
+    // alert('Labels to save ' + textarea_content)
+    $("#cancel_button").attr("style", "display: none !important");
+    $("#save_button").attr("style", "display: none !important");
+    $("#addOrEdit_button").attr("style", "display:  !important");
 
 }
 
@@ -237,23 +263,22 @@ function saveNewLabels(){
         //new_textarea_content = document.getElementById('labels_textarea').value;
         new_textarea_content = $("#labels_textarea").val().split('\n');
 
-
         for(let i = 0; i < new_textarea_content.length; i++) {
 
             var new_label = new_textarea_content[i]
             var new_color = generateDarkColor();
 
-            LABELS_COLOR_MAP[new_label] = new_color;
+            if (new_label.length > 0){
 
+             LABELS_COLOR_MAP[new_label] = new_color;
+
+            }
             // Store the labels_color_map
-            // storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
+            storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
 
             // alert(' new label ' + new_label +  ' new color ' + new_color)
 
-            // Choose an initial label and a color
-
         }
-
 
         // Hide the textarea
        // $("#labels_textarea").css("visibility", "hidden");
@@ -261,7 +286,7 @@ function saveNewLabels(){
         $("#save_button").attr("style", "display: none !important");
         $("#cancel_button").attr("style", "display: none !important");
         $("#currentLabel").attr("style", "display: show !important");
-
+        $("#addOrEdit_button").attr("style", "display:  !important");
         // Create or Update the Label divs
         updateLabelDivs()
 
@@ -275,23 +300,14 @@ function saveNewLabels(){
 }
 
 
-function createDivs4NewLabels(){
-
-
-
-}
 
 function addNewLabel(){
 
-var original_textarea_content = document.getElementById('labels_textarea').value;
-
-var colors = ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
-
-var random_color = colors[Math.floor(Math.random() * colors.length)].toString() + ';';
-
-var labels = ['Tomato', 'Popcorn', 'Sugar','Mango', 'Kandolo', 'Football'];
-var random_label = labels[Math.floor(Math.random() * labels.length)].toString();
-
+//var original_textarea_content = document.getElementById('labels_textarea').value;
+//var colors = ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
+//var random_color = colors[Math.floor(Math.random() * colors.length)].toString() + ';';
+//var labels = ['Tomato', 'Popcorn', 'Sugar','Mango', 'Kandolo', 'Football'];
+//var random_label = labels[Math.floor(Math.random() * labels.length)].toString();
 // var new_color = setBackgroundColor().toString() + ';';
 
   const newlabelClassItem = document.createElement('div')
@@ -309,7 +325,6 @@ var random_label = labels[Math.floor(Math.random() * labels.length)].toString();
 
 
 // Remove all Custom Labels
-
 function removeAllLabelDivs(){
     const elements = document.getElementsByClassName("labelclass");
     while(elements.length > 0){
@@ -317,13 +332,13 @@ function removeAllLabelDivs(){
     }
 }
 
-
+// Generate dark color for labelling
 function generateDarkColor() {
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += Math.floor(Math.random() * 10);
-            }
-            return color;
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += Math.floor(Math.random() * 10);
+    }
+    return color;
 }
 
 function randDarkColor() {
@@ -352,6 +367,17 @@ const setBackgroundColor = () => {
   return randomColor;
 
 };
+
+
+
+
+
+
+
+
+
+
+
 
 
 window.addEventListener('load', (event) => {

@@ -205,6 +205,19 @@ body.modal-open .modal .modal-dialog {
     overflow-y: scroll;
 }
 
+.scrollabletextbox {
+    height:300px;
+    width:150px;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 82%;
+    overflow:scroll;
+    } 
+
+   .labelclass:hover
+    {
+    cursor: pointer;
+    }
+
 </style>
 
 </head>
@@ -302,56 +315,28 @@ body.modal-open .modal .modal-dialog {
 
     <div class="col-3 col-s-12">
 
+
+        <!--Label Map -->
+
         <div class="ScrollStyle" style="height:100%">
 
-                <table id="GradingTable" class="display" style="width:100%; border: 1px solid black; border-collapse: collapse;">
-                    <thead>
-                        <tr>
-                            <th>#</th>                            
-                            <th>Label</th>
-                            <th>Confidence</th>
-                            <th>Right</th>
-                            <th>Wrong</th>
-                            <th>Comment</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>                            
-                            <td>dust</td>
-                            <td>90%</td>
-                            <td>Yes Button</td>
-                            <td>No Button</td>
-                            <td>chicken</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>                                 
-                            <td>smoke</td>
-                            <td>60%</td>
-                            <td>Yes Button</td>
-                            <td>No Button</td>
-                            <td></td>
-                        </tr>
-            
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>#</th>                                
-                            <th>Label</th>
-                            <th>Confidence</th>
-                            <th>Right</th>
-                            <th>Wrong</th>
-                            <th>Comment</th>
-                        </tr>
-                    </tfoot>
-            </table>
-        
+            <div id="currentLabel"></div>
+            <br>
+            <div id="newLabelParent"></div>
+    
+            <textarea id="labels_textarea" class="scrollabletextbox" style="text-align:left; font-size: 16px;  border:6px outset #494848; background-color: #F6F6F6;" name="note" rows="20" cols="25" placeholder="dog&#13;&#10;cat&#13;&#10;chicken&#13;&#10;cow&#13;&#10;horse&#13;&#10;girraffe&#13;&#10;crocodile&#13;&#10;shark"></textarea>
+    
+            <br>
+            <button id="addOrEdit_button" type="button"  class="btn btn-dark" style="margin: 5px; width: 150px;" onclick="addOrEditLabels()">Edit Label(s)</button>
+            <br>
+            <button id="save_button" type="button"  class="btn btn-success" style="margin: 5px; width: 150px;" onclick="saveNewLabels()">Save Labels</button>
+            <br>
+            <button id="cancel_button" type="button" class="btn btn-danger" style="margin: 5px; width: 150px;"  onclick="cancelLabelChange()"> Cancel </button>
+    
         </div>
 
+
     </div>
-
-
-
 
     <div class="row">
 
