@@ -32,6 +32,7 @@ window.addEventListener('load', (event) => {
     var iso_date_timestamp 
     var current_img_index = 0;
     var NUM_OF_IMAGES;
+    var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
     var user_id ="10101010102030232"
 
@@ -956,11 +957,17 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             for(let i = 0; i < new_textarea_content.length; i++) {
 
                 var new_label = new_textarea_content[i]
-                var new_color = generateDarkColor();
+
+               
+
+                // var new_color = generateDarkColor();
 
                 if (new_label.length > 0){
 
-                LABELS_COLOR_MAP[new_label] = new_color;
+                   // Use first 20 colors otherwise generate random dark color
+                   var new_color = (i <=20 ) ? first_20_colors[i] : generateDarkColor()
+
+                   LABELS_COLOR_MAP[new_label] = new_color;
 
                 }
                 // Store the labels_color_map
