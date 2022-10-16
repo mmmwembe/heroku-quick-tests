@@ -651,10 +651,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     $("#cancel_button").attr("style", "display: none !important");
 
 
-    $('#save_button').click(function(){            
-        alert('new save imwe - new one')
-    });
-
     function showSelectedLabel(){
 
         current_label = $(this).attr('id')
@@ -823,7 +819,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     }
 
-    function saveNewLabels(){
+
+    $('#save_button').click(function(){            
+    //function saveNewLabels(){
 
     //var textarea_content = document.getElementById('labels_textarea').value;
         if($("#labels_textarea").val().trim().length < 1)
@@ -850,7 +848,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 }
                 // Store the labels_color_map
-                // storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
+                storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
 
                 // alert(' new label ' + new_label +  ' new color ' + new_color)
             }
@@ -870,8 +868,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         }
         //alert('Labels to save ' + textarea_content)
-    }
-
+    //}
+});
 
 
     function addNewLabel(){
