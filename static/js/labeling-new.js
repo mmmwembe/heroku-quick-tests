@@ -453,7 +453,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     var originX = bbox.originX
                     var ai_ready_normalized_data = bbox.ai_ready_normalized_data
 
-                   IF (Object.keys(ai_ready_normalized_data).length !== 0){
+                  if (Object.keys(ai_ready_normalized_data).length !== 0){
 
                     BOUNDING_BOXES_ARRAY.push(ai_ready_normalized_data)
 
