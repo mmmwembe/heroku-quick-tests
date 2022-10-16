@@ -714,7 +714,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     
             var imageURL = img_thumbnails[i].getElementsByTagName('img')[0].src;
     
-            var img_name = getFileName(IMAGE_URL)
+            var img_name = getFileName(imageURL)
     
             // Get stored canvas json and display on the canvas
             if (getStoredSessionValue(img_name) !== null) {
