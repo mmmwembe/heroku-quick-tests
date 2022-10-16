@@ -846,7 +846,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 }
                 // Store the labels_color_map
-                storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
+                // storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
 
                 // alert(' new label ' + new_label +  ' new color ' + new_color)
             }
