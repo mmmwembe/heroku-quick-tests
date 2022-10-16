@@ -244,7 +244,7 @@ fabricCanvas.on('mouse:up', function(o){
             'timer_tracker': {'elapsed_time_seconds' : elapsed_time_seconds, 'total_duration_array': total_duration_array, 'total_duration': total_duration, 'units_of_measure' : units_of_measure},
         })
 
-        fabricCanvas.toJSON()
+        fabricCanvas.toJSON(['name', 'label', 'label_font', 'label_color', 'originator', 'checker', 'reviewer', 'qa','approved_true_false', 'ISODate', 'date_month_text', 'ai_ready_normalized_data', 'timer_tracker'])
         fabricCanvas.add(rectangle);
         fabricCanvas.renderAll();
 
@@ -670,7 +670,17 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     // Restore label map if it exists in localStorage
 
 
-    alert(getStoredSessionValue("labels_color_map"))
+   var new_map = getStoredSessionValue("labels_color_map")
+   
+   for (const [label, color] of Object.entries(new_map)) {
+
+    current_label = label.toString();
+    current_color = color.toString() +';';
+
+    alert('new map label ' + current_label + ' color ' + current_color)
+
+   }
+
 
     restore_LABELS_COLOR_MAP()
 
