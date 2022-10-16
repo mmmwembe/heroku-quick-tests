@@ -667,6 +667,34 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     $("#addOrEdit_button").attr("style", "display: none !important");
     $("#cancel_button").attr("style", "display: none !important");
 
+    // Restore label map if it exists in localStorage
+    restore_LABELS_COLOR_MAP()
+
+
+    function restore_LABELS_COLOR_MAP(){
+
+        if (getStoredSessionValue("labels_color_map") ===null || getStoredSessionValue("labels_color_map") ==="undefined"){
+                       return;
+         }
+
+       else {
+               
+            LABELS_COLOR_MAP = JSON.parse(getStoredSessionValue("labels_color_map"))
+
+           for (const [label, color] of Object.entries(LABELS_COLOR_MAP)) {
+
+               current_label = label.toString();
+               current_color = color.toString() +';';
+
+               if(current_label.length>0){
+               document.getElementById('labels_textarea').value += current_label + '\r\n';    
+               }
+           }
+
+       }
+
+    }
+
 
     function showSelectedLabel(){
 
@@ -702,6 +730,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         const firstColor = Object.values(LABELS_COLOR_MAP)[0];
         const firstLabel = Object.keys(LABELS_COLOR_MAP)[0];
+
+        current_color = firstColor
+        current_label = firstLabel
 
         //alert('first label ' + firstLabel + 'first color ' + firstColor)
 
