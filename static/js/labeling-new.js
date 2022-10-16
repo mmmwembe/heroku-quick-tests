@@ -60,8 +60,6 @@ window.addEventListener('load', (event) => {
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
-
-
     var IMAGE_LIST = {}
     for(let i = 0; i < img_thumbnails.length; i++) {
       var imageURL = img_thumbnails[i].getElementsByTagName('img')[0].src;
