@@ -501,6 +501,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         return str;
     }
 
+    // https://colab.research.google.com/github/nikitamaia/tensorflow-examples/blob/main/task.ipynb#scrollTo=P0OJP2KJEfa9
+    // 
+
 
     function downloadAsJSON(new_json_object, filename){
 
@@ -510,9 +513,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         var fileName = filename ? filename : 'myData.json';
         
         // Create a blob of the data
-        var fileToSave = new Blob([JSON.stringify(new_json_object)], {
-            type: 'application/json'
-        });
+        var fileToSave = new Blob([JSON.stringify(new_json_object)], {type: 'application/json'});
         
         // Save the file
         saveAs(fileToSave, fileName);
