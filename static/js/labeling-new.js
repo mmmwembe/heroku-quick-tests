@@ -422,13 +422,14 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     //Activate and de-activate download button
 
+   /*
    if(BOUNDING_BOXES_ARRAY.length > 0){
     document.getElementById("download-csv-button").disabled = false;
    }
    else {
     document.getElementById("download-csv-button").disabled = true;
    }
-
+  */
 
     document.getElementById("download-csv-button").onclick = function() {
 
