@@ -720,8 +720,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     }
 
-
-    function addOrEditLabels(){
+    
+    $('#addOrEdit_button').click(function(){
+    //function addOrEditLabels(){
 
         // First remove all label divs (class = labelclass)
         removeAllLabelDivs()
@@ -757,7 +758,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         }
 
-   }
+    //}
+    });
+
 
 
     function showCurrentLabel(_current_color, _current_label){
@@ -777,7 +780,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     }
 
 
-    function cancelLabelChange(){
+    $('#cancel_button').click(function(){
+    // function cancelLabelChange(){
 
         if (Object.keys(LABELS_COLOR_MAP).length > 0){
 
@@ -817,7 +821,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#save_button").attr("style", "display: none !important");
         $("#addOrEdit_button").attr("style", "display:  !important");
 
-    }
+    //}
+   });
+    
 
 
     $('#save_button').click(function(){            
