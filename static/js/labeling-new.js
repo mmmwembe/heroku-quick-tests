@@ -102,9 +102,9 @@ window.addEventListener('load', (event) => {
     //----------------------------------------------------------
     // Show Marked Images and Enable Download
     //----------------------------------------------------------
-    Show_Labeled_Images_and_Enable_Labels_Download()
+    // Show_Labeled_Images_and_Enable_Labels_Download()
 
-
+    //--------------------------------------------------------
 
    function updateFabricCanvasBackgroundImage(NEW_IMAGE_URL){
 
@@ -284,11 +284,11 @@ fabricCanvas.on('mouse:up', function(o){
         var img_name = getFileName(IMAGE_URL)
 
         if (canvas_json_string !== null) {
-            
+
             storeSessionValue(img_name, canvas_json_string)
 
             // Show Labelled Images and Enable Download
-            Show_Labeled_Images_and_Enable_Labels_Download()
+           // Show_Labeled_Images_and_Enable_Labels_Download()
         }
         else {
             storeSessionValue(img_name, null)
