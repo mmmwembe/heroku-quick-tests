@@ -102,7 +102,7 @@ window.addEventListener('load', (event) => {
     //----------------------------------------------------------
     // Show Marked Images and Enable Download
     //----------------------------------------------------------
-    // Show_Labeled_Images_and_Enable_Labels_Download()
+    Show_Labeled_Images_and_Enable_Labels_Download()
 
     //--------------------------------------------------------
 
@@ -720,7 +720,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             if (getStoredSessionValue(img_name) !== null) {
     
                 const canvas_json = getStoredSessionValue(img_name);
-                var new_JSON_Object = $.parseJSON(canvas_json)
+                //var new_JSON_Object = $.parseJSON(canvas_json)
     
                 // Add show green tick mark on thumbnail to show it has been labelled
                 $("#"+imageURL).css("display", "block");
