@@ -611,7 +611,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     */
 
     fabric.BoundingBox.fromObject = function (object: any, callback: any) {
-        var BoundingBox = new Fabric.BoundingBox(object);
+        var BoundingBox = new fabric.BoundingBox(object);
         callback && callback(BoundingBox);
         return BoundingBox;
     };
@@ -677,6 +677,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     // Restore label map if it exists in localStorage
 
+  /*
+
     var new_map = JSON.parse(getStoredSessionValue("labels_color_map"))
     var new_jsonObj = JSON.parse(JSON.stringify(new_map));
     var new_jsonobj2 = eval('(' + new_jsonObj + ')');
@@ -684,7 +686,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
 
-  /*
+
 
    var new_map = JSON.parse(getStoredSessionValue("labels_color_map"))
    
