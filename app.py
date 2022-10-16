@@ -881,6 +881,23 @@ def image_url():
     # return jsonify(result = 'success', image_url = image_url, request_url = request_url)
 
 
+@app.route('/create_new_project', methods=['POST','GET'])
+def create_new_project():
+
+    if request.method =='POST':
+        
+        user_id = request.form['user_id']
+        project_name = request.form['project_name']
+        project_id = request.form['project_id']
+        labels_color_map = request.form['labels_color_map']
+        ISODate = request.form['ISODate']
+
+    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
+
+
+
+
+
 
 if __name__ == '__main__':
     

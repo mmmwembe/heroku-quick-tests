@@ -49,3 +49,33 @@ function Show_Labeled_Images_and_Enable_Labels_Download(){
     NUM_IMAGES_TOTAL = img_thumbnails.length
 
 }
+
+
+
+
+
+
+$.ajax({
+    type: "POST",
+    url: '/send_tokens',
+    dataType: 'json',
+    data: { 
+            'user_id' : user_id, 
+            'project_name' : project_name, 
+            'project_id' : project_id, 
+            'labels_color_map' : LABELS_COLOR_MAP, 
+            'isoDate' : ISODate,
+       
+        },
+    success: function(data) {
+
+        var server_user_id = data.user_id
+        var server_project_name = data.project_name
+        var server_project_id = data.project_id
+        alert('user id: ' + server_user_id)
+        alert('server project name: ' + server_project_name)
+        alert('server project id: ' + server_project_id )
+
+    }
+    
+});

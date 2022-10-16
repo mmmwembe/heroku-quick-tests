@@ -42,6 +42,7 @@ window.addEventListener('load', (event) => {
 
     var user_id ="10101010102030232"
 
+
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
     fabric.Object.prototype.set("field", "value");
@@ -1055,6 +1056,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 // alert(' new label ' + new_label +  ' new color ' + new_color)
             }
 
+            // Get Project Name
+
+            showProjectName_Modal()
+
             storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
 
             // Hide the textarea
@@ -1149,6 +1154,92 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     };
 
   //-------------------------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------
+//                Project Folder and Subdirectories
+//------------------------------------------------------------------------
+
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
+
+    // 
+    const uniqueId = () => {
+        const dateString = Date.now().toString(36);
+        const randomness = Math.random().toString(36).substr(2);
+        return dateString + randomness;
+    };
+
+
+    $("#closeCornerBtn").click(function (){
+        myModal.toggle()
+    });
+
+    $("#close").click(function (){
+        myModal.toggle()
+    });
+
+    function showProjectName_Modal(){
+        myModal.toggle()
+    }
+
+
+    $("#createProjectBtn").click(function (event){
+
+        var project_name =""
+        project_name = $('#project_name').val();
+        var project_id = uniqueId();
+
+        if(project_name.length > 0){
+
+            myModal.toggle()
+
+            $.ajax({
+                type: "POST",
+                url: '/create_new_project',
+                dataType: 'json',
+                data: { 
+                        'user_id' : user_id, 
+                        'project_name' : project_name, 
+                        'project_id' : project_id, 
+                        'labels_color_map' : JSON.stringify(LABELS_COLOR_MAP), 
+                        'ISODate' : ISODate,
+                
+                    },
+                success: function(data) {
+
+                    var server_user_id = data.user_id
+                    var server_project_name = data.project_name
+                    var server_project_id = data.project_id
+                    alert('user id: ' + server_user_id)
+                    alert('server project name: ' + server_project_name)
+                    alert('server project id: ' + server_project_id )
+
+                }
+                
+            });
+
+
+        }
+
+        else {
+
+            event.preventDefault()
+            event.stopPropagation()
+
+        }
+
+    }); // End of "#createProjectBtn" click event
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
