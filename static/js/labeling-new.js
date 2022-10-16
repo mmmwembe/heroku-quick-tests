@@ -102,7 +102,7 @@ window.addEventListener('load', (event) => {
     //----------------------------------------------------------
     // Show Marked Images and Enable Download
     //----------------------------------------------------------
-    Show_Labeled_Images_and_Enable_Labels_Download()
+    // Show_Labeled_Images_and_Enable_Labels_Download()
 
     //--------------------------------------------------------
 
