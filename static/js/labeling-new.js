@@ -604,18 +604,18 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         
     });
 
-    /*
+  
     fabric.BoundingBox.fromObject = function(options) {
         return new fabric.BoundingBox(options);
     }
-    */
 
+  /*
     fabric.BoundingBox.fromObject = function (object: any, callback: any) {
         var BoundingBox = new fabric.BoundingBox(object);
         callback && callback(BoundingBox);
         return BoundingBox;
     };
-
+    */
 
     // -----------------------------------------------------------------------------
     //              Save Properties for Canvas
