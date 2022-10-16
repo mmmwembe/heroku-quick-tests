@@ -55,7 +55,7 @@ window.addEventListener('load', (event) => {
     //  Clear Local Storage - If needed during coding - update final
     //------------------------------------------------------------
     
-    clearEntireLocalStorage()
+    // clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
@@ -410,7 +410,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function clearEntireLocalStorage(){
 
-       localStorage.clear();
+      // localStorage.clear();
 
     }
 
