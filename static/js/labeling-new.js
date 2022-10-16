@@ -670,6 +670,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     // Restore label map if it exists in localStorage
 
 
+  /*
+
    var new_map = JSON.parse(getStoredSessionValue("labels_color_map"))
    
    for (const [label, color] of Object.entries(new_map)) {
@@ -708,6 +710,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
        }
 
     }
+
+    */
 
 
     function showSelectedLabel(){
