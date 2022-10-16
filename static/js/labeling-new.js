@@ -31,7 +31,13 @@ window.addEventListener('load', (event) => {
     var Date_Month_Text = today.getDate() + '-' + month_text +'-'+ today.getFullYear()
     var iso_date_timestamp 
     var current_img_index = 0;
+
     var NUM_OF_IMAGES;
+    // LABELED_IMAGES_TRACKER, NUM_LABELLED_IMAGES and NUM_IMAGES_TOTAL are determined by Show_Labeled_Images_and_Enable_Labels_Download()
+    var LABELED_IMAGES_TRACKER = []
+    var NUM_LABELLED_IMAGES;
+    var NUM_IMAGES_TOTAL;
+
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
     var user_id ="10101010102030232"
@@ -92,6 +98,11 @@ window.addEventListener('load', (event) => {
 
       })
     }
+
+    //----------------------------------------------------------
+    // Show Marked Images and Enable Download
+    //----------------------------------------------------------
+    Show_Labeled_Images_and_Enable_Labels_Download()
 
 
 
@@ -273,7 +284,11 @@ fabricCanvas.on('mouse:up', function(o){
         var img_name = getFileName(IMAGE_URL)
 
         if (canvas_json_string !== null) {
+            
             storeSessionValue(img_name, canvas_json_string)
+
+            // Show Labelled Images and Enable Download
+            Show_Labeled_Images_and_Enable_Labels_Download()
         }
         else {
             storeSessionValue(img_name, null)
@@ -683,6 +698,72 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             return csv
         
         }
+
+
+    // -----------------------------------------------------------------------------------------------------------------
+    //                     Show Labelled Images and Enable Images Download
+    //                     Also populate LABELED_IMAGES_TRACKER and get NUM_LABELLED_IMAGES and NUM_IMAGES_TOTAL
+    //----------------------------------------------------------------------------------------------------------------
+
+
+    function Show_Labeled_Images_and_Enable_Labels_Download(){
+
+        img_thumbnails = document.getElementsByClassName('gallery_column');
+    
+        for(let i = 0; i < img_thumbnails.length; i++) {
+    
+            var imageURL = img_thumbnails[i].getElementsByTagName('img')[0].src;
+    
+            var img_name = getFileName(IMAGE_URL)
+    
+            // Get stored canvas json and display on the canvas
+            if (getStoredSessionValue(img_name) !== null) {
+    
+                const canvas_json = getStoredSessionValue(img_name);
+                var new_JSON_Object = $.parseJSON(canvas_json)
+    
+                // Add show green tick mark on thumbnail to show it has been labelled
+                $("#"+imageURL).css("display", "block");
+    
+                LABELED_IMAGES_TRACKER.push(imageURL);
+                
+            }
+    
+            else {
+    
+                // Set display to none on the green tick mark 
+                $("#"+imageURL).css("display", "none");
+    
+            }
+    
+        }
+    
+    
+        // NUM_OF_LABELLED_IMAGES
+        // Enable Download Button When NUM_OF_LABELLED_IMAGES > 0
+        NUM_LABELLED_IMAGES = LABELED_IMAGES_TRACKER.length; 
+
+        if (NUM_LABELLED_IMAGES > 0){
+    
+            document.getElementById("download-csv-button").disabled = false;
+    
+        }
+        else {
+    
+            document.getElementById("download-csv-button").disabled = true;
+    
+        }
+    
+        NUM_IMAGES_TOTAL = img_thumbnails.length
+    
+    }
+
+
+
+
+
+
+
 
 
     // ------------------------------------------------------------------------------------------
