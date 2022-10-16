@@ -1029,41 +1029,66 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         else {
 
-            LABELS_COLOR_MAP = {}
+            // Add Project Name
+            project_id =""
+            showProjectName_Modal()
 
-            //new_textarea_content = document.getElementById('labels_textarea').value;
-            new_textarea_content = $("#labels_textarea").val().split('\n');
+            if (project_id.length > 0){
 
-            for(let i = 0; i < new_textarea_content.length; i++) {
+                displayLabels()
 
-                var new_label = new_textarea_content[i]
-
-               
-
-                // var new_color = generateDarkColor();
-
-                if (new_label.length > 0){
-
-                   // Use first 20 colors otherwise generate random dark color
-                   var new_color = (i <=20 ) ? first_20_colors[i] : generateDarkColor()
-
-                   LABELS_COLOR_MAP[new_label] = new_color;
-
-                }
-                // Store the labels_color_map
-               
-
-                // alert(' new label ' + new_label +  ' new color ' + new_color)
+                post_project_and_labels_to_server()
             }
 
-            // Get Project Name
+            else{
 
-            showProjectName_Modal()
+                return 
+
+            }
+
+        }
+        //alert('Labels to save ' + textarea_content)
+    //}
+});
+
+
+
+    function displayLabels(){
+
+
+        LABELS_COLOR_MAP = {}
+
+        //new_textarea_content = document.getElementById('labels_textarea').value;
+        new_textarea_content = $("#labels_textarea").val().split('\n');
+
+        for(let i = 0; i < new_textarea_content.length; i++) {
+
+            var new_label = new_textarea_content[i]
+
+           
+
+            // var new_color = generateDarkColor();
+
+            if (new_label.length > 0){
+
+               // Use first 20 colors otherwise generate random dark color
+               var new_color = (i <=20 ) ? first_20_colors[i] : generateDarkColor()
+
+               LABELS_COLOR_MAP[new_label] = new_color;
+
+            }
+            // Store the labels_color_map
+           
+
+            // alert(' new label ' + new_label +  ' new color ' + new_color)
+        }
+
+        // Get Project Name
 
             storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
 
             // Hide the textarea
-        // $("#labels_textarea").css("visibility", "hidden");
+            // $("#labels_textarea").css("visibility", "hidden");
             $("#labels_textarea").attr("style", "display: none !important");
             $("#save_button").attr("style", "display: none !important");
             $("#cancel_button").attr("style", "display: none !important");
@@ -1075,16 +1100,12 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             // Selete the first label as the initial label
             chooseInitialLabel()
 
-
             $("#labels-error-message").html("")
 
 
             // alert('LABEL MAP AS STRING ')
 
-        }
-        //alert('Labels to save ' + textarea_content)
-    //}
-});
+    }
 
 
     function addNewLabel(){
@@ -1191,33 +1212,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         if(project_name.length > 0){
 
             myModal.toggle()
-
-            $.ajax({
-                type: "POST",
-                url: '/create_new_project',
-                dataType: 'json',
-                data: { 
-                        'user_id' : user_id, 
-                        'project_name' : project_name, 
-                        'project_id' : project_id, 
-                        'labels_color_map' : JSON.stringify(LABELS_COLOR_MAP), 
-                        'ISODate' : ISODate,
-                
-                    },
-                success: function(data) {
-
-                    var server_user_id = data.user_id
-                    var server_project_name = data.project_name
-                    var server_project_id = data.project_id
-                    alert('user id: ' + server_user_id)
-                    alert('server project name: ' + server_project_name)
-                    alert('server project id: ' + server_project_id )
-
-                }
-                
-            });
-
-
         }
 
         else {
@@ -1228,6 +1222,37 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         }
 
     }); // End of "#createProjectBtn" click event
+
+
+    function post_project_and_labels_to_server(){
+
+        $.ajax({
+            type: "POST",
+            url: '/create_new_project',
+            dataType: 'json',
+            data: { 
+                    'user_id' : user_id, 
+                    'project_name' : project_name, 
+                    'project_id' : project_id, 
+                    'labels_color_map' : JSON.stringify(LABELS_COLOR_MAP), 
+                    'ISODate' : ISODate,
+            
+                },
+            success: function(data) {
+
+                var server_user_id = data.user_id
+                var server_project_name = data.project_name
+                var server_project_id = data.project_id
+                alert('user id: ' + server_user_id)
+                alert('server project name: ' + server_project_name)
+                alert('server project id: ' + server_project_id )
+
+            }
+            
+        });
+
+
+    }
 
 
 
