@@ -1226,9 +1226,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         PROJECT_JSON = window.localStorage.getItem("project_json");
         var retrieved_json_object = JSON.parse(PROJECT_JSON)
         CURRENT_PROJECT = retrieved_json_object.project_name
-        alert('localStorage Current Project ' + CURRENT_PROJECT)
+        //alert('localStorage Current Project ' + CURRENT_PROJECT)
         
-        }
+    }
 
     // If project name exists - hide button
     if(CURRENT_PROJECT.length > 0){
