@@ -1317,6 +1317,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
            // Store session variable for the updated object
            window.localStorage.setItem("project_json", JSON.stringify(retrieved_json_object));
 
+           alert(' It gets to  line 1321')
+
            // Post Information to Server for saving on database
            post_project_and_labels_to_server()
 
