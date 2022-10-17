@@ -1075,7 +1075,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                    // Add labels_color_map and user_id
                     retrieved_json_object ["labels_color_map"] = LABELS_COLOR_MAP;
                     retrieved_json_object ["user_id"] = user_id;
-        
+                    retrieved_json_object ["ISODate"] = ISODate;    
                    // Store session variable for the updated object
                    window.localStorage.setItem("project_json", JSON.stringify(retrieved_json_object));
         
@@ -1102,7 +1102,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 $("#currentLabel").attr("style", "display: !important");
                 $("#addOrEdit_button").attr("style", "display:  !important");
                 // Create or Update the Label divs
-                
+
                 updateLabelDivs()
     
                 // Selete the first label as the initial label
