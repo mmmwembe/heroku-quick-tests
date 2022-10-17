@@ -1122,7 +1122,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             $("#labels_textarea").attr("style", "display: none !important");
             $("#save_button").attr("style", "display: none !important");
             $("#cancel_button").attr("style", "display: none !important");
-            $("#currentLabel").attr("style", "display: show !important");
+            $("#currentLabel").attr("style", "display: !important");
             $("#addOrEdit_button").attr("style", "display:  !important");
             // Create or Update the Label divs
             updateLabelDivs()
@@ -1213,6 +1213,37 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 //------------------------------------------------------------------------
 
     var myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
+
+    var startNewProjectButton = document.getElementById('StartNewProjectButton')
+    var projectNameLabel = document.getElementById('projectLabel')
+
+    // If project name exists - hide button
+    if(CURRENT_PROJECT.length > 0){
+
+        $("#StartNewProjectButton").attr("style", "display:  none  !important");  
+        $("#projectLabel").html()
+        $("#projectLabel").html(CURRENT_PROJECT)
+
+        // show the labels textarea and save button
+        $("#labels_textarea").attr("style", "display:  !important");
+        $("#save_button").attr("style", "display:  !important");
+        
+
+        
+    }
+    else{
+
+        // Hide labels textarea and save button
+        $("#labels_textarea").attr("style", "display: none !important");
+        $("#save_button").attr("style", "display: none !important");
+        $("#cancel_button").attr("style", "display: none !important");
+        $("#currentLabel").attr("style", "display: none !important");
+        $("#addOrEdit_button").attr("style", "display: none !important");
+
+    }
+
+
+
 
     // 
     const uniqueId = () => {
