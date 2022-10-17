@@ -763,10 +763,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
 
-
-
-
-
+    var g = window.localStorage.getItem("project_json");
+    alert(' g ' + g)
 
 
     // ------------------------------------------------------------------------------------------
