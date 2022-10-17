@@ -1276,7 +1276,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         project_name = $('#project_name').val();
         var project_id = uniqueId();
 
-        alert(project_name)
+        alert('project_name ' + project_name +  ' project_id ' + project_id)
 
         if(project_name.length > 0){
 
