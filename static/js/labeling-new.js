@@ -1025,6 +1025,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         {
             // alert("Please Enter Labels...");
             $("#labels-error-message").attr("style", "display: !important");
+            $("#labels-error-message").css('color', 'red');
             $("#labels-error-message").html("Please Enter Labels...")
             return; 
         }
