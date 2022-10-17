@@ -1243,7 +1243,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         // show the labels textarea and save button
         Show_Labels_TextArea_and_Save_Button_Only()
 
-        fabricCanvas.selection = true;
+        // fabricCanvas.selection = true;
 
     }
     else{
@@ -1255,7 +1255,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").attr("style", "display: none !important");
         $("#addOrEdit_button").attr("style", "display: none !important");
 
-        fabricCanvas.selection = false;
+        //fabricCanvas.selection = false;
 
     }
 
