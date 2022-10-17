@@ -65,7 +65,7 @@ window.addEventListener('load', (event) => {
     //  Clear Local Storage - If needed during coding - update final
     //------------------------------------------------------------
     
-    clearEntireLocalStorage()
+    // clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
@@ -1030,6 +1030,13 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         else {
 
+
+
+            if (window.localStorage.hasOwnProperty('project_json')){
+
+                alert(" project_json has been populated before LABELS_COLOR_MAP...see line 1037")
+            }
+
             LABELS_COLOR_MAP = {}
 
             //new_textarea_content = document.getElementById('labels_textarea').value;
@@ -1038,8 +1045,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             for(let i = 0; i < new_textarea_content.length; i++) {
     
                 var new_label = new_textarea_content[i]
-    
-               
     
                 // var new_color = generateDarkColor();
     
@@ -1077,6 +1082,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     
                 $("#labels-error-message").html("")
 
+
+                // Show the first image from the thumbnails the main image
+                showFirstImage()
 
                 // Add labels_color_map to project_json and post information to server
                 AddLabels_Color_Map_to_Project_JSON()
