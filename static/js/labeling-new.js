@@ -763,8 +763,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
 
-    var g = window.localStorage.getItem("project_json");
-    alert(' g ' + g)
+    // var g = window.localStorage.getItem("project_json");
+    // alert(' g ' + g)
 
 
     // ------------------------------------------------------------------------------------------
@@ -1079,10 +1079,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                    // Store session variable for the updated object
                    window.localStorage.setItem("project_json", JSON.stringify(retrieved_json_object));
         
-                   alert(' Line 1082 - stored session variable for the updated object')
+                  //alert(' Line 1082 - stored session variable for the updated object')
         
                    // Post Information to Server for saving on database
-                   // post_project_and_labels_to_server()
+                   post_project_and_labels_to_server()
         
                     
                 }
