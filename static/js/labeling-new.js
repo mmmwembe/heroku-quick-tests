@@ -1060,14 +1060,15 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     
             // Get Project Name
     
-                storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
+                // storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
+                window.localStorage.setItem("labels_color_map", JSON.stringify(LABELS_COLOR_MAP));
     
                 // Hide the textarea
                 // $("#labels_textarea").css("visibility", "hidden");
                 $("#labels_textarea").attr("style", "display: none !important");
                 $("#save_button").attr("style", "display: none !important");
                 $("#cancel_button").attr("style", "display: none !important");
-                $("#currentLabel").attr("style", "display: show !important");
+                $("#currentLabel").attr("style", "display: !important");
                 $("#addOrEdit_button").attr("style", "display:  !important");
                 // Create or Update the Label divs
                 updateLabelDivs()
@@ -1293,9 +1294,23 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         // Hide Cancel Button and Edit Button and 
         $("#cancel_button").attr("style", "display: none !important");
         $("#addOrEdit_button").attr("style", "display: none !important");
+        $("#labels-error-message").attr("style", "display: none !important");
+        $("#currentLabel").attr("style", "display: none !important");
 
     }
 
+    function Hide_Labels_TextArea_and_Save_Button(){
+        // Show labels text area and Save Button Only
+        $("#labels_textarea").attr("style", "display: none !important");
+        $("#save_button").attr("style", "display: none !important");
+
+        // Hide Cancel Button and Edit Button and 
+        $("#cancel_button").attr("style", "display:  !important");
+        $("#addOrEdit_button").attr("style", "display:  !important");
+        $("#labels-error-message").attr("style", "display:  !important");
+        $("#currentLabel").attr("style", "display: !important");
+
+    }
 
 
 
