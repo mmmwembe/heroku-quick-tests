@@ -37,7 +37,7 @@ window.addEventListener('load', (event) => {
     var LABELED_IMAGES_TRACKER = []
     var NUM_LABELLED_IMAGES;
     var NUM_IMAGES_TOTAL;
-    var CURRENT_PROJECT;
+    var CURRENT_PROJECT="";
 
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
