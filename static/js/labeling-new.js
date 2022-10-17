@@ -1024,6 +1024,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         if($("#labels_textarea").val().trim().length < 1)
         {
             // alert("Please Enter Labels...");
+            $("#labels-error-message").attr("style", "display: !important");
             $("#labels-error-message").html("Please Enter Labels...")
             return; 
         }
