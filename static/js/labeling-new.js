@@ -1034,10 +1034,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
 
-            if (window.localStorage.hasOwnProperty('project_json')){
-
-                alert(" project_json has been populated before LABELS_COLOR_MAP...see line 1037")
-            }
+           // if (window.localStorage.hasOwnProperty('project_json')){ alert(" project_json has been populated before LABELS_COLOR_MAP...see line 1037")}
 
             LABELS_COLOR_MAP = {}
 
@@ -1068,6 +1065,27 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     
                 // storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
                 window.localStorage.setItem("labels_color_map", JSON.stringify(LABELS_COLOR_MAP));
+
+
+                if (window.localStorage.hasOwnProperty('project_json')){
+
+                    PROJECT_JSON = window.localStorage.getItem("project_json");
+                    var retrieved_json_object = JSON.parse(PROJECT_JSON)
+        
+                   // Add labels_color_map and user_id
+                    retrieved_json_object ["labels_color_map"] = LABELS_COLOR_MAP;
+                    retrieved_json_object ["user_id"] = user_id;
+        
+                   // Store session variable for the updated object
+                   window.localStorage.setItem("project_json", JSON.stringify(retrieved_json_object));
+        
+                   alert(' Line 1002 - stored session variable for the updated object')
+        
+                   // Post Information to Server for saving on database
+                   // post_project_and_labels_to_server()
+        
+                    
+                }
     
                 // Hide the textarea
                 // $("#labels_textarea").css("visibility", "hidden");
