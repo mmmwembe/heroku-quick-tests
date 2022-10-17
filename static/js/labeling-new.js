@@ -1218,19 +1218,25 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     var startNewProjectButton = document.getElementById('StartNewProjectButton')
     var projectNameLabel = document.getElementById('projectLabel')
 
+    // Check if localStorage has project_json object stored
+    // If so, get CURRENT_PROJECT from the stored json
+    if (window.localStorage.hasOwnProperty('project_json')){
+
+        PROJECT_JSON = window.localStorage.getItem("project_json");
+        var retrieved_json_object = JSON.parse(PROJECT_JSON)
+        CURRENT_PROJECT = retrieved_json_object.project_name
+        alert('localStorage Current Project ' + CURRENT_PROJECT)
+        
+        }
+
     // If project name exists - hide button
     if(CURRENT_PROJECT.length > 0){
 
-        $("#StartNewProjectButton").attr("style", "display:  none  !important");  
-        $("#projectLabel").html()
-        $("#projectLabel").html(CURRENT_PROJECT)
+        Hide_StartNewProject_Button_and_Show_ProjectLabel()
 
         // show the labels textarea and save button
-        $("#labels_textarea").attr("style", "display:  !important");
-        $("#save_button").attr("style", "display:  !important");
-        
+        Show_Labels_TextArea_and_Save_Button_Only()
 
-        
     }
     else{
 
@@ -1271,6 +1277,28 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     }
 
 
+    function Hide_StartNewProject_Button_and_Show_ProjectLabel(){
+
+        $("#StartNewProjectButton").attr("style", "display:  none  !important");  
+        $("#projectLabel").html()
+        $("#projectLabel").html(CURRENT_PROJECT)
+
+    }
+
+    function Show_Labels_TextArea_and_Save_Button_Only(){
+        // Show labels text area and Save Button Only
+        $("#labels_textarea").attr("style", "display:  !important");
+        $("#save_button").attr("style", "display:  !important");
+
+        // Hide Cancel Button and Edit Button and 
+        $("#cancel_button").attr("style", "display: none !important");
+        $("#addOrEdit_button").attr("style", "display: none !important");
+
+    }
+
+
+
+
     $("#createProjectBtn").click(function (event){
 
         var project_name =""
@@ -1288,11 +1316,16 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 project_name :  project_name       
             }
 
-            window.localStorage.setItem("myObject", JSON.stringify(PROJECT_JSON));
+            window.localStorage.setItem("project_json", JSON.stringify(PROJECT_JSON));
+            // alert('project_json :' + JSON.stringify(PROJECT_JSON))
 
-            //localStorage.storeSessionValue("project_json", JSON.stringify(PROJECT_JSON))
+            // Hide StartNewProject Button and Show project Label
+            Hide_StartNewProject_Button_and_Show_ProjectLabel()
 
-            alert('project_json :' + JSON.stringify(PROJECT_JSON))
+            // Show Labels Text Area and Save Button. This also hides the Cancel Button and Add/Edit Button
+            Show_Labels_TextArea_and_Save_Button_Only()
+
+            
         }
 
         else {
