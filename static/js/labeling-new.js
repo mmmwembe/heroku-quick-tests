@@ -968,6 +968,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").html()
         $("#currentLabel").html(_current_label)
         $("#currentLabel").animate({height: '50px',width: '220px'},2000)
+        $("#currentLabel").verticalAlign();
 
     }
 
