@@ -1288,6 +1288,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 project_name :  project_name       
             }
 
+            localStorage.storeSessionValue("project_json", JSON.stringify(PROJECT_JSON))
+
             alert('project_json :' + JSON.stringify(PROJECT_JSON))
         }
 
