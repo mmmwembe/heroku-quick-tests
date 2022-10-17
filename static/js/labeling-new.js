@@ -1029,23 +1029,51 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         else {
 
-            // Add Project Name
-            project_id =""
-            showProjectName_Modal()
+            LABELS_COLOR_MAP = {}
 
-            alert(project_id)
-
-            if (project_id.length > 0){
-
-                displayLabels()
-
+            //new_textarea_content = document.getElementById('labels_textarea').value;
+            new_textarea_content = $("#labels_textarea").val().split('\n');
+    
+            for(let i = 0; i < new_textarea_content.length; i++) {
+    
+                var new_label = new_textarea_content[i]
+    
+               
+    
+                // var new_color = generateDarkColor();
+    
+                if (new_label.length > 0){
+    
+                   // Use first 20 colors otherwise generate random dark color
+                   var new_color = (i <=20 ) ? first_20_colors[i] : generateDarkColor()
+    
+                   LABELS_COLOR_MAP[new_label] = new_color;
+    
+                }
+                // Store the labels_color_map
+               
+    
+                // alert(' new label ' + new_label +  ' new color ' + new_color)
             }
-
-            else{
-
-                return 
-
-            }
+    
+            // Get Project Name
+    
+                storeSessionValue("labels_color_map", LABELS_COLOR_MAP)
+    
+                // Hide the textarea
+                // $("#labels_textarea").css("visibility", "hidden");
+                $("#labels_textarea").attr("style", "display: none !important");
+                $("#save_button").attr("style", "display: none !important");
+                $("#cancel_button").attr("style", "display: none !important");
+                $("#currentLabel").attr("style", "display: show !important");
+                $("#addOrEdit_button").attr("style", "display:  !important");
+                // Create or Update the Label divs
+                updateLabelDivs()
+    
+                // Selete the first label as the initial label
+                chooseInitialLabel()
+    
+                $("#labels-error-message").html("")
 
         }
         //alert('Labels to save ' + textarea_content)
@@ -1106,7 +1134,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
             // alert('LABEL MAP AS STRING ')
 
-            post_project_and_labels_to_server()
+            // post_project_and_labels_to_server()
 
     }
 
@@ -1211,6 +1239,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         var project_name =""
         project_name = $('#project_name').val();
         var project_id = uniqueId();
+
+        alert(project_name)
 
         if(project_name.length > 0){
 
