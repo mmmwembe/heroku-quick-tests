@@ -1079,10 +1079,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                    // Store session variable for the updated object
                    window.localStorage.setItem("project_json", JSON.stringify(retrieved_json_object));
         
-                  //alert(' Line 1082 - stored session variable for the updated object')
+                  // alert(' Line 1082 - stored session variable for the updated object')
         
                    // Post Information to Server for saving on database
-                   post_project_and_labels_to_server()
+                   // post_project_and_labels_to_server()
         
                     
                 }
@@ -1102,6 +1102,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 $("#currentLabel").attr("style", "display: !important");
                 $("#addOrEdit_button").attr("style", "display:  !important");
                 // Create or Update the Label divs
+                
                 updateLabelDivs()
     
                 // Selete the first label as the initial label
