@@ -1462,7 +1462,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             type: "POST",
             url: '/create_new_project',
             dataType: 'json',
-            data: myData,
+            data: JSON.parse(myData),
             success: function(data) {
 
                 var server_user_id = data.user_id
