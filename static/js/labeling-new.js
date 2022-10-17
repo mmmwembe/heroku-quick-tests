@@ -38,6 +38,7 @@ window.addEventListener('load', (event) => {
     var NUM_LABELLED_IMAGES;
     var NUM_IMAGES_TOTAL;
     var CURRENT_PROJECT="";
+    var PROJECT_JSON
 
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
@@ -1275,12 +1276,19 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         var project_name =""
         project_name = $('#project_name').val();
         var project_id = uniqueId();
+        CURRENT_PROJECT = project_name
 
-        alert('project_name ' + project_name +  ' project_id ' + project_id)
-
+   
         if(project_name.length > 0){
 
             myModal.toggle()
+
+            PROJECT_JSON = {
+                project_id : project_id,
+                project_name :  project_name       
+            }
+
+            alert('project_json :' + JSON.stringify(PROJECT_JSON))
         }
 
         else {
