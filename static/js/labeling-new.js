@@ -960,14 +960,14 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").css("borderColor",_current_color);
         $("#currentLabel").css("borderSize","3px");
         $("#currentLabel").css("border-radius","5px");
-        $("#currentLabel").css("fontSize", "30px");
+        $("#currentLabel").css("fontSize", "20px");
         $("#currentLabel").css("font-weight", "bold")
         $("#currentLabel").css('color', 'white');
         $("#currentLabel").css("width", "130px");
         $("#currentLabel").css("margin", "5px");
         $("#currentLabel").html()
         $("#currentLabel").html(_current_label)
-        $("#currentLabel").animate({height: '50px',width: '200px'},5000)
+        $("#currentLabel").animate({height: '50px',width: '220px'},2000)
 
     }
 
@@ -1077,6 +1077,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 chooseInitialLabel()
     
                 $("#labels-error-message").html("")
+
+
+                // Add labels_color_map to project_json and post information to server
+                AddLabels_Color_Map_to_Project_JSON()
 
         }
         //alert('Labels to save ' + textarea_content)
@@ -1296,6 +1300,30 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#addOrEdit_button").attr("style", "display: none !important");
         $("#labels-error-message").attr("style", "display: none !important");
         $("#currentLabel").attr("style", "display: none !important");
+
+    }
+
+    function AddLabels_Color_Map_to_Project_JSON(){
+
+        if (window.localStorage.hasOwnProperty('project_json')){
+
+            PROJECT_JSON = window.localStorage.getItem("project_json");
+            var retrieved_json_object = JSON.parse(PROJECT_JSON)
+
+           // Add labels_color_map and user_id
+            retrieved_json_object ["labels_color_map"] = LABELS_COLOR_MAP;
+            retrieved_json_object ["user_id"] = user_id;
+
+           // Store session variable for the updated object
+           window.localStorage.setItem("project_json", JSON.stringify(retrieved_json_object));
+
+           // Post Information to Server for saving on database
+           post_project_and_labels_to_server()
+
+            
+        }
+
+
 
     }
 
