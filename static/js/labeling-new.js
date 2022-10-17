@@ -65,7 +65,7 @@ window.addEventListener('load', (event) => {
     //  Clear Local Storage - If needed during coding - update final
     //------------------------------------------------------------
     
-    // clearEntireLocalStorage()
+    clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
@@ -684,23 +684,23 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function convertJSON2CSV(json, filename){
 
-            var fields = Object.keys(json[0]) // Get field names from first array
+        var fields = Object.keys(json[0]) // Get field names from first array
 
-            var replacer = function(key, value) { return value === null ? '' : value } 
+        var replacer = function(key, value) { return value === null ? '' : value } 
 
-            var csv = json.map(function(row){
-            return fields.map(function(fieldName){
-                return JSON.stringify(row[fieldName], replacer)
-            }).join(',')
-            })
+        var csv = json.map(function(row){
+        return fields.map(function(fieldName){
+            return JSON.stringify(row[fieldName], replacer)
+        }).join(',')
+        })
 
-            csv.unshift(fields.join(',')) // add header column
+        csv.unshift(fields.join(',')) // add header column
 
-            csv = csv.join('\r\n');
-            
-            return csv
+        csv = csv.join('\r\n');
         
-        }
+        return csv
+        
+    }
 
 
     // -----------------------------------------------------------------------------------------------------------------
