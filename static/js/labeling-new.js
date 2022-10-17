@@ -1079,12 +1079,19 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                    // Store session variable for the updated object
                    window.localStorage.setItem("project_json", JSON.stringify(retrieved_json_object));
         
-                   alert(' Line 1002 - stored session variable for the updated object')
+                   alert(' Line 1082 - stored session variable for the updated object')
         
                    // Post Information to Server for saving on database
                    // post_project_and_labels_to_server()
         
                     
+                }
+
+                if (window.localStorage.hasOwnProperty('project_json')){ 
+
+                    var data_saved = window.localStorage.getItem('project_json')
+
+                    alert("1094 new project_json object looks like this: " + data_saved)
                 }
     
                 // Hide the textarea
