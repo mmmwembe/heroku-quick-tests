@@ -427,7 +427,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function clearEntireLocalStorage(){
 
-      // localStorage.clear();
+      localStorage.clear();
 
     }
 
