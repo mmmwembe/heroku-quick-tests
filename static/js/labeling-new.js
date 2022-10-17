@@ -1089,9 +1089,12 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 if (window.localStorage.hasOwnProperty('project_json')){ 
 
-                    var data_saved = window.localStorage.getItem('project_json')
+                    var project_json_string = window.localStorage.getItem('project_json')
 
-                    alert("1094 new project_json object looks like this: " + data_saved)
+                    // alert("1094 new project_json object looks like this: " + data_saved)
+                    // Post Information to Server for saving on database
+                    post_project_json_to_server(project_json_string)
+
                 }
     
                 // Hide the textarea
@@ -1452,6 +1455,29 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     }
 
+
+    function post_project_json_to_server(myData){
+
+        $.ajax({
+            type: "POST",
+            url: '/create_new_project',
+            dataType: 'json',
+            data: myData,
+            success: function(data) {
+
+                var server_user_id = data.user_id
+                var server_project_name = data.project_name
+                var server_project_id = data.project_id
+                alert('user id: ' + server_user_id)
+                alert('server project name: ' + server_project_name)
+                alert('server project id: ' + server_project_id )
+
+            }
+            
+        });
+
+
+    }
 
 
 
