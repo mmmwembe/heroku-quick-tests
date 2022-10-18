@@ -1069,6 +1069,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 if (window.localStorage.hasOwnProperty('project_json')){
 
+                    //---------------------------------------------------------------------------------
+                    //         Update project_json with labels_color_map, user_id and ISODate to server
+                    //-----------------------------------------------------------------------------------
+
+
                     PROJECT_JSON = window.localStorage.getItem("project_json");
                     var retrieved_json_object = JSON.parse(PROJECT_JSON)
         
@@ -1083,6 +1088,38 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         
                    // Post Information to Server for saving on database
                    // post_project_and_labels_to_server()
+
+                    //--------------------------------------------------------------------------------
+                    //         Post project_json to server
+                    //-----------------------------------------------------------------------------------
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/create_new_project',
+                        dataType: 'json',
+                        data: { 
+                                'user_id' : retrieved_json_object ["user_id"], 
+                                'project_name' : retrieved_json_object ["project_name"], 
+                                'project_id' : retrieved_json_object ["project_id"], 
+                                'labels_color_map' : JSON.stringify(retrieved_json_object ["labels_color_map"]), 
+                                'ISODate' : retrieved_json_object ["ISODate"]
+                        
+                            },
+                        success: function(data) {
+            
+                            var server_user_id = data.user_id
+                            var server_project_name = data.project_name
+                            var server_project_id = data.project_id
+                            alert('user id: ' + server_user_id)
+                            alert('server project name: ' + server_project_name)
+                            alert('server project id: ' + server_project_id )
+            
+                        }
+                        
+                    });   
+
+                    //--------------------------------------------------
+
         
                     
                 }
@@ -1093,7 +1130,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                     // alert("1094 new project_json object looks like this: " + data_saved)
                     // Post Information to Server for saving on database
-                    post_project_json_to_server(project_json_string)
+                    // post_project_json_to_server(project_json_string)
 
                 }
     
