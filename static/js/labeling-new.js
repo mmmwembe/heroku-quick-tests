@@ -1512,7 +1512,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     'labels_color_map' : JSON.stringify(labels_color_map), 
                     'ISODate' : iso_date
             
-                },
+                }
+            /*
+            ,
             success: function(data) {
 
                 var server_user_id = data.user_id
@@ -1523,6 +1525,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 alert('server project id: ' + server_project_id )
 
             }
+
+            */
             
         });   
 
