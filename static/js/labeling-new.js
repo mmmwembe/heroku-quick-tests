@@ -1093,35 +1093,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     //         Post project_json to server
                     //-----------------------------------------------------------------------------------
 
-                    $.ajax({
-                        type: "POST",
-                        url: '/create_new_project',
-                        dataType: 'json',
-                        data: { 
-                                'user_id' : retrieved_json_object ["user_id"], 
-                                'project_name' : retrieved_json_object ["project_name"], 
-                                'project_id' : retrieved_json_object ["project_id"], 
-                                'labels_color_map' : JSON.stringify(retrieved_json_object ["labels_color_map"]), 
-                                'ISODate' : retrieved_json_object ["ISODate"]
-                        
-                            },
-                        success: function(data) {
-            
-                            var server_user_id = data.user_id
-                            var server_project_name = data.project_name
-                            var server_project_id = data.project_id
-                            alert('user id: ' + server_user_id)
-                            alert('server project name: ' + server_project_name)
-                            alert('server project id: ' + server_project_id )
-            
-                        }
-                        
-                    });   
+                    post_project_json_info(retrieved_json_object ["user_id"], retrieved_json_object ["project_name"], retrieved_json_object ["project_id"], retrieved_json_object ["labels_color_map"], retrieved_json_object ["ISODate"]) 
 
                     //-----------------------------------------------------------------------------------------
 
-        
-                    
+          
                 }
 
                 if (window.localStorage.hasOwnProperty('project_json')){ 
@@ -1523,6 +1499,35 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
 
+    function post_project_json_info(user_id, project_name, project_id, labels_color_map, iso_date){
+    
+        $.ajax({
+            type: "POST",
+            url: '/create_new_project',
+            dataType: 'json',
+            data: { 
+                    'user_id' : user_id, 
+                    'project_name' : project_name, 
+                    'project_id' :  project_id, 
+                    'labels_color_map' : JSON.stringify(labels_color_map), 
+                    'ISODate' : iso_date
+            
+                },
+            success: function(data) {
+
+                var server_user_id = data.user_id
+                var server_project_name = data.project_name
+                var server_project_id = data.project_id
+                alert('user id: ' + server_user_id)
+                alert('server project name: ' + server_project_name)
+                alert('server project id: ' + server_project_id )
+
+            }
+            
+        });   
+
+
+   }
 
 
 
