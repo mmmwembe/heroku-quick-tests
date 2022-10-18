@@ -1335,6 +1335,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     $("#StartNewProjectButton").click(function (){
         myModal.toggle()
+
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#project_name').focus()
+        })
+
     });
 
 
