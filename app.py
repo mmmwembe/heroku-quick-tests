@@ -892,8 +892,8 @@ def create_new_project():
         labels_color_map = request.form['labels_color_map']
         ISODate = request.form['ISODate']
 
-    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
-
+    # return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
+    return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
 
 
