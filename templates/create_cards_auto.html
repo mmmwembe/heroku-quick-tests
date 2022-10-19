@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Create Cards Automatically </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/521/fabric.min.js"></script>
+    <script src="https://www.marvinj.org/releases/marvinj-1.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        /* Float four columns side by side */
+        .column {
+          float: left;
+          width: 25%;
+          padding: 0 10px;
+        }
+        
+        /* Remove extra left and right margins, due to padding */
+        .row {margin: 0 -5px;}
+        
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        
+        /* Responsive columns */
+        @media screen and (max-width: 600px) {
+          .column {
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+          }
+        }
+        
+        /* Style the counter cards */
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          padding: 16px;
+          text-align: center;
+          background-color: #f1f1f1;
+        }
+        </style>
+
+
+</head>
+<body>
+
+
+    <div id="main_container" class="container">
+
+    </div>
+
+<script class="javascript">
+
+const frameworks = [
+  {
+    name: "Michael",
+    age: 29
+  },
+  {
+    name: "Mambwe",
+    age: 29
+  },
+  {
+    name: "Sam",
+    age: 24
+  },
+
+  {
+    name: "Chungu",
+    age: 16
+  },
+
+  {
+    name: "Bianca",
+    age: 14
+  },
+  {
+    name: "Tams",
+    age: 20
+  },
+  {
+    name: "Hillcrest",
+    age: 15
+  },
+
+  {
+    name: "Mpelembe",
+    age: 24
+  }
+
+  
+];
+
+
+
+/*
+frameworks.forEach( framework => {
+  const card = `<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="/static/software-icons/email-icon2.png" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">${framework.name}</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>`
+  const ele = document.createElement('div');
+  ele.innerHTML = card;
+  document.body.appendChild(ele.firstChild);
+})
+
+
+
+// https://stackoverflow.com/questions/53616995/loop-objects-in-array-to-create-element
+frameworks.forEach( framework => {
+  const card = `<div class="col card h-100" style="width: 15%;">
+                    <img src="/static/software-icons/email-icon2.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h2 class="card-title">${framework.name}</h2>
+                    <p class="card-text"><small> See labeling tasks assigned to you, tasks that you are still working on as well as your labeling history.
+                        The platform automatically tracks your labeling history to establish your reputation score. Your reputation score,labeling history and experience are evaluated for level progression. 
+                        It is important to maintain a high reputation score. 
+                    </small></p>
+                    <a id="workInProgressBtn" href="#" class="btn btn-success" style="font-weight:bold;">Work in Progress</a>
+                    <a id="labelingHistoryBtn" href="#" class="btn btn-secondary" style="font-weight:bold;">Labeling History</a>
+                    <p class="card-text"><small class="text-muted"></small></p>
+                    </div>
+                </div>`
+  const ele = document.createElement('div');
+  ele.innerHTML = card;
+  document.body.appendChild(ele.firstChild);
+})
+
+*/
+
+
+// Check if number is divisble by 3  if (n % 3 == 0)
+// https://stackoverflow.com/questions/12482961/change-values-in-array-when-doing-foreach
+
+/*
+frameworks.forEach(function(part, index, frameworks) {
+
+    var row_counter = 0
+
+    if ((index + 1) % 4 === 0){
+
+        alert( ' index ' + index + ' name  ' +  frameworks[index].name)
+
+       //  alert('part ' +  JSON.stringify(part))
+
+    }
+
+    else {
+
+        var two = frameworks.hasOwnProperty(index +1) ? frameworks[index+1].name  : " ";   
+        var three = frameworks.hasOwnProperty(index +2) ? frameworks[index+2].name  : " ";   
+
+        alert( ' index ' + index + ' one  ' +  frameworks[index].name       + ' Two '    +  two  +  ' Three '   +  three )
+
+    }
+});
+
+
+
+
+var arr=[{"name":"aaa",'age': 29},{"name":"bbb",'age':200},{"name":"ccc","age": 55}];
+alert(arr.length)
+*/
+
+var data = [
+	{name: "Michael",age: 29},
+	{name: "Mambwe",age: 29},
+	{name: "Sam",age: 24},
+	{name: "Chungu",age: 16},
+	{name: "Bianca",age: 14},
+  	{name: "Tams",age: 20},
+  	{name: "Hillcrest",age: 15},
+  	{name: "Mpelembe",age: 24},
+    {name: "Techi Techi",age: 24}
+  ];
+//alert('data size ' + data.length)
+
+function create_card(my_input){
+
+    const card = `<div class="col card h-10" style="width: 100%;">
+                        <img src="/static/software-icons/email-icon2.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h2 class="card-title">${my_input}</h2>
+                        <p class="card-text"><small> See labeling tasks assigned to you, tasks that you are still working on as well as your labeling history.
+                            The platform automatically tracks your labeling history to establish your reputation score. Your reputation score,labeling history and experience are evaluated for level progression. 
+                            It is important to maintain a high reputation score. 
+                        </small></p>
+                        <a id="workInProgressBtn" href="#" class="btn btn-success" style="font-weight:bold;">Work in Progress</a>
+                        <a id="labelingHistoryBtn" href="#" class="btn btn-secondary" style="font-weight:bold;">Labeling History</a>
+                        <p class="card-text"><small class="text-muted"></small></p>
+                        </div>
+    </div>`
+
+    return card;
+}
+
+
+function create_card_row(a,b,c,d){
+
+    const card_row = 
+                      `<div class="row" style="margin-bottom: 5px; margin-top: 10px;">
+                        <div class="column">
+                            <div class="card">
+                            <h3>${a}</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="card">
+                            <h3>${b}</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
+                            </div>
+                        </div>
+                        
+                        <div class="column">
+                            <div class="card">
+                            <h3>${c}</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
+                            </div>
+                        </div>
+                        
+                        <div class="column">
+                            <div class="card">
+                            <h3>${d}</h3>
+                            <p>Some text</p>
+                            <p>Some text</p>
+                            </div>
+                        </div>
+                    </div>`
+
+   return card_row;
+
+}
+
+
+function create_card_row2(a,b,c,d){
+
+
+   var start_row =  `<div class="row" style="margin-bottom: 5px; margin-top: 10px;">`
+
+    var card_1 = ` <div class="column">
+                        <div class="card">
+                        <h3>${a}</h3>
+                        <p>Some text</p>
+                        <p>Some text</p>
+                        </div>
+                    </div>`
+
+    var card_2 = ` <div class="column">
+                        <div class="card">
+                        <h3>${b}</h3>
+                        <p>Some text</p>
+                        <p>Some text</p>
+                        </div>
+                    </div>`
+
+    var card_3 = ` <div class="column">
+                        <div class="card">
+                        <h3>${c}</h3>
+                        <p>Some text</p>
+                        <p>Some text</p>
+                        </div>
+                    </div>`
+
+    var card_4 = ` <div class="column">
+                        <div class="card">
+                        <h3>${d}</h3>
+                        <p>Some text</p>
+                        <p>Some text</p>
+                        </div>
+                    </div>`
+
+   var end_row =`</div>`
+
+   var card_1a = (a.length > 0) ? card_1  : " "; 
+   var card_2b = (b.length > 0) ? card_2  : " "; 
+   var card_3c = (c.length > 0) ? card_3  : " "; 
+   var card_4d = (d.length > 0) ? card_4  : " "; 
+                    
+    const card_row = start_row + '\n' + card_1a + '\n' + card_2b + '\n' + card_3c + '\n' + card_4d + '\n' +  end_row
+
+return card_row;
+
+}
+
+
+/*
+const cards_container = document.createElement('div')
+cards_container.className="container"
+
+
+
+var row_counter = 0
+
+for (var i = 0; i < data.length; i += 4) {
+
+    var new_row = document.createElement('div')
+    new_row.className="row"
+
+    
+
+    var card_1 = document.createElement('div')
+    card_1.className="card"
+
+    var card_2 = document.createElement('div')
+    card_2.className="card"
+
+    var card_3 = document.createElement('div')
+    card_3.className="card"
+
+    var card_4 = document.createElement('div')
+    card_4.className="card"
+
+    var one = data.hasOwnProperty(i) ? data[i].name  : " ";  
+    var two = data.hasOwnProperty(i+1) ? data[i+1].name  : " ";   
+    var three = data.hasOwnProperty(i+2) ? data[i+2].name  : " ";   
+    var four = data.hasOwnProperty(i+3) ? data[i+3].name  : " ";   
+
+    card_1.innerHTML = create_card(one)
+    card_2.innerHTML = create_card(two)
+    card_3.innerHTML = create_card(three)
+    card_4.innerHTML = create_card(four)
+
+    new_row.append(card_1)
+    new_row.append(card_2)
+    new_row.append(card_3)
+    new_row.append(card_4)      
+    
+    cards_container.appendChild(new_row)
+
+    // alert(' index: ' + i  +  ' '  +  one  +  ' ' + two  + '  ' + three + '  ' + four )
+
+    row_counter +=1
+
+}
+
+document.body.appendChild(cards_container);
+*/
+
+
+
+
+var row_counter = 0
+
+for (var i = 0; i < data.length; i += 4) {
+
+    var one = data.hasOwnProperty(i) ? data[i].name  : "";  
+    var two = data.hasOwnProperty(i+1) ? data[i+1].name  : "";   
+    var three = data.hasOwnProperty(i+2) ? data[i+2].name  : "";   
+    var four = data.hasOwnProperty(i+3) ? data[i+3].name  : "";   
+
+    var new_row = create_card_row2(one,two,three,four)
+    document.getElementById('main_container').innerHTML += new_row
+
+    // alert(' index: ' + i  +  ' '  +  one  +  ' ' + two  + '  ' + three + '  ' + four )
+
+    row_counter +=1
+
+}
+
+
+
+
+
+/*
+
+<div class="container">
+
+    <div class="row"> 
+    	<div class="card"> card  1  </div>
+    	<div class="card"> card  2  </div>
+    	<div class="card"> card  3  </div>
+   </div>   
+
+    <div class="row"> 
+    	<div class="card"> card  4  </div>
+    	<div class="card"> card  5 </div>
+    	<div class="card"> card  6  </div>
+   </div> 
+
+    <div class="row"> 
+    	<div class="card"> card  7  </div>
+    	<div class="card"> card  8  </div>
+    	<div class="card"> card  9  </div>
+   </div> 
+
+</div>   
+
+
+*/
+
+</script>
+
+
+    
+</body>
+</html>

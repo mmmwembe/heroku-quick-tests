@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Create Cards Automatically </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/521/fabric.min.js"></script>
+    <script src="https://www.marvinj.org/releases/marvinj-1.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+    
+
+    <div class="container">
+        <div class="row">
+    
+            <div class="col card h-100 mb-3 w-15" style="border: 5px solid #ff0000; margin-top: 10px; margin-right: 5px;">
+                <h5 class="card-header d-flex justify-content-between align-items-center">
+                    Dogs
+                    <div id="labeling_complete">&#x2705;</div>
+                  </h5>
+                <div class="card-body">
+                  <h2 class="card-title"></h2>
+                  <p class="card-text"></p>
+                  <p class="card-text">Number of Images: 340<small class="text-muted"></small></p>
+                  <p class="card-text">Labelled Images: 340<small class="text-muted"></small></p>
+                  <p class="card-text"><small class="text-muted"></small></p>
+
+                  <form method="post" action="" enctype="multipart/form-data">
+                    <div class="input-group">
+                        <input class="form-control" id="imageLoader" type="file" name="images_for_labeling[]" multiple="true" autocomplete="off" required>
+                        <input type="submit" value="Upload Images" class="btn  btn-info" style="margin-left: 0px;">
+                    </div>
+                    <input type="hidden" id="current_folder" name="current_folder" value="">
+                    <input type="hidden" name="which-form" value="images-for-labeling">
+                 </form> 
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-danger">Delete</a> <small>This deletes all the images and labels</small>
+              </div>
+        </div>
+
+
+    
+        <div class="col card h-100 mb-3 w-15" style="border: 5px solid green ; margin-top: 10px; margin-right: 5px;">
+            <h5 class="card-header d-flex justify-content-between align-items-center">
+                Cats
+                <div id="labeling_complete">&#x2705;</div>
+              </h5>
+            <div class="card-body">
+              <h2 class="card-title"></h2>
+              <p class="card-text"></p>
+              <p class="card-text">Number of Images: 200<small class="text-muted"></small></p>
+              <p class="card-text">Labelled Images: 120<small class="text-muted"></small></p>
+              <p class="card-text"><small class="text-muted"></small></p>
+
+              <form method="post" action="" enctype="multipart/form-data">
+                <div class="input-group">
+                    <input class="form-control" id="imageLoader" type="file" name="images_for_labeling[]" multiple="true" autocomplete="off" required>
+                    <input type="submit" value="Upload Images" class="btn  btn-info" style="margin-left: 0px;">
+                </div>
+                <input type="hidden" id="current_folder" name="current_folder" value="">
+                <input type="hidden" name="which-form" value="images-for-labeling">
+             </form> 
+        </div>
+        <div class="card-footer">
+            <a href="#" class="btn btn-danger">Delete</a> <small>This deletes all the images and labels</small>
+          </div>
+    </div>
+    
+    
+    <div class="col card h-100 mb-3 w-15" style="border: 5px solid yellow; margin-top: 10px; margin-right: 5px;">
+        <h5 class="card-header d-flex justify-content-between align-items-center">
+            Cups
+            <div id="labeling_complete">&#x2705;</div>
+          </h5>
+        <div class="card-body">
+          <h2 class="card-title"></h2>
+          <p class="card-text"></p>
+          <p class="card-text">Number of Images: 205<small class="text-muted"></small></p>
+          <p class="card-text">Labelled Images: 122<small class="text-muted"></small></p>
+          <p class="card-text"><small class="text-muted"></small></p>
+
+          <form method="post" action="" enctype="multipart/form-data">
+            <div class="input-group">
+                <input class="form-control" id="imageLoader" type="file" name="images_for_labeling[]" multiple="true" autocomplete="off" required>
+                <input type="submit" value="Upload Images" class="btn  btn-info" style="margin-left: 0px;">
+            </div>
+            <input type="hidden" id="current_folder" name="current_folder" value="">
+            <input type="hidden" name="which-form" value="images-for-labeling">
+         </form> 
+    </div>
+    <div class="card-footer">
+        <a href="#" class="btn btn-danger">Delete</a> <small>This deletes all the images and labels</small>
+      </div>
+</div>
+
+
+        <div class="row">
+    
+            <div class="col card h-100">
+                <img src="/static/web-images/amina-learn-2-earn.svg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h2 class="card-title">Amina Learn-2-Earn</h2>
+                  <p class="card-text"><small> Amina grades labellers as Level 1 to Level 7. Level 1 can earn Amina rewards for learning to label. After passing the on-boarding test, Level 0 labellers
+                    can be assigned L1 labeling tasks. Each label should develop their labeling proficiency through accumulating hours of labelling experience. The highest level is Level 7.
+                    The higher the level of the labeller, the higher the Amina rewards portions. 
+                </small></p>
+                  <a id="learn2earnBtn" href="#" class="btn btn-success" style="font-weight:bold;">Learn-2-Earn</a>
+                  <a id="learn2earnBtn" href="#" class="btn btn-secondary" style="font-weight:bold;">Learning History</a>
+                  <p class="card-text"><small class="text-muted"></small></p>
+                </div>
+            </div>
+    
+    
+            
+            <div class="col card h-100">
+                <img src="/static/web-images/wip-and-completed-tasks.svg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h2 class="card-title">Work in Progress and Labeling History</h2>
+                  <p class="card-text"><small> See labeling tasks assigned to you, tasks that you are still working on as well as your labeling history.
+                    The platform automatically tracks your labeling history to establish your reputation score. Your reputation score,labeling history and experience are evaluated for level progression. 
+                    It is important to maintain a high reputation score. 
+                  </small></p>
+                  <a id="workInProgressBtn" href="#" class="btn btn-success" style="font-weight:bold;">Work in Progress</a>
+                  <a id="labelingHistoryBtn" href="#" class="btn btn-secondary" style="font-weight:bold;">Labeling History</a>
+                  <p class="card-text"><small class="text-muted"></small></p>
+                </div>
+            </div>
+    
+    
+    
+            <div class="col card h-100">
+                <img src="/static/web-images/amina-rewards.svg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h2 class="card-title">Amina Rewards Wallet</h2>
+                  <p class="card-text"><small> Amina rewards are Amina tokens awarded to labellers and participants of the Amina labeling platform.
+                    The rewards are awarded for a broad range of contributions including completing image labeling tasks, reviewing and checking accuracy of labels, 
+                    rating checkers on their reviews, planners and other contributors such as data owners who provide labelled data to the community.</small></p>
+                  <a id="openWalletBtn" href="#" class="btn btn-success" style="font-weight:bold;">Open Amina Wallet</a>
+                  <a id="openEarningHistoryBtn" href="#" class="btn btn-secondary" style="font-weight:bold;">Earning History</a>
+                  <p class="card-text"><small class="text-muted"></small></p>
+                </div>
+            </div>
+    
+    
+        </div>
+    </div>
+
+
+
+</body>
+</html>
