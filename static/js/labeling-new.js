@@ -1080,7 +1080,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                    // Add labels_color_map and user_id
                     retrieved_json_object ["labels_color_map"] = LABELS_COLOR_MAP;
                     retrieved_json_object ["user_id"] = user_id;
-                    retrieved_json_object ["ISODate"] = ISODate;    
+                    retrieved_json_object ["ISODate"] = ISODate;  
+                    retrieved_json_object ["num_images"] = ""; 
+                    retrieved_json_object ["labeled_images"] = ""; 
+                    retrieved_json_object ["all_labeled_true_false" ] = false;  
                    // Store session variable for the updated object
                    window.localStorage.setItem("project_json", JSON.stringify(retrieved_json_object));
         
@@ -1093,7 +1096,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     //         Post project_json to server
                     //-----------------------------------------------------------------------------------
 
-                    post_project_json_info(retrieved_json_object ["user_id"], retrieved_json_object ["project_name"], retrieved_json_object ["project_id"], retrieved_json_object ["labels_color_map"], retrieved_json_object ["ISODate"]) 
+                    post_project_json_info(retrieved_json_object ["user_id"], retrieved_json_object ["project_name"], retrieved_json_object ["project_id"], retrieved_json_object ["labels_color_map"], retrieved_json_object ["ISODate"],retrieved_json_object ["num_images"],retrieved_json_object ["labeled_images"],retrieved_json_object ["all_labeled_true_false"] ) 
 
                     //-----------------------------------------------------------------------------------------
 
@@ -1499,7 +1502,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
 
-    function post_project_json_info(user_id, project_name, project_id, labels_color_map, iso_date){
+    function post_project_json_info(user_id, project_name, project_id, labels_color_map, iso_date,num_images,labeled_images,all_labeled_true_false){
     
         $.ajax({
             type: "POST",
@@ -1510,8 +1513,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     'project_name' : project_name, 
                     'project_id' :  project_id, 
                     'labels_color_map' : JSON.stringify(labels_color_map), 
-                    'ISODate' : iso_date
-            
+                    'ISODate' : iso_date,
+                    'num_images' : num_images,
+                    'labeled_images' : labeled_images,   
+                    'all_labeled_true_false' : all_labeled_true_false                                                
                 },
             success: function(data) {
 

@@ -891,8 +891,11 @@ def create_new_project():
         project_id = request.form['project_id']
         labels_color_map = request.form['labels_color_map']
         ISODate = request.form['ISODate']
-
-    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
+        num_images = request.form['num_images']
+        labeled_images = request.form['labeled_images']
+        all_labeled_true_false = request.form['all_labeled_true_false']
+        
+    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false)
     # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
 
