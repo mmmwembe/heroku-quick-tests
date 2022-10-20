@@ -1122,12 +1122,14 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 $("#addOrEdit_button").attr("style", "display:  !important");
                 // Create or Update the Label divs
 
+                $("#labels-error-message").html("")
+
                 updateLabelDivs()
     
                 // Selete the first label as the initial label
                 chooseInitialLabel()
     
-                $("#labels-error-message").html("")
+
 
 
                 // Show the first image from the thumbnails the main image
@@ -1135,6 +1137,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 // Add labels_color_map to project_json and post information to server
                 AddLabels_Color_Map_to_Project_JSON()
+
+                $("#labels-error-message").html("")
 
         }
         //alert('Labels to save ' + textarea_content)
