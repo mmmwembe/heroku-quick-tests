@@ -1099,7 +1099,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     post_project_json_info(retrieved_json_object ["user_id"], retrieved_json_object ["project_name"], retrieved_json_object ["project_id"], retrieved_json_object ["labels_color_map"], retrieved_json_object ["ISODate"],retrieved_json_object ["num_images"],retrieved_json_object ["labeled_images"],retrieved_json_object ["all_labeled_true_false"] ) 
 
                     //-----------------------------------------------------------------------------------------
-
+                
+                    // CREATE LABEL BUCKETS 
+                    create_label_buckets_dummy('project_json')
           
                 }
 
@@ -1537,6 +1539,111 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
    }
+
+
+
+// -----------------------------------------------------------------------
+//                Label Bucket Container 
+//------------------------------------------------------------------------
+
+function create_card(data){
+
+
+
+    var new_card = data.label ?
+
+                        `<div class="col card h-100 mb-3 w-15" style="border: 5px solid ${data.color ? data.color : "#808080"}; margin-top: 10px; margin-right: 5px;">
+                            <h5 class="card-header d-flex justify-content-between align-items-center">
+                                ${data.label ? data.label : ""}
+                                <div id="labeling_complete"> ${data.all_labeled_true_false ? "&#x2705;" : ""}</div>
+                            </h5>
+                            <div class="card-body">
+                            <h2 class="card-title"></h2>
+                            <p class="card-text"></p>
+                            <p class="card-text">Number of Images: ${data.num_images ? data.num_images : ""} <small class="text-muted"></small></p>
+                            <p class="card-text">Labelled Images: ${data.labeled_images ? data.labeled_images : ""}<small class="text-muted"></small></p>
+                            <p class="card-text"><small class="text-muted"></small></p>
+
+                            <form method="post" action="" >
+                                <input type="submit" value="Show Images" class="btn btn btn-outline-primary" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid ${data.color ? data.color : "#808080"}">
+                                <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
+                            </form> 
+
+                            <form method="post" action="" enctype="multipart/form-data">
+                                <div class="input-group">
+                                    <input class="form-control" id="imageLoader" type="file" name="images_for_labeling[]" multiple="true" autocomplete="off" required>
+                                    <input type="submit" value="Upload Images" class="btn  btn-info" style="margin-left: 0px;">
+                                </div>
+                                <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
+                                <input type="hidden" name="which-form" value="images-for-labeling">
+                            </form> 
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-danger" data-label="${data.label ? data.label : ""}">Delete</a> <small> Delete all images & labels</small>
+                        </div>
+                    </div>`  : ""
+
+        return new_card 
+
+}
+
+
+
+function create_label_buckets(){
+
+    for (var i = 0; i < data.length; i += 4) {
+
+        var new_row = document.createElement('div')
+        new_row.className="row"
+
+        var card_1_data = data.hasOwnProperty(i) ? data[i]  : " ";  
+        var card_2_data = data.hasOwnProperty(i+1) ? data[i+1] : " ";   
+        var card_3_data = data.hasOwnProperty(i+2) ? data[i+2]  : " ";   
+        var card_4_data = data.hasOwnProperty(i+3) ? data[i+3] : " ";   
+
+        card_1_string = create_card(card_1_data)
+        card_2_string = create_card(card_2_data)
+        card_3_string = create_card(card_3_data)
+        card_4_string = create_card(card_4_data)
+
+        var combined_card_string = card_1_string + '\n' + card_2_string + '\n' + card_3_string + '\n' + card_4_string
+
+        new_row.innerHTML = combined_card_string
+
+        //document.getElementById('main_container').appendChild(new_row)
+        document.getElementById('label_buckets_container').appendChild(new_row)
+        
+
+    }
+
+}
+
+
+function create_label_buckets_dummy(project_json_storage_variable){
+
+    if (window.localStorage.hasOwnProperty(project_json_storage_variable)){
+
+
+        PROJECT_JSON = window.localStorage.getItem(project_json_storage_variable);
+        var my_json_object = JSON.parse(PROJECT_JSON)
+
+
+        alert(' Line 1629 string of labels_color_map ' + JSON.stringify(my_json_object.labels_color_map))
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
