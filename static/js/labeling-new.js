@@ -1623,20 +1623,29 @@ function create_label_buckets_dummy(project_json_storage_variable){
 
     if (window.localStorage.hasOwnProperty(project_json_storage_variable)){
 
+        var data = [];  // Json data objects will be stored here
 
         PROJECT_JSON = window.localStorage.getItem(project_json_storage_variable);
+        
         var my_json_object = JSON.parse(PROJECT_JSON)
 
         var labels_color_map_json = my_json_object.labels_color_map
 
         Object.keys(labels_color_map_json).forEach(function(key) {
 
-            alert('Key : ' + key + ', Value : ' + labels_color_map_json[key])
+
+            var label = key
+            var color = labels_color_map_json[key]
+
+            var data_element = {"label": label,"color": color, "num_images": my_json_object.num_images, "labeled_images": my_json_object.labeled_images, "all_labeled_true_false": my_json_object.all_labeled_true_false, "project_id": my_json_object.project_id, "project_name": my_json_object.project_name, "user_id": my_json_object.user_id, "ISODate": my_json_object.ISODate}
+    
+            // alert('Key : ' + key + ', Value : ' + labels_color_map_json[key])
+            data.push(data_element)
 
           })
 
 
-        // alert(' Line 1629 string of labels_color_map ' + JSON.stringify())
+        alert(' Entire Data Array :  ' + JSON.stringify(data))
 
 
     }
