@@ -1589,7 +1589,7 @@ function create_card(data){
 
 
 
-function create_label_buckets(){
+function create_label_buckets(data){
 
     for (var i = 0; i < data.length; i += 4) {
 
@@ -1610,7 +1610,6 @@ function create_label_buckets(){
 
         new_row.innerHTML = combined_card_string
 
-        //document.getElementById('main_container').appendChild(new_row)
         document.getElementById('label_buckets_container').appendChild(new_row)
         
 
@@ -1626,7 +1625,7 @@ function create_label_buckets_dummy(project_json_storage_variable){
         var data = [];  // Json data objects will be stored here
 
         PROJECT_JSON = window.localStorage.getItem(project_json_storage_variable);
-        
+
         var my_json_object = JSON.parse(PROJECT_JSON)
 
         var labels_color_map_json = my_json_object.labels_color_map
@@ -1644,8 +1643,11 @@ function create_label_buckets_dummy(project_json_storage_variable){
 
           })
 
+         // alert(' Entire Data Array :  ' + JSON.stringify(data))
+         // ------------------------------------------------------
+         //                Create  Label Buckets
 
-        alert(' Entire Data Array :  ' + JSON.stringify(data))
+         create_label_buckets(data)
 
 
     }
