@@ -1627,8 +1627,16 @@ function create_label_buckets_dummy(project_json_storage_variable){
         PROJECT_JSON = window.localStorage.getItem(project_json_storage_variable);
         var my_json_object = JSON.parse(PROJECT_JSON)
 
+        var labels_color_map_json = my_json_object.labels_color_map
 
-        alert(' Line 1629 string of labels_color_map ' + JSON.stringify(my_json_object.labels_color_map))
+        Object.keys(labels_color_map_json).forEach(function(key) {
+
+            alert('Key : ' + key + ', Value : ' + labels_color_map_json[key])
+
+          })
+
+
+        // alert(' Line 1629 string of labels_color_map ' + JSON.stringify())
 
 
     }
