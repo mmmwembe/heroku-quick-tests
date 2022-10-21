@@ -1664,7 +1664,8 @@ function create_label_buckets_dummy(project_json_storage_variable){
 
     var label_buckets_checkbox = document.getElementById('flexSwitchCheckChecked')
     label_buckets_checkbox.addEventListener('change', function () {
-        alert(' you selected this check box')
+        var checkbox_status =$("#flexSwitchCheckChecked").is(":checked");
+        alert(' Checkbox status ' + checkbox_status)
     })
 
     // checkBoxes.attr("checked", !checkBoxes.attr("checked"));
