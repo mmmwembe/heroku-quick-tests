@@ -1661,6 +1661,14 @@ function create_label_buckets_dummy(project_json_storage_variable){
     //                  Show and Hide Label Buckets
     // ----------------------------------------------------------------
 
+
+    var label_buckets_checkbox = document.getElementById('flexSwitchCheckChecked')
+    label_buckets_checkbox.addEventListener('change', function () {
+        alert(' you selected this check box')
+    })
+
+    // checkBoxes.attr("checked", !checkBoxes.attr("checked"));
+
     $("[name='my-checkbox']").bootstrapSwitch();
 
     function getValue()
