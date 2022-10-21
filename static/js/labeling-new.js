@@ -1657,6 +1657,19 @@ function create_label_buckets_dummy(project_json_storage_variable){
 
 
 
+    //------------------------------------------------------------------
+    //                  Show and Hide Label Buckets
+    // ----------------------------------------------------------------
+
+    $("[name='my-checkbox']").bootstrapSwitch();
+
+    function getValue()
+    {
+     var value=$('#toggle-trigger').bootstrapToggle().prop('checked');
+     alert('check toggle box value: ' + value);
+    }
+
+
 
 
 
