@@ -1665,32 +1665,18 @@ function create_label_buckets_dummy(project_json_storage_variable){
     var label_buckets_checkbox = document.getElementById('flexSwitchCheckChecked')
     label_buckets_checkbox.addEventListener('change', function () {
         var checkbox_status =$("#flexSwitchCheckChecked").is(":checked");
-        alert(' Checkbox status ' + checkbox_status)
+        // alert(' Checkbox status ' + checkbox_status)
+        checkbox_status ? show_label_buckets() : hide_label_buckets()
     })
 
-    // checkBoxes.attr("checked", !checkBoxes.attr("checked"));
 
-    $("[name='my-checkbox']").bootstrapSwitch();
-
-    function getValue()
-    {
-     var value=$('#toggle-trigger').bootstrapToggle().prop('checked');
-     alert('check toggle box value: ' + value);
+    function show_label_buckets(){
+        $("#label_buckets_container").attr("style", "display:  !important");
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    function hide_label_buckets(){
+        $("#label_buckets_container").attr("style", "display: none !important");
+    }
 
 
 

@@ -220,26 +220,10 @@ body.modal-open .modal .modal-dialog {
     cursor: pointer;
  }
 
-.flex-parent-element {
-  display: flex;
-  width: 50%;
-}
-
-.flex-child-element {
-  flex: 1;
-  border: 2px solid blueviolet;
-  margin: 10px;
-}
-
-.flex-child-element:first-child {
-  right: 0px;
-}
-
 
 .label_buckets_header {
     display: inline-block; 
     width: 100%;
-    border: 1px solid red;
 }
 
 .caption_label_buckets{
@@ -514,19 +498,14 @@ body.modal-open .modal .modal-dialog {
 
     <div class="row">
         
-        <div class="flex-parent-element">
-            <div class="flex-child-element magenta"><h2>Label Buckets</h2></div>
-            <div class="flex-child-element green" style="float: right" > Show/Hide : <input type="checkbox" id ="toggle-trigger" name="my-checkbox" checked></div>
-        </div>
-
         <div class="label_buckets_header ">
             <div class="caption_label_buckets">
                 <h2>Label Buckets</h2>
             </div>
-            <div class="toggle_hide_show_label_buckets" style="vertical-align: middle;">
+            <div class="toggle_hide_show_label_buckets" >
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Show/Hide</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" style="vertical-align: middle;" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked" style="vertical-align: middle;">Show/Hide</label>
                 </div>
             </div>
           </div>
