@@ -1570,7 +1570,7 @@ function create_card(data){
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
                             </form> 
 
-                            <form method="post" action="{{ url_for('upload_images_project_label') }}" enctype="multipart/form-data">
+                            <form onsubmit="event.preventDefault(); postImages4Label();">
                                 <div class="input-group">
                                     <input class="form-control" id="imageLoader" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
                                     <input type="submit" value="Upload Images" class="btn  btn-info xUploadImagesButton" style="margin-left: 0px;">
@@ -1693,6 +1693,13 @@ function create_label_buckets_dummy(project_json_storage_variable){
          e.preventDefault();
  
   }); 
+
+
+  function postImages4Label(){
+
+    alert('IT FINALLY MADE IT TO HERE!!!!')
+
+}
 
 
     
