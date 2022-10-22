@@ -905,31 +905,7 @@ def create_new_project():
        # Create label item dictionary
         labels = []
         dict_from_json_string = "[{0}]".format(labels_color_map)
-        for key in eval(dict_from_json_string):
-            label = key
-            label_color = labels_color_map[key]
-            label_dict ={
-				'label_id': uuid.uuid4().hex,
-				'label': label,
-				'label_color': label_color,
-				'original_image_urls': [],
-				'all_jpeg_image_urls': [],
-				'cropped_image_urls': [],
-				'augmentation_image_urls': [],
-				'original_image_label_jsons': [],
-				'all_jpeg_image_label_jsons': [],
-				'augmentation_image_label_jsons': [],
-				'number_original_images': '',
-				'number_all_jpeg_images': '',
-				'number_cropped_images': '',
-				'number_augmentation_images':'',
-				'original_image_label_jsons': [],
-				'all_jpeg_image_label_jsons': [],
-				'augmentation_image_label_jsons': [],     
-				'date_created': ISODate,
-				'date_modified': '',
-			}
-            labels.append(label_dict)
+
             
 		# create project item
         project_item = {
@@ -950,7 +926,7 @@ def create_new_project():
         else:
             pass
                  
-    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false, labels = labels)
+    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false, labels = dict_from_json_string)
     # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
 
