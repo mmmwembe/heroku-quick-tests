@@ -1496,7 +1496,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             success: function(data) {
 
                 var all_user_projects = data.all_projects
-                //var all_user_projects = jQuery.parseJSON(data.all_projects);
+                var num_projects = all_user_projects.length
 
                 for(var k in all_user_projects) {
                     alert(' k ' + k + ' all_user_projects ' + JSON.stringify(all_user_projects[k]));
@@ -1504,6 +1504,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                  }
 
                 //alert('number of projects : ' + JSON.stringify(data.all_projects))
+                // Open the Modal that will show the table
+                myProjectsModal.toggle()
+
+
             }         
         });
     }
@@ -1748,9 +1752,15 @@ function submit_form() {
 
 }
 
+//-----------------------------------------------------------------------
+//                       MyProjectsModal
+//------------------------------------------------------------------------
 
+var myProjectsModal = new bootstrap.Modal(document.getElementById('myProjectsModal'), {})
 
-
+$("#closeProjectsCornerBtn").click(function (){
+    myProjectsModal.toggle()
+});
 
 
 

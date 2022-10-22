@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+	<link rel="stylesheet" type="text/css" href="testing.css">
+	<link rel="stylesheet" type="text/css" href="css/all.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+
+    <style>
+        .container {
+            padding: 2rem 0rem;
+        }
+
+        h4 {
+            margin: 2rem 0rem 1rem;
+        }
+
+        .table-image {
+           td, th {vertical-align: middle;}
+        }
+
+
+    </style>
+</head>
+<body>
+	<i class="fab fa-github-square"><a href="https://github.com/willyblackkeez" id="profile-link"></a></i>
+	<i class="fab fa-facebook"></i>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <table id="xProjectsTable" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Day</th>
+                  <th scope="col">Article Name</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Shares</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="myModalProjectsTable">
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Bootstrap 4 CDN and Starter Template</td>
+                  <td>Cristina</td>
+                  <td>2.846</td>
+                  <td>
+                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"> Delete </i></button>
+                    <!--button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button-->
+                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i> Open Project</button>       
+                  </td>
+                </tr>
+
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Bootstrap Grid 4 Tutorial and Examples</td>
+                  <td>Cristina</td>
+                  <td>3.417</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                  <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Bootstrap Flexbox Tutorial and Examples</td>
+                  <td>Cristina</td>
+                  <td>1.234</td>
+                  <td>
+                    <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                  <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+<script>
+
+all_data =[{day: 1, article_name: "Bootstrap 4 CDN and Starter Template", author: "Cristina" , shares: 2.846, button_name : 1},	
+	   {day: 2, article_name: "Bootstrap Grid 4 Tutorial and Examples", author: "Cristina",  shares: 2458.6, button_name : 2},
+	   {day: 3, article_name: "Bootstrap 5 CDN and Starter Template", author: "Munyaz"  ,shares: 100.23, button_name : 3},
+	   {day: 4, article_name: "Bootstrap 8  CDN and Starter Template", author: "Munyaz" , shares: 200.1, button_name : 4}]
+
+
+add_rows_to_table(all_data)
+
+function create_new_table_row(data){
+
+    var new_table_row = data.day ?
+                        ` <th scope="row">${data.day ? data.day : ""}</th>
+                            <td>${data.article_name ? data.article_name : ""}</td>
+                            <td>${data.author ? data.author : ""}</td>
+                            <td>${data.shares ? data.shares: ""}</td>
+                            <td>
+                                <button id="delete_project_btn"  data-projectID="${data.day ? data.day : ""}" type="button" class="btn btn-danger"><i class="far fa-trash-alt"> Delete </i></button>
+                                <!--button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button-->
+                                <button id="open_project_btn"  data-projectID="${data.day ? data.day : ""}" type="button" class="btn btn-success"><i class="fas fa-edit"></i> Open Project</button>       
+                            </td>`  : ""
+        return new_table_row
+
+   }
+
+
+function add_rows_to_table(data_array){
+
+    for (var i = 0; i < data_array.length; i += 1) {
+
+        var table_row  = document.createElement('tr'); 
+
+        data = data_array[i]
+
+        new_table_row_string = create_new_table_row(data)
+
+        //alert(new_table_row_string)
+        table_row.innerHTML = new_table_row_string
+
+        var tbody = document.getElementById('xProjectsTable').getElementsByTagName('tbody')[0];
+
+        /// document.getElementById('myModalProjectsTable').appendChild(new_table_row_string)
+        tbody.appendChild(table_row)// 
+            
+    }
+
+}
+
+
+</script>
+
+
+</body>
+</html>
