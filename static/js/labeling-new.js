@@ -1787,7 +1787,7 @@ function create_new_table_row(index, data){
 
     var new_table_row = `<tr> 
                             <th scope="row">${position}</th>
-                                <td>${project_id}</td>
+                                <td>"${project_id}"</td>
                                 <td>${project_id}</td>
                                 <td>${project_id}</td>
                                 <td>
