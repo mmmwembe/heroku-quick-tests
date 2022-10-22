@@ -980,9 +980,12 @@ def get_all_projects():
 	results = user_projects.find(query)
 	all_projects =[]
 	for result in results:
-		all_projects.append(result)
+		all_projects.append(result) # 
 
-	return jsonify(all_projects = all_projects)
+	#return jsonify(all_projects = all_projects)
+	return render_template('labeling-new.html', all_projects = all_projects)
+
+
 
 @app.route('/choose_project', methods=['POST','GET'])
 def choose_project():
