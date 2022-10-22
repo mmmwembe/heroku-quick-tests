@@ -1785,8 +1785,7 @@ function create_new_table_row(index, data){
 
 
 
-    var new_table_row = project_id ?
-                        `<tr> 
+    var new_table_row = `<tr> 
                             <th scope="row">${position}</th>
                                 <td>${project_id}</td>
                                 <td>${project_id}</td>
@@ -1795,7 +1794,7 @@ function create_new_table_row(index, data){
                                     <button id="delete_project_btn" data-projectID="${project_id}" type="button" class="btn btn-danger" onclick="DeleteProject(${project_id})"><i class="far fa-trash-alt"> Delete </i></button>
                                     <button id="open_project_btn"  data-projectID="${project_id}" type="button" class="btn btn-success" onclick="OpenProject(${project_id})"><i class="fas fa-edit"></i> Open Project</button>       
                                 </td>
-                        </tr>`  : ""
+                        </tr>` 
 
 
         alert('html string created : ' + new_table_row)    
