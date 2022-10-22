@@ -1783,7 +1783,7 @@ function create_new_table_row(index, data){
     var project_id = data.project_id ? data.project_id : ""
     var project_name = data.project_name ? data.project_name : ""
 
-
+    alert('position ' + position + ' project id ' + project_id + ' project name ' + project_name)  
 
     var new_table_row = `<tr> 
                             <th scope="row">${position}</th>
