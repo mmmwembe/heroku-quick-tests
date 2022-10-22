@@ -1570,10 +1570,10 @@ function create_card(data){
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
                             </form> 
 
-                            <form onsubmit="event.preventDefault(); postImages4Label();">
+                            <form id="form">
                                 <div class="input-group">
                                     <input class="form-control" id="imageLoader" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
-                                    <input type="submit" value="Upload Images" class="btn  btn-info xUploadImagesButton" style="margin-left: 0px;">
+                                    <input type="submit" value="Upload Images" class="btn  btn-info" style="margin-left: 0px;">
                                 </div>
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
@@ -1701,6 +1701,11 @@ function create_label_buckets_dummy(project_json_storage_variable){
 
 }
 
+
+$('#form').submit(function (evt) {
+    evt.preventDefault();
+    alert('IT FINALLY MADE IT TO HERE!!!!')
+});
 
     
 }); // End Window Load Event
