@@ -1567,19 +1567,21 @@ function create_card(data){
                             <form method="post" action="" >
                                 <input type="submit" value="Show Images" class="btn btn btn-outline-primary" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid ${data.color ? data.color : "#808080"}">
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
+                                <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
                             </form> 
 
-                            <form method="post" action="" enctype="multipart/form-data">
+                            <form method="post" action="{{ url_for('upload_images_project_label') }}" enctype="multipart/form-data">
                                 <div class="input-group">
-                                    <input class="form-control" id="imageLoader" type="file" name="images_for_labeling[]" multiple="true" autocomplete="off" required>
+                                    <input class="form-control" id="imageLoader" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
                                     <input type="submit" value="Upload Images" class="btn  btn-info" style="margin-left: 0px;">
                                 </div>
+                                <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
                                 <input type="hidden" name="which-form" value="images-for-labeling">
                             </form> 
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-danger" data-label="${data.label ? data.label : ""}">Delete</a> <small> Delete all images & labels</small>
+                            <a href="#" class="btn btn-danger" data-label="${data.label ? data.label : ""}" data-projectID="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                         </div>
                     </div>`  : ""
 
