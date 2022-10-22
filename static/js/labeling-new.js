@@ -1357,6 +1357,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     function Hide_StartNewProject_Button_and_Show_ProjectLabel(){
 
         $("#StartNewProjectButton").attr("style", "display:  none  !important");  
+        $("#OpenExistingProjectButton").attr("style", "display:  none  !important");  
         $("#projectLabel").html()
         $("#projectLabel").html(CURRENT_PROJECT)
 
