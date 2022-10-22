@@ -910,7 +910,7 @@ def upload_images_project_label():
 	project_id = request.form['project_id']
 
  
-	return jsonify(project_id = project_id)
+	return render_template('labeling_new.html', project_id = project_id)
 
 
 
