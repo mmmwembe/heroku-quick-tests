@@ -1851,5 +1851,82 @@ function add_rows_to_table2(data_array){
 
 
 
+
+
+all_data =[{day: 1, article_name: "Bootstrap 4 CDN and Starter Template", author: "Cristina" , shares: 2.846, button_name : 1},	
+	       {day: 2, article_name: "Bootstrap Grid 4 Tutorial and Examples", author: "Cristina",  shares: 2458.6, button_name : 2},
+	       {day: 3, article_name: "Bootstrap 5 CDN and Starter Template", author: "Munyaz"  ,shares: 100.23, button_name : 3},
+	       {day: 4, article_name: "Bootstrap 8  CDN and Starter Template", author: "Munyaz" , shares: 200.1, button_name : 4}]
+
+
+// add_rows_to_table(all_data)
+
+function create_new_table_row_X(data){
+
+    var new_table_row = data.day ?
+                        `<tr>
+                             <th scope="row">${data.day ? data.day : ""}</th>
+                            <td>${data.article_name ? data.article_name : ""}</td>
+                            <td>${data.author ? data.author : ""}</td>
+                            <td>${data.shares ? data.shares: ""}</td>
+                            <td>
+                                <button id="delete_project_btn"  data-projectID="${data.day ? data.day : ""}" type="button" class="btn btn-danger" onclick="DeleteProject(${data.day})"><i class="far fa-trash-alt"> Delete </i></button>
+                                <button id="open_project_btn"  data-projectID="${data.day ? data.day : ""}" type="button" class="btn btn-success" onclick="OpenProject(${data.day})"><i class="fas fa-edit"></i> Open Project</button>       
+                            </td>
+                        </tr>`  : ""
+        return new_table_row
+
+}
+
+
+   function add_rows_to_table_X(data_array){
+
+    var table_rows_strings=''
+
+    for (var i = 0; i < data_array.length; i += 1) {
+
+        var table_row  = document.createElement('tr'); 
+
+        data = data_array[i]
+
+        new_table_row_string = create_new_table_row_X(data)
+
+        table_rows_strings  += new_table_row_string + '\n'
+
+        //alert(new_table_row_string)
+        // table_row.innerHTML += new_table_row_string + '\n'
+
+        // var tbody = document.getElementById('xProjectsTable').getElementsByTagName('tbody')[0];
+
+        /// document.getElementById('myModalProjectsTable').appendChild(new_table_row_string)
+        //tbody.appendChild(table_row)// 
+            
+    }
+
+    document.getElementById('xProjectsTable').tBodies[0].innerHTML = table_rows_strings
+
+}
+
+
+
+
+myProjectsModal.toggle()
+
+add_rows_to_table_X(all_data)
+
+$("#closeProjectsCornerBtn").click(function (){
+    myProjectsModal.toggle()
+});
+
+
+
+
+
+
+
+
+
+
+
     
 }); // End Window Load Event
