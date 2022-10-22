@@ -904,7 +904,7 @@ def create_new_project():
       
        # Create label item dictionary
         labels = []
-        dict_from_json_string = "[{0}]".format(labels_color_map)
+        labels_color_map_dict_from_json_string = eval("[{0}]".format(labels_color_map))
 
             
 		# create project item
@@ -913,7 +913,7 @@ def create_new_project():
 			'project_js_id': project_id,
 			'project_name': project_name,
 			'user_id': user_id,
-			'labels_color_map': labels_color_map,
+			'labels_color_map': labels_color_map_dict_from_json_string,
 			'date_created': ISODate,
 			'date_modified': '',
 			'labels': labels,
@@ -926,7 +926,7 @@ def create_new_project():
         else:
             pass
                  
-    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false, labels = dict_from_json_string)
+    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false, labels = labels_color_map_dict_from_json_string)
     # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
 
