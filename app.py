@@ -935,7 +935,9 @@ def create_new_project():
             
             results = user_projects.find(query, filters)
             labels =[]
-            for key in labels_color_map:
+            y = results[0]['labels_color_map']
+            
+            for key in y:
                 label = key
                 label_color = labels_color_map[key]
                 label_dict ={'label_id': uuid.uuid4().hex,
