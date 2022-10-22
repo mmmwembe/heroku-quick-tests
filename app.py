@@ -25,6 +25,7 @@ from zipfile import ZipFile
 import os
 import glob
 import json
+import time
 
 
 
@@ -905,10 +906,12 @@ def create_new_project():
        # Create label item dictionary
         labels = []
         labels_color_map_dict_from_json_string = eval("{0}".format(labels_color_map))
+        
+        proj_id = uuid.uuid4().hex
 
 		# create project item
         project_item = {
-			'_id': uuid.uuid4().hex,    
+			'_id':  proj_id,   
 			'project_js_id': project_id,
 			'project_name': project_name,
 			'user_id': user_id,
@@ -917,11 +920,48 @@ def create_new_project():
 			'date_modified': '',
 			'labels': labels,
 			'active_label': ''
-  		}            
+  		}
+        
+                    
             
         # If the user_id exists then submit and project name does not exist
         if users_collection.find_one({"_id": user_id}) and not user_projects.find_one({"project_js_id": project_id}) and not user_projects.find_one({"_id": project_item["_id"]}) :
             user_projects.insert_one(project_item)
+            
+            time.sleep(1) # This gives the app 1 second to update the mongodb before the next line reads the inserted record...this is inefficient...need to do it above
+            query ={'_id': proj_id}
+            filters ={"labels_color_map": 1,"date_created": 1}
+            
+            
+            results = user_projects.find(query, filters)
+            labels =[]
+            for key in labels_color_map:
+                label = key
+                label_color = labels_color_map[key]
+                label_dict ={'label_id': uuid.uuid4().hex,
+				'label': label,
+				'label_color': label_color,
+				'original_image_urls': [],
+				'all_jpeg_image_urls': [],
+				'cropped_image_urls': [],
+				'augmentation_image_urls': [],
+				'original_image_label_jsons': [],
+				'all_jpeg_image_label_jsons': [],
+				'augmentation_image_label_jsons': [],
+				'number_original_images': '',
+				'number_all_jpeg_images': '',
+				'number_cropped_images': '',
+				'number_augmentation_images':'',
+				'original_image_label_jsons': [],
+				'all_jpeg_image_label_jsons': [],
+				'augmentation_image_label_jsons': [],     
+				'date_created': ISODate,
+				'date_modified': '',
+     		}
+                labels.append(label_dict)
+            # update user_projects record
+            results = user_projects.find_one_and_update({"_id" : proj_id}, {"$set":{'labels': labels}},upsert=True)
+            
         else:
             pass
                  
