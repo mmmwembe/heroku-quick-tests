@@ -1780,15 +1780,15 @@ function create_new_table_row(index, data){
     var project_id = data.project_id ? data.project_id : ""
     var project_name = data.project_name ? data.project_name : ""
 
-    alert(' project_id ' + project_id + ' project_name ' + project_name)
+    alert('position ' + position + ' project_id ' + project_id + ' project_name ' + project_name)
 
-    var new_table_row = data.project_id ?
+    var new_table_row = project_id ?
                         ` <th scope="row">${index}</th>
-                            <td>${data.project_name ? data.project_name : ""}</td>
-                            <td>${data.project_id ? data.project_id : ""}</td>
+                            <td>${project_id}</td>
+                            <td>${project_id}</td>
                             <td>
-                                <button id="delete_project_btn" data-projectID="${data.project_id ? data.project_id : ""}" type="button" class="btn btn-danger" onclick="DeleteProject(${data.project_id})"><i class="far fa-trash-alt"> Delete </i></button>
-                                <button id="open_project_btn"  data-projectID="${data.project_id ? data.project_id : ""}" type="button" class="btn btn-success" onclick="OpenProject(${data.project_id})"><i class="fas fa-edit"></i> Open Project</button>       
+                                <button id="delete_project_btn" data-projectID="${project_id}" type="button" class="btn btn-danger" onclick="DeleteProject(${project_id})"><i class="far fa-trash-alt"> Delete </i></button>
+                                <button id="open_project_btn"  data-projectID="${project_id}" type="button" class="btn btn-success" onclick="OpenProject(${project_id})"><i class="fas fa-edit"></i> Open Project</button>       
                             </td>`  : ""
         return new_table_row
 
