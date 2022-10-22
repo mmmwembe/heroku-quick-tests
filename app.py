@@ -973,6 +973,19 @@ def create_new_project():
 
 
 
+@app.route('/get_user_projects', methods=['POST','GET'])
+def get_all_projects():
+
+	query ={'user_id': user_id}
+	results = user_projects.find(query)
+	all_projects =[]
+	for result in results:
+		all_projects.append(result)
+
+	return jsonify(all_projects = all_projects)
+
+
+
 @app.route('/upload_images_project_label/', methods=['POST','GET'])
 def upload_images_project_label():
 	if 'upload_images_project_label[]' not in request.files:

@@ -1329,7 +1329,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     $("#OpenExistingProjectButton").click(function (){
 
-        alert(' Open existing project ...')
+        // alert(' Open existing project ...')
+        get_all_projects()
 
     });
 
@@ -1484,6 +1485,18 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         });
 
 
+    }
+
+    function get_all_projects(){
+
+        $.ajax({
+            type: "POST",
+            url: '/get_user_projects',
+            data: {},
+            success: function(data) {
+                alert('projects : ' + data.all_projects)
+            }         
+        });
     }
 
 
