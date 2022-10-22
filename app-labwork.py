@@ -228,7 +228,7 @@ def deleteModel():
 
 
 
-        for key in eval(dict_from_json_string):
+        for key in eval(labels_color_map_dict_from_json_string):
             label = key
             label_color = labels_color_map[key]
             label_dict ={
