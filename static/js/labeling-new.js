@@ -1515,9 +1515,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 //alert('number of projects : ' + JSON.stringify(data.all_projects))
                 // Open the Modal that will show the table
-                myProjectsModal.toggle()
+
 
                 add_rows_to_table2(all_user_projects)
+                myProjectsModal.toggle()
 
                 //add_rows_to_table(all_user_projects)
 
