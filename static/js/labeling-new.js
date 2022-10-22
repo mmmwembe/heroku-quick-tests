@@ -1782,9 +1782,24 @@ function create_new_table_row(index, data){
     var position = index + 1
     var project_id = data.project_id ? data.project_id : ""
     var project_name = data.project_name ? data.project_name : ""
+    var new_table_row =''
 
     alert('position ' + position + ' project id ' + project_id + ' project name ' + project_name)  
 
+
+     // Adding a row inside the tbody.
+        $('#myModalProjectsTable').append(
+              `<tr id="${position}">
+                <td>${project_id}</td>
+                <td>${project_id}</td>
+                <td>${project_id}</td>
+                <td>
+                    <button class="btn btn-danger remove"type="button">Remove</button>
+                </td>
+                </tr>`);
+
+
+    /*
     var new_table_row = `<tr> 
                             <th scope="row">${position}</th>
                                 <td> ${ project_id } </td>
@@ -1798,10 +1813,14 @@ function create_new_table_row(index, data){
 
 
         alert('html string created : ' + new_table_row)    
+     */
+
 
         return new_table_row
 
-   }
+    
+
+}
 
 
 function add_rows_to_table(data_array){
@@ -1844,8 +1863,12 @@ function add_rows_to_table2(data_array){
 
     //myProjectsModal.getElementById('xProjectsTable').getElementsByTagName('tbody')[0].innerHTML = table_rows_strings;
     alert('html string ' + table_rows_strings)
+    
+   (table_rows_strings,length > 0) ?  
 
     document.getElementById('xProjectsTable').tBodies[0].innerHTML = table_rows_strings
+
+    : ""
 
 }
 
