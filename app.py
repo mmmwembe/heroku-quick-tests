@@ -939,7 +939,7 @@ def create_new_project():
             
             for key in y:
                 label = key
-                label_color = labels_color_map[key]
+                label_color = y[key]
                 label_dict ={'label_id': uuid.uuid4().hex,
 				'label': label,
 				'label_color': label_color,
