@@ -904,33 +904,8 @@ def create_new_project():
       
        # Create label item dictionary
         labels = []
-        labels_color_map_dict_from_json_string = json.loads("{0}".format(labels_color_map))
-        for key in eval(labels_color_map_dict_from_json_string):
-            label = key
-            label_color = labels_color_map[key]
-            label_dict ={
-				'label_id': uuid.uuid4().hex,
-				'label': label,
-				'label_color': label_color,
-				'original_image_urls': [],
-				'all_jpeg_image_urls': [],
-				'cropped_image_urls': [],
-				'augmentation_image_urls': [],
-				'original_image_label_jsons': [],
-				'all_jpeg_image_label_jsons': [],
-				'augmentation_image_label_jsons': [],
-				'number_original_images': '',
-				'number_all_jpeg_images': '',
-				'number_cropped_images': '',
-				'number_augmentation_images':'',
-				'original_image_label_jsons': [],
-				'all_jpeg_image_label_jsons': [],
-				'augmentation_image_label_jsons': [],     
-				'date_created': ISODate,
-				'date_modified': '',
-			}
-            labels.append(label_dict)
-            
+        labels_color_map_dict_from_json_string = eval("{0}".format(labels_color_map))
+
 		# create project item
         project_item = {
 			'_id': uuid.uuid4().hex,    
