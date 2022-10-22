@@ -1327,8 +1327,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     });
 
+    $("#OpenExistingProjectButton").click(function (){
 
+        alert(' Open existing project ...')
 
+    });
 
     // 
     const uniqueId = () => {

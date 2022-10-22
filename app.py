@@ -919,7 +919,8 @@ def create_new_project():
 			'date_created': ISODate,
 			'date_modified': '',
 			'labels': labels,
-			'active_label': ''
+			'active_label': '',
+            'active_project_id' : ''
   		}
         
                     
