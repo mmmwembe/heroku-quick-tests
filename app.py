@@ -905,12 +905,16 @@ def upload_images_project_label():
 	if 'upload_images_project_label[]' not in request.files:
 		flash('No image file uploaded')
 		return redirect(request.url)
-	files = request.files.getlist('upload_images_project_label[]')
-	file_names = []
-	project_id = request.form['project_id']
 
+	if request.method =='POST':
+		files = request.files.getlist('upload_images_project_label[]')
+		file_names = []
+		project_id = request.form['project_id']
  
-	return render_template('labeling_new.html', project_id = project_id)
+	if request.method =='GET':
+		pass
+ 
+	return jsonify(project_id = project_id)
 
 
 
