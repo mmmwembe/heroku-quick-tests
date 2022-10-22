@@ -900,7 +900,7 @@ def create_new_project():
 
 
 
-@app.route('/upload_images_project_label/', methods=['POST','GET'])
+@app.route('/upload_images_project_label/', methods=['POST'])
 def upload_images_project_label():
 	if 'upload_images_project_label[]' not in request.files:
 		flash('No image file uploaded')
@@ -910,9 +910,7 @@ def upload_images_project_label():
 		files = request.files.getlist('upload_images_project_label[]')
 		file_names = []
 		project_id = request.form['project_id']
- 
-	if request.method =='GET':
-		pass
+
  
 	return jsonify(project_id = project_id)
 
