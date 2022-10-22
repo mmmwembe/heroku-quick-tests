@@ -1517,7 +1517,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 // Open the Modal that will show the table
                 myProjectsModal.toggle()
 
-                add_rows_to_table(all_user_projects)
+                add_rows_to_table2(all_user_projects)
+
+                //add_rows_to_table(all_user_projects)
 
 
             }         
@@ -1783,13 +1785,15 @@ function create_new_table_row(index, data){
     alert('position ' + position + ' project_id ' + project_id + ' project_name ' + project_name)
 
     var new_table_row = project_id ?
-                        ` <th scope="row">${index}</th>
-                            <td>${project_id}</td>
-                            <td>${project_id}</td>
-                            <td>
-                                <button id="delete_project_btn" data-projectID="${project_id}" type="button" class="btn btn-danger" onclick="DeleteProject(${project_id})"><i class="far fa-trash-alt"> Delete </i></button>
-                                <button id="open_project_btn"  data-projectID="${project_id}" type="button" class="btn btn-success" onclick="OpenProject(${project_id})"><i class="fas fa-edit"></i> Open Project</button>       
-                            </td>`  : ""
+                        `<tr> 
+                            <th scope="row">${position}</th>
+                                <td>${project_id}</td>
+                                <td>${project_id}</td>
+                                <td>
+                                    <button id="delete_project_btn" data-projectID="${project_id}" type="button" class="btn btn-danger" onclick="DeleteProject(${project_id})"><i class="far fa-trash-alt"> Delete </i></button>
+                                    <button id="open_project_btn"  data-projectID="${project_id}" type="button" class="btn btn-success" onclick="OpenProject(${project_id})"><i class="fas fa-edit"></i> Open Project</button>       
+                                </td>
+                        </tr>`  : ""
         return new_table_row
 
    }
@@ -1808,14 +1812,38 @@ function add_rows_to_table(data_array){
         //alert(new_table_row_string)
         table_row.innerHTML = new_table_row_string
 
-        var tbody = document.getElementById('xProjectsTable').getElementsByClassName('xProjectsTableClass')[0]; //getElementById('myModalProjectsTable');
+        var projects_tbody = document.getElementById('xProjectsTable').getElementsByClassName('xProjectsTableClass')[0]; //getElementById('myModalProjectsTable');
 
         /// document.getElementById('myModalProjectsTable').appendChild(new_table_row_string)
-        tbody.appendChild(table_row)// 
+        projects_tbody.appendChild(table_row)// 
             
     }
 
 }
+
+function add_rows_to_table2(data_array){
+
+    var table_rows_strings=''
+
+    for (var i = 0; i < data_array.length; i += 1) {
+
+        var table_row  = document.createElement('tr'); 
+
+        data = data_array[i]
+
+        new_table_row_string = create_new_table_row(i,data)
+
+        table_rows_strings  += new_table_row_string + '\n'
+            
+    }
+
+    document.getElementById('xProjectsTable').tBodies[0].innerHTML = table_rows_strings
+
+}
+
+
+
+
 
 
 
