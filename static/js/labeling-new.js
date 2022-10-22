@@ -1808,7 +1808,7 @@ function add_rows_to_table(data_array){
         //alert(new_table_row_string)
         table_row.innerHTML = new_table_row_string
 
-        var tbody = document.getElementById('xProjectsTable').getElementById('myModalProjectsTable');
+        var tbody = document.getElementById('xProjectsTable').getElementsByClassName('xProjectsTableClass')[0]; //getElementById('myModalProjectsTable');
 
         /// document.getElementById('myModalProjectsTable').appendChild(new_table_row_string)
         tbody.appendChild(table_row)// 
