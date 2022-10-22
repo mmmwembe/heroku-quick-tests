@@ -7,6 +7,7 @@ import pymongo
 from pymongo import MongoClient
 import json
 from google.cloud import storage 
+import uuid
 # from google.oauth2 import service_account
 # from googleapiclient import discovery
 # from google.cloud import storage as dns
@@ -213,6 +214,7 @@ email='mmm111@hotmail.com'
 db = cluster["amina_db"]
 users_collection = db["user_login_system"]
 pre_approved_email_addresses = db["pre_approved_email_addresses"]
+user_projects = db["user_projects"]
 
 user_info = users_collection.find_one({"email": email})
 
@@ -899,21 +901,38 @@ def create_new_project():
         labeled_images = request.form['labeled_images']
         all_labeled_true_false = request.form['all_labeled_true_false']
         
+        project_item = {
+			'_id': uuid.uuid4().hex,    
+			'project_js_id': project_id,
+			'project_name': project_name,
+			'user_id': user_id,
+			'labels_color_map': labels_color_map,
+			'date_created': ISODate,
+			'date_modified': '',
+			'labels': [],
+			'active_label': ''
+  		}
+        # If the user_id exists then submit and project name does not exist
+        if users_collection.find_one({"_id": user_id}) and not user_projects.find_one({"project_js_id": project_id}) and not user_projects.find_one({"_id": project_item._id}) :
+            user_projects.insert_one(project_item)
+        else:
+            pass
+                 
     return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false)
     # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
 
 
-@app.route('/upload_images_project_label/', methods=['POST'])
+@app.route('/upload_images_project_label/', methods=['POST','GET'])
 def upload_images_project_label():
 	if 'upload_images_project_label[]' not in request.files:
 		flash('No image file uploaded')
 		return redirect(request.url)
 
-	if request.method =='POST':
-		files = request.files.getlist('upload_images_project_label[]')
-		file_names = []
-		project_id = request.form['project_id']
+	#if request.method =='POST':
+	files = request.files.getlist('upload_images_project_label[]')
+	file_names = []
+	project_id = request.form['project_id']
 
  
 	return jsonify(project_id = project_id)
