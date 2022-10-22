@@ -1495,9 +1495,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             data: {},
             success: function(data) {
 
-                var all_user_projects = JSON.parse(data.all_projects)
+                // var all_user_projects = JSON.parse(data.all_projects)
 
-                alert('number of projects : ' + JSON.stringify(all_user_projects))
+                alert('number of projects : ' + JSON.stringify(data.all_projects))
             }         
         });
     }
