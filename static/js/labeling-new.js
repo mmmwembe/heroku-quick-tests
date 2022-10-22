@@ -1489,11 +1489,18 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function get_all_projects(){
 
-
         $.ajax({
             type: "POST",
-            url: "/choose_project",
-            data: { user_id: user_id } 
+            url: "/get_user_projects",
+            data: {},
+            success: function(data) { 
+
+                var all_user_projects = data.all_projects
+                var num_projects = all_user_projects.length
+
+                add_rows_to_table2(all_user_projects)
+                myProjectsModal.toggle()
+            }
           });
 
         // $.post( "/choose_project", { user_id: user_id } );
@@ -1536,7 +1543,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             }         
         });
 
-       /*
+       */
 
 
     }
