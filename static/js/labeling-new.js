@@ -1498,7 +1498,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 // var all_user_projects = JSON.parse(data.all_projects)
                 var all_user_projects = jQuery.parseJSON(data.all_projects);
 
-                for(var k in all_user_projects) {
+                for(var k in all_user_projects[0]) {
                     alert(' k ' + k + ' all_user_projects ' + JSON.stringify(all_user_projects[k]));
                     //alert()
                  }
