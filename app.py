@@ -904,7 +904,7 @@ def create_new_project():
       
        # Create label item dictionary
         labels = []
-        for key in json.load(labels_color_map):
+        for key in eval(labels_color_map):
             label = key
             label_color = labels_color_map[key]
             label_dict ={
