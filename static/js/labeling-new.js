@@ -1838,9 +1838,9 @@ function add_rows_to_table2(data_array){
             
     }
 
-    myProjectsModal.getElementById('xProjectsTable').getElementsByTagName('tbody')[0].innerHTML = table_rows_strings;
+    //myProjectsModal.getElementById('xProjectsTable').getElementsByTagName('tbody')[0].innerHTML = table_rows_strings;
 
-    //document.getElementById('xProjectsTable').tBodies[0].innerHTML = table_rows_strings
+    document.getElementById('xProjectsTable').tBodies[0].innerHTML = table_rows_strings
 
 }
 
