@@ -913,7 +913,7 @@ def create_new_project():
 			'active_label': ''
   		}
         # If the user_id exists then submit and project name does not exist
-        if users_collection.find_one({"_id": user_id}) and not user_projects.find_one({"project_js_id": project_id}) and not user_projects.find_one({"_id": project_item._id}) :
+        if users_collection.find_one({"_id": user_id}) and not user_projects.find_one({"project_js_id": project_id}) and not user_projects.find_one({"_id": project_item["_id"]}) :
             user_projects.insert_one(project_item)
         else:
             pass
