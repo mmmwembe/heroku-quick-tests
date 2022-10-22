@@ -1776,8 +1776,10 @@ $("#closeProjectsCornerBtn").click(function (){
 
 function create_new_table_row(index, data){
 
+    alert('data ' + JSON.stringify(data))
+
     var new_table_row = data.project_id ?
-                        ` <th scope="row">${index+1}</th>
+                        ` <th scope="row">${index}</th>
                             <td>${data.project_name ? data.project_name : ""}</td>
                             <td>${data.labels ? data.labels : ""}</td>
                             <td>
