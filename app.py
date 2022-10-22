@@ -721,8 +721,12 @@ def labeling():
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
 	# gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
  
+	post_info =""
+ 
+ 
 	#return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id)
 	return render_template('labeling-new.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id)
+
 
 @app.route('/models/', methods=['POST','GET'])
 def models():
