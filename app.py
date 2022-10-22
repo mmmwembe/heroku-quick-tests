@@ -24,6 +24,7 @@ from io import BytesIO
 from zipfile import ZipFile
 import os
 import glob
+import json
 
 
 
@@ -903,7 +904,7 @@ def create_new_project():
       
        # Create label item dictionary
         labels = []
-        for key in labels_color_map:
+        for key in json.load(labels_color_map):
             label = key
             label_color = labels_color_map[key]
             label_dict ={
@@ -948,7 +949,7 @@ def create_new_project():
         else:
             pass
                  
-    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false)
+    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false, labels = labels)
     # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
 
