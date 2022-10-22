@@ -1783,7 +1783,7 @@ function create_new_table_row(index, data){
     var project_id = data.project_id ? data.project_id : ""
     var project_name = data.project_name ? data.project_name : ""
 
-    alert('position ' + position + ' project_id ' + project_id + ' project_name ' + project_name)
+
 
     var new_table_row = project_id ?
                         `<tr> 
@@ -1796,6 +1796,10 @@ function create_new_table_row(index, data){
                                     <button id="open_project_btn"  data-projectID="${project_id}" type="button" class="btn btn-success" onclick="OpenProject(${project_id})"><i class="fas fa-edit"></i> Open Project</button>       
                                 </td>
                         </tr>`  : ""
+
+
+        alert('html string created : ' + new_table_row)    
+
         return new_table_row
 
    }
