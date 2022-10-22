@@ -1489,6 +1489,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function get_all_projects(){
 
+        $.post( "/choose_project", { user_id: user_id } );
+
+        /*
         $.ajax({
             type: "POST",
             url: '/get_user_projects',
@@ -1525,6 +1528,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
             }         
         });
+
+        */
+
+
     }
 
 

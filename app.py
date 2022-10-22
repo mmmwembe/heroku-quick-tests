@@ -984,7 +984,16 @@ def get_all_projects():
 
 	return jsonify(all_projects = all_projects)
 
+@app.route('/choose_project', methods=['POST','GET'])
+def choose_project():
 
+	query ={'user_id': user_id}
+	results = user_projects.find(query)
+	all_projects =[]
+	for result in results:
+		all_projects.append(result)
+
+	return render_template('labeling-choose-project.html', all_projects = all_projects)
 
 @app.route('/upload_images_project_label/', methods=['POST','GET'])
 def upload_images_project_label():
