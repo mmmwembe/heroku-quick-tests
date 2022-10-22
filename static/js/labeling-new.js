@@ -1498,23 +1498,26 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 var all_user_projects = data.all_projects
                 var num_projects = all_user_projects.length
 
-                var summary_projects_data =[]
 
-                for(var k in all_user_projects) {
+                // var summary_projects_data =[]
 
-                    var project = all_user_projects[k]
+                //for(var k in all_user_projects) {
+
+                    // var project = all_user_projects[k]
 
                     // alert(' project_id ' + project.project_js_id)
                     // alert(' k ' + k + ' all_user_projects ' + JSON.stringify(all_user_projects[k]));
 
-                    var project_item = {'project_js_id': project.project_js_id, 'project_name': project.project_name} //, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
-                    alert('project item : ' + JSON.stringify(project_item) )
+                    //var project_item = {'project_js_id': project.project_js_id, 'project_name': project.project_name} //, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
+                    //alert('project item : ' + JSON.stringify(project_item) )
                     //alert()
-                 }
+                 //}
 
                 //alert('number of projects : ' + JSON.stringify(data.all_projects))
                 // Open the Modal that will show the table
                 myProjectsModal.toggle()
+
+                add_rows_to_table(all_user_projects)
 
 
             }         
@@ -1771,7 +1774,42 @@ $("#closeProjectsCornerBtn").click(function (){
     myProjectsModal.toggle()
 });
 
+function create_new_table_row(index, data){
 
+    var new_table_row = data.project_id ?
+                        ` <th scope="row">${index+1}</th>
+                            <td>${data.project_name ? data.project_name : ""}</td>
+                            <td>${data.labels ? data.labels : ""}</td>
+                            <td>
+                                <button id="delete_project_btn" data-projectID="${data.project_id ? data.project_id : ""}" type="button" class="btn btn-danger" onclick="DeleteProject(${data.project_id})"><i class="far fa-trash-alt"> Delete </i></button>
+                                <button id="open_project_btn"  data-projectID="${data.project_id ? data.project_id : ""}" type="button" class="btn btn-success" onclick="OpenProject(${data.project_id})"><i class="fas fa-edit"></i> Open Project</button>       
+                            </td>`  : ""
+        return new_table_row
+
+   }
+
+
+function add_rows_to_table(data_array){
+
+    for (var i = 0; i < data_array.length; i += 1) {
+
+        var table_row  = document.createElement('tr'); 
+
+        data = data_array[i]
+
+        new_table_row_string = create_new_table_row(i, data)
+
+        //alert(new_table_row_string)
+        table_row.innerHTML = new_table_row_string
+
+        var tbody = document.getElementById('xProjectsTable').getElementsByTagName('tbody')[0];
+
+        /// document.getElementById('myModalProjectsTable').appendChild(new_table_row_string)
+        tbody.appendChild(table_row)// 
+            
+    }
+
+}
 
 
 
