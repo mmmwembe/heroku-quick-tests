@@ -904,7 +904,7 @@ def create_new_project():
       
        # Create label item dictionary
         labels = []
-        labels_color_map_dict_from_json_string = eval("[{0}]".format(labels_color_map))
+        labels_color_map_dict_from_json_string = eval("{0}".format(labels_color_map))
 
             
 		# create project item
