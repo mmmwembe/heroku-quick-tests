@@ -1504,11 +1504,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                     var project = all_user_projects[k]
 
-                    alert(' project_id ' + project.project_js_id)
+                    // alert(' project_id ' + project.project_js_id)
                     // alert(' k ' + k + ' all_user_projects ' + JSON.stringify(all_user_projects[k]));
 
-                    // var project_item = {'project_js_id': project_id, 'project_name': project_name, 'user_id': user_id, 'date_created': ISODate, 'date_modified': '','labels': labels}
-
+                    var project_item = {'project_js_id': project.project_js_id, 'project_name': project.project_name, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
+                    alert('project item : ' + project_item )
                     //alert()
                  }
 
