@@ -1518,13 +1518,14 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     // alert(' k ' + k + ' project_item ' + JSON.stringify(project_item));
                 }
 
-                alert('project_summary_array ' +  JSON.stringify(project_summary_array))
+                //alert('project_summary_array ' +  JSON.stringify(project_summary_array))
 
                 //add_rows_to_table2(all_user_projects)
                 //myProjectsModal.toggle()
 
                 myProjectsModal.toggle()
-                add_rows_to_table_X(all_data)
+                addAllTableRows(project_summary_array)
+                //add_rows_to_table_X(all_data)
 
                 
             }
@@ -1983,6 +1984,46 @@ function create_new_table_row_X(data){
 
 }
 
+
+//'index', 'project_js_id', 'project_name','date_created'
+
+function newTableRow(data){
+
+    var new_table_row = data.project_js_id ?
+                        `<tr>
+                             <th scope="row">${data.index ? data.index  : ""}</th>
+                            <td>${data.project_name ? data.project_name : ""}</td>
+                            <td>${data.project_name ? data.project_name : ""}</td>
+                            <td>${data.project_name ? data.project_name : ""}</td>
+                            <td>
+                                <button id="delete_project_btn"  data-projectID="${data.project_js_id ? data.project_js_id : ""}" type="button" class="btn btn-danger" onclick="DeleteProject(${data.project_js_id})"><i class="far fa-trash-alt"> Delete </i></button>
+                                <button id="open_project_btn"  data-projectID="${data.project_js_id ? data.project_js_id : ""}" type="button" class="btn btn-success" onclick="OpenProject(${data.project_js_id})"><i class="fas fa-edit"></i> Open Project</button>       
+                            </td>
+                        </tr>`  : ""
+        return new_table_row
+
+}
+
+
+function addAllTableRows(data_array){
+
+    var table_rows_strings=''
+
+    for (var i = 0; i < data_array.length; i += 1) {
+
+        var table_row  = document.createElement('tr'); 
+
+        data = data_array[i]
+
+        new_table_row_string = newTableRow(data)
+
+        table_rows_strings  += new_table_row_string + '\n'
+            
+    }
+
+    document.getElementById('xProjectsTable').tBodies[0].innerHTML = table_rows_strings
+
+}
 
 
 
