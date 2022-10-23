@@ -57,10 +57,10 @@
             <td>{{ project['project_name']  }}</td>
             <td>{{ project['project_name']  }}</td>
             <td>
-                <button id="delete_project_btn"   class="xDeleteProjectBtnClass"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger"><i class="far fa-trash-alt"> Delete </i></button>  
+                <button id="delete_project_btn"   class="btn btn-danger xDeleteProjectBtnClass"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger"><i class="far fa-trash-alt"> Delete </i></button>  
             </td>
             <td>
-                <button id="open_project_btn"  class="xOpenProjectBtnClass" data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success"><i class="fas fa-edit"></i> Open Project</button>    
+                <button id="open_project_btn"  class="btn btn-success xOpenProjectBtnClass" data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success"><i class="fas fa-edit"></i> Open Project</button>    
             </td>
            </tr>
            {% endfor %}
