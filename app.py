@@ -987,8 +987,6 @@ def get_all_projects():
 	return jsonify(all_projects = all_projects)
 	# return render_template('labeling-new.html', all_projects = all_projects)
 
-
-
 @app.route('/choose_project', methods=['POST','GET'])
 def choose_project():
 
@@ -999,6 +997,47 @@ def choose_project():
 		all_projects.append(result)
 
 	return render_template('labeling-choose-project.html', all_projects = all_projects)
+
+@app.route('/set_active_project', methods=['POST','GET'])
+def set_active_project():
+    
+    if request.method =='POST':
+        
+        project_id = request.form['project_id']
+        
+        query ={'user_id': user_id, 'project_js_id': project_id}
+        
+        if user_projects.find_one(query) :
+            
+            results = user_projects.find_one_and_update(
+				{'user_id': user_id, 'project_js_id': project_id},
+				{"$set":{'active_project_id': project_id}},upsert=True)
+            
+        active_project = user_projects.find(query)[0]
+        
+    return render_template('labeling-new.html', active_project = active_project)
+
+
+@app.route('/delete_project', methods=['POST','GET'])
+def delete_project():
+    
+    if request.method =='POST':
+        
+        project_id = request.form['project_id']
+        
+        # Delete selected project
+        query ={'user_id': user_id, 'project_js_id': project_id}
+        delete_result = user_projects.delete_one(query)
+        
+        # Get all remaining projects   
+        query_remaining_projects ={'user_id': user_id}
+        results_remaining = user_projects.find(query_remaining_projects)
+        all_projects =[]
+        for result in results_remaining:
+            all_projects.append(result)
+              
+    return render_template('labeling-choose-project.html', all_projects = all_projects)
+
 
 @app.route('/upload_images_project_label/', methods=['POST','GET'])
 def upload_images_project_label():
