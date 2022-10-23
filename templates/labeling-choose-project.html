@@ -57,10 +57,10 @@
             <td>{{ project['project_name']  }}</td>
             <td>{{ project['project_name']  }}</td>
             <td>
-                <button id="delete_project_btn"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger" onclick="DeleteProject($(this).attr('id'))"><i class="far fa-trash-alt"> Delete </i></button>  
+                <button id="delete_project_btn"   class="xDeleteProjectBtnClass"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger"><i class="far fa-trash-alt"> Delete </i></button>  
             </td>
             <td>
-                <button id="open_project_btn"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success" onclick="OpenProject($(this).attr('id'))"><i class="fas fa-edit"></i> Open Project</button>    
+                <button id="open_project_btn"  class="xOpenProjectBtnClass" data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success"><i class="fas fa-edit"></i> Open Project</button>    
             </td>
            </tr>
            {% endfor %}
@@ -81,6 +81,28 @@ function DeleteProject(this){
 }
 
 
+// onclick="OpenProject($(this).attr('id'))"
+// onclick="DeleteProject($(this).attr('id'))"
+
+
+$('.xOpenProjectBtnClass').on('click', function(e){
+
+  var btn_id = $(this).attr('id')
+  var project_js_id = $(this).data('projectID')
+
+  alert('btn id : ' + btn_id + '  project_js_id : ' + project_js_id)
+
+}); 
+
+
+$('.xDeleteProjectBtnClass').on('click', function(e){
+
+var btn_id = $(this).attr('id')
+var project_js_id = $(this).data('projectID')
+
+alert('btn id : ' + btn_id + '  project_js_id : ' + project_js_id)
+
+}); 
 
 </script>
 
