@@ -1007,11 +1007,16 @@ def set_active_project():
         project_id = request.form['project_id']
         query = {'user_id': user_id }
         
-        if user_session_data.find_one(query) :
-            results = user_session_data.find_one_and_update({'user_id': user_id},{"$set":{'active_project': project_id, 'active_label': ''}},upsert=True)
-        else:
-            user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'active_project': project_id, 'active_label': ''})               
-     
+        # Delete existing user_session data for this user
+        delete_result = user_session_data.delete_one(query)
+        time.sleep(1)
+        
+        # save new active project in users session data
+        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'active_project': project_id, 'active_label': ''})  
+        
+        #if user_session_data.find_one(query) :
+        #    results = user_session_data.find_one_and_update({'user_id': user_id},{"$set":{'active_project': project_id, 'active_label': ''}},upsert=True)
+
     return jsonify(active_project = project_id, active_label = '')
     #return render_template('labeling-new.html')
 
