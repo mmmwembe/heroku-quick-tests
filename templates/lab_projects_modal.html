@@ -133,6 +133,64 @@
 
     </div>
 
+
+
+    <div class="container">
+      
+    <div class="row">
+      <!----------------------------------------MODAL FOR LISTING USER'S PROJECTS -------------------------------------------------->
+      <div class="container">
+
+        <!--div class="ScrollStyle" style="height:100%"--> 
+          <!-- Modal -->
+          <div class="modal fade" id="myProjectsModal" role="dialog">
+            <div class="modal-dialog modal-lg" style="width:80%">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Select Project</h4>
+                  <button id="closeProjectsCornerBtn" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+        
+                <form>
+                <!-- Modal body -->
+                <div class="modal-body">
+
+
+                  <table  id="xProjectsTable" class="table table-bordered table-striped w-auto">
+                    <thead class="bg-dark text-white">
+                      <tr>
+                        <th style="width: 15%">Name</th>
+                        <th style="width: 55%">Labels</th>
+                        <th style="width: 30%">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="myModalProjectsTable" class="xProjectsTableClass">
+
+                    </tbody>
+                </table>
+
+                </div>
+      
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="closeBtn" type="button" class="btn btn-danger" data-bs-dismiss="modal" style="margin-right:5px;">Close</button>
+                </div>
+        
+              <!--/div-->
+              
+            </div>
+          </div>
+
+        </div>
+          
+      </div>
+
+  </div>
+
+    </div>
+
 </div>
 <script>
 

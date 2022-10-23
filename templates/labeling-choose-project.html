@@ -87,7 +87,9 @@ document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) =>
   var btn_id = e.target.id
   var project_js_id = $('#'+btn_id).attr('project_id')
 
-  alert(' OpenProject - line item 125' + div + ' project_js_id ' + project_js_id)
+  window.localStorage.setItem("active_project", project_js_id);
+
+  // alert(' OpenProject - line item 125' + div + ' project_js_id ' + project_js_id)
 
   $.ajax({
       type: "POST",
@@ -115,7 +117,7 @@ $('.xDeleteProjectBtnClass').on('click', function(e){
    });
 
   location.reload();
-  alert('You clicked delete - 154 btn id : ' + btn_id + ' project_js_id ' + project_js_id)
+  // alert('You delete: ' + btn_id + ' project_js_id ' + project_js_id)
 
   // request_deletion_of_project(project_js_id)
 

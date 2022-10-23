@@ -1505,6 +1505,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 location.href = "/choose_project"
 
+                /*
+
                 var project_summary_array =[]
                 for(var k in all_user_projects) {
                     var project = all_user_projects[k]
@@ -1526,7 +1528,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 addAllTableRows(project_summary_array)
                 //add_rows_to_table_X(all_data)
 
-                
+                */
             }
           });
 
@@ -1766,7 +1768,7 @@ function submit_form() {
 //-----------------------------------------------------------------------
 //                       MyProjectsModal
 //------------------------------------------------------------------------
-
+/*
 var myProjectsModal = new bootstrap.Modal(document.getElementById('myProjectsModal'), {})
 
 $("#closeProjectsCornerBtn").click(function (){
@@ -1775,7 +1777,7 @@ $("#closeProjectsCornerBtn").click(function (){
 
 //'index', 'project_js_id', 'project_name','date_created'
 
-/*
+
 
                     <tr>
                        <th scope="row">${data.index ? data.index  : ""}</th>
@@ -1789,7 +1791,7 @@ $("#closeProjectsCornerBtn").click(function (){
                     </tr>
 
 
-*/
+
 
 
 function newTableRow(data){
@@ -1846,7 +1848,7 @@ $("#delete_project_btn").click(function (){
   });
 
 
-
+*/
 
 
     
