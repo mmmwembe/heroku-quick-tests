@@ -41,3 +41,19 @@ Strato-form
 Nimbo-form
 
 
+
+
+setItem("labels_color_map"
+window.localStorage.setItem("project_json"
+window.localStorage.setItem("all_user_projects", all_user_projects);
+
+'user_id' : user_id, 
+'project_name' : project_name, 
+'project_id' :  project_id, 
+'labels_color_map' : JSON.stringify(labels_color_map), 
+'labels_string' : labels_string_format, 
+'ISODate' : iso_date,
+'num_images' : num_images,
+'labeled_images' : labeled_images,   
+'all_labeled_true_false' : all_labeled_true_false       
+

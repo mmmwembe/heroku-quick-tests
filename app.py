@@ -1019,8 +1019,14 @@ def set_active_project():
         
         #if user_session_data.find_one(query) :
         #    results = user_session_data.find_one_and_update({'user_id': user_id},{"$set":{'active_project': project_id, 'active_label': ''}},upsert=True)
+        
+        # Get all of the user's projects
+        results_users_projects = user_projects.find(query)
+        all_projects =[]
+        for result in results_users_projects:
+            all_projects.append(result)
 
-    return jsonify(active_project = project_id, active_label = '')
+    return jsonify(active_project = project_id, active_label = '', all_projects = all_projects)
     #return render_template('labeling-new.html')
 
 @app.route('/delete_project', methods=['POST','GET'])

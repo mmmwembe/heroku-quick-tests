@@ -1401,7 +1401,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
            // Store session variable for the updated object
            window.localStorage.setItem("project_json", JSON.stringify(retrieved_json_object));
 
-           alert(' It gets to  line 1321')
+           // alert(' It gets to  line 1321')
 
            // Post Information to Server for saving on database
            post_project_and_labels_to_server()
@@ -1794,8 +1794,10 @@ $.ajax({
 
         var active_project = data.active_project
         var active_label = data.active_label
+        var all_projects = data.all_projects
         alert('active_project : ' + active_project)
         alert('active_label: ' + active_label)
+        alert(' all projects ' + JSON.stringify(all_projects))
     }
    
 });
