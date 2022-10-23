@@ -84,7 +84,7 @@ function DeleteProject(this){
 // onclick="OpenProject($(this).attr('id'))"
 // onclick="DeleteProject($(this).attr('id'))"
 
-
+/*
 $('.xOpenProjectBtnClass').on('click', function(e){
 
   var btn_id = $(this).attr('id')
@@ -94,6 +94,7 @@ $('.xOpenProjectBtnClass').on('click', function(e){
 
 }); 
 
+*/
 
 $('.xDeleteProjectBtnClass').on('click', function(e){
 
@@ -103,6 +104,13 @@ var project_js_id = $(this).data('projectID')
 alert('btn id : ' + btn_id + '  project_js_id : ' + project_js_id)
 
 }); 
+
+
+document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) => {
+  // Do whatever you want
+  var div = e.target.id
+  alert(' you clicked ' + div)
+});
 
 </script>
 
