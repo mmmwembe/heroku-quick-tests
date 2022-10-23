@@ -590,6 +590,26 @@ h4 {
 
     <div class="row">
 
+
+      <table>
+        <tr>
+            {% for key in all_projects[0] %}
+            <th>{{ key }}</th>
+            {% endfor %}
+        </tr>
+     
+        {% for project in all_projects %}
+        <tr>
+            {% for key in project %}
+            <td>{{ project[key] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+     </table>
+
+
+
+
       <table>
         {% for project in all_projects %}
         <tr><td>{{ project.project_id }}</td></tr>
