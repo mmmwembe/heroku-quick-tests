@@ -1040,6 +1040,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
             //new_textarea_content = document.getElementById('labels_textarea').value;
             new_textarea_content = $("#labels_textarea").val().split('\n');
+
+            alert(' new_textarea_content - 1044 ' +  new_textarea_content)
     
             for(let i = 0; i < new_textarea_content.length; i++) {
     
