@@ -1008,9 +1008,12 @@ def set_active_project():
         query = {'user_id': user_id }
         
         # Delete existing user_session data for this user
-        delete_result = user_session_data.delete_one(query)
-        time.sleep(1)
+        try:
+            delete_result = user_session_data.delete_one(query)  
+        except:
+            pass
         
+        time.sleep(1)
         # save new active project in users session data
         user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'active_project': project_id, 'active_label': ''})  
         
