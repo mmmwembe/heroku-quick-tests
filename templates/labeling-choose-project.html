@@ -72,12 +72,12 @@
 <script>
 
 
-function OpenProject(project_id){
-    alert('project to open ' + $(this).attr("id"));
+function OpenProject(){
+    alert('project to open ' + $(this).data("projectID"));
 }
 
-function DeleteProject(project_id){
-    alert('project to delete ' +  $(this).attr("id"));
+function DeleteProject(){
+    alert('project to delete ' +  $(this).data("projectID"));
 }
 
 
