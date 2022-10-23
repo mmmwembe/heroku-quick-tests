@@ -982,8 +982,8 @@ def get_all_projects():
 	for result in results:
 		all_projects.append(result) # 
 
-	#return jsonify(all_projects = all_projects)
-	return render_template('labeling-new.html', all_projects = all_projects)
+	return jsonify(all_projects = all_projects)
+	# return render_template('labeling-new.html', all_projects = all_projects)
 
 
 
