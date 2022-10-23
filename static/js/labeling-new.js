@@ -37,6 +37,8 @@ window.addEventListener('load', (event) => {
     var LABELED_IMAGES_TRACKER = []
     var NUM_LABELLED_IMAGES;
     var NUM_IMAGES_TOTAL;
+    var ACTIVE_PROJECT_ID=""
+    var ALL_USER_PROJECTS;
     var CURRENT_PROJECT="";
     var PROJECT_JSON
 
@@ -1774,6 +1776,23 @@ function submit_form() {
     alert('You clicked the simple button')
 
 }
+
+
+//--------------------------------------------------------------------------------------------------------------------------
+//           Check for Current Session Variables and Set Environment Variables
+//--------------------------------------------------------------------------------------------------------------------------
+
+ACTIVE_PROJECT_ID = window.localStorage.hasOwnProperty('active_project') ?  window.localStorage.getItem("active_project") : ""
+alert(' active project id : ' + ACTIVE_PROJECT_ID) // This corresponds to this variable project_js_id
+
+ALL_USER_PROJECTS = window.localStorage.hasOwnProperty('all_user_projects') ?  window.localStorage.getItem("all_user_projects") : []
+alert(' all user projects  : ' + JSON.stringify(ALL_USER_PROJECTS))
+
+
+
+
+
+
 
 //-----------------------------------------------------------------------
 //                       MyProjectsModal
