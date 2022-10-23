@@ -124,6 +124,16 @@
     </div>
 
 
+    <div class="container">
+        JINJA2
+        <table>
+            {% for project in all_projects %}
+            <tr><td>{{ project.project_id }}</td></tr>
+            {% endfor %}
+         </table>
+    </div>
+
+
 
     <div class="container" style="padding: 2rem 0rem;">
         <div class="row">
