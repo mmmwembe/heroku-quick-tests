@@ -66,8 +66,8 @@
             </form>
             </td>
             <td>
-              {{ project_id }}
-                <button id="open_project_btn"  class="btn btn-success xOpenProjectBtnClass" data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success"><i class="fas fa-edit"></i> Open Project</button>    
+              
+                <button id="open_project_btn"  class="btn btn-success xOpenProjectBtnClass" data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success" onclick="OpenProject({{ project_id }})"><i class="fas fa-edit"></i> Open Project</button>    
             </td>
            </tr>
            {% endfor %}
