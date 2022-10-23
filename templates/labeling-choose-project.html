@@ -57,7 +57,7 @@
             <td>{{ project['project_name']  }}</td>
             <td>{{ project['project_name']  }}</td>
             <td>
-                <button id="delete_project_btn"   class="btn btn-danger xDeleteProjectBtnClass"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger"><i class="far fa-trash-alt"> Delete </i></button>
+                <button id="delete_project_btn{{ loop.counter }}"   class="btn btn-danger xDeleteProjectBtnClass"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger"><i class="far fa-trash-alt"> Delete </i></button>
                      {% set project_id = project['project_js_id'] %}
                 <div class="form-group">
                   <input type="hidden" id="project_id{{ loop.counter }}" value="{{ project['project_js_id'] }}">
@@ -67,7 +67,7 @@
             </td>
             <td>
               
-                <button id="open_project_btn"  class="btn btn-success xOpenProjectBtnClass" data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success" onclick="OpenProject({{ project_id }})"><i class="fas fa-edit"></i> Open Project</button>    
+                <button id="open_project_btn{{ loop.counter }}"  class="btn btn-success xOpenProjectBtnClass" data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success" onclick="OpenProject(this.id)"><i class="fas fa-edit"></i> Open Project</button>    
             </td>
            </tr>
            {% endfor %}
