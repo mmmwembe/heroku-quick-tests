@@ -83,6 +83,10 @@
 <script>
 
 
+window.localStorage.clear()
+
+
+
 document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) => {
   var btn_id = e.target.id
   var project_js_id = $('#'+btn_id).attr('project_id')
