@@ -1811,6 +1811,14 @@ function addAllTableRows(data_array){
 
 }
 
+function OpenProject(project_id){
+    alert('project to open ' + project_id);
+}
+
+function DeleteProject(project_id){
+    alert('project to delete ' + project_id);
+}
+
 
 
 
