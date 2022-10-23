@@ -1106,7 +1106,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     //         Post project_json to server
                     //-----------------------------------------------------------------------------------
 
-                    post_project_json_info(retrieved_json_object ["user_id"], retrieved_json_object ["project_name"], retrieved_json_object ["project_id"], retrieved_json_object ["labels_color_map"], retrieved_json_object ["ISODate"],retrieved_json_object ["num_images"],retrieved_json_object ["labeled_images"],retrieved_json_object ["all_labeled_true_false"] ) 
+                    post_project_json_info(retrieved_json_object ["user_id"], retrieved_json_object ["project_name"], retrieved_json_object ["project_id"], retrieved_json_object ["labels_color_map"], retrieved_json_object ["ISODate"],retrieved_json_object ["num_images"],retrieved_json_object ["labeled_images"],retrieved_json_object ["all_labeled_true_false"], retrieved_json_object ["labels_string"]) 
 
                     //-----------------------------------------------------------------------------------------
                 
@@ -1569,7 +1569,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
 
-    function post_project_json_info(user_id, project_name, project_id, labels_color_map, iso_date,num_images,labeled_images,all_labeled_true_false){
+    function post_project_json_info(user_id, project_name, project_id, labels_color_map, iso_date,num_images,labeled_images,all_labeled_true_false, labels_string_format){
     
         $.ajax({
             type: "POST",
@@ -1580,6 +1580,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     'project_name' : project_name, 
                     'project_id' :  project_id, 
                     'labels_color_map' : JSON.stringify(labels_color_map), 
+                    'labels_string' : labels_string_format, 
                     'ISODate' : iso_date,
                     'num_images' : num_images,
                     'labeled_images' : labeled_images,   
