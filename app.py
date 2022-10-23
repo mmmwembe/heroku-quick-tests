@@ -998,7 +998,7 @@ def choose_project():
 	for result in results:
 		all_projects.append(result)
 
-	return render_template('labeling-choose-project.html', all_projects = all_projects)
+	return render_template('labeling-choose-project.html', all_projects = all_projects, project_js_id =results[0].project_js_id)
 
 @app.route('/upload_images_project_label/', methods=['POST','GET'])
 def upload_images_project_label():
