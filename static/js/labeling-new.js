@@ -1067,6 +1067,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
            
               labels_string = new_textarea_content.toString();
+
+              alert(' labels_string - line 1071 ' + labels_string)
     
             // Get Project Name
     
