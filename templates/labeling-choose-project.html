@@ -88,6 +88,16 @@ document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) =>
   var project_js_id = $('#'+btn_id).attr('project_id')
 
   alert(' OpenProject - line item 125' + div + ' project_js_id ' + project_js_id)
+
+  $.ajax({
+      type: "POST",
+      url: '/set_active_project',
+      dataType: 'json',
+      data: { 'project_id' : project_js_id},
+      success: function(data) { }
+  });
+
+
 });
 
 
@@ -96,9 +106,17 @@ $('.xDeleteProjectBtnClass').on('click', function(e){
   var btn_id = $(this).attr('id')
   var project_js_id = $('#'+btn_id).attr('project_id')
 
+  $.ajax({
+      type: "POST",
+      url: '/delete_project',
+      dataType: 'json',
+      data: { 'project_id' : project_js_id},
+      success: function(data) { }
+   });
+
   alert('You clicked delete - 154 btn id : ' + btn_id + ' project_js_id ' + project_js_id)
 
-  request_deletion_of_project(project_js_id)
+  // request_deletion_of_project(project_js_id)
 
 
 }); 
@@ -111,17 +129,8 @@ $.ajax({
     type: "POST",
     url: '/delete_project',
     dataType: 'json',
-    data: { 
-            'project_id' : proj_id, 
-    
-        },
-    success: function(data) {
-
-      alert('deletion of complete')
-
-
-    }
-    
+    data: { 'project_id' : proj_id},
+    success: function(data) { }
 });
 
 
