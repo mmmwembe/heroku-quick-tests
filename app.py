@@ -1006,9 +1006,13 @@ def set_active_project():
         
         project_id = request.form['project_id']
         query = {'user_id': user_id }
-        newvalues = { "$set": { 'active_project': project_id, 'active_label': ''} }
-        user_session_data.update_one(query, newvalues)
-        
+                
+        if user_session_data.find_one(query):
+            newvalues = { "$set": { 'active_project': project_id, 'active_label': ''} }
+            user_session_data.update_one(query, newvalues)
+        else:
+            user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'active_project': project_id, 'active_label': ''})
+
         #if user_projects.find_one(query) :
             
         #            results = user_projects.find_one_and_update(
