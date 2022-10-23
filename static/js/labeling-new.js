@@ -1498,11 +1498,26 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 var all_user_projects = data.all_projects
                 var num_projects = all_user_projects.length
 
+                window.localStorage.setItem("all_user_projects", all_user_projects);
+
+
+                for(var k in all_user_projects) {
+                    var project = all_user_projects[k]
+                    var project_id = project.project_js_id ? project.project_js_id: ""
+                    var project_name = project.project_name ? project.project_name : ""
+                    var date_created = project.date_created ? project.date_created : ""
+                
+                    var project_item = {'project_js_id': project.project_js_id, 'project_name': project.project_name, 'date_created': date_created} //, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
+                    alert(' k ' + k + ' project_item ' + JSON.stringify(project_item));
+                }
+
                 //add_rows_to_table2(all_user_projects)
                 //myProjectsModal.toggle()
 
                 myProjectsModal.toggle()
                 add_rows_to_table_X(all_data)
+
+                
             }
           });
 
