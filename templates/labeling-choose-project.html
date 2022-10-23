@@ -58,7 +58,7 @@
             <td>{{ project['project_name']  }}</td>
             <td>
                 <button id="delete_project_btn"   class="btn btn-danger xDeleteProjectBtnClass"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger"><i class="far fa-trash-alt"> Delete </i></button>
-                
+                {{ set project_id = project['project_js_id'] }}
                 <div class="form-group">
                   <input type="hidden" id="project_id{{ loop.counter }}" value="{{ project['project_js_id'] }}">
                   <button type="submit" project_id ="{{ project['project_js_id'] }}" class="xDeleteProjectBtnClass2" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
@@ -66,12 +66,15 @@
             </form>
             </td>
             <td>
+              {{ project_id }}
                 <button id="open_project_btn"  class="btn btn-success xOpenProjectBtnClass" data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success"><i class="fas fa-edit"></i> Open Project</button>    
             </td>
            </tr>
            {% endfor %}
         </tbody>
     </table>
+
+
 
    </div>
 
