@@ -1068,7 +1068,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
            
               labels_string = new_textarea_content.toString();
 
-              alert(' labels_string - line 1071 ' + labels_string)
+              // alert(' labels_string - line 1071 ' + labels_string)
     
             // Get Project Name
     
@@ -1588,12 +1588,12 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 },
             success: function(data) {
 
-                var server_user_id = data.user_id
-                var server_project_name = data.project_name
-                var server_project_id = data.project_id
-                alert('user id: ' + server_user_id)
-                alert('server project name: ' + server_project_name)
-                alert('server project id: ' + server_project_id )
+                //var server_user_id = data.user_id
+                //var server_project_name = data.project_name
+                //var server_project_id = data.project_id
+                //alert('user id: ' + server_user_id)
+                //alert('server project name: ' + server_project_name)
+                //alert('server project id: ' + server_project_id )
 
             }
             
