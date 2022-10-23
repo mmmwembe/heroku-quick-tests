@@ -1506,16 +1506,19 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 window.localStorage.setItem("all_user_projects", all_user_projects);
 
-
+                var project_summary_array =[]
                 for(var k in all_user_projects) {
                     var project = all_user_projects[k]
                     var project_id = project.project_js_id ? project.project_js_id: ""
                     var project_name = project.project_name ? project.project_name : ""
                     var date_created = project.date_created ? project.date_created : ""
                 
-                    var project_item = {'project_js_id': project.project_js_id, 'project_name': project.project_name, 'date_created': date_created} //, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
-                    alert(' k ' + k + ' project_item ' + JSON.stringify(project_item));
+                    var project_item = {'index': k, 'project_js_id': project.project_js_id, 'project_name': project.project_name, 'date_created': date_created} //, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
+                    project_summary_array.push(project_item)
+                    // alert(' k ' + k + ' project_item ' + JSON.stringify(project_item));
                 }
+
+                alert('project_summary_array ' +  JSON.stringify(project_summary_array))
 
                 //add_rows_to_table2(all_user_projects)
                 //myProjectsModal.toggle()
