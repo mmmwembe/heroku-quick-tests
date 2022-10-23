@@ -1013,9 +1013,9 @@ def set_active_project():
 				{'user_id': user_id, 'project_js_id': project_id},
 				{"$set":{'active_project_id': project_id}},upsert=True)
             
-        active_project = user_projects.find(query)[0]
+        #active_project = user_projects.find(query)[0]
         
-    return render_template('labeling-new.html', active_project = active_project)
+    return render_template('labeling-new.html')
 
 
 @app.route('/delete_project', methods=['POST','GET'])
