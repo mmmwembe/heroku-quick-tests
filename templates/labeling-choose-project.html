@@ -121,7 +121,8 @@ alert('btn id : ' + btn_id + '  project_js_id : ' + project_js_id)
 document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) => {
   // Do whatever you want
   var div = e.target.id
-  alert(' you clicked line item 124 ' + div)
+  var project_js_id = $('#'+div).data(projectID)
+  alert(' you clicked line item 124 ' + div + '  project_id ' + project_js_id)
 });
 
 
@@ -147,7 +148,7 @@ $(".xDeleteProjectBtnClass").click(function() {
 $('.xDeleteProjectBtnClass2').on('click', function(e){
 
   var btn_id = $(this).attr('id')
-  var project_js_id = $(this).data('projectID')
+  var project_js_id = $(this).data( "projectID" )
 
   alert('You clicked delete - 154 btn id : ' + btn_id + '  project_js_id : ' + project_js_id)
 
