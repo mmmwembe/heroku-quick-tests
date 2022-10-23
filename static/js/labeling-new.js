@@ -1501,9 +1501,16 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 var all_user_projects = data.all_projects
                 var num_projects = all_user_projects.length
 
-                window.localStorage.setItem("all_user_projects", all_user_projects);
+                if (num_projects > 0) {
 
-                location.href = "/choose_project"
+                    window.localStorage.setItem("all_user_projects", all_user_projects);
+                    location.href = "/choose_project"
+
+                }
+
+                else {
+                    alert('You have no projects mate!')
+                }
 
                 /*
 
