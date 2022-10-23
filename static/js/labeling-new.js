@@ -1782,14 +1782,33 @@ function submit_form() {
 //           Check for Current Session Variables and Set Environment Variables
 //--------------------------------------------------------------------------------------------------------------------------
 
-ACTIVE_PROJECT_ID = window.localStorage.hasOwnProperty('active_project') ?  window.localStorage.getItem("active_project") : ""
+ACTIVE_PROJECT_ID = window.localStorage.hasOwnProperty("active_project") ?  window.localStorage.getItem("active_project") : ""
 alert(' active project id : ' + ACTIVE_PROJECT_ID) // This corresponds to this variable project_js_id
 
-ALL_USER_PROJECTS = window.localStorage.hasOwnProperty('all_user_projects') ?  window.localStorage.getItem("all_user_projects") : []
+$.ajax({
+    type: "POST",
+    url: '/get_active_project',
+    dataType: 'json',
+    data: {},
+    success: function(data) {
+
+        var active_project = data.active_project
+        var active_label = data.active_label
+        alert('active_project : ' + active_project)
+        alert('active_label: ' + active_label)
+    }
+   
+});
+
+
+
+
+
+ALL_USER_PROJECTS = window.localStorage.hasOwnProperty("all_user_projects") ?  window.localStorage.getItem("all_user_projects") : []
 alert(' all user projects  : ' + JSON.stringify(ALL_USER_PROJECTS))
 
 
-if (window.localStorage.hasOwnProperty('active_project')){
+if (window.localStorage.hasOwnProperty("active_project")){
 
     ACTIVE_PROJECT_ID = window.localStorage.getItem("active_project");
     alert(' active project id : ' + ACTIVE_PROJECT_ID)
