@@ -53,12 +53,15 @@
         </thead>
         <tbody id="myModalProjectsTable" class="xProjectsTableClass">
             {% for project in all_projects %}
+
+            {% set project_id = project['project_js_id'] %}
+
           <tr>
             <td>{{ project['project_name']  }}</td>
             <td>{{ project['project_name']  }}</td>
             <td>
                 <button id="delete_project_btn{loop.index}}"   class="btn btn-danger xDeleteProjectBtnClass"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger"  onclick="DeleteProject(this.id)"><i class="far fa-trash-alt"> Delete </i></button>
-                     {% set project_id = project['project_js_id'] %}
+                     
                 <div class="form-group">
                   <input type="hidden" id="delete_project_btn{{loop.index}}" value="{{ project['project_js_id'] }}">
                   <button type="submit" id="btn_submit_delete{{loop.index}}" project_id ="{{ project['project_js_id'] }}" class="xDeleteProjectBtnClass2" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
@@ -114,11 +117,11 @@ alert('btn id : ' + btn_id + '  project_js_id : ' + project_js_id)
 
 }); 
 
-
+*/
 document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) => {
   // Do whatever you want
   var div = e.target.id
-  alert(' you clicked ' + div)
+  alert(' you clicked line item 124 ' + div)
 });
 
 
@@ -131,11 +134,14 @@ delete_btns = document.getElementsByClassName('xDeleteProjectBtnClass');
             alert (' id ' + id)
       })
 }
-*/
+
 
 $(".xDeleteProjectBtnClass").click(function() {
-    var contentPanelId = $(this).attr("id");
-    alert(contentPanelId);
+
+   // var contentPanelId = $(this).attr("id");
+   // alert(contentPanelId);
+   alert(' line item 143 ')
+
 });
 
 $('.xDeleteProjectBtnClass2').on('click', function(e){
@@ -145,7 +151,7 @@ $('.xDeleteProjectBtnClass2').on('click', function(e){
 
 //alert('btn id : ' + btn_id + '  project_js_id : ' + project_js_id)
 
-alert('You clicked delete')
+alert('You clicked delete - 154')
 
 }); 
 
