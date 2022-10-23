@@ -69,18 +69,23 @@
           <tr>
             <th style="width: 15%">Name</th>
             <th style="width: 55%">Labels</th>
-            <th style="width: 30%">Actions</th>
+            <th style="width: 15%">Delete</th>
+            <th style="width: 15%">Open</th>
           </tr>
         </thead>
         <tbody id="myModalProjectsTable" class="xProjectsTableClass">
+            {% for project in all_projects %}
           <tr>
-            <td>Val 1</td>
-            <td>Val 2</td>
+            <td>{{ project['project_name']  }}</td>
+            <td>{{ project['project_name']  }}</td>
             <td>
-                <button id="delete_project_btn"  data-projectID="" type="button" class="btn btn-danger"><i class="far fa-trash-alt"> Delete </i></button>
-                <button id="open_project_btn"  data-projectID="" type="button" class="btn btn-success"><i class="fas fa-edit"></i> Open Project</button>    
+                <button id="delete_project_btn"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger" onclick="DeleteProject({{ project['project_js_id']  }})"><i class="far fa-trash-alt"> Delete </i></button>  
+            </td>
+            <td>
+                <button id="open_project_btn"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success" onclick="OpenProject({{ project['project_js_id']  }})"><i class="fas fa-edit"></i> Open Project</button>    
             </td>
            </tr>
+           {% endfor %}
         </tbody>
     </table>
 
@@ -127,7 +132,7 @@
     <div class="container">
         JINJA2  {{ project_js_id }}
         <table>
-            {% for project in all_projects[0] %}
+            {% for project in all_projects %}
             <tr><td>{{ project.project_id }}</td></tr>
             {% endfor %}
          </table>
