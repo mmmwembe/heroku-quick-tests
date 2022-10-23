@@ -29,40 +29,18 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
 
-    <style>
-
-        h4 {
-            margin: 2rem 0rem 1rem;
-        }
-
-        .table-image {
-           td, th {vertical-align: middle;}
-        }
-
-         .ScrollStyle
-        {
-            max-height: 400px;
-            overflow-y: scroll;
-        }
-
-        .scrollabletextbox {
-            height:250px;
-            width:150px;
-            font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
-            font-size: 82%;
-            overflow:scroll;
-       } 
-
-
-    </style>
 </head>
 <body>
 	<i class="fab fa-github-square"><a href="https://github.com/willyblackkeez" id="profile-link"></a></i>
 	<i class="fab fa-facebook"></i>
 
+  <div class="row" style="height: 200px;">
 
+  </div>
 
    <div class="container">
+
+    <h2>Projects</h2>
 
     <table  id="xProjectsTable" class="table table-bordered table-striped">
         <thead class="bg-dark text-white">
@@ -91,202 +69,7 @@
 
    </div>
 
-
-
-    <div class="container">
-
-
-        <table class="table">
-            <thead class="black white-text">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-
-
-    <div class="container">
-        JINJA2  {{ project_js_id }}
-        <table>
-            {% for project in all_projects %}
-            <tr><td>{{ project.project_id }}</td></tr>
-            {% endfor %}
-         </table>
-    </div>
-
-    <div class="container">
-        <table>
-            <tr>
-                {% for key in all_projects[0] %}
-                <th>{{ key }}</th>
-                {% endfor %}
-            </tr>
-         
-            {% for project in all_projects %}
-            <tr>
-                {% for key in project %}
-                <td>{{ project[key] }}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-         </table>
-    </div>
-
-
-
-    <div class="container" style="padding: 2rem 0rem;">
-        <div class="row">
-          <div class="col-12">
-
-            <!--table id="xProjectsTable" class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">Day</th>
-                  <th scope="col">Article Name</th>
-                  <th scope="col">Author</th>
-                  <th scope="col">Shares</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody id="myModalProjectsTable">
-              </tbody>
-            </table-->
-
-          </div>
-        </div>
-      </div>
-
-<div class="container">
-
-    <div class="row">
-        <!----------------------------------------MODAL FOR LISTING USER'S PROJECTS -------------------------------------------------->
-        <div class="container">
-
-            <!-- Modal -->
-            <div class="modal fade" id="myProjectsModal" role="dialog">
-              <div class="modal-dialog modal-lg" style="width:50%">
-              
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title">Select Project</h4>
-                    <button id="closeProjectsCornerBtn" type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-          
-                  <form>
-                  <!-- Modal body -->
-                  <div class="modal-body">
-
-                    <table id="xProjectsTable" class="table table-bordered table-striped">
-                        <thead class="bg-dark text-white">
-                          <tr>
-                            <th scope="col">Day</th>
-                            <th scope="col">Article Name</th>
-                            <th scope="col">Author</th>
-                            <th scope="col">Shares</th>
-                            <th scope="col">Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody id="myModalProjectsTable">
-                        </tbody>
-                      </table>
-
-                  </div>
-        
-                  <!-- Modal footer -->
-                  <div class="modal-footer">
-                      <button id="close" type="button" class="btn btn-danger" data-bs-dismiss="modal" style="margin-right:5px;">Close</button>
-                  </div>
-          
-                </div>
-                
-              </div>
-            </div>
-            
-        </div>
-
-    </div>
-
-</div>
 <script>
-
-all_data =[{day: 1, article_name: "Bootstrap 4 CDN and Starter Template", author: "Cristina" , shares: 2.846, button_name : 1},	
-	   {day: 2, article_name: "Bootstrap Grid 4 Tutorial and Examples", author: "Cristina",  shares: 2458.6, button_name : 2},
-	   {day: 3, article_name: "Bootstrap 5 CDN and Starter Template", author: "Munyaz"  ,shares: 100.23, button_name : 3},
-	   {day: 4, article_name: "Bootstrap 8  CDN and Starter Template", author: "Munyaz" , shares: 200.1, button_name : 4}]
-
-
-// add_rows_to_table(all_data)
-
-function create_new_table_row(data){
-
-    var new_table_row = data.day ?
-                        `<tr>
-                             <th scope="row">${data.day ? data.day : ""}</th>
-                            <td>${data.article_name ? data.article_name : ""}</td>
-                            <td>${data.author ? data.author : ""}</td>
-                            <td>${data.shares ? data.shares: ""}</td>
-                            <td>
-                                <button id="delete_project_btn"  data-projectID="${data.day ? data.day : ""}" type="button" class="btn btn-danger" onclick="DeleteProject(${data.day})"><i class="far fa-trash-alt"> Delete </i></button>
-                                <button id="open_project_btn"  data-projectID="${data.day ? data.day : ""}" type="button" class="btn btn-success" onclick="OpenProject(${data.day})"><i class="fas fa-edit"></i> Open Project</button>       
-                            </td>
-                        </tr>`  : ""
-        return new_table_row
-
-   }
-
-
-function add_rows_to_table(data_array){
-
-    var table_rows_strings=''
-
-    for (var i = 0; i < data_array.length; i += 1) {
-
-        var table_row  = document.createElement('tr'); 
-
-        data = data_array[i]
-
-        new_table_row_string = create_new_table_row(data)
-
-        table_rows_strings  += new_table_row_string + '\n'
-
-        //alert(new_table_row_string)
-        // table_row.innerHTML += new_table_row_string + '\n'
-
-        // var tbody = document.getElementById('xProjectsTable').getElementsByTagName('tbody')[0];
-
-        /// document.getElementById('myModalProjectsTable').appendChild(new_table_row_string)
-        //tbody.appendChild(table_row)// 
-            
-    }
-
-    document.getElementById('xProjectsTable').tBodies[0].innerHTML = table_rows_strings
-
-}
 
 
 function OpenProject(project_id){
@@ -296,32 +79,6 @@ function OpenProject(project_id){
 function DeleteProject(project_id){
     alert('project to delete ' + project_id);
 }
-
-
-
-
-
-
-var myProjectsModal = new bootstrap.Modal(document.getElementById('myProjectsModal'), {})
-
-myProjectsModal.toggle()
-
-add_rows_to_table(all_data)
-
-$("#closeProjectsCornerBtn").click(function (){
-    myProjectsModal.toggle()
-});
-
-
-
-
-
-
-var string_array =['michael', 'mwembeshi', 'daliso', 'imuntu', 'label-3']
-
-labels_string = string_array.toString();
-
-alert('labels string array ' + labels_string)
 
 
 
