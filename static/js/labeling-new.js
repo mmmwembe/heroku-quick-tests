@@ -1797,7 +1797,26 @@ $.ajax({
         var all_projects = data.all_projects
         alert('active_project : ' + active_project)
         alert('active_label: ' + active_label)
-        alert(' all projects ' + JSON.stringify(all_projects))
+        // alert(' all projects ' + JSON.stringify(all_projects))
+
+        var project_summary_array =[]
+        for(var k in all_projects) {
+            var project = all_projects[k]
+            var project_id = project.project_js_id ? project.project_js_id: ""
+            var project_name = project.project_name ? project.project_name : ""
+            var date_created = project.date_created ? project.date_created : ""
+        
+            var project_item = {'index': k, 'project_js_id': project.project_js_id, 'project_name': project.project_name, 'date_created': date_created} //, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
+            project_summary_array.push(project_item)
+            // alert(' k ' + k + ' project_item ' + JSON.stringify(project_item));
+        }
+
+        alert('project_summary_array ' +  JSON.stringify(project_summary_array))
+
+
+
+
+
     }
    
 });
