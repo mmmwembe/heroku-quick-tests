@@ -133,6 +133,24 @@
          </table>
     </div>
 
+    <div class="container">
+        <table>
+            <tr>
+                {% for key in all_projects[0] %}
+                <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+         
+            {% for project in all_projects %}
+            <tr>
+                {% for key in project %}
+                <td>{{ project[key] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+         </table>
+    </div>
+
 
 
     <div class="container" style="padding: 2rem 0rem;">
