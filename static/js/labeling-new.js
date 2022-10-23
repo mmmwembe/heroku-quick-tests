@@ -1498,8 +1498,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 var all_user_projects = data.all_projects
                 var num_projects = all_user_projects.length
 
-                add_rows_to_table2(all_user_projects)
+                //add_rows_to_table2(all_user_projects)
+                //myProjectsModal.toggle()
+
                 myProjectsModal.toggle()
+                add_rows_to_table_X(all_data)
             }
           });
 
