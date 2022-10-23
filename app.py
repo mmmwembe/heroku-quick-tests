@@ -1006,23 +1006,14 @@ def set_active_project():
         
         project_id = request.form['project_id']
         query = {'user_id': user_id }
-                
-        if user_session_data.find_one(query):
-            newvalues = { "$set": { 'active_project': project_id, 'active_label': ''} }
-            user_session_data.update_one(query, newvalues)
-        else:
-            user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'active_project': project_id, 'active_label': ''})
-
-        #if user_projects.find_one(query) :
-            
-        #            results = user_projects.find_one_and_update(
-        #				{'user_id': user_id, 'project_js_id': project_id},
-        #				{"$set":{'active_project_id': project_id}},upsert=True)
-            
-        #active_project = user_projects.find(query)[0]
         
-    return render_template('labeling-new.html')
-
+        if user_session_data.find_one(query) :
+            results = user_session_data.find_one_and_update({'user_id': user_id},{"$set":{'active_project': project_id, 'active_label': ''}},upsert=True)
+        else:
+            user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'active_project': project_id, 'active_label': ''})               
+     
+    return jsonify(active_project = project_id, active_label = '')
+    #return render_template('labeling-new.html')
 
 @app.route('/delete_project', methods=['POST','GET'])
 def delete_project():
