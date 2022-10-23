@@ -57,10 +57,10 @@
             <td>{{ project['project_name']  }}</td>
             <td>{{ project['project_name']  }}</td>
             <td>
-                <button id="delete_project_btn"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger" onclick="DeleteProject()"><i class="far fa-trash-alt"> Delete </i></button>  
+                <button id="delete_project_btn"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-danger" onclick="DeleteProject(this)"><i class="far fa-trash-alt"> Delete </i></button>  
             </td>
             <td>
-                <button id="open_project_btn"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success" onclick="OpenProject()"><i class="fas fa-edit"></i> Open Project</button>    
+                <button id="open_project_btn"  data-projectID="{{ project['project_js_id']  }}" type="button" class="btn btn-success" onclick="OpenProject(this)"><i class="fas fa-edit"></i> Open Project</button>    
             </td>
            </tr>
            {% endfor %}
@@ -72,12 +72,12 @@
 <script>
 
 
-function OpenProject(){
-    alert('project to open ' + $(this).data("projectID"));
+function OpenProject(elem){
+    alert('project to open ' + $(elem).data("projectID"));
 }
 
-function DeleteProject(){
-    alert('project to delete ' +  $(this).data("projectID"));
+function DeleteProject(elem){
+    alert('project to delete ' +  $(elem).data("projectID"));
 }
 
 
