@@ -1503,6 +1503,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 window.localStorage.setItem("all_user_projects", all_user_projects);
 
+                location.href = "/choose_project"
+
                 var project_summary_array =[]
                 for(var k in all_user_projects) {
                     var project = all_user_projects[k]
