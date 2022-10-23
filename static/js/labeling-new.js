@@ -1773,19 +1773,34 @@ $("#closeProjectsCornerBtn").click(function (){
 
 //'index', 'project_js_id', 'project_name','date_created'
 
-function newTableRow(data){
+/*
 
-    var new_table_row = data.project_js_id ?
-                    `<tr>
-                            <th scope="row">${data.index ? data.index  : ""}</th>
+                    <tr>
+                       <th scope="row">${data.index ? data.index  : ""}</th>
                         <td>${data.project_name ? data.project_name : ""}</td>
                         <td>${data.project_name ? data.project_name : ""}</td>
                         <td>${data.project_name ? data.project_name : ""}</td>
                         <td>
-                            <button class ="deleteBtnClass" id="delete_project_btn"  data-projectID="${data.project_js_id ? data.project_js_id : ""}" type="button" class="btn btn-danger" onclick="DeleteProject(${data.project_js_id})"><i class="far fa-trash-alt"> Delete </i></button>
-                            <button class ="openProjectBtnClass" id="open_project_btn"  data-projectID="${data.project_js_id ? data.project_js_id : ""}" type="button" class="btn btn-success" onclick="OpenProject(${data.project_js_id})"><i class="fas fa-edit"></i> Open Project</button>       
+                            <button id="delete_project_btn"  data-projectID="${data.project_js_id ? data.project_js_id : ""}" type="button" class="btn btn-danger" onclick="DeleteProject(${data.project_js_id})"><i class="far fa-trash-alt"> Delete </i></button>
+                            <button id="open_project_btn"    data-projectID="${data.project_js_id ? data.project_js_id : ""}" type="button" class="btn btn-success" onclick="OpenProject(${data.project_js_id})"><i class="fas fa-edit"></i> Open Project</button>       
                         </td>
-                    </tr>`  : ""
+                    </tr>
+
+
+*/
+
+
+function newTableRow(data){
+
+    var new_table_row = data.project_js_id ?
+                    `<tr>
+                    <td>${data.project_name ? data.project_name : ""}</td>
+                    <td>${data.project_name ? data.project_name : ""}</td>
+                    <td>
+                        <button id="delete_project_btn"  data-projectID="${data.project_js_id}" type="button" class="btn btn-danger"><i class="far fa-trash-alt"> Delete </i></button>
+                        <button id="open_project_btn"  data-projectID="${data.project_js_id}" type="button" class="btn btn-success"><i class="fas fa-edit"></i> Open Project</button>    
+                    </td>
+                </tr>`  : ""
         return new_table_row
 
 }
