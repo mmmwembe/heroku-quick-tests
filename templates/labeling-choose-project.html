@@ -87,9 +87,9 @@ document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) =>
   var btn_id = e.target.id
   var project_js_id = $('#'+btn_id).attr('project_id')
 
-  window.localStorage.setItem("active_project", project_js_id);
+   localStorage.setItem("active_project", project_js_id);
 
-  // alert(' OpenProject - line item 125' + div + ' project_js_id ' + project_js_id)
+ alert(' line 92 - set active project to  ' + project_js_id)
 
   $.ajax({
       type: "POST",

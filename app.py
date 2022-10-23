@@ -1015,7 +1015,7 @@ def set_active_project():
         
         time.sleep(1)
         # save new active project in users session data
-        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'active_project': project_id, 'active_label': ''})  
+        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': project_id, 'active_label': ''})  
         
         #if user_session_data.find_one(query) :
         #    results = user_session_data.find_one_and_update({'user_id': user_id},{"$set":{'active_project': project_id, 'active_label': ''}},upsert=True)
