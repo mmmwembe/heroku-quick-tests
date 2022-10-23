@@ -94,7 +94,7 @@ $('.xOpenProjectBtnClass').on('click', function(e){
 
 }); 
 
-*/
+
 
 $('.xDeleteProjectBtnClass').on('click', function(e){
 
@@ -111,6 +111,16 @@ document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) =>
   var div = e.target.id
   alert(' you clicked ' + div)
 });
+
+*/
+
+delete_btns = document.getElementsByClassName('xDeleteProjectBtnClass');
+    for(let i = 0; i < delete_btns.length; i++) {
+      delete_btns[i].addEventListener("click", function(e) {
+            var id = e.target.id
+            alert (' id ' + id)
+      })
+    }
 
 </script>
 
