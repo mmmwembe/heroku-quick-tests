@@ -45,6 +45,7 @@ window.addEventListener('load', (event) => {
     var user_id ="45f20651684f40be8916c29d69295998"
 
 
+
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
     fabric.Object.prototype.set("field", "value");
@@ -776,6 +777,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     var LABELS_COLOR_MAP = {}   // label (key) and color (value)
     var current_label;
     var current_color;
+    var labels_string = ''
 
     const  parentLabelClassItem = document.getElementById("newLabelParent")
 
@@ -1041,7 +1043,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             //new_textarea_content = document.getElementById('labels_textarea').value;
             new_textarea_content = $("#labels_textarea").val().split('\n');
 
-            alert(' new_textarea_content - 1044 ' +  new_textarea_content)
+            // alert(' new_textarea_content - 1044 ' +  new_textarea_content)
     
             for(let i = 0; i < new_textarea_content.length; i++) {
     
@@ -1062,6 +1064,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     
                 // alert(' new label ' + new_label +  ' new color ' + new_color)
             }
+
+           
+             labels_string = new_textarea_content.toString();
     
             // Get Project Name
     
@@ -1162,8 +1167,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         for(let i = 0; i < new_textarea_content.length; i++) {
 
             var new_label = new_textarea_content[i]
-
-           
 
             // var new_color = generateDarkColor();
 
@@ -1470,6 +1473,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     'project_name' : project_name, 
                     'project_id' : project_id, 
                     'labels_color_map' : JSON.stringify(LABELS_COLOR_MAP), 
+                    'labels_string' : labels_string,
                     'ISODate' : ISODate,
             
                 },

@@ -901,6 +901,7 @@ def create_new_project():
         ISODate = request.form['ISODate']
         num_images = request.form['num_images']
         labeled_images = request.form['labeled_images']
+        labels_string  = request.form['labels_string']
         all_labeled_true_false = request.form['all_labeled_true_false']
       
        # Create label item dictionary
@@ -916,6 +917,7 @@ def create_new_project():
 			'project_name': project_name,
 			'user_id': user_id,
 			'labels_color_map': labels_color_map_dict_from_json_string,
+            'labels_string' : labels_string,
 			'date_created': ISODate,
 			'date_modified': '',
 			'labels': labels,
