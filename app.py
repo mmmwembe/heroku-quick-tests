@@ -217,6 +217,7 @@ db = cluster["amina_db"]
 users_collection = db["user_login_system"]
 pre_approved_email_addresses = db["pre_approved_email_addresses"]
 user_projects = db["user_projects"]
+user_session_data = db["user_session_data"]
 
 user_info = users_collection.find_one({"email": email})
 
@@ -1005,13 +1006,17 @@ def set_active_project():
         
         project_id = request.form['project_id']
         
-        query ={'user_id': user_id, 'project_js_id': project_id}
+        query ={'user_id': user_id, 'active_project': project_id, 'active_label': ''}
         
-        if user_projects.find_one(query) :
+        # save session data for active project
+        user_session_data.insert_one(query)
+        
+        
+        #if user_projects.find_one(query) :
             
-            results = user_projects.find_one_and_update(
-				{'user_id': user_id, 'project_js_id': project_id},
-				{"$set":{'active_project_id': project_id}},upsert=True)
+        #            results = user_projects.find_one_and_update(
+        #				{'user_id': user_id, 'project_js_id': project_id},
+        #				{"$set":{'active_project_id': project_id}},upsert=True)
             
         #active_project = user_projects.find(query)[0]
         
@@ -1038,6 +1043,18 @@ def delete_project():
               
     return render_template('labeling-choose-project.html', all_projects = all_projects)
 
+
+@app.route('/get_active_project', methods=['POST','GET'])
+def get_active_project():
+    if request.method =='POST':
+        
+        query ={'user_id': user_id}
+        user_session_info = user_session_data.find(query)
+        
+        active_project = user_session_info[0]['active_project']
+        active_label = user_session_info[0]['active_label']
+ 
+    return jsonify(active_project = active_project, active_label = active_label)
 
 @app.route('/upload_images_project_label/', methods=['POST','GET'])
 def upload_images_project_label():

@@ -1789,7 +1789,12 @@ ALL_USER_PROJECTS = window.localStorage.hasOwnProperty('all_user_projects') ?  w
 alert(' all user projects  : ' + JSON.stringify(ALL_USER_PROJECTS))
 
 
+if (window.localStorage.hasOwnProperty('active_project')){
 
+    ACTIVE_PROJECT_ID = window.localStorage.getItem("active_project");
+    alert(' active project id : ' + ACTIVE_PROJECT_ID)
+
+}
 
 
 
