@@ -111,7 +111,7 @@ $('.xDeleteProjectBtnClass').on('click', function(e){
       url: '/delete_project',
       dataType: 'json',
       data: { 'project_id' : project_js_id},
-      success: function(data) { }
+      success: function(data) { location.reload(); }
    });
 
   alert('You clicked delete - 154 btn id : ' + btn_id + ' project_js_id ' + project_js_id)
