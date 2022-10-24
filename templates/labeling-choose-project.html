@@ -86,6 +86,7 @@
 
 localStorage.clear();
 
+/*
 document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) => {
   var btn_id = e.target.id
   var project_js_id = $('#'+btn_id).attr('project_id')
@@ -106,6 +107,7 @@ document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) =>
 
 });
 
+*/
 
 $('.xDeleteProjectBtnClass').on('click', function(e){
 
@@ -144,19 +146,30 @@ $.ajax({
 }
 
 
-
-
-
-
 open_project_btns = document.getElementsByClassName('xOpenProjectBtnClass');
 
 for(let i = 0; i < open_project_btns.length; i++) {
 
       open_project_btns[i].addEventListener("click", function(e) {
 
-      var id = e.target.id
+      var btn_id = e.target.id
 
-      alert(' you clicked id : - ' + id)
+      var project_js_id = $('#'+btn_id).attr('project_id')
+
+      localStorage.setItem("active_project", project_js_id);
+
+      alert(' line 161 - set active project to  ' + project_js_id)
+
+      $.ajax({
+        type: "POST",
+        url: '/set_active_project',
+        dataType: 'json',
+        data: { 'project_id' : project_js_id},
+        success: function(data) { }
+      });
+
+      location.href = "/labeling/"
+
 
   });
 
