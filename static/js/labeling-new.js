@@ -1845,6 +1845,9 @@ $.ajax({
 
 
 function updatePage(){     
+
+
+    Hide_StartNewProject_Button_and_Show_ProjectLabel()
            
     // Hide the textarea
     $("#labels_textarea").attr("style", "display: none !important");
@@ -1869,7 +1872,7 @@ function updatePage(){
 
     $("#labels-error-message").html("")
 
-    Hide_StartNewProject_Button_and_Show_ProjectLabel()
+    
 
 }
 
