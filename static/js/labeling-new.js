@@ -1795,7 +1795,7 @@ $.ajax({
 
         var active_project_id = data.active_project_id
         var active_label = data.active_label
-        var active_project_result = data.active_project_result
+        var active_project_result = data.active_project_result[0]
         alert('active_project : ' + active_project_id)
         alert('active_label: ' + active_label)
         alert(' active_project_result  ' + JSON.stringify(active_project_result))
@@ -1822,7 +1822,7 @@ $.ajax({
         // Set Environment Variables
         ACTIVE_PROJECT_ID = active_project_id
         ACTIVE_PROJECT_JSON = active_project_result
-        //CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
+        CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
 
         //alert('Current Project Name = ' + CURRENT_PROJECT)
 
