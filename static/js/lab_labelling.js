@@ -204,7 +204,7 @@ function create_new_table_row_X(data){
 
 
 function updatePage(){     
-           
+
     // Hide the textarea
     $("#labels_textarea").attr("style", "display: none !important");
     $("#save_button").attr("style", "display: none !important");
@@ -229,3 +229,15 @@ function updatePage(){
     $("#labels-error-message").html("")
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

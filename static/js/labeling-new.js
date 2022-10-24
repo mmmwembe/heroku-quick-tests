@@ -1838,7 +1838,7 @@ $.ajax({
         updatePage()
 
         // CREATE LABEL BUCKETS 
-        create_label_buckets_dummy('project_json')
+        //create_label_buckets_dummy('project_json')
 
 
     }
@@ -1874,6 +1874,24 @@ function updatePage(){
     // AddLabels_Color_Map_to_Project_JSON()
 
     $("#labels-error-message").html("")
+
+    // Show Label Buckets
+
+    var data = [];  // Json data objects will be stored here
+    
+    Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
+
+        var label = key
+        var color = LABELS_COLOR_MAP[key]
+
+        var data_element = {"label": label,"color": color, "num_images": ACTIVE_PROJECT_JSON.num_images, "labeled_images": ACTIVE_PROJECT_JSON.labeled_images, "all_labeled_true_false": ACTIVE_PROJECT_JSON.all_labeled_true_false, "project_id": ACTIVE_PROJECT_JSON.project_id, "project_name": ACTIVE_PROJECT_JSON.project_name, "user_id": ACTIVE_PROJECT_JSON.user_id, "ISODate": ACTIVE_PROJECT_JSON.date_created}
+
+        // alert('Key : ' + key + ', Value : ' + labels_color_map_json[key])
+        data.push(data_element)
+
+      })
+
+     create_label_buckets(data)
 
     
 
