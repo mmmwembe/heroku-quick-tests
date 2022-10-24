@@ -1826,13 +1826,13 @@ $.ajax({
         LABELS_COLOR_MAP = ACTIVE_PROJECT_JSON['labels_color_map']
         PROJECT_JSON = ACTIVE_PROJECT_JSON
 
-        window.localStorage.setItem("project_json",ACTIVE_PROJECT_JSON)
-        window.localStorage.setItem("labels_color_map",LABELS_COLOR_MAP)
+        window.localStorage.setItem("project_json",JSON.stringify(ACTIVE_PROJECT_JSON))
+        window.localStorage.setItem("labels_color_map",JSON.stringify(LABELS_COLOR_MAP))
 
         alert('Current Project Name = ' + CURRENT_PROJECT)
 
 
-        alert(' labels color map from storage ' +  JSON.stringify(window.localStorage.getItem("labels_color_map")))
+        alert(' labels color map from storage ' +  window.localStorage.getItem("labels_color_map"))
 
 
     }
