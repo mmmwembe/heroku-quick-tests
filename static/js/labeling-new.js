@@ -1797,7 +1797,7 @@ $.ajax({
         var active_project_result = data.active_project_result
         alert('active_project : ' + active_project)
         alert('active_label: ' + active_label)
-        alert(' active_project_result  ' + active_project_result)
+        alert(' active_project_result  ' + active_project_result[0])
 
         /*
 
