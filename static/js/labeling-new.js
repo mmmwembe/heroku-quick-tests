@@ -1832,6 +1832,9 @@ $.ajax({
         alert('Current Project Name = ' + CURRENT_PROJECT)
 
 
+        alert(' labels color map from storage ' +  JSON.stringify(window.localStorage.getItem("labels_color_map")))
+
+
     }
    
 });
