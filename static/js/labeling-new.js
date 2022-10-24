@@ -1837,6 +1837,9 @@ $.ajax({
 
         updatePage()
 
+        // CREATE LABEL BUCKETS 
+        create_label_buckets_dummy('project_json')
+
 
     }
    
