@@ -1796,9 +1796,9 @@ $.ajax({
         var active_project_id = data.active_project_id
         var active_label = data.active_label
         var active_project_result = data.active_project_result[0]
-        alert('active_project : ' + active_project_id)
-        alert('active_label: ' + active_label)
-        alert(' active_project_result  ' + JSON.stringify(active_project_result))
+        //alert('active_project : ' + active_project_id)
+        //alert('active_label: ' + active_label)
+        //alert(' active_project_result  ' + JSON.stringify(active_project_result))
 
         /*
 
@@ -1831,6 +1831,12 @@ $.ajax({
 
         //alert('Current Project Name = ' + CURRENT_PROJECT)
         //alert(' labels color map from storage ' +  window.localStorage.getItem("labels_color_map"))
+
+        Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
+            var label = key
+            var color = LABELS_COLOR_MAP[key]
+            alert('label : ' + label + ', Color : ' + color)
+        })
 
 
         // Update Page
@@ -1877,6 +1883,9 @@ function updatePage(){
 
     // Show Label Buckets
 
+
+    /*
+
     var data = [];  // Json data objects will be stored here
     
     Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
@@ -1893,7 +1902,7 @@ function updatePage(){
 
      create_label_buckets(data)
 
-    
+    */
 
 }
 
