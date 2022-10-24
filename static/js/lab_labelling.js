@@ -194,3 +194,38 @@ function create_new_table_row_X(data){
         });
 
        */
+
+
+
+
+
+        
+    $('#save_button').click( updatePage );
+
+
+function updatePage(){     
+           
+    // Hide the textarea
+    $("#labels_textarea").attr("style", "display: none !important");
+    $("#save_button").attr("style", "display: none !important");
+    $("#cancel_button").attr("style", "display: none !important");
+    $("#currentLabel").attr("style", "display: !important");
+    $("#addOrEdit_button").attr("style", "display:  !important");
+    // Create or Update the Label divs
+
+    $("#labels-error-message").html("")
+
+    updateLabelDivs()
+
+    // Select the first label as the initial label
+    chooseInitialLabel()
+
+    // Show the first image from the thumbnails the main image
+    showFirstImage()
+
+    // Add labels_color_map to project_json and post information to server
+    AddLabels_Color_Map_to_Project_JSON()
+
+    $("#labels-error-message").html("")
+
+}

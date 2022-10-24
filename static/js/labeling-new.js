@@ -1829,15 +1829,47 @@ $.ajax({
         window.localStorage.setItem("project_json",JSON.stringify(ACTIVE_PROJECT_JSON))
         window.localStorage.setItem("labels_color_map",JSON.stringify(LABELS_COLOR_MAP))
 
-        alert('Current Project Name = ' + CURRENT_PROJECT)
+        //alert('Current Project Name = ' + CURRENT_PROJECT)
+        //alert(' labels color map from storage ' +  window.localStorage.getItem("labels_color_map"))
 
 
-        alert(' labels color map from storage ' +  window.localStorage.getItem("labels_color_map"))
+        // Update Page
+
+        updatePage()
 
 
     }
    
 });
+
+
+
+function updatePage(){     
+           
+    // Hide the textarea
+    $("#labels_textarea").attr("style", "display: none !important");
+    $("#save_button").attr("style", "display: none !important");
+    $("#cancel_button").attr("style", "display: none !important");
+    $("#currentLabel").attr("style", "display: !important");
+    $("#addOrEdit_button").attr("style", "display:  !important");
+    // Create or Update the Label divs
+
+    $("#labels-error-message").html("")
+
+    updateLabelDivs()
+
+    // Select the first label as the initial label
+    chooseInitialLabel()
+
+    // Show the first image from the thumbnails the main image
+    showFirstImage()
+
+    // Add labels_color_map to project_json and post information to server
+    // AddLabels_Color_Map_to_Project_JSON()
+
+    $("#labels-error-message").html("")
+
+}
 
 
 
