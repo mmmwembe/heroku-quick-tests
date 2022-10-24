@@ -1794,10 +1794,12 @@ $.ajax({
 
         var active_project = data.active_project
         var active_label = data.active_label
-        var all_projects = data.all_projects
+        var active_project_result = data.active_project_result
         alert('active_project : ' + active_project)
         alert('active_label: ' + active_label)
-        // alert(' all projects ' + JSON.stringify(all_projects))
+        alert(' active_project_result  ' + JSON.stringify(active_project_result))
+
+        /*
 
         var project_summary_array =[]
         for(var k in all_projects) {
@@ -1814,7 +1816,7 @@ $.ajax({
         alert('project_summary_array ' +  JSON.stringify(project_summary_array))
 
 
-
+       */
 
 
     }
