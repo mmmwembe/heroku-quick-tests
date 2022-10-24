@@ -1823,8 +1823,13 @@ $.ajax({
         ACTIVE_PROJECT_ID = active_project_id
         ACTIVE_PROJECT_JSON = active_project_result
         CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
+        LABELS_COLOR_MAP = ACTIVE_PROJECT_JSON['labels_color_map']
+        PROJECT_JSON = ACTIVE_PROJECT_JSON
 
-        //alert('Current Project Name = ' + CURRENT_PROJECT)
+        window.localStorage.setItem("project_json",ACTIVE_PROJECT_JSON)
+        window.localStorage.setItem("labels_color_map",LABELS_COLOR_MAP)
+
+        alert('Current Project Name = ' + CURRENT_PROJECT)
 
 
     }
