@@ -1869,6 +1869,8 @@ function updatePage(){
 
     $("#labels-error-message").html("")
 
+    Hide_StartNewProject_Button_and_Show_ProjectLabel()
+
 }
 
 
