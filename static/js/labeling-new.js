@@ -1838,7 +1838,7 @@ $.ajax({
             var data_element = {"label": label,"color": color, "num_images": ACTIVE_PROJECT_JSON["num_images"], "labeled_images": ACTIVE_PROJECT_JSON["labeled_images"]}
             // alert('label : ' + label + ', Color : ' + color)
             alert('data element : ' + JSON.stringify(data_element) )
-            alert(JSON.stringify(ACTIVE_PROJECT_JSON))
+            alert(ACTIVE_PROJECT_JSON['date_created'])
         })
 
 
