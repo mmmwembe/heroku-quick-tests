@@ -1835,7 +1835,9 @@ $.ajax({
         Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
             var label = key
             var color = LABELS_COLOR_MAP[key]
-            alert('label : ' + label + ', Color : ' + color)
+            var data_element = {"label": label,"color": color, "num_images": ACTIVE_PROJECT_JSON.num_images, "labeled_images": ACTIVE_PROJECT_JSON.labeled_images}
+            // alert('label : ' + label + ', Color : ' + color)
+            alert('data element : ' + data_element )
         })
 
 
