@@ -1017,7 +1017,7 @@ def set_active_project():
         # save new active project in users session data
         user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': project_id, 'active_label': ''}) 
          
-        time.sleep(1)       
+        # time.sleep(1)       
         #if user_session_data.find_one(query) :
         #    results = user_session_data.find_one_and_update({'user_id': user_id},{"$set":{'active_project': project_id, 'active_label': ''}},upsert=True)
         
@@ -1060,10 +1060,18 @@ def get_active_project():
         query ={'user_id': user_id}
         user_session_info = user_session_data.find(query)
         
-        active_project = user_session_info[0]['active_project']
+        active_project_id = user_session_info[0]['active_project']
         active_label = user_session_info[0]['active_label']
+        
+        # Get all of the user's projects
+        active_project_query = {'project_js_id': project_id,  'user_id': user_id}
+        results = user_projects.find(active_project_query)
+        
+        active_project_result =[]
+        for result in results:
+            active_project_result.append(result)
  
-    return jsonify(active_project = active_project, active_label = active_label)
+    return jsonify(active_project_id = active_project_id, active_label = active_label, active_project_result = active_project_result)
 
 @app.route('/upload_images_project_label/', methods=['POST','GET'])
 def upload_images_project_label():
