@@ -1847,8 +1847,8 @@ $.ajax({
             var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
             var cropped_image_urls = current_label_info['cropped_image_urls']
 
-            alert('original_image_urls length : ' + current_label_info['original_image_urls'].length)
-            /*
+
+            
             var augmentation_image_urls = current_label_info['augmentation_image_urls']
             var original_image_label_jsons = current_label_info['original_image_label_jsons']
             var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
@@ -1862,8 +1862,8 @@ $.ajax({
             var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
             var date_created = current_label_info['date_created']
             var date_modified = current_label_info['date_modified']
-            */
-
+           
+            alert('date_created : ' + date_created)
             /*
             var data_element = {"label": label,"color": color, 
                                 "num_images": number_original_images, "labeled_images": "", 
