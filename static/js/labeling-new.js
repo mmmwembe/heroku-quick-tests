@@ -872,7 +872,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     function chooseInitialLabel(){
 
         // Choose the first label in the labels div as the first color
-        alert(' LINE 875 - this is the chooseInitialLabel()')
+        alert(' LINE 875 - this is the START of chooseInitialLabel()')
         if (Object.keys(LABELS_COLOR_MAP).length > 0){
 
         const firstColor = Object.values(LABELS_COLOR_MAP)[0];
@@ -893,7 +893,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         }
 
         }
-
+        alert(' LINE 896 - this is the END of chooseInitialLabel()')
     }
 
     function updateLabelDivs(){
