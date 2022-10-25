@@ -1839,7 +1839,8 @@ $.ajax({
             // alert('label : ' + label + ', Color : ' + color)
             alert('data element : ' + JSON.stringify(data_element) )
 
-            let current_label_info = ACTIVE_PROJECT_JSON.filter(eachObj => eachObj.labels.label = label);
+            //let current_label_info = ACTIVE_PROJECT_JSON.filter(eachObj => eachObj.labels.label = label);
+            var current_label_info = filterJSONObject(key, ACTIVE_PROJECT_JSON['labels'])
             alert('current label info ' + JSON.stringify(current_label_info))
             alert(ACTIVE_PROJECT_JSON['date_created'])
         })
@@ -1856,6 +1857,16 @@ $.ajax({
     }
    
 });
+
+
+
+function filterJSONObject(filterBy, objList) {
+    return objList.hightlights.filter(function(obj) {
+     return obj.queries.some(function(item){
+       return item.indexOf(filterBy) >= 0;
+     });
+   });
+  }
 
 
 
