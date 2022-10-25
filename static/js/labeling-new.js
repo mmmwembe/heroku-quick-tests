@@ -1965,6 +1965,8 @@ function updatePage(){
 
     updateLabelDivs()
 
+    alert(' Line 1968 - this is just after the updateLabelsDivs()')   
+
     // Select the first label as the initial label
     chooseInitialLabel()
 
