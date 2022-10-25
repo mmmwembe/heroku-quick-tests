@@ -878,10 +878,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         const firstColor = Object.values(LABELS_COLOR_MAP)[0];
         const firstLabel = Object.keys(LABELS_COLOR_MAP)[0];
 
+        alert(' LINE 881 firstColor and firstLabel: ' + firstColor + ' ' + firstLabel)
+
         current_color = firstColor
         current_label = firstLabel
-
-        //alert('first label ' + firstLabel + 'first color ' + firstColor)
 
         //var all_labels = document.getElementsByClassName('labelclass');
         //var first_div = document.getElementById(firstLabel)
