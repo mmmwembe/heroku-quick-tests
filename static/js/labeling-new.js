@@ -1647,6 +1647,9 @@ function create_card(data){
                         </div>
                     </div>`  : ""
 
+
+        alert(new_card)
+
         return new_card 
 
 }
@@ -1710,6 +1713,8 @@ function create_label_buckets_dummy(project_json_storage_variable){
          // alert(' Entire Data Array :  ' + JSON.stringify(data))
          // ------------------------------------------------------
          //                Create  Label Buckets
+         
+         show_label_buckets()
 
          create_label_buckets(data)
 
