@@ -1840,10 +1840,13 @@ $.ajax({
             alert('data element : ' + JSON.stringify(data_element) )
 
             //let current_label_info = ACTIVE_PROJECT_JSON.filter(eachObj => eachObj.labels.label = label);
-            alert(ACTIVE_PROJECT_JSON['labels'][0]['label'])
+            // alert(ACTIVE_PROJECT_JSON['labels'][0]['label'])
             //var current_label_info = filterJSONObject(key, ACTIVE_PROJECT_JSON)
             //alert('current label info ' + JSON.stringify(current_label_info))
             //alert(ACTIVE_PROJECT_JSON['date_created'])
+
+            filter_project_json_by_label('Apple')
+
         })
 
 
@@ -1860,6 +1863,16 @@ $.ajax({
 });
 
 
+
+function filter_project_json_by_label(label){
+
+    var labels_JSON = ACTIVE_PROJECT_JSON['labels']
+
+    alert('number of label arrays : ' + labels_JSON.length)
+
+
+
+}
 
 function filterJSONObject(filterBy, objList) {
     return objList.hightlights.filter(function(obj) {
