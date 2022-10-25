@@ -1886,7 +1886,7 @@ $.ajax({
 
         show_label_buckets()
 
-        // Create Label Buckets 
+      alert(' Line 1889 - this is the first gate I see')
         // create_label_buckets(data)
 
         for (var i = 0; i < data.length; i += 4) {
