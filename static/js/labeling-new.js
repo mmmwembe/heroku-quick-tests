@@ -882,8 +882,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         //alert('first label ' + firstLabel + 'first color ' + firstColor)
 
-        var all_labels = document.getElementsByClassName('labelclass');
-        var first_div = document.getElementById(firstLabel)
+        //var all_labels = document.getElementsByClassName('labelclass');
+        //var first_div = document.getElementById(firstLabel)
 
         if(document.getElementById(firstLabel)){
 
