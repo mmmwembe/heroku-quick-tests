@@ -1847,6 +1847,8 @@ $.ajax({
 
             filter_project_json_by_label('Apple')
 
+        
+
         })
 
 
@@ -1868,7 +1870,23 @@ function filter_project_json_by_label(label){
 
     var labels_JSON = ACTIVE_PROJECT_JSON['labels']
 
-    alert('number of label arrays : ' + labels_JSON.length)
+    // alert('number of label arrays : ' + labels_JSON.length)
+
+    var result;
+
+    for(let i = 0; i < labels_JSON.length; i++) {
+
+        if(labels_JSON[i]['label']==label){
+
+
+            result = labels_JSON[i]['label'];
+
+            alert(' label number ' + i  + ' results : ' + JSON.stringify(result))
+
+        }
+
+
+    }
 
 
 
