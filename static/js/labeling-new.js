@@ -1840,12 +1840,15 @@ $.ajax({
 
             var label_id = current_label_info['label_id']
 
-            alert('label id : ' + label_id )
 
-            /*
+
+
             var original_image_urls = current_label_info['original_image_urls']
             var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
             var cropped_image_urls = current_label_info['cropped_image_urls']
+            
+            alert('original_image_urls : ' + original_image_urls )
+            /*
             var augmentation_image_urls = current_label_info['augmentation_image_urls']
             var original_image_label_jsons = current_label_info['original_image_label_jsons']
             var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
