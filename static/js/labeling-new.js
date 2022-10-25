@@ -1836,9 +1836,13 @@ $.ajax({
             var label = key
             var color = LABELS_COLOR_MAP[key]
 
-            var current_label_info = filter_project_json_by_label(label)
+            var current_label_info = filter_project_json_by_label(key)
 
             var label_id = current_label_info['label_id']
+
+            alert('label id : ' + label_id )
+
+            /*
             var original_image_urls = current_label_info['original_image_urls']
             var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
             var cropped_image_urls = current_label_info['cropped_image_urls']
@@ -1855,7 +1859,9 @@ $.ajax({
             var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
             var date_created = current_label_info['date_created']
             var date_modified = current_label_info['date_modified']
+            */
 
+            /*
             var data_element = {"label": label,"color": color, 
                                 "num_images": number_original_images, "labeled_images": "", 
                                 "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
@@ -1865,6 +1871,8 @@ $.ajax({
             // var data_element = {"label": label,"color": color, "num_images": ACTIVE_PROJECT_JSON["num_images"], "labeled_images": ACTIVE_PROJECT_JSON["labeled_images"]}
             // alert('label : ' + label + ', Color : ' + color)
             alert('data element : ' + JSON.stringify(data_element) )
+            */
+
 
             //let current_label_info = ACTIVE_PROJECT_JSON.filter(eachObj => eachObj.labels.label = label);
             // alert(ACTIVE_PROJECT_JSON['labels'][0]['label'])
@@ -1897,14 +1905,16 @@ function filter_project_json_by_label(label){
 
     var labels_JSON = ACTIVE_PROJECT_JSON['labels']
     // alert('number of label arrays : ' + labels_JSON.length)
-    var result;
+    
 
     for(let i = 0; i < labels_JSON.length; i++) {
+
+        var result;
 
         if(labels_JSON[i]['label']==label){
 
             result = labels_JSON[i];
-            alert(' label number ' + i  + ' results : ' + JSON.stringify(result))
+            // alert(' label number ' + i  + ' results : ' + JSON.stringify(result))
         }
 
 
