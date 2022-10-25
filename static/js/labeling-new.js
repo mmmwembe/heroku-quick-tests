@@ -1879,7 +1879,7 @@ function filter_project_json_by_label(label){
         if(labels_JSON[i]['label']==label){
 
 
-            result = labels_JSON[i]['label'];
+            result = labels_JSON[i];
 
             alert(' label number ' + i  + ' results : ' + JSON.stringify(result))
 
