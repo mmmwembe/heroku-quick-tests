@@ -1886,7 +1886,7 @@ $.ajax({
 
         alert(' Line 1887 - this is the first gate I see')   
 
-        show_label_buckets()
+        //show_label_buckets()
 
         // create_label_buckets(data)
 
@@ -1969,6 +1969,8 @@ function updatePage(){
 
     // Select the first label as the initial label
     chooseInitialLabel()
+
+    alert(' Line 1968 - this is just after the updateLabelsDivs()')   
 
     // Show the first image from the thumbnails the main image
     showFirstImage()
