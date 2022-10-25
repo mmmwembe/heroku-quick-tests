@@ -1854,7 +1854,7 @@ $.ajax({
             var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
             var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
             var number_original_images = current_label_info['original_image_urls'].length
-            var number_all_jpeg_images = current_label_infoo['all_jpeg_image_urls'].length
+            var number_all_jpeg_images = current_label_info['all_jpeg_image_urls'].length
             var number_cropped_images = current_label_info['cropped_image_urls'].length
             var number_augmentation_images = current_label_info['augmentation_image_urls'].length
             var original_image_label_jsons = current_label_info['original_image_label_jsons']
