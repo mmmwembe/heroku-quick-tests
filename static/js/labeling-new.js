@@ -1829,8 +1829,7 @@ $.ajax({
         window.localStorage.setItem("project_json",JSON.stringify(ACTIVE_PROJECT_JSON))
         window.localStorage.setItem("labels_color_map",JSON.stringify(LABELS_COLOR_MAP))
 
-        //alert('Current Project Name = ' + CURRENT_PROJECT)
-        //alert(' labels color map from storage ' +  window.localStorage.getItem("labels_color_map"))
+        data = [];
 
         Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
             var label = key
