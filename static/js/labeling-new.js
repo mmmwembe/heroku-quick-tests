@@ -1873,11 +1873,9 @@ $.ajax({
       
             data.push(data_element)
 
-            var card_1_string = create_card(data_element)
+            //var card_1_string = create_card(data_element)
 
-            alert(' card_1_string 1878  ' + card_1_string)
-
-            
+            //alert(' card_1_string 1878  ' + card_1_string)      
 
         })
 
@@ -1886,8 +1884,49 @@ $.ajax({
 
         updatePage()
 
+        show_label_buckets()
+
         // Create Label Buckets 
-        create_label_buckets(data)
+        // create_label_buckets(data)
+
+        for (var i = 0; i < data.length; i += 4) {
+
+            var new_row = document.createElement('div')
+            new_row.className="row"
+    
+            var card_1_data = data.hasOwnProperty(i) ? data[i]  : " ";  
+            var card_2_data = data.hasOwnProperty(i+1) ? data[i+1] : " ";   
+            var card_3_data = data.hasOwnProperty(i+2) ? data[i+2]  : " ";   
+            var card_4_data = data.hasOwnProperty(i+3) ? data[i+3] : " ";   
+    
+            card_1_string = create_card(card_1_data)
+            card_2_string = create_card(card_2_data)
+            card_3_string = create_card(card_3_data)
+            card_4_string = create_card(card_4_data)
+    
+            var combined_card_string = card_1_string + '\n' + card_2_string + '\n' + card_3_string + '\n' + card_4_string
+
+            new_row.innerHTML = combined_card_string
+
+            document.getElementById('label_buckets_container').appendChild(new_row)
+      
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
