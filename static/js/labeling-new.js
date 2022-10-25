@@ -1862,7 +1862,7 @@ $.ajax({
                                 "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
                                 "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
                                 "ISODate": date_created}
-            //alert('data element : ' + JSON.stringify(data_element) )
+            alert('data element : ' + JSON.stringify(data_element) )
       
             data.push(data_element)
 
