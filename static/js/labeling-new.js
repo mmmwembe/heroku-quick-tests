@@ -880,14 +880,14 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         alert(' LINE 881 firstColor and firstLabel: ' + firstColor + ' ' + firstLabel)
 
-        current_color = firstColor
-        current_label = firstLabel
+        //current_color = firstColor
+        //current_label = firstLabel
 
-        alert(' LINE 886 current_color current_label : ' + current_color + ' ' + current_label)
         //var all_labels = document.getElementsByClassName('labelclass');
         //var first_div = document.getElementById(firstLabel)
         if(firstLabel){
             $("#"+firstLabel).css("backgroundColor",firstColor);
+            alert(' LINE 890 -between background color and showCurrentLabel()  ')
             showCurrentLabel(firstColor, firstLabel)
         }
 
