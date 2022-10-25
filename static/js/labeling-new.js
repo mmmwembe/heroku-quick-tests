@@ -1882,9 +1882,9 @@ $.ajax({
 
         // Update Page
 
-        alert(' Line 1885 - this is the first gate I see')
-
         updatePage()
+
+        alert(' Line 1887 - this is the first gate I see')   
 
         show_label_buckets()
 
