@@ -1863,8 +1863,8 @@ $.ajax({
             var date_created = current_label_info['date_created']
             var date_modified = current_label_info['date_modified']
            
-            alert('date_created : ' + date_created)
-            /*
+            //alert('date_created : ' + date_created)
+         
             var data_element = {"label": label,"color": color, 
                                 "num_images": number_original_images, "labeled_images": "", 
                                 "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
@@ -1874,7 +1874,7 @@ $.ajax({
             // var data_element = {"label": label,"color": color, "num_images": ACTIVE_PROJECT_JSON["num_images"], "labeled_images": ACTIVE_PROJECT_JSON["labeled_images"]}
             // alert('label : ' + label + ', Color : ' + color)
             alert('data element : ' + JSON.stringify(data_element) )
-            */
+      
 
 
             //let current_label_info = ACTIVE_PROJECT_JSON.filter(eachObj => eachObj.labels.label = label);
