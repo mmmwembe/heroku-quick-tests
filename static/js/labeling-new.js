@@ -1648,7 +1648,7 @@ function create_card(data){
                     </div>`  : ""
 
 
-        alert(new_card)
+         //alert(new_card)
 
         return new_card 
 
@@ -1658,7 +1658,7 @@ function create_card(data){
 
 function create_label_buckets(data){
 
-    show_label_buckets()
+    // show_label_buckets()
 
     for (var i = 0; i < data.length; i += 4) {
 
@@ -1680,10 +1680,7 @@ function create_label_buckets(data){
         new_row.innerHTML = combined_card_string
 
         document.getElementById('label_buckets_container').appendChild(new_row)
-
-
-
-        
+     
 
     }
 
@@ -1871,9 +1868,16 @@ $.ajax({
                                 "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
                                 "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
                                 "ISODate": date_created}
+
             alert('data element : ' + JSON.stringify(data_element) )
       
             data.push(data_element)
+
+            var card_1_string = create_card(data_element)
+
+            alert(' card_1_string 1878  ' + card_1_string)
+
+            
 
         })
 
