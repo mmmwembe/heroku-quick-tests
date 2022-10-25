@@ -1869,7 +1869,7 @@ $.ajax({
                                 "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
                                 "ISODate": date_created}
 
-            alert('data element : ' + JSON.stringify(data_element) )
+           // alert('data element : ' + JSON.stringify(data_element) )
       
             data.push(data_element)
 
@@ -1893,12 +1893,16 @@ $.ajax({
 
             var new_row = document.createElement('div')
             new_row.className="row"
+
+            alert('line 1897 - it gets here' )
     
             var card_1_data = data.hasOwnProperty(i) ? data[i]  : " ";  
             var card_2_data = data.hasOwnProperty(i+1) ? data[i+1] : " ";   
             var card_3_data = data.hasOwnProperty(i+2) ? data[i+2]  : " ";   
             var card_4_data = data.hasOwnProperty(i+3) ? data[i+3] : " ";   
-    
+ 
+            alert('line 1904 - it gets also here' )
+            
             card_1_string = create_card(card_1_data)
             card_2_string = create_card(card_2_data)
             card_3_string = create_card(card_3_data)
@@ -1911,21 +1915,6 @@ $.ajax({
             document.getElementById('label_buckets_container').appendChild(new_row)
       
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
