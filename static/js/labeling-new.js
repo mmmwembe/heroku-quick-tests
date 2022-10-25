@@ -887,12 +887,13 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         //var first_div = document.getElementById(firstLabel)
         if(firstLabel){
             $("#"+firstLabel).css("backgroundColor",firstColor);
-            alert(' LINE 890 -between background color and showCurrentLabel()  ')
+            alert(' LINE 890 -between background color and showCurrentLabel()')
             showCurrentLabel(firstColor, firstLabel)
+            alert(' LINE 892 -after showCurrentLabel()')           
         }
 
         }
-        alert(' LINE 895 - this is the END of chooseInitialLabel()')
+        alert(' LINE 896 - this is the END of chooseInitialLabel()')
     }
 
     function updateLabelDivs(){
