@@ -234,46 +234,4 @@ function updatePage(){
 
 
 
-'label_id': '',
-'label': '',
-'label_color': '',
-'original_image_urls': [],
-'all_jpeg_image_urls': [],
-'cropped_image_urls': [],
-'augmentation_image_urls': [],
-'original_image_label_jsons': [],
-'all_jpeg_image_label_jsons': [],
-'augmentation_image_label_jsons': [],
-'number_original_images': '',
-'number_all_jpeg_images': '',
-'number_cropped_images': '',
-'number_augmentation_images':'',
-'original_image_label_jsons': [],
-'all_jpeg_image_label_jsons': [],
-'augmentation_image_label_jsons': [],     
-'date_created': '',
-'date_modified': '',
-
-
-
-
-var label_id = current_label_info['label_id']
-var original_image_urls = current_label_info['original_image_urls']
-var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
-var cropped_image_urls = current_label_info['cropped_image_urls']
-var augmentation_image_urls = current_label_info['augmentation_image_urls']
-var original_image_label_jsons = current_label_info['original_image_label_jsons']
-var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
-var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
-var number_original_images = current_label_info['original_image_urls'].length
-var number_all_jpeg_images = current_label_infoo['all_jpeg_image_urls'].length
-var number_cropped_images = current_label_info['cropped_image_urls'].length
-var number_augmentation_images = current_label_info['augmentation_image_urls'].length
-var original_image_label_jsons = current_label_info['original_image_label_jsons']
-var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
-var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
-var date_created = current_label_info['date_created']
-var date_modified = current_label_info['date_modified']
-
-
 

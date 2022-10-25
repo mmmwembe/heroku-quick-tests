@@ -1840,15 +1840,10 @@ $.ajax({
 
             var label_id = current_label_info['label_id']
 
-
-
-
+            // Attributes for each label...can use this information in the future
             var original_image_urls = current_label_info['original_image_urls']
             var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
             var cropped_image_urls = current_label_info['cropped_image_urls']
-
-
-            
             var augmentation_image_urls = current_label_info['augmentation_image_urls']
             var original_image_label_jsons = current_label_info['original_image_label_jsons']
             var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
@@ -1863,29 +1858,14 @@ $.ajax({
             var date_created = current_label_info['date_created']
             var date_modified = current_label_info['date_modified']
            
-            //alert('date_created : ' + date_created)
-         
             var data_element = {"label": label,"color": color, 
                                 "num_images": number_original_images, "labeled_images": "", 
                                 "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
                                 "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
                                 "ISODate": date_created}
-
-            // var data_element = {"label": label,"color": color, "num_images": ACTIVE_PROJECT_JSON["num_images"], "labeled_images": ACTIVE_PROJECT_JSON["labeled_images"]}
-            // alert('label : ' + label + ', Color : ' + color)
-            alert('data element : ' + JSON.stringify(data_element) )
+            //alert('data element : ' + JSON.stringify(data_element) )
       
-
-
-            //let current_label_info = ACTIVE_PROJECT_JSON.filter(eachObj => eachObj.labels.label = label);
-            // alert(ACTIVE_PROJECT_JSON['labels'][0]['label'])
-            //var current_label_info = filterJSONObject(key, ACTIVE_PROJECT_JSON)
-            //alert('current label info ' + JSON.stringify(current_label_info))
-            //alert(ACTIVE_PROJECT_JSON['date_created'])
-
-            //filter_project_json_by_label('Apple')
-
-        
+            data.push(data_element)
 
         })
 
@@ -1894,8 +1874,8 @@ $.ajax({
 
         updatePage()
 
-        // CREATE LABEL BUCKETS 
-        //create_label_buckets_dummy('project_json')
+        // Create Label Buckets 
+        create_label_buckets(data)
 
 
     }
