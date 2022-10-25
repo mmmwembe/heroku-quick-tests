@@ -1835,7 +1835,34 @@ $.ajax({
         Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
             var label = key
             var color = LABELS_COLOR_MAP[key]
-            var data_element = {"label": label,"color": color, "num_images": ACTIVE_PROJECT_JSON["num_images"], "labeled_images": ACTIVE_PROJECT_JSON["labeled_images"]}
+
+            var current_label_info = filter_project_json_by_label(label)
+
+            var label_id = current_label_info['label_id']
+            var original_image_urls = current_label_info['original_image_urls']
+            var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
+            var cropped_image_urls = current_label_info['cropped_image_urls']
+            var augmentation_image_urls = current_label_info['augmentation_image_urls']
+            var original_image_label_jsons = current_label_info['original_image_label_jsons']
+            var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
+            var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+            var number_original_images = current_label_info['original_image_urls'].length
+            var number_all_jpeg_images = current_label_infoo['all_jpeg_image_urls'].length
+            var number_cropped_images = current_label_info['cropped_image_urls'].length
+            var number_augmentation_images = current_label_info['augmentation_image_urls'].length
+            var original_image_label_jsons = current_label_info['original_image_label_jsons']
+            var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
+            var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+            var date_created = current_label_info['date_created']
+            var date_modified = current_label_info['date_modified']
+
+            var data_element = {"label": label,"color": color, 
+                                "num_images": number_original_images, "labeled_images": "", 
+                                "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
+                                "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
+                                "ISODate": date_created}
+
+            // var data_element = {"label": label,"color": color, "num_images": ACTIVE_PROJECT_JSON["num_images"], "labeled_images": ACTIVE_PROJECT_JSON["labeled_images"]}
             // alert('label : ' + label + ', Color : ' + color)
             alert('data element : ' + JSON.stringify(data_element) )
 
@@ -1845,7 +1872,7 @@ $.ajax({
             //alert('current label info ' + JSON.stringify(current_label_info))
             //alert(ACTIVE_PROJECT_JSON['date_created'])
 
-            filter_project_json_by_label('Apple')
+            //filter_project_json_by_label('Apple')
 
         
 
@@ -1869,37 +1896,22 @@ $.ajax({
 function filter_project_json_by_label(label){
 
     var labels_JSON = ACTIVE_PROJECT_JSON['labels']
-
     // alert('number of label arrays : ' + labels_JSON.length)
-
     var result;
 
     for(let i = 0; i < labels_JSON.length; i++) {
 
         if(labels_JSON[i]['label']==label){
 
-
             result = labels_JSON[i];
-
             alert(' label number ' + i  + ' results : ' + JSON.stringify(result))
-
         }
 
 
     }
 
-
-
+    return result
 }
-
-function filterJSONObject(filterBy, objList) {
-    return objList.hightlights.filter(function(obj) {
-     return obj.queries.some(function(item){
-       return item.indexOf(filterBy) >= 0;
-     });
-   });
-  }
-
 
 
 function updatePage(){     
