@@ -1658,6 +1658,8 @@ function create_card(data){
 
 function create_label_buckets(data){
 
+    show_label_buckets()
+
     for (var i = 0; i < data.length; i += 4) {
 
         var new_row = document.createElement('div')
@@ -1678,6 +1680,9 @@ function create_label_buckets(data){
         new_row.innerHTML = combined_card_string
 
         document.getElementById('label_buckets_container').appendChild(new_row)
+
+
+
         
 
     }
@@ -1713,8 +1718,7 @@ function create_label_buckets_dummy(project_json_storage_variable){
          // alert(' Entire Data Array :  ' + JSON.stringify(data))
          // ------------------------------------------------------
          //                Create  Label Buckets
-         
-         show_label_buckets()
+
 
          create_label_buckets(data)
 
