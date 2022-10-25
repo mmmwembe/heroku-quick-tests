@@ -1846,8 +1846,8 @@ $.ajax({
             var original_image_urls = current_label_info['original_image_urls']
             var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
             var cropped_image_urls = current_label_info['cropped_image_urls']
-            
-            alert('original_image_urls : ' + original_image_urls )
+
+            alert('original_image_urls length : ' + current_label_info['original_image_urls'].length)
             /*
             var augmentation_image_urls = current_label_info['augmentation_image_urls']
             var original_image_label_jsons = current_label_info['original_image_label_jsons']
