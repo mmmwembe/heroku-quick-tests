@@ -1840,9 +1840,10 @@ $.ajax({
             alert('data element : ' + JSON.stringify(data_element) )
 
             //let current_label_info = ACTIVE_PROJECT_JSON.filter(eachObj => eachObj.labels.label = label);
-            var current_label_info = filterJSONObject(key, ACTIVE_PROJECT_JSON)
-            alert('current label info ' + JSON.stringify(current_label_info))
-            alert(ACTIVE_PROJECT_JSON['date_created'])
+            alert(ACTIVE_PROJECT_JSON['labels'][0]['label'])
+            //var current_label_info = filterJSONObject(key, ACTIVE_PROJECT_JSON)
+            //alert('current label info ' + JSON.stringify(current_label_info))
+            //alert(ACTIVE_PROJECT_JSON['date_created'])
         })
 
 
