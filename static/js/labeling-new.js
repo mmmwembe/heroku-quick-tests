@@ -885,7 +885,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         //var all_labels = document.getElementsByClassName('labelclass');
         //var first_div = document.getElementById(firstLabel)
 
-        if(document.getElementById(firstLabel)){
+        if(firstLabel){
 
             $("#"+firstLabel).css("backgroundColor",firstColor);
             showCurrentLabel(firstColor, firstLabel)
@@ -972,6 +972,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").html(_current_label)
         $("#currentLabel").animate({height: '50px',width: '220px'},2000)
         $("#currentLabel").verticalAlign();
+
+        alert(' line 976 - showCurrentLabel is executed OK!!!')
 
     }
 
