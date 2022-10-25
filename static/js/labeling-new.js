@@ -1970,7 +1970,7 @@ function updatePage(){
     // Select the first label as the initial label
     chooseInitialLabel()
 
-    alert(' Line 1968 - this is just after the updateLabelsDivs()')   
+    alert(' Line 1973 - this is just after the chooseInitialLabel()')   
 
     // Show the first image from the thumbnails the main image
     showFirstImage()
