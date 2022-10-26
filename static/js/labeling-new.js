@@ -2006,6 +2006,23 @@ for(let i = 0; i < showThumbnailsButtons.length; i++) {
 
 
 
+xNewDeleteButtons = document.getElementsByClassName('xNewDeleteButtonClass');
+
+for(let i = 0; i < xNewDeleteButtons.length; i++) {
+
+    xNewDeleteButtons[i].addEventListener("click", function(e) {
+
+      //var btn_id = e.target.id
+
+      //var project_js_id = $('#'+btn_id).attr('project_id')
+
+      alert(' xNewDeleteButtons - line 2019')
+
+  });
+
+
+}
+
 $('.xNewDeleteButtonClass').on('click', function(e){
 
     alert('Line 2011 - xNewDeleteButtonClass has been clicked !!')
