@@ -1572,13 +1572,13 @@ function create_card(data){
                             <p class="card-text">Labelled Images: ${data.labeled_images ? data.labeled_images : ""}<small class="text-muted"></small></p>
                             <p class="card-text"><small class="text-muted"></small></p>
 
-                            <div> 
+                            <div class="form-group"> 
                                 <input type="submit" id="${data.label}-showThumbnailsButton-${data.index}" value="Show Images" class="btn btn btn-outline-primary xShowThumbnailsBtnClass" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid ${data.color ? data.color : "#808080"}">
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
-                            </div> 
+                            </form>
 
-                            <div>
+                            <div class="form-group">
                                 <div class="input-group">
                                     <input id="imageLoader${data.index}" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
                                     <input type="submit" id="${data.label}-uploadImagesButton-${data.index}" project_id="${data.project_id}" value="Upload Images" class="btn  btn-info xUploadImagesBtnClass" style="margin-left: 0px;">
@@ -1586,7 +1586,7 @@ function create_card(data){
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
                                 <input type="hidden" name="which-form" value="images-for-labeling">
-                            </div> 
+                            </form>
 
                             <div class="form-group">
                                 <input type="hidden" id="delete_label${data.index}" value="${data.project_id ? data.project_id : ""}">
