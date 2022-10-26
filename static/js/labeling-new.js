@@ -1587,6 +1587,15 @@ function create_card(data){
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
                                 <input type="hidden" name="which-form" value="images-for-labeling">
                             </div> 
+
+                            <div class="form-group">
+                                <input type="hidden" id="delete_label${data.index}" value="${data.project_id ? data.project_id : ""}">
+                                    <button type="submit" id="${data.project_id ? data.project_id : ""}-delete_label-${data.index}" project_id ="${data.project_id ? data.project_id : ""}" class="xNewDeleteButtonClass" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+                                </div>
+                           </form>
+
+
+
                         </div>
                         <div class="card-footer">
                             <a href="#" class="btn btn-danger xDeleteButtonClass"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
@@ -1993,6 +2002,16 @@ for(let i = 0; i < showThumbnailsButtons.length; i++) {
 
 
 }
+
+
+
+
+$('.xNewDeleteButtonClass').on('click', function(e){
+
+    alert('Line 2011 - xNewDeleteButtonClass has been clicked !!')
+
+});
+
 
 
 /*
