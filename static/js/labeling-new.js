@@ -967,9 +967,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").css('color', 'white');
         $("#currentLabel").css("width", "130px");
         $("#currentLabel").css("margin", "5px");
-        $("#currentLabel").html()
-        alert(' line 971 - I think I got the culprit ')              
+        $("#currentLabel").html("")          
         $("#currentLabel").html(_current_label)
+        alert(' line 972 - maybe this might be the culprit ')    
         $("#currentLabel").animate({height: '50px',width: '220px'},2000)
         $("#currentLabel").verticalAlign();
 
