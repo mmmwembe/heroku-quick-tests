@@ -1572,11 +1572,11 @@ function create_card(data){
                             <p class="card-text">Labelled Images: ${data.labeled_images ? data.labeled_images : ""}<small class="text-muted"></small></p>
                             <p class="card-text"><small class="text-muted"></small></p>
 
-                            <form> 
+                            <div> 
                                 <input type="submit" id="${data.label}-showThumbnailsButton-${data.index}" value="Show Images" class="btn btn btn-outline-primary xShowThumbnailsBtnClass" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid ${data.color ? data.color : "#808080"}">
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
-                            </form> 
+                            </div> 
 
                             <div>
                                 <div class="input-group">
