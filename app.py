@@ -1101,6 +1101,14 @@ def xNewDeleteButton():
     return jsonify(current_folder = current_folder)
 
 
+
+@app.route("/atagDelete/<a>/<b>") 
+def atagDelete(a,b): 
+    return ' a value : ' + a + ' b value : ' + b
+
+
+
+
 if __name__ == '__main__':
     
     app.run()
