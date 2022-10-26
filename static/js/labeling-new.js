@@ -1628,7 +1628,7 @@ function create_card(data){
                             <p class="card-text"><small class="text-muted"></small></p>
 
                             <form method="post" action="" >
-                                <input type="submit" value="Show Images" class="btn btn btn-outline-primary" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid ${data.color ? data.color : "#808080"}">
+                                <input type="submit" id="${data.label}-showThumbnailsButton-${data.index}" value="Show Images" class="btn btn btn-outline-primary" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid ${data.color ? data.color : "#808080"}">
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
                             </form> 
@@ -1636,7 +1636,7 @@ function create_card(data){
                             <div>
                                 <div class="input-group">
                                     <input id="imageLoader" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
-                                    <input type="submit" value="Upload Images" class="btn  btn-info" style="margin-left: 0px;">
+                                    <input type="submit" id="${data.label}-uploadImagesButton-${data.index}" value="Upload Images" class="btn  btn-info" style="margin-left: 0px;">
                                     <input type="button" name="submit" value="submit" class="xUploadImagesButton" id="xUploadImagesButton"/>
                                 </div>
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
@@ -1645,7 +1645,7 @@ function create_card(data){
                             </div> 
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-danger" data-label="${data.label ? data.label : ""}" data-projectID="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                            <a href="#" class="btn btn-danger"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" data-projectID="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                         </div>
                     </div>`  : ""
 
@@ -1839,6 +1839,8 @@ $.ajax({
 
         data = [];
 
+        counter = 0
+
         Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
             var label = key
             var color = LABELS_COLOR_MAP[key]
@@ -1865,19 +1867,15 @@ $.ajax({
             var date_created = current_label_info['date_created']
             var date_modified = current_label_info['date_modified']
            
-            var data_element = {"label": label,"color": color, 
+            var data_element = {"index": counter, "label": label,"color": color, 
                                 "num_images": number_original_images, "labeled_images": "", 
                                 "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
                                 "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
-                                "ISODate": date_created}
-
-           // alert('data element : ' + JSON.stringify(data_element) )
+                                "ISODate": date_created, "date_created": date_created}
       
             data.push(data_element)
-
-            //var card_1_string = create_card(data_element)
-
-            //alert(' card_1_string 1878  ' + card_1_string)      
+            
+            counter += 1;
 
         })
 
