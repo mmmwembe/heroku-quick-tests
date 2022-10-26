@@ -1976,6 +1976,25 @@ $('.xDeleteButtonClass').on('click', function(e){
 }); 
 
 
+
+showThumbnailsButtons = document.getElementsByClassName('xShowThumbnailsBtnClass');
+
+for(let i = 0; i < showThumbnailsButtons.length; i++) {
+
+    showThumbnailsButtons[i].addEventListener("click", function(e) {
+
+      var btn_id = e.target.id
+
+      var project_js_id = $('#'+btn_id).attr('project_id')
+
+      alert(' showThumbnailsButtons ' + project_js_id)
+
+  });
+
+
+}
+
+
 /*
 
 ALL_USER_PROJECTS = window.localStorage.hasOwnProperty("all_user_projects") ?  window.localStorage.getItem("all_user_projects") : []
