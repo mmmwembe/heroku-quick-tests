@@ -1590,7 +1590,7 @@ function create_card(data){
 
                             <div class="form-group">
                                 <input type="hidden" id="delete_label${data.index}" value="${data.project_id ? data.project_id : ""}">
-                                    <button type="submit" id="${data.project_id ? data.project_id : ""}-delete_label-${data.index}" project_id ="${data.project_id ? data.project_id : ""}" class="xNewDeleteButtonClass" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+                                    <button type="submit" id="${data.project_id ? data.project_id : ""}-delete_label-${data.index}" project_id ="${data.project_id ? data.project_id : ""}" onclick="myFunction()" class="xNewDeleteButtonClass" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                                 </div>
                            </form>
 
@@ -2028,6 +2028,14 @@ $('.xNewDeleteButtonClass').on('click', function(e){
     alert('Line 2011 - xNewDeleteButtonClass has been clicked !!')
 
 });
+
+
+
+function myFunction() {
+
+    alert('myFunction on line 2036....')
+
+}
 
 
 
