@@ -1950,28 +1950,28 @@ function updatePage(){
 
 $('.xUploadImagesBtnClass').on('click', function(e){
 
-    var btn_id = $(this).attr('id')
-    var project_js_id = $('#'+btn_id).attr('project_id')
+    // var btn_id = $(this).attr('id')
+    // var project_js_id = $('#'+btn_id).attr('project_id')
 
-    alert(' xUploadImagesBtnClass + project_id ' + project_js_id)
+    alert(' xUploadImagesBtnClass + project_id ')
   
 }); 
 
 $('.xShowThumbnailsBtnClass').on('click', function(e){
 
-    var btn_id = $(this).attr('id')
-    var project_js_id = $('#'+btn_id).attr('project_id')
+    //var btn_id = $(this).attr('id')
+    //var project_js_id = $('#'+btn_id).attr('project_id')
 
-    alert(' xShowThumbnailsBtnClass + project_id ' + project_js_id)
+    alert(' xShowThumbnailsBtnClass + project_id ')
   
 }); 
 
 $('.xDeleteButtonClass').on('click', function(e){
 
-    var btn_id = $(this).attr('id')
-    var project_js_id = $('#'+btn_id).attr('project_id')
+    //var btn_id = $(this).attr('id')
+    //var project_js_id = $('#'+btn_id).attr('project_id')
 
-    alert(' xDeleteButtonClass + project_id ' + project_js_id)
+    alert(' xDeleteButtonClass + project_id ')
   
 }); 
 
