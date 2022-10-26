@@ -846,8 +846,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         current_label = $(this).attr('id')
         current_color = $(this).css("borderColor");
-        // alert(' You selected label ' + id)
-        
 
         var all_labels = document.getElementsByClassName('labelclass');
         for(let i = 0; i < all_labels.length; i++) {
@@ -871,29 +869,19 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function chooseInitialLabel(){
 
-        // Choose the first label in the labels div as the first color
-        alert(' LINE 875 - this is the START of chooseInitialLabel()')
         if (Object.keys(LABELS_COLOR_MAP).length > 0){
 
         const firstColor = Object.values(LABELS_COLOR_MAP)[0];
         const firstLabel = Object.keys(LABELS_COLOR_MAP)[0];
 
-        // alert(' LINE 881 firstColor and firstLabel: ' + firstColor + ' ' + firstLabel)
-
-        //current_color = firstColor
-        //current_label = firstLabel
-
-        //var all_labels = document.getElementsByClassName('labelclass');
-        //var first_div = document.getElementById(firstLabel)
         if(firstLabel){
             $("#"+firstLabel).css("backgroundColor",firstColor);
-            // alert(' LINE 890 -between background color and showCurrentLabel()')
             showCurrentLabel(firstColor, firstLabel)
-            // alert(' LINE 892 -after showCurrentLabel()')           
+    
         }
 
         }
-        // alert(' LINE 896 - this is the END of chooseInitialLabel()')
+
     }
 
     function updateLabelDivs(){
@@ -906,8 +894,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 current_color = color.toString() +';';;
 
                 addNewLabel()
-                //alert('LABEL COLOR MAP ' + JSON.stringify(LABELS_COLOR_MAP))
-                // alert(' label  ' + label +  ' color ' + color)
 
         }
 
@@ -1025,9 +1011,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
     $('#save_button').click(function(){            
-    //function saveNewLabels(){
 
-    //var textarea_content = document.getElementById('labels_textarea').value;
         if($("#labels_textarea").val().trim().length < 1)
         {
             // alert("Please Enter Labels...");
@@ -1038,10 +1022,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         }
 
         else {
-
-
-
-           // if (window.localStorage.hasOwnProperty('project_json')){ alert(" project_json has been populated before LABELS_COLOR_MAP...see line 1037")}
 
             LABELS_COLOR_MAP = {}
 
@@ -1124,9 +1104,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                     var project_json_string = window.localStorage.getItem('project_json')
 
-                    // alert("1094 new project_json object looks like this: " + data_saved)
-                    // Post Information to Server for saving on database
-                    // post_project_json_to_server(project_json_string)
 
                 }
     
@@ -1158,8 +1135,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 $("#labels-error-message").html("")
 
         }
-        //alert('Labels to save ' + textarea_content)
-    //}
+
 });
 
 
@@ -1220,13 +1196,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
     function addNewLabel(){
-
-    //var original_textarea_content = document.getElementById('labels_textarea').value;
-    //var colors = ['#ff0000', '#00ff00', '#0000ff','#ff3333', '#ffff00', '#ff6600'];
-    //var random_color = colors[Math.floor(Math.random() * colors.length)].toString() + ';';
-    //var labels = ['Tomato', 'Popcorn', 'Sugar','Mango', 'Kandolo', 'Football'];
-    //var random_label = labels[Math.floor(Math.random() * labels.length)].toString();
-    // var new_color = setBackgroundColor().toString() + ';';
 
     const newlabelClassItem = document.createElement('div')
     newlabelClassItem.className ="labelclass"
@@ -1519,30 +1488,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     alert('You have no projects mate!')
                 }
 
-                /*
-
-                var project_summary_array =[]
-                for(var k in all_user_projects) {
-                    var project = all_user_projects[k]
-                    var project_id = project.project_js_id ? project.project_js_id: ""
-                    var project_name = project.project_name ? project.project_name : ""
-                    var date_created = project.date_created ? project.date_created : ""
-                
-                    var project_item = {'index': k, 'project_js_id': project.project_js_id, 'project_name': project.project_name, 'date_created': date_created} //, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
-                    project_summary_array.push(project_item)
-                    // alert(' k ' + k + ' project_item ' + JSON.stringify(project_item));
-                }
-
-                //alert('project_summary_array ' +  JSON.stringify(project_summary_array))
-
-                //add_rows_to_table2(all_user_projects)
-                //myProjectsModal.toggle()
-
-                myProjectsModal.toggle()
-                addAllTableRows(project_summary_array)
-                //add_rows_to_table_X(all_data)
-
-                */
             }
           });
 
@@ -1627,16 +1572,16 @@ function create_card(data){
                             <p class="card-text">Labelled Images: ${data.labeled_images ? data.labeled_images : ""}<small class="text-muted"></small></p>
                             <p class="card-text"><small class="text-muted"></small></p>
 
-                            <form method="post" action="" >
-                                <input type="submit" id="${data.label}-showThumbnailsButton-${data.index}" value="Show Images" class="btn btn btn-outline-primary" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid ${data.color ? data.color : "#808080"}">
+                            <form> 
+                                <input type="submit" id="${data.label}-showThumbnailsButton-${data.index}" value="Show Images" class="btn btn btn-outline-primary xShowThumbnailsBtnClass" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid ${data.color ? data.color : "#808080"}">
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
                             </form> 
 
                             <div>
                                 <div class="input-group">
-                                    <input id="imageLoader" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
-                                    <input type="submit" id="${data.label}-uploadImagesButton-${data.index}" value="Upload Images" class="btn  btn-info" style="margin-left: 0px;">
+                                    <input id="imageLoader${data.index}" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
+                                    <input type="submit" id="${data.label}-uploadImagesButton-${data.index}" project_id="${data.project_id}" value="Upload Images" class="btn  btn-info xUploadImagesBtnClass" style="margin-left: 0px;">
                                 </div>
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
@@ -1644,12 +1589,9 @@ function create_card(data){
                             </div> 
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-danger"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" data-projectID="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                            <a href="#" class="btn btn-danger xDeleteButtonClass"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                         </div>
                     </div>`  : ""
-
-
-         //alert(new_card)
 
         return new_card 
 
@@ -2004,6 +1946,34 @@ function updatePage(){
 
 }
 
+
+
+$('.xUploadImagesBtnClass').on('click', function(e){
+
+    var btn_id = $(this).attr('id')
+    var project_js_id = $('#'+btn_id).attr('project_id')
+
+    alert(' xUploadImagesBtnClass + project_id ' + project_js_id)
+  
+}); 
+
+$('.xShowThumbnailsBtnClass').on('click', function(e){
+
+    var btn_id = $(this).attr('id')
+    var project_js_id = $('#'+btn_id).attr('project_id')
+
+    alert(' xShowThumbnailsBtnClass + project_id ' + project_js_id)
+  
+}); 
+
+$('.xDeleteButtonClass').on('click', function(e){
+
+    var btn_id = $(this).attr('id')
+    var project_js_id = $('#'+btn_id).attr('project_id')
+
+    alert(' xDeleteButtonClass + project_id ' + project_js_id)
+  
+}); 
 
 
 /*
