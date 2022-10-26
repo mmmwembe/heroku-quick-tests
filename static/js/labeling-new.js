@@ -958,6 +958,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
     function showCurrentLabel(_current_color, _current_label){
+
         $("#currentLabel").css("backgroundColor",_current_color);
         $("#currentLabel").css("borderColor",_current_color);
         $("#currentLabel").css("borderSize","3px");
@@ -970,10 +971,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").html("")          
         $("#currentLabel").html(_current_label)
         $("#currentLabel").animate({height: '50px',width: '220px'},2000)
-        alert(' line 973 - perhaps this is it now...')    
+        // alert(' line 973 - perhaps this is it now...')    
         // $("#currentLabel").verticalAlign();
-
-        alert(' line 976 - showCurrentLabel is executed OK!!!')
+        // alert(' line 976 - showCurrentLabel is executed OK!!!')
 
     }
 
@@ -1486,9 +1486,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 var server_user_id = data.user_id
                 var server_project_name = data.project_name
                 var server_project_id = data.project_id
-                alert('user id: ' + server_user_id)
-                alert('server project name: ' + server_project_name)
-                alert('server project id: ' + server_project_id )
+                // alert('user id: ' + server_user_id)
+                // alert('server project name: ' + server_project_name)
+                // alert('server project id: ' + server_project_id )
 
             }
             
@@ -1886,7 +1886,7 @@ $.ajax({
 
         updatePage()
 
-        alert(' Line 1887 - this is the first gate I see')   
+        //alert(' Line 1887 - this is the first gate I see')   
 
         //show_label_buckets()
 
@@ -1897,14 +1897,14 @@ $.ajax({
             var new_row = document.createElement('div')
             new_row.className="row"
 
-            alert('line 1897 - it gets here' )
+            // alert('line 1897 - it gets here' )
     
             var card_1_data = data.hasOwnProperty(i) ? data[i]  : " ";  
             var card_2_data = data.hasOwnProperty(i+1) ? data[i+1] : " ";   
             var card_3_data = data.hasOwnProperty(i+2) ? data[i+2]  : " ";   
             var card_4_data = data.hasOwnProperty(i+3) ? data[i+3] : " ";   
  
-            alert('line 1904 - it gets also here' )
+            // alert('line 1904 - it gets also here' )
             
             card_1_string = create_card(card_1_data)
             card_2_string = create_card(card_2_data)
@@ -1967,12 +1967,12 @@ function updatePage(){
 
     updateLabelDivs()
 
-    alert(' Line 1968 - this is just after the updateLabelsDivs()')   
+    // alert(' Line 1968 - this is just after the updateLabelsDivs()')   
 
     // Select the first label as the initial label
     chooseInitialLabel()
 
-    alert(' Line 1973 - this is just after the chooseInitialLabel()')   
+    // alert(' Line 1973 - this is just after the chooseInitialLabel()')   
 
     // Show the first image from the thumbnails the main image
     showFirstImage()
