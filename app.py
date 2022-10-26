@@ -1089,6 +1089,17 @@ def upload_images_project_label():
 
 
 
+@app.route('/xNewDeleteButton', methods=['POST','GET'])
+def xNewDeleteButton():
+    
+    if request.method =='POST':
+        
+        project_id = request.form['project_id']
+        current_folder = request.form['current_folder']        
+        
+      
+    return jsonify(current_folder = current_folder)
+
 
 if __name__ == '__main__':
     
