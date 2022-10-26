@@ -878,7 +878,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         const firstColor = Object.values(LABELS_COLOR_MAP)[0];
         const firstLabel = Object.keys(LABELS_COLOR_MAP)[0];
 
-        alert(' LINE 881 firstColor and firstLabel: ' + firstColor + ' ' + firstLabel)
+        // alert(' LINE 881 firstColor and firstLabel: ' + firstColor + ' ' + firstLabel)
 
         //current_color = firstColor
         //current_label = firstLabel
@@ -887,13 +887,13 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         //var first_div = document.getElementById(firstLabel)
         if(firstLabel){
             $("#"+firstLabel).css("backgroundColor",firstColor);
-            alert(' LINE 890 -between background color and showCurrentLabel()')
+            // alert(' LINE 890 -between background color and showCurrentLabel()')
             showCurrentLabel(firstColor, firstLabel)
-            alert(' LINE 892 -after showCurrentLabel()')           
+            // alert(' LINE 892 -after showCurrentLabel()')           
         }
 
         }
-        alert(' LINE 896 - this is the END of chooseInitialLabel()')
+        // alert(' LINE 896 - this is the END of chooseInitialLabel()')
     }
 
     function updateLabelDivs(){
