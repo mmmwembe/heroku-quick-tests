@@ -959,7 +959,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function showCurrentLabel(_current_color, _current_label){
         $("#currentLabel").css("backgroundColor",_current_color);
-        alert(' line 962 - this is after the first style ')
         $("#currentLabel").css("borderColor",_current_color);
         $("#currentLabel").css("borderSize","3px");
         $("#currentLabel").css("border-radius","5px");
@@ -968,6 +967,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").css('color', 'white');
         $("#currentLabel").css("width", "130px");
         $("#currentLabel").css("margin", "5px");
+        alert(' line 970 - in the mix of styling ')      
         $("#currentLabel").html()
         $("#currentLabel").html(_current_label)
         $("#currentLabel").animate({height: '50px',width: '220px'},2000)
