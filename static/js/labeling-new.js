@@ -1637,7 +1637,6 @@ function create_card(data){
                                 <div class="input-group">
                                     <input id="imageLoader" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
                                     <input type="submit" id="${data.label}-uploadImagesButton-${data.index}" value="Upload Images" class="btn  btn-info" style="margin-left: 0px;">
-                                    <input type="button" name="submit" value="submit" class="xUploadImagesButton" id="xUploadImagesButton"/>
                                 </div>
                                 <input type="hidden" id="project_id" name="project_id" value="${data.project_id ? data.project_id : ""}">
                                 <input type="hidden" id="current_folder" name="current_folder" value="${data.label ? data.label : ""}">
