@@ -958,10 +958,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
     function showCurrentLabel(_current_color, _current_label){
-
-        alert(' line 962 - this is before the styling ')
-
         $("#currentLabel").css("backgroundColor",_current_color);
+        alert(' line 962 - this is after the first style ')
         $("#currentLabel").css("borderColor",_current_color);
         $("#currentLabel").css("borderSize","3px");
         $("#currentLabel").css("border-radius","5px");
