@@ -569,7 +569,7 @@ h4 {
 
       {% if active_project_result %} 
 
-      {% set labels_color_map = active_project_result.labels_color_map %}
+      {% set labels_color_map = active_project_result[0]['labels_color_map'] %}
 
               {{ labels_color_map }}
 
