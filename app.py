@@ -1102,7 +1102,7 @@ def xNewDeleteButton():
 
 
 
-@app.route("/<a>/<b>", methods=['GET']) 
+@app.route("/<string:a>/<string:b>", methods=['GET']) 
 def atagDelete(a,b): 
     return  'The value of a is: {} and b is  {}'.format(a,b)
     # return ' a value : ' + a + ' b value : ' + b
