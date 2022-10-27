@@ -2209,9 +2209,8 @@ $("#delete_project_btn").click(function (){
 
 
 
-
-var lat_lng = {{ lat_lng|tojson|safe }};
-alert('line 2214 - ' + JSON.stringify(lat_lng))
+var parsed = JSON.parse('{{ lat_lng | tojson}}');
+alert('line 2214 - ' + JSON.stringify(parsed))
 
 
 
