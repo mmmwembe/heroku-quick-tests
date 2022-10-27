@@ -2016,6 +2016,7 @@ for(let i = 0; i < xNewDeleteButtons.length; i++) {
 
 }
 
+/*
 $('.xNewDeleteButtonClass').on('click', function(e){
 
     alert('Line 2011 - xNewDeleteButtonClass has been clicked !!')
@@ -2038,16 +2039,35 @@ $('#solTitle a').click(function(evt) {
     alert('divId ' + divId)
 });
 
+*/
+
+xNewDeleteButtons = document.getElementsByClassName('xDeleteButtonClass');
+
+for(let i = 0; i < xNewDeleteButtons.length; i++) {
+
+    xNewDeleteButtons[i].addEventListener("click", function(e) {
+
+      //var btn_id = e.target.id
+
+      //var project_js_id = $('#'+btn_id).attr('project_id')
+
+      alert(' a tag - 2054')
+
+  });
+
+
+}
+
+/*
 
 $('.xDeleteButtonClass a').click(function(e) {
     e.preventDefault();
     alert('here in');
      var divId = 'summary' +$(this).attr('id');
     alert(divId)
-
 });
 
-/*
+
 
 ALL_USER_PROJECTS = window.localStorage.hasOwnProperty("all_user_projects") ?  window.localStorage.getItem("all_user_projects") : []
 alert(' all user projects  : ' + JSON.stringify(ALL_USER_PROJECTS))
