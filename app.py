@@ -1121,7 +1121,7 @@ def atagDelete():
         active_project_result.append(result)
         
     # return  'The value of a is: {} and b is  {}'.format(a,b)
-    return render_template('labeling-new.html', a=a, b=b, lat_lng ={a: a, b: b} )
+    return render_template('labeling-new.html', a=a, b=b, lat_lng ={a: a, b: b} , active_project_result = active_project_result)
 
 
 
