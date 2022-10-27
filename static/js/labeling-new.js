@@ -1591,7 +1591,7 @@ function create_card(data){
                         </div>
                         <div class="card-footer">
                         
-                            <a href="/atagDelete?a=100&b=500" class="btn btn-danger xDeleteButtonClass"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                            <a class="btn btn-danger xDeleteButtonClass"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                         </div>
                     </div>`  : ""
 
@@ -1599,7 +1599,7 @@ function create_card(data){
 
 }
 
-
+// href="/atagDelete?a=100&b=500"
 
 function create_label_buckets(data){
 
@@ -2029,6 +2029,14 @@ function myFunction() {
     alert('myFunction on line 2036....')
 
 }
+
+
+$('#solTitle a').click(function(evt) {
+    evt.preventDefault();
+    alert('here in');
+    var divId = 'summary' + $(this).attr('id');
+    alert('divId ' + divId)
+});
 
 
 
