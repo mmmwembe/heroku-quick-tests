@@ -1107,6 +1107,18 @@ def atagDelete():
     
     a = request.args.get('a')
     b = request.args.get('b')
+    
+    query ={'user_id': user_id}
+    user_session_info = user_session_data.find(query)
+    active_project_id = user_session_info[0]['active_project']
+    active_label = user_session_info[0]['active_label']
+    
+    active_project_query = {'project_js_id': active_project_id,  'user_id': user_id}
+    results = user_projects.find(active_project_query)
+    
+    active_project_result =[]
+    for result in results:
+        active_project_result.append(result)
         
     return  'The value of a is: {} and b is  {}'.format(a,b)
     # return ' a value : ' + a + ' b value : ' + b

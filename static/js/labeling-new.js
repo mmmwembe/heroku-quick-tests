@@ -1591,7 +1591,7 @@ function create_card(data){
                         </div>
                         <div class="card-footer">
                         
-                            <a class="btn btn-danger xDeleteButtonClass"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                            <a class="btn btn-danger xDeleteButtonClass"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}" onClick="showDiv(1);">Delete</a> <small> Delete all images & labels</small>
                         </div>
                     </div>`  : ""
 
@@ -2039,6 +2039,10 @@ $('#solTitle a').click(function(evt) {
 });
 
 
+function showDiv(pageid)
+{
+   alert(pageid);
+}
 
 /*
 
