@@ -1592,10 +1592,11 @@ function create_card(data){
                         <div class="card-footer">
 
                         <form>
-                            <button type="submit" class="btn btn-default XXBUTTON">Submit</button>
+                            <button type="submit" id="deleteLabelButton-${data.index}" class="btn btn-default XXBUTTON">Submit</button>
                         </form>
-                        
-                            <a class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                            <div class="solTitle" id="solTitle${data.index}">
+                                 <a class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                            </div>
                         </div>
                     </div>`  : ""
 
@@ -2042,6 +2043,15 @@ for(let i = 0; i < xNewDeleteButtons.length; i++) {
 
 
 }
+
+$('.solTitle a').click(function(e) {
+    e.preventDefault();
+    alert('here in');
+     var divId = 'summary' +$(this).attr('id');
+
+    alert('2052  ' + divId)
+
+});
 
 /*
 $('.xNewDeleteButtonClass').on('click', function(e){
