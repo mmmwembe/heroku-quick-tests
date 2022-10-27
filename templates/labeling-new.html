@@ -552,7 +552,7 @@ h4 {
 
         {% if active_project_result is defined %}
 
-            value of active_project_result = {{ active_project_result }}
+            value of active_project_result = {{ a }}
 
          {% else %}
 
@@ -566,6 +566,19 @@ h4 {
   </div>
 
     <div class="row">
+
+      {% if active_project_result %} 
+
+      {% set labels_color_map = active_project_result["labels_color_map"] %}
+
+          {% for label in labels_color_map %}
+
+            <h3> label value... {{ label }}</h3>
+            <h3> color value... {{ labels_color_map[label] }}</h3>
+
+          {% endfor %}
+
+      {% endif %}
 
 
     </div>
