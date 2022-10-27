@@ -1590,10 +1590,16 @@ function create_card(data){
                             </div> 
                         </div>
                         <div class="card-footer">
+
+                        <form>
+                            <button type="submit" class="btn btn-default XXBUTTON">Submit</button>
+                        </form>
                         
                             <a class="btn btn-danger xDeleteButtonClass"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                         </div>
                     </div>`  : ""
+
+                    //  role="form" method="POST" action="/"
 
         return new_card 
 
@@ -1947,6 +1953,17 @@ function updatePage(){
     */
 
 }
+
+
+$('.XXBUTTON').on('click', function(e){
+
+    // var btn_id = $(this).attr('id')
+    // var project_js_id = $('#'+btn_id).attr('project_id')
+
+    alert(' ---- XXBUTTON - This is 1963 ----- ')
+  
+}); 
+
 
 
 
