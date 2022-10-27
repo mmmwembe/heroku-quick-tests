@@ -1103,7 +1103,7 @@ def xNewDeleteButton():
 
 
 @app.route('/atagDelete', methods=['GET']) 
-def atagDelete(a,b): 
+def atagDelete(): 
     
     a = request.args.get(a)
     b = request.args.get(b)
