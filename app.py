@@ -1120,8 +1120,8 @@ def atagDelete():
     for result in results:
         active_project_result.append(result)
         
-    return  'The value of a is: {} and b is  {}'.format(a,b)
-    # return ' a value : ' + a + ' b value : ' + b
+    # return  'The value of a is: {} and b is  {}'.format(a,b)
+    return render_template('labeling-new.html', a=a, b=b)
 
 
 
