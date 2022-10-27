@@ -2041,9 +2041,9 @@ $('#solTitle a').click(function(evt) {
 
 */
 
-alert(' It gets here....')
+//alert(' It gets here....')
 
-xNewDeleteButtons = document.getElementsByClassName('xDeleteButtonClass');
+xNewDeleteButtons = document.getElementsByClassName('xDeleteButtonClass a');
 
 for(let i = 0; i < xNewDeleteButtons.length; i++) {
 
