@@ -2044,7 +2044,7 @@ for(let i = 0; i < xNewDeleteButtons.length; i++) {
 
 }
 
-$('.solTitle a').click(function(e) {
+$('.solTitle').click(function(e) {
     e.preventDefault();
     alert('here in');
      var divId = 'summary' +$(this).attr('id');
