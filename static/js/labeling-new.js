@@ -1595,7 +1595,7 @@ function create_card(data){
                             <button type="submit" class="btn btn-default XXBUTTON">Submit</button>
                         </form>
                         
-                            <a class="btn btn-danger xDeleteButtonClass"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                            <a class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                         </div>
                     </div>`  : ""
 
@@ -1700,6 +1700,16 @@ function create_label_buckets_dummy(project_json_storage_variable){
     // ----------------------------------------------------------------------------------------------
     //                             
     //----------------------------------------------------------------------------------------------
+
+
+    
+
+    $('#deleteLabelButton-1').on('click', function(e){
+
+        alert('you clicked  deleteLabelButton-1 on line 1709')
+         e.preventDefault();
+ 
+  }); 
 
     $('.xUploadImagesButton').on('click', function(e){
 
