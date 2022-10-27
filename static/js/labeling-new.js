@@ -1590,7 +1590,8 @@ function create_card(data){
                             </div> 
                         </div>
                         <div class="card-footer">
-                            <a href="{{ url_for('atagDelete', a='100', b='500') }}" class="btn btn-danger xDeleteButtonClass"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                        
+                            <a href="/atagDelete?a=100&b=500" class="btn btn-danger xDeleteButtonClass"  id="${data.label}-deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                         </div>
                     </div>`  : ""
 
