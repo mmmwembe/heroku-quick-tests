@@ -2205,14 +2205,14 @@ $("#delete_project_btn").click(function (){
   });
 
 
-*/
+
 
 //var parsed = {{lat_lng | tojson }};
 
-var parsed = JSON.parse({{ lat_lng | tojson}});
+var parsed = JSON.parse({{'lat_lng | tojson'}});
 alert('line 2214 - ' + JSON.stringify(parsed))
 
-
+*/
 
 
     
