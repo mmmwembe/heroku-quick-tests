@@ -534,6 +534,38 @@ h4 {
 
 
     <div class="row">
+        
+      <div class="label_buckets_header ">
+          <div class="caption_label_buckets">
+              <h2>Cropped Images Label Buckets</h2>
+          </div>
+          <div class="toggle_hide_show_label_buckets" >
+              <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" style="vertical-align: middle;" checked>
+                  <label class="form-check-label" for="flexSwitchCheckChecked" style="vertical-align: middle;">Show/Hide</label>
+              </div>
+          </div>
+        </div>
+
+      <div id="cropped_images_label_buckets_container" class="container">
+
+
+        {% if active_project_resultis defined %}
+
+            value of active_project_result = {{ active_project_result }}
+
+         {% else %}
+
+         active_project_result is not defined mate
+
+        {% endif %}
+
+      </div>
+
+
+  </div>
+
+    <div class="row">
 
 
     </div>
