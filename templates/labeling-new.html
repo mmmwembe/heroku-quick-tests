@@ -601,10 +601,42 @@ h4 {
 
               {% for label in row_of_labels %}    
 
-
                     {% set color = labels_color_map[label]  %}
 
                     {{ label }} : {{ color }}
+
+                    <div class="col card h-100 mb-3 w-15" style="border: 5px solid #808080 margin-top: 10px; margin-right: 5px;">
+                      <h5 class="card-header d-flex justify-content-between align-items-center"> LABEL <div id="labeling_complete"> &#x2705;</div></h5>
+                      <div class="card-body">
+                      <h2 class="card-title"></h2>
+                      <p class="card-text"></p>
+                      <p class="card-text">Number of Images:  <small class="text-muted"></small></p>
+                      <p class="card-text">Labelled Images: <small class="text-muted"></small></p>
+                      <p class="card-text"><small class="text-muted"></small></p>
+                  
+                      <div> 
+                          <input type="submit" id="-showThumbnailsButton-" project_id ="PROJECT ID" value="Show Images" class="btn btn btn-outline-primary xShowThumbnailsBtnClass" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid #808080">
+                          <input type="hidden" id="current_folder" name="current_folder" value="LABEL">
+                          <input type="hidden" id="project_id" name="project_id" value="PROJECT ID">
+                      </div> 
+                      
+                      <div>
+                          <div class="input-group">
+                              <input id="imageLoader-INDEX" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
+                              <input type="submit" id="-uploadImagesButton-" project_id="PROJECT ID" value="Upload Images" class="btn  btn-info xUploadImagesBtnClass" style="margin-left: 0px;">
+                          </div>
+                              <input type="hidden" id="project_id" name="project_id" value="PROJECT ID">
+                              <input type="hidden" id="current_folder" name="current_folder" value="LABEL">
+                              <input type="hidden" name="which-form" value="images-for-labeling">
+                          </div> 
+                      </div>
+                  
+                      <div class="card-footer">
+                          <div class="solTitle" id="solTitle-INDEX">
+                              <a href="/atagDelete?a=100&b=500" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-INDEX" data-label="LABEL" project_id="PROJECT ID">Delete</a> <small> Delete all images & labels</small>
+                          </div>
+                      </div>
+                  </div>
 
 
               {% endfor %}
