@@ -593,11 +593,19 @@ h4 {
               {% set date_modified = active_project_result[0]['date_modified'] %}
 
 
-          {% for label in labels_color_map %}
+          
+          {% for row_of_labels in labels_color_map|batch(4) %}
 
-              {% set color = labels_color_map[label]  %}      
 
-              {{ label }} : {{ color }}
+              {% for label in row_of_labels %}    
+
+
+                    {% set color = labels_color_map[label]  %}
+
+                    {{ label }} : {{ color }}
+
+
+              {% endfor %}
   
           {% endfor %}
 
