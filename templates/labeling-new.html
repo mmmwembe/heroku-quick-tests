@@ -569,9 +569,31 @@ h4 {
 
       {% if active_project_result %} 
 
-      {% set labels_color_map = active_project_result[0]['labels_color_map'] %}
+      
 
-              {{ labels_color_map }}
+              {% set label_id = active_project_result[0]['label_id'] %}      
+              {% set project_js_id = active_project_result[0]['project_js_id']  %}      
+              {% set project_name = active_project_result[0]['project_name']  %}      
+              {% set labels_color_map = active_project_result[0]['labels_color_map'] %}
+              {% set original_image_urls = active_project_result[0]['original_image_urls'] %}
+              {% set all_jpeg_image_urls = active_project_result[0]['all_jpeg_image_urls'] %}
+              {% set cropped_image_urls = active_project_result[0]['cropped_image_urls'] %}
+              {% set augmentation_image_urls = active_project_result[0]['augmentation_image_urls'] %}
+              {% set original_image_label_jsons = active_project_result[0]['original_image_label_jsons'] %}
+              {% set all_jpeg_image_label_jsons = active_project_result[0]['all_jpeg_image_label_jsons'] %}
+              {% set augmentation_image_label_jsons = active_project_result[0]['augmentation_image_label_jsons'] %}
+              {% set number_original_images = active_project_result[0]['original_image_urls']|length %}
+              {% set number_all_jpeg_images = active_project_result[0]['all_jpeg_image_urls']|length %}
+              {% set number_cropped_images = active_project_result[0]['cropped_image_urls']|length %}
+              {% set number_augmentation_images = active_project_result[0]['augmentation_image_urls']|length %}
+              {% set original_image_label_jsons = active_project_result[0]['original_image_label_jsons'] %}
+              {% set all_jpeg_image_label_jsons = active_project_result[0]['all_jpeg_image_label_jsons'] %}
+              {% set augmentation_image_label_jsons = active_project_result[0]['augmentation_image_label_jsons'] %}
+              {% set date_created = active_project_result[0]['date_created'] %}
+              {% set date_modified = active_project_result[0]['date_modified'] %}
+
+
+              {{ project_js_id }}
 
           {% for label in labels_color_map %}
 
