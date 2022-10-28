@@ -596,6 +596,8 @@ h4 {
           
           {% for row_of_labels in labels_color_map|batch(4) %}
 
+          <div class="row">
+
 
               {% for label in row_of_labels %}    
 
@@ -606,6 +608,8 @@ h4 {
 
 
               {% endfor %}
+
+          </div>    
   
           {% endfor %}
 
