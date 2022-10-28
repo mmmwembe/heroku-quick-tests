@@ -597,9 +597,8 @@ h4 {
 
               {% set color = labels_color_map[label]  %}      
   
-
-
           {% endfor %}
+
 
       {% endif %}
 
@@ -609,14 +608,15 @@ h4 {
 
     <div class="row">
 
-      {% if labels_color_map %}
+{% if labels_color_map %}
 
-      {% for row_of_labels in labels_color_map|batch(4) %}
+ {% for row_of_labels in labels_color_map|batch(4) %}
 
       <div class="row">
 
       {% for my_label in row_of_labels %}  
 
+      {% set color = labels_color_map[label]  %} 
 
               <div class="col card h-100 mb-3 w-15" style="border: 5px solid {% if color is defined %} {{ color }} {% else %} "#808080" {% endif %}; margin-top: 10px; margin-right: 5px;">
               <h5 class="card-header d-flex justify-content-between align-items-center"> {{ label }}<div id="labeling_complete"> &#x2705;</div></h5>
@@ -628,7 +628,7 @@ h4 {
               <p class="card-text"><small class="text-muted"></small></p>
 
               <div> 
-                  <input type="submit" id="${data.label}-showThumbnailsButton-${data.index}" project_id ="{{ project_js_id }}" value="Show Images" class="btn btn btn-outline-primary xShowThumbnailsBtnClass" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid {% if color is defined %} {{ color }} {% else %} "#808080">
+                  <input type="submit" id="{{ label }}-showThumbnailsButton-${data.index}" project_id ="{{ project_js_id }}" value="Show Images" class="btn btn btn-outline-primary xShowThumbnailsBtnClass" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid {% if color is defined %} {{ color }} {% else %} "#808080">
                   <input type="hidden" id="current_folder" name="current_folder" value="{{ label }}">
                   <input type="hidden" id="project_id" name="project_id" value="{{ project_js_id }}">
               </div> 
