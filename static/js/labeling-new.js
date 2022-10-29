@@ -2078,6 +2078,25 @@ $('#solTitle a').click(function(evt) {
 
 */
 
+
+
+xShowThumbnailsBtns = document.getElementsByClassName('xShowThumbnailsBtnClass');
+
+for(let i = 0; i < xShowThumbnailsBtns.length; i++) {
+
+    xShowThumbnailsBtns[i].addEventListener("click", function(e) {
+
+      //var btn_id = e.target.id
+
+      //var project_js_id = $('#'+btn_id).attr('project_id')
+
+      alert(' a tag - 2093 + xShowThumbnailsBtns')
+
+  });
+
+
+}
+
 //alert(' It gets here....')
 
 xNewDeleteButtons = document.getElementsByClassName('xDeleteButtonClass a');
