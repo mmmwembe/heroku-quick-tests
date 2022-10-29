@@ -2079,6 +2079,12 @@ $('#solTitle a').click(function(evt) {
 */
 
 
+function myFunction() {
+
+   alert('the Silva method...')
+
+}
+
 
 xShowThumbnailsBtns = document.getElementsByClassName('xShowThumbnailsBtnClass');
 
