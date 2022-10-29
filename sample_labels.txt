@@ -41,6 +41,9 @@ Strato-form
 Nimbo-form
 
 
+StartNewProjectButton
+"#StartNewProjectButton"
+"#OpenExistingProjectButton"
 
 
 setItem("labels_color_map"
@@ -55,5 +58,34 @@ window.localStorage.setItem("all_user_projects", all_user_projects);
 'ISODate' : iso_date,
 'num_images' : num_images,
 'labeled_images' : labeled_images,   
-'all_labeled_true_false' : all_labeled_true_false       
+'all_labeled_true_false' : all_labeled_true_false 
+
+
+
+                var project_summary_array =[]
+                for(var k in all_user_projects) {
+                    var project = all_user_projects[k]
+                    var project_id = project.project_js_id ? project.project_js_id: ""
+                    var project_name = project.project_name ? project.project_name : ""
+                    var date_created = project.date_created ? project.date_created : ""
+                
+                    var project_item = {'index': k, 'project_js_id': project.project_js_id, 'project_name': project.project_name, 'date_created': date_created} //, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
+                    project_summary_array.push(project_item)
+                    // alert(' k ' + k + ' project_item ' + JSON.stringify(project_item));
+                }      
+
+
+
+'project_js_id': 'l9lfslgypq1lddnbh6',  'user_id'
+
+
+
+    Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
+        var label = key
+        var color = LABELS_COLOR_MAP[key]
+        alert('Key : ' + label + ', Color : ' + color)
+     })
+
+It's not about things; its the energy and the feeling you create. I'll say again, its the feeling you're looking for. 
+The feeling of being independent; the feeling of being financially secure;
 

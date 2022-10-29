@@ -234,4 +234,18 @@ function updatePage(){
 
 
 
+function addNewLabel(){
+
+    const newlabelClassItem = document.createElement('div')
+    newlabelClassItem.className ="labelclass"
+    newlabelClassItem.id = current_label
+    newlabelClassItem.style= "border: 3px solid " + current_color + " z-index: 2; background-color: transparent;  margin : 2px; border-radius: 10px; height: 35px;  width: 150px;";
+    newlabelClassItem.style.fontSize = "16";
+    newlabelClassItem.innerHTML ="<strong> "+ current_label + " </strong>";
+    newlabelClassItem.onclick = showSelectedLabel // function shows the selected label by highlighting background with the bordercolor
+    
+    parentLabelClassItem.append(newlabelClassItem)
+    
+    }
+
 
