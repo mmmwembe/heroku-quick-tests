@@ -603,7 +603,7 @@ h4 {
 
                     {% set color = labels_color_map[label]  %}
 
-                    <div class="col card h-100 mb-3 w-15" style="margin-top: 10px; margin-right: 5px; margin-bottom: 10px; border: 5px solid {{ color }};">
+                    <div class="col card h-100 mb-3 w-15" style="margin-top: 10px; margin-right: 5px; margin-bottom: 20px; border: 5px solid {{ color }};">
                       <h5 class="card-header d-flex justify-content-between align-items-center"> {{ label }} <div id="labeling_complete"> &#x2705;</div></h5>
                       <div class="card-body">
                       <h2 class="card-title"></h2>
@@ -613,7 +613,7 @@ h4 {
                       <p class="card-text"><small class="text-muted"></small></p>
                   
                       <div> 
-                          <input type="submit" id="{{ loop.index }}-showThumbnailsButton-" project_id ="{{ project_js_id }}" onclick="myFunction(2)" value="Show Images" class="btn btn btn-outline-primary xShowThumbnailsBtnClass" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid {{ color }}">
+                          <input type="submit" id="{{ label }}-showThumbnailsButton-{{ loop.index }}" project_id ="{{ project_js_id }}" onclick="myFunction()" value="Show Images" class="btn btn btn-outline-primary xShowThumbnailsBtnClass" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid {{ color }};">
                           <input type="hidden" id="current_folder" name="current_folder" value="{{ label }}">
                           <input type="hidden" id="project_id" name="project_id" value="{{ project_js_id }}">
                       </div> 
