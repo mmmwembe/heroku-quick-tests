@@ -2502,7 +2502,7 @@ function NewLabelBucketCard(data_element){
 
       // Post the files to the Server
       $.ajax({
-        url: 'upload_x_files', // point to server-side URL
+        url: '/upload_x_files/', // point to server-side URL
         dataType: 'json', // what to expect back from server
         cache: false,
         contentType: false,
