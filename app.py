@@ -1137,6 +1137,8 @@ def upload_x_files():
 		return redirect(request.url)
 
 	file_names = []
+	blob_full_path_array = []
+ 
 	files = request.files.getlist('x-files[]')
 	xproject_id = request.form['project_id']
 	xlabel = request.form['label']
@@ -1152,9 +1154,17 @@ def upload_x_files():
 		if file and (file.filename).lower().endswith(tuple(target_file_types_array)):
 			filename = secure_filename(file.filename) 
 			file_names.append(filename)
- 
+			blob_full_path = os.path.join(gcp_subdirectory_path, filename)
+			blob_full_path_array.append(blob_full_path)
+   
+			blob = bucket.blob(blob_full_path)
+			file.seek(0)
+			blob.upload_from_string(file.read(), content_type=file.content_type)
+			blob_public_url = blob.public_url 
+   
+    
 	# return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
-	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names)
+	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array)
 
 
 
