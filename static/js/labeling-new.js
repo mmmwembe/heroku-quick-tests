@@ -2332,6 +2332,7 @@ function NewLabelBucketCard(data_element){
     });
     //$("#"+atag_id).on('click', function(e) { alert("inside onclick + atag_showthumbnails "); });
 
+    /*
     const input_2 = document.createElement('input')
     input_2.type ="hidden"
     input_2.id ="current_folder";
@@ -2428,7 +2429,8 @@ function NewLabelBucketCard(data_element){
     input_group.append(input_3x)
     input_group.append(input_4x)
 
-
+    */
+   
     // --------------------------------------------------------------------------------------
 
     const dl_upload = document.createElement('dl')
