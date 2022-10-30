@@ -2320,6 +2320,7 @@ function NewLabelBucketCard(data_element){
     atag_showthumbnails.innerHTML ="Show Images";
     atag_showthumbnails.addEventListener('mouseover',function(){ $(this).css('background-color', color);  });
     atag_showthumbnails.addEventListener('mouseout', function(){ $(this).css('background-color', '');  });
+    atag_showthumbnails.onclick="sayHi(event);"
 
     const input_2 = document.createElement('input')
     input_2.type ="hidden"
@@ -2492,7 +2493,10 @@ alert(getJinJaVariablesFromHtmlFile())
 //alert('active_project_id :  ' + $('input#active_project_id').val());
 
 
-
+function sayHi(e) {
+    e.preventDefault();
+    alert("hi");
+}
 
 
 
