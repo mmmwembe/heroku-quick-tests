@@ -2460,6 +2460,7 @@ function NewLabelBucketCard(data_element){
     new_atag_imgs_upload.className ="btn btn-success"
     new_atag_imgs_upload.id =  label + "-" + project_js_id;
     new_atag_imgs_upload.setAttribute("imageLoader_id","imageLoader-" + label + "-" + project_js_id)
+    new_atag_imgs_upload.setAttribute("msg_id","msg-" + label + "-" + project_js_id)
     new_atag_imgs_upload.setAttribute("label",label)
     new_atag_imgs_upload.setAttribute("project_id",project_js_id)
     new_atag_imgs_upload.innerHTML ="Upload Images";
@@ -2474,14 +2475,15 @@ function NewLabelBucketCard(data_element){
 
         // alert(' DL TAG atag parameters 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
         var imageLoader_id = $(this).attr('imageLoader_id'); 
+        var msg_id = $(this).attr('msg_id'); 
         //alert(' 2392 imageLoader_id  ' + imageLoader_id)
         var form_data = new FormData();
-        var ins = document.getElementById(imageLoader_id).files.length;
+        var num_of_image_files = document.getElementById(imageLoader_id).files.length;
 
-        alert(' imageLoader_id ' + imageLoader_id + ' number of files : ' + ins)
+        alert(' imageLoader_id ' + imageLoader_id + ' number of files : ' + num_of_image_files)
         
-        if(ins == 0) {
-            // $('#msg').html('<span style="color:red">Select at least one file</span>');
+        if(num_of_image_files == 0) {
+             $('#' + msg_id).html('<span style="color:red">Select at least one file</span>');
             return;
         }
 
