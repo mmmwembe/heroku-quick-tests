@@ -2487,6 +2487,10 @@ function NewLabelBucketCard(data_element){
             return;
         }
 
+        if(num_of_image_files > 0) {
+            $('#' + msg_id).html('<span style="color:red"></span>');
+       }
+
 
     }); 
 
