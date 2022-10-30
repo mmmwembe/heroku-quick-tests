@@ -2464,12 +2464,21 @@ function new_create_label_buckets(data){
         var new_row = document.createElement('div')
         new_row.className="row"
 
-        for (var k = i; k <= i+4; k += 1){
+        //for (var k = i; k <= i+4; k += 1){
 
-            var new_card = NewLabelBucketCard(data[k])
-            new_row.appendChild(new_card)
+        var new_card = NewLabelBucketCard(data[i])
+        new_row.appendChild(new_card)
 
-        }
+        var new_card2 = NewLabelBucketCard(data[i+1])
+        new_row.appendChild(new_card2)
+
+        var new_card3 = NewLabelBucketCard(data[i+2])
+        new_row.appendChild(new_card3)
+
+        var new_card4 = NewLabelBucketCard(data[i+3])
+        new_row.appendChild(new_card4)
+
+        //}
 
         document.getElementById('cropped_images_label_buckets_container').appendChild(new_row)
 
