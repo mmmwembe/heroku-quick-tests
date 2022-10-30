@@ -1592,10 +1592,10 @@ function create_card(data){
                         <div class="card-footer">
 
                         <form>
-                            <button type="submit" id="deleteLabelButton-${data.index}" class="btn btn-default XXBUTTON">Submit</button>
+                            <button type="submit" id="deleteLabelButton-${data.index}" class="btn btn-default XXBUTTON" onclick="event.preventDefault(); myCustomFunction({a:1, b:'hi'});">Submit</button>
                         </form>
                             <div class="solTitle" id="solTitle${data.index}">
-                                 <a onclick="event.preventDefault(); myCustomFunction({a:1, b:'hi'});" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                                 <a href="#" onclick="event.preventDefault(); myCustomFunction({a:1, b:'hi'});" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                             </div>
                         </div>
                     </div>`  : ""
