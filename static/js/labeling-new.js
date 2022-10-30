@@ -2510,7 +2510,7 @@ function NewLabelBucketCard(data_element){
         data: form_data,
         type: 'post',
         success: function (response) { // display success response   
-           msg = ' xproject_id  : ' + xproject_id  + '\n'  + ' xlabel : ' + xlabel + '\n' +  'bucket_name : ' +  bucket_name + '\n' +  'gcp_subdirectory_path : ' + gcp_subdirectory_path
+           msg = ' xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path
            alert(msg) 
         },
         error: function (response) {
