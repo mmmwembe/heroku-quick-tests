@@ -1848,7 +1848,7 @@ $.ajax({
         //alert(' Line 1887 - this is the first gate I see')   
 
         //show_label_buckets()
-        // new_create_label_buckets(data)
+        new_create_label_buckets(data)
 
         // create_label_buckets(data)
 
@@ -1875,7 +1875,7 @@ $.ajax({
 
             new_row.innerHTML = combined_card_string
 
-            document.getElementById('label_buckets_container').appendChild(new_row)
+            //document.getElementById('label_buckets_container').appendChild(new_row)
       
         }
 
@@ -2249,6 +2249,8 @@ alert('line 2214 - ' + JSON.stringify(parsed))
 
 function NewLabelBucketCard(data_element){
 
+    alert('data element : ' + JSON.stringify(data_element))
+
     var counter = data_element.index ? data_element.index : ""
     var label = data_element.label ? data_element.label : ""
     var color = data_element.color ? data_element.color : ""            
@@ -2461,12 +2463,12 @@ function new_create_label_buckets(data){
 
         for (var k = i; k <= i+4; k += 1){
 
-            var new_card = NewCard(data[k])
+            var new_card = NewLabelBucketCard(data[k])
             new_row.appendChild(new_card)
 
         }
 
-        // document.getElementById('cropped_images_label_buckets_container').appendChild(new_row)
+        document.getElementById('cropped_images_label_buckets_container').appendChild(new_row)
 
     }
 
