@@ -2324,7 +2324,11 @@ function NewLabelBucketCard(data_element){
     atag_showthumbnails.addEventListener('mouseout', function(){ $(this).css('background-color', '');  });
     atag_showthumbnails.addEventListener('click', function(){ 
         var atag_id_x = $(this).attr('id');  
-        alert(' atag_showthumbnails 2327 : ' + atag_id_x)
+        const myArray = atag_id_x.split("-");
+        var xlabel = myArray[0];
+        var xproject_id = myArray[1];
+
+        alert(' atag parameters 2331 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
     });
     //$("#"+atag_id).on('click', function(e) { alert("inside onclick + atag_showthumbnails "); });
 
