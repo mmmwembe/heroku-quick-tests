@@ -2488,9 +2488,13 @@ var html_active_project_id = active_project_id.value;
 alert(' html_active_label : ' + html_active_label + '  html_active_project_id : ' + html_active_project_id)
 
 
+$( "#active_label" ).change(function() {
+    alert( "active_label ---- Handler for .change() called." );
+});
 
-
-
+$( "#active_project_id" ).change(function() {
+    alert( " active_project_id --- Handler for .change() called." );
+});
 
 
 
