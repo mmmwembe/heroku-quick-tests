@@ -2371,7 +2371,7 @@ function NewLabelBucketCard(data_element){
 
 
     const atag_imgs_upload = document.createElement('a')
-    atag_imgs_upload.href ="/upload?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
+    // atag_imgs_upload.href ="/upload?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
     atag_imgs_upload.className ="btn btn-success"
     atag_imgs_upload.id =  label + "-" + project_js_id;
     atag_imgs_upload.setAttribute("label",label)
@@ -2437,13 +2437,27 @@ function NewLabelBucketCard(data_element){
 
 
     const atag = document.createElement('a')
-    atag.href ="/atagDelete?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
+    //atag.href ="/atagDelete?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
     atag.className ="btn btn-danger xDeleteButtonClass"
     // atag.style = "margin-top: 20px; width: 30%;"
-    atag.id ="deleteLabelButton-" + counter;
+    atag.id =  label + "-" + project_js_id; + "-deleteLabelButton"
     atag.setAttribute("label",label)
     atag.setAttribute("project_id",project_js_id)
     atag.innerHTML ="Delete";
+    //atag.addEventListener('mouseover',function(){ $(this).css('opacity', 0.5);  });
+    //atag.addEventListener('mouseout', function(){ $(this).css('opacity', 1.0);  });
+    atag.addEventListener('click', function(){ 
+        
+        var atag_delete_x = $(this).attr('id');  
+        const myArray = atag_delete_x.split("-");
+        var xlabel = myArray[0];
+        var xproject_id = myArray[1];
+
+        alert(' delete tag button 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
+    });   
+
+
+
 
     const small_1x = document.createElement('small')
     small_1x.className ="text-muted"
