@@ -528,19 +528,16 @@ h4 {
         <div id="label_buckets_container" class="container">
 
             
-            {% if active_project_id %} 
 
-
-
-            <div>
-                <input type="hidden" id="active_project_id" name="active_project_id" value="{{ active_project_id }}">
-                <input type="hidden" id="active_label" name="active_label" value="{{ active_label }}">
-            </div>
-            {{ active_project_id }}"
-            {{ active_label }}
-            {% endif %}
 
         </div>
+
+        {% if active_project_id %} 
+        <div>
+            <input type="hidden" id="active_project_id" name="active_project_id" value="{{ active_project_id }}">
+            <input type="hidden" id="active_label" name="active_label" value="{{ active_label }}">
+        </div>
+        {% endif %}
 
 
     </div>
