@@ -2459,7 +2459,7 @@ function new_create_label_buckets(data){
         var new_row = document.createElement('div')
         new_row.className="row"
 
-        for (var k = i; k <= 4; k += 1){
+        for (var k = i; k <= i+4; k += 1){
 
             var new_card = NewCard(data[k])
             new_row.appendChild(new_card)
