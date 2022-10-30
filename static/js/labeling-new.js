@@ -2310,8 +2310,10 @@ function NewLabelBucketCard(data_element){
     //input_1.value ="Show Images";
     //input_1.style="margin-left: 0px; width: 50%; height: 50px; margin-bottom: 20px; border: 5px solid green;"
     //input_1.onclick = showImagesAction()
+    var atag_id = label + "-" + project_js_id
 
     var atag_showthumbnails = document.createElement("a");
+    atag_showthumbnails.id =  atag_id
     atag_showthumbnails.className ="btn"
     //atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
     atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
@@ -2320,7 +2322,9 @@ function NewLabelBucketCard(data_element){
     atag_showthumbnails.innerHTML ="Show Images";
     atag_showthumbnails.addEventListener('mouseover',function(){ $(this).css('background-color', color);  });
     atag_showthumbnails.addEventListener('mouseout', function(){ $(this).css('background-color', '');  });
-    atag_showthumbnails.onclick="sayHi(event);"
+    $("#"+atag_id).on('click', function(e) {
+        alert("inside onclick + atag_showthumbnails ");
+      });
 
     const input_2 = document.createElement('input')
     input_2.type ="hidden"
@@ -2487,16 +2491,13 @@ function getJinJaVariablesFromHtmlFile() {
     return active_project_id + ' ' + active_label
 }
 
-alert(getJinJaVariablesFromHtmlFile())
+// alert(getJinJaVariablesFromHtmlFile())
 
 //alert('active_label :  ' + $('input#active_label').val());
 //alert('active_project_id :  ' + $('input#active_project_id').val());
 
 
-function sayHi(e) {
-    e.preventDefault();
-    alert("hi");
-}
+
 
 
 
