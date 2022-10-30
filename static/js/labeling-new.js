@@ -2466,7 +2466,7 @@ function new_create_label_buckets(data){
 
         }
 
-        document.getElementById('cropped_images_label_buckets_container').appendChild(new_row)
+        // document.getElementById('cropped_images_label_buckets_container').appendChild(new_row)
 
     }
 

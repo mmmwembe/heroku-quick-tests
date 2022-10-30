@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+
+    <div class="row">
+
+        {% if active_project_result %} 
+  
+        
+  
+                {% set label_id = active_project_result[0]['label_id'] %}      
+                {% set project_js_id = active_project_result[0]['project_js_id']  %}      
+                {% set project_name = active_project_result[0]['project_name']  %}      
+                {% set labels_color_map = active_project_result[0]['labels_color_map'] %}
+                {% set original_image_urls = active_project_result[0]['original_image_urls'] %}
+                {% set all_jpeg_image_urls = active_project_result[0]['all_jpeg_image_urls'] %}
+                {% set cropped_image_urls = active_project_result[0]['cropped_image_urls'] %}
+                {% set augmentation_image_urls = active_project_result[0]['augmentation_image_urls'] %}
+                {% set original_image_label_jsons = active_project_result[0]['original_image_label_jsons'] %}
+                {% set all_jpeg_image_label_jsons = active_project_result[0]['all_jpeg_image_label_jsons'] %}
+                {% set augmentation_image_label_jsons = active_project_result[0]['augmentation_image_label_jsons'] %}
+                {% set number_original_images = active_project_result[0]['original_image_urls']|length %}
+                {% set number_all_jpeg_images = active_project_result[0]['all_jpeg_image_urls']|length %}
+                {% set number_cropped_images = active_project_result[0]['cropped_image_urls']|length %}
+                {% set number_augmentation_images = active_project_result[0]['augmentation_image_urls']|length %}
+                {% set original_image_label_jsons = active_project_result[0]['original_image_label_jsons'] %}
+                {% set all_jpeg_image_label_jsons = active_project_result[0]['all_jpeg_image_label_jsons'] %}
+                {% set augmentation_image_label_jsons = active_project_result[0]['augmentation_image_label_jsons'] %}
+                {% set date_created = active_project_result[0]['date_created'] %}
+                {% set date_modified = active_project_result[0]['date_modified'] %}
+  
+  
+            
+            {% for row_of_labels in labels_color_map|batch(4) %}
+  
+            <div class="row">
+  
+  
+                {% for label in row_of_labels %}    
+  
+                      {% set color = labels_color_map[label]  %}
+  
+                      <div class="col card h-100 mb-3 w-15" style="margin-top: 10px; margin-right: 5px; margin-bottom: 20px; border: 5px solid {{ color }}"  >
+                        <h5 class="card-header d-flex justify-content-between align-items-center"> {{ label }} <div id="labeling_complete"> &#x2705;</div></h5>
+                        <div class="card-body">
+                        <h2 class="card-title"></h2>
+                        <p class="card-text"></p>
+                        <p class="card-text">Number of Images:  <small class="text-muted"></small></p>
+                        <p class="card-text">Labelled Images: <small class="text-muted"></small></p>
+                        <p class="card-text"><small class="text-muted"></small></p>
+                    
+                        <div> 
+                            <input type="submit" id="{{ label }}-showThumbnailsButton-{{ loop.index }}" project_id ="{{ project_js_id }}" onclick="myFunction()" value="Show Images" class="btn btn btn-outline-primary xShowThumbnailsBtnClass" style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid {{ color }};">
+                            <input type="hidden" id="current_folder" name="current_folder" value="{{ label }}">
+                            <input type="hidden" id="project_id" name="project_id" value="{{ project_js_id }}">
+                        </div> 
+                        
+                        <div>
+                            <div class="input-group">
+                                <input id="imageLoader-{{ loop.index }}" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
+                                <input type="submit" id="{{ label }}-uploadImagesButton-{{ loop.index }}" project_id="{{ project_js_id }}" value="Upload Images" class="btn  btn-info xUploadImagesBtnClass" style="margin-left: 0px;">
+                                <input type="hidden" id="project_id" name="project_id" value="{{ project_js_id }}">
+                                <input type="hidden" id="current_folder" name="current_folder" value="{{ label }}">
+                                <input type="hidden" name="which-form" value="images-for-labeling">
+                            </div> 
+                        </div>
+                    
+                        <div class="card-footer">
+                            <div class="solTitle" id="solTitle-{{ loop.index }}">
+                                <a href="/atagDelete?a=100&b=500" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-{{ loop.index }}" data-label="LABEL" project_id="{{ project_js_id }}">Delete</a> <small> Delete all images & labels</small>
+                            </div>
+                        </div>
+                    </div>
+  
+  
+                {% endfor %}
+  
+  
+            </div>    
+    
+            {% endfor %}
+  
+  
+        {% endif %}
+  
+  
+      </div>
+    
+</body>
+</html>

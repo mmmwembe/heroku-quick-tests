@@ -631,6 +631,7 @@ h4 {
                           <div class="input-group">
                               <input id="imageLoader-{{ loop.index }}" type="file" name="upload_images_project_label[]" multiple="true" autocomplete="off" required>
                               <input type="submit" id="{{ label }}-uploadImagesButton-{{ loop.index }}" project_id="{{ project_js_id }}" value="Upload Images" class="btn  btn-info xUploadImagesBtnClass" style="margin-left: 0px;">
+                          </div>
                               <input type="hidden" id="project_id" name="project_id" value="{{ project_js_id }}">
                               <input type="hidden" id="current_folder" name="current_folder" value="{{ label }}">
                               <input type="hidden" name="which-form" value="images-for-labeling">
