@@ -2479,10 +2479,12 @@ function new_create_label_buckets(data){
 //          See section in html page with 'MAIN-CONTAINER USED FOR LABEL BUCKETS"
 //-----------------------------------------------------------------------------------------
 
-var active_project_id = {{ active_project_id|safe }};
-var active_label = {{ active_label|safe }};
 
-alert(active_project_id)
+function getJinJaVariablesFromHtmlFile() {
+    return active_project_id + ' ' + active_label
+}
+
+alert(getJinJaVariablesFromHtmlFile())
 
 //alert('active_label :  ' + $('input#active_label').val());
 //alert('active_project_id :  ' + $('input#active_project_id').val());
