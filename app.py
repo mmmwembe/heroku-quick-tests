@@ -1107,6 +1107,8 @@ def atagDelete():
     
     a = request.args.get('a')
     b = request.args.get('b')
+    active_project_id = request.args.get('project_id')
+    active_label_in_project = request.args.get('label')
     
     query ={'user_id': user_id}
     user_session_info = user_session_data.find(query)
@@ -1121,7 +1123,7 @@ def atagDelete():
         active_project_result.append(result)
         
     # return  'The value of a is: {} and b is  {}'.format(a,b)
-    return render_template('labeling-new.html', a=a, b=b, lat_lng ={a: a, b: b} , active_project_result = active_project_result)
+    return render_template('labeling-new.html', a=a, b=b, lat_lng ={a: a, b: b} , active_project_result = active_project_result, active_project_id_and_label={active_project_id: active_project_id, active_label_in_project : active_label_in_project})
 
 
 

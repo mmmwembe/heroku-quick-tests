@@ -527,6 +527,22 @@ h4 {
 
         <div id="label_buckets_container" class="container">
 
+            
+            {% if active_project_id_and_label %} 
+
+            : active_project_id, active_label_in_project : active_label_in_project
+
+            {% set active_project_id = active_project_id_and_label['active_project_id'] %}      
+            {% set active_label_in_project = active_project_id_and_label['active_label_in_project']  %} 
+
+            <div>
+                <input type="hidden" id="active_project_id" name="active_project_id" value="{{ active_project_id }}">
+                <input type="hidden" id="active_label_in_project" name="active_label_in_project" value="{{ active_label_in_project }}">
+            </div>
+            {{ active_project_id }}"
+            {{ active_label_in_project }}
+            {% endif %}
+
         </div>
 
 

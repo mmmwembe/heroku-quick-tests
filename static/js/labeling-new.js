@@ -1592,16 +1592,15 @@ function create_card(data){
                         <div class="card-footer">
 
                         <form>
-                            <button type="submit" id="deleteLabelButton-${data.index}" class="btn btn-default XXBUTTON" onclick="event.preventDefault(); myCustomFunction({a:1, b:'hi'});">Submit</button>
+                            <button type="submit" id="deleteLabelButton-${data.index}" class="btn btn-default XXBUTTON">Submit</button>
                         </form>
                             <div class="solTitle" id="solTitle${data.index}">
-                                 <a href="#" onclick="event.preventDefault(); myCustomFunction({a:1, b:'hi'});" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                                 <a href="/atagDelete?label=${data.label}&project_id=${data.project_id}&a=100&b=500" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                             </div>
                         </div>
                     </div>`  : ""
 
                     //  role="form" method="POST" action="/"
-                    // href="/atagDelete?label=${data.label}&project_id=${data.project_id}&a=100&b=500" 
 
         return new_card 
 
@@ -2122,16 +2121,6 @@ for(let i = 0; i < xNewDeleteButtons.length; i++) {
 
   });
 
-
-}
-
-
-function myCustomFunction(data){
-
-   var a = data['a'] 
-   var b = data['b'] 
-   
-   alert(' a : ' + a  + ' b ' + b)
 
 }
 
