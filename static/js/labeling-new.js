@@ -2472,9 +2472,19 @@ function NewLabelBucketCard(data_element){
         var xlabel = myArray[0];
         var xproject_id = myArray[1];
 
-        alert(' DL TAG atag parameters 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
+        // alert(' DL TAG atag parameters 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
         var imageLoader_id = $(this).attr('imageLoader_id'); 
-        alert(' 2392 imageLoader_id  ' + imageLoader_id)
+        //alert(' 2392 imageLoader_id  ' + imageLoader_id)
+        var form_data = new FormData();
+        var ins = document.getElementById(imageLoader_id).files.length;
+
+        alert(' imageLoader_id ' + imageLoader_id + ' number of files : ' + ins)
+        
+        if(ins == 0) {
+            // $('#msg').html('<span style="color:red">Select at least one file</span>');
+            return;
+        }
+
 
     }); 
 
