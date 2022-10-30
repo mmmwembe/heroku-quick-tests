@@ -2429,6 +2429,57 @@ function NewLabelBucketCard(data_element){
     input_group.append(input_4x)
 
 
+    // --------------------------------------------------------------------------------------
+
+    const dl_upload = document.createElement('dl')
+
+    const p_x = document.createElement('p')
+
+    const p_x_msg = document.createElement('p')
+    p_x_msg.id = "msg-" + label + "-" + project_js_id
+    p_x_msg.innerHTML ="";
+
+    p_x.append(p_x_msg)
+
+
+    const input_dl_upload = document.createElement('input')
+    input_dl_upload.className ="form-control"
+    input_dl_upload.type ="file"
+    input_dl_upload.id ="imageLoader-" + label + "-" + project_js_id;
+    input_dl_upload.name ="upload_images_project_label[]"
+    input_dl_upload.multiple = true;
+    input_dl_upload.autocomplete = true;
+    input_dl_upload.required =true;
+
+
+    const new_atag_imgs_upload = document.createElement('a')
+    new_atag_imgs_upload.className ="btn btn-success"
+    new_atag_imgs_upload.id =  label + "-" + project_js_id;
+    new_atag_imgs_upload.setAttribute("imageLoader_id","imageLoader-" + label + "-" + project_js_id)
+    new_atag_imgs_upload.setAttribute("label",label)
+    new_atag_imgs_upload.setAttribute("project_id",project_js_id)
+    new_atag_imgs_upload.innerHTML ="Upload Images";
+    new_atag_imgs_upload.style ="display: inline; width: 100%;"     
+    new_atag_imgs_upload.addEventListener('mouseover',function(){ $(this).css('opacity', 0.5);  });
+    new_atag_imgs_upload.addEventListener('mouseout', function(){ $(this).css('opacity', 1.0);  });
+    new_atag_imgs_upload.addEventListener('click', function(){ 
+        var atag_imgs_x = $(this).attr('id');  
+        const myArray = atag_imgs_x.split("-");
+        var xlabel = myArray[0];
+        var xproject_id = myArray[1];
+
+        alert(' atag parameters 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
+        var imageLoader_id = $(this).attr('imageLoader_id'); 
+        alert(' 2392 imageLoader_id  ' + imageLoader_id)
+
+    }); 
+
+
+   dl_upload.append(p_x)
+   dl_upload.append(input_dl_upload)
+   dl_upload.append(new_atag_imgs_upload)
+
+    // --------------------------------------------------------------------------------------
 
     const cardFooter = document.createElement('div')
     cardFooter.className ="card-footer"
@@ -2484,6 +2535,9 @@ function NewLabelBucketCard(data_element){
     newCardParent.append(p4)            
     newCardParent.append(show_thumbnails_div)
     newCardParent.append(input_group)
+
+    newCardParent.append(dl_upload)   // New
+
     newCardParent.append(cardFooter)
 
 
