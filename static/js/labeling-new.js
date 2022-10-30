@@ -2509,8 +2509,9 @@ function NewLabelBucketCard(data_element){
         processData: false,
         data: form_data,
         type: 'post',
-        success: function (response) { // display success response
-           alert('files have been uploaded successfully...')    
+        success: function (response) { // display success response   
+           msg = ' xproject_id  : ' + xproject_id  + '\n'  + ' xlabel : ' + xlabel + '\n' +  'bucket_name : ' +  bucket_name + '\n' +  'gcp_subdirectory_path : ' + gcp_subdirectory_path
+           alert(msg) 
         },
         error: function (response) {
            alert('an error occured ...')
