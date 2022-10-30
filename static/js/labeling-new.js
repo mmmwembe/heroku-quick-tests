@@ -2249,7 +2249,7 @@ alert('line 2214 - ' + JSON.stringify(parsed))
 
 function NewLabelBucketCard(data_element){
 
-    alert('data element : ' + JSON.stringify(data_element))
+   // alert('data element : ' + JSON.stringify(data_element))
 
     var counter = data_element.index ? data_element.index : ""
     var label = data_element.label ? data_element.label : ""
@@ -2313,7 +2313,7 @@ function NewLabelBucketCard(data_element){
 
     var atag_showthumbnails = document.createElement("a");
     atag_showthumbnails.className ="btn"
-    atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
+    //atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
     atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
     atag_showthumbnails.setAttribute("label",label)
     atag_showthumbnails.setAttribute("project_id",project_js_id)
