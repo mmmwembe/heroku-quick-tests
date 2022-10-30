@@ -1595,7 +1595,7 @@ function create_card(data){
                             <button type="submit" id="deleteLabelButton-${data.index}" class="btn btn-default XXBUTTON">Submit</button>
                         </form>
                             <div class="solTitle" id="solTitle${data.index}">
-                                 <a href="#" onclick="event.preventDefault(); myCustomFunction({a:1, b:'hi'});" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                                 <a onclick="event.preventDefault(); myCustomFunction({a:1, b:'hi'});" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                             </div>
                         </div>
                     </div>`  : ""
