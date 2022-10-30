@@ -2494,10 +2494,29 @@ function NewLabelBucketCard(data_element){
        for (var x = 0; x < num_of_image_files; x++) {
         form_data.append("x-files[]", document.getElementById(imageLoader_id).files[x]);
         // alert('  x  ' + document.getElementById(imageLoader_id).files[x])
-    }
+       }
 
-    form_data.append("project_id", xproject_id)
-    form_data.append("xlabel", xlabel)
+      form_data.append("project_id", xproject_id)
+      form_data.append("label", xlabel)
+
+
+      // Post the files to the Server
+      $.ajax({
+        url: 'upload_x_files', // point to server-side URL
+        dataType: 'json', // what to expect back from server
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function (response) { // display success response
+           alert('files have been uploaded successfully...')    
+        },
+        error: function (response) {
+              alert('an error occured ...')
+        }
+     });
+
 
     }); 
 

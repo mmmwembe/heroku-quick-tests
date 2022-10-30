@@ -85,7 +85,7 @@ $.ajax({
 
 
 $.ajax({
-    url: 'python-flask-files-upload', // point to server-side URL
+    url: 'upload_x_files', // point to server-side URL
     dataType: 'json', // what to expect back from server
     cache: false,
     contentType: false,
@@ -93,16 +93,9 @@ $.ajax({
     data: form_data,
     type: 'post',
     success: function (response) { // display success response
-        $('#msg').html('');
-        $.each(response, function (key, data) {							
-            if(key !== 'message') {
-                $('#msg').append(key + ' -> ' + data + '<br/>');
-            } else {
-                $('#msg').append(data + '<br/>');
-            }
-        })
+       alert('files have been uploaded successfully...')    
     },
     error: function (response) {
-        $('#msg').html(response.message); // display error response
+          alert('an error occured ...')
     }
 });
