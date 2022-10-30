@@ -2510,8 +2510,13 @@ function NewLabelBucketCard(data_element){
         data: form_data,
         type: 'post',
         success: function (response) { // display success response   
-           msg = ' xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls)
+           msg = ' xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls) + '  label_image_urls : ' + JSON.stringify(response.label_image_urls)
            alert(msg) 
+
+           // Reset the input files field
+           document.getElementById(imageLoader_id).value = ''
+           document.getElementById(imageLoader_id).files =[]
+
         },
         error: function (response) {
            alert('an error occured ...')

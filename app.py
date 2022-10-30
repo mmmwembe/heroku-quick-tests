@@ -1164,9 +1164,16 @@ def upload_x_files():
 			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path) 
 			returned_public_urls.append(gcs_url) 
       
+	label_image_urls = []
+
+	try:
+		label_image_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, gcp_subdirectory_path, target_file_types_array)
+  
+	except:
+		pass
     
 	# return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
-	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array, returned_public_urls = returned_public_urls)
+	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array, returned_public_urls = returned_public_urls, label_image_urls = label_image_urls)
 
 
 
