@@ -2313,7 +2313,7 @@ function NewLabelBucketCard(data_element){
     //var atag_id = label + "-" + project_js_id
 
     var atag_showthumbnails = document.createElement("a");
-    atag_showthumbnails.id =  atag_id
+    atag_showthumbnails.id =  label + "-" + project_js_id
     atag_showthumbnails.className ="btn"
     atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
     atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
