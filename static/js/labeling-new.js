@@ -2476,6 +2476,8 @@ function NewLabelBucketCard(data_element){
         // alert(' DL TAG atag parameters 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
         var imageLoader_id = $(this).attr('imageLoader_id'); 
         var msg_id = $(this).attr('msg_id'); 
+        //var x_label = $(this).attr('label');     
+        //var x_project_id = $(this).attr('project_id');           
         //alert(' 2392 imageLoader_id  ' + imageLoader_id)
         var form_data = new FormData();
         var num_of_image_files = document.getElementById(imageLoader_id).files.length;
@@ -2491,9 +2493,11 @@ function NewLabelBucketCard(data_element){
 
        for (var x = 0; x < num_of_image_files; x++) {
         form_data.append("x-files[]", document.getElementById(imageLoader_id).files[x]);
-        alert('  x  ' + document.getElementById(imageLoader_id).files[x])
+        // alert('  x  ' + document.getElementById(imageLoader_id).files[x])
     }
 
+    form_data.append("project_id", xproject_id)
+    form_data.append("xlabel", xlabel)
 
     }); 
 
