@@ -2363,7 +2363,7 @@ function NewLabelBucketCard(data_element){
     const input_1x = document.createElement('input')
     input_1x.className ="form-control"
     input_1x.type ="file"
-    input_1x.id ="imageLoader-" + counter;
+    input_1x.id ="imageLoader-" + label + "-" + project_js_id;
     input_1x.name ="upload_images_project_label[]"
     input_1x.multiple = true;
     input_1x.autocomplete = true;
@@ -2374,6 +2374,7 @@ function NewLabelBucketCard(data_element){
     // atag_imgs_upload.href ="/upload?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
     atag_imgs_upload.className ="btn btn-success"
     atag_imgs_upload.id =  label + "-" + project_js_id;
+    atag_imgs_upload.setAttribute("imageLoader_id","imageLoader-" + label + "-" + project_js_id)
     atag_imgs_upload.setAttribute("label",label)
     atag_imgs_upload.setAttribute("project_id",project_js_id)
     atag_imgs_upload.innerHTML ="Upload Images";
@@ -2387,6 +2388,9 @@ function NewLabelBucketCard(data_element){
         var xproject_id = myArray[1];
 
         alert(' atag parameters 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
+        var imageLoader_id = $(this).attr('imageLoader_id'); 
+        alert(' 2392 imageLoader_id  ' + imageLoader_id)
+
     });         
 
 
@@ -2438,14 +2442,14 @@ function NewLabelBucketCard(data_element){
 
     const atag = document.createElement('a')
     //atag.href ="/atagDelete?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
-    atag.className ="btn btn-danger xDeleteButtonClass"
+    atag.className ="btn btn-danger"
     // atag.style = "margin-top: 20px; width: 30%;"
     atag.id =  label + "-" + project_js_id; + "-deleteLabelButton"
     atag.setAttribute("label",label)
     atag.setAttribute("project_id",project_js_id)
     atag.innerHTML ="Delete"; 
-    atag.addEventListener('mouseover',function(){ $(this).removeClass("btn btn-success");   $(this).addClass("btn btn-warning");   });
-    atag.addEventListener('mouseout', function(){ $(this).removeClass("btn btn-warning");   $(this).addClass("btn btn-success");   });
+    //atag.addEventListener('mouseover',function(){ $(this).removeClass("btn btn-success");   $(this).addClass("btn btn-warning");   });
+    // atag.addEventListener('mouseout', function(){ $(this).removeClass("btn btn-warning");   $(this).addClass("btn btn-success");   });
     atag.addEventListener('click', function(){ 
 
         var atag_delete_x = $(this).attr('id');  
