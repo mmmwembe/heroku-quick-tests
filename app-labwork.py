@@ -83,6 +83,82 @@ def upload_image():
 
 
 
+
+####################################################################
+@app.route('/upload_x_files/', methods=['POST','GET'])
+def upload_x_files():
+  
+	if 'x-files[]' not in request.files:
+		return redirect(request.url)
+
+	files = request.files.getlist('x-files[]')
+	xproject_id = request.form['project_id']
+	xlabel = request.form['label']
+	file_names = []
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_subdir"], xproject_id, xlabel)
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+	returned_public_urls =[]
+	client = storage.Client()
+	bucket = client.get_bucket(bucket_name)
+	# sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+	# classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	# detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
+
+	for file in files:
+		if file and (file.filename).lower().endswith(tuple(target_file_types_array)):
+			filename = secure_filename(file.filename)
+			blob_full_path = os.path.join(gcp_subdirectory_path, filename)
+			blob = bucket.blob(blob_full_path)
+			file.seek(0)
+			blob.upload_from_string(file.read(), content_type=file.content_type)
+			blob_public_url = blob.public_url 
+			# gcs_url = "https://storage.cloud.google.com/{}/{}".format(bucket_name,blob_full_path)
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+			# returned_public_urls.append(blob_public_url)   
+			returned_public_urls.append(gcs_url) 
+   
+	label_image_urls =[]
+
+	try:
+		label_image_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, gcp_subdirectory_path, target_file_types_array)
+  
+	except:
+		pass
+
+	# return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
+	return jsonify(returned_public_urls = returned_public_urls,  label_image_urls = label_image_urls)
+
+
+
+
+
+
+###################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/', methods=['POST'])
 def upload_images_for_labeling():
 	if 'files[]' not in request.files and request.form.get('images-for-labeling') == 'images-for-labeling':

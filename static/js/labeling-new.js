@@ -2513,7 +2513,7 @@ function NewLabelBucketCard(data_element){
            alert('files have been uploaded successfully...')    
         },
         error: function (response) {
-              alert('an error occured ...')
+           alert('an error occured ...')
         }
      });
 
