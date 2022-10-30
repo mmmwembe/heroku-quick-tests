@@ -79,3 +79,30 @@ $.ajax({
     }
     
 });
+
+
+
+
+
+$.ajax({
+    url: 'python-flask-files-upload', // point to server-side URL
+    dataType: 'json', // what to expect back from server
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    type: 'post',
+    success: function (response) { // display success response
+        $('#msg').html('');
+        $.each(response, function (key, data) {							
+            if(key !== 'message') {
+                $('#msg').append(key + ' -> ' + data + '<br/>');
+            } else {
+                $('#msg').append(data + '<br/>');
+            }
+        })
+    },
+    error: function (response) {
+        $('#msg').html(response.message); // display error response
+    }
+});

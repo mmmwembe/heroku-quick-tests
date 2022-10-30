@@ -2450,7 +2450,7 @@ function NewLabelBucketCard(data_element){
     input_dl_upload.className ="form-control"
     input_dl_upload.type ="file"
     input_dl_upload.id ="imageLoader-" + label + "-" + project_js_id;
-    input_dl_upload.name ="upload_images_project_label[]"
+    input_dl_upload.name ="x-files[]"
     input_dl_upload.multiple = true;
     input_dl_upload.autocomplete = true;
     input_dl_upload.required =true;
@@ -2479,9 +2479,7 @@ function NewLabelBucketCard(data_element){
         //alert(' 2392 imageLoader_id  ' + imageLoader_id)
         var form_data = new FormData();
         var num_of_image_files = document.getElementById(imageLoader_id).files.length;
-
-        alert(' imageLoader_id ' + imageLoader_id + ' number of files : ' + num_of_image_files)
-        
+        // alert(' imageLoader_id ' + imageLoader_id + ' number of files : ' + num_of_image_files)
         if(num_of_image_files == 0) {
              $('#' + msg_id).html('<span style="color:red">Select at least one file</span>');
             return;
@@ -2490,6 +2488,11 @@ function NewLabelBucketCard(data_element){
         if(num_of_image_files > 0) {
             $('#' + msg_id).html('<span style="color:red"></span>');
        }
+
+       for (var x = 0; x < num_of_image_files; x++) {
+        form_data.append("x-files[]", document.getElementById(imageLoader_id).files[x]);
+        alert('  x  ' + document.getElementById(imageLoader_id).files[x])
+    }
 
 
     }); 
