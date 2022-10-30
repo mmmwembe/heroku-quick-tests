@@ -2479,22 +2479,14 @@ function new_create_label_buckets(data){
 //          See section in html page with 'MAIN-CONTAINER USED FOR LABEL BUCKETS"
 //-----------------------------------------------------------------------------------------
 
-const active_label = document.getElementById("active_label")
-const active_project_id = document.getElementById("active_project_id")
-
-var html_active_label = active_label.value; 
-var html_active_project_id = active_project_id.value; 
-
-alert(' html_active_label : ' + html_active_label + '  html_active_project_id : ' + html_active_project_id)
+alert('active_label :  ' + $('input#active_label').val());
+alert('active_project_id :  ' + $('input#active_project_id').val());
 
 
-$( "#active_label" ).change(function() {
-    alert( "active_label ---- Handler for .change() called." );
-});
 
-$( "#active_project_id" ).change(function() {
-    alert( " active_project_id --- Handler for .change() called." );
-});
+
+
+
 
 
 
