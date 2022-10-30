@@ -2534,7 +2534,7 @@ function NewLabelBucketCard(data_element){
     newCardParent.append(p3)    
     newCardParent.append(p4)            
     newCardParent.append(show_thumbnails_div)
-    newCardParent.append(input_group)
+    // newCardParent.append(input_group)
 
     newCardParent.append(dl_upload)   // New
 
