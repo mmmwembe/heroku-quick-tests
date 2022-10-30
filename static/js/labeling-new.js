@@ -2322,9 +2322,7 @@ function NewLabelBucketCard(data_element){
     atag_showthumbnails.innerHTML ="Show Images";
     atag_showthumbnails.addEventListener('mouseover',function(){ $(this).css('background-color', color);  });
     atag_showthumbnails.addEventListener('mouseout', function(){ $(this).css('background-color', '');  });
-    $("#"+atag_id).on('click', function(e) {
-        alert("inside onclick + atag_showthumbnails ");
-      });
+    //$("#"+atag_id).on('click', function(e) { alert("inside onclick + atag_showthumbnails "); });
 
     const input_2 = document.createElement('input')
     input_2.type ="hidden"
