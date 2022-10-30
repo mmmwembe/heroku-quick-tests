@@ -2468,7 +2468,7 @@ function NewLabelBucketCard(data_element){
         var xlabel = myArray[0];
         var xproject_id = myArray[1];
 
-        alert(' atag parameters 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
+        alert(' DL TAG atag parameters 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
         var imageLoader_id = $(this).attr('imageLoader_id'); 
         alert(' 2392 imageLoader_id  ' + imageLoader_id)
 
@@ -2508,7 +2508,7 @@ function NewLabelBucketCard(data_element){
         var xlabel = myArray[0];
         var xproject_id = myArray[1];
 
-        alert(' DL Tag ---- delete tag button 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
+        alert('  delete tag button 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
     });   
 
 
