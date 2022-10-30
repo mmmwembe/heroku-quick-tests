@@ -1595,7 +1595,7 @@ function create_card(data){
                             <button type="submit" id="deleteLabelButton-${data.index}" class="btn btn-default XXBUTTON">Submit</button>
                         </form>
                             <div class="solTitle" id="solTitle${data.index}">
-                                 <a href="/atagDelete?a=100&b=500" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
+                                 <a href="/atagDelete?label=${data.label}&project_id=${data.project_id}&a=100&b=500" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-${data.index}" data-label="${data.label ? data.label : ""}" project_id="${data.project_id ? data.project_id : ""}">Delete</a> <small> Delete all images & labels</small>
                             </div>
                         </div>
                     </div>`  : ""
@@ -1848,7 +1848,7 @@ $.ajax({
         //alert(' Line 1887 - this is the first gate I see')   
 
         //show_label_buckets()
-        new_create_label_buckets(data)
+        // new_create_label_buckets(data)
 
         // create_label_buckets(data)
 
@@ -1875,7 +1875,7 @@ $.ajax({
 
             new_row.innerHTML = combined_card_string
 
-            // document.getElementById('label_buckets_container').appendChild(new_row)
+            document.getElementById('label_buckets_container').appendChild(new_row)
       
         }
 
