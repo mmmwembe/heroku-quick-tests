@@ -2315,13 +2315,17 @@ function NewLabelBucketCard(data_element){
     var atag_showthumbnails = document.createElement("a");
     atag_showthumbnails.id =  label + "-" + project_js_id
     atag_showthumbnails.className ="btn"
-    atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
+    //atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
     atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
     atag_showthumbnails.setAttribute("label",label)
     atag_showthumbnails.setAttribute("project_id",project_js_id)
     atag_showthumbnails.innerHTML ="Show Images";
     atag_showthumbnails.addEventListener('mouseover',function(){ $(this).css('background-color', color);  });
     atag_showthumbnails.addEventListener('mouseout', function(){ $(this).css('background-color', '');  });
+    atag_showthumbnails.addEventListener('click', function(){ 
+        var atag_id_x = $(this).attr('id');  
+        alert(' atag_showthumbnails 2327 : ' + atag_id_x)
+    });
     //$("#"+atag_id).on('click', function(e) { alert("inside onclick + atag_showthumbnails "); });
 
     const input_2 = document.createElement('input')
