@@ -2373,11 +2373,21 @@ function NewLabelBucketCard(data_element){
     const atag_imgs_upload = document.createElement('a')
     atag_imgs_upload.href ="/upload?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
     atag_imgs_upload.className ="btn btn-success"
-    atag_imgs_upload.id ="upload-images-anchor-btn-001";
+    atag_imgs_upload.id =  label + "-" + project_js_id;
     atag_imgs_upload.setAttribute("label",label)
     atag_imgs_upload.setAttribute("project_id",project_js_id)
     atag_imgs_upload.innerHTML ="Upload Images";
-    atag_imgs_upload.style ="display: inline; width: 100%;"              
+    atag_imgs_upload.style ="display: inline; width: 100%;"     
+    atag_imgs_upload.addEventListener('mouseover',function(){ $(this).css('opacity', 0.5);  });
+    atag_imgs_upload.addEventListener('mouseout', function(){ $(this).css('opacity', 1.0);  });
+    atag_imgs_upload.addEventListener('click', function(){ 
+        var atag_imgs_x = $(this).attr('id');  
+        const myArray = atag_imgs_x.split("-");
+        var xlabel = myArray[0];
+        var xproject_id = myArray[1];
+
+        alert(' atag parameters 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
+    });         
 
 
     upload_left_div.append(input_1x)
