@@ -2508,7 +2508,7 @@ function NewLabelBucketCard(data_element){
         var xlabel = myArray[0];
         var xproject_id = myArray[1];
 
-        alert(' delete tag button 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
+        alert(' DL Tag ---- delete tag button 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
     });   
 
 
