@@ -1161,10 +1161,12 @@ def upload_x_files():
 			file.seek(0)
 			blob.upload_from_string(file.read(), content_type=file.content_type)
 			blob_public_url = blob.public_url 
-   
+			gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path) 
+			returned_public_urls.append(gcs_url) 
+      
     
 	# return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
-	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array)
+	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array, returned_public_urls = returned_public_urls)
 
 
 
