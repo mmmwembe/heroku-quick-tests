@@ -2443,11 +2443,11 @@ function NewLabelBucketCard(data_element){
     atag.id =  label + "-" + project_js_id; + "-deleteLabelButton"
     atag.setAttribute("label",label)
     atag.setAttribute("project_id",project_js_id)
-    atag.innerHTML ="Delete";
-    //atag.addEventListener('mouseover',function(){ $(this).css('opacity', 0.5);  });
-    //atag.addEventListener('mouseout', function(){ $(this).css('opacity', 1.0);  });
+    atag.innerHTML ="Delete"; 
+    atag.addEventListener('mouseover',function(){ $(this).removeClass("btn btn-success");   $(this).addClass("btn btn-warning");   });
+    atag.addEventListener('mouseout', function(){ $(this).removeClass("btn btn-warning");   $(this).addClass("btn btn-success");   });
     atag.addEventListener('click', function(){ 
-        
+
         var atag_delete_x = $(this).attr('id');  
         const myArray = atag_delete_x.split("-");
         var xlabel = myArray[0];
