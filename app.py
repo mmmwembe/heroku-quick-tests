@@ -1136,6 +1136,7 @@ def upload_x_files():
 	if 'x-files[]' not in request.files:
 		return redirect(request.url)
 
+	file_names = []
 	files = request.files.getlist('x-files[]')
 	xproject_id = request.form['project_id']
 	xlabel = request.form['label']
@@ -1143,9 +1144,17 @@ def upload_x_files():
 	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
 	gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_subdir"], xproject_id, xlabel)
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+	returned_public_urls =[]
+	client = storage.Client()
+	bucket = client.get_bucket(bucket_name)
 
+	for file in files:
+		if file and (file.filename).lower().endswith(tuple(target_file_types_array)):
+			filename = secure_filename(file.filename) 
+			file_names.append(filename)
+ 
 	# return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
-	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path)
+	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names)
 
 
 
