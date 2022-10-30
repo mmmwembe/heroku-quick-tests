@@ -40,21 +40,34 @@
 
     <script>
 
+
+
+
+
+
         function NewCard(data_element){
 
-            var project_name = data_element.project_name ? data_element.project_name : ""
-            var date_created = data_element.date_created ? data_element.project_name : ""
 
+
+            var counter = data_element.index ? data_element.index : ""
+            var label = data_element.label ? data_element.label : ""
+            var color = data_element.color ? data_element.color : ""            
+            var number_original_images = data_element.num_images ? data_element.num_images : ""
+            var project_name = data_element.project_name ? data_element.project_name : ""
+            var project_js_id = data_element.project_id ? data_element.project_id : ""
+            var date_created = data_element.date_created ? data_element.project_name : ""
+            var all_labeled_true_false = data_element.all_labeled_true_false ? data_element.all_labeled_true_false : false;
+            var user_id = data_element.user_id ? data_element.user_id : ""
             //alert(' project_name : ' + project_name +  ' date_created : ' + date_created)
 
 
             const newCardParent = document.createElement('div')
             newCardParent.className ="col card h-100 mb-3 w-15"
-            newCardParent.style= "margin-top: 10px; margin-right: 5px; margin-bottom: 20px; border: 5px solid blue;";
+            newCardParent.style= "margin-top: 10px; margin-right: 5px; margin-bottom: 20px; border: 5px solid " + color;
 
             const h5 = document.createElement('h5')
             h5.className ="card-header d-flex justify-content-between align-items-center;"
-            h5.innerHTML ="MY LABEL";
+            h5.innerHTML = label;
 
             const checkmark_div = document.createElement('div')
             checkmark_div.id = "labeling_complete"
@@ -98,13 +111,13 @@
 
             var atag_showthumbnails = document.createElement("a");
             atag_showthumbnails.className ="btn"
-            atag_showthumbnails.href = "/showImages?label=Frog&project_id=121450";
-            atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid green; background: yellow;"
-            atag_showthumbnails.setAttribute("label","0000128238732")
-            atag_showthumbnails.setAttribute("project_id","current_folder")
+            atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
+            atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
+            atag_showthumbnails.setAttribute("label",label)
+            atag_showthumbnails.setAttribute("project_id",project_js_id)
             atag_showthumbnails.innerHTML ="Show Images";
-            atag_showthumbnails.addEventListener('mouseover',function(){ $(this).css('background-color','green'); });
-            atag_showthumbnails.addEventListener('mouseout', function(){ $(this).css('background-color','yellow');     });
+            atag_showthumbnails.addEventListener('mouseover',function(){ $(this).css('background-color', color);  });
+            atag_showthumbnails.addEventListener('mouseout', function(){ $(this).css('background-color', '');  });
 
             const input_2 = document.createElement('input')
             input_2.type ="hidden"
@@ -114,9 +127,9 @@
 
             const input_3 = document.createElement('input')
             input_3.type ="hidden"
-            input_3.id ="project_id";
-            input_3.value ="project js id";
-            input_3.name ="project id";
+            input_3.id = project_js_id;
+            input_3.value = project_js_id;
+            input_3.name = project_js_id;
 
             //show_thumbnails_div.append(input_1)     
             show_thumbnails_div.append(input_2)  
@@ -137,7 +150,7 @@
             const input_1x = document.createElement('input')
             input_1x.className ="form-control"
             input_1x.type ="file"
-            input_1x.id ="imageLoader-101";
+            input_1x.id ="imageLoader-" + counter;
             input_1x.name ="upload_images_project_label[]"
             input_1x.multiple = true;
             input_1x.autocomplete = true;
@@ -145,11 +158,11 @@
      
 
             const atag_imgs_upload = document.createElement('a')
-            atag_imgs_upload.href ="/upload?a=100&b=500"
+            atag_imgs_upload.href ="/upload?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
             atag_imgs_upload.className ="btn btn-success"
             atag_imgs_upload.id ="upload-images-anchor-btn-001";
-            atag_imgs_upload.setAttribute("label","0000128238732")
-            atag_imgs_upload.setAttribute("project_id","current_folder")
+            atag_imgs_upload.setAttribute("label",label)
+            atag_imgs_upload.setAttribute("project_id",project_js_id)
             atag_imgs_upload.innerHTML ="Upload Images";
             atag_imgs_upload.style ="display: inline; width: 100%;"              
 
@@ -163,8 +176,8 @@
             input_2x.id ="uploadImagesButton-001";
             input_2x.value ="Upload Images";
             input_2x.style="margin-left: 0px;"
-            input_2x.setAttribute("project_id","0000128238732")
-            input_2x.setAttribute("current_folder","current_folder")
+            input_2x.setAttribute("project_id",project_js_id)
+            input_2x.setAttribute("current_folder",label)
             // input_2x.onclick = uploadButtonAction("motocar")
 
 
@@ -201,12 +214,12 @@
 
 
             const atag = document.createElement('a')
-            atag.href ="/atagDelete?a=100&b=500"
+            atag.href ="/atagDelete?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
             atag.className ="btn btn-danger xDeleteButtonClass"
             // atag.style = "margin-top: 20px; width: 30%;"
-            atag.id ="deleteLabelButton-001";
-            atag.setAttribute("label","0000128238732")
-            atag.setAttribute("project_id","current_folder")
+            atag.id ="deleteLabelButton-" + counter;
+            atag.setAttribute("label",label)
+            atag.setAttribute("project_id",project_js_id)
             atag.innerHTML ="Delete";
 
             const small_1x = document.createElement('small')
@@ -214,7 +227,7 @@
             small_1x.innerHTML ="Delete all images & labels";
             small_1x.style = "margin-left: 10px; "  
 
-            // cardFooter.append(input_group)
+
             left_div.append(atag)
             right_div.append(small_1x)
 
@@ -231,8 +244,7 @@
             newCardParent.append(show_thumbnails_div)
             newCardParent.append(input_group)
             newCardParent.append(cardFooter)
-            //newCardParent.append(atag)
-            // newCardParent.append(small_1x)
+    
 
             return newCardParent
 
@@ -285,6 +297,31 @@
 
             document.getElementById('block').appendChild(new_row)
         
+        }
+
+    }
+
+
+
+
+
+
+    function new_create_label_buckets(data){
+
+        for (var i = 0; i < data.length; i += 4) {
+
+            var new_row = document.createElement('div')
+            new_row.className="row"
+
+            for (var k = i; k <= 4; k += 1){
+
+                var new_card = NewCard(data[k])
+                new_row.appendChild(new_card)
+
+            }
+
+            document.getElementById('block').appendChild(new_row)
+
         }
 
     }

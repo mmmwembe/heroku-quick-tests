@@ -1848,6 +1848,7 @@ $.ajax({
         //alert(' Line 1887 - this is the first gate I see')   
 
         //show_label_buckets()
+        new_create_label_buckets(data)
 
         // create_label_buckets(data)
 
@@ -2239,6 +2240,259 @@ var parsed = JSON.parse({{'lat_lng | tojson'}});
 alert('line 2214 - ' + JSON.stringify(parsed))
 
 */
+
+
+
+//---------------------------------------------------------------
+//          New Dynamic Generation of Label Bucket Cards      
+//----------------------------------------------------------------
+
+function NewLabelBucketCard(data_element){
+
+    var counter = data_element.index ? data_element.index : ""
+    var label = data_element.label ? data_element.label : ""
+    var color = data_element.color ? data_element.color : ""            
+    var number_original_images = data_element.num_images ? data_element.num_images : ""
+    var project_name = data_element.project_name ? data_element.project_name : ""
+    var project_js_id = data_element.project_id ? data_element.project_id : ""
+    var date_created = data_element.date_created ? data_element.project_name : ""
+    var all_labeled_true_false = data_element.all_labeled_true_false ? data_element.all_labeled_true_false : false;
+    var user_id = data_element.user_id ? data_element.user_id : ""
+    //alert(' project_name : ' + project_name +  ' date_created : ' + date_created)
+
+
+    const newCardParent = document.createElement('div')
+    newCardParent.className ="col card h-100 mb-3 w-15"
+    newCardParent.style= "margin-top: 10px; margin-right: 5px; margin-bottom: 20px; border: 5px solid " + color;
+
+    const h5 = document.createElement('h5')
+    h5.className ="card-header d-flex justify-content-between align-items-center;"
+    h5.innerHTML = label;
+
+    const checkmark_div = document.createElement('div')
+    checkmark_div.id = "labeling_complete"
+    checkmark_div.innerHTML ="&#x2705;";
+    h5.append(checkmark_div)
+
+    const cardBody = document.createElement('div')
+    cardBody.className ="card-body"
+
+    const h2 = document.createElement('h2')
+    h2.className ="card-title"
+    h2.innerHTML ="";
+
+    const p1 = document.createElement('p')
+    p1.className ="card-text"
+    p1.innerHTML ="";
+
+    const p2 = document.createElement('p')
+    p2.className ="card-text"
+    p2.innerHTML ="Number of Images:";
+
+    const p3 = document.createElement('p')
+    p3.className ="card-text"
+    p3.innerHTML ="Labelled Images:";
+
+    const p4 = document.createElement('p')
+    p4.className ="card-text"
+
+    const small_1 = document.createElement('small')
+    small_1.className ="text-muted"
+    small_1.innerHTML ="";
+    p4.append(small_1)  
+
+    const show_thumbnails_div = document.createElement('div')
+    //const input_1 = document.createElement('input')
+    //input_1.type ="submit"
+    //input_1.id ="showThumbnails";
+    //input_1.value ="Show Images";
+    //input_1.style="margin-left: 0px; width: 50%; height: 50px; margin-bottom: 20px; border: 5px solid green;"
+    //input_1.onclick = showImagesAction()
+
+    var atag_showthumbnails = document.createElement("a");
+    atag_showthumbnails.className ="btn"
+    atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
+    atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
+    atag_showthumbnails.setAttribute("label",label)
+    atag_showthumbnails.setAttribute("project_id",project_js_id)
+    atag_showthumbnails.innerHTML ="Show Images";
+    atag_showthumbnails.addEventListener('mouseover',function(){ $(this).css('background-color', color);  });
+    atag_showthumbnails.addEventListener('mouseout', function(){ $(this).css('background-color', '');  });
+
+    const input_2 = document.createElement('input')
+    input_2.type ="hidden"
+    input_2.id ="current_folder";
+    input_2.value ="current label";
+    input_2.name ="current_folder";
+
+    const input_3 = document.createElement('input')
+    input_3.type ="hidden"
+    input_3.id = project_js_id;
+    input_3.value = project_js_id;
+    input_3.name = project_js_id;
+
+    //show_thumbnails_div.append(input_1)     
+    show_thumbnails_div.append(input_2)  
+    show_thumbnails_div.append(input_3)  
+    show_thumbnails_div.append(atag_showthumbnails) 
+
+    const input_group = document.createElement('div')
+    input_group.className ="input-group"
+    input_group.style ="display: inline;"
+
+
+    const upload_left_div = document.createElement('div')
+    upload_left_div.style ="display: inline;"  
+    
+    const upload_right_div = document.createElement('div')
+    upload_right_div.style ="display: inline;"             
+
+    const input_1x = document.createElement('input')
+    input_1x.className ="form-control"
+    input_1x.type ="file"
+    input_1x.id ="imageLoader-" + counter;
+    input_1x.name ="upload_images_project_label[]"
+    input_1x.multiple = true;
+    input_1x.autocomplete = true;
+    input_1x.required =true;
+
+
+    const atag_imgs_upload = document.createElement('a')
+    atag_imgs_upload.href ="/upload?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
+    atag_imgs_upload.className ="btn btn-success"
+    atag_imgs_upload.id ="upload-images-anchor-btn-001";
+    atag_imgs_upload.setAttribute("label",label)
+    atag_imgs_upload.setAttribute("project_id",project_js_id)
+    atag_imgs_upload.innerHTML ="Upload Images";
+    atag_imgs_upload.style ="display: inline; width: 100%;"              
+
+
+    upload_left_div.append(input_1x)
+    upload_right_div.append(atag_imgs_upload)
+
+    const input_2x = document.createElement('input')
+    input_2x.className ="btn  btn-info xUploadImagesBtnClass"
+    input_2x.type ="submit"
+    input_2x.id ="uploadImagesButton-001";
+    input_2x.value ="Upload Images";
+    input_2x.style="margin-left: 0px;"
+    input_2x.setAttribute("project_id",project_js_id)
+    input_2x.setAttribute("current_folder",label)
+    // input_2x.onclick = uploadButtonAction("motocar")
+
+
+    const input_3x = document.createElement('input')
+    input_3x.type ="hidden"
+    input_3x.id ="current_folder";
+    input_3x.value ="current label";
+    input_3x.name ="current_folder";
+
+    const input_4x = document.createElement('input')
+    input_4x.type ="hidden"
+    input_4x.id ="current_folder";
+    input_4x.value ="images-for-labeling";
+    input_4x.name ="which-form";
+
+    //input_group.append(input_1x)
+    //input_group.append(atag_imgs_upload)
+    input_group.append(upload_left_div)
+    input_group.append(upload_right_div)            
+    //input_group.append(input_2x)
+    input_group.append(input_3x)
+    input_group.append(input_4x)
+
+
+
+    const cardFooter = document.createElement('div')
+    cardFooter.className ="card-footer"
+    cardFooter.style ="display: inline;"
+
+    const left_div =  document.createElement('div')
+    left_div.style = "display: inline;"            
+    const right_div =  document.createElement('div')
+    right_div.style = "display: inline; "    
+
+
+    const atag = document.createElement('a')
+    atag.href ="/atagDelete?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
+    atag.className ="btn btn-danger xDeleteButtonClass"
+    // atag.style = "margin-top: 20px; width: 30%;"
+    atag.id ="deleteLabelButton-" + counter;
+    atag.setAttribute("label",label)
+    atag.setAttribute("project_id",project_js_id)
+    atag.innerHTML ="Delete";
+
+    const small_1x = document.createElement('small')
+    small_1x.className ="text-muted"
+    small_1x.innerHTML ="Delete all images & labels";
+    small_1x.style = "margin-left: 10px; "  
+
+
+    left_div.append(atag)
+    right_div.append(small_1x)
+
+    cardFooter.append(left_div)
+    cardFooter.append(right_div)
+
+    newCardParent.append(h5)
+    newCardParent.append(cardBody)    
+    newCardParent.append(h2)
+    newCardParent.append(p1)
+    newCardParent.append(p2)
+    newCardParent.append(p3)    
+    newCardParent.append(p4)            
+    newCardParent.append(show_thumbnails_div)
+    newCardParent.append(input_group)
+    newCardParent.append(cardFooter)
+
+
+    return newCardParent
+
+}
+
+
+
+function new_create_label_buckets(data){
+
+    for (var i = 0; i < data.length; i += 4) {
+
+        var new_row = document.createElement('div')
+        new_row.className="row"
+
+        for (var k = i; k <= 4; k += 1){
+
+            var new_card = NewCard(data[k])
+            new_row.appendChild(new_card)
+
+        }
+
+        document.getElementById('cropped_images_label_buckets_container').appendChild(new_row)
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     
