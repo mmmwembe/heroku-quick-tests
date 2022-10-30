@@ -636,17 +636,17 @@ h4 {
                       </div-->  
                   
                       <div class="card-footer">
-                          <div class="solTitle" id="solTitle-{{ loop.index }}">
-                              <a href="/atagDelete?a=100&b=500" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-{{ loop.index }}" data-label="LABEL" project_id="{{ project_js_id }}">Delete</a> <small> Delete all images & labels</small>
-                          </div>
+                         <a href="/atagDelete?a=100&b=500" class="btn btn-danger xDeleteButtonClass"  id="deleteLabelButton-{{ loop.index }}" data-label="LABEL" project_id="{{ project_js_id }}">Delete</a> <small> Delete all images & labels</small>
                       </div>
                   </div>
 
 
-              {% endfor %}
+             
 
 
           </div>    
+
+          {% endfor %}
   
           {% endfor %}
 
