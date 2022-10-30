@@ -2479,8 +2479,13 @@ function new_create_label_buckets(data){
 //          See section in html page with 'MAIN-CONTAINER USED FOR LABEL BUCKETS"
 //-----------------------------------------------------------------------------------------
 
-alert('active_label :  ' + $('input#active_label').val());
-alert('active_project_id :  ' + $('input#active_project_id').val());
+var active_project_id = {{ active_project_id|safe }};
+var active_label = {{ active_label|safe }};
+
+alert(active_project_id)
+
+//alert('active_label :  ' + $('input#active_label').val());
+//alert('active_project_id :  ' + $('input#active_project_id').val());
 
 
 
