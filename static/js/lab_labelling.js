@@ -246,6 +246,157 @@ function addNewLabel(){
     
     parentLabelClassItem.append(newlabelClassItem)
     
-    }
+
+}
+
+
+function NewCard(){
+
+    const newCardParent = document.createElement('div')
+    newCardParent.className ="col card h-100 mb-3 w-15"
+    newCardParent.style= "margin-top: 10px; margin-right: 5px; margin-bottom: 20px; border: 5px solid blue;";
+
+
+    const h5 = document.createElement('h5')
+    h5.className ="card-header d-flex justify-content-between align-items-center;"
+
+    const checkmark_div = document.createElement('div')
+    checkmark_div.id = "labeling_complete"
+    checkmark_div.innerHTML ="&#x2705;";
+    h5.append(checkmark_div)
+
+    const cardBody = document.createElement('div')
+    cardBody.className ="card-body"
+
+    const h2 = document.createElement('h2')
+    h2.className ="card-title"
+    h2.innerHTML ="";
+
+    const p1 = document.createElement('p')
+    p1.className ="card-text"
+    p1.innerHTML ="";
+
+    const p2 = document.createElement('p')
+    p2.className ="card-text"
+    p2.innerHTML ="Number of Images:";
+
+    const p3 = document.createElement('p')
+    p3.className ="card-text"
+    p3.innerHTML ="Labelled Images:";
+
+    const p4 = document.createElement('p')
+    p4.className ="card-text"
+
+    const small_1 = document.createElement('small')
+    small_1.className ="text-muted"
+    small_1.innerHTML ="";
+    p4.append(small_1)  
+
+    const show_thumbnails_div = document.createElement('div')
+
+    const input_1 = document.createElement('input')
+    input_1.type ="submit"
+    input_1.id ="showThumbnails";
+    input_1.value ="Show Images";
+    input_1.style="margin-left: 0px; width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid green;"
+
+    const input_2 = document.createElement('input')
+    input_2.type ="hidden"
+    input_2.id ="current_folder";
+    input_2.value ="current label";
+    input_2.name ="current_folder";
+
+    const input_3 = document.createElement('input')
+    input_3.type ="hidden"
+    input_3.id ="project_id";
+    input_3.value ="project js id";
+    input_3.name ="project id";
+
+    show_thumbnails_div.append(input_1)     
+    show_thumbnails_div.append(input_2)  
+    show_thumbnails_div.append(input_3)  
+
+
+    const input_group = document.createElement('div')
+    input_group.className ="input-group"
+
+    const input_1x = document.createElement('input')
+    input_1x.type ="file"
+    input_1x.id ="imageLoader-101";
+    input_1x.type ="upload_images_project_label[]"
+    input_1x.multiple = true;
+    input_1x.autocomplete = true;
+    input_1x.required =true;
+
+    const atag_imgs_upload = document.createElement('a')
+    atag_imgs_upload.href ="/upload?a=100&b=500"
+    atag_imgs_upload.className ="btn btn-success"
+    atag_imgs_upload.id ="upload-images-anchor-btn-001";
+    atag_imgs_upload.setAttribute("label","0000128238732")
+    atag_imgs_upload.setAttribute("project_id","current_folder")
+    atag_imgs_upload.innerHTML ="Upload Images";
+
+    const input_2x = document.createElement('input')
+    input_2x.className ="btn  btn-info xUploadImagesBtnClass"
+    input_2x.type ="submit"
+    input_2x.id ="uploadImagesButton-001";
+    input_2x.value ="Upload Images";
+    input_2x.style="margin-left: 0px;"
+    input_2x.setAttribute("project_id","0000128238732")
+    input_2x.setAttribute("current_folder","current_folder")
+    input_2x.onclick = uploadButtonAction($(this).attr('id'))
+
+    const input_3x = document.createElement('input')
+    input_3x.type ="hidden"
+    input_3x.id ="current_folder";
+    input_3x.value ="current label";
+    input_3x.name ="current_folder";
+
+    const input_4x = document.createElement('input')
+    input_4x.type ="hidden"
+    input_4x.id ="current_folder";
+    input_4x.value ="images-for-labeling";
+    input_4x.name ="which-form";
+
+    input_group.append(input_1x)
+    input_group.append(atag_imgs_upload)
+    input_group.append(input_2x)
+    input_group.append(input_3x)
+    input_group.append(input_4x)
+
+    const cardFooter = document.createElement('div')
+    cardFooter.className ="card-footer"
+
+    const atag = document.createElement('a')
+    atag.href ="/atagDelete?a=100&b=500"
+    atag.className ="btn btn-danger xDeleteButtonClass"
+    atag.id ="deleteLabelButton-001";
+    atag.setAttribute("label","0000128238732")
+    atag.setAttribute("project_id","current_folder")
+    atag.innerHTML ="Delete";
+
+    const small_1x = document.createElement('small')
+    small_1x.className ="text-muted"
+    small_1x.innerHTML ="Delete all images & labels";
+    atag.append(small_1x)  
+
+    cardFooter.append(input_group)
+
+    newCardParent.append(h5)
+    newCardParent.append(cardBody)    
+    newCardParent.append(h2)
+    newCardParent.append(p1)
+    newCardParent.append(p2)
+    newCardParent.append(p3)    
+    newCardParent.append(p4)            
+    newCardParent.append(show_thumbnails_div)
+    newCardParent.append(input_group)
+    newCardParent.append(atag)
+}
+
+
+
+NewCard()
+
 
 

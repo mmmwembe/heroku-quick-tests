@@ -1831,7 +1831,8 @@ $.ajax({
                                 "num_images": number_original_images, "labeled_images": "", 
                                 "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
                                 "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
-                                "ISODate": date_created, "date_created": date_created}
+                                "ISODate": date_created, "date_created": date_created, 
+                                "original_image_urls": original_image_urls,"all_jpeg_image_urls": all_jpeg_image_urls}
       
             data.push(data_element)
             
@@ -1873,7 +1874,7 @@ $.ajax({
 
             new_row.innerHTML = combined_card_string
 
-            document.getElementById('label_buckets_container').appendChild(new_row)
+            // document.getElementById('label_buckets_container').appendChild(new_row)
       
         }
 
