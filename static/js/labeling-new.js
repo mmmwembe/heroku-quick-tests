@@ -2310,12 +2310,12 @@ function NewLabelBucketCard(data_element){
     //input_1.value ="Show Images";
     //input_1.style="margin-left: 0px; width: 50%; height: 50px; margin-bottom: 20px; border: 5px solid green;"
     //input_1.onclick = showImagesAction()
-    var atag_id = label + "-" + project_js_id
+    //var atag_id = label + "-" + project_js_id
 
     var atag_showthumbnails = document.createElement("a");
     atag_showthumbnails.id =  atag_id
     atag_showthumbnails.className ="btn"
-    //atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
+    atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
     atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
     atag_showthumbnails.setAttribute("label",label)
     atag_showthumbnails.setAttribute("project_id",project_js_id)
