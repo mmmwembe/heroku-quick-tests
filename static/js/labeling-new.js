@@ -2009,7 +2009,7 @@ $('.xDeleteButtonClass').on('click', function(e){
   
 }); 
 
-alert(' Testing to see where the script stops !!! --- line 2012')
+
 
 showThumbnailsButtons = document.getElementsByClassName('xShowThumbnailsBtnClass');
 
@@ -2599,7 +2599,7 @@ function NewLabelBucketCard(data_element){
 
 }
 
-
+alert(' Testing to see where the script stops !!! --- line 2602')
 
 function new_create_label_buckets(data){
 
