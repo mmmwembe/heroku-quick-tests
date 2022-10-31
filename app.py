@@ -1172,9 +1172,7 @@ def upload_x_files():
 	except:
 		pass
 
-
-
-    # Update the original_image_urls array for the label
+    # Update the original_image_urls array for the label in the database
 	user_projects.update_one(
 		{ "labels.label": xlabel, 'user_id': user_id,'project_js_id': xproject_id }, 
 		{ "$set": { "labels.$.original_image_urls": label_image_urls } }
