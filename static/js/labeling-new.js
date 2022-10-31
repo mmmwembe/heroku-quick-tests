@@ -1764,7 +1764,7 @@ $.ajax({
         var active_project_id = data.active_project_id
         var active_label = data.active_label
         var active_project_result = data.active_project_result[0]
-        //alert('active_project : ' + active_project_id)
+        alert('line 1767 -- active_project : ' + active_project_id)
         //alert('active_label: ' + active_label)
         //alert(' active_project_result  ' + JSON.stringify(active_project_result))
 
