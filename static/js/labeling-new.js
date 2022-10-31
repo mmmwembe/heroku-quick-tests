@@ -1754,6 +1754,8 @@ function submit_form() {
 //ACTIVE_PROJECT_ID = window.localStorage.hasOwnProperty("active_project") ?  window.localStorage.getItem("active_project") : ""
 // alert(' active project id : ' + ACTIVE_PROJECT_ID) // This corresponds to this variable project_js_id
 
+alert(' Testing to see where the script stops !!! --- line 1757')
+
 $.ajax({
     type: "POST",
     url: '/get_active_project',
@@ -2599,7 +2601,7 @@ function NewLabelBucketCard(data_element){
 
 }
 
-alert(' Testing to see where the script stops !!! --- line 2602')
+
 
 function new_create_label_buckets(data){
 
