@@ -1055,6 +1055,7 @@ def delete_project():
 
 @app.route('/get_active_project', methods=['POST','GET'])
 def get_active_project():
+    
     if request.method =='POST':
         
         query ={'user_id': user_id}

@@ -1751,6 +1751,18 @@ function submit_form() {
 //           Check for Current Session Variables and Set Environment Variables
 //--------------------------------------------------------------------------------------------------------------------------
 
+$.ajax({type: "POST", url: "/get_active_project", success: function(data){
+
+    var active_project_id = data.active_project_id
+    var active_label = data.active_label
+    var active_project_result = data.active_project_result[0]
+    alert('line 1759 -- active_project : ' + active_project_id)
+
+  }});
+
+
+
+
 //ACTIVE_PROJECT_ID = window.localStorage.hasOwnProperty("active_project") ?  window.localStorage.getItem("active_project") : ""
 // alert(' active project id : ' + ACTIVE_PROJECT_ID) // This corresponds to this variable project_js_id
 
