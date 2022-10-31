@@ -1886,7 +1886,7 @@ $.ajax({
 });
 
 
-alert(' Testing to see where the script stops !!! --- line 1889')
+
 
 
 function filter_project_json_by_label(label){
@@ -2009,7 +2009,7 @@ $('.xDeleteButtonClass').on('click', function(e){
   
 }); 
 
-
+alert(' Testing to see where the script stops !!! --- line 2012')
 
 showThumbnailsButtons = document.getElementsByClassName('xShowThumbnailsBtnClass');
 
