@@ -106,7 +106,7 @@ window.addEventListener('load', (event) => {
       })
     }
 
-    alert(' Testing to see where the script stops !!! --- line 100')
+ 
     //----------------------------------------------------------
     // Show Marked Images and Enable Download
     //----------------------------------------------------------
@@ -335,7 +335,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 });
 
 
-
+alert(' Testing to see where the script stops !!! --- line 338')
 
 
 
