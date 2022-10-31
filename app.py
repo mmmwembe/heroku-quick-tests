@@ -1063,10 +1063,16 @@ def get_active_project2():
         active_project_id = user_session_info[0]['active_project']
         active_label = user_session_info[0]['active_label']
         
+        # Get all of the user's projects
+        active_project_query = {'project_js_id': active_project_id,  'user_id': user_id}
+        results = user_projects.find(active_project_query)
+        
+        active_project_result =[]
+        for result in results:
+            active_project_result.append(result)        
 
  
-    return jsonify(active_project_id = active_project_id, active_label = active_label)
-
+    return jsonify(active_project_id = active_project_id, active_label = active_label, active_project_result = active_project_result)
 
 
 
