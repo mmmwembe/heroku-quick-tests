@@ -1137,7 +1137,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 });
 
-alert(' Testing to see where the script stops !!! --- line 1140')
 
     function displayLabels(){
 
@@ -1551,6 +1550,7 @@ alert(' Testing to see where the script stops !!! --- line 1140')
 
    }
 
+
 // -----------------------------------------------------------------------
 //                Label Bucket Container 
 //------------------------------------------------------------------------
@@ -1637,6 +1637,7 @@ function create_label_buckets(data){
 
 }
 
+alert(' Testing to see where the script stops !!! --- line 1640')
 
 function create_label_buckets_dummy(project_json_storage_variable){
 
