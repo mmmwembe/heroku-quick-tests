@@ -1637,7 +1637,7 @@ function create_label_buckets(data){
 
 }
 
-alert(' Testing to see where the script stops !!! --- line 1640')
+
 
 function create_label_buckets_dummy(project_json_storage_variable){
 
@@ -1885,6 +1885,8 @@ $.ajax({
    
 });
 
+
+alert(' Testing to see where the script stops !!! --- line 1889')
 
 
 function filter_project_json_by_label(label){
