@@ -335,8 +335,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 });
 
 
-alert(' Testing to see where the script stops !!! --- line 338')
-
 
 
     function showFirstImage(){
@@ -707,7 +705,7 @@ alert(' Testing to see where the script stops !!! --- line 338')
         
     }
 
-
+    alert(' Testing to see where the script stops !!! --- line 708')
     // -----------------------------------------------------------------------------------------------------------------
     //                     Show Labelled Images and Enable Images Download
     //                     Also populate LABELED_IMAGES_TRACKER and get NUM_LABELLED_IMAGES and NUM_IMAGES_TOTAL
