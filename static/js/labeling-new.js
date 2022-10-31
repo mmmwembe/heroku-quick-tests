@@ -1751,7 +1751,12 @@ function submit_form() {
 //           Check for Current Session Variables and Set Environment Variables
 //--------------------------------------------------------------------------------------------------------------------------
 
-$.ajax({type: "POST", url: "/get_active_project", success: function(data){
+$.ajax({
+    type: "POST", 
+    url: "/get_active_project",
+    dataType: 'json',
+    data: {}, 
+    success: function(data){
 
     var active_project_id = data.active_project_id
     var active_label = data.active_label
