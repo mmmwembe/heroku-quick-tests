@@ -1173,10 +1173,7 @@ def upload_x_files():
 		pass
 
     # Update the original_image_urls array for the label in the database
-	user_projects.update_one(
-		{ "labels.label": xlabel, 'user_id': user_id,'project_js_id': xproject_id }, 
-		{ "$set": { "labels.$.original_image_urls": label_image_urls } }
-    )
+	# user_projects.update_one({ "labels.label": xlabel, 'user_id': user_id,'project_js_id': xproject_id }, { "$set": { "labels.$.original_image_urls": label_image_urls } })
     
 	# return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
 	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array, returned_public_urls = returned_public_urls, label_image_urls = label_image_urls)
