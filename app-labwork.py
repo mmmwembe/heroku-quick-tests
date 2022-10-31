@@ -142,7 +142,12 @@ def upload_x_files():
 
 
 
-
+    my_query = {'project_js_id': active_project_id,  'user_id': user_id}
+    all_results = user_projects.find(my_query)
+    
+    my_results =[]
+    for x in all_results:
+        my_results.append(x)
 
 
 
