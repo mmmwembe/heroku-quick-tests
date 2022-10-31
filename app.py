@@ -1052,6 +1052,24 @@ def delete_project():
               
     return render_template('labeling-choose-project.html', all_projects = all_projects)
 
+@app.route('/get_active_project2', methods=['POST','GET'])
+def get_active_project2():
+    
+    if request.method =='POST':
+        
+        query ={'user_id': user_id}
+        user_session_info = user_session_data.find(query)
+        
+        active_project_id = user_session_info[0]['active_project']
+        active_label = user_session_info[0]['active_label']
+        
+
+ 
+    return jsonify(active_project_id = active_project_id, active_label = active_label)
+
+
+
+
 
 @app.route('/get_active_project', methods=['POST','GET'])
 def get_active_project():

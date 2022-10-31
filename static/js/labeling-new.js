@@ -1753,7 +1753,7 @@ function submit_form() {
 
 $.ajax({
     type: "POST", 
-    url: "/get_active_project",
+    url: "/get_active_project2",
     dataType: 'json',
     data: {}, 
     success: function(data){
