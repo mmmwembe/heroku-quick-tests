@@ -47,7 +47,7 @@ window.addEventListener('load', (event) => {
 
     var user_id ="45f20651684f40be8916c29d69295998"
 
-    alert(' Testing to see where the script stops !!! --- line 50')
+ 
 
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
@@ -106,6 +106,7 @@ window.addEventListener('load', (event) => {
       })
     }
 
+    alert(' Testing to see where the script stops !!! --- line 100')
     //----------------------------------------------------------
     // Show Marked Images and Enable Download
     //----------------------------------------------------------
