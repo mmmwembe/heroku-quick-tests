@@ -1174,9 +1174,11 @@ def upload_x_files():
 
 
 
-    # Get project that needs to be updated
-	active_project_query = {'project_js_id': xproject_id,  'user_id': user_id, 'label': xlabel}
-	results = user_projects.find(active_project_query)
+    # Update the original_image_urls array for the label
+	user_projects.update_one(
+		{ "labels.label": xlabel, 'user_id': user_id,'project_js_id': xproject_id }, 
+		{ "$set": { "labels.$.original_image_urls": label_image_urls } }
+    )
     
 	# return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
 	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array, returned_public_urls = returned_public_urls, label_image_urls = label_image_urls)
