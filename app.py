@@ -1074,7 +1074,7 @@ def get_active_project2():
         except:
             pass
     
-    return jsonify(active_project_id = active_project_id, active_label = active_label, my_results = active_project_result)
+    return jsonify(active_project_id = active_project_id, active_label = active_label, active_project_result = active_project_result)
 
 
 
