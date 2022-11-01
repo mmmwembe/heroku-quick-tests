@@ -1070,7 +1070,7 @@ def get_active_project2():
         for x in all_results:
             my_results.append(x)        
           
-    return jsonify(active_project_id = active_project_id, active_label = active_label, active_project_result = my_results)
+    return jsonify(active_project_id = active_project_id, active_label = active_label, my_results = my_results)
 
 
 
