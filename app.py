@@ -63,6 +63,8 @@ try:
 except:
   pass
 
+
+
 # NOTES - Connecting Heroku to Google Cloud Storage
 # 1) Setup bucket on gcp in project
 # 2) Created service account and downloaded jsons credentials
@@ -195,7 +197,29 @@ def create_dir(dir):
   if not isExist:
     # Create a new directory because it does not exist 
     os.makedirs(dir)
-    
+
+#========================================================================
+#              Get images array from user_projects     
+#========================================================================    
+def get_images_array_from_user_projects(user_id, xproject_id, xlabel, target_array_string):
+  # target_array_string can be one of the following:
+  # target_array_string ['original_image_urls','all_jpeg_image_urls', 'cropped_image_urls', 
+  #                      'augmentation_image_urls', 'original_image_label_jsons', 'all_jpeg_image_label_jsons', 
+  #                      'augmentation_image_label_jsons']
+  label_info_in_user_projects = {'project_js_id': xproject_id,  'user_id': user_id, 'labels.label': xlabel}
+  results = user_projects.find(label_info_in_user_projects)
+  labels =results[0]["labels"]
+  
+  user_images_array = []
+  for label in labels:
+    if label["label"] == xlabel:
+      user_images_array = label[target_array_string]
+      
+  return user_images_array  
+
+
+
+
 
 try:
   create_dir(UPLOAD_FOLDER)
@@ -1095,12 +1119,27 @@ def set_active_label():
         results = user_projects.find(active_project_query)
         
         active_project_result ={}
+        original_image_urls = []
+        all_jpeg_image_urls = []
+        cropped_image_urls = []
+        augmentation_image_urls = []
+        original_image_label_jsons = []
+        original_image_label_jsons = []
+        all_jpeg_image_label_jsons = []
+        augmentation_image_label_jsons = []
         try:
             active_project_result = results[0]
+            original_image_urls = get_images_array_from_user_projects(user_id, project_id, active_label, 'original_image_urls')
+            all_jpeg_image_urls = get_images_array_from_user_projects(user_id, project_id, active_label, 'all_jpeg_image_urls')
+            cropped_image_urls = get_images_array_from_user_projects(user_id, project_id, active_label, 'cropped_image_urls')
+            augmentation_image_urls = get_images_array_from_user_projects(user_id, project_id, active_label, 'augmentation_image_urls')
+            original_image_label_jsons = get_images_array_from_user_projects(user_id, project_id, active_label, 'original_image_label_jsons')
+            all_jpeg_image_label_jsons = get_images_array_from_user_projects(user_id, project_id, active_label, 'all_jpeg_image_label_jsons')
+            augmentation_image_label_jsons = get_images_array_from_user_projects(user_id, project_id, active_label, 'augmentation_image_label_jsons')       
         except:
             pass
         
-    return jsonify(active_project = project_id, active_label = active_label , active_project_result = active_project_result, previous_label = previous_label, previous_project_id = previous_project_id)
+    return jsonify(active_project = project_id, active_label = active_label , active_project_result = active_project_result, previous_label = previous_label, previous_project_id = previous_project_id, original_image_urls = original_image_urls, all_jpeg_image_urls = all_jpeg_image_urls, cropped_image_urls = cropped_image_urls,augmentation_image_urls = augmentation_image_urls,original_image_label_jsons = original_image_label_jsons,original_image_label_jsons = original_image_label_jsons,all_jpeg_image_label_jsons = all_jpeg_image_label_jsons,augmentation_image_label_jsons = augmentation_image_label_jsons)
 
 
 @app.route('/delete_project', methods=['POST','GET'])
