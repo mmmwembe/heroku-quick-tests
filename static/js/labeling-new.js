@@ -2366,7 +2366,7 @@ function NewLabelBucketCard(data_element){
 
             // Update the thumbnail gallery header
             $('#gallery_thumbnails_header').html('');
-            $('#gallery_thumbnails_header').html(active_label);
+            $('#gallery_thumbnails_header').html('<h2>' + active_label +'</h2>');
 
 
 
