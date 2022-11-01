@@ -2288,6 +2288,7 @@ function NewLabelBucketCard(data_element){
     const newCardParent = document.createElement('div')
     newCardParent.className ="col card h-100 mb-3 w-15"
     newCardParent.style= "margin-top: 10px; margin-right: 5px; margin-bottom: 20px; border: 5px solid " + color;
+    newCardParent.id ="card-" + label + "-" + project_js_id
 
     const h5 = document.createElement('h5')
     h5.className ="card-header d-flex justify-content-between align-items-center;"
@@ -2335,7 +2336,7 @@ function NewLabelBucketCard(data_element){
     //var atag_id = label + "-" + project_js_id
 
     var atag_showthumbnails = document.createElement("a");
-    atag_showthumbnails.id =  label + "-" + project_js_id
+    atag_showthumbnails.id = 'atag_showthumbnails' + label + "-" + project_js_id
     atag_showthumbnails.className ="btn"
     //atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
     atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
@@ -2367,6 +2368,10 @@ function NewLabelBucketCard(data_element){
             // Update the thumbnail gallery header
             $('#gallery_thumbnails_header').html('');
             $('#gallery_thumbnails_header').html('<h2>' + active_label +'</h2>');
+
+            $('#' + 'card-' + label + "-" + project_js_id).css('background','#8ec252')
+
+            
 
 
 
