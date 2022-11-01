@@ -2369,7 +2369,7 @@ function NewLabelBucketCard(data_element){
             $('#gallery_thumbnails_header').html('');
             $('#gallery_thumbnails_header').html('<h2>' + active_label +'</h2>');
 
-            $('#' + 'card-' + label + "-" + project_js_id).css('background','#8ec252')
+            $('#' + 'card-' + label + '-' + project_js_id).css('background','#8ec252')
 
             
 
