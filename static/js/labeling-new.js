@@ -2355,7 +2355,7 @@ function NewLabelBucketCard(data_element){
             type: "POST", 
             url: "/set_active_label",
             dataType: 'json',
-            data: {'project_id': xproject_id,'active_label': xlabel}, 
+            data: {'project_id': $(this).attr('project_id'),'active_label': $(this).attr('label')}, 
             success: function(data){
         
             var active_project_id = data.active_project
