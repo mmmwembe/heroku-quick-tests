@@ -1456,7 +1456,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 // alert('user id: ' + server_user_id)
                 // alert('server project name: ' + server_project_name)
                 // alert('server project id: ' + server_project_id )
-                alert('Line 1459 create_new_project   active_project_result : ' + JSON.stringify(data.active_project_result))
+                
 
             }
             
@@ -1543,6 +1543,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 //alert('user id: ' + server_user_id)
                 //alert('server project name: ' + server_project_name)
                 //alert('server project id: ' + server_project_id )
+                // alert('Line 1459 create_new_project   active_project_result : ' + JSON.stringify(data.active_project_result))
 
             }
             
@@ -1766,8 +1767,6 @@ $.ajax({
     alert('active_label: ' + active_label)
     alert(' active_project_result  ' + JSON.stringify(active_project_result))
   }});
-
-
 
 
 //ACTIVE_PROJECT_ID = window.localStorage.hasOwnProperty("active_project") ?  window.localStorage.getItem("active_project") : ""
@@ -2351,7 +2350,22 @@ function NewLabelBucketCard(data_element){
         var xlabel = myArray[0];
         var xproject_id = myArray[1];
 
-        alert(' atag parameters 2331 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
+        $.ajax({
+            type: "POST", 
+            url: "/set_active_label",
+            dataType: 'json',
+            data: {'project_id': xproject_id,'active_label': xlabel}, 
+            success: function(data){
+        
+            var active_project_id = data.active_project_id
+            var active_label = data.active_label
+            var active_project_result = data.active_project_result
+            alert('line 2363 -- active_project : ' + active_project_id)
+            alert('line 2364 active_label: ' + active_label)
+            alert('line 2365 active_project_result  ' + JSON.stringify(active_project_result))
+          }});
+
+        // alert(' atag parameters 2331 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
     });
     //$("#"+atag_id).on('click', function(e) { alert("inside onclick + atag_showthumbnails "); });
 
