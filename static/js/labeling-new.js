@@ -1456,7 +1456,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 // alert('user id: ' + server_user_id)
                 // alert('server project name: ' + server_project_name)
                 // alert('server project id: ' + server_project_id )
-                alert('Line 1459 create_new_project   active_project_result : ' + JSON.stringify(active_project_result))
+                alert('Line 1459 create_new_project   active_project_result : ' + JSON.stringify(data.active_project_result))
 
             }
             
