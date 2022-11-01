@@ -970,8 +970,34 @@ def create_new_project():
             
         else:
             pass
+        
+        ###############################################################
+        #  Save active project in user_session_data
+        
+        query = {'user_id': user_id }
+        
+        # Delete existing user_session data for this user
+        try:
+            delete_result = user_session_data.delete_one(query)  
+        except:
+            pass
+        
+        time.sleep(1)
+        # save new active project in users session data
+        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': project_id, 'active_label': ''}) 
+         
+        # Get all of the user's projects
+        active_project_query = {'project_js_id': project_id,  'user_id': user_id}
+        results = user_projects.find(active_project_query)
+        
+        active_project_result ={}
+        try:
+            active_project_result = results[0]
+        except:
+            pass
+           
                  
-    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false, labels = labels_color_map_dict_from_json_string)
+    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false, labels = labels_color_map_dict_from_json_string, active_project_result = active_project_result)
     # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
 
