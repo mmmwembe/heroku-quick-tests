@@ -2288,7 +2288,7 @@ function NewLabelBucketCard(data_element){
     const newCardParent = document.createElement('div')
     newCardParent.className ="col card h-100 mb-3 w-15"
     newCardParent.style= "margin-top: 10px; margin-right: 5px; margin-bottom: 20px; border: 5px solid " + color;
-    newCardParent.id ="card-" + label + "-" + project_js_id
+    //newCardParent.id ="card-" + label + "-" + project_js_id
 
     const h5 = document.createElement('h5')
     h5.className ="card-header d-flex justify-content-between align-items-center;"
