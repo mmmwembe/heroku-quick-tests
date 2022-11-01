@@ -1067,15 +1067,28 @@ def set_active_label():
         active_label = request.form['active_label']        
         query = {'user_id': user_id }
         
+
+        previous_outputs = user_session_data.find(query)
+        output = previous_outputs[0]
+        previous_project_id =''
+        previous_label=''
+
+        try:
+          previous_project_id = output['active_project']
+          previous_label =  output['active_label']
+        except:
+            pass
+        
         # Delete existing user_session data for this user
         try:
-            delete_result = user_session_data.delete_one(query)  
+            # delete_result = user_session_data.delete_one(query)  
+            delete_result = user_session_data.delete_many(query)              
         except:
             pass
         
         time.sleep(1)
         # save new active project in users session data
-        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': project_id, 'active_label': active_label}) 
+        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': project_id, 'active_label': active_label,'previous_label': previous_label, 'previous_project_id': previous_project_id}) 
         
         # Get all of the user's projects
         active_project_query = {'project_js_id': project_id,  'user_id': user_id}
@@ -1087,7 +1100,7 @@ def set_active_label():
         except:
             pass
         
-    return jsonify(active_project = project_id, active_label = active_label , active_project_result = active_project_result)
+    return jsonify(active_project = project_id, active_label = active_label , active_project_result = active_project_result, previous_label = previous_label, previous_project_id = previous_project_id)
 
 
 @app.route('/delete_project', methods=['POST','GET'])
