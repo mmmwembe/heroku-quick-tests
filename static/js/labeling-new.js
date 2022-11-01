@@ -2348,8 +2348,8 @@ function NewLabelBucketCard(data_element){
     atag_showthumbnails.addEventListener('click', function(){ 
         var atag_id_x = $(this).attr('id');  
         const myArray = atag_id_x.split("-");
-        var xlabel = myArray[0];
-        var xproject_id = myArray[1];
+        var xlabel = myArray[1];
+        var xproject_id = myArray[2];
 
         $.ajax({
             type: "POST", 
