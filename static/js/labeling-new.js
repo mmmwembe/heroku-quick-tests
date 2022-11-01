@@ -2336,7 +2336,7 @@ function NewLabelBucketCard(data_element){
     //var atag_id = label + "-" + project_js_id
 
     var atag_showthumbnails = document.createElement("a");
-    atag_showthumbnails.id = 'atag_showthumbnails-' + label + "-" + project_js_id
+    atag_showthumbnails.id = label + "-" + project_js_id
     atag_showthumbnails.className ="btn"
     //atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
     atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
@@ -2348,8 +2348,8 @@ function NewLabelBucketCard(data_element){
     atag_showthumbnails.addEventListener('click', function(){ 
         var atag_id_x = $(this).attr('id');  
         const myArray = atag_id_x.split("-");
-        var xlabel = myArray[1];
-        var xproject_id = myArray[2];
+        var xlabel = myArray[0];
+        var xproject_id = myArray[1];
 
         $.ajax({
             type: "POST", 
@@ -2369,7 +2369,7 @@ function NewLabelBucketCard(data_element){
             $('#gallery_thumbnails_header').html('');
             $('#gallery_thumbnails_header').html('<h2>' + active_label +'</h2>');
 
-            $('#' + 'card-' + label + '-' + project_js_id).css('background','#8ec252')
+            //$('#' + 'card-' + label + '-' + project_js_id).css('background','#8ec252')
 
             
 
