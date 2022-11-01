@@ -2360,7 +2360,7 @@ function NewLabelBucketCard(data_element){
             var active_project_id = data.active_project_id
             var active_label = data.active_label
             var active_project_result = data.active_project_result
-            alert('line 2363 -- active_project : ' + data.active_project_id)
+            alert('line 2363 -- active_project : ' + active_project_id)
             alert('line 2364 active_label: ' + active_label)
             alert('line 2365 active_project_result  ' + JSON.stringify(active_project_result))
 
