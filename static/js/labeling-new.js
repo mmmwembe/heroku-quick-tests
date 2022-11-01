@@ -2350,12 +2350,13 @@ function NewLabelBucketCard(data_element){
         const myArray = atag_id_x.split("-");
         var xlabel = myArray[0];
         var xproject_id = myArray[1];
+        alert('line 2353 xlabel  ' + xlabel + ' xproject_id' + xproject_id)
 
         $.ajax({
             type: "POST", 
             url: "/set_active_label",
             dataType: 'json',
-            data: {'project_id': $(this).attr('project_id'),'active_label': $(this).attr('label')}, 
+            data: {'project_id': xproject_id,'active_label': xlabel}, 
             success: function(data){
         
             var active_project_id = data.active_project
