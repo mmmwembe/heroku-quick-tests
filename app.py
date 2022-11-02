@@ -991,9 +991,11 @@ def create_new_project():
                 labels.append(label_dict)
             # update user_projects record
             results = user_projects.find_one_and_update({"_id" : proj_id}, {"$set":{'labels': labels}},upsert=True)
-            
+                 
         else:
             pass
+        
+        
         
         ###############################################################
         #  Save active project in user_session_data
@@ -1123,7 +1125,6 @@ def set_active_label():
         all_jpeg_image_urls = []
         cropped_image_urls = []
         augmentation_image_urls = []
-        original_image_label_jsons = []
         original_image_label_jsons = []
         all_jpeg_image_label_jsons = []
         augmentation_image_label_jsons = []
