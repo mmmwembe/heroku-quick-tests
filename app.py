@@ -1332,9 +1332,36 @@ def upload_x_files():
 
     # Update the original_image_urls array for the label in the database
 	user_projects.update_one({ "labels.label": xlabel, 'user_id': user_id,'project_js_id': xproject_id }, { "$set": { "labels.$.original_image_urls": label_image_urls } })
-    
+
+	# Pause for 1 second to allow the database to be updated before querying it
+	time.sleep(1)
+
+	# Get all of the user's projects
+	active_project_query = {'project_js_id': xproject_id,  'user_id': user_id}
+	results = user_projects.find(active_project_query)
+	
+	active_project_result ={}
+	original_image_urls = []
+	all_jpeg_image_urls = []
+	cropped_image_urls = []
+	augmentation_image_urls = []
+	original_image_label_jsons = []
+	all_jpeg_image_label_jsons = []
+	augmentation_image_label_jsons = []
+	try:
+		active_project_result = results[0]
+		original_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'original_image_urls')
+		all_jpeg_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'all_jpeg_image_urls')
+		cropped_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'cropped_image_urls')
+		augmentation_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'augmentation_image_urls')
+		original_image_label_jsons = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'original_image_label_jsons')
+		all_jpeg_image_label_jsons = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'all_jpeg_image_label_jsons')
+		augmentation_image_label_jsons = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'augmentation_image_label_jsons')       
+	except:
+		pass    
 	# return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
-	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array, returned_public_urls = returned_public_urls, label_image_urls = label_image_urls)
+	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array, returned_public_urls = returned_public_urls, label_image_urls = label_image_urls,active_project_result = active_project_result, original_image_urls = original_image_urls, all_jpeg_image_urls = all_jpeg_image_urls, cropped_image_urls = cropped_image_urls,augmentation_image_urls = augmentation_image_urls,original_image_label_jsons = original_image_label_jsons,all_jpeg_image_label_jsons = all_jpeg_image_label_jsons,augmentation_image_label_jsons = augmentation_image_label_jsons
+)
 
 
 
