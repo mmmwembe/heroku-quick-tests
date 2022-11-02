@@ -1140,7 +1140,7 @@ def set_active_label():
         except:
             pass
         
-    return jsonify(active_project = project_id, active_label = active_label , active_project_result = active_project_result, previous_label = previous_label, previous_project_id = previous_project_id, original_image_urls = original_image_urls, all_jpeg_image_urls = all_jpeg_image_urls, cropped_image_urls = cropped_image_urls,augmentation_image_urls = augmentation_image_urls,original_image_label_jsons = original_image_label_jsons,original_image_label_jsons = original_image_label_jsons,all_jpeg_image_label_jsons = all_jpeg_image_label_jsons,augmentation_image_label_jsons = augmentation_image_label_jsons)
+    return jsonify(active_project = project_id, active_label = active_label , active_project_result = active_project_result, previous_label = previous_label, previous_project_id = previous_project_id, original_image_urls = original_image_urls, all_jpeg_image_urls = all_jpeg_image_urls, cropped_image_urls = cropped_image_urls,augmentation_image_urls = augmentation_image_urls,original_image_label_jsons = original_image_label_jsons,all_jpeg_image_label_jsons = all_jpeg_image_label_jsons,augmentation_image_label_jsons = augmentation_image_label_jsons)
 
 
 @app.route('/delete_project', methods=['POST','GET'])
