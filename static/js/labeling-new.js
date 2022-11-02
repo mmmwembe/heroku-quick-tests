@@ -2573,8 +2573,8 @@ function NewLabelBucketCard(data_element){
            alert(msg) 
 
            // Reset the input files field
-           //document.getElementById(imageLoader_id).value = ''
-           //document.getElementById(imageLoader_id).files =[]
+           document.getElementById(imageLoader_id).value = ''
+           document.getElementById(imageLoader_id).files =[]
 
         },
         error: function (response) {
