@@ -217,9 +217,19 @@ def get_images_array_from_user_projects(user_id, xproject_id, xlabel, target_arr
       
   return user_images_array  
 
+#==========================================================================
+#           Save Text to GCP Directory to Speed Up Future Uploads
+#===========================================================================
+def write_text_to_gcp(user_id, xproject_id, xlabel):
 
-
-
+    bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+    gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_subdir"], xproject_id, xlabel)
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
+    filename = xproject_id + ".txt" 
+    blob_full_path = os.path.join(gcp_subdirectory_path, filename)
+    blob = bucket.blob(blob_full_path)
+    blob.upload_from_string("Created by : " + user_id)
 
 try:
   create_dir(UPLOAD_FOLDER)
@@ -1021,8 +1031,18 @@ def create_new_project():
             active_project_result = results[0]
         except:
             pass
-           
-                 
+        
+        #===========================================================================================
+        #  Create GCP Folders for Each Label and A Simple Save Text File to Speed Up Future Transfers
+        #===========================================================================================
+        for key in y:
+            label = key
+            try:
+                write_text_to_gcp(user_id, project_id, label)
+            except:
+                pass
+
+          
     return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false, labels = labels_color_map_dict_from_json_string, active_project_result = active_project_result)
     # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
