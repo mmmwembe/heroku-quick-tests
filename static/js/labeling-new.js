@@ -1030,8 +1030,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             // alert(' new_textarea_content - 1044 ' +  new_textarea_content)
     
             for(let i = 0; i < new_textarea_content.length; i++) {
-    
-                var new_label = new_textarea_content[i]
+
+                // Make sure to replace special characters in string with underscore
+                var new_label = new_textarea_content[i].replace(/[^a-zA-Z0-9]/g,'_');
     
                 // var new_color = generateDarkColor();
     
