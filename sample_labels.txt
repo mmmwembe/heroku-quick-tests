@@ -46,6 +46,21 @@ Maneto
 Maremmano-Abruzzese Sheepdog
 McNab dog
 
+
+
+Types of Cats
+Domestic Shorthair
+American Shorthair
+Domestic Longhair
+Maine Coon
+Siamese
+Russian Blue
+Ragdoll
+Bengal
+Bombay
+Persian
+
+
 original_image_urls = original_image_urls, all_jpeg_image_urls = all_jpeg_image_urls, cropped_image_urls = cropped_image_urls,augmentation_image_urls = augmentation_image_urls,original_image_label_jsons = original_image_label_jsons,original_image_label_jsons = original_image_label_jsons,all_jpeg_image_label_jsons = all_jpeg_image_label_jsons,augmentation_image_label_jsons = augmentation_image_label_jsons
 
 

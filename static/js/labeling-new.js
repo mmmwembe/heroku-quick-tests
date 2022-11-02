@@ -1540,6 +1540,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
                 var active_project_result = data.active_project_result
                 alert('Line 1542 create_new_project   active_project_result : ' + JSON.stringify(data.active_project_result))
+
+                // Test the new label buckets generator
+                show_label_buckets_from_server_json_data(data)
                 //var server_user_id = data.user_id
                 //var server_project_name = data.project_name
                 //var server_project_id = data.project_id
