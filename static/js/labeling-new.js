@@ -1837,7 +1837,7 @@ $.ajax({
     data: {},
     success: function(data) {
 
-
+        show_label_buckets_from_server_json_data(json_data)
 
         /*
 
