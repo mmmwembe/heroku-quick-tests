@@ -1827,7 +1827,7 @@ $.ajax({
 //ACTIVE_PROJECT_ID = window.localStorage.hasOwnProperty("active_project") ?  window.localStorage.getItem("active_project") : ""
 // alert(' active project id : ' + ACTIVE_PROJECT_ID) // This corresponds to this variable project_js_id
 
-// alert(' Testing to see where the script stops !!! --- line 1757')
+ alert(' Testing to see where the script stops !!! --- line 1830')
 
 $.ajax({
     type: "POST",
