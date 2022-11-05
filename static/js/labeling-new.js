@@ -1819,9 +1819,9 @@ $.ajax({
     //alert('/get_active_project2')
     //alert('line 1782 -- active_project : ' + active_project_id)
     //alert('active_label: ' + active_label)
-    //alert(' active_project_result  ' + JSON.stringify(active_project_result))
+    alert(' 1822 all data from server  ' + JSON.stringify(data))
 
-    show_label_buckets_from_server_json_data(data)
+    // show_label_buckets_from_server_json_data(data)
 
 
   }});
@@ -1839,9 +1839,9 @@ $.ajax({
     data: {},
     success: function(data) {
 
-        show_label_buckets_from_server_json_data(data)
+        //show_label_buckets_from_server_json_data(data)
 
-        /*
+
 
         var active_project_id = data.active_project_id
         var active_label = data.active_label
@@ -1944,7 +1944,7 @@ $.ajax({
       
         }
 
-        */
+ 
 
 
 
