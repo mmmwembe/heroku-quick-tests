@@ -956,7 +956,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").css("fontSize", "20px");
         $("#currentLabel").css("font-weight", "bold")
         $("#currentLabel").css('color', 'white');
-        $("#currentLabel").css("width", "130px");
+        $("#currentLabel").css("width", "90%");
         $("#currentLabel").css("margin", "5px");
         $("#currentLabel").html("")          
         $("#currentLabel").html(_current_label)
@@ -1259,7 +1259,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     };
 
 
-    alert(' IT GETS TO LINE 1264 ')
+   // alert(' IT GETS TO LINE 1264 ')
   //-------------------------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------
