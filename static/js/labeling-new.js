@@ -1438,6 +1438,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     }
 
+    alert(' IT GETS TO LINE 1441 ')
 
     $("#createProjectBtn").click(function (event){
 
@@ -1602,7 +1603,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
    }
 
-alert(' IT GETS TO LINE 1605 ')
+alert(' DOES NOT GET HERE ---IT GETS TO LINE 1605 ')
 // -----------------------------------------------------------------------
 //                Label Bucket Container 
 //------------------------------------------------------------------------
