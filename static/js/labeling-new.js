@@ -718,13 +718,13 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     function Show_Labeled_Images_and_Enable_Labels_Download(){
 
         img_thumbnails = document.getElementsByClassName('gallery_column');
+
+        alert(' IT GETS TO LINE 722 ')
     
         for(let i = 0; i < img_thumbnails.length; i++) {
     
             var imageURL = img_thumbnails[i].getElementsByTagName('img')[0].src;
 
-            alert(' IT GETS TO LINE 726 ')
-    
             var img_name = getFileName(imageURL)
     
             // Get stored canvas json and display on the canvas
