@@ -2384,10 +2384,12 @@ function NewLabelBucketCard(data_element){
 
     const p2 = document.createElement('p')
     p2.className ="card-text"
+    p2.id="p2-" + label + "-" + project_js_id
     p2.innerHTML ="Number of Images:";
 
     const p3 = document.createElement('p')
     p3.className ="card-text"
+    p2.id="p3-" + label + "-" + project_js_id
     p3.innerHTML ="Labelled Images:";
 
     const p4 = document.createElement('p')
@@ -2443,7 +2445,7 @@ function NewLabelBucketCard(data_element){
             alert('line 2371 previous_project_id  ' + previous_project_id)
             // Update the thumbnail gallery header
             $('#gallery_thumbnails_header').html('');
-            $('#gallery_thumbnails_header').html('<h2>' + active_label +'</h2>');
+            $('#gallery_thumbnails_header').html('<h3>' + active_label +'</h3>');
 
             //$('#' + 'card-' + label + '-' + project_js_id).css('background','#8ec252')
 
@@ -2641,6 +2643,26 @@ function NewLabelBucketCard(data_element){
            // Reset the input files field
            document.getElementById(imageLoader_id).value = ''
            document.getElementById(imageLoader_id).files =[]
+
+
+
+           var active_project_id = response.active_project
+           var active_label = response.active_label
+           var active_project_result = response.active_project_result
+           var previous_label = response.previous_label
+           var previous_project_id = response.previous_project_id
+           alert('line 2652 -- active_project : ' + active_project_id)
+           alert('line 2653 active_label: ' + active_label)
+           alert('line 2654 active_project_result  ' + JSON.stringify(active_project_result))
+           alert('line 2655 previous_label: ' + previous_label)
+           alert('line 2656 previous_project_id  ' + previous_project_id)
+           // Update the thumbnail gallery header
+           $('#gallery_thumbnails_header').html('');
+           $('#gallery_thumbnails_header').html('<h3>' + active_label +'</h3>');
+
+           $('#p2-'+active_label+'-'+active_project_id).html("Number of Images: " + original_image_urls.length);
+           $('#p2-'+active_label+'-'+active_project_id).html("Labelled Images:" + labelled_original_image_urls.length);
+
 
         },
         error: function (response) {
