@@ -81,8 +81,6 @@ window.addEventListener('load', (event) => {
     }
     NUM_OF_IMAGES = img_thumbnails.length; 
 
-    alert(' IT GETS TO LINE 84 ')
-
     // Show the first image from the thumbnails the main image
     showFirstImage()
 
@@ -107,7 +105,8 @@ window.addEventListener('load', (event) => {
       })
     }
 
- 
+    alert(' IT GETS TO LINE 108 ')
+
     //----------------------------------------------------------
     // Show Marked Images and Enable Download
     //----------------------------------------------------------
