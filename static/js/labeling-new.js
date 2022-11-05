@@ -2775,11 +2775,96 @@ function show_label_buckets_from_server_json_data(json_data){
 
 
 
+//-----------------------------------------------------------------------------------------
+//       Create thumbnails of images and show checkmarks for labelled images     
+//-----------------------------------------------------------------------------------------
+
+// add_gallery_rows(image_data,labelled_images_data)
+
+function add_gallery_column(img_url,counter, labelled_imgs){
+
+    const gallery_column = document.createElement('div')
+    //gallery_column.className ="gallery_column"
+    gallery_column.id = img_url
+    gallery_column.style= "float: left; width: 25%; padding: 5px; position: relative;";
+    gallery_column.setAttribute("label",'my_label')
+    gallery_column.setAttribute("project_id","proxhkerheheh")
+    gallery_column.setAttribute("image_url","")
+    gallery_column.setAttribute("image_index",counter)
+    gallery_column.addEventListener('mouseover',function(){ $(this).css('opacity', 1);})
+    gallery_column.addEventListener('mouseout', function(){ $(this).css({'opacity': 0.7, 'cursor':'pointer'});});
 
 
+    const div_with_checkmark = document.createElement('div')
+    div_with_checkmark.style= "position: absolute; top: 0px;  z-index: 5;color: #f5f5f5;font-size: 25px;text-align: right;cursor: pointer;border-radius: 10rem;background-color: transparent;border: transparent;width: 90%;";
+
+    if (labelled_images_data.includes(img_url)){
+    const checkmark_icon = document.createElement('i')
+    checkmark_icon.className ="fa fa-check-circle fa-1x"
+    checkmark_icon.style="color: green"
+    div_with_checkmark.appendChild(checkmark_icon)
+    }
+
+    const gallery_img_div = document.createElement('div')
+    gallery_img_div.id = img_url 
+    gallery_img_div.style="background-color: black; width: 100%; height: 60px; display: inline-block; background-size: cover; background-position: center center; background-repeat: no-repeat;" + "background-image: url("+img_url+")";
+    gallery_img_div.crossOrigin = "anonymous"
+    gallery_img_div.setAttribute("image_index",counter)
+    gallery_img_div.addEventListener('click', function(e){  
+
+        //var img_clicked = e.target.id
+        var img_clicked = $(this).attr('id'); 
+        var img_index = $(this).attr('image_index'); 
+        alert("URL of image clicked : " + img_clicked + " image index " + img_index ) 
+
+    });
+
+    gallery_column.appendChild(gallery_img_div)
+    gallery_column.appendChild(div_with_checkmark)
+
+    return gallery_column
 
 
+}
 
+
+function add_gallery_rows(data, labelled_images_array){
+
+    for (var i = 0; i < data.length; i += 4) {
+
+        var gallery_row = document.createElement('div')
+        gallery_row.className="row"
+
+
+        var img_url1 = data[i] ? data[i]  : ""
+        if (img_url1.length > 1 ){
+        var new_gallery_column1 = add_gallery_column(img_url1,i,labelled_images_array)
+        gallery_row.appendChild(new_gallery_column1) 
+       }
+
+       var img_url2 = data[i+1] ? data[i+1]  : ""
+        if (img_url2.length > 1 ){
+        var new_gallery_column2 = add_gallery_column(img_url2,i+1,labelled_images_array)
+        gallery_row.appendChild(new_gallery_column2) 
+       }
+       
+       var img_url3 = data[i+2] ? data[i+2]  : ""
+        if (img_url3.length > 1 ){
+        var new_gallery_column3 = add_gallery_column(img_url3,i+2,labelled_images_array)
+        gallery_row.appendChild(new_gallery_column3) 
+       }
+
+       var img_url4 = data[i+3] ? data[i+3]  : ""
+        if (img_url4.length > 1 ){
+        var new_gallery_column4 = add_gallery_column(img_url4,i+3,labelled_images_array)
+        gallery_row.appendChild(new_gallery_column4) 
+       }           
+
+        document.getElementById('gallery_parent').appendChild(gallery_row)
+
+    }
+
+}
 
 
 
