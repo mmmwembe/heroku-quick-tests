@@ -1308,6 +1308,9 @@ alert(' IT GETS TO LINE 1299 ')
     var startNewProjectButton = document.getElementById('StartNewProjectButton')
     var projectNameLabel = document.getElementById('projectLabel')
 
+
+ /*
+
     // Check if localStorage has project_json object stored
     // If so, get CURRENT_PROJECT from the stored json
     if (window.localStorage.hasOwnProperty('project_json')){
@@ -1363,6 +1366,8 @@ alert(' IT GETS TO LINE 1299 ')
         get_all_projects()
 
     });
+
+  */
 
     alert(' IT GETS TO LINE 1364 ')
     const uniqueId = () => {
