@@ -438,8 +438,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     }
 
 
-    alert(' IT GETS TO LINE 441 ')
-
     // -----------------------------------------------------------------
     //          Download CSV File
     //-----------------------------------------------------------------
@@ -749,6 +747,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         }
     
     
+        alert(' IT GETS TO LINE 750 ')
+
+
         // NUM_OF_LABELLED_IMAGES
         // Enable Download Button When NUM_OF_LABELLED_IMAGES > 0
         NUM_LABELLED_IMAGES = LABELED_IMAGES_TRACKER.length; 
