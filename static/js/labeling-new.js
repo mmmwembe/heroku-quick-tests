@@ -2660,8 +2660,8 @@ function NewLabelBucketCard(data_element){
            $('#gallery_thumbnails_header').html('');
            $('#gallery_thumbnails_header').html('<h3>' + active_label +'</h3>');
 
-           $('#p2-'+active_label+'-'+active_project_id).html("Number of Images: " + original_image_urls.length);
-           $('#p2-'+active_label+'-'+active_project_id).html("Labelled Images:" + labelled_original_image_urls.length);
+           $('#p2-' + active_label + '-' + active_project_id).html("Number of Images: " + response.original_image_urls.length);
+           $('#p2-' + active_label + '-' + active_project_id).html("Labelled Images:" + response.labelled_original_image_urls.length);
 
 
         },
