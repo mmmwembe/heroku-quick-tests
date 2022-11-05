@@ -949,21 +949,32 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function showCurrentLabel(_current_color, _current_label){
 
-        $("#currentLabel").css("backgroundColor",_current_color);
-        $("#currentLabel").css("borderColor",_current_color);
-        $("#currentLabel").css("borderSize","3px");
-        $("#currentLabel").css("border-radius","5px");
-        $("#currentLabel").css("fontSize", "20px");
-        $("#currentLabel").css("font-weight", "bold")
-        $("#currentLabel").css('color', 'white');
-        $("#currentLabel").css("width", "90%");
-        $("#currentLabel").css("margin", "5px");
-        $("#currentLabel").html("")          
-        // $("#currentLabel").html(_current_label)
+        //$("#currentLabel").css("backgroundColor",_current_color);
+        //$("#currentLabel").css("borderColor",_current_color);
+        //$("#currentLabel").css("borderSize","3px");
+        //$("#currentLabel").css("border-radius","5px");
+        //$("#currentLabel").css("fontSize", "20px");
+       // $("#currentLabel").css("font-weight", "bold")
+        //$("#currentLabel").css('color', 'white');
+        //$("#currentLabel").css("width", "90%");
+        //$("#currentLabel").css("margin", "5px");
+        //$("#currentLabel").html("")          
+        //$("#currentLabel").html(_current_label)
         // $("#currentLabel").animate({height: '50px',width: '220px'},2000)
         // alert(' line 973 - perhaps this is it now...')    
         // $("#currentLabel").verticalAlign();
         // alert(' line 976 - showCurrentLabel is executed OK!!!')
+        $("#p_tag_currentLabel").css("backgroundColor",_current_color);
+        $("#p_tag_currentLabel").css("borderColor",_current_color);
+        $("#p_tag_currentLabel").css("borderSize","3px");
+        $("#p_tag_currentLabel").css("border-radius","5px");
+        $("#p_tag_currentLabel").css("fontSize", "20px");
+        $("#p_tag_currentLabel").css("font-weight", "bold")
+        $("#p_tag_currentLabel").css('color', 'white');
+        $("#p_tag_currentLabel").css("width", "90%");
+        $("#p_tag_currentLabel").css("height", "50px");
+        $("#p_tag_currentLabel").css("padding", "5px");
+        $("#p_tag_currentLabel").html("")   
         $("#p_tag_currentLabel").html(_current_label)   
 
 
