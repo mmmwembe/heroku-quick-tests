@@ -1819,7 +1819,7 @@ $.ajax({
     alert('/get_active_project2')
     alert('line 1782 -- active_project : ' + active_project_id)
     alert('active_label: ' + active_label)
-    alert(' 1822 all data from server  ' + JSON.stringify(data))
+    // alert(' 1822 all data from server  ' + JSON.stringify(data))
 
     // show_label_buckets_from_server_json_data(data)
 
