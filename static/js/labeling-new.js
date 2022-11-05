@@ -2877,5 +2877,16 @@ function add_gallery_rows(data, labelled_images_array){
 
 
 
+
+var mainArr = [1,2,3];
+function isTrue(arr, arr2){
+  return arr.every(i => arr2.includes(i));
+}
+alert(isTrue(mainArr, [1,2,3]));
+//console.log(isTrue(mainArr, [1,2,3,4]));
+//console.log(isTrue(mainArr, [1,2]));
+
+
+
     
 }); // End Window Load Event
