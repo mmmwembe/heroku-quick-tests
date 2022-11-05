@@ -1319,9 +1319,10 @@ alert(' IT GETS TO LINE 1299 ')
         
     }
 
-    alert('It gets to  line 1322 ')
     // If project name exists - hide button
     if(CURRENT_PROJECT.length > 0){
+
+        alert('It gets to  line 1325 ')
 
         Hide_StartNewProject_Button_and_Show_ProjectLabel()
 
