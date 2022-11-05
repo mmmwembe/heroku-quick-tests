@@ -372,6 +372,41 @@ const setBackgroundColor = () => {
 
 
 
+function add_gallery_column(img_url){
+
+  const gallery_column = document.createElement('div')
+  gallery_column.className ="gallery_column"
+  gallery_column.id = 0
+  gallery_column.style= "float: left; width: 25%; padding: 5px;";
+  gallery_column.setAttribute("label",'my_label')
+  gallery_column.setAttribute("project_id","proxhkerheheh")
+  gallery_column.addEventListener('mouseover',function(){ $(this).css('opacity', 1);})
+  gallery_column.addEventListener('mouseout', function(){ $(this).css({'opacity': 0.8, 'cursor':'pointer'});});
+  gallery_column.addEventListener('click', function(){  
+
+    alert("you clicked one of the images mate")
+
+
+  });
+
+  const gallery_span = document.createElement('span')
+  gallery_span.style="position: absolute;top: 0px;right: 0px;"
+  gallery_span.innerHTML="&#9989;"
+
+
+  const gallery_img = document.createElement('img')
+  gallery_img.crossOrigin = "anonymous"
+  gallery_img.style = "width:100%";
+  gallery_img.src = img_url
+
+  gallery_column.appendChild(gallery_span)
+  gallery_column.appendChild(gallery_img)
+  
+
+}
+
+
+
 
 
 

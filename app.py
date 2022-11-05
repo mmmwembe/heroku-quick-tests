@@ -985,6 +985,10 @@ def create_new_project():
 				'all_jpeg_image_urls': [],
 				'cropped_image_urls': [],
 				'augmentation_image_urls': [],
+				'labelled_original_image_urls' : [],
+				'labelled_all_jpeg_image_urls' : [],
+				'labelled_cropped_image_urls' : [],
+				'labelled_augmentation_image_urls' : [],
 				'original_image_label_jsons': [],
 				'all_jpeg_image_label_jsons': [],
 				'augmentation_image_label_jsons': [],
@@ -1145,6 +1149,10 @@ def set_active_label():
         all_jpeg_image_urls = []
         cropped_image_urls = []
         augmentation_image_urls = []
+        labelled_original_image_urls = []
+        labelled_all_jpeg_image_urls = []
+        labelled_cropped_image_urls = []
+        labelled_augmentation_image_urls = []
         original_image_label_jsons = []
         all_jpeg_image_label_jsons = []
         augmentation_image_label_jsons = []
@@ -1345,6 +1353,10 @@ def upload_x_files():
 	all_jpeg_image_urls = []
 	cropped_image_urls = []
 	augmentation_image_urls = []
+	labelled_original_image_urls = []
+	labelled_all_jpeg_image_urls = []
+	labelled_cropped_image_urls = []
+	labelled_augmentation_image_urls = []
 	original_image_label_jsons = []
 	all_jpeg_image_label_jsons = []
 	augmentation_image_label_jsons = []
@@ -1353,6 +1365,12 @@ def upload_x_files():
 		original_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'original_image_urls')
 		all_jpeg_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'all_jpeg_image_urls')
 		cropped_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'cropped_image_urls')
+  
+		labelled_original_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'labelled_original_image_urls')
+		labelled_all_jpeg_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'labelled_all_jpeg_image_urls')
+		labelled_cropped_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'labelled_cropped_image_urls')
+		labelled_augmentation_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'labelled_augmentation_image_urls')
+
 		augmentation_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'augmentation_image_urls')
 		original_image_label_jsons = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'original_image_label_jsons')
 		all_jpeg_image_label_jsons = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'all_jpeg_image_label_jsons')
@@ -1361,7 +1379,7 @@ def upload_x_files():
 		pass    
 	# return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
 	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array, returned_public_urls = returned_public_urls, label_image_urls = label_image_urls,active_project_result = active_project_result, original_image_urls = original_image_urls, all_jpeg_image_urls = all_jpeg_image_urls, cropped_image_urls = cropped_image_urls,augmentation_image_urls = augmentation_image_urls,original_image_label_jsons = original_image_label_jsons,all_jpeg_image_label_jsons = all_jpeg_image_label_jsons,augmentation_image_label_jsons = augmentation_image_label_jsons
-)
+				  ,labelled_original_image_urls = labelled_original_image_urls, labelled_all_jpeg_image_urls = labelled_all_jpeg_image_urls, labelled_cropped_image_urls = labelled_cropped_image_urls, labelled_augmentation_image_urls = labelled_augmentation_image_urls)
 
 
 

@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -308,36 +309,9 @@ h4 {
     <!-- The four columns -->
     <div class="ScrollStyle" style="height:100%">
 
-        
-
-        <div id="gallery_thumbnails_header" style="width:100%; background-color: #C1C1C1;"><h2>Dogs</h2></div>
-                        
-        {% if images_in_dir %}
-
-        {% for row in images_in_dir|batch(4) %}
-        <div class="row">
-
-        {% for column_img in row %}  
-
-            <div class="gallery_column">
-
-               <div style="position: relative;">
-
-                <span id="{{ column_img }}" style="position: absolute;top: 0px;right: 0px;">&#9989;</span>
-
-                 <img id="thumbnail" src="{{ column_img }}" alt="Nature" style="width:100%" crossorigin="anonymous">
- 
-               </div>
-
-            </div>
-
-        {% endfor %}
-
+        <div id="gallery_thumbnails_header" style="width:100%; background-color: #C1C1C1;"><h4>Dogs</h4></div>
+                          
         </div>
-        {% endfor %}
-
-    {% endif %}
-
 
     </div>
 
