@@ -1114,10 +1114,10 @@ def set_active_label():
     if request.method =='POST':
         
         project_id = request.form['project_id']
-        active_label = request.form['active_label']        
+        active_label = request.form['active_label'] 
+               
         query = {'user_id': user_id }
         
-
         previous_outputs = user_session_data.find(query)
         output = previous_outputs[0]
         previous_project_id =''
@@ -1375,9 +1375,35 @@ def upload_x_files():
 		all_jpeg_image_label_jsons = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'all_jpeg_image_label_jsons')
 		augmentation_image_label_jsons = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'augmentation_image_label_jsons')       
 	except:
-		pass    
+		pass
+
+	query = {'user_id': user_id }
+	previous_outputs = user_session_data.find(query)
+	output = previous_outputs[0]
+	previous_project_id =''
+	previous_label=''
+
+	try:
+		previous_project_id = output['active_project']
+		previous_label =  output['active_label']
+	except:
+		pass
+	
+	# Delete existing user_session data for this user
+	try:
+		# delete_result = user_session_data.delete_one(query)  
+		delete_result = user_session_data.delete_many(query)              
+	except:
+		pass
+	
+	time.sleep(1)
+	# save new active project in users session data
+	user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': xproject_id, 'active_label': xlabel,'previous_label': previous_label, 'previous_project_id': previous_project_id}) 
+	
+
+    
 	# return render_template('models.html',classification_models_info = classification_models_info, detection_models_info = detection_models_info )
-	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array, returned_public_urls = returned_public_urls, label_image_urls = label_image_urls,active_project_result = active_project_result, original_image_urls = original_image_urls, all_jpeg_image_urls = all_jpeg_image_urls, cropped_image_urls = cropped_image_urls,augmentation_image_urls = augmentation_image_urls,original_image_label_jsons = original_image_label_jsons,all_jpeg_image_label_jsons = all_jpeg_image_label_jsons,augmentation_image_label_jsons = augmentation_image_label_jsons
+	return jsonify(xproject_id  = xproject_id ,  xlabel = xlabel, previous_label = previous_label, previous_project_id = previous_project_id, bucket_name = bucket_name, gcp_subdirectory_path = gcp_subdirectory_path, file_names = file_names, blob_full_path_array = blob_full_path_array, returned_public_urls = returned_public_urls, label_image_urls = label_image_urls,active_project_result = active_project_result, original_image_urls = original_image_urls, all_jpeg_image_urls = all_jpeg_image_urls, cropped_image_urls = cropped_image_urls,augmentation_image_urls = augmentation_image_urls,original_image_label_jsons = original_image_label_jsons,all_jpeg_image_label_jsons = all_jpeg_image_label_jsons,augmentation_image_label_jsons = augmentation_image_label_jsons
 				  ,labelled_original_image_urls = labelled_original_image_urls, labelled_all_jpeg_image_urls = labelled_all_jpeg_image_urls, labelled_cropped_image_urls = labelled_cropped_image_urls, labelled_augmentation_image_urls = labelled_augmentation_image_urls)
 
 
