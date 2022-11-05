@@ -342,7 +342,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     function showFirstImage(){
 
         // alert(' Line 344...it gets to showFirstImage() ')       
-        var first_img_div = document.getElementsByClassName('gallery_column')[0]
+        var first_img_div = document.getElementsByClassName('gallery_column')
+        //var first_img_div = document.getElementsByClassName('gallery_column')[0]
         if (first_img_div.length > 0) {
             alert(' Line 347...there is nothing in first_img_div ')
         }
