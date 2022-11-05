@@ -1319,7 +1319,7 @@ alert(' IT GETS TO LINE 1299 ')
         
     }
 
-    alert('DOES NOT GET HERE - line 1322 ')
+    alert('It gets to  line 1322 ')
     // If project name exists - hide button
     if(CURRENT_PROJECT.length > 0){
 
@@ -1344,6 +1344,7 @@ alert(' IT GETS TO LINE 1299 ')
 
     }
 
+
     $("#StartNewProjectButton").click(function (){
         myModal.toggle()
 
@@ -1360,7 +1361,7 @@ alert(' IT GETS TO LINE 1299 ')
 
     });
 
-    // 
+    alert(' IT GETS TO LINE 1364 ')
     const uniqueId = () => {
         const dateString = Date.now().toString(36);
         const randomness = Math.random().toString(36).substr(2);
