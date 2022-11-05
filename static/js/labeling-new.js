@@ -1296,7 +1296,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     };
 
 
-   // alert(' IT GETS TO LINE 1299 ')
+alert(' IT GETS TO LINE 1299 ')
   //-------------------------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------
@@ -1438,7 +1438,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     }
 
-    alert(' IT GETS TO LINE 1441 ')
+    alert('DOES NOT GET HERE - line 1441 ')
 
     $("#createProjectBtn").click(function (event){
 
