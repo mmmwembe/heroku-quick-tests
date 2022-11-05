@@ -1984,12 +1984,12 @@ function updatePage(){
 
     updateLabelDivs()
 
-    alert(' Line 1987 - this is just after the updateLabelsDivs()')   
+    //alert(' Line 1987 - this is just after the updateLabelsDivs()')   
 
     // Select the first label as the initial label
     chooseInitialLabel()
 
-    // alert(' Line 1973 - this is just after the chooseInitialLabel()')   
+    alert(' Line 1992 - this is just after the chooseInitialLabel()')   
 
     // Show the first image from the thumbnails the main image
     showFirstImage()
