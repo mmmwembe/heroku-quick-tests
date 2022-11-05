@@ -1319,6 +1319,7 @@ alert(' IT GETS TO LINE 1299 ')
         
     }
 
+    alert('DOES NOT GET HERE - line 1322 ')
     // If project name exists - hide button
     if(CURRENT_PROJECT.length > 0){
 
@@ -1379,7 +1380,7 @@ alert(' IT GETS TO LINE 1299 ')
         myModal.toggle()
     }
 
-    alert(' IT GETS TO LINE 1382 ')
+    alert('DOES NOT GET HERE - line 1832 ')
 
     function Hide_StartNewProject_Button_and_Show_ProjectLabel(){
 
