@@ -1898,6 +1898,7 @@ $.ajax({
 
         updatePage()
 
+        alert(' Line 1900 data obect - confirmatio that it gets here.... ')   
         //alert(' Line 1887 - this is the first gate I see')   
 
         //show_label_buckets()
