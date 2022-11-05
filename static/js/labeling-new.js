@@ -1898,7 +1898,7 @@ $.ajax({
 
         updatePage()
 
-        alert(' Line 1900 data obect - confirmatio that it gets here.... ')   
+        alert(' Line 1901 data obect - confirmation that it gets past the updatePage() function ')   
         //alert(' Line 1887 - this is the first gate I see')   
 
         //show_label_buckets()
@@ -1980,6 +1980,8 @@ function updatePage(){
     // Create or Update the Label divs
 
     $("#labels-error-message").html("")
+
+    alert(' Line 1984 within the updatePage() function ')   
 
     updateLabelDivs()
 
