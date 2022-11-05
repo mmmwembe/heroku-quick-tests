@@ -108,7 +108,7 @@ window.addEventListener('load', (event) => {
 
 
 
-    alert(' IT GETS TO LINE 111 ')
+
     //----------------------------------------------------------
     // Show Marked Images and Enable Download
     //----------------------------------------------------------
@@ -438,6 +438,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     }
 
 
+    alert(' IT GETS TO LINE 441 ')
 
     // -----------------------------------------------------------------
     //          Download CSV File
