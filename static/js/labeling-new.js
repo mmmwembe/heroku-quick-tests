@@ -714,10 +714,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     //                     Also populate LABELED_IMAGES_TRACKER and get NUM_LABELLED_IMAGES and NUM_IMAGES_TOTAL
     //----------------------------------------------------------------------------------------------------------------
 
+    alert(' IT GETS TO LINE 717 ')
 
+    /*
     function Show_Labeled_Images_and_Enable_Labels_Download(){
-
-        alert(' IT GETS TO LINE 722 ')
 
         img_thumbnails = document.getElementsByClassName('gallery_column');
     
@@ -749,7 +749,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     
         }
     
-   
+   */
         alert(' IT GETS TO LINE 751 ')
 
 
