@@ -1204,7 +1204,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     const newlabelClassItem = document.createElement('div')
     newlabelClassItem.className ="labelclass"
     newlabelClassItem.id = current_label
-    newlabelClassItem.style= "border: 3px solid " + current_color + " z-index: 2; background-color: transparent;  margin : 2px; border-radius: 10px; height: 35px;  width: 150px;";
+    newlabelClassItem.style= "border: 3px solid " + current_color + " z-index: 2; background-color: transparent;  margin : 2px; border-radius: 10px; height: 35px;  width: 90%;";
     newlabelClassItem.style.fontSize = "16";
     newlabelClassItem.innerHTML ="<strong> "+ current_label + " </strong>";
     newlabelClassItem.onclick = showSelectedLabel // function shows the selected label by highlighting background with the bordercolor
@@ -1693,7 +1693,7 @@ function create_label_buckets_dummy(project_json_storage_variable){
 }
 
 
-alert(' IT GETS TO LINE 1696')
+//alert(' IT GETS TO LINE 1696')
     //------------------------------------------------------------------
     //                  Show and Hide Label Buckets
     // ----------------------------------------------------------------
@@ -1778,11 +1778,12 @@ $.ajax({
     var active_project_id = data.active_project_id
     var active_label = data.active_label
     var active_project_result = data.active_project_result
-    alert('line 1759 -- active_project : ' + active_project_id)
+    alert('/get_active_project2')
+    alert('line 1782 -- active_project : ' + active_project_id)
     alert('active_label: ' + active_label)
     alert(' active_project_result  ' + JSON.stringify(active_project_result))
 
-    
+
   }});
 
 
@@ -1801,7 +1802,8 @@ $.ajax({
         var active_project_id = data.active_project_id
         var active_label = data.active_label
         var active_project_result = data.active_project_result[0]
-        alert('line 1767 -- active_project : ' + active_project_id)
+        alert('/get_active_project')
+        alert('line 1806 -- active_project : ' + active_project_id)
         //alert('active_label: ' + active_label)
         //alert(' active_project_result  ' + JSON.stringify(active_project_result))
 
