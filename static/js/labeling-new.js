@@ -959,11 +959,13 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#currentLabel").css("width", "90%");
         $("#currentLabel").css("margin", "5px");
         $("#currentLabel").html("")          
-        $("#currentLabel").html(_current_label)
-        $("#currentLabel").animate({height: '50px',width: '220px'},2000)
+        // $("#currentLabel").html(_current_label)
+        // $("#currentLabel").animate({height: '50px',width: '220px'},2000)
         // alert(' line 973 - perhaps this is it now...')    
         // $("#currentLabel").verticalAlign();
         // alert(' line 976 - showCurrentLabel is executed OK!!!')
+        $("#p_tag_currentLabel").html(_current_label)   
+
 
     }
 
