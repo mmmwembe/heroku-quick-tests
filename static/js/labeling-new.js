@@ -708,6 +708,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     }
 
 
+    alert(' IT GETS TO LINE 11 ')
     // -----------------------------------------------------------------------------------------------------------------
     //                     Show Labelled Images and Enable Images Download
     //                     Also populate LABELED_IMAGES_TRACKER and get NUM_LABELLED_IMAGES and NUM_IMAGES_TOTAL
@@ -747,7 +748,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         }
     
     
-        alert(' IT GETS TO LINE 750 ')
+       
 
 
         // NUM_OF_LABELLED_IMAGES
