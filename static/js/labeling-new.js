@@ -1296,7 +1296,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     };
 
 
-   alert(' IT GETS TO LINE 1299 ')
+   // alert(' IT GETS TO LINE 1299 ')
   //-------------------------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------
@@ -1730,7 +1730,7 @@ function create_label_buckets_dummy(project_json_storage_variable){
 }
 
 
-//alert(' IT GETS TO LINE 1696')
+alert(' IT GETS TO LINE 1733')
     //------------------------------------------------------------------
     //                  Show and Hide Label Buckets
     // ----------------------------------------------------------------
