@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <!--link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/521/fabric.min.js"></script>
+    <script src="https://www.marvinj.org/releases/marvinj-1.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+</head>
+
+<style>
+    /* The grid: Four equal columns that floats next to each other */
+    .gallery_column {float: left; width: 25%; padding: 5px;}
+
+</style>
+<body>
+
+
+    <div class="container">
+
+        <div id="gallery_parent" style="width:20%">
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+    <script>
+
+
+  image_data =[
+    '/static/software-icons/asana.png',
+    '/static/software-icons/email-icon2.png',
+    '/static/software-icons/email.jpg',
+    '/static/software-icons/google-calender.png',
+    '/static/software-icons/google-cloud-platform.png',
+    '/static/software-icons/google-drive.jpg',
+    '/static/project-test-images/dust/test-image1.JPG',
+    '/static/project-test-images/dust/test-image2.jpg']
+
+
+
+    labelled_images_data =[
+    '/static/software-icons/asana.png',
+    '/static/software-icons/google-calender.png',
+    '/static/project-test-images/dust/test-image1.JPG'
+    ]
+
+
+
+    add_gallery_rows(image_data,labelled_images_data)
+
+
+
+    function add_gallery_column(img_url,counter, labelled_imgs){
+
+    const gallery_column = document.createElement('div')
+    //gallery_column.className ="gallery_column"
+    gallery_column.id = img_url
+    gallery_column.style= "float: left; width: 25%; padding: 5px; position: relative;";
+    gallery_column.setAttribute("label",'my_label')
+    gallery_column.setAttribute("project_id","proxhkerheheh")
+    gallery_column.setAttribute("image_url","")
+    gallery_column.setAttribute("image_index",counter)
+    gallery_column.addEventListener('mouseover',function(){ $(this).css('opacity', 1);})
+    gallery_column.addEventListener('mouseout', function(){ $(this).css({'opacity': 0.7, 'cursor':'pointer'});});
+
+
+    const div_with_checkmark = document.createElement('div')
+    div_with_checkmark.style= "position: absolute; top: 0px;  z-index: 5;color: #f5f5f5;font-size: 25px;text-align: right;cursor: pointer;border-radius: 10rem;background-color: transparent;border: transparent;width: 90%;";
+
+    if (labelled_images_data.includes(img_url)){
+    const checkmark_icon = document.createElement('i')
+    checkmark_icon.className ="fa fa-check-circle fa-1x"
+    checkmark_icon.style="color: green"
+    div_with_checkmark.appendChild(checkmark_icon)
+   }
+
+   /*
+    const gallery_span = document.createElement('span')
+    gallery_span.style="position: absolute; margin-right: 10px; z-index: 3;"
+
+    if (labelled_images_data.includes(img_url)){
+    gallery_span.innerHTML="&#9989;"
+    gallery_span.setAttribute("display","block")
+    }
+    else {
+    gallery_span.setAttribute("display","")    
+    }
+
+
+    const gallery_img = document.createElement('img')
+    gallery_img.crossOrigin = "anonymous"
+    gallery_img.style = "width:100%";
+    gallery_img.src = img_url
+    */
+
+    const gallery_img_div = document.createElement('div')
+    gallery_img_div.id = img_url 
+    gallery_img_div.style="background-color: black; width: 100%; height: 60px; display: inline-block; background-size: cover; background-position: center center; background-repeat: no-repeat;" + "background-image: url("+img_url+")";
+    gallery_img_div.crossOrigin = "anonymous"
+    gallery_img_div.setAttribute("image_index",counter)
+    gallery_img_div.addEventListener('click', function(e){  
+
+        //var img_clicked = e.target.id
+        var img_clicked = $(this).attr('id'); 
+        var img_index = $(this).attr('image_index'); 
+        alert("URL of image clicked : " + img_clicked + " image index " + img_index ) 
+
+    });
+
+
+    
+    //gallery_column.appendChild(gallery_img)
+    gallery_column.appendChild(gallery_img_div)
+    // gallery_column.appendChild(gallery_span)
+    gallery_column.appendChild(div_with_checkmark)
+
+    return gallery_column
+
+
+    }
+
+
+    function add_gallery_rows(data, labelled_images_array){
+
+        for (var i = 0; i < data.length; i += 4) {
+
+            var gallery_row = document.createElement('div')
+            gallery_row.className="row"
+
+
+            var img_url1 = data[i] ? data[i]  : ""
+            if (img_url1.length > 1 ){
+            var new_gallery_column1 = add_gallery_column(img_url1,i,labelled_images_array)
+            gallery_row.appendChild(new_gallery_column1) 
+           }
+
+           var img_url2 = data[i+1] ? data[i+1]  : ""
+            if (img_url2.length > 1 ){
+            var new_gallery_column2 = add_gallery_column(img_url2,i+1,labelled_images_array)
+            gallery_row.appendChild(new_gallery_column2) 
+           }
+           
+           var img_url3 = data[i+2] ? data[i+2]  : ""
+            if (img_url3.length > 1 ){
+            var new_gallery_column3 = add_gallery_column(img_url3,i+2,labelled_images_array)
+            gallery_row.appendChild(new_gallery_column3) 
+           }
+
+           var img_url4 = data[i+3] ? data[i+3]  : ""
+            if (img_url4.length > 1 ){
+            var new_gallery_column4 = add_gallery_column(img_url4,i+3,labelled_images_array)
+            gallery_row.appendChild(new_gallery_column4) 
+           }           
+
+            document.getElementById('gallery_parent').appendChild(gallery_row)
+
+        }
+
+    }
+
+
+
+
+
+    </script>
+    
+</body>
+</html>
