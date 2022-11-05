@@ -345,10 +345,20 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         var first_img_div = document.getElementsByClassName('gallery_column')
         //var first_img_div = document.getElementsByClassName('gallery_column')[0]
         if (first_img_div.length > 0) {
-            alert(' Line 347...there is nothing in first_img_div ')
+
+          var gallery_column_item = document.getElementsByClassName('gallery_column')[0]
+
+          var first_img = gallery_column_item.getElementsByTagName('img')[0].src ? first_img_div.getElementsByTagName('img')[0].src  : "";
+
+          if(first_img){
+            IMAGE_URL = first_img
+            updateFabricCanvasBackgroundImage(first_img)
+          }
+            // alert(' Line 347...there is nothing in first_img_div ')
         }
         else{
-            alert(' Line 350...sorry mate, you dont have gallery_column items')        
+            alert(' Line 360...sorry mate, you dont have gallery_column items')   
+            alert(' Pass do nothing....')       
         }
 
         /*
