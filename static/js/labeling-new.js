@@ -717,9 +717,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function Show_Labeled_Images_and_Enable_Labels_Download(){
 
-        img_thumbnails = document.getElementsByClassName('gallery_column');
-
         alert(' IT GETS TO LINE 722 ')
+
+        img_thumbnails = document.getElementsByClassName('gallery_column');
     
         for(let i = 0; i < img_thumbnails.length; i++) {
     
