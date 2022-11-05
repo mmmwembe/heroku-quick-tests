@@ -1819,7 +1819,7 @@ $.ajax({
         alert('/get_active_project')
         alert('line 1806 -- active_project : ' + active_project_id)
         //alert('active_label: ' + active_label)
-        //alert(' active_project_result  ' + JSON.stringify(active_project_result))
+        alert(' line 1822 active_project_result  ' + JSON.stringify(active_project_result))
 
         /*
 
@@ -1892,7 +1892,7 @@ $.ajax({
             counter += 1;
 
         })
-
+        alert(' Line 1895 data obect ' + JSON.stringify(data))   
 
         // Update Page
 
@@ -1928,7 +1928,7 @@ $.ajax({
 
             new_row.innerHTML = combined_card_string
 
-            //document.getElementById('label_buckets_container').appendChild(new_row)
+            document.getElementById('label_buckets_container').appendChild(new_row)
       
         }
 
