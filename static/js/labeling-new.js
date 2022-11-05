@@ -2648,20 +2648,20 @@ function NewLabelBucketCard(data_element){
 
            var active_project_id = response.active_project
            var active_label = response.active_label
-           var active_project_result = response.active_project_result
-           var previous_label = response.previous_label
-           var previous_project_id = response.previous_project_id
+           //var active_project_result = response.active_project_result
+           //var previous_label = response.previous_label
+           //var previous_project_id = response.previous_project_id
            alert('line 2652 -- active_project : ' + active_project_id)
            alert('line 2653 active_label: ' + active_label)
-           alert('line 2654 active_project_result  ' + JSON.stringify(active_project_result))
-           alert('line 2655 previous_label: ' + previous_label)
-           alert('line 2656 previous_project_id  ' + previous_project_id)
+           //alert('line 2654 active_project_result  ' + JSON.stringify(active_project_result))
+           //alert('line 2655 previous_label: ' + previous_label)
+           //alert('line 2656 previous_project_id  ' + previous_project_id)
            // Update the thumbnail gallery header
            $('#gallery_thumbnails_header').html('');
            $('#gallery_thumbnails_header').html('<h3>' + active_label +'</h3>');
 
-           $('#p2-' + active_label + '-' + active_project_id).html("Number of Images: " + response.original_image_urls.length);
-           $('#p2-' + active_label + '-' + active_project_id).html("Labelled Images:" + response.labelled_original_image_urls.length);
+           //$('#p2-' + active_label + '-' + active_project_id).html("Number of Images: " + (response.original_image_urls).length);
+           //$('#p3-' + active_label + '-' + active_project_id).html("Labelled Images:" + (response.labelled_original_image_urls).length);
 
 
         },
