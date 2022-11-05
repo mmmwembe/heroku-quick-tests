@@ -973,7 +973,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         $("#p_tag_currentLabel").css('color', 'white');
         $("#p_tag_currentLabel").css("width", "90%");
         $("#p_tag_currentLabel").css("height", "50px");
-        $("#p_tag_currentLabel").css("padding", "5px");
+        $("#p_tag_currentLabel").css("padding", "0px");
         $("#p_tag_currentLabel").css("margin", "auto");        
         $("#p_tag_currentLabel").html("")   
         $("#p_tag_currentLabel").html(_current_label)   
