@@ -1981,11 +1981,10 @@ function updatePage(){
 
     $("#labels-error-message").html("")
 
-    alert(' Line 1984 within the updatePage() function ')   
 
     updateLabelDivs()
 
-    // alert(' Line 1968 - this is just after the updateLabelsDivs()')   
+    alert(' Line 1987 - this is just after the updateLabelsDivs()')   
 
     // Select the first label as the initial label
     chooseInitialLabel()
