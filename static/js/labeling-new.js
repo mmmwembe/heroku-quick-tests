@@ -357,8 +357,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             // alert(' Line 347...there is nothing in first_img_div ')
         }
         else{
-            //alert(' Line 360...sorry mate, you dont have gallery_column items')   
-            //alert(' Pass do nothing....')       
+            alert(' Line 360...sorry mate, you dont have gallery_column items')   
+            alert(' Pass do nothing....')       
         }
 
         /*
@@ -1819,9 +1819,7 @@ $.ajax({
     alert('/get_active_project2')
     alert('line 1782 -- active_project : ' + active_project_id)
     alert('active_label: ' + active_label)
-    // alert(' 1822 all data from server  ' + JSON.stringify(data))
-
-    // show_label_buckets_from_server_json_data(data)
+    alert(' active_project_result  ' + JSON.stringify(active_project_result))
 
 
   }});
@@ -1839,7 +1837,6 @@ $.ajax({
     data: {},
     success: function(data) {
 
-        //show_label_buckets_from_server_json_data(data)
         var active_project_id = data.active_project_id
         var active_label = data.active_label
         var active_project_result = data.active_project_result[0]
@@ -1847,6 +1844,25 @@ $.ajax({
         alert('line 1806 -- active_project : ' + active_project_id)
         //alert('active_label: ' + active_label)
         alert(' line 1822 active_project_result  ' + JSON.stringify(active_project_result))
+
+        /*
+
+        var project_summary_array =[]
+        for(var k in all_projects) {
+            var project = all_projects[k]
+            var project_id = project.project_js_id ? project.project_js_id: ""
+            var project_name = project.project_name ? project.project_name : ""
+            var date_created = project.date_created ? project.date_created : ""
+        
+            var project_item = {'index': k, 'project_js_id': project.project_js_id, 'project_name': project.project_name, 'date_created': date_created} //, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
+            project_summary_array.push(project_item)
+            // alert(' k ' + k + ' project_item ' + JSON.stringify(project_item));
+        }
+
+        alert('project_summary_array ' +  JSON.stringify(project_summary_array))
+
+
+       */
 
         // Set Environment Variables
         ACTIVE_PROJECT_ID = active_project_id
@@ -1940,6 +1956,8 @@ $.ajax({
             document.getElementById('label_buckets_container').appendChild(new_row)
       
         }
+
+
 
     }
    
@@ -2745,12 +2763,9 @@ function getJinJaVariablesFromHtmlFile() {
 
 function show_label_buckets_from_server_json_data(json_data){
 
-    alert(' It gets to 2755 in show_label_buckets_from_server_json_data(json_data)')
-
     var active_project_id = json_data.active_project
     var active_label = json_data.active_label
     var active_project_result = json_data.active_project_result
-
 
     // Set Environment Variables
     ACTIVE_PROJECT_ID = active_project_id
