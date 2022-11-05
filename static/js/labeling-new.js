@@ -1994,6 +1994,7 @@ function updatePage(){
     // Show the first image from the thumbnails the main image
     showFirstImage()
 
+    alert(' Line 1997 - this is just after the  showFirstImage()')   
     // Add labels_color_map to project_json and post information to server
     // AddLabels_Color_Map_to_Project_JSON()
 
