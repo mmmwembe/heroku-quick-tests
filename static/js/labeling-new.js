@@ -1344,6 +1344,7 @@ alert(' IT GETS TO LINE 1299 ')
 
     }
 
+    alert(' It gets to line 1347 right after 1322')
 
     $("#StartNewProjectButton").click(function (){
         myModal.toggle()
