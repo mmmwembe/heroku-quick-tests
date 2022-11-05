@@ -1781,6 +1781,8 @@ $.ajax({
     alert('line 1759 -- active_project : ' + active_project_id)
     alert('active_label: ' + active_label)
     alert(' active_project_result  ' + JSON.stringify(active_project_result))
+
+    
   }});
 
 
@@ -2885,6 +2887,12 @@ function isTrue(arr, arr2){
 alert(isTrue(mainArr, [1,2,3]));
 //console.log(isTrue(mainArr, [1,2,3,4]));
 //console.log(isTrue(mainArr, [1,2]));
+
+function check_if_all_elements_in_array2_are_in_array1(array1,array2){
+
+    return array1.every(i => array2.includes(i));
+
+}
 
 
 
