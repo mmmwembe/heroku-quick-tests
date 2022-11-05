@@ -1989,7 +1989,7 @@ function updatePage(){
     // Select the first label as the initial label
     chooseInitialLabel()
 
-    alert(' Line 1992 - this is just after the chooseInitialLabel()')   
+    //alert(' Line 1992 - this is just after the chooseInitialLabel()')   
 
     // Show the first image from the thumbnails the main image
     showFirstImage()
@@ -2021,6 +2021,7 @@ function updatePage(){
      create_label_buckets(data)
 
     */
+     alert(' Line 2024 - last line in updatePage()')   
 
 }
 
