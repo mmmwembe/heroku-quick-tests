@@ -80,7 +80,8 @@ window.addEventListener('load', (event) => {
       IMAGE_LIST[i] = imageURL
     }
     NUM_OF_IMAGES = img_thumbnails.length; 
-    // alert(' Number of Images ' + NUM_OF_IMAGES)
+
+    alert(' IT GETS TO LINE 84 ')
 
     // Show the first image from the thumbnails the main image
     showFirstImage()
