@@ -2756,6 +2756,7 @@ function show_label_buckets_from_server_json_data(json_data){
     var active_label = json_data.active_label
     var active_project_result = json_data.active_project_result
 
+    alert(' It gets to 2759 in show_label_buckets_from_server_json_data(json_data)')
     // Set Environment Variables
     ACTIVE_PROJECT_ID = active_project_id
     ACTIVE_PROJECT_JSON = active_project_result
