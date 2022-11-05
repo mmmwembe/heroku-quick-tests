@@ -1297,7 +1297,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
 alert(' IT GETS TO LINE 1299 ')
-  //-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------
 //                Project Folder and Subdirectories
@@ -1379,6 +1379,7 @@ alert(' IT GETS TO LINE 1299 ')
         myModal.toggle()
     }
 
+    alert(' IT GETS TO LINE 1382 ')
 
     function Hide_StartNewProject_Button_and_Show_ProjectLabel(){
 
