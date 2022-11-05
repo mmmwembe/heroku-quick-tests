@@ -82,7 +82,8 @@ window.addEventListener('load', (event) => {
     NUM_OF_IMAGES = img_thumbnails.length; 
 
     // Show the first image from the thumbnails the main image
-    showFirstImage()
+
+    // showFirstImage()
 
     alert(' IT GETS TO LINE 87 ')
     // alert('new image width :' + image_dimensions.width)
