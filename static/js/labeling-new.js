@@ -357,8 +357,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             // alert(' Line 347...there is nothing in first_img_div ')
         }
         else{
-            alert(' Line 360...sorry mate, you dont have gallery_column items')   
-            alert(' Pass do nothing....')       
+            alert(' Line 350...sorry mate, you dont have gallery_column items')        
         }
 
         /*
