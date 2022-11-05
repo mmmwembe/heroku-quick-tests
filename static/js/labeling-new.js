@@ -708,15 +708,16 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     }
 
 
-    
+    alert(' IT GETS TO LINE 711 ')
+
     // -----------------------------------------------------------------------------------------------------------------
     //                     Show Labelled Images and Enable Images Download
     //                     Also populate LABELED_IMAGES_TRACKER and get NUM_LABELLED_IMAGES and NUM_IMAGES_TOTAL
     //----------------------------------------------------------------------------------------------------------------
 
-    alert(' IT GETS TO LINE 717 ')
+ 
+  /*
 
-    /*
     function Show_Labeled_Images_and_Enable_Labels_Download(){
 
         img_thumbnails = document.getElementsByClassName('gallery_column');
@@ -749,10 +750,6 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     
         }
     
-   */
-        alert(' IT GETS TO LINE 751 ')
-
-
         // NUM_OF_LABELLED_IMAGES
         // Enable Download Button When NUM_OF_LABELLED_IMAGES > 0
         NUM_LABELLED_IMAGES = LABELED_IMAGES_TRACKER.length; 
@@ -772,7 +769,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     
     }
 
+    */
 
+    alert(' IT GETS TO LINE 774 ')
 
     // var g = window.localStorage.getItem("project_json");
     // alert(' g ' + g)
