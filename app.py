@@ -1198,9 +1198,12 @@ def get_active_project2():
         
         query ={'user_id': user_id}
         user_session_info = user_session_data.find(query)
+        
         active_project_id = user_session_info[0]['active_project']
         active_label = user_session_info[0]['active_label']
+        
         active_project_query = {'project_js_id': active_project_id,  'user_id': user_id}
+        
         results = user_projects.find(active_project_query)
         active_project_result = results[0]
         # active_project_id =''
