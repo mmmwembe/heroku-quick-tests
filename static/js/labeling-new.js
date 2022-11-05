@@ -2646,8 +2646,8 @@ function NewLabelBucketCard(data_element){
 
 
 
-           var active_project_id = response.active_project
-           var active_label = response.active_label
+           var active_project_id = response.xproject_id
+           var active_label = response.xlabel
            //var active_project_result = response.active_project_result
            //var previous_label = response.previous_label
            //var previous_project_id = response.previous_project_id
