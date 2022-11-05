@@ -341,8 +341,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function showFirstImage(){
         var first_img_div = document.getElementsByClassName('gallery_column')[0]
-        var first_img = first_img_div.getElementsByTagName('img')[0].src ? first_img_div.getElementsByTagName('img')[0].src  : ""
-        //var first_img = first_img_div.getElementsByTagName('img')[0].src;
+        // var first_img = first_img_div.getElementsByTagName('img')[0].src ? first_img_div.getElementsByTagName('img')[0].src  : ""
+        var first_img = first_img_div.getElementsByTagName('img')[0].src;
         // alert(first_img)
         if(first_img){
         IMAGE_URL = first_img
