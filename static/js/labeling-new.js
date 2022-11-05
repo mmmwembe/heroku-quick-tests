@@ -85,7 +85,6 @@ window.addEventListener('load', (event) => {
 
     // showFirstImage()
 
-    alert(' IT GETS TO LINE 87 ')
     // alert('new image width :' + image_dimensions.width)
 
     for(let i = 0; i < img_thumbnails.length; i++) {
@@ -109,6 +108,7 @@ window.addEventListener('load', (event) => {
 
 
 
+    alert(' IT GETS TO LINE 111 ')
     //----------------------------------------------------------
     // Show Marked Images and Enable Download
     //----------------------------------------------------------
