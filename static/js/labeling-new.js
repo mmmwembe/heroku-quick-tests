@@ -2695,12 +2695,21 @@ function NewLabelBucketCard(data_element){
             alert(' my Label : ' + myLabel)
             alert(' number_original_images : ' + number_original_images)
             alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
+
+
+            document.getElementById(imageLoader_id).value = ''
+            document.getElementById(imageLoader_id).files = []
             
             var p2_id = $(this).attr('p2-id'); 
             var p3_id = $(this).attr('p3-id');
+
+            alert(' p2_id : ' + p2_id + ' p3_id : ' + p3_id)
+
+            document.getElementById(p2_id).innerHTML ="20"
+            document.getElementById(p3_id).innerHTML ="0"
         
-            $('#' + p2_id).html('Number of Images: ' + number_original_images);  
-            $('#' + p3_id).html('Labelled Images: ' +  number_labelled_original_image_urls);  
+           // $('#' + p2_id).html('Number of Images: ' + number_original_images);  
+           // $('#' + p3_id).html('Labelled Images: ' +  number_labelled_original_image_urls);  
 
             add_gallery_rows(original_image_urls, labelled_original_image_urls)
          
