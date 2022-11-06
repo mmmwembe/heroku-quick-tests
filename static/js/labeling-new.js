@@ -2987,7 +2987,7 @@ function add_gallery_column(img_url,counter, labelled_imgs){
 
     const gallery_column = document.createElement('div')
     //gallery_column.className ="gallery_column"
-    gallery_column.id = img_url
+    gallery_column.id = 'gallery-column-' + getFileName(img_url) + '-' + counter
     gallery_column.style= "float: left; width: 25%; padding: 5px; position: relative;";
     gallery_column.setAttribute("label",'my_label')
     gallery_column.setAttribute("project_id","proxhkerheheh")
@@ -3008,7 +3008,7 @@ function add_gallery_column(img_url,counter, labelled_imgs){
     }
 
     const gallery_img_div = document.createElement('div')
-    gallery_img_div.id = img_url 
+    gallery_img_div.id = 'gallery_img_div-' + getFileName(img_url) + '-' + counter
     gallery_img_div.style="background-color: black; width: 100%; height: 60px; display: inline-block; background-size: cover; background-position: center center; background-repeat: no-repeat;" + "background-image: url("+img_url+")";
     gallery_img_div.crossOrigin = "anonymous"
     gallery_img_div.setAttribute("image_index",counter)
