@@ -2715,6 +2715,35 @@ function NewLabelBucketCard(data_element){
             $('#' + p3_id).html('Labelled Images: ' +  number_labelled_original_image_urls);  
 
             add_gallery_rows(original_image_urls, labelled_original_image_urls)
+
+        // -----------------------------------------------------------------------------------------------------------
+        //        updateFabricCanvasBackgroundImage(img_url)  Make the first thumbnail the Canvas Background Image
+        //------------------------------------------------------------------------------------------------------------
+
+            if (!array_is_empty(original_image_urls)){
+
+                var first_background_img = original_image_urls[0]
+
+                updateFabricCanvasBackgroundImage(first_background_img)
+
+                var img_name_x = getFileName(first_background_img)
+
+                // Get stored canvas json and display on the canvas
+                if (getStoredSessionValue(img_name_x) !== null) {
+                    const canvas_json = getStoredSessionValue(img_name_x);
+                    fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
+                }
+
+
+            }
+
+
+
+
+
+        
+
+
          
             /*
             original_image_urls.forEach(function (item, index) {
