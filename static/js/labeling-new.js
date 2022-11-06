@@ -2360,7 +2360,43 @@ function NewLabelBucketCard(data_element){
     var user_id = data_element.user_id ? data_element.user_id : ""
 
     var current_label_info = data_element.current_label_info
-    alert('2363 current label info current_label_info: ' + current_label_info)
+
+
+    var label_id = current_label_info['label_id']
+
+    // Attributes for each label...can use this information in the future
+    var original_image_urls = current_label_info['original_image_urls']
+    var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
+    var cropped_image_urls = current_label_info['cropped_image_urls']
+    var augmentation_image_urls = current_label_info['augmentation_image_urls']
+
+    var labelled_original_image_urls = current_label_info['labelled_original_image_urls']
+    var labelled_all_jpeg_image_urls = current_label_info['labelled_all_jpeg_image_urls']
+    var labelled_cropped_image_urls = current_label_info['labelled_cropped_image_urls']
+    var labelled_augmentation_image_urls = current_label_info['labelled_augmentation_image_urls']
+
+    var original_image_label_jsons = current_label_info['original_image_label_jsons']
+    var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
+    var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+
+    var number_original_images = current_label_info['original_image_urls'].length
+    var number_all_jpeg_images = current_label_info['all_jpeg_image_urls'].length
+    var number_cropped_images = current_label_info['cropped_image_urls'].length
+    var number_augmentation_images = current_label_info['augmentation_image_urls'].length
+
+    var number_labelled_original_image_urls = current_label_info['labelled_original_image_urls'].length
+    var number_labelled_all_jpeg_image_urls = current_label_info['labelled_all_jpeg_image_urls'].length
+    var number_labelled_cropped_image_urls = current_label_info['labelled_cropped_image_urls'].length
+    var number_labelled_augmentation_image_urls = current_label_info['labelled_augmentation_image_urls'].length
+
+    var original_image_label_jsons = current_label_info['original_image_label_jsons']
+    var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
+    var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+    var date_created = current_label_info['date_created']
+    var date_modified = current_label_info['date_modified']
+
+
+    // alert('2363 current label info current_label_info: ' + current_label_info)
     //alert(' project_name : ' + project_name +  ' date_created : ' + date_created)
 
 
@@ -2392,12 +2428,12 @@ function NewLabelBucketCard(data_element){
     const p2 = document.createElement('p')
     p2.className ="card-text"
     p2.id="p2-" + label + "-" + counter
-    p2.innerHTML ="Number of Images:";
+    p2.innerHTML ="Number of Images:" + '<h3>' + number_original_images + '</h3>';
 
     const p3 = document.createElement('p')
     p3.className ="card-text"
     p3.id="p3-" + label + "-" + counter
-    p3.innerHTML ="Labelled Images:";
+    p3.innerHTML ="Labelled Images:" + '<h3>' + number_labelled_original_image_urls + '</h3>';
 
     const p4 = document.createElement('p')
     p4.className ="card-text"
