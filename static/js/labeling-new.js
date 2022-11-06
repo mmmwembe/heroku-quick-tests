@@ -2641,7 +2641,8 @@ function NewLabelBucketCard(data_element){
 
             //timerId = setInterval(startProgressBar2, 500);
 
-            // PROGRESS_BAR_INTERVAL = 500
+            // PROGRESS_BAR_INTERVAL = 10
+            $("#myBar").attr("style", "display: !important");
             startProgressBar2()
 
           },
@@ -2649,10 +2650,10 @@ function NewLabelBucketCard(data_element){
            msg = 'original_image_urls: ' + response.original_image_urls + '\n' +  '  xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls) + '  label_image_urls : ' + JSON.stringify(response.label_image_urls)
            alert(msg) 
 
-            PROGRESS_BAR_INTERVAL = 10
+            // PROGRESS_BAR_INTERVAL = 10
            //clearTimeout(timerId);
 
-           alert(' image loader - name 2650 ' + ($this).attr("imageLoader_id"))
+           //alert(' image loader - name 2650 ' + ($this).attr("imageLoader_id"))
 
            // Reset the input files field
            // document.getElementById(imageLoader_id).value = ''
@@ -3005,6 +3006,7 @@ function startProgressBar2() {
     function frame() {
       if (width >= 100) {
         clearInterval(id);
+        $("#myBar").attr("style", "display: none !important");
         i = 0;
       } else {
         width++;
