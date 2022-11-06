@@ -2655,7 +2655,29 @@ function NewLabelBucketCard(data_element){
             var project = response.active_project_result 
             var myLabel = response.xlabel
 
+
+            ACTIVE_PROJECT_JSON = active_project_result
+            var current_label_info = filter_project_json_by_label(key)
+           
+            var original_image_urls = current_label_info['original_image_urls']
+            var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
+            var cropped_image_urls = current_label_info['cropped_image_urls']
+            var augmentation_image_urls = current_label_info['augmentation_image_urls']
+            var original_image_label_jsons = current_label_info['original_image_label_jsons']
+            var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
+            var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+            var number_original_images = current_label_info['original_image_urls'].length
+            var number_all_jpeg_images = current_label_info['all_jpeg_image_urls'].length
+            var number_cropped_images = current_label_info['cropped_image_urls'].length
+            var number_augmentation_images = current_label_info['augmentation_image_urls'].length
+            var original_image_label_jsons = current_label_info['original_image_label_jsons']
+            var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
+            var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+            var date_created = current_label_info['date_created']
+            var date_modified = current_label_info['date_modified']
+
             alert(' my Label : ' + myLabel)
+            alert(' number_original_images : ' + number_original_images)
             
             /*
             if (!String_is_Empty(original_image_urls)){ 
