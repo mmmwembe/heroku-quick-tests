@@ -3031,12 +3031,14 @@ function add_gallery_column(img_url,counter, labelled_imgs){
     gallery_img_div.style="background-color: black; width: 100%; height: 60px; display: inline-block; background-size: cover; background-position: center center; background-repeat: no-repeat;" + "background-image: url("+img_url+")";
     gallery_img_div.crossOrigin = "anonymous"
     gallery_img_div.setAttribute("image_index",counter)
+    gallery_img_div.setAttribute("image_url",img_url)
     gallery_img_div.addEventListener('click', function(e){  
 
         //var img_clicked = e.target.id
         var img_clicked = $(this).attr('id'); 
         var img_index = $(this).attr('image_index'); 
-        alert("URL of image clicked : " + img_clicked + " image index " + img_index ) 
+        var image_url = $(this).attr('image_url');         
+        alert("URL of image clicked : " + image_url + '\n' + 'div clicked : '  + img_clicked + '\n' +  " image index: " + img_index ) 
 
     });
 
