@@ -2637,12 +2637,12 @@ function NewLabelBucketCard(data_element){
         data: form_data,
         type: 'post',
         beforeSend: function(xhr) {
-            alert('state progress bar on line 2640.....')
+           // alert('state progress bar on line 2640.....')
 
-            timerId = setTimeout(startProgressBar, 1000);
+            timerId = setTimeout(startProgressBar, 500);
           },
         success: function (response) { // display success response   
-           msg = ' xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls) + '  label_image_urls : ' + JSON.stringify(response.label_image_urls)
+           msg = 'original_image_urls: ' + response.original_image_urls + '\n' +  '  xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls) + '  label_image_urls : ' + JSON.stringify(response.label_image_urls)
            alert(msg) 
 
 
@@ -2651,7 +2651,7 @@ function NewLabelBucketCard(data_element){
            // Reset the input files field
            document.getElementById(imageLoader_id).value = ''
            document.getElementById(imageLoader_id).files =[]
-           document.getElementById('#p2-' + response.xlabel + '-' + response.xproject_id).innerHTML = (response.original_image_urls).length
+           //document.getElementById('#p2-' + response.xlabel + '-' + response.xproject_id).innerHTML = (response.original_image_urls).length
 
            //var active_project_id = response.xproject_id
            //var active_label = response.xlabel
