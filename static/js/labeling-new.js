@@ -1920,7 +1920,7 @@ $.ajax({
                                 "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
                                 "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
                                 "ISODate": date_created, "date_created": date_created, 
-                                "original_image_urls": original_image_urls,"all_jpeg_image_urls": all_jpeg_image_urls}
+                                "original_image_urls": original_image_urls,"all_jpeg_image_urls": all_jpeg_image_urls, 'current_label_info' : current_label_info}
       
             data.push(data_element)
             
@@ -2358,6 +2358,9 @@ function NewLabelBucketCard(data_element){
     var date_created = data_element.date_created ? data_element.project_name : ""
     var all_labeled_true_false = data_element.all_labeled_true_false ? data_element.all_labeled_true_false : false;
     var user_id = data_element.user_id ? data_element.user_id : ""
+
+    var current_label_info = data_element.current_label_info
+    alert('2363 current label info current_label_info: ' + current_label_info)
     //alert(' project_name : ' + project_name +  ' date_created : ' + date_created)
 
 
