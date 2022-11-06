@@ -3018,7 +3018,8 @@ function add_gallery_column(img_url,counter, labelled_imgs){
     const div_with_checkmark = document.createElement('div')
     div_with_checkmark.style= "position: absolute; top: 0px;  z-index: 5;color: #f5f5f5;font-size: 25px;text-align: right;cursor: pointer;border-radius: 10rem;background-color: transparent;border: transparent;width: 90%;";
 
-    if (labelled_images_data.includes(img_url)){
+
+    if (labelled_imgs.includes(img_url)){
     const checkmark_icon = document.createElement('i')
     checkmark_icon.className ="fa fa-check-circle fa-1x"
     checkmark_icon.style="color: green"
@@ -3064,7 +3065,7 @@ function add_gallery_rows(data, labelled_images_array){
        }
 
        alert(' It gets to line 3065 in add_gallery_rows')
-       
+
        var img_url2 = data[i+1] ? data[i+1]  : ""
         if (img_url2.length > 1 ){
         var new_gallery_column2 = add_gallery_column(img_url2,i+1,labelled_images_array)
