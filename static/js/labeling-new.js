@@ -3057,11 +3057,12 @@ function add_gallery_rows(data, labelled_images_array){
 
 
         var img_url1 = data[i] ? data[i]  : ""
+        alert(' It gets to line 3060 in add_gallery_rows')
         if (img_url1.length > 1 ){
         var new_gallery_column1 = add_gallery_column(img_url1,i,labelled_images_array)
         gallery_row.appendChild(new_gallery_column1) 
        }
-
+       alert(' It gets to line 3065 in add_gallery_rows')
        var img_url2 = data[i+1] ? data[i+1]  : ""
         if (img_url2.length > 1 ){
         var new_gallery_column2 = add_gallery_column(img_url2,i+1,labelled_images_array)
