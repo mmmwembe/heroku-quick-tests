@@ -2677,7 +2677,7 @@ function NewLabelBucketCard(data_element){
             }      
             
             
-            add_gallery_rows(original_image_urls,labelled_original_image_urls)
+            add_gallery_rows(original_image_urls,[])
 
          
 
