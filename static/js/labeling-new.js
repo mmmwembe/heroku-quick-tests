@@ -2697,9 +2697,9 @@ function NewLabelBucketCard(data_element){
             var date_created = current_label_info['date_created']
             var date_modified = current_label_info['date_modified']
 
-            alert(' my Label : ' + myLabel)
-            alert(' number_original_images : ' + number_original_images)
-            alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
+            //alert(' my Label : ' + myLabel)
+            //alert(' number_original_images : ' + number_original_images)
+            //alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
 
 
             //document.getElementById(imageLoader_id).value = ''
@@ -2707,12 +2707,12 @@ function NewLabelBucketCard(data_element){
             $('#'+imageLoader_id).val("");
             
 
-
+            document.getElementById("myBar").style.width ="100%";
             //document.getElementById(p2_id).innerHTML ="20"
             //document.getElementById(p3_id).innerHTML ="0"
         
-            //$('#' + p2_id).html('Number of Images: ' + number_original_images);  
-            //$('#' + p3_id).html('Labelled Images: ' +  number_labelled_original_image_urls);  
+            $('#' + p2_id).html('Number of Images: ' + number_original_images);  
+            $('#' + p3_id).html('Labelled Images: ' +  number_labelled_original_image_urls);  
 
             add_gallery_rows(original_image_urls, labelled_original_image_urls)
          
@@ -3122,7 +3122,7 @@ function startProgressBar() {
 
 
 var i = 0;
-PROGRESS_BAR_INTERVAL = 100
+PROGRESS_BAR_INTERVAL = 50
 function startProgressBar2() {
   if (i == 0) {
     i = 1;
