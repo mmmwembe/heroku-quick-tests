@@ -3039,7 +3039,12 @@ function add_gallery_column(img_url,counter, labelled_imgs){
         var img_clicked = $(this).attr('id'); 
         var img_index = $(this).attr('image_index'); 
         var image_url = $(this).attr('image_url');         
-        alert("URL of image clicked : " + image_url + '\n' + 'div clicked : '  + img_clicked + '\n' +  " image index: " + img_index ) 
+        alert("Line 3042 URL of image clicked : " + image_url + '\n' + 'div clicked : '  + img_clicked + '\n' +  " image index: " + img_index ) 
+        // -----------------------------------------------------------------------------------------------------------
+        //        updateFabricCanvasBackgroundImage(img_url)  Update Canvas Background from Thumbnail
+        //------------------------------------------------------------------------------------------------------------
+
+        updateFabricCanvasBackgroundImage(image_url)
 
     });
 
