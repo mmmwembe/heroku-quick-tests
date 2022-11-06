@@ -2654,9 +2654,9 @@ function NewLabelBucketCard(data_element){
             var labelled_original_image_urls = response.labelled_original_image_urls
             var project = response.active_project_result 
 
-            /*
+            
 
-            if (original_image_urls.length > 0){ 
+            if (!String_is_Empty(original_image_urls)){ 
 
                 original_image_urls = original_image_urls.split(',')
                 var num_images = original_image_urls.length;
@@ -2665,7 +2665,7 @@ function NewLabelBucketCard(data_element){
             else{
                 original_image_urls = []
             }
-            if (labelled_original_image_urls > 0){ 
+            if (!String_is_Empty(labelled_original_image_urls)){ 
                 
                 labelled_original_image_urls = labelled_original_image_urls.split(',')
                 var labelled_num_images = labelled_original_image_urls.length;
@@ -2676,13 +2676,13 @@ function NewLabelBucketCard(data_element){
                 labelled_original_image_urls = []
             }        
 
-         */
+         
 
             //var original_image_urls = (response.original_image_urls).length > 0 ? response.original_image_urls.split(',') : []
             //var labelled_original_image_urls = (response.labelled_original_image_urls).length > 0 ? response.labelled_original_image_urls.split(',') : []
 
-            alert('original_image_urls: ' + original_image_urls.length)
-            //alert('labelled_original_image_urls: ' + labelled_original_image_urls.length)
+            alert('original_image_urls: ' + original_image_urls.toString())
+            alert('labelled_original_image_urls: ' + labelled_original_image_urls.toString()
             
            // msg = 'original_image_urls: ' + response.original_image_urls + '\n' +  '  xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls) + '  label_image_urls : ' + JSON.stringify(response.label_image_urls)
            // alert(msg) 
@@ -3052,6 +3052,11 @@ function startProgressBar2() {
       }
     }
   }
+}
+
+
+function String_is_Empty(val){
+    return (val === undefined || val == null || val.length <= 0) ? true : false;
 }
 
 
