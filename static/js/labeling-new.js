@@ -2636,7 +2636,7 @@ function NewLabelBucketCard(data_element){
         processData: false,
         data: form_data,
         type: 'post',
-        beforeSend: function() {
+        beforeSend: function(xhr) {
             alert('state progress bar on line 2640.....')
           },
         success: function (response) { // display success response   
