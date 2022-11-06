@@ -1,0 +1,18 @@
+ IT GETS TO LINE 1299  
+ IT GETS TO LINE 1364 
+DOES NOT GET HERE - line 1832
+DOES NOT GET HERE - line 1441 
+ DOES NOT GET HERE ---IT GETS TO LINE 1605
+ IT GETS TO LINE 1733
+ Testing to see where the script stops !!! --- line 1830
+All elements in array2 are in the MainArr : true
+1833 active_project_result from /get_active_project2 
+line 1857 active_project_result from /get_active_project 
+line 1806 -- active_project : la3v3jwvrpvtlpbfcmc
+
+Line 1895
+
+Line 350
+Line 1997
+Line 2024
+Line 1901

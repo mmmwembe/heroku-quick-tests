@@ -357,7 +357,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             // alert(' Line 347...there is nothing in first_img_div ')
         }
         else{
-            alert(' Line 350...sorry mate, you dont have gallery_column items')        
+            //alert(' Line 350...sorry mate, you dont have gallery_column items')        
         }
 
         /*
@@ -1296,7 +1296,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     };
 
 
-alert(' IT GETS TO LINE 1299 ')
+// alert(' IT GETS TO LINE 1299 ')
 //-------------------------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------
@@ -1369,7 +1369,7 @@ alert(' IT GETS TO LINE 1299 ')
 
   */
 
-    alert(' IT GETS TO LINE 1364 ')
+   // alert(' IT GETS TO LINE 1364 ')
     const uniqueId = () => {
         const dateString = Date.now().toString(36);
         const randomness = Math.random().toString(36).substr(2);
@@ -1389,7 +1389,7 @@ alert(' IT GETS TO LINE 1299 ')
         myModal.toggle()
     }
 
-    alert('DOES NOT GET HERE - line 1832 ')
+    // alert('DOES NOT GET HERE - line 1832 ')
 
     function Hide_StartNewProject_Button_and_Show_ProjectLabel(){
 
@@ -1449,7 +1449,7 @@ alert(' IT GETS TO LINE 1299 ')
 
     }
 
-    alert('DOES NOT GET HERE - line 1441 ')
+    // alert('DOES NOT GET HERE - line 1441 ')
 
     $("#createProjectBtn").click(function (event){
 
@@ -1614,7 +1614,7 @@ alert(' IT GETS TO LINE 1299 ')
 
    }
 
-alert(' DOES NOT GET HERE ---IT GETS TO LINE 1605 ')
+// alert(' DOES NOT GET HERE ---IT GETS TO LINE 1605 ')
 // -----------------------------------------------------------------------
 //                Label Bucket Container 
 //------------------------------------------------------------------------
@@ -1742,7 +1742,7 @@ function create_label_buckets_dummy(project_json_storage_variable){
 }
 
 
-alert(' IT GETS TO LINE 1733')
+// alert(' IT GETS TO LINE 1733')
     //------------------------------------------------------------------
     //                  Show and Hide Label Buckets
     // ----------------------------------------------------------------
@@ -1830,7 +1830,7 @@ $.ajax({
     //alert('/get_active_project2')
     //alert('line 1782 -- active_project : ' + active_project_id)
     //alert('active_label: ' + active_label)
-    alert(' 1821 active_project_result  ' + JSON.stringify(data))
+    alert(' 1833 active_project_result from /get_active_project2 ' + JSON.stringify(data))
 
 
   }});
@@ -1839,7 +1839,7 @@ $.ajax({
 //ACTIVE_PROJECT_ID = window.localStorage.hasOwnProperty("active_project") ?  window.localStorage.getItem("active_project") : ""
 // alert(' active project id : ' + ACTIVE_PROJECT_ID) // This corresponds to this variable project_js_id
 
- alert(' Testing to see where the script stops !!! --- line 1830')
+ // alert(' Testing to see where the script stops !!! --- line 1830')
 
 $.ajax({
     type: "POST",
@@ -1851,10 +1851,10 @@ $.ajax({
         var active_project_id = data.active_project_id
         var active_label = data.active_label
         var active_project_result = data.active_project_result[0]
-        alert('/get_active_project')
-        alert('line 1806 -- active_project : ' + active_project_id)
+        //alert('/get_active_project')
+        //alert('line 1806 -- active_project : ' + active_project_id)
         //alert('active_label: ' + active_label)
-        alert(' line 1822 active_project_result  ' + JSON.stringify(active_project_result))
+        alert(' line 1857 active_project_result from /get_active_project ' + JSON.stringify(active_project_result))
 
         /*
 
@@ -1927,13 +1927,13 @@ $.ajax({
             counter += 1;
 
         })
-        alert(' Line 1895 data obect ' + JSON.stringify(data))   
+       // alert(' Line 1895 data obect ' + JSON.stringify(data))   
 
         // Update Page
 
         updatePage()
 
-        alert(' Line 1901 data obect - confirmation that it gets past the updatePage() function ')   
+        //alert(' Line 1901 data obect - confirmation that it gets past the updatePage() function ')   
         //alert(' Line 1887 - this is the first gate I see')   
 
         //show_label_buckets()
@@ -2029,7 +2029,7 @@ function updatePage(){
     // Show the first image from the thumbnails the main image
     showFirstImage()
 
-    alert(' Line 1997 - this is just after the  showFirstImage()')   
+    //alert(' Line 1997 - this is just after the  showFirstImage()')   
     // Add labels_color_map to project_json and post information to server
     // AddLabels_Color_Map_to_Project_JSON()
 
@@ -2057,7 +2057,7 @@ function updatePage(){
      create_label_buckets(data)
 
     */
-     alert(' Line 2024 - last line in updatePage()')   
+    // alert(' Line 2024 - last line in updatePage()')   
 
 }
 
@@ -2653,8 +2653,8 @@ function NewLabelBucketCard(data_element){
             var original_image_urls = response.original_image_urls
             var labelled_original_image_urls = response.labelled_original_image_urls
 
-            alert('original_image_urls: ' + response.original_image_urls)
-            alert('labelled_original_image_urls: ' + response.labelled_original_image_urls)
+            alert('original_image_urls: ' + original_image_urls)
+            alert('labelled_original_image_urls: ' + labelled_original_image_urls)
             
            // msg = 'original_image_urls: ' + response.original_image_urls + '\n' +  '  xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls) + '  label_image_urls : ' + JSON.stringify(response.label_image_urls)
            // alert(msg) 
