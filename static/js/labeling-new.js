@@ -2678,7 +2678,10 @@ function NewLabelBucketCard(data_element){
             */
             var x = original_image_urls.split(',')
 
-            add_gallery_rows(x,[])
+            alert('number of images in original_image_urls: ' + x.length)
+            alert('images in original_image_urls: ' + x.toString())
+
+            // add_gallery_rows(x,[])
 
          
 
