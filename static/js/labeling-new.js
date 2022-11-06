@@ -47,7 +47,7 @@ window.addEventListener('load', (event) => {
 
     var user_id ="45f20651684f40be8916c29d69295998"
 
-    $('#download_file_types').multiselect();
+    //$('#download_file_types').multiselect();
 
     // https://www.demo2s.com/javascript/javascript-fabric-js-draw-rectangle-between-two-mouse-clicks-on-canvas.html
     var fabricCanvas = new fabric.Canvas("fabricCanvas");
