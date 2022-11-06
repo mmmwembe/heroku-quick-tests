@@ -3039,6 +3039,7 @@ function add_gallery_rows(data, labelled_images_array){
 
 
         var img_url1 = data[i] ? data[i]  : ""
+        alert('It gets to 3042...img_url1 : ' + img_url1)
         if (img_url1.length > 1 ){
         var new_gallery_column1 = add_gallery_column(img_url1,i,labelled_images_array)
         gallery_row.appendChild(new_gallery_column1) 
