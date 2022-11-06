@@ -2694,6 +2694,9 @@ function NewLabelBucketCard(data_element){
             alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
             
          
+
+            add_gallery_rows(original_image_urls,labelled_original_image_urls)
+
             /*
             if (!String_is_Empty(original_image_urls)){ 
 
@@ -2755,7 +2758,7 @@ function NewLabelBucketCard(data_element){
            //alert('line 2656 previous_project_id  ' + previous_project_id)
            // Update the thumbnail gallery header
            //$('#gallery_thumbnails_header').html('');
-           $('#gallery_thumbnails_header').html('<h3>' + active_label +'</h3>');
+           $('#gallery_thumbnails_header').html('<h3>' + myLabel +'</h3>');
 
            //$('#p2-' + active_label + '-' + active_project_id).html("Number of Images: " + (response.original_image_urls).length);
            //$('#p3-' + active_label + '-' + active_project_id).html("Labelled Images:" + (response.labelled_original_image_urls).length);
