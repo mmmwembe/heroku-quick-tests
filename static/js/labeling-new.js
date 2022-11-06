@@ -3043,8 +3043,16 @@ function add_gallery_column(img_url,counter, labelled_imgs){
         // -----------------------------------------------------------------------------------------------------------
         //        updateFabricCanvasBackgroundImage(img_url)  Update Canvas Background from Thumbnail
         //------------------------------------------------------------------------------------------------------------
-
         updateFabricCanvasBackgroundImage(image_url)
+
+        var img_name_x = getFileName(image_url)
+
+        // Get stored canvas json and display on the canvas
+        if (getStoredSessionValue(img_name_x) !== null) {
+            const canvas_json = getStoredSessionValue(img_name_x);
+            fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
+        }
+
 
     });
 
