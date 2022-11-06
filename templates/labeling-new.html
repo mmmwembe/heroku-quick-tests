@@ -419,10 +419,16 @@ h4 {
 
                 <div class="col-sm">
 
-                    <form method="post" action="{{ url_for('upload_images_for_labeling') }}" enctype="multipart/form-data">
+                    <form>
                         <div class="input-group">
-                            <input class="form-control" id="imageLoader" type="file" name="images_for_labeling[]" multiple="true" autocomplete="off" required>
-                            <input type="submit" value="Upload Images" class="btn  btn-info" style="margin-left: 10px;">
+
+                            <select name="download_file_types[]" id="download_file_types" multiple="multiple">
+                              <option value="csv">CSV</option>
+                              <option value="json">JSON</option>
+                            </select>    
+                            <button id="download-csv-button" type="button" class="btn btn-primary btn-lg"  style="width:100%; float:right" id="downloadCSVBtn">
+                              Download 
+                            </button>
                         </div>
                         <input type="hidden" id="current_folder" name="current_folder" value="">
                         <input type="hidden" name="which-form" value="images-for-labeling">

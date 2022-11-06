@@ -1941,6 +1941,8 @@ $.ajax({
 
         // create_label_buckets(data)
 
+        /*
+
         for (var i = 0; i < data.length; i += 4) {
 
             var new_row = document.createElement('div')
@@ -1967,6 +1969,8 @@ $.ajax({
             document.getElementById('label_buckets_container').appendChild(new_row)
       
         }
+
+        */
 
 
 
@@ -2737,13 +2741,6 @@ function NewLabelBucketCard(data_element){
 
             }
 
-
-
-
-
-        
-
-
          
             /*
             original_image_urls.forEach(function (item, index) {
@@ -2937,6 +2934,35 @@ function new_create_label_buckets(data){
 
 }
 
+
+function new_create_label_buckets_new_and_improved(data){
+
+    for (var i = 0; i < data.length; i += 4) {
+
+        var new_row = document.createElement('div')
+        new_row.className="row"
+
+        //for (var k = i; k <= i+4; k += 1){
+
+        var new_card = NewLabelBucketCard(data[i])
+        new_row.appendChild(new_card)
+
+        var new_card2 = NewLabelBucketCard(data[i+1])
+        new_row.appendChild(new_card2)
+
+        var new_card3 = NewLabelBucketCard(data[i+2])
+        new_row.appendChild(new_card3)
+
+        var new_card4 = NewLabelBucketCard(data[i+3])
+        new_row.appendChild(new_card4)
+
+        //}
+
+        document.getElementById('cropped_images_label_buckets_container').appendChild(new_row)
+
+    }
+
+}
 
 
 //-----------------------------------------------------------------------------------------
