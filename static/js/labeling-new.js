@@ -2609,7 +2609,7 @@ function NewLabelBucketCard(data_element){
         var p2_id = $(this).attr('p2-id'); 
         var p3_id = $(this).attr('p3-id');
 
-        alert(' line 2612  p2_id : ' + p2_id + ' p3_id : ' + p3_id)
+        //alert(' line 2612  p2_id : ' + p2_id + ' p3_id : ' + p3_id)
         //var x_label = $(this).attr('label');     
         //var x_project_id = $(this).attr('project_id');           
         //alert(' 2392 imageLoader_id  ' + imageLoader_id)
@@ -2702,8 +2702,8 @@ function NewLabelBucketCard(data_element){
             alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
 
 
-            document.getElementById(imageLoader_id).value = ''
-            document.getElementById(imageLoader_id).files = []
+            //document.getElementById(imageLoader_id).value = ''
+            //document.getElementById(imageLoader_id).files = []
             
 
 
@@ -3057,12 +3057,14 @@ function add_gallery_rows(data, labelled_images_array){
 
 
         var img_url1 = data[i] ? data[i]  : ""
-        alert(' It gets to line 3060 in add_gallery_rows')
+        alert('Line 3060 img_url1 : ' + img_url1)
         if (img_url1.length > 1 ){
         var new_gallery_column1 = add_gallery_column(img_url1,i,labelled_images_array)
         gallery_row.appendChild(new_gallery_column1) 
        }
+
        alert(' It gets to line 3065 in add_gallery_rows')
+       
        var img_url2 = data[i+1] ? data[i+1]  : ""
         if (img_url2.length > 1 ){
         var new_gallery_column2 = add_gallery_column(img_url2,i+1,labelled_images_array)
@@ -3081,7 +3083,7 @@ function add_gallery_rows(data, labelled_images_array){
         gallery_row.appendChild(new_gallery_column4) 
        }      
        
-       var msg_string = 'img_url1 : ' + img_url1 + '\n' + 'img_url2 : ' + img_url2 + '\n' + 'img_url3 : ' + img_url3 + '\n' + 'img_url4 : ' + img_url4 + '\n'
+       var msg_string = 'img_url1 : ' + img_url1 + '\n' + 'img_url2 : ' + img_url2 + '\n' + 'img_url3 : ' + img_url3 + '\n' + 'img_url4 : ' + img_url4 
 
        alert(msg_string)
 
