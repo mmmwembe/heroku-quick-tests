@@ -3069,7 +3069,9 @@ function add_gallery_rows(data, labelled_images_array){
         gallery_row.appendChild(new_gallery_column4) 
        }      
        
-       var msg_string = 'img_url1 : ' + img_url1 + '\n' + 'img_url2 : ' + img_url2 + '\n' + 'img_url3 : ' + img_url3 + '\n' + 'img_url4 : ' + img_url4 + '\n' + 
+       var msg_string = 'img_url1 : ' + img_url1 + '\n' + 'img_url2 : ' + img_url2 + '\n' + 'img_url3 : ' + img_url3 + '\n' + 'img_url4 : ' + img_url4 + '\n'
+
+       alert(msg_string)
 
 
        // document.getElementById('gallery_parent').appendChild(gallery_row)
