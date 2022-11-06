@@ -2653,7 +2653,9 @@ function NewLabelBucketCard(data_element){
             var original_image_urls = response.original_image_urls
             var labelled_original_image_urls = response.labelled_original_image_urls
             var project = response.active_project_result 
+            var myLabel = response.xlabel
 
+            alert(' my Label : ' + myLabel)
             
             /*
             if (!String_is_Empty(original_image_urls)){ 
@@ -2676,10 +2678,10 @@ function NewLabelBucketCard(data_element){
                 labelled_original_image_urls = []
             }      
             */
-            var x = original_image_urls.split(',')
+            //var x = original_image_urls.split(',')
 
-            alert('number of images in original_image_urls: ' + x.length)
-            alert('images in original_image_urls: ' + x.toString())
+            //alert('number of images in original_image_urls: ' + x.length)
+            //alert('images in original_image_urls: ' + x.toString())
 
             // add_gallery_rows(x,[])
 
