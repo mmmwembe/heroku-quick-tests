@@ -2695,11 +2695,12 @@ function NewLabelBucketCard(data_element){
             
          
 
-            original_image_urls.forEach(function (item, index) {
+            original_image_urls.forEach(function (x_img_url, index) {
                 //console.log(item, index);
                 // add_gallery_column(img_url,counter, labelled_imgs)
-                alert('item :' + item)
-                alert('index :' + index)
+                //alert('item :' + x_img_url)
+                //alert('index :' + index)
+                add_gallery_column(x_img_url,index, labelled_original_image_urls)
             });
 
             //add_gallery_rows(original_image_urls,labelled_original_image_urls)
