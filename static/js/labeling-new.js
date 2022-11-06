@@ -2682,7 +2682,7 @@ function NewLabelBucketCard(data_element){
             //var labelled_original_image_urls = (response.labelled_original_image_urls).length > 0 ? response.labelled_original_image_urls.split(',') : []
 
             alert('original_image_urls: ' + original_image_urls.toString())
-            alert('labelled_original_image_urls: ' + labelled_original_image_urls.toString()
+            alert('labelled_original_image_urls: ' + labelled_original_image_urls.toString())
             
            // msg = 'original_image_urls: ' + response.original_image_urls + '\n' +  '  xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls) + '  label_image_urls : ' + JSON.stringify(response.label_image_urls)
            // alert(msg) 
