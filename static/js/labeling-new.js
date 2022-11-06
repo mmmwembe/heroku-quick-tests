@@ -2642,7 +2642,7 @@ function NewLabelBucketCard(data_element){
             //timerId = setInterval(startProgressBar2, 500);
 
             // PROGRESS_BAR_INTERVAL = 10
-            $("#myBar").attr("style", "display: !important");
+            $("#myBar").attr("style", "display: block !important");
             startProgressBar2()
 
           },
