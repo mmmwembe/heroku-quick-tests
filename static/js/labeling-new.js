@@ -2654,8 +2654,25 @@ function NewLabelBucketCard(data_element){
             var labelled_original_image_urls = response.labelled_original_image_urls
             var project = response.active_project_result 
 
-            //if (original_image_urls.length > 0){ original_image_urls = original_image_urls.split(',')}
-            //if (labelled_original_image_urls > 0){ labelled_original_image_urls = labelled_original_image_urls.split(',')}           
+            if (original_image_urls.length > 0){ 
+
+                original_image_urls = original_image_urls.split(',')
+                var num_images = original_image_urls.length;
+                alert(' num of images of original_image_urls ' + num_images)
+            }
+            else{
+                original_image_urls = []
+            }
+            if (labelled_original_image_urls > 0){ 
+                
+                labelled_original_image_urls = labelled_original_image_urls.split(',')
+                var labelled_num_images = labelled_original_image_urls.length;
+                alert(' num of images of labelled_original_image_urls ' + labelled_num_images)
+            
+            }   
+            else{
+                labelled_original_image_urls = []
+            }        
 
 
 
