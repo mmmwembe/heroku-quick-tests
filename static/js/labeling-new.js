@@ -3058,13 +3058,12 @@ function add_gallery_rows(data, labelled_images_array){
 
 
         var img_url1 = data[i] ? data[i]  : ""
-        alert('Line 3060 img_url1 : ' + img_url1)
         if (img_url1.length > 1 ){
         var new_gallery_column1 = add_gallery_column(img_url1,i,labelled_images_array)
         gallery_row.appendChild(new_gallery_column1) 
        }
 
-       alert(' It gets to line 3065 in add_gallery_rows')
+
 
        var img_url2 = data[i+1] ? data[i+1]  : ""
         if (img_url2.length > 1 ){
@@ -3084,12 +3083,9 @@ function add_gallery_rows(data, labelled_images_array){
         gallery_row.appendChild(new_gallery_column4) 
        }      
        
-       var msg_string = 'img_url1 : ' + img_url1 + '\n' + 'img_url2 : ' + img_url2 + '\n' + 'img_url3 : ' + img_url3 + '\n' + 'img_url4 : ' + img_url4 
-
-       alert(msg_string)
-
-
-       // document.getElementById('gallery_parent').appendChild(gallery_row)
+       //var msg_string = 'img_url1 : ' + img_url1 + '\n' + 'img_url2 : ' + img_url2 + '\n' + 'img_url3 : ' + img_url3 + '\n' + 'img_url4 : ' + img_url4 
+       //alert(msg_string)
+       document.getElementById('gallery_parent').appendChild(gallery_row)
 
     }
 
