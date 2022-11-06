@@ -2707,8 +2707,8 @@ function NewLabelBucketCard(data_element){
             
 
 
-            document.getElementById(p2_id).innerHTML ="20"
-            document.getElementById(p3_id).innerHTML ="0"
+            //document.getElementById(p2_id).innerHTML ="20"
+            //document.getElementById(p3_id).innerHTML ="0"
         
             //$('#' + p2_id).html('Number of Images: ' + number_original_images);  
             //$('#' + p3_id).html('Labelled Images: ' +  number_labelled_original_image_urls);  
