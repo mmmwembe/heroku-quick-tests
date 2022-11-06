@@ -2996,7 +2996,7 @@ function startProgressBar() {
 
 
 var i = 0;
-PROGRESS_BAR_INTERVAL = 500
+PROGRESS_BAR_INTERVAL = 10
 function startProgressBar2() {
   if (i == 0) {
     i = 1;
