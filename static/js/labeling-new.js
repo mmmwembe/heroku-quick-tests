@@ -2428,12 +2428,12 @@ function NewLabelBucketCard(data_element){
     const p2 = document.createElement('p')
     p2.className ="card-text"
     p2.id="p2-" + label + "-" + counter
-    p2.innerHTML ="Number of Images:" + '<strong>'+number_original_images+'</strong>'
+    p2.innerHTML ="Number of Images : " + '<strong>'+number_original_images+'</strong>'
 
     const p3 = document.createElement('p')
     p3.className ="card-text"
     p3.id="p3-" + label + "-" + counter 
-    p3.innerHTML ="Labelled Images:" + '<strong>'+number_labelled_original_image_urls+'</strong>'
+    p3.innerHTML ="Labelled Images : " + '<strong>'+number_labelled_original_image_urls+'</strong>'
 
     const p4 = document.createElement('p')
     p4.className ="card-text"
