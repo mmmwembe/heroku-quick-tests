@@ -2626,7 +2626,7 @@ function NewLabelBucketCard(data_element){
       form_data.append("project_id", xproject_id)
       form_data.append("label", xlabel)
 
-
+      let timerId
       // Post the files to the Server
       $.ajax({
         url: '/upload_x_files/', // point to server-side URL
@@ -2638,18 +2638,23 @@ function NewLabelBucketCard(data_element){
         type: 'post',
         beforeSend: function(xhr) {
             alert('state progress bar on line 2640.....')
+
+            timerId = setTimeout(startProgressBar, 1000);
           },
         success: function (response) { // display success response   
            msg = ' xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls) + '  label_image_urls : ' + JSON.stringify(response.label_image_urls)
            alert(msg) 
+
+
+           clearTimeout(timerId);
 
            // Reset the input files field
            document.getElementById(imageLoader_id).value = ''
            document.getElementById(imageLoader_id).files =[]
            document.getElementById('#p2-' + response.xlabel + '-' + response.xproject_id).innerHTML = (response.original_image_urls).length
 
-           var active_project_id = response.xproject_id
-           var active_label = response.xlabel
+           //var active_project_id = response.xproject_id
+           //var active_label = response.xlabel
            //var active_project_result = response.active_project_result
            //var previous_label = response.previous_label
            //var previous_project_id = response.previous_project_id
@@ -2972,6 +2977,26 @@ function check_if_all_elements_in_array2_are_in_array1(array1,array2){
     return array1.every(i => array2.includes(i));
 
 }
+
+
+
+
+function startProgressBar() {
+
+    alert('Progress Bar Still Running');
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
