@@ -2656,8 +2656,8 @@ function NewLabelBucketCard(data_element){
             var myLabel = response.xlabel
 
 
-            ACTIVE_PROJECT_JSON = active_project_result
-            var current_label_info = filter_project_json_by_label(key)
+            ACTIVE_PROJECT_JSON = response.active_project_result
+            var current_label_info = filter_project_json_by_label(myLabel)
            
             var original_image_urls = current_label_info['original_image_urls']
             var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
