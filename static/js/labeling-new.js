@@ -2702,8 +2702,9 @@ function NewLabelBucketCard(data_element){
             alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
 
 
-            document.getElementById(imageLoader_id).value = ''
-            document.getElementById(imageLoader_id).files = []
+            //document.getElementById(imageLoader_id).value = ''
+            //document.getElementById(imageLoader_id).files = []
+            $('#'+imageLoader_id).val("");
             
 
 
