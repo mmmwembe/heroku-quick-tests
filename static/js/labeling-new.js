@@ -3147,6 +3147,18 @@ function String_is_Empty(val){
 }
 
 
+function array_is_empty(array){
+
+    var array_is_empty = false
+
+    if (array === undefined || array.length == 0) {
+        // array does not exist or is empty
+        array_is_empty = true
+    }
+
+    return array_is_empty
+}
+
 
 
 
