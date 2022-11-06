@@ -2654,6 +2654,7 @@ function NewLabelBucketCard(data_element){
             var labelled_original_image_urls = response.labelled_original_image_urls
             var project = response.active_project_result 
             var myLabel = response.xlabel
+            var myProjectId = response.xproject_id
 
 
             ACTIVE_PROJECT_JSON = response.active_project_result
@@ -2693,8 +2694,10 @@ function NewLabelBucketCard(data_element){
             alert(' number_original_images : ' + number_original_images)
             alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
             
-         
 
+            add_gallery_rows(original_image_urls, labelled_original_image_urls)
+         
+            /*
             original_image_urls.forEach(function (item, index) {
                 //console.log(item, index);
                 // add_gallery_column(img_url,counter, labelled_imgs)
@@ -2703,6 +2706,8 @@ function NewLabelBucketCard(data_element){
                 var x_img_url = item
                 add_gallery_column(x_img_url,index, labelled_original_image_urls)
             });
+
+            */
 
             //add_gallery_rows(original_image_urls,labelled_original_image_urls)
 
@@ -2769,8 +2774,8 @@ function NewLabelBucketCard(data_element){
            //$('#gallery_thumbnails_header').html('');
            $('#gallery_thumbnails_header').html('<h3>' + myLabel +'</h3>');
 
-           //$('#p2-' + active_label + '-' + active_project_id).html("Number of Images: " + (response.original_image_urls).length);
-           //$('#p3-' + active_label + '-' + active_project_id).html("Labelled Images:" + (response.labelled_original_image_urls).length);
+           $('#p2-' + myLabel + '-' + myProjectId).html("Number of Images: " + number_original_images);
+           $('#p3-' + myLabel + '-' + myProjectId).html("Labelled Images:" + number_labelled_original_image_urls);
 
 
         },
