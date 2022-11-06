@@ -2996,7 +2996,7 @@ function startProgressBar() {
 
 
 var i = 0;
-PROGRESS_BAR_INTERVAL = 10
+PROGRESS_BAR_INTERVAL = 100
 function startProgressBar2() {
   if (i == 0) {
     i = 1;
@@ -3005,7 +3005,8 @@ function startProgressBar2() {
     var id = setInterval(frame, PROGRESS_BAR_INTERVAL);
     function frame() {
       if (width >= 100) {
-        clearInterval(id);
+        clearInterval(id); 
+        $("#myProgressBarHolder").attr("style", "display: none !important");
         $("#myBar").attr("style", "display: none !important");
         i = 0;
       } else {
