@@ -2646,16 +2646,15 @@ function NewLabelBucketCard(data_element){
            // Reset the input files field
            document.getElementById(imageLoader_id).value = ''
            document.getElementById(imageLoader_id).files =[]
-
-
+           document.getElementById('#p2-' + response.xlabel + '-' + response.xproject_id).innerHTML = (response.original_image_urls).length
 
            var active_project_id = response.xproject_id
            var active_label = response.xlabel
            //var active_project_result = response.active_project_result
            //var previous_label = response.previous_label
            //var previous_project_id = response.previous_project_id
-           alert('line 2652 -- active_project : ' + active_project_id)
-           alert('line 2653 active_label: ' + active_label)
+           //alert('line 2652 -- active_project : ' + active_project_id)
+           //alert('line 2653 active_label: ' + active_label)
            //alert('line 2654 active_project_result  ' + JSON.stringify(active_project_result))
            //alert('line 2655 previous_label: ' + previous_label)
            //alert('line 2656 previous_project_id  ' + previous_project_id)
