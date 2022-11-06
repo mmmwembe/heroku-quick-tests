@@ -6,7 +6,9 @@ DOES NOT GET HERE - line 1441
  IT GETS TO LINE 1733
  Testing to see where the script stops !!! --- line 1830
 All elements in array2 are in the MainArr : true
+
 1833 active_project_result from /get_active_project2 
+
 line 1857 active_project_result from /get_active_project 
 line 1806 -- active_project : la3v3jwvrpvtlpbfcmc
 
@@ -16,3 +18,5 @@ Line 350
 Line 1997
 Line 2024
 Line 1901
+
+       var img_url3 = data[i+2] ? data[i+2]  : ""
