@@ -2384,12 +2384,12 @@ function NewLabelBucketCard(data_element){
 
     const p2 = document.createElement('p')
     p2.className ="card-text"
-    p2.id="p2-" + label + "-" + project_js_id
+    p2.id="p2-" + label + "-" + counter
     p2.innerHTML ="Number of Images:";
 
     const p3 = document.createElement('p')
     p3.className ="card-text"
-    p2.id="p3-" + label + "-" + project_js_id
+    p3.id="p3-" + label + "-" + counter
     p3.innerHTML ="Labelled Images:";
 
     const p4 = document.createElement('p')
@@ -2589,6 +2589,8 @@ function NewLabelBucketCard(data_element){
     new_atag_imgs_upload.setAttribute("imageLoader_id","imageLoader-" + label + "-" + project_js_id)
     new_atag_imgs_upload.setAttribute("msg_id","msg-" + label + "-" + project_js_id)
     new_atag_imgs_upload.setAttribute("label",label)
+    new_atag_imgs_upload.setAttribute("p2-id","p2-" + label + "-" + counter)
+    new_atag_imgs_upload.setAttribute("p3-id","p3-" + label + "-" + counter)
     new_atag_imgs_upload.setAttribute("project_id",project_js_id)
     new_atag_imgs_upload.innerHTML ="Upload Images";
     new_atag_imgs_upload.style ="display: inline; width: 100%;"     
@@ -2694,6 +2696,11 @@ function NewLabelBucketCard(data_element){
             alert(' number_original_images : ' + number_original_images)
             alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
             
+            var p2_id = $(this).attr('p2-id'); 
+            var p3_id = $(this).attr('p3-id');
+        
+            $('#' + p2_id).html('Number of Images: ' + number_original_images);  
+            $('#' + p3_id).html('Labelled Images: ' +  number_labelled_original_image_urls);  
 
             add_gallery_rows(original_image_urls, labelled_original_image_urls)
          
@@ -2989,8 +2996,8 @@ function add_gallery_column(img_url,counter, labelled_imgs){
     //gallery_column.className ="gallery_column"
     gallery_column.id = 'gallery-column-' +  counter
     gallery_column.style= "float: left; width: 25%; padding: 5px; position: relative;";
-    gallery_column.setAttribute("label",'my_label')
-    gallery_column.setAttribute("project_id","proxhkerheheh")
+    gallery_column.setAttribute("label","")
+    gallery_column.setAttribute("project_id","project_js_id")
     gallery_column.setAttribute("image_url","")
     gallery_column.setAttribute("image_index",counter)
     gallery_column.addEventListener('mouseover',function(){ $(this).css('opacity', 1);})
@@ -3039,7 +3046,6 @@ function add_gallery_rows(data, labelled_images_array){
 
 
         var img_url1 = data[i] ? data[i]  : ""
-        alert('It gets to 3042...img_url1 : ' + img_url1)
         if (img_url1.length > 1 ){
         var new_gallery_column1 = add_gallery_column(img_url1,i,labelled_images_array)
         gallery_row.appendChild(new_gallery_column1) 
@@ -3061,9 +3067,12 @@ function add_gallery_rows(data, labelled_images_array){
         if (img_url4.length > 1 ){
         var new_gallery_column4 = add_gallery_column(img_url4,i+3,labelled_images_array)
         gallery_row.appendChild(new_gallery_column4) 
-       }           
+       }      
+       
+       var msg_string = 'img_url1 : ' + img_url1 + '\n' + 'img_url2 : ' + img_url2 + '\n' + 'img_url3 : ' + img_url3 + '\n' + 'img_url4 : ' + img_url4 + '\n' + 
 
-        document.getElementById('gallery_parent').appendChild(gallery_row)
+
+       // document.getElementById('gallery_parent').appendChild(gallery_row)
 
     }
 
