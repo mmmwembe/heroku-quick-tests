@@ -2663,13 +2663,26 @@ function NewLabelBucketCard(data_element){
             var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
             var cropped_image_urls = current_label_info['cropped_image_urls']
             var augmentation_image_urls = current_label_info['augmentation_image_urls']
+
+            var labelled_original_image_urls = current_label_info['labelled_original_image_urls']
+            var labelled_all_jpeg_image_urls = current_label_info['labelled_all_jpeg_image_urls']
+            var labelled_cropped_image_urls = current_label_info['labelled_cropped_image_urls']
+            var labelled_augmentation_image_urls = current_label_info['labelled_augmentation_image_urls']
+
             var original_image_label_jsons = current_label_info['original_image_label_jsons']
             var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
             var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+
             var number_original_images = current_label_info['original_image_urls'].length
             var number_all_jpeg_images = current_label_info['all_jpeg_image_urls'].length
             var number_cropped_images = current_label_info['cropped_image_urls'].length
             var number_augmentation_images = current_label_info['augmentation_image_urls'].length
+
+            var number_labelled_original_image_urls = current_label_info['labelled_original_image_urls'].length
+            var number_labelled_all_jpeg_image_urls = current_label_info['labelled_all_jpeg_image_urls'].length
+            var number_labelled_cropped_image_urls = current_label_info['labelled_cropped_image_urls'].length
+            var number_labelled_augmentation_image_urls = current_label_info['labelled_augmentation_image_urls'].length
+
             var original_image_label_jsons = current_label_info['original_image_label_jsons']
             var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
             var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
@@ -2678,7 +2691,9 @@ function NewLabelBucketCard(data_element){
 
             alert(' my Label : ' + myLabel)
             alert(' number_original_images : ' + number_original_images)
+            alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
             
+         
             /*
             if (!String_is_Empty(original_image_urls)){ 
 
@@ -2739,7 +2754,7 @@ function NewLabelBucketCard(data_element){
            //alert('line 2655 previous_label: ' + previous_label)
            //alert('line 2656 previous_project_id  ' + previous_project_id)
            // Update the thumbnail gallery header
-           $('#gallery_thumbnails_header').html('');
+           //$('#gallery_thumbnails_header').html('');
            $('#gallery_thumbnails_header').html('<h3>' + active_label +'</h3>');
 
            //$('#p2-' + active_label + '-' + active_project_id).html("Number of Images: " + (response.original_image_urls).length);
