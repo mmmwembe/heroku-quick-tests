@@ -2639,14 +2639,18 @@ function NewLabelBucketCard(data_element){
         beforeSend: function(xhr) {
            // alert('state progress bar on line 2640.....')
 
-            timerId = setInterval(startProgressBar, 500);
+            //timerId = setInterval(startProgressBar2, 500);
+
+            // PROGRESS_BAR_INTERVAL = 500
+            startProgressBar2()
+
           },
         success: function (response) { // display success response   
            msg = 'original_image_urls: ' + response.original_image_urls + '\n' +  '  xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls) + '  label_image_urls : ' + JSON.stringify(response.label_image_urls)
            alert(msg) 
 
-
-           clearTimeout(timerId);
+            PROGRESS_BAR_INTERVAL = 10
+           //clearTimeout(timerId);
 
            alert(' image loader - name 2650 ' + ($this).attr("imageLoader_id"))
 
@@ -2990,6 +2994,25 @@ function startProgressBar() {
 }
 
 
+var i = 0;
+PROGRESS_BAR_INTERVAL = 500
+function startProgressBar2() {
+  if (i == 0) {
+    i = 1;
+    var myProgressBar = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, PROGRESS_BAR_INTERVAL);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        myProgressBar.style.width = width + "%";
+      }
+    }
+  }
+}
 
 
 
