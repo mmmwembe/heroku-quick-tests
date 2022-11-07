@@ -2496,8 +2496,28 @@ function NewLabelBucketCard(data_element){
             var current_label_info = filter_project_json_by_label(active_label)
             var original_image_urls = current_label_info['original_image_urls']
             var labelled_original_image_urls = current_label_info['labelled_original_image_urls']
+            var number_original_images = current_label_info['original_image_urls'].length
+            var number_labelled_original_image_urls = current_label_info['labelled_original_image_urls'].length
 
             add_gallery_rows(original_image_urls, labelled_original_image_urls)
+
+
+            if (!array_is_empty(original_image_urls)){
+
+                var first_background_img = original_image_urls[0]
+
+                updateFabricCanvasBackgroundImage(first_background_img)
+
+                var img_name_x = getFileName(first_background_img)
+
+                // Get stored canvas json and display on the canvas
+                if (getStoredSessionValue(img_name_x) !== null) {
+                    const canvas_json = getStoredSessionValue(img_name_x);
+                    fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
+                }
+
+
+            }
 
             //alert('line 2363 -- active_project : ' + active_project_id)
             //alert('line 2364 active_label: ' + active_label)
@@ -2508,7 +2528,7 @@ function NewLabelBucketCard(data_element){
             
             $('#'+show_thumbnail_btn_id).css('background-color', label_color);
             $('#gallery_thumbnails_header').html('');
-            $('#gallery_thumbnails_header').html('<h3>' + active_label +'</h3>');
+            $('#gallery_thumbnails_header').html('<h4>' + active_label + '('+ number_labelled_original_image_url + '/'+ number_original_images + ')'+'</h4>');
 
             //$('#' + 'card-' + label + '-' + project_js_id).css('background','#8ec252')
 
