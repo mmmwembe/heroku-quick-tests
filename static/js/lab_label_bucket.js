@@ -4,6 +4,8 @@
      CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
      LABELS_COLOR_MAP = ACTIVE_PROJECT_JSON['labels_color_map']
      PROJECT_JSON = ACTIVE_PROJECT_JSON
+     
+     var current_label_info = filter_project_json_by_label(key)
 
      window.localStorage.setItem("project_json",JSON.stringify(ACTIVE_PROJECT_JSON))
      window.localStorage.setItem("labels_color_map",JSON.stringify(LABELS_COLOR_MAP))

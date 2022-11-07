@@ -2453,11 +2453,13 @@ function NewLabelBucketCard(data_element){
     //var atag_id = label + "-" + project_js_id
 
     var atag_showthumbnails = document.createElement("a");
-    atag_showthumbnails.id = label + "-" + project_js_id
+    atag_showthumbnails.id = label + "-" + project_js_id + '-showthumbnailBtn-' + counter
     atag_showthumbnails.className ="btn"
     //atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
     atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
     atag_showthumbnails.setAttribute("label",label)
+    atag_showthumbnails.setAttribute("label_color",color)
+    atag_showthumbnails.setAttribute("show_thumbnail_btn_id", label + "-" + project_js_id + '-showthumbnailBtn-' + counter)   
     atag_showthumbnails.setAttribute("project_id",project_js_id)
     atag_showthumbnails.innerHTML ="Show Images";
     atag_showthumbnails.addEventListener('mouseover',function(){ $(this).css('background-color', color);  });
@@ -2468,6 +2470,8 @@ function NewLabelBucketCard(data_element){
         var xlabel = myArray[0];
         var xproject_id = myArray[1];
         alert('line 2353 xlabel  ' + xlabel + ' xproject_id' + xproject_id)
+        var show_thumbnail_btn_id = $(this).attr('show_thumbnail_btn_id')
+        var label_color = $(this).attr('label_color')
 
         $.ajax({
             type: "POST", 
@@ -2481,20 +2485,34 @@ function NewLabelBucketCard(data_element){
             var active_project_result = data.active_project_result
             var previous_label = data.previous_label
             var previous_project_id = data.previous_project_id
-            alert('line 2363 -- active_project : ' + active_project_id)
-            alert('line 2364 active_label: ' + active_label)
-            alert('line 2365 active_project_result  ' + JSON.stringify(active_project_result))
-            alert('line 2370 previous_label: ' + previous_label)
-            alert('line 2371 previous_project_id  ' + previous_project_id)
+
+            var active_label = data.active_label
+            ACTIVE_PROJECT_ID = data.active_project
+            ACTIVE_PROJECT_JSON = data.active_project_result
+            CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
+            LABELS_COLOR_MAP = ACTIVE_PROJECT_JSON['labels_color_map']
+            PROJECT_JSON = ACTIVE_PROJECT_JSON
+            
+            var current_label_info = filter_project_json_by_label(active_label)
+            var original_image_urls = current_label_info['original_image_urls']
+            var labelled_original_image_urls = current_label_info['labelled_original_image_urls']
+
+            add_gallery_rows(original_image_urls, labelled_original_image_urls)
+
+            //alert('line 2363 -- active_project : ' + active_project_id)
+            //alert('line 2364 active_label: ' + active_label)
+            //alert('line 2365 active_project_result  ' + JSON.stringify(active_project_result))
+            //alert('line 2370 previous_label: ' + previous_label)
+            //alert('line 2371 previous_project_id  ' + previous_project_id)
             // Update the thumbnail gallery header
+            
+            $('#'+show_thumbnail_btn_id).css('background-color', label_color);
             $('#gallery_thumbnails_header').html('');
             $('#gallery_thumbnails_header').html('<h3>' + active_label +'</h3>');
 
             //$('#' + 'card-' + label + '-' + project_js_id).css('background','#8ec252')
 
-            
-
-
+        
 
           }});
 
