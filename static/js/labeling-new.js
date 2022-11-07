@@ -43,8 +43,8 @@ window.addEventListener('load', (event) => {
     var CURRENT_PROJECT="";
     var PROJECT_JSON
 
-    IMAGES_NORM_DATA_LABEL_MAP = {}
-    // IMAGES_NORM_DATA_LABEL_MAP[image_name] = norm_data;
+    IMAGES_NORM_DATA_LABEL_MAP = {} // IMAGES_NORM_DATA_LABEL_MAP[image_name] = norm_data;
+    LABELLED_IMAGES_ARRAY = []
 
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
@@ -287,9 +287,21 @@ fabricCanvas.on('mouse:up', function(o){
 
             // Show Labelled Images and Enable Download
            // Show_Labeled_Images_and_Enable_Labels_Download()
+           // Add norm data to IMAGES_NORM_DATA_LABEL_MAP[image_name] = norm_data;
+
+           IMAGES_NORM_DATA_LABEL_MAP[img_name] = norm_data;
+           LABELLED_IMAGES_ARRAY = add_element_if_not_already_in_array(LABELLED_IMAGES_ARRAY, IMAGE_URL)
+
+           alert('IMAGES_NORM_DATA_LABEL_MAP ' + IMAGES_NORM_DATA_LABEL_MAP)
+
+
+        
         }
         else {
             storeSessionValue(img_name, null)
+
+            LABELLED_IMAGES_ARRAY = remove_element_from_array(LABELLED_IMAGES_ARRAY, IMAGE_URL)
+
         }
 
         // alert('filename : ' + img_name)
@@ -3068,6 +3080,27 @@ function array_is_empty(array){
     return array_is_empty
 }
 
+
+function add_element_if_not_already_in_array(myArray, element){
+
+    if (!myArray.includes(element)) {
+        // ✅ only runs if value not in array
+        myArray.push(element);
+      }
+
+      return myArray
+
+}
+
+
+function remove_element_from_array(myArray, element){
+
+    var newArray =  myArray.remove(element);
+
+    return newArray
+
+
+}
 
 
 
