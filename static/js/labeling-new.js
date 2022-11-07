@@ -176,6 +176,8 @@ function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
 
     startTimer() 
 
+    alert('current_label : ' + current_label + '  current_color : ' + current_color)
+
     if(current_label.length > 0 && current_color.length > 0){
     // Only start drawing if both a label and label exist
 
@@ -253,7 +255,7 @@ fabricCanvas.on('mouse:up', function(o){
         norm_y_max = (rectangle.get("top")  + rectangle.get("height"))/canvas_height 
         iso_date_timestamp = new Date().toISOString()
 
-        alert('IMAGE_URL line 256 : ' + IMAGE_URL)
+        // alert('IMAGE_URL line 256 : ' + IMAGE_URL)
     
         norm_data =  {'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': current_label, 'norm_x_min': norm_x_min, 'norm_y_min': norm_y_min, 'norm_x_tr' : '', 'norm_y_tr' :'', 'norm_x_max' : norm_x_max, 'norm_y_max' : norm_y_max, 'norm_x_bl': '', 'norm_y_bl':'', 'label_status' : LABEL_STATUS, 'ISODate': iso_date_timestamp }
         // alert(' NORMALIZED DATA ' + JSON.stringify(norm_data))
@@ -269,25 +271,6 @@ fabricCanvas.on('mouse:up', function(o){
         fabricCanvas.toJSON(['name', 'label', 'label_font', 'label_color', 'originator', 'checker', 'reviewer', 'qa','approved_true_false', 'ISODate', 'date_month_text', 'ai_ready_normalized_data', 'timer_tracker'])
         fabricCanvas.add(rectangle);
         fabricCanvas.renderAll();
-
-        /*
-        // Save the data above to the Canvas
-        fabricCanvas.toJSON(['data'])
-
-        // Add label to the rectangle
-        var label_text = new fabric.Text(label)
-        var label_height = label_text.height
-        label_text.set({
-            fill: 'green',
-            left: rectangle.get("left")+2,
-            top: rectangle.get("top") + 2,
-            hoverCursor: "pointer"
-            //fontSize: 15
-        });
-        fabricCanvas.add(label_text);
-        fabricCanvas.renderAll();
-
-         */
 
         // save Canvas JSON to localStorage
         const json = fabricCanvas.toJSON();
