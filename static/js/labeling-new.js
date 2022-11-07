@@ -292,7 +292,7 @@ fabricCanvas.on('mouse:up', function(o){
            IMAGES_NORM_DATA_LABEL_MAP[img_name] = norm_data;
            LABELLED_IMAGES_ARRAY = add_element_if_not_already_in_array(LABELLED_IMAGES_ARRAY, IMAGE_URL)
 
-           alert('IMAGES_NORM_DATA_LABEL_MAP ' + IMAGES_NORM_DATA_LABEL_MAP)
+           alert('IMAGES_NORM_DATA_LABEL_MAP ' + JSON.stringify(IMAGES_NORM_DATA_LABEL_MAP))
 
 
         
