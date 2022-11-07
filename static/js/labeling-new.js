@@ -2508,6 +2508,8 @@ function NewLabelBucketCard(data_element){
 
                 var first_background_img = original_image_urls[0]
 
+                IMAGE_URL = first_background_img
+
                 updateFabricCanvasBackgroundImage(first_background_img)
 
                 var img_name_x = getFileName(first_background_img)
@@ -2806,6 +2808,8 @@ function NewLabelBucketCard(data_element){
             if (!array_is_empty(original_image_urls)){
 
                 var first_background_img = original_image_urls[0]
+
+                IMAGE_URL = first_background_img
 
                 updateFabricCanvasBackgroundImage(first_background_img)
 
@@ -3173,7 +3177,8 @@ function add_gallery_column(img_url,counter, labelled_imgs){
         //var img_clicked = e.target.id
         var img_clicked = $(this).attr('id'); 
         var img_index = $(this).attr('image_index'); 
-        var image_url = $(this).attr('image_url');         
+        var image_url = $(this).attr('image_url');  
+        IMAGE_URL = $(this).attr('image_url');       
         alert("Line 3042 URL of image clicked : " + image_url + '\n' + 'div clicked : '  + img_clicked + '\n' +  " image index: " + img_index ) 
         // -----------------------------------------------------------------------------------------------------------
         //        updateFabricCanvasBackgroundImage(img_url)  Update Canvas Background from Thumbnail
