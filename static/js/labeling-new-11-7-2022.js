@@ -43,9 +43,6 @@ window.addEventListener('load', (event) => {
     var CURRENT_PROJECT="";
     var PROJECT_JSON
 
-    IMAGES_NORM_DATA_LABEL_MAP = {}
-    // IMAGES_NORM_DATA_LABEL_MAP[image_name] = norm_data;
-
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
     var user_id ="45f20651684f40be8916c29d69295998"
@@ -72,7 +69,7 @@ window.addEventListener('load', (event) => {
     //  Clear Local Storage - If needed during coding - update final
     //------------------------------------------------------------
     
-    clearEntireLocalStorage()
+    // clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
@@ -727,7 +724,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     //----------------------------------------------------------------------------------------------------------------
 
  
- 
+  /*
 
     function Show_Labeled_Images_and_Enable_Labels_Download(){
 
@@ -780,7 +777,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     
     }
 
-
+    */
 
     // var g = window.localStorage.getItem("project_json");
     // alert(' g ' + g)
@@ -1927,6 +1924,41 @@ $.ajax({
         //show_label_buckets()
         new_create_label_buckets(data)
 
+        // create_label_buckets(data)
+
+        /*
+
+        for (var i = 0; i < data.length; i += 4) {
+
+            var new_row = document.createElement('div')
+            new_row.className="row"
+
+            // alert('line 1897 - it gets here' )
+    
+            var card_1_data = data.hasOwnProperty(i) ? data[i]  : " ";  
+            var card_2_data = data.hasOwnProperty(i+1) ? data[i+1] : " ";   
+            var card_3_data = data.hasOwnProperty(i+2) ? data[i+2]  : " ";   
+            var card_4_data = data.hasOwnProperty(i+3) ? data[i+3] : " ";   
+ 
+            // alert('line 1904 - it gets also here' )
+            
+            card_1_string = create_card(card_1_data)
+            card_2_string = create_card(card_2_data)
+            card_3_string = create_card(card_3_data)
+            card_4_string = create_card(card_4_data)
+    
+            var combined_card_string = card_1_string + '\n' + card_2_string + '\n' + card_3_string + '\n' + card_4_string
+
+            new_row.innerHTML = combined_card_string
+
+            document.getElementById('label_buckets_container').appendChild(new_row)
+      
+        }
+
+        */
+
+
+
     }
    
 });
@@ -2314,6 +2346,7 @@ function NewLabelBucketCard(data_element){
 
     var current_label_info = data_element.current_label_info
 
+
     var label_id = current_label_info['label_id']
 
     // Attributes for each label...can use this information in the future
@@ -2346,6 +2379,11 @@ function NewLabelBucketCard(data_element){
     var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
     var date_created = current_label_info['date_created']
     var date_modified = current_label_info['date_modified']
+
+
+    // alert('2363 current label info current_label_info: ' + current_label_info)
+    //alert(' project_name : ' + project_name +  ' date_created : ' + date_created)
+
 
     const newCardParent = document.createElement('div')
     newCardParent.className ="col card h-100 mb-3 w-15"
@@ -2391,6 +2429,13 @@ function NewLabelBucketCard(data_element){
     p4.append(small_1)  
 
     const show_thumbnails_div = document.createElement('div')
+    //const input_1 = document.createElement('input')
+    //input_1.type ="submit"
+    //input_1.id ="showThumbnails";
+    //input_1.value ="Show Images";
+    //input_1.style="margin-left: 0px; width: 50%; height: 50px; margin-bottom: 20px; border: 5px solid green;"
+    //input_1.onclick = showImagesAction()
+    //var atag_id = label + "-" + project_js_id
 
     var atag_showthumbnails = document.createElement("a");
     atag_showthumbnails.id = label + "-" + project_js_id + '-showthumbnailBtn-' + counter
@@ -2483,6 +2528,107 @@ function NewLabelBucketCard(data_element){
     //$("#"+atag_id).on('click', function(e) { alert("inside onclick + atag_showthumbnails "); });
 
     show_thumbnails_div.append(atag_showthumbnails) 
+
+ /*
+    const input_2 = document.createElement('input')
+    input_2.type ="hidden"
+    input_2.id ="current_folder";
+    input_2.value ="current label";
+    input_2.name ="current_folder";
+
+    const input_3 = document.createElement('input')
+    input_3.type ="hidden"
+    input_3.id = project_js_id;
+    input_3.value = project_js_id;
+    input_3.name = project_js_id;
+
+    //show_thumbnails_div.append(input_1)     
+    show_thumbnails_div.append(input_2)  
+    show_thumbnails_div.append(input_3)  
+    show_thumbnails_div.append(atag_showthumbnails) 
+
+    const input_group = document.createElement('div')
+    input_group.className ="input-group"
+    input_group.style ="display: inline;"
+
+
+    const upload_left_div = document.createElement('div')
+    upload_left_div.style ="display: inline;"  
+    
+    const upload_right_div = document.createElement('div')
+    upload_right_div.style ="display: inline;"             
+
+    const input_1x = document.createElement('input')
+    input_1x.className ="form-control"
+    input_1x.type ="file"
+    input_1x.id ="imageLoader-" + label + "-" + project_js_id;
+    input_1x.name ="upload_images_project_label[]"
+    input_1x.multiple = true;
+    input_1x.autocomplete = true;
+    input_1x.required =true;
+
+
+    const atag_imgs_upload = document.createElement('a')
+    // atag_imgs_upload.href ="/upload?label=" + label +  "&project_id="+ project_js_id +"&a=100&b=500"
+    atag_imgs_upload.className ="btn btn-success"
+    atag_imgs_upload.id =  label + "-" + project_js_id;
+    atag_imgs_upload.setAttribute("imageLoader_id","imageLoader-" + label + "-" + project_js_id)
+    atag_imgs_upload.setAttribute("label",label)
+    atag_imgs_upload.setAttribute("project_id",project_js_id)
+    atag_imgs_upload.innerHTML ="Upload Images";
+    atag_imgs_upload.style ="display: inline; width: 100%;"     
+    atag_imgs_upload.addEventListener('mouseover',function(){ $(this).css('opacity', 0.5);  });
+    atag_imgs_upload.addEventListener('mouseout', function(){ $(this).css('opacity', 1.0);  });
+    atag_imgs_upload.addEventListener('click', function(){ 
+        var atag_imgs_x = $(this).attr('id');  
+        const myArray = atag_imgs_x.split("-");
+        var xlabel = myArray[0];
+        var xproject_id = myArray[1];
+
+        alert(' atag parameters 2389 - xlabel : ' + xlabel  + '  xproject_id ' + xproject_id)
+        var imageLoader_id = $(this).attr('imageLoader_id'); 
+        alert(' 2392 imageLoader_id  ' + imageLoader_id)
+
+    });         
+
+
+    upload_left_div.append(input_1x)
+    upload_right_div.append(atag_imgs_upload)
+
+    const input_2x = document.createElement('input')
+    input_2x.className ="btn  btn-info xUploadImagesBtnClass"
+    input_2x.type ="submit"
+    input_2x.id ="uploadImagesButton-001";
+    input_2x.value ="Upload Images";
+    input_2x.style="margin-left: 0px;"
+    input_2x.setAttribute("project_id",project_js_id)
+    input_2x.setAttribute("current_folder",label)
+    // input_2x.onclick = uploadButtonAction("motocar")
+
+
+    const input_3x = document.createElement('input')
+    input_3x.type ="hidden"
+    input_3x.id ="current_folder";
+    input_3x.value ="current label";
+    input_3x.name ="current_folder";
+
+    const input_4x = document.createElement('input')
+    input_4x.type ="hidden"
+    input_4x.id ="current_folder";
+    input_4x.value ="images-for-labeling";
+    input_4x.name ="which-form";
+
+    //input_group.append(input_1x)
+    //input_group.append(atag_imgs_upload)
+    input_group.append(upload_left_div)
+    input_group.append(upload_right_div)            
+    //input_group.append(input_2x)
+    input_group.append(input_3x)
+    input_group.append(input_4x)
+
+  */
+
+    // --------------------------------------------------------------------------------------
 
     const dl_upload = document.createElement('dl')
 
@@ -2623,9 +2769,15 @@ function NewLabelBucketCard(data_element){
             //alert(' number_original_images : ' + number_original_images)
             //alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
 
-            $('#'+imageLoader_id).val("");           
-            document.getElementById("myBar").style.width ="100%";
 
+            //document.getElementById(imageLoader_id).value = ''
+            //document.getElementById(imageLoader_id).files = []
+            $('#'+imageLoader_id).val("");
+            
+
+            document.getElementById("myBar").style.width ="100%";
+            //document.getElementById(p2_id).innerHTML ="20"
+            //document.getElementById(p3_id).innerHTML ="0"
         
             $('#' + p2_id).html('Number of Images : ' + '<strong>'+number_original_images+'</strong>');  
             $('#' + p3_id).html('Labelled Images : ' + '<strong>'+number_labelled_original_image_urls+'</strong>');  
@@ -2655,6 +2807,83 @@ function NewLabelBucketCard(data_element){
 
             }
 
+         
+            /*
+            original_image_urls.forEach(function (item, index) {
+                //console.log(item, index);
+                // add_gallery_column(img_url,counter, labelled_imgs)
+                //alert('item :' + x_img_url)
+                //alert('index :' + index)
+                var x_img_url = item
+                add_gallery_column(x_img_url,index, labelled_original_image_urls)
+            });
+
+            */
+
+            //add_gallery_rows(original_image_urls,labelled_original_image_urls)
+
+            /*
+            if (!String_is_Empty(original_image_urls)){ 
+
+                original_image_urls = original_image_urls.split(',')
+                var num_images = original_image_urls.length;
+                alert(' num of images of original_image_urls ' + num_images)
+            }
+            else{
+                original_image_urls = []
+            }
+            if (!String_is_Empty(labelled_original_image_urls)){ 
+                
+                labelled_original_image_urls = labelled_original_image_urls.split(',')
+                var labelled_num_images = labelled_original_image_urls.length;
+                alert(' num of images of labelled_original_image_urls ' + labelled_num_images)
+            
+            }   
+            else{
+                labelled_original_image_urls = []
+            }      
+            */
+            //var x = original_image_urls.split(',')
+
+            //alert('number of images in original_image_urls: ' + x.length)
+            //alert('images in original_image_urls: ' + x.toString())
+
+            // add_gallery_rows(x,[])
+
+         
+
+            //var original_image_urls = (response.original_image_urls).length > 0 ? response.original_image_urls.split(',') : []
+            //var labelled_original_image_urls = (response.labelled_original_image_urls).length > 0 ? response.labelled_original_image_urls.split(',') : []
+
+            // alert('original_image_urls: ' + original_image_urls.toString())
+            //alert('labelled_original_image_urls: ' + labelled_original_image_urls)
+            
+           // msg = 'original_image_urls: ' + response.original_image_urls + '\n' +  '  xproject_id  : ' + response.xproject_id  + '\n'  + ' xlabel : ' + response.xlabel + '\n' +  'bucket_name : ' +  response.bucket_name + '\n' +  'gcp_subdirectory_path : ' + response.gcp_subdirectory_path + '\n'  + '  file_names : ' + JSON.stringify(response.file_names) + ' blob_full_path_array : ' + JSON.stringify(response.blob_full_path_array) + ' returned_public_urls :  ' +  JSON.stringify(response.returned_public_urls) + '  label_image_urls : ' + JSON.stringify(response.label_image_urls)
+           // alert(msg) 
+
+            // PROGRESS_BAR_INTERVAL = 10
+           //clearTimeout(timerId);
+
+           //alert(' image loader - name 2650 ' + ($this).attr("imageLoader_id"))
+
+           // Reset the input files field
+           // document.getElementById(imageLoader_id).value = ''
+           // document.getElementById(imageLoader_id).files =[]
+           //document.getElementById('#p2-' + response.xlabel + '-' + response.xproject_id).innerHTML = (response.original_image_urls).length
+
+           //var active_project_id = response.xproject_id
+           //var active_label = response.xlabel
+           //var active_project_result = response.active_project_result
+           //var previous_label = response.previous_label
+           //var previous_project_id = response.previous_project_id
+           //alert('line 2652 -- active_project : ' + active_project_id)
+           //alert('line 2653 active_label: ' + active_label)
+           //alert('line 2654 active_project_result  ' + JSON.stringify(active_project_result))
+           //alert('line 2655 previous_label: ' + previous_label)
+           //alert('line 2656 previous_project_id  ' + previous_project_id)
+           // Update the thumbnail gallery header
+           //$('#gallery_thumbnails_header').html('');
+           // $('#gallery_thumbnails_header').html('<h3>' + myLabel +'</h3>');
            $('#gallery_thumbnails_header').html('<strong>' + myLabel + '('+ number_labelled_original_image_urls + '/'+ number_original_images + ')'+'</strong>');
 
            $('#p2-' + myLabel + '-' + myProjectId).html("Number of Images: " + number_original_images);
