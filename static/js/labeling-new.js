@@ -2528,7 +2528,7 @@ function NewLabelBucketCard(data_element){
             
             $('#'+show_thumbnail_btn_id).css('background-color', label_color);
             $('#gallery_thumbnails_header').html('');
-            $('#gallery_thumbnails_header').html('<h4>' + active_label + '('+ number_labelled_original_image_url + '/'+ number_original_images + ')'+'</h4>');
+            $('#gallery_thumbnails_header').html('<h4>' + active_label + '('+ number_labelled_original_image_urls + '/'+ number_original_images + ')'+'</h4>');
 
             //$('#' + 'card-' + label + '-' + project_js_id).css('background','#8ec252')
 
@@ -2894,7 +2894,8 @@ function NewLabelBucketCard(data_element){
            //alert('line 2656 previous_project_id  ' + previous_project_id)
            // Update the thumbnail gallery header
            //$('#gallery_thumbnails_header').html('');
-           $('#gallery_thumbnails_header').html('<h3>' + myLabel +'</h3>');
+           // $('#gallery_thumbnails_header').html('<h3>' + myLabel +'</h3>');
+           $('#gallery_thumbnails_header').html('<h4>' + myLabel + '('+ number_labelled_original_image_urls + '/'+ number_original_images + ')'+'</h4>');
 
            $('#p2-' + myLabel + '-' + myProjectId).html("Number of Images: " + number_original_images);
            $('#p3-' + myLabel + '-' + myProjectId).html("Labelled Images:" + number_labelled_original_image_urls);
