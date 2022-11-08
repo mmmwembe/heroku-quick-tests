@@ -73,7 +73,7 @@ window.addEventListener('load', (event) => {
     //  Clear Local Storage - If needed during coding - update final
     //------------------------------------------------------------
     
-    // clearEntireLocalStorage()
+    clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
