@@ -471,14 +471,6 @@ function show_label_buckets_from_server_json_data(json_data){
 
 
 
-
-
-
-
-
-
-
-
 function update_label_bucket(data){
 
 var active_project_id = data.active_project_id
@@ -583,3 +575,41 @@ for (var i = 0; i < data.length; i += 4) {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+function post_images_norm_data_label_map(user_id, project_id, active_label, images_norm_data_label_map, labelled_images_array){
+    
+    $.ajax({
+        type: "POST",
+        url: '/add_label_records',
+        dataType: 'json',
+        data: { 
+                'user_id' : user_id, 
+                'project_id' :  project_id, 
+                'active_label' :  active_label, 
+                'images_norm_data_label_map' : JSON.stringify(images_norm_data_label_map), 
+                'labelled_images_array' : labelled_images_array,                                             
+            },
+        success: function(data) {
+
+            var active_project_result = data.active_project_result
+            alert('Line 1542 create_new_project   active_project_result : ' + JSON.stringify(active_project_result))
+            // show_label_buckets_from_server_json_data(data)
+
+        }
+        
+    });   
+
+}
+

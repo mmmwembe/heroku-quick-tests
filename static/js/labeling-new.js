@@ -38,6 +38,7 @@ window.addEventListener('load', (event) => {
     var NUM_LABELLED_IMAGES;
     var NUM_IMAGES_TOTAL;
     var ACTIVE_PROJECT_ID=""
+    var ACTIVE_LABEL_BUCKET=""
     var ACTIVE_PROJECT_JSON;
     var ALL_USER_PROJECTS;
     var CURRENT_PROJECT="";
@@ -72,7 +73,7 @@ window.addEventListener('load', (event) => {
     //  Clear Local Storage - If needed during coding - update final
     //------------------------------------------------------------
     
-    // clearEntireLocalStorage()
+    clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
@@ -291,6 +292,8 @@ fabricCanvas.on('mouse:up', function(o){
 
            IMAGES_NORM_DATA_LABEL_MAP[img_name] = norm_data;
            LABELLED_IMAGES_ARRAY = add_element_if_not_already_in_array(LABELLED_IMAGES_ARRAY, IMAGE_URL)
+
+           alert(' ACTIVE_LABEL_BUCKET: ' + ACTIVE_LABEL_BUCKET)
 
            alert('IMAGES_NORM_DATA_LABEL_MAP ' + JSON.stringify(IMAGES_NORM_DATA_LABEL_MAP))
 
@@ -2839,6 +2842,7 @@ function show_label_buckets_from_server_json_data(json_data){
     var active_project_result = json_data.active_project_result
 
     // Set Environment Variables
+    ACTIVE_LABEL_BUCKET = active_label
     ACTIVE_PROJECT_ID = active_project_id
     ACTIVE_PROJECT_JSON = active_project_result
     CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
@@ -3099,6 +3103,36 @@ function remove_element_from_array(myArray, element){
 
     return newArray
 
+
+}
+
+
+//---------------------------------------------------------------------------------------------
+//                    Post Label Records to Server
+//---------------------------------------------------------------------------------------------
+
+function post_images_norm_data_label_map(user_id, project_id, active_label, images_norm_data_label_map, labelled_images_array){
+    
+    $.ajax({
+        type: "POST",
+        url: '/add_label_records',
+        dataType: 'json',
+        data: { 
+                'user_id' : user_id, 
+                'project_id' :  project_id, 
+                'active_label' :  active_label, 
+                'images_norm_data_label_map' : JSON.stringify(images_norm_data_label_map), 
+                'labelled_images_array' : labelled_images_array,                                             
+            },
+        success: function(data) {
+
+            var active_project_result = data.active_project_result
+            alert('Line 3126 add_label_records  active_project_result : ' + JSON.stringify(active_project_result))
+            // show_label_buckets_from_server_json_data(data)
+
+        }
+        
+    });   
 
 }
 
