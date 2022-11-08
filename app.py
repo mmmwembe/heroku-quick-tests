@@ -1415,7 +1415,7 @@ def add_label_records():
 
     if request.method =='POST':
         
-        user_id = request.form['user_id']
+        # user_id = request.form['user_id']
         project_id = request.form['project_id']
         active_label = request.form['active_label']        
         images_norm_data_label_map = request.form['images_norm_data_label_map']
