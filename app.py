@@ -1434,6 +1434,34 @@ def add_label_records():
 			'active_label': active_label,
   		}
         
+
+          
+    return jsonify(label_record_item = label_record_item)
+
+@app.route('/add_label_records_x', methods=['POST','GET'])
+def add_label_records_x():
+
+    if request.method =='POST':
+        
+        # user_id = request.form['user_id']
+        project_id = request.form['project_id']
+        active_label = request.form['active_label']        
+        images_norm_data_label_map = request.form['images_norm_data_label_map']
+        labelled_images_array = request.form['labelled_images_array']
+      
+        images_norm_data_label_map_dict_from_json_string = eval("{0}".format(images_norm_data_label_map))
+        
+        proj_id = uuid.uuid4().hex
+
+		# create project item
+        label_record_item = {
+			'_id':  proj_id,   
+			'project_js_id': project_id,
+			'user_id': user_id,
+			'labels_color_map': images_norm_data_label_map_dict_from_json_string,
+			'active_label': active_label,
+  		}
+        
         # Update original_images_normalized_dataset for the label
         # user_projects.update_one({ "labels.label": active_label, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
            
