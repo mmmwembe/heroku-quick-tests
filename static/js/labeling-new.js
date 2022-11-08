@@ -73,7 +73,7 @@ window.addEventListener('load', (event) => {
     //  Clear Local Storage - If needed during coding - update final
     //------------------------------------------------------------
     
-    // clearEntireLocalStorage()
+    clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
@@ -1602,8 +1602,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 var active_project_result = data.active_project_result
                 alert('Line 1542 create_new_project   active_project_result : ' + JSON.stringify(data.active_project_result))
 
+                //show_label_buckets_from_server_json_data(data)
+
                 // Test the new label buckets generator
-                show_label_buckets_from_server_json_data(data)
+
                 //var server_user_id = data.user_id
                 //var server_project_name = data.project_name
                 //var server_project_id = data.project_id
@@ -1611,6 +1613,69 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 //alert('server project name: ' + server_project_name)
                 //alert('server project id: ' + server_project_id )
                 // alert('Line 1459 create_new_project   active_project_result : ' + JSON.stringify(data.active_project_result))
+                //---------------------------------------------------------------------------------------------------------------
+
+                var active_project_id = data.active_project_id
+                var active_label = data.active_label
+                var active_project_result = data.active_project_result[0]
+                ACTIVE_PROJECT_ID = active_project_id
+                ACTIVE_PROJECT_JSON = active_project_result
+                CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
+                LABELS_COLOR_MAP = ACTIVE_PROJECT_JSON['labels_color_map']
+                PROJECT_JSON = ACTIVE_PROJECT_JSON
+        
+                window.localStorage.setItem("project_json",JSON.stringify(ACTIVE_PROJECT_JSON))
+                window.localStorage.setItem("labels_color_map",JSON.stringify(LABELS_COLOR_MAP))
+        
+                data = [];
+        
+                counter = 0
+        
+                Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
+                    var label = key
+                    var color = LABELS_COLOR_MAP[key]
+        
+                    var current_label_info = filter_project_json_by_label(key)
+        
+                    var label_id = current_label_info['label_id']
+        
+                    // Attributes for each label...can use this information in the future
+                    var original_image_urls = current_label_info['original_image_urls']
+                    var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
+                    var cropped_image_urls = current_label_info['cropped_image_urls']
+                    var augmentation_image_urls = current_label_info['augmentation_image_urls']
+                    var original_image_label_jsons = current_label_info['original_image_label_jsons']
+                    var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
+                    var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+                    var number_original_images = current_label_info['original_image_urls'].length
+                    var number_all_jpeg_images = current_label_info['all_jpeg_image_urls'].length
+                    var number_cropped_images = current_label_info['cropped_image_urls'].length
+                    var number_augmentation_images = current_label_info['augmentation_image_urls'].length
+                    var original_image_label_jsons = current_label_info['original_image_label_jsons']
+                    var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
+                    var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+                    var date_created = current_label_info['date_created']
+                    var date_modified = current_label_info['date_modified']
+                   
+                    var data_element = {"index": counter, "label": label,"color": color, 
+                                        "num_images": number_original_images, "labeled_images": "", 
+                                        "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
+                                        "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
+                                        "ISODate": date_created, "date_created": date_created, 
+                                        "original_image_urls": original_image_urls,"all_jpeg_image_urls": all_jpeg_image_urls, 'current_label_info' : current_label_info}
+              
+                    data.push(data_element)
+                    
+                    counter += 1;
+        
+                })
+         
+        
+                // Update Page
+        
+                updatePage()
+        
+                new_create_label_buckets(data)
 
             }
             
