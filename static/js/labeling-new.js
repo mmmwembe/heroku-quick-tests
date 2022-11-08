@@ -73,7 +73,7 @@ window.addEventListener('load', (event) => {
     //  Clear Local Storage - If needed during coding - update final
     //------------------------------------------------------------
     
-    clearEntireLocalStorage()
+    // clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
@@ -905,6 +905,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         const firstColor = Object.values(LABELS_COLOR_MAP)[0];
         const firstLabel = Object.keys(LABELS_COLOR_MAP)[0];
+        ACTIVE_LABEL_BUCKET = firstLabel;
 
         if(firstLabel){
             $("#"+firstLabel).css("backgroundColor",firstColor);
@@ -3183,6 +3184,8 @@ function remove_element_from_array(myArray, element){
 //---------------------------------------------------------------------------------------------
 
 function post_images_norm_data_label_map(user_id, project_id, active_label, images_norm_data_label_map, labelled_images_array){
+
+    alert('labelled_images_array : ' + labelled_images_array)
     
     $.ajax({
         type: "POST",
