@@ -2518,6 +2518,8 @@ function NewLabelBucketCard(data_element){
             var number_original_images = current_label_info['original_image_urls'].length
             var number_labelled_original_image_urls = current_label_info['labelled_original_image_urls'].length
 
+            document.getElementById('gallery_parent').innerHTML=""
+
             add_gallery_rows(original_image_urls, labelled_original_image_urls)
 
 
@@ -2704,6 +2706,8 @@ function NewLabelBucketCard(data_element){
             //alert(' my Label : ' + myLabel)
             //alert(' number_original_images : ' + number_original_images)
             //alert(' number_labelled_original_image_urls : ' + number_labelled_original_image_urls)
+
+            document.getElementById('gallery_parent').innerHTML=""
 
             $('#'+imageLoader_id).val("");           
             document.getElementById("myBar").style.width ="100%";
