@@ -1314,7 +1314,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     var projectNameLabel = document.getElementById('projectLabel')
 
 
- /*
+ 
 
     // Check if localStorage has project_json object stored
     // If so, get CURRENT_PROJECT from the stored json
@@ -1372,7 +1372,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     });
 
-  */
+
 
    // alert(' IT GETS TO LINE 1364 ')
     const uniqueId = () => {
