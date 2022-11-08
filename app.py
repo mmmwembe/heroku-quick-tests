@@ -1422,7 +1422,7 @@ def add_label_records():
         labelled_images_array = request.form['labelled_images_array']
       
         images_norm_data_label_map_dict_from_json_string = eval("{0}".format(images_norm_data_label_map))
-        
+              
         proj_id = uuid.uuid4().hex
 
 		# create project item
@@ -1436,7 +1436,7 @@ def add_label_records():
         
 
           
-    return jsonify(label_record_item = label_record_item)
+    return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array)
 
 @app.route('/add_label_records_x', methods=['POST','GET'])
 def add_label_records_x():
