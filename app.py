@@ -1408,9 +1408,6 @@ def upload_x_files():
 				  ,labelled_original_image_urls = labelled_original_image_urls, labelled_all_jpeg_image_urls = labelled_all_jpeg_image_urls, labelled_cropped_image_urls = labelled_cropped_image_urls, labelled_augmentation_image_urls = labelled_augmentation_image_urls)
 
 
-
-
-
 @app.route('/add_label_records', methods=['POST','GET'])
 def add_label_records():
 
@@ -1436,7 +1433,7 @@ def add_label_records():
   		}
         
         # Update original_images_normalized_dataset for the label
-        user_projects.update_one({ "labels.label": active_label, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
+        # user_projects.update_one({ "labels.label": active_label, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
            
          # Update original_images_normalized_dataset for the label
         user_projects.update_one({ "labels.label": active_label, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
