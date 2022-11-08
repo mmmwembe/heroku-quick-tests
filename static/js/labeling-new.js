@@ -73,7 +73,7 @@ window.addEventListener('load', (event) => {
     //  Clear Local Storage - If needed during coding - update final
     //------------------------------------------------------------
     
-    // clearEntireLocalStorage()
+    clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
@@ -1599,6 +1599,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 },
             success: function(data) {
 
+                alert('---------------- get_active_project_and_show_label_buckets()----------------')
+                get_active_project_and_show_label_buckets()
+
+                /*
                 var active_project_result = data.active_project_result
                 alert('Line 1542 create_new_project   active_project_result : ' + JSON.stringify(data.active_project_result))
 
@@ -1676,6 +1680,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 updatePage()
         
                 new_create_label_buckets(data)
+
+
+                     */ 
 
             }
             
@@ -1886,7 +1893,7 @@ function submit_form() {
 //--------------------------------------------------------------------------------------------------------------------------
 //           Check for Current Session Variables and Set Environment Variables
 //--------------------------------------------------------------------------------------------------------------------------
-
+/*
 $.ajax({
     type: "POST", 
     url: "/get_active_project2",
@@ -1905,115 +1912,104 @@ $.ajax({
 
   }});
 
+ */
+  //--------------------------------------------------------------------------------------------------------------------------
+  //                         get_active_project_and_show_label_buckets()
+  //--------------------------------------------------------------------------------------------------------------------------
+  get_active_project_and_show_label_buckets()
+
 
 //ACTIVE_PROJECT_ID = window.localStorage.hasOwnProperty("active_project") ?  window.localStorage.getItem("active_project") : ""
 // alert(' active project id : ' + ACTIVE_PROJECT_ID) // This corresponds to this variable project_js_id
 
  // alert(' Testing to see where the script stops !!! --- line 1830')
 
-$.ajax({
-    type: "POST",
-    url: '/get_active_project',
-    dataType: 'json',
-    data: {},
-    success: function(data) {
+function get_active_project_and_show_label_buckets(){
 
-        var active_project_id = data.active_project_id
-        var active_label = data.active_label
-        var active_project_result = data.active_project_result[0]
-        //alert('/get_active_project')
-        //alert('line 1806 -- active_project : ' + active_project_id)
-        //alert('active_label: ' + active_label)
-        alert(' line 1857 active_project_result from /get_active_project ' + JSON.stringify(active_project_result))
+        $.ajax({
+            type: "POST",
+            url: '/get_active_project',
+            dataType: 'json',
+            data: {},
+            success: function(data) {
 
-        /*
+                var active_project_id = data.active_project_id
+                var active_label = data.active_label
+                var active_project_result = data.active_project_result[0]
+                //alert('/get_active_project')
+                //alert('line 1806 -- active_project : ' + active_project_id)
+                //alert('active_label: ' + active_label)
+                alert(' line 1857 active_project_result from /get_active_project ' + JSON.stringify(active_project_result))
 
-        var project_summary_array =[]
-        for(var k in all_projects) {
-            var project = all_projects[k]
-            var project_id = project.project_js_id ? project.project_js_id: ""
-            var project_name = project.project_name ? project.project_name : ""
-            var date_created = project.date_created ? project.date_created : ""
-        
-            var project_item = {'index': k, 'project_js_id': project.project_js_id, 'project_name': project.project_name, 'date_created': date_created} //, 'user_id': project.user_id, 'date_created': project.date_created, 'date_modified': project.date_modified,'labels': labels}
-            project_summary_array.push(project_item)
-            // alert(' k ' + k + ' project_item ' + JSON.stringify(project_item));
-        }
+                // Set Environment Variables
+                ACTIVE_PROJECT_ID = active_project_id
+                ACTIVE_PROJECT_JSON = active_project_result
+                CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
+                LABELS_COLOR_MAP = ACTIVE_PROJECT_JSON['labels_color_map']
+                PROJECT_JSON = ACTIVE_PROJECT_JSON
 
-        alert('project_summary_array ' +  JSON.stringify(project_summary_array))
+                window.localStorage.setItem("project_json",JSON.stringify(ACTIVE_PROJECT_JSON))
+                window.localStorage.setItem("labels_color_map",JSON.stringify(LABELS_COLOR_MAP))
 
+                data = [];
 
-       */
+                counter = 0
 
-        // Set Environment Variables
-        ACTIVE_PROJECT_ID = active_project_id
-        ACTIVE_PROJECT_JSON = active_project_result
-        CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
-        LABELS_COLOR_MAP = ACTIVE_PROJECT_JSON['labels_color_map']
-        PROJECT_JSON = ACTIVE_PROJECT_JSON
+                Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
+                    var label = key
+                    var color = LABELS_COLOR_MAP[key]
 
-        window.localStorage.setItem("project_json",JSON.stringify(ACTIVE_PROJECT_JSON))
-        window.localStorage.setItem("labels_color_map",JSON.stringify(LABELS_COLOR_MAP))
+                    var current_label_info = filter_project_json_by_label(key)
 
-        data = [];
+                    var label_id = current_label_info['label_id']
 
-        counter = 0
-
-        Object.keys(LABELS_COLOR_MAP).forEach(function(key) {
-            var label = key
-            var color = LABELS_COLOR_MAP[key]
-
-            var current_label_info = filter_project_json_by_label(key)
-
-            var label_id = current_label_info['label_id']
-
-            // Attributes for each label...can use this information in the future
-            var original_image_urls = current_label_info['original_image_urls']
-            var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
-            var cropped_image_urls = current_label_info['cropped_image_urls']
-            var augmentation_image_urls = current_label_info['augmentation_image_urls']
-            var original_image_label_jsons = current_label_info['original_image_label_jsons']
-            var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
-            var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
-            var number_original_images = current_label_info['original_image_urls'].length
-            var number_all_jpeg_images = current_label_info['all_jpeg_image_urls'].length
-            var number_cropped_images = current_label_info['cropped_image_urls'].length
-            var number_augmentation_images = current_label_info['augmentation_image_urls'].length
-            var original_image_label_jsons = current_label_info['original_image_label_jsons']
-            var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
-            var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
-            var date_created = current_label_info['date_created']
-            var date_modified = current_label_info['date_modified']
-           
-            var data_element = {"index": counter, "label": label,"color": color, 
-                                "num_images": number_original_images, "labeled_images": "", 
-                                "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
-                                "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
-                                "ISODate": date_created, "date_created": date_created, 
-                                "original_image_urls": original_image_urls,"all_jpeg_image_urls": all_jpeg_image_urls, 'current_label_info' : current_label_info}
-      
-            data.push(data_element)
+                    // Attributes for each label...can use this information in the future
+                    var original_image_urls = current_label_info['original_image_urls']
+                    var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
+                    var cropped_image_urls = current_label_info['cropped_image_urls']
+                    var augmentation_image_urls = current_label_info['augmentation_image_urls']
+                    var original_image_label_jsons = current_label_info['original_image_label_jsons']
+                    var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
+                    var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+                    var number_original_images = current_label_info['original_image_urls'].length
+                    var number_all_jpeg_images = current_label_info['all_jpeg_image_urls'].length
+                    var number_cropped_images = current_label_info['cropped_image_urls'].length
+                    var number_augmentation_images = current_label_info['augmentation_image_urls'].length
+                    var original_image_label_jsons = current_label_info['original_image_label_jsons']
+                    var all_jpeg_image_label_jsons = current_label_info['all_jpeg_image_label_jsons']
+                    var augmentation_image_label_jsons = current_label_info['augmentation_image_label_jsons']
+                    var date_created = current_label_info['date_created']
+                    var date_modified = current_label_info['date_modified']
+                
+                    var data_element = {"index": counter, "label": label,"color": color, 
+                                        "num_images": number_original_images, "labeled_images": "", 
+                                        "all_labeled_true_false": "", "project_id": ACTIVE_PROJECT_JSON['project_js_id'],
+                                        "project_name": ACTIVE_PROJECT_JSON['project_name'], "user_id": ACTIVE_PROJECT_JSON['user_id'], 
+                                        "ISODate": date_created, "date_created": date_created, 
+                                        "original_image_urls": original_image_urls,"all_jpeg_image_urls": all_jpeg_image_urls, 'current_label_info' : current_label_info}
             
-            counter += 1;
+                    data.push(data_element)
+                    
+                    counter += 1;
 
-        })
-       // alert(' Line 1895 data obect ' + JSON.stringify(data))   
+                })
+            // alert(' Line 1895 data obect ' + JSON.stringify(data))   
 
-        // Update Page
+                // Update Page
 
-        updatePage()
+                updatePage()
 
-        //alert(' Line 1901 data obect - confirmation that it gets past the updatePage() function ')   
-        //alert(' Line 1887 - this is the first gate I see')   
+                //alert(' Line 1901 data obect - confirmation that it gets past the updatePage() function ')   
+                //alert(' Line 1887 - this is the first gate I see')   
 
-        //show_label_buckets()
-        new_create_label_buckets(data)
+                //show_label_buckets()
+                new_create_label_buckets(data)
 
-    }
-   
-});
+            }
+        
+        });
 
-
+}
 
 
 
