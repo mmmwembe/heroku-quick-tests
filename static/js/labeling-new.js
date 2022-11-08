@@ -2442,6 +2442,7 @@ function NewLabelBucketCard(data_element){
             var previous_project_id = data.previous_project_id
 
             var active_label = data.active_label
+            ACTIVE_LABEL_BUCKET = data.active_label
             ACTIVE_PROJECT_ID = data.active_project
             ACTIVE_PROJECT_JSON = data.active_project_result
             CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
@@ -2545,7 +2546,8 @@ function NewLabelBucketCard(data_element){
 
         var p2_id = $(this).attr('p2-id'); 
         var p3_id = $(this).attr('p3-id');
-
+        ACTIVE_LABEL_BUCKET = $(this).attr('label');
+        ACTIVE_PROJECT_ID = $(this).attr('project_id');
         //alert(' line 2612  p2_id : ' + p2_id + ' p3_id : ' + p3_id)
         //var x_label = $(this).attr('label');     
         //var x_project_id = $(this).attr('project_id');           
@@ -2598,6 +2600,8 @@ function NewLabelBucketCard(data_element){
             var labelled_original_image_urls = response.labelled_original_image_urls
             var project = response.active_project_result 
             var myLabel = response.xlabel
+            ACTIVE_LABEL_BUCKET = response.xlabel
+            ACTIVE_PROJECT_ID = response.xproject_id
             var myProjectId = response.xproject_id
 
 
