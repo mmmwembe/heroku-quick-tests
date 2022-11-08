@@ -1143,7 +1143,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                     //-----------------------------------------------------------------------------------------
                 
                     // CREATE LABEL BUCKETS 
-                    create_label_buckets_dummy('project_json')
+                    // create_label_buckets_dummy('project_json')
           
                 }
 
