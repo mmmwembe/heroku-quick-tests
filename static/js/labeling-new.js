@@ -1616,7 +1616,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 //---------------------------------------------------------------------------------------------------------------
 
                 var active_project_id = data.active_project_id
-                var active_label = data.active_label
+                //var active_label = data.active_label
                 var active_project_result = data.active_project_result[0]
                 ACTIVE_PROJECT_ID = active_project_id
                 ACTIVE_PROJECT_JSON = active_project_result
