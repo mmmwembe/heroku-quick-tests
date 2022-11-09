@@ -1419,10 +1419,14 @@ def add_label_records():
         project_id = request.form['project_id']
         active_label_bucket = request.form['active_label']        
         images_norm_data_label_map = request.form['images_norm_data_label_map']
+        original_image_label_jsons = request.form['original_image_label_jsons']
         labelled_images_string = request.form['labelled_images_array']
       
         images_norm_data_label_map_dict_from_json_string = eval("{0}".format(images_norm_data_label_map))
         labelled_images_array = labelled_images_string.split(",")
+
+        original_image_label_jsons_dict_from_json_string = eval("{0}".format(original_image_label_jsons))        
+        
               
         proj_id = uuid.uuid4().hex
 
@@ -1439,7 +1443,7 @@ def add_label_records():
         user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
         
     	# Update original_images_normalized_dataset for the label
-        user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
+        user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item , "labels.$.original_image_label_jsons": original_image_label_jsons_dict_from_json_string} })
                   
 
           

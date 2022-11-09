@@ -300,7 +300,7 @@ fabricCanvas.on('mouse:up', function(o){
            // alert('IMAGES_NORM_DATA_LABEL_MAP ' + JSON.stringify(IMAGES_NORM_DATA_LABEL_MAP))
            alert(' ACTIVE_LABEL_BUCKET ' + ACTIVE_LABEL_BUCKET)
 
-           post_images_norm_data_label_map(user_id, ACTIVE_PROJECT_ID, ACTIVE_LABEL_BUCKET, IMAGES_NORM_DATA_LABEL_MAP, LABELLED_IMAGES_ARRAY)
+           post_images_norm_data_label_map(user_id, ACTIVE_PROJECT_ID, ACTIVE_LABEL_BUCKET, IMAGES_NORM_DATA_LABEL_MAP, LABELLED_IMAGES_ARRAY, IMAGES_CANVAS_JSONs)
 
 
         
@@ -314,7 +314,7 @@ fabricCanvas.on('mouse:up', function(o){
             delete IMAGES_NORM_DATA_LABEL_MAP.img_name;  // Delete img key value pair from images_norm_data_label_map
             delete IMAGES_CANVAS_JSONs.img_name; // Delete img key value pair from images_canvas_json
 
-            post_images_norm_data_label_map(user_id, ACTIVE_PROJECT_ID, ACTIVE_LABEL_BUCKET, IMAGES_NORM_DATA_LABEL_MAP, LABELLED_IMAGES_ARRAY)
+            post_images_norm_data_label_map(user_id, ACTIVE_PROJECT_ID, ACTIVE_LABEL_BUCKET, IMAGES_NORM_DATA_LABEL_MAP, LABELLED_IMAGES_ARRAY, IMAGES_CANVAS_JSONs)
         }
 
         // alert('filename : ' + img_name)
@@ -363,6 +363,14 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         fabricCanvas.remove.apply(fabricCanvas, fabricCanvas.getObjects().concat())
     }
 
+    function get_json_from_session_and_display_labels(img_name){
+        // Get stored canvas json and display on the canvas
+        if (getStoredSessionValue(img_name) !== null) {
+            const canvas_json = getStoredSessionValue(img_name);
+            fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
+        }
+    }
+
 
 
     function showFirstImage(){
@@ -379,6 +387,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
           if(first_img){
             IMAGE_URL = first_img
             updateFabricCanvasBackgroundImage(first_img)
+
+            var my_img = getFileName(IMAGE_URL)
+            get_json_from_session_and_display_labels(my_img)
+
           }
             // alert(' Line 347...there is nothing in first_img_div ')
         }
@@ -3216,9 +3228,10 @@ function remove_element_from_array(myArray, element){
 //                    Post Label Records to Server
 //---------------------------------------------------------------------------------------------
 
-function post_images_norm_data_label_map(user_id, project_id, active_label, images_norm_data_label_map, labelled_images_array){
+function post_images_norm_data_label_map(user_id, project_id, active_label, images_norm_data_label_map, labelled_images_array, images_canvas_jsons){
 
     // alert('JSONIFIED ---labelled_images_array : ' + JSON.stringify(labelled_images_array))
+    // IMAGES_CANVAS_JSONs
     
     $.ajax({
         type: "POST",
@@ -3229,7 +3242,8 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
                 'project_id' :  project_id, 
                 'active_label' :  active_label, 
                 'images_norm_data_label_map' : JSON.stringify(images_norm_data_label_map), 
-                'labelled_images_array' :  labelled_images_array.toString()    //labelled_images_array                                           
+                'labelled_images_array' :  labelled_images_array.toString(),    //labelled_images_array
+                'original_image_label_jsons' : JSON.stringify(images_canvas_jsons)                                          
             },
         success: function(data) {
 
