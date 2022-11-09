@@ -2521,6 +2521,9 @@ function NewLabelBucketCard(data_element){
             CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
             LABELS_COLOR_MAP = ACTIVE_PROJECT_JSON['labels_color_map']
             PROJECT_JSON = ACTIVE_PROJECT_JSON
+
+            var label_color = LABELS_COLOR_MAP[ACTIVE_LABEL_BUCKET]
+            showCurrentLabel(label_color, ACTIVE_LABEL_BUCKET)
             
             var current_label_info = filter_project_json_by_label(active_label)
             var original_image_urls = current_label_info['original_image_urls']
