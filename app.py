@@ -1417,11 +1417,12 @@ def add_label_records():
         
         # user_id = request.form['user_id']
         project_id = request.form['project_id']
-        active_label = request.form['active_label']        
+        active_label_bucket = request.form['active_label']        
         images_norm_data_label_map = request.form['images_norm_data_label_map']
-        labelled_images_array = request.form['labelled_images_array']
+        labelled_images_string = request.form['labelled_images_array']
       
         images_norm_data_label_map_dict_from_json_string = eval("{0}".format(images_norm_data_label_map))
+        labelled_images_array = labelled_images_string.split(",")
               
         proj_id = uuid.uuid4().hex
 
@@ -1431,7 +1432,7 @@ def add_label_records():
 			'project_js_id': project_id,
 			'user_id': user_id,
 			'labels_color_map': images_norm_data_label_map_dict_from_json_string,
-			'active_label': active_label,
+			'active_label_bucket': active_label_bucket,
   		}
         
 
@@ -1447,9 +1448,11 @@ def add_label_records_x():
         project_id = request.form['project_id']
         active_label = request.form['active_label']        
         images_norm_data_label_map = request.form['images_norm_data_label_map']
-        labelled_images_array = request.form['labelled_images_array']
+        labelled_images_string = request.form['labelled_images_array']
       
         images_norm_data_label_map_dict_from_json_string = eval("{0}".format(images_norm_data_label_map))
+        
+        labelled_images_array = labelled_images_string.split(",")
         
         proj_id = uuid.uuid4().hex
 

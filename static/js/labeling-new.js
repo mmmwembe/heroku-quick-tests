@@ -3197,7 +3197,7 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
                 'project_id' :  project_id, 
                 'active_label' :  active_label, 
                 'images_norm_data_label_map' : JSON.stringify(images_norm_data_label_map), 
-                'labelled_images_array' :  labelled_images_array //.toString();     //labelled_images_array                                           
+                'labelled_images_array' :  labelled_images_array.toString();     //labelled_images_array                                           
             },
         success: function(data) {
 
