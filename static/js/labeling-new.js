@@ -304,10 +304,14 @@ fabricCanvas.on('mouse:up', function(o){
         
         }
         else {
+            
             storeSessionValue(img_name, null)
 
             LABELLED_IMAGES_ARRAY = remove_element_from_array(LABELLED_IMAGES_ARRAY, IMAGE_URL)
 
+            delete IMAGES_NORM_DATA_LABEL_MAP.img_name;  // Delete img key value pair from json
+
+            post_images_norm_data_label_map(user_id, ACTIVE_PROJECT_ID, ACTIVE_LABEL_BUCKET, IMAGES_NORM_DATA_LABEL_MAP, LABELLED_IMAGES_ARRAY)
         }
 
         // alert('filename : ' + img_name)
