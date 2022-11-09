@@ -44,8 +44,9 @@ window.addEventListener('load', (event) => {
     var CURRENT_PROJECT="";
     var PROJECT_JSON
 
-    IMAGES_NORM_DATA_LABEL_MAP = {} // IMAGES_NORM_DATA_LABEL_MAP[image_name] = norm_data;
-    LABELLED_IMAGES_ARRAY = []
+    var IMAGES_NORM_DATA_LABEL_MAP = {} // IMAGES_NORM_DATA_LABEL_MAP[image_name] = norm_data;
+    var LABELLED_IMAGES_ARRAY = []
+    var IMAGES_CANVAS_JSONs = {} 
 
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
@@ -291,6 +292,7 @@ fabricCanvas.on('mouse:up', function(o){
            // Add norm data to IMAGES_NORM_DATA_LABEL_MAP[image_name] = norm_data;
 
            IMAGES_NORM_DATA_LABEL_MAP[img_name] = norm_data;
+           IMAGES_CANVAS_JSONs[img_name] = json;
            LABELLED_IMAGES_ARRAY = add_element_if_not_already_in_array(LABELLED_IMAGES_ARRAY, IMAGE_URL)
 
            //alert(' ACTIVE_LABEL_BUCKET: ' + ACTIVE_LABEL_BUCKET + '   ACTIVE_PROJECT_ID : ' + ACTIVE_PROJECT_ID)
@@ -304,12 +306,13 @@ fabricCanvas.on('mouse:up', function(o){
         
         }
         else {
-            
+
             storeSessionValue(img_name, null)
 
             LABELLED_IMAGES_ARRAY = remove_element_from_array(LABELLED_IMAGES_ARRAY, IMAGE_URL)
 
-            delete IMAGES_NORM_DATA_LABEL_MAP.img_name;  // Delete img key value pair from json
+            delete IMAGES_NORM_DATA_LABEL_MAP.img_name;  // Delete img key value pair from images_norm_data_label_map
+            delete IMAGES_CANVAS_JSONs.img_name; // Delete img key value pair from images_canvas_json
 
             post_images_norm_data_label_map(user_id, ACTIVE_PROJECT_ID, ACTIVE_LABEL_BUCKET, IMAGES_NORM_DATA_LABEL_MAP, LABELLED_IMAGES_ARRAY)
         }
