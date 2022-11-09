@@ -350,6 +350,14 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 });
 
 
+    function clearCanvasBackground() {
+        if (fabricCanvas) {
+        fabricCanvas.setBackgroundImage(null);
+        fabricCanvas.setBackgroundColor('');
+        fabricCanvas.renderAll();
+        }
+    }
+
 
 
     function showFirstImage(){
@@ -2553,6 +2561,10 @@ function NewLabelBucketCard(data_element){
                 }
 
 
+            }
+            else{
+                  // Remove background image from fabric js canvas
+                  clearCanvasBackground()
             }
 
             //alert('line 2363 -- active_project : ' + active_project_id)
