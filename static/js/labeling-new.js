@@ -2486,9 +2486,10 @@ function NewLabelBucketCard(data_element){
     atag_showthumbnails.addEventListener('click', function(){ 
         var atag_id_x = $(this).attr('id');  
         const myArray = atag_id_x.split("-");
-        var xlabel = myArray[0];
+        var xlabel = myArray[0]; 
         var xproject_id = myArray[1];
-        alert('line 2353 xlabel  ' + xlabel + ' xproject_id' + xproject_id)
+        ACTIVE_LABEL_BUCKET = xlabel
+        //alert('line 2353 xlabel  ' + xlabel + ' xproject_id' + xproject_id)
         var show_thumbnail_btn_id = $(this).attr('show_thumbnail_btn_id')
         var label_color = $(this).attr('label_color')
 
@@ -2506,7 +2507,7 @@ function NewLabelBucketCard(data_element){
             var previous_project_id = data.previous_project_id
 
             var active_label = data.active_label
-            ACTIVE_LABEL_BUCKET = data.active_label
+            // ACTIVE_LABEL_BUCKET = data.active_label
             ACTIVE_PROJECT_ID = data.active_project
             ACTIVE_PROJECT_JSON = data.active_project_result
             CURRENT_PROJECT = ACTIVE_PROJECT_JSON['project_name']
