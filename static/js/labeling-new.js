@@ -358,6 +358,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         }
     }
 
+    function clearCanvas(){
+
+        fabricCanvas.remove.apply(fabricCanvas, fabricCanvas.getObjects().concat())
+    }
+
 
 
     function showFirstImage(){
@@ -2565,6 +2570,10 @@ function NewLabelBucketCard(data_element){
             else{
                   // Remove background image from fabric js canvas
                   clearCanvasBackground()
+                  // Clear Canvas
+                  clearCanvas()
+                  // TO DO - remove image key for figure with cleared canvas
+
             }
 
             //alert('line 2363 -- active_project : ' + active_project_id)
