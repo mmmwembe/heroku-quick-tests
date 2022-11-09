@@ -3230,7 +3230,7 @@ function remove_element_from_array(myArray, element){
 
 function post_images_norm_data_label_map(user_id, project_id, active_label, images_norm_data_label_map, labelled_images_array, images_canvas_jsons){
 
-    // alert('JSONIFIED ---labelled_images_array : ' + JSON.stringify(labelled_images_array))
+    alert('JSONIFIED 3223---images_canvas_jsons : ' + JSON.stringify(images_canvas_jsons))
     // IMAGES_CANVAS_JSONs
     
     $.ajax({
