@@ -3251,13 +3251,15 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
             },
         success: function(data) {
 
-            var results = data.label_record_item
-            alert('Line 3201 add_label_records  label_record_item: ' + JSON.stringify(results))
+           // var results = data.label_record_item
+            //alert('Line 3201 add_label_records  label_record_item: ' + JSON.stringify(results))
             //var active_project_result = data.active_project_result
             //alert('Line 3126 add_label_records  active_project_result : ' + JSON.stringify(active_project_result))
             // show_label_buckets_from_server_json_data(data)
-            var returned_labelled_images = data.labelled_images_array
-            alert('Line 3209 add_label_records  returned_labelled_images: ' + JSON.stringify(returned_labelled_images))
+           // var returned_labelled_images = data.labelled_images_array
+           // alert('Line 3209 add_label_records  returned_labelled_images: ' + JSON.stringify(returned_labelled_images))
+
+           alert(' CHANGED JSON RETURN DATA TO original_image_label_jsons : ' + JSON.stringify(data.original_image_label_jsons))
 
             // alert(' 3258 original_image_label_jsons_dict_from_json_string ' + JSON.stringify(data.original_image_label_jsons_dict_from_json_string))
 
