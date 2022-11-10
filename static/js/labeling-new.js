@@ -296,7 +296,7 @@ fabricCanvas.on('mouse:up', function(o){
            IMAGES_CANVAS_JSONs[img_name] = json;
            LABELLED_IMAGES_ARRAY = add_element_if_not_already_in_array(LABELLED_IMAGES_ARRAY, IMAGE_URL)
 
-           // LABEL_BUCKET_CANVAS_JSON[img_name] = json
+           //LABEL_BUCKET_CANVAS_JSON[img_name] = json
 
            //alert(' ACTIVE_LABEL_BUCKET: ' + ACTIVE_LABEL_BUCKET + '   ACTIVE_PROJECT_ID : ' + ACTIVE_PROJECT_ID)
 
@@ -3251,15 +3251,15 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
             },
         success: function(data) {
 
-            //var results = data.label_record_item
-            // alert('Line 3201 add_label_records  label_record_item: ' + JSON.stringify(results))
+            var results = data.label_record_item
+            alert('Line 3201 add_label_records  label_record_item: ' + JSON.stringify(results))
             //var active_project_result = data.active_project_result
             //alert('Line 3126 add_label_records  active_project_result : ' + JSON.stringify(active_project_result))
             // show_label_buckets_from_server_json_data(data)
-            // var returned_labelled_images = data.labelled_images_array
-            //alert('Line 3209 add_label_records  returned_labelled_images: ' + JSON.stringify(returned_labelled_images))
+            var returned_labelled_images = data.labelled_images_array
+            alert('Line 3209 add_label_records  returned_labelled_images: ' + JSON.stringify(returned_labelled_images))
 
-            alert(' 3262 original_image_label_jsons_dict_from_json_string ' + JSON.stringify(data.original_image_label_jsons))
+            // alert(' 3258 original_image_label_jsons_dict_from_json_string ' + JSON.stringify(data.original_image_label_jsons_dict_from_json_string))
 
         }
         
