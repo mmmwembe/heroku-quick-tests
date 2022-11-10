@@ -271,6 +271,16 @@ cropped_images_csv_files = user_info["gcp_bucket_dict"]["cropped_images_csv_file
 
 user_local_models_tmp_dir = user_info["gcp_bucket_dict"]["user_local_models_tmp_dir"]
 
+user_images_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_json_files_normalized"]
+user_images_json_files_raw = user_info["gcp_bucket_dict"]["user_images_json_files_raw"]
+user_images_automated_labels_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_automated_labels_json_files_normalized"]
+
+# "user_images_json_files_normalized": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-normalized", 
+# "user_images_json_files_raw": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-raw", 
+# "user_images_automated_labels_json_files_normalized": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-automated-labels-json-files-normalized", 
+# "user_images_json_files_normalized": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-normalized", 
+# "user_images_json_files_raw": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-raw"
+
 
 try:
   create_dir(user_local_models_tmp_dir) # This directory is used for processing tflite zipfiles to extract labels
