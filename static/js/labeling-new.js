@@ -47,6 +47,7 @@ window.addEventListener('load', (event) => {
     var IMAGES_NORM_DATA_LABEL_MAP = {} // IMAGES_NORM_DATA_LABEL_MAP[image_name] = norm_data;
     var LABELLED_IMAGES_ARRAY = []
     var IMAGES_CANVAS_JSONs = {} 
+    var LABEL_BUCKET_CANVAS_JSON={}
 
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
@@ -295,6 +296,8 @@ fabricCanvas.on('mouse:up', function(o){
            IMAGES_CANVAS_JSONs[img_name] = json;
            LABELLED_IMAGES_ARRAY = add_element_if_not_already_in_array(LABELLED_IMAGES_ARRAY, IMAGE_URL)
 
+           // LABEL_BUCKET_CANVAS_JSON[img_name] = json
+
            //alert(' ACTIVE_LABEL_BUCKET: ' + ACTIVE_LABEL_BUCKET + '   ACTIVE_PROJECT_ID : ' + ACTIVE_PROJECT_ID)
 
            // alert('IMAGES_NORM_DATA_LABEL_MAP ' + JSON.stringify(IMAGES_NORM_DATA_LABEL_MAP))
@@ -313,6 +316,7 @@ fabricCanvas.on('mouse:up', function(o){
 
             delete IMAGES_NORM_DATA_LABEL_MAP.img_name;  // Delete img key value pair from images_norm_data_label_map
             delete IMAGES_CANVAS_JSONs.img_name; // Delete img key value pair from images_canvas_json
+            //delete LABEL_BUCKET_CANVAS_JSON.img_name; // Delete image key value pair from canvas json
 
             post_images_norm_data_label_map(user_id, ACTIVE_PROJECT_ID, ACTIVE_LABEL_BUCKET, IMAGES_NORM_DATA_LABEL_MAP, LABELLED_IMAGES_ARRAY, IMAGES_CANVAS_JSONs)
         }
@@ -3247,21 +3251,51 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
             },
         success: function(data) {
 
-            var results = data.label_record_item
-            alert('Line 3201 add_label_records  label_record_item: ' + JSON.stringify(results))
+            //var results = data.label_record_item
+            // alert('Line 3201 add_label_records  label_record_item: ' + JSON.stringify(results))
             //var active_project_result = data.active_project_result
             //alert('Line 3126 add_label_records  active_project_result : ' + JSON.stringify(active_project_result))
             // show_label_buckets_from_server_json_data(data)
-            var returned_labelled_images = data.labelled_images_array
-            alert('Line 3209 add_label_records  returned_labelled_images: ' + JSON.stringify(returned_labelled_images))
+            // var returned_labelled_images = data.labelled_images_array
+            //alert('Line 3209 add_label_records  returned_labelled_images: ' + JSON.stringify(returned_labelled_images))
 
-            // alert(' 3258 original_image_label_jsons_dict_from_json_string ' + JSON.stringify(data.original_image_label_jsons_dict_from_json_string))
+            alert(' 3262 original_image_label_jsons_dict_from_json_string ' + JSON.stringify(data.canvas_json))
 
         }
         
     });   
 
 }
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------
+//                                           Save JSON
+//--------------------------------------------------------------------------------------------------------------------------------
+
+function saveCanvasJSONFile(){
+
+    $.ajax({
+      type: "POST",
+      url: '/saveCanvasJSON',
+      dataType: 'json',
+      data: { 
+        user_id : user_id, 
+        project_id : ACTIVE_PROJECT_ID,
+        active_label_bucket: ACTIVE_LABEL_BUCKET,
+        canvas_json : JSON.stringify(canvas_json)
+        // dynamic_table_record : JSON.stringify(DYNAMIC_TABLE_RECORD_HOLDER[image_name])
+           },
+      success: function(data) {
+        var myData = data.result
+        alert('CanvasJSONFIle URL : ' + myData)
+      }
+  });
+
+
+
+
+
 
 
 
