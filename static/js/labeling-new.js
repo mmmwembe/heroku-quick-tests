@@ -3272,8 +3272,8 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
 //--------------------------------------------------------------------------------------------------------------------------------
 //                                           Save JSON
 //--------------------------------------------------------------------------------------------------------------------------------
+alert(' It gets to line 3275')
 
-/*
 function saveCanvasJSONFile(){
 
     $.ajax({
@@ -3284,7 +3284,7 @@ function saveCanvasJSONFile(){
         user_id : user_id, 
         project_id : ACTIVE_PROJECT_ID,
         active_label_bucket: ACTIVE_LABEL_BUCKET,
-        canvas_json : JSON.stringify(canvas_json)
+        image_canvas_jsons : JSON.stringify(IMAGES_CANVAS_JSONs)
         // dynamic_table_record : JSON.stringify(DYNAMIC_TABLE_RECORD_HOLDER[image_name])
            },
       success: function(data) {
@@ -3293,8 +3293,8 @@ function saveCanvasJSONFile(){
       }
   });
 
+  alert(' It it does not get to 3296')
 
-*/
 
 
 
