@@ -1477,7 +1477,7 @@ def add_label_records():
         original_image_label_jsons = json.loads(request.form['original_image_label_jsons'])
         # original_image_label_jsons = request.form['original_image_label_jsons']
         # original_image_label_jsons_dict_from_json_string = eval("{0}".format(original_image_label_jsons))        
-        
+        fabric_canvas_json = request.form['original_image_label_jsons']        
               
         proj_id = uuid.uuid4().hex
 
@@ -1491,12 +1491,17 @@ def add_label_records():
   		}
         
         # 
-        sub_directory_path = user_images_json_files_normalized
-        target_file_types_array = ["json", "JSON"]
-        sub_dir_path_with_active_folder = os.path.join(sub_directory_path,project_id, active_label_bucket)
+        # sub_directory_path = user_images_json_files_normalized
+        # target_file_types_array = ["json", "JSON"]
+        # sub_dir_path_with_active_folder = os.path.join(sub_directory_path,project_id, active_label_bucket)
         # gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
         # client = storage.Client()
         # bucket = client.get_bucket(bucket_name)
+        
+        # Write Text to json folder to create it before upload of Json
+        # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
+        # Save JSON to GCP
+        save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
         
         
         
@@ -1510,64 +1515,6 @@ def add_label_records():
 
           
     return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = sub_dir_path_with_active_folder)
-
-@app.route('/add_label_records_x', methods=['POST','GET'])
-def add_label_records_x():
-
-    if request.method =='POST':
-        
-        # user_id = request.form['user_id']
-        project_id = request.form['project_id']
-        active_label = request.form['active_label']        
-        images_norm_data_label_map = request.form['images_norm_data_label_map']
-        labelled_images_string = request.form['labelled_images_array']
-        # original_image_label_jsons = json.loads(request.form['original_image_label_jsons'])
-        fabric_canvas_json = request.form['original_image_label_jsons']
-                
-        # y = json.dumps(original_image_label_jsons)
-      
-        images_norm_data_label_map_dict_from_json_string = eval("{0}".format(images_norm_data_label_map))
-        
-        labelled_images_array = labelled_images_string.split(",")
-                
-        proj_id = uuid.uuid4().hex
-
-		# create project item
-        label_record_item = {
-			'_id':  proj_id,   
-			'project_js_id': project_id,
-			'user_id': user_id,
-			'labels_color_map': images_norm_data_label_map_dict_from_json_string,
-			'active_label': active_label,
-  		}
-        
-        # Save JSON to GCP
-        save_json_to_gcp(user_id, project_id, active_label,fabric_canvas_json)
-        
-        
-        
-        
-        # Update original_images_normalized_dataset for the label
-        # user_projects.update_one({ "labels.label": active_label, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
-           
-         # Update original_images_normalized_dataset for the label
-        user_projects.update_one({ "labels.label": active_label, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
-        
-        time.sleep(1)
-        
-        # Get all of the user's projects
-        active_project_query = {'project_js_id': project_id,  'user_id': user_id}
-        results = user_projects.find(active_project_query)
-        
-        active_project_result ={}
-        
-        try:
-            active_project_result = results[0]     
-        except:
-            pass
-          
-    return jsonify(user_id = user_id, project_id = project_id, active_label = active_label, active_project_result = active_project_result, original_image_label_jsons = original_image_label_jsons )
-
 
 
 
