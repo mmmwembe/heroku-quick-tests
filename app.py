@@ -240,7 +240,7 @@ def save_json_to_gcp(user_id, xproject_id, xlabel,json_object_to_save):
     gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_json_files_normalized"], xproject_id, xlabel)
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
-    filename = xproject_id + ".json" 
+    filename = xlabel + ".json" 
     blob_full_path = os.path.join(gcp_subdirectory_path, filename)
     blob = bucket.blob(blob_full_path)
     blob.upload_from_string(data=json.dumps(json_object_to_save),content_type='application/json')
