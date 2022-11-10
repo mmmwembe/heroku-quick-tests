@@ -1493,15 +1493,15 @@ def add_label_records():
         # 
         # sub_directory_path = user_images_json_files_normalized
         # target_file_types_array = ["json", "JSON"]
-        # sub_dir_path_with_active_folder = os.path.join(sub_directory_path,project_id, active_label_bucket)
+        sub_dir_path_with_active_folder = os.path.join(sub_directory_path,project_id, active_label_bucket)
         # gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
         # client = storage.Client()
         # bucket = client.get_bucket(bucket_name)
         
         # Write Text to json folder to create it before upload of Json
-        # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
+        write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
         # Save JSON to GCP
-        save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
+        # save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
         
         
         
