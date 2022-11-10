@@ -218,6 +218,16 @@ def get_images_array_from_user_projects(user_id, xproject_id, xlabel, target_arr
   return user_images_array  
 
 #==========================================================================
+#          Get ISODate
+#===========================================================================
+# Get ISODate for MongoDB date
+def getISODate():
+    ts = time.time()
+    isodate = timedelta.datetime.fromtimestamp(ts, None)
+    print('ISODate : ', isodate)
+    return isodate
+
+#==========================================================================
 #           Save Text to GCP Directory to Speed Up Future Uploads
 #===========================================================================
 def write_text_to_gcp(user_id, xproject_id, xlabel):
@@ -229,12 +239,26 @@ def write_text_to_gcp(user_id, xproject_id, xlabel):
     filename = xproject_id + ".txt" 
     blob_full_path = os.path.join(gcp_subdirectory_path, filename)
     blob = bucket.blob(blob_full_path)
-    blob.upload_from_string("Created by : " + user_id)
+    blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
 
+
+def write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel):
+
+    bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+    gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_json_files_normalized"], xproject_id, xlabel)
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
+    filename = xproject_id + ".txt" 
+    blob_full_path = os.path.join(gcp_subdirectory_path, filename)
+    blob = bucket.blob(blob_full_path)
+    blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
+    
 #==========================================================================
 #           Save Text to GCP Directory to Speed Up Future Uploads
 #===========================================================================
 def save_json_to_gcp(user_id, xproject_id, xlabel,json_object_to_save):
+    
+    write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel)  # save text file in the directory first
 
     bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
     gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_json_files_normalized"], xproject_id, xlabel)
