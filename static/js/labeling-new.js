@@ -3293,6 +3293,8 @@ function saveCanvasJSONFile(){
       }
   });
 
+}
+
   alert(' It it does not get to 3296')
 
 
