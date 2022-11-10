@@ -1471,11 +1471,13 @@ def add_label_records_x():
         images_norm_data_label_map = request.form['images_norm_data_label_map']
         labelled_images_string = request.form['labelled_images_array']
         original_image_label_jsons = json.loads(request.form['original_image_label_jsons'])
+        
+        y = json.dumps(original_image_label_jsons)
       
         images_norm_data_label_map_dict_from_json_string = eval("{0}".format(images_norm_data_label_map))
         
         labelled_images_array = labelled_images_string.split(",")
-        
+                
         proj_id = uuid.uuid4().hex
 
 		# create project item
@@ -1506,7 +1508,7 @@ def add_label_records_x():
         except:
             pass
           
-    return jsonify(user_id = user_id, project_id = project_id, active_label = active_label, active_project_result = active_project_result, original_image_label_jsons = original_image_label_jsons)
+    return jsonify(user_id = user_id, project_id = project_id, active_label = active_label, active_project_result = active_project_result, y  = y )
 
 
 
