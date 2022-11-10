@@ -3259,7 +3259,7 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
            // var returned_labelled_images = data.labelled_images_array
            // alert('Line 3209 add_label_records  returned_labelled_images: ' + JSON.stringify(returned_labelled_images))
 
-           alert(' CHANGED JSON RETURN DATA TO original_image_label_jsons : ' + data.original_image_label_jsons)
+           alert(' CHANGED JSON RETURN DATA TO original_image_label_jsons : ' + JSON.stringify(data.original_image_label_jsons))
 
             // alert(' 3258 original_image_label_jsons_dict_from_json_string ' + JSON.stringify(data.original_image_label_jsons_dict_from_json_string))
 
