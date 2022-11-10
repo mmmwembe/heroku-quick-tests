@@ -3263,6 +3263,8 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
 
             // alert(' 3258 original_image_label_jsons_dict_from_json_string ' + JSON.stringify(data.original_image_label_jsons_dict_from_json_string))
 
+           alert(' Line 3266 sub_dir_path_with_active_folder : ' + sub_dir_path_with_active_folder)
+
         }
         
     });   
