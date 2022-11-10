@@ -3273,6 +3273,7 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
 //                                           Save JSON
 //--------------------------------------------------------------------------------------------------------------------------------
 
+/*
 function saveCanvasJSONFile(){
 
     $.ajax({
@@ -3293,7 +3294,7 @@ function saveCanvasJSONFile(){
   });
 
 
-
+*/
 
 
 
