@@ -231,6 +231,21 @@ def write_text_to_gcp(user_id, xproject_id, xlabel):
     blob = bucket.blob(blob_full_path)
     blob.upload_from_string("Created by : " + user_id)
 
+#==========================================================================
+#           Save Text to GCP Directory to Speed Up Future Uploads
+#===========================================================================
+def save_json_to_gcp(user_id, xproject_id, xlabel,json_object_to_save):
+
+    bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+    gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_json_files_normalized"], xproject_id, xlabel)
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
+    filename = xproject_id + ".json" 
+    blob_full_path = os.path.join(gcp_subdirectory_path, filename)
+    blob = bucket.blob(blob_full_path)
+    blob.upload_from_string(data=json.dumps(json_object_to_save),content_type='application/json')
+
+
 try:
   create_dir(UPLOAD_FOLDER)
   create_dir(IMAGES_FOLDER)
@@ -1451,6 +1466,16 @@ def add_label_records():
 			'active_label_bucket': active_label_bucket,
   		}
         
+        # 
+        sub_directory_path = user_images_json_files_normalized
+        target_file_types_array = ["json", "JSON"]
+        sub_dir_path_with_active_folder = os.path.join(sub_directory_path,project_id, active_label_bucket)
+        # gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+        # client = storage.Client()
+        # bucket = client.get_bucket(bucket_name)
+        
+        
+        
         # Update original_images_normalized_dataset for the label
         user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
         time.sleep(1)        
@@ -1473,7 +1498,7 @@ def add_label_records_x():
         images_norm_data_label_map = request.form['images_norm_data_label_map']
         labelled_images_string = request.form['labelled_images_array']
         # original_image_label_jsons = json.loads(request.form['original_image_label_jsons'])
-        original_image_label_jsons = request.form['original_image_label_jsons']
+        fabric_canvas_json = request.form['original_image_label_jsons']
                 
         # y = json.dumps(original_image_label_jsons)
       
@@ -1491,6 +1516,12 @@ def add_label_records_x():
 			'labels_color_map': images_norm_data_label_map_dict_from_json_string,
 			'active_label': active_label,
   		}
+        
+        # Save JSON to GCP
+        save_json_to_gcp(user_id, project_id, active_label,fabric_canvas_json)
+        
+        
+        
         
         # Update original_images_normalized_dataset for the label
         # user_projects.update_one({ "labels.label": active_label, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
