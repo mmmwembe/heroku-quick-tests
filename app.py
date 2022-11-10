@@ -1491,7 +1491,7 @@ def add_label_records():
   		}
         
         # 
-        # sub_directory_path = user_images_json_files_normalized
+        sub_directory_path = user_images_json_files_normalized
         # target_file_types_array = ["json", "JSON"]
         sub_dir_path_with_active_folder = os.path.join(sub_directory_path,project_id, active_label_bucket)
         # gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
