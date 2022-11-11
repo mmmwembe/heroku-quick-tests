@@ -269,12 +269,10 @@ def write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel):
 #==========================================================================
 #           Save Text to GCP Directory to Speed Up Future Uploads
 #===========================================================================
-def save_json_to_gcp(user_id, xproject_id, xlabel,json_object_to_save):
-    
-    write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel)  # save text file in the directory first
-
+def save_json_to_gcp(subdirectory_path, user_id, xproject_id, xlabel,json_object_to_save): 
+    # write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel)  # save text file in the directory first
     bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-    gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_json_files_normalized"], xproject_id, xlabel)
+    gcp_subdirectory_path = os.path.join(subdirectory_path, xproject_id, xlabel)
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
     filename = xlabel + ".json" 
@@ -1516,6 +1514,7 @@ def add_label_records():
         # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
         # Save JSON to GCP
         # save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
+        save_json_to_gcp(user_images_json_files_normalized, user_id, project_id, active_label_bucket,fabric_canvas_json)
         
         
         
