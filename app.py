@@ -251,7 +251,8 @@ def write_text_to_gcp_for_user_dir_path(user_info_dir, user_id, xproject_id, xla
     blob_full_path = os.path.join(gcp_subdirectory_path, filename)
     blob = bucket.blob(blob_full_path)
     # if not blob.exists():
-    blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate()) 
+    iso_date = datetime.datetime.now().isoformat()
+    blob.upload_from_string("Created by : " + user_id + " Date : " + iso_date) 
     # blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
     
 def write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel):
