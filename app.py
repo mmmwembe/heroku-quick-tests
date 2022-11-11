@@ -1499,7 +1499,7 @@ def add_label_records():
         # bucket = client.get_bucket(bucket_name)
         
         # Write Text to json folder to create it before upload of Json
-        write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
+        # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
         # Save JSON to GCP
         # save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
         
