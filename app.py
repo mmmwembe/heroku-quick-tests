@@ -241,7 +241,17 @@ def write_text_to_gcp(user_id, xproject_id, xlabel):
     blob = bucket.blob(blob_full_path)
     blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
 
-
+def write_text_to_gcp_for_user_dir_path(user_info_dir, user_id, xproject_id, xlabel):
+    bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+    gcp_subdirectory_path = os.path.join(user_info_dir, xproject_id, xlabel)
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
+    filename = xproject_id + ".txt" 
+    blob_full_path = os.path.join(gcp_subdirectory_path, filename)
+    blob = bucket.blob(blob_full_path)
+    blob.upload_from_string("Created by : " + user_id)
+    # blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
+    
 def write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel):
 
     bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
@@ -251,8 +261,8 @@ def write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel):
     filename = xproject_id + ".txt" 
     blob_full_path = os.path.join(gcp_subdirectory_path, filename)
     blob = bucket.blob(blob_full_path)
-    blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
-    
+    blob.upload_from_string("Created by : " + user_id)
+    # blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())    
 #==========================================================================
 #           Save Text to GCP Directory to Speed Up Future Uploads
 #===========================================================================
@@ -1493,10 +1503,11 @@ def add_label_records():
         # 
         sub_directory_path = user_images_json_files_normalized
         # target_file_types_array = ["json", "JSON"]
-        sub_dir_path_with_active_folder = os.path.join(sub_directory_path,project_id, active_label_bucket)
+        # sub_dir_path_with_active_folder = os.path.join(sub_directory_path,project_id, active_label_bucket)
         # gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
         # client = storage.Client()
         # bucket = client.get_bucket(bucket_name)
+        write_text_to_gcp_for_user_dir_path(user_images_json_files_normalized, user_id, project_id, active_label_bucket)
         
         # Write Text to json folder to create it before upload of Json
         # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
