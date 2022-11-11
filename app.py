@@ -13,7 +13,8 @@ import uuid
 # from google.cloud import storage as dns
 import os
 from flask_session import Session
-from datetime import timedelta 
+import datetime
+# from datetime import timedelta 
 import base64
 from PIL import Image
 from io import BytesIO
@@ -223,7 +224,7 @@ def get_images_array_from_user_projects(user_id, xproject_id, xlabel, target_arr
 # Get ISODate for MongoDB date
 def getISODate():
     ts = time.time()
-    isodate = timedelta.datetime.fromtimestamp(ts, None)
+    isodate = datetime.datetime.fromtimestamp(ts, None)
     print('ISODate : ', isodate)
     return isodate
 
