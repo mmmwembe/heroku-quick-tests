@@ -636,7 +636,7 @@ def create_user_account():
            # start session
            start_session(user)
            
-           assign_values_to_variables(email)
+           # assign_values_to_variables(email)
            
            # send_email_confirmation_link(email)
 
@@ -649,7 +649,7 @@ def create_user_account():
 @app.route('/login', methods =["GET", "POST"])
 def login():
     
-    email = request.form.get('email')
+    # email = request.form.get('email')
     
     user = users_collection.find_one({
 
@@ -664,10 +664,10 @@ def login():
         start_session(user)
         
         # email = email
-        user_info = users_collection.find_one({"email": email})
-        user_id = user_info["_id"]
+        # user_info = users_collection.find_one({"email": email})
+        # user_id = user_info["_id"]
         
-        assign_values_to_variables(email)
+        # assign_values_to_variables(email)
 		 
         return render_template("mydashboard.html")
         #return redirect(url_for('mydashboard.html'))
