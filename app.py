@@ -472,6 +472,18 @@ def truncate_labels(labels, x_value):
   
   return truncated_labels
 
+
+# Decorators
+def login_required(f):
+  @wraps(f)
+  def wrap(*args, **kwargs):
+    if 'logged_in' in session:
+      return f(*args, **kwargs)
+    else:
+      return redirect('/')
+  
+  return wrap
+
 @app.route('/')
 def home():
 
@@ -574,10 +586,19 @@ def login():
 
 
 @app.route('/dashboard/')
-# @login_required
+@login_required
 def dashboard():
   # mydashboard.html
   return render_template('mydashboard.html')
+
+@app.route('/signout/')
+@login_required
+def signout():
+    # clear session at signout
+    session.clear()
+    return render_template('login.html')
+
+
 
 @app.route('/classify_images/')
 def classify_images():
