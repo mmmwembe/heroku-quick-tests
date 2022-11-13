@@ -55,7 +55,9 @@
       <div class="row" style="text-align: center;">
 
       <div class="col-sm">
-        {{ session['user']['first_name'] }}
+        {% if session['user']['first_name'] is defined %}
+        <strong> Hi {{ session['user']['first_name'] }} </strong>
+        {% endif %}
       </div>
       <div class="col-sm">
 
