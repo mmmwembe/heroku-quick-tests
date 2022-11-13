@@ -566,8 +566,8 @@ def login():
         
         start_session(user)
            
-        # return render_template('dashboard.html')
-        return redirect(url_for('mydashboard.html'))
+        return render_template("mydashboard.html")
+        #return redirect(url_for('mydashboard.html'))
     
     return render_template("login.html", error ='Invalid login credentials') 
 
