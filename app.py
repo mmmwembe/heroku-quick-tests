@@ -315,7 +315,7 @@ user_session_data = db["user_session_data"]
 # "user_images_json_files_normalized": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-normalized", 
 # "user_images_json_files_raw": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-raw"
 
-def assign_values_to_variables(my_email):
+def assign_values_to_variables():
     
     # Initialize variables of interest to None
 	global email # 'mmm111@hotmail.com' # session['user']['email'] #
@@ -340,7 +340,7 @@ def assign_values_to_variables(my_email):
 	global user_images_json_files_raw
 	global user_images_automated_labels_json_files_normalized
     
-	email = my_email
+	# email = my_email
     
 	user_info = users_collection.find_one({"email": email})
 	user_id = user_info["_id"]
@@ -666,10 +666,11 @@ def login():
         # email = email
         # user_info = users_collection.find_one({"email": email})
         # user_id = user_info["_id"]
+        tmp = session['user']['gcp_bucket_dict']['user_local_models_tmp_dir']
         
         # assign_values_to_variables(email)
 		 
-        return render_template("mydashboard.html")
+        return render_template("mydashboard.html", tmp = tmp)
         #return redirect(url_for('mydashboard.html'))
     
     return render_template("login.html", error ='Invalid login credentials') 
