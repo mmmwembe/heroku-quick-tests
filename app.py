@@ -346,6 +346,7 @@ def update_user_info_variables():
   
 	try: 
 		user_info = session['user']
+		user_id = user_info['_id'] 
 		email = user_info['email']   
 		GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
 		bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
