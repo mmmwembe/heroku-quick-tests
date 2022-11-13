@@ -51,7 +51,9 @@ window.addEventListener('load', (event) => {
 
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
-    var user_id ="45f20651684f40be8916c29d69295998"
+    var user_id = "{{ session['user']['_id'] }}"
+
+    alert('user_id from flask session is : ' + user_id)
 
     //$('#download_file_types').multiselect();
 
