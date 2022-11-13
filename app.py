@@ -707,7 +707,7 @@ def classify_images():
   sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]
   target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
   sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-  gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+  gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_dir_path_with_active_folder, target_file_types_array)
   return render_template('classify-images.html', filenames=[], images_in_dir = gcp_active_directory_file_urls)     
   
   
@@ -736,41 +736,41 @@ def upload_image():
 	if request.form.get('which-form') == 'images-for-labeling':
 		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_images_subdir"]
 		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
-		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
+		gcp_public_urls = upload_files_to_gcp(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
 		sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-		gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+		gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_dir_path_with_active_folder, target_file_types_array)
 		return render_template('labeling.html', filenames=[], images_in_dir = gcp_active_directory_file_urls)   
   
 	elif request.form.get('which-form') == 'images-for-testing-object-detection': 
 		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]
 		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
-		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
+		gcp_public_urls = upload_files_to_gcp(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
 		sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-		gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+		gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_dir_path_with_active_folder, target_file_types_array)
 		return render_template('detection.html', filenames=[], images_in_dir = gcp_active_directory_file_urls)   
   
 	elif request.form.get('which-form') == 'images-for-testing-classification': 
 		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]
 		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
-		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
+		gcp_public_urls = upload_files_to_gcp(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
 		sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-		gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+		gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_dir_path_with_active_folder, target_file_types_array)
 		return render_template('classify-images.html', filenames=[], images_in_dir = gcp_active_directory_file_urls)  
    
 	elif request.form.get('which-form') == 'models-object-detection': 
 		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"]
 		target_file_types_array = ["tflite"]  
-		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
+		gcp_public_urls = upload_files_to_gcp(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
 		sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-		gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+		gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_dir_path_with_active_folder, target_file_types_array)
 		return render_template('models.html', filenames=[], images_in_dir = gcp_active_directory_file_urls) 
   
 	elif request.form.get('which-form') == 'models-classification': 
 		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_classification_subdir"]
 		target_file_types_array = ["tflite"]  
-		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
+		gcp_public_urls = upload_files_to_gcp(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
 		sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-		gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+		gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_dir_path_with_active_folder, target_file_types_array)
 		return render_template('models.html', filenames=[], images_in_dir = gcp_active_directory_file_urls) 
    
 	return redirect(request.url)
@@ -1018,7 +1018,7 @@ def detection():
 	post_img_url =''
 	sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
-	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_directory_path, target_file_types_array)
  
 	if request.method =='GET':
 		img_url = request.args.get('image') 
@@ -1033,7 +1033,7 @@ def classify():
   
 	sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]  
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]      
-	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
+	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_directory_path, target_file_types_array)
       
 	return render_template('classify-images.html', images_in_dir=gcp_active_directory_file_urls)
 
@@ -1043,7 +1043,7 @@ def labeling():
 	sub_directory_path = session["user"]["gcp_bucket_dict"]["user_images_subdir"]
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
 	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_dir_path_with_active_folder, target_file_types_array)
 	# gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
  
 	post_info =""
@@ -1203,7 +1203,7 @@ def image_url():
         sub_directory_path = session["user"]["gcp_bucket_dict"]["user_images_subdir"]
         target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
         sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-        gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+        gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(session["user"]["gcp_bucket_dict"]["bucket_name"], sub_dir_path_with_active_folder, target_file_types_array)
  
     # return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id, image_url = image_url)
     return redirect('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = session["user"]["_id"], image_url = image_url)   
