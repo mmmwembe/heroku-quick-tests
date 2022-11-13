@@ -28,6 +28,8 @@ import glob
 import json
 import time
 
+from passlib.hash import pbkdf2_sha256
+
 
 
 #===========================================================
@@ -482,10 +484,73 @@ def home():
   #   gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
   return render_template('login.html') 
 
-@app.route('/create_account/')
+#@app.route('/create_account/', methods =["GET", "POST"])
+#def create_user_account():
+#  # return render_template('home.html')
+#  return render_template('create_account.html')
+
+@app.route('/create_account/', methods =["GET", "POST"])
 def create_user_account():
-  # return render_template('home.html')
-  return render_template('create_account.html')
+    if request.method == "POST":
+       # getting input with name = fname in HTML form
+       first_name = request.form.get("first_name")
+       last_name = request.form.get("last_name") 
+       email = request.form.get("email")
+       password = pbkdf2_sha256.encrypt(request.form.get("password")) # Encrypting password 
+       # country = request.form.get("country") 
+       isoDate = getISODate()
+
+       # Create the user object
+       user = {
+                "_id": uuid.uuid4().hex,
+                "first_name": first_name,
+                "last_name": last_name,
+                "email": email,
+                "password": password,
+                "country" : "",
+                "signup_date" : isoDate,
+                "eth_public_address" : "",
+                "eth_account_encrypted_keystore" : "",
+                "mobile_phone" : '',
+                "mobile_phone_is_verified": False, 
+                "email_verification_date": '',     
+                "mobile_phone_verification_date": '',
+                "email_reg_token": "",
+                "email_is_verified": False,     
+                "country": '',                                                 
+                "level" : 0,
+                "test_score" : '',
+                "test_date": '',
+                "eth_infura_mainnet_is_connected": False, 
+                "polygon_testnet_is_connected": False, 
+                "binance_testnet_is_connected": False, 
+                "cronos_testnet_is_connected": False
+                }
+
+        # # Check that email is not already in use before inserting the record into the database
+       if pre_approved_email_addresses.count_documents({"email": email}) > 0:
+            pass
+       else:
+           return render_template("create_account.html", error ='Signup failed')
+
+       # # Check that email is not already in use before inserting the record into the database
+       if users_collection.find_one({"email": email}):
+           # return jsonify({"error" : 'Email address already in use'}) , 400   
+           return render_template("create_account.html", error ='Email address already in use')
+
+       if users_collection.insert_one(user):     
+          # insert record into the users_collection
+
+           # start session
+           start_session(user)
+           
+           # send_email_confirmation_link(email)
+
+           # return render_template("dashboard.html")
+           return render_template("mydashboard.html")
+           # return jsonify(user), 200
+        
+    return render_template("create_account.html", error ='Signup failed')
 
 @app.route('/dashboard/')
 # @login_required

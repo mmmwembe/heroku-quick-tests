@@ -17,7 +17,7 @@
 
   <div class="card-wrapper">
 
-    <div class="card" style="background-color: #2FAB63;" >
+    <div class="card border border-dark" style="background-color: #2FAB63;" >
 
       <div class="card-header text-white" style="background-color: #2FAB63;; width: 100%; margin-bottom: 30px;">
         <h1 class="center">Create an Account (Free)</h1>
@@ -27,7 +27,8 @@
     
         <p style="border-color: red; width: 100%;" class="error error--hidden text-danger"></p>
 
-        <form name="signup_form">
+        <!--form name="signup_form" action="{{ url_for('signup') }}" method="post"-->
+        <form action="{{ url_for('create_user_account') }}" method="post">
 
           <label for="name">First Name</label>
           <input type="text" name="first_name" class="field" required>
