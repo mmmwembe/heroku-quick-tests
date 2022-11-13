@@ -27,7 +27,7 @@
 
         <p style="border-color: red; width: 100%;" class="error error--hidden text-danger"></p>
 
-        <form name="login_form">
+        <form  action="{{ url_for('login') }}" method="post">
 
           <label for="email">Email</label>
           <input type="email" name="email" class="field" required>
