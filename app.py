@@ -666,11 +666,13 @@ def login():
         # email = email
         # user_info = users_collection.find_one({"email": email})
         # user_id = user_info["_id"]
+        user_info = session['user']
+        user_id = session['user']['_id']
         tmp = session['user']['gcp_bucket_dict']['user_local_models_tmp_dir']
         
         # assign_values_to_variables(email)
 		 
-        return render_template("mydashboard.html", tmp = tmp)
+        return render_template("mydashboard.html", tmp = user_id)
         #return redirect(url_for('mydashboard.html'))
     
     return render_template("login.html", error ='Invalid login credentials') 

@@ -59,7 +59,6 @@
       <div class="col-sm">
         {% if session['user']['first_name'] is defined %}
         <strong> Hi {{ session['user']['first_name'] }} </strong>
-        <strong> user_local_models_tmp_dir : {{ session['user']['gcp_bucket_dict']['user_local_models_tmp_dir'] }} </strong>
         {% endif %}
       </div>
       <div class="col-sm">
