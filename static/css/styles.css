@@ -142,10 +142,15 @@ label {
 
 .error {
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 26px;
   text-align: center;
   color: var(--red);
+  margin: 0 0 24px;
+  padding: 11px 16px 9px;
+  width: 100%;
+  border-radius: 4px;
+  background: #F4EDD4;
 }
 
 .error--hidden {
