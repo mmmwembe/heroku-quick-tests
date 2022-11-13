@@ -360,10 +360,22 @@ def assign_values_to_variables(my_email):
 	user_images_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_json_files_normalized"]
 	user_images_json_files_raw = user_info["gcp_bucket_dict"]["user_images_json_files_raw"]
 	user_images_automated_labels_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_automated_labels_json_files_normalized"]
+ 
 	try:
 		create_dir(user_local_models_tmp_dir) # This directory is used for processing tflite zipfiles to extract labels
 	except:
 		pass
+
+	# print(user_info)
+	del user_info["password"]
+	# session['user'] = user_info
+	if user_info:
+		try:
+			start_session(user_info)
+		except:
+			pass
+
+
 
 CURRENTLY_ACTIVE_FOLDER ="dog"
 
@@ -428,14 +440,8 @@ def delete_file_from_gcpbucket(bucket_name, model_url, bucket_url_path):
 
     print(f"Blob {blob_name} deleted.") 
 
-# print(user_info)
-del user_info["password"]
-# session['user'] = user_info
-if user_info:
-  try:
-    start_session(user_info)
-  except:
-    pass
+
+
 
 # context processor for jinja2
 # 
