@@ -297,7 +297,7 @@ except:
 #===========================================================
 # LOGIN and START SESSION
 #===========================================================
-email= session['email'] #'mmm111@hotmail.com'
+email= 'mmm111@hotmail.com' # session['user']['email'] #
 
 db = cluster["amina_db"]
 users_collection = db["user_login_system"]
