@@ -116,7 +116,7 @@ label {
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 1px;
-  color: var(--grey-medium);
+  color: var(--almost-black);
   display: block;
 }
 
@@ -156,9 +156,9 @@ label {
 .btn {
   margin: 0 0 24px;
   padding: 11px 30px 10px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 24px;
-  text-transform: uppercase;
+  text-transform: unset !important;
   letter-spacing: 1px;
   font-weight: 600;
   text-decoration: none;
