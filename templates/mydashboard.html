@@ -50,7 +50,7 @@
 
 <div class="header">
 
-  
+        {{ email }}
 
       <div class="row" style="text-align: center;">
 
@@ -239,7 +239,8 @@ function choiceSelected(id){
 
         case "my_projects":
 
-             alert(' my_projects ')
+             // alert(' my_projects ')
+             window.location.href = "/choose_project/";
 
             break;
         case "start_new_project":

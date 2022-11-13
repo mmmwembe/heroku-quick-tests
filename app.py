@@ -297,7 +297,7 @@ except:
 #===========================================================
 # LOGIN and START SESSION
 #===========================================================
-email='mmm111@hotmail.com'
+email= session['user']['email'] #'mmm111@hotmail.com'
 
 db = cluster["amina_db"]
 users_collection = db["user_login_system"]
@@ -308,6 +308,7 @@ user_session_data = db["user_session_data"]
 user_info = users_collection.find_one({"email": email})
 
 user_id = user_info["_id"]
+
 
 GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
 bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
@@ -494,7 +495,7 @@ def home():
   #   target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
   #   sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
   #   gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
-  return render_template('login.html') 
+  return render_template('login.html', email = session['user']['email'] ) 
 
 #@app.route('/create_account/', methods =["GET", "POST"])
 #def create_user_account():
@@ -1255,7 +1256,7 @@ def get_all_projects():
 	return jsonify(all_projects = all_projects)
 	# return render_template('labeling-new.html', all_projects = all_projects)
 
-@app.route('/choose_project', methods=['POST','GET'])
+@app.route('/choose_project/', methods=['POST','GET'])
 def choose_project():
 
 	query ={'user_id': user_id}
