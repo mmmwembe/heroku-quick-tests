@@ -369,13 +369,13 @@ def update_user_info_variables():
 		pass
 
 	# print(user_info)
-	del user_info["password"]
+	# del user_info["password"]
 	# session['user'] = user_info
-	if user_info:
-		try:
-			start_session(user_info)
-		except:
-			pass
+	#if user_info:
+	#	try:
+	#		start_session(user_info)
+	#	except:
+	#		pass
 
 
 
