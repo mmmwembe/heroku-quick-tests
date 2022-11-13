@@ -470,10 +470,21 @@ def truncate_labels(labels, x_value):
   
   return truncated_labels
 
-
-
 @app.route('/')
 def home():
+
+  #   bucket_name ="amina-files"
+  #   sub_directory_path="dust/user2/"
+  #   target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+  #   sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+  #   target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+  #   sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
+  #   gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
+  return render_template('login.html') 
+
+
+@app.route('/classify_images/')
+def classify_images():
 
   # bucket_name ="amina-files"
   # sub_directory_path="dust/user2/"

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row" style="margin-top: 2%">
+</div>
+
+<div class="row text-center">
+    <img src="/static/logo/amina-logo.svg" alt="Amina logo" width="180px" height ="180px" style="display: block; margin-left: auto; margin-right: auto;">
+</div>
+
+<div class="row" style="margin-top: 1%">
+</div>
+
+<div class="row">
+
+
+  <div class="card-wrapper">
+
+    <div class="card">
+
+      <div class="card-header text-white" style="background-color: #00AA9E; width: 100%; margin-bottom: 30px;">
+        <h1 class="center">Create an Account (Free)</h1>
+        <hr>
+      </div>
+      <div class="card-body">
+    
+        <p style="border-color: red; width: 100%;" class="error error--hidden text-danger"></p>
+
+        <form name="signup_form">
+
+          <label for="name">First Name</label>
+          <input type="text" name="first_name" class="field" required>
+
+          <label for="name">Last Name</label>
+          <input type="text" name="last_name" class="field" required>
+  
+          <label for="email">Email</label>
+          <input type="email" name="email" class="field" required>
+  
+          <label for="password">Password</label>
+          <input type="password" name="password" class="field" required>
+  
+          <input type="submit" value="Sign Up" class="btn">
+        
+        </form>
+
+      </div>
+
+      <div class="card-footer text-muted">
+        <hr>
+        <p class="center">Already have an account? <a href="{{ url_for('home') }}">Log in</a></p>    
+      </div>
+ 
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+<div class="row">    
+    <p class="center"><a href="#">Terms of Use</a></p>   
+    <p  class="center"><small class="text-muted">3 Mega LLC &copy; <span id="year"></span> All Rights Reserved.</small></p>
+</div>
+
+<script >
+    window.addEventListener('load', (event) => {
+      document.getElementById("year").innerHTML = (new Date().getFullYear())
+    });
+   
+   </script>
+
+
+{% endblock %}
+

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row" style="margin-top: 5%">
+</div>
+
+<div class="row text-center">
+    <img src="/static/logo/amina-logo.svg" alt="Amina logo" width="180px" height ="180px" style="display: block; margin-left: auto; margin-right: auto;">
+</div>
+
+<div class="row" style="margin-top: 2%">
+</div>
+
+<div class="row">
+
+
+  <div class="card-wrapper">
+
+    <div class="card">
+
+      <div class="card-header">
+        <h1 class="center" style="margin-bottom: 60px;">Log in to your account</h1>
+      </div>
+    
+      <div class="card-body">
+
+        <p style="border-color: red; width: 100%;" class="error error--hidden text-danger"></p>
+
+        <form name="login_form">
+
+          <label for="email">Email</label>
+          <input type="email" name="email" class="field" required>
+  
+          <label for="password">Password</label>
+          <input type="password" name="password" class="field" required>
+  
+          <input type="submit" value="Log In" class="btn">
+        
+        </form>
+
+      </div>
+
+      <div class="card-footer text-muted">
+        <p class="center">New to Amina? <a href="{{ url_for('create_user_account') }}">Create an Account</a></p>    
+      </div>
+
+    </div>
+  
+  </div>
+
+</div>
+
+</div>
+
+<div class="row">
+</div>
+
+{% endblock %}
