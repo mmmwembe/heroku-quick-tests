@@ -343,25 +343,26 @@ def assign_values_to_variables(my_email):
     
 	user_info = users_collection.find_one({"email": email})
 	user_id = user_info["_id"]
+  
+	try:   
+		GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
+		bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
     
-	GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
-	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+		sub_dir_user_images_for_labeling = user_info["gcp_bucket_dict"]["user_images_subdir"]
+		allowed_image_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
     
-	sub_dir_user_images_for_labeling = user_info["gcp_bucket_dict"]["user_images_subdir"]
-	allowed_image_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+		cropped_images_subdir = user_info["gcp_bucket_dict"]["cropped_images_subdir"]
+		cropped_canvas_jsons_subdir = user_info["gcp_bucket_dict"]["cropped_canvas_jsons_subdir"]
+		cropped_images_csv_files = user_info["gcp_bucket_dict"]["cropped_images_csv_files"]
     
-	cropped_images_subdir = user_info["gcp_bucket_dict"]["cropped_images_subdir"]
-	cropped_canvas_jsons_subdir = user_info["gcp_bucket_dict"]["cropped_canvas_jsons_subdir"]
-	cropped_images_csv_files = user_info["gcp_bucket_dict"]["cropped_images_csv_files"]
-    
-	user_local_models_tmp_dir = user_info["gcp_bucket_dict"]["user_local_models_tmp_dir"]
-	user_images_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_json_files_normalized"]
-	user_images_json_files_raw = user_info["gcp_bucket_dict"]["user_images_json_files_raw"]
-	user_images_automated_labels_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_automated_labels_json_files_normalized"]
+		user_local_models_tmp_dir = user_info["gcp_bucket_dict"]["user_local_models_tmp_dir"]
+		user_images_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_json_files_normalized"]
+		user_images_json_files_raw = user_info["gcp_bucket_dict"]["user_images_json_files_raw"]
+		user_images_automated_labels_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_automated_labels_json_files_normalized"]
  
-	try:
+
 		create_dir(user_local_models_tmp_dir) # This directory is used for processing tflite zipfiles to extract labels
 	except:
 		pass
@@ -545,8 +546,53 @@ def create_user_account():
        isoDate = getISODate()
 
        # Create the user object
+       my_user_id = uuid.uuid4().hex
+       
+       gcp_bucket_dict = {
+
+			'bucket_name': 'amina-files',
+			'users_subdir': 'users',
+			'user_id': my_user_id,
+
+			'user_images_subdir': 'users/{}/user-images'.format(my_user_id),
+			'user_images_canvas_jsons_subdir': 'users/{}/user-images-canvas-jsons'.format(my_user_id),
+			'user_images_automated_labels_subdir': 'users/{}/user-images-automated-labels'.format(my_user_id),
+			'user_images_csv_files_normalized': 'users/{}/user-images-csv-files-normalized'.format(my_user_id),
+			'user_images_csv_files_raw': 'users/{}/user-images-csv-files-raw'.format(my_user_id),
+			'user_images_automated_labels_csv_files_normalized': 'users/{}/user-images-automated-labels-csv-files-normalized'.format(my_user_id),
+			'user_images_automated_labels_csv_files_raw': 'users/{}/user-images-automated-labels-csv-files-raw'.format(my_user_id),
+			'user_images_json_files_normalized': 'users/{}/user-images-json-files-normalized'.format(my_user_id),
+			'user_images_json_files_raw': 'users/{}/user-images-json-files-raw'.format(my_user_id),
+			'user_images_automated_labels_json_files_normalized': 'users/{}/user-images-automated-labels-json-files-normalized'.format(my_user_id),
+			'user_images_automated_labels_json_files_raw': 'users/{}/user-images-automated-labels-json-files-raw'.format(my_user_id),
+			'user_images_dynamic_table_records': 'users/{}/user-images-dynamic-table-records'.format(my_user_id),
+
+			'user_test_images_subdir': 'users/{}/user-test-images'.format(my_user_id),
+
+			'cropped_images_subdir': 'users/{}/cropped-images'.format(my_user_id),
+			'cropped_canvas_jsons_subdir': 'users/{}/cropped-images-canvas-jsons'.format(my_user_id),
+			'cropped_images_csv_files': 'users/{}/cropped_images-csv-files'.format(my_user_id),
+			'cropped_images_csv_files': 'users/{}/cropped_images-csv-files'.format(my_user_id),
+			'cropped_images_json_files_normalized': 'users/{}/cropped_images-json-files-normalized'.format(my_user_id),
+			'cropped_images_json_files_raw': 'users/{}/cropped_images-json-files-raw'.format(my_user_id),
+
+			'user_images_folder_dir_currently_active_subdir': '',
+			'user_cropped_images_dir_currently_active_subdir': '',
+
+			'user_models_classification_subdir': 'users/{}/user-models-classification'.format(my_user_id),
+			'user_models_detection_subdir': 'users/{}/user-models-detection'.format(my_user_id),
+			'user_all_images_explorer': '',
+			'user_local_models_tmp_dir': 'users/{}/tmp_models'.format(my_user_id)
+
+		}
+       
+       
+       
+       
+       
+       
        user = {
-                "_id": uuid.uuid4().hex,
+                "_id": my_user_id,
                 "first_name": first_name,
                 "last_name": last_name,
                 "email": email,
@@ -568,7 +614,8 @@ def create_user_account():
                 "eth_infura_mainnet_is_connected": False, 
                 "polygon_testnet_is_connected": False, 
                 "binance_testnet_is_connected": False, 
-                "cronos_testnet_is_connected": False
+                "cronos_testnet_is_connected": False,
+                'gcp_bucket_dict': gcp_bucket_dict
                 }
 
         # # Check that email is not already in use before inserting the record into the database
