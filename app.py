@@ -297,7 +297,7 @@ except:
 #===========================================================
 # LOGIN and START SESSION
 #===========================================================
-email= session['user']['email'] #'mmm111@hotmail.com'
+email= session['email'] #'mmm111@hotmail.com'
 
 db = cluster["amina_db"]
 users_collection = db["user_login_system"]
@@ -495,7 +495,7 @@ def home():
   #   target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
   #   sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
   #   gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
-  return render_template('login.html', email = session['user']['email'] ) 
+  return render_template('login.html', email = session['email']) 
 
 #@app.route('/create_account/', methods =["GET", "POST"])
 #def create_user_account():
