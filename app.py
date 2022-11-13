@@ -315,10 +315,11 @@ user_session_data = db["user_session_data"]
 # "user_images_json_files_normalized": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-normalized", 
 # "user_images_json_files_raw": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-raw"
 
-def assign_values_to_variables():
+def update_user_info_variables():
     
-    # Initialize variables of interest to None
-	global email # 'mmm111@hotmail.com' # session['user']['email'] #
+    # Initialize global variables that will be used throughout the application
+    # The user session variable is used to populate the variables
+	global email 
 	global user_info
 	global user_id 
 
@@ -339,17 +340,17 @@ def assign_values_to_variables():
 	global user_images_json_files_normalized 
 	global user_images_json_files_raw
 	global user_images_automated_labels_json_files_normalized
-    
-	# email = my_email
-    
-	user_info = users_collection.find_one({"email": email})
-	user_id = user_info["_id"]
+ 
+	#user_info = users_collection.find_one({"email": email})
+	# user_id = user_info["_id"]
   
-	try:   
+	try: 
+		user_info = session['user']
+		email = user_info['email']   
 		GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
 		bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
 		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
-		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+		# target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
     
 		sub_dir_user_images_for_labeling = user_info["gcp_bucket_dict"]["user_images_subdir"]
 		allowed_image_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
@@ -363,7 +364,6 @@ def assign_values_to_variables():
 		user_images_json_files_raw = user_info["gcp_bucket_dict"]["user_images_json_files_raw"]
 		user_images_automated_labels_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_automated_labels_json_files_normalized"]
  
-
 		create_dir(user_local_models_tmp_dir) # This directory is used for processing tflite zipfiles to extract labels
 	except:
 		pass
@@ -637,6 +637,7 @@ def create_user_account():
            start_session(user)
            
            # assign_values_to_variables(email)
+           update_user_info_variables()
            
            # send_email_confirmation_link(email)
 
@@ -663,16 +664,18 @@ def login():
         
         start_session(user)
         
+        update_user_info_variables()
+        
         # email = email
         # user_info = users_collection.find_one({"email": email})
         # user_id = user_info["_id"]
-        user_info = session['user']
-        user_id = session['user']['_id']
-        tmp = session['user']['gcp_bucket_dict']['user_local_models_tmp_dir']
+        # user_info = session['user']
+        # user_id = session['user']['_id']
+        # tmp = session['user']['gcp_bucket_dict']['user_local_models_tmp_dir']
         
         # assign_values_to_variables(email)
 		 
-        return render_template("mydashboard.html", tmp = user_id)
+        return render_template("mydashboard.html", tmp = email)
         #return redirect(url_for('mydashboard.html'))
     
     return render_template("login.html", error ='Invalid login credentials') 
