@@ -600,6 +600,9 @@ def create_user_account():
 
 @app.route('/login', methods =["GET", "POST"])
 def login():
+    
+    email = request.form.get('email')
+    
     user = users_collection.find_one({
 
       "email": request.form.get('email')
@@ -612,7 +615,7 @@ def login():
         
         start_session(user)
         
-        email = email
+        # email = email
         user_info = users_collection.find_one({"email": email})
         user_id = user_info["_id"]
         
