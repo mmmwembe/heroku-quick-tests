@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <!--link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/521/fabric.min.js"></script>
+    <script src="https://www.marvinj.org/releases/marvinj-1.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+
+</head>
+<body>
+	<i class="fab fa-github-square"><a href="https://github.com/willyblackkeez" id="profile-link"></a></i>
+	<i class="fab fa-facebook"></i>
+
+  <div class="row" style="height: 200px;">
+
+  </div>
+
+   <div class="container">
+
+    <h2>Projects</h2>
+
+    <table  id="xProjectsTable" class="table table-bordered table-striped">
+        <thead class="bg-dark text-white">
+          <tr>
+            <th style="width: 15%">Name</th>
+            <th style="width: 55%">Labels</th>
+            <th style="width: 15%">Delete</th>
+            <th style="width: 15%">Open</th>
+          </tr>
+        </thead>
+        <tbody id="myModalProjectsTable" class="xProjectsTableClass">
+            {% for project in all_projects %}
+
+            {% set project_id = project['project_js_id'] %}
+
+          <tr>
+            <td>{{ project['project_name']  }}</td>
+            <td>{{ project['labels_string']  }}</td>
+            <td>
+                 
+                <div class="form-group">
+                  <input type="hidden" id="delete_project{{loop.index}}" value="{{ project_id }}">
+                  <button type="submit" id="{{ project_id }}-delete_project-{{loop.index}}" project_id ="{{ project_id }}" class="xDeleteProjectBtnClass" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+               </div>
+            </form>
+            </td>
+            <td>
+                <input type="hidden" id="open_project{{loop.index}}" value="{{ project_id }}">       
+                <button id="{{ project_id }}-open_project_btn-{{loop.index}}"  class="btn btn-success xOpenProjectBtnClass" project_id="{{ project_id }}" type="button" class="btn btn-success" onclick="OpenProject(this.id)"><i class="fas fa-edit"></i> Open Project</button>    
+            </td>
+           </tr>
+           {% endfor %}
+        </tbody>
+    </table>
+
+
+
+   </div>
+
+<script>
+
+
+
+// localStorage.clear();
+
+/*
+document.querySelector('.xOpenProjectBtnClass').addEventListener('click', (e) => {
+  var btn_id = e.target.id
+  var project_js_id = $('#'+btn_id).attr('project_id')
+
+   localStorage.setItem("active_project", project_js_id);
+
+ alert(' line 92 - set active project to  ' + project_js_id)
+
+  $.ajax({
+      type: "POST",
+      url: '/set_active_project',
+      dataType: 'json',
+      data: { 'project_id' : project_js_id},
+      success: function(data) { }
+  });
+
+  location.href = "/labeling/"
+
+});
+
+*/
+
+$('.xDeleteProjectBtnClass').on('click', function(e){
+
+  var btn_id = $(this).attr('id')
+  var project_js_id = $('#'+btn_id).attr('project_id')
+
+  $.ajax({
+      type: "POST",
+      url: '/delete_project',
+      dataType: 'json',
+      data: { 'project_id' : project_js_id},
+      success: function(data) { }
+   });
+
+  location.reload();
+  // alert('You delete: ' + btn_id + ' project_js_id ' + project_js_id)
+
+  // request_deletion_of_project(project_js_id)
+
+
+}); 
+
+
+
+function request_deletion_of_project(proj_id){
+
+$.ajax({
+    type: "POST",
+    url: '/delete_project',
+    dataType: 'json',
+    data: { 'project_id' : proj_id},
+    success: function(data) { }
+});
+
+
+}
+
+
+open_project_btns = document.getElementsByClassName('xOpenProjectBtnClass');
+
+for(let i = 0; i < open_project_btns.length; i++) {
+
+      open_project_btns[i].addEventListener("click", function(e) {
+
+      var btn_id = e.target.id
+
+      var project_js_id = $('#'+btn_id).attr('project_id')
+
+      localStorage.setItem("active_project", project_js_id);
+
+      // alert(' line 161 - set active project to  ' + project_js_id)
+
+      $.ajax({
+        type: "POST",
+        url: '/set_active_project',
+        dataType: 'json',
+        data: { 'project_id' : project_js_id},
+        success: function(data) { }
+      });
+
+      location.href = "/labeling/"
+
+
+  });
+
+
+}
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

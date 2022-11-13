@@ -1362,7 +1362,7 @@ def choose_project():
 	for result in results:
 		all_projects.append(result)
 
-	return render_template('labeling-choose-project.html', all_projects = all_projects)
+	return render_template('projects.html', all_projects = all_projects)
 
 @app.route('/set_active_project', methods=['POST','GET'])
 def set_active_project():
