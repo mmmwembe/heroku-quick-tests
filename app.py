@@ -297,7 +297,7 @@ except:
 #===========================================================
 # LOGIN and START SESSION
 #===========================================================
-email= 'mmm111@hotmail.com' # session['user']['email'] #
+
 
 db = cluster["amina_db"]
 users_collection = db["user_login_system"]
@@ -305,34 +305,63 @@ pre_approved_email_addresses = db["pre_approved_email_addresses"]
 user_projects = db["user_projects"]
 user_session_data = db["user_session_data"]
 
-user_info = users_collection.find_one({"email": email})
-
-user_id = user_info["_id"]
 
 
-GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
-bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
-target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
-
-sub_dir_user_images_for_labeling = user_info["gcp_bucket_dict"]["user_images_subdir"]
-allowed_image_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
-
-cropped_images_subdir = user_info["gcp_bucket_dict"]["cropped_images_subdir"]
-cropped_canvas_jsons_subdir = user_info["gcp_bucket_dict"]["cropped_canvas_jsons_subdir"]
-cropped_images_csv_files = user_info["gcp_bucket_dict"]["cropped_images_csv_files"]
-
-user_local_models_tmp_dir = user_info["gcp_bucket_dict"]["user_local_models_tmp_dir"]
-
-user_images_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_json_files_normalized"]
-user_images_json_files_raw = user_info["gcp_bucket_dict"]["user_images_json_files_raw"]
-user_images_automated_labels_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_automated_labels_json_files_normalized"]
 
 # "user_images_json_files_normalized": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-normalized", 
 # "user_images_json_files_raw": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-raw", 
 # "user_images_automated_labels_json_files_normalized": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-automated-labels-json-files-normalized", 
 # "user_images_json_files_normalized": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-normalized", 
 # "user_images_json_files_raw": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-raw"
+
+def assign_values_to_variables(my_email):
+    
+    # Initialize variables of interest to None
+	global email # 'mmm111@hotmail.com' # session['user']['email'] #
+	global user_info
+	global user_id 
+
+	global GCP_BUCKET_DICT 
+	global bucket_name 
+	global sub_directory_path 
+	global target_file_types_array 
+
+	global sub_dir_user_images_for_labeling
+	global allowed_image_types_array 
+
+	global cropped_images_subdir
+	global cropped_canvas_jsons_subdir
+	global cropped_images_csv_files
+
+	global user_local_models_tmp_dir
+
+	global user_images_json_files_normalized 
+	global user_images_json_files_raw
+	global user_images_automated_labels_json_files_normalized
+    
+	email = my_email
+    
+	user_info = users_collection.find_one({"email": email})
+	user_id = user_info["_id"]
+    
+	GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
+	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+    
+	sub_dir_user_images_for_labeling = user_info["gcp_bucket_dict"]["user_images_subdir"]
+	allowed_image_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
+    
+	cropped_images_subdir = user_info["gcp_bucket_dict"]["cropped_images_subdir"]
+	cropped_canvas_jsons_subdir = user_info["gcp_bucket_dict"]["cropped_canvas_jsons_subdir"]
+	cropped_images_csv_files = user_info["gcp_bucket_dict"]["cropped_images_csv_files"]
+    
+	user_local_models_tmp_dir = user_info["gcp_bucket_dict"]["user_local_models_tmp_dir"]
+	user_images_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_json_files_normalized"]
+	user_images_json_files_raw = user_info["gcp_bucket_dict"]["user_images_json_files_raw"]
+	user_images_automated_labels_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_automated_labels_json_files_normalized"]
+
+
 
 
 try:
@@ -557,6 +586,8 @@ def create_user_account():
            # start session
            start_session(user)
            
+           assign_values_to_variables(email)
+           
            # send_email_confirmation_link(email)
 
            # return render_template("dashboard.html")
@@ -578,7 +609,13 @@ def login():
     if user and pbkdf2_sha256.verify(request.form.get('password'), user['password']):
         
         start_session(user)
-           
+        
+        email = email
+        user_info = users_collection.find_one({"email": email})
+        user_id = user_info["_id"]
+        
+        assign_values_to_variables(email)
+		 
         return render_template("mydashboard.html")
         #return redirect(url_for('mydashboard.html'))
     
