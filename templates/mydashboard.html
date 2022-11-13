@@ -46,8 +46,8 @@
 
   <img src="/static/logo/amina-logo.svg" alt=""  width="200" height="200" style="margin-top: 20px; margin-left: 20px;">
 
-  tmp: {{ tmp }} 
-  <input type="hidden" id="user_id" name="user_id" value="{{ user_id }}">
+
+  <input type="hidden" id="user_id" name="user_id" value="{{ session['user']['_id'] }}">
 
 <div class="container">
 
@@ -211,6 +211,11 @@
 
 
 <script>
+
+// Save 
+window.localStorage.setItem("user_id", document.getElementById("user_id").value);
+
+alert(' getsession user_id : ' + localStorage.setItem("user_id"))
 
 
 const all_cards = document.getElementsByClassName('card');
