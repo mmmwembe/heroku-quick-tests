@@ -236,8 +236,8 @@ def getISODate():
 #===========================================================================
 def write_text_to_gcp(user_id, xproject_id, xlabel):
 
-    bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-    gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_subdir"], xproject_id, xlabel)
+    bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+    gcp_subdirectory_path = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_subdir"], xproject_id, xlabel)
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
     filename = xproject_id + ".txt" 
@@ -246,7 +246,7 @@ def write_text_to_gcp(user_id, xproject_id, xlabel):
     blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
 
 def write_text_to_gcp_for_user_dir_path(user_info_dir, user_id, xproject_id, xlabel):
-    bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+    bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
     gcp_subdirectory_path = os.path.join(user_info_dir, xproject_id, xlabel)
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
@@ -260,8 +260,8 @@ def write_text_to_gcp_for_user_dir_path(user_info_dir, user_id, xproject_id, xla
     
 def write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel):
 
-    bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-    gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_json_files_normalized"], xproject_id, xlabel)
+    bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+    gcp_subdirectory_path = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], xproject_id, xlabel)
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
     filename = xproject_id + ".txt" 
@@ -274,7 +274,7 @@ def write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel):
 #===========================================================================
 def save_json_to_gcp(subdirectory_path, user_id, xproject_id, xlabel,json_object_to_save): 
     # write_text_to_gcp_for_json_files(user_id, xproject_id, xlabel)  # save text file in the directory first
-    bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+    bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
     gcp_subdirectory_path = os.path.join(subdirectory_path, xproject_id, xlabel)
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
@@ -348,22 +348,22 @@ def update_user_info_variables():
 		user_info = session['user']
 		user_id = user_info['_id'] 
 		email = user_info['email']   
-		GCP_BUCKET_DICT = user_info["gcp_bucket_dict"] # ["bucket_name"]
-		bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+		GCP_BUCKET_DICT = session["user"]["gcp_bucket_dict"] # ["bucket_name"]
+		bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_images_subdir"]
 		# target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
     
-		sub_dir_user_images_for_labeling = user_info["gcp_bucket_dict"]["user_images_subdir"]
+		sub_dir_user_images_for_labeling = session["user"]["gcp_bucket_dict"]["user_images_subdir"]
 		allowed_image_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
     
-		cropped_images_subdir = user_info["gcp_bucket_dict"]["cropped_images_subdir"]
-		cropped_canvas_jsons_subdir = user_info["gcp_bucket_dict"]["cropped_canvas_jsons_subdir"]
-		cropped_images_csv_files = user_info["gcp_bucket_dict"]["cropped_images_csv_files"]
+		cropped_images_subdir = session["user"]["gcp_bucket_dict"]["cropped_images_subdir"]
+		cropped_canvas_jsons_subdir = session["user"]["gcp_bucket_dict"]["cropped_canvas_jsons_subdir"]
+		cropped_images_csv_files = session["user"]["gcp_bucket_dict"]["cropped_images_csv_files"]
     
-		user_local_models_tmp_dir = user_info["gcp_bucket_dict"]["user_local_models_tmp_dir"]
-		user_images_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_json_files_normalized"]
-		user_images_json_files_raw = user_info["gcp_bucket_dict"]["user_images_json_files_raw"]
-		user_images_automated_labels_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_automated_labels_json_files_normalized"]
+		user_local_models_tmp_dir = session["user"]["gcp_bucket_dict"]["user_local_models_tmp_dir"]
+		user_images_json_files_normalized = session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"]
+		user_images_json_files_raw = session["user"]["gcp_bucket_dict"]["user_images_json_files_raw"]
+		user_images_automated_labels_json_files_normalized = session["user"]["gcp_bucket_dict"]["user_images_automated_labels_json_files_normalized"]
  
 		create_dir(user_local_models_tmp_dir) # This directory is used for processing tflite zipfiles to extract labels
 	except:
@@ -386,7 +386,7 @@ def update_user_info_variables():
 
 
 def upload_files_to_gcp(name_of_bucket, subdir_path, active_folder, files_to_upload, allowed_file_types):
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
 	public_urls_returned =[]
 	file_names =[]
 	# ALLOWED_EXTENSIONS = set(allowed_file_types)
@@ -525,7 +525,7 @@ def home():
   #   bucket_name ="amina-files"
   #   sub_directory_path="dust/user2/"
   #   target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
-  #   sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+  #   sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]
   #   target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
   #   sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
   #   gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
@@ -704,7 +704,7 @@ def classify_images():
   # bucket_name ="amina-files"
   # sub_directory_path="dust/user2/"
   # target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
-  sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+  sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]
   target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
   sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
   gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
@@ -734,7 +734,7 @@ def upload_image():
 	# bucket = client.get_bucket(bucket_name)
  
 	if request.form.get('which-form') == 'images-for-labeling':
-		sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_images_subdir"]
 		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
 		sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
@@ -742,7 +742,7 @@ def upload_image():
 		return render_template('labeling.html', filenames=[], images_in_dir = gcp_active_directory_file_urls)   
   
 	elif request.form.get('which-form') == 'images-for-testing-object-detection': 
-		sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]
 		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
 		sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
@@ -750,7 +750,7 @@ def upload_image():
 		return render_template('detection.html', filenames=[], images_in_dir = gcp_active_directory_file_urls)   
   
 	elif request.form.get('which-form') == 'images-for-testing-classification': 
-		sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]
 		target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
 		sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
@@ -758,7 +758,7 @@ def upload_image():
 		return render_template('classify-images.html', filenames=[], images_in_dir = gcp_active_directory_file_urls)  
    
 	elif request.form.get('which-form') == 'models-object-detection': 
-		sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"]
+		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"]
 		target_file_types_array = ["tflite"]  
 		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
 		sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
@@ -766,7 +766,7 @@ def upload_image():
 		return render_template('models.html', filenames=[], images_in_dir = gcp_active_directory_file_urls) 
   
 	elif request.form.get('which-form') == 'models-classification': 
-		sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"]
+		sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_classification_subdir"]
 		target_file_types_array = ["tflite"]  
 		gcp_public_urls = upload_files_to_gcp(bucket_name, sub_directory_path, CURRENTLY_ACTIVE_FOLDER, files, target_file_types_array)
 		sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
@@ -785,8 +785,8 @@ def upload_model():
 		return redirect(request.url)
 	files = request.files.getlist('models[]')
 	file_names = []
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	sub_directory_path = session["user"]["gcp_bucket_dict"]["user_images_subdir"]
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 	returned_public_urls =[]
 	client = storage.Client()
@@ -841,8 +841,8 @@ def upload_model2():
 
 	files = request.files.getlist('models[]')
 	file_names = []
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
 	# target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 	target_file_types_array = ["tflite"]
 	returned_public_urls =[]
@@ -876,15 +876,15 @@ def upload_detection_tflite_model():
 
 	files = request.files.getlist('models_detection[]')
 	file_names = []
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	# sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	# sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
 	target_file_types_array = ["tflite"]
 	returned_public_urls =[]
 	client = storage.Client()
 	bucket = client.get_bucket(bucket_name)
 	# sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
-	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
+	classification_sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	detection_sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
 
 	for file in files:
 		if file and (file.filename).lower().endswith(tuple(target_file_types_array)):
@@ -926,15 +926,15 @@ def upload_classification_tflite_model():
 
 	files = request.files.getlist('models_classification[]')
 	file_names = []
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	# sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	# sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
 	target_file_types_array = ["tflite"]
 	returned_public_urls =[]
 	client = storage.Client()
 	bucket = client.get_bucket(bucket_name)
 	# sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
-	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
-	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
+	classification_sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	detection_sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
 
 	for file in files:
 		if file and (file.filename).lower().endswith(tuple(target_file_types_array)):
@@ -975,8 +975,8 @@ def upload_images_for_labeling():
 		return redirect(request.url)
 	files = request.files.getlist('images_for_labeling[]')
 	file_names = []
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	sub_directory_path = session["user"]["gcp_bucket_dict"]["user_images_subdir"]
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 	returned_public_urls =[]
 	client = storage.Client()
@@ -1016,7 +1016,7 @@ def upload_images_for_labeling():
 def detection():
 	img_url =''
 	post_img_url =''
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]
+	sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
  
@@ -1031,7 +1031,7 @@ def detection():
 @app.route('/classify/', methods=['POST','GET'])
 def classify():
   
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_test_images_subdir"]  
+	sub_directory_path = session["user"]["gcp_bucket_dict"]["user_test_images_subdir"]  
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]      
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_directory_path, target_file_types_array)
       
@@ -1040,7 +1040,7 @@ def classify():
 @app.route('/labeling/', methods=['POST','GET'])
 def labeling(): 
     
-	sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+	sub_directory_path = session["user"]["gcp_bucket_dict"]["user_images_subdir"]
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]    
 	sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
 	gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
@@ -1050,15 +1050,15 @@ def labeling():
  
  
 	#return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id)
-	return render_template('labeling-new.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id)
+	return render_template('labeling-new.html', images_in_dir=gcp_active_directory_file_urls, user_id = session["user"]["_id"])
 
 
 @app.route('/models/', methods=['POST','GET'])
 def models():
      
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
-	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	classification_sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	detection_sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
 	target_file_types_array = ["tflite"]
  
 	detection_models_urls=[]
@@ -1084,9 +1084,9 @@ def models():
 @app.route('/models_upload/', methods=['POST','GET'])
 def models_upload():
   
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
-	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	classification_sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	detection_sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
 	target_file_types_array = ["tflite"]
  
 	detection_models_urls =[]
@@ -1119,9 +1119,9 @@ def deleteModel():
 	_task2 = request.form.get('task')  
 
 
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	classification_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
-	detection_sub_directory_path = user_info["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	classification_sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_classification_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir
+	detection_sub_directory_path = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"] # user_models_detection_subdir user_images_subdir user_models_classification_subdir 
 	target_file_types_array = ["tflite"]
  
  
@@ -1177,7 +1177,7 @@ def saveCroppedImage():
         cropped_image_dataURL = request.form['imgBase64']
         # print(cropped_image_dataURL)
         # save cropped imageBase64 string as PNG image
-        cropped_image_file_path = 'static/images/' + user_id + '/cropped-labels/'+ currentFolder + '/' + file_name +  extension.replace(".", "-") + '-' + label_num + '.png'
+        cropped_image_file_path = 'static/images/' + session["user"]["_id"] + '/cropped-labels/'+ currentFolder + '/' + file_name +  extension.replace(".", "-") + '-' + label_num + '.png'
         # cropped_image_file_path = 'static/images/'  + file_name + extension.replace(".", "-") + '-' + label_num + '.png'
 
         img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
@@ -1200,13 +1200,13 @@ def image_url():
         user_id = request.form['user_id']
         request_url = request.url
         
-        sub_directory_path = user_info["gcp_bucket_dict"]["user_images_subdir"]
+        sub_directory_path = session["user"]["gcp_bucket_dict"]["user_images_subdir"]
         target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
         sub_dir_path_with_active_folder = os.path.join(sub_directory_path,CURRENTLY_ACTIVE_FOLDER)
         gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
  
     # return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id, image_url = image_url)
-    return redirect('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id, image_url = image_url)   
+    return redirect('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = session["user"]["_id"], image_url = image_url)   
     # return jsonify(result = 'success', image_url = image_url, request_url = request_url)
 
 
@@ -1249,7 +1249,7 @@ def create_new_project():
                     
             
         # If the user_id exists then submit and project name does not exist
-        if users_collection.find_one({"_id": user_id}) and not user_projects.find_one({"project_js_id": project_id}) and not user_projects.find_one({"_id": project_item["_id"]}) :
+        if users_collection.find_one({"_id": session["user"]["_id"]}) and not user_projects.find_one({"project_js_id": project_id}) and not user_projects.find_one({"_id": project_item["_id"]}) :
             user_projects.insert_one(project_item)
             
             time.sleep(1) # This gives the app 1 second to update the mongodb before the next line reads the inserted record...this is inefficient...need to do it above
@@ -1316,7 +1316,7 @@ def create_new_project():
         user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': project_id, 'active_label': ''}) 
          
         # Get all of the user's projects
-        active_project_query = {'project_js_id': project_id,  'user_id': user_id}
+        active_project_query = {'project_js_id': project_id,  'user_id': session["user"]["_id"]}
         results = user_projects.find(active_project_query)
         
         active_project_result ={}
@@ -1331,12 +1331,12 @@ def create_new_project():
         for key in y:
             label = key
             try:
-                write_text_to_gcp(user_id, project_id, label)
+                write_text_to_gcp(session["user"]["_id"], project_id, label)
             except:
                 pass
 
           
-    return jsonify(user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false, labels = labels_color_map_dict_from_json_string, active_project_result = active_project_result)
+    return jsonify(user_id = session["user"]["_id"], project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate,num_images = num_images, labeled_images = labeled_images, all_labeled_true_false = all_labeled_true_false, labels = labels_color_map_dict_from_json_string, active_project_result = active_project_result)
     # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
 
@@ -1344,7 +1344,7 @@ def create_new_project():
 @app.route('/get_user_projects', methods=['POST','GET'])
 def get_all_projects():
 
-	query ={'user_id': user_id}
+	query ={'user_id': session["user"]["_id"]}
 	results = user_projects.find(query)
 	all_projects =[]
 	for result in results:
@@ -1356,7 +1356,7 @@ def get_all_projects():
 @app.route('/choose_project/', methods=['POST','GET'])
 def choose_project():
 
-	query ={'user_id': user_id}
+	query ={'user_id': session["user"]["_id"]}
 	results = user_projects.find(query)
 	all_projects =[]
 	for result in results:
@@ -1370,7 +1370,7 @@ def set_active_project():
     if request.method =='POST':
         
         project_id = request.form['project_id']
-        query = {'user_id': user_id }
+        query = {'user_id': session["user"]["_id"] }
         
         # Delete existing user_session data for this user
         try:
@@ -1380,14 +1380,14 @@ def set_active_project():
         
         time.sleep(1)
         # save new active project in users session data
-        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': project_id, 'active_label': ''}) 
+        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': session["user"]["_id"] , 'active_project': project_id, 'active_label': ''}) 
          
         # time.sleep(1)       
         #if user_session_data.find_one(query) :
         #    results = user_session_data.find_one_and_update({'user_id': user_id},{"$set":{'active_project': project_id, 'active_label': ''}},upsert=True)
         
         # Get all of the user's projects
-        active_project_query = {'project_js_id': project_id,  'user_id': user_id}
+        active_project_query = {'project_js_id': project_id,  'user_id': session["user"]["_id"]}
         results = user_projects.find(active_project_query)
         
         active_project_result =[]
@@ -1405,7 +1405,7 @@ def set_active_label():
         project_id = request.form['project_id']
         active_label = request.form['active_label'] 
                
-        query = {'user_id': user_id }
+        query = {'user_id': session["user"]["_id"] }
         
         previous_outputs = user_session_data.find(query)
         output = previous_outputs[0]
@@ -1427,10 +1427,10 @@ def set_active_label():
         
         time.sleep(1)
         # save new active project in users session data
-        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': project_id, 'active_label': active_label,'previous_label': previous_label, 'previous_project_id': previous_project_id}) 
+        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': session["user"]["_id"] , 'active_project': project_id, 'active_label': active_label,'previous_label': previous_label, 'previous_project_id': previous_project_id}) 
         
         # Get all of the user's projects
-        active_project_query = {'project_js_id': project_id,  'user_id': user_id}
+        active_project_query = {'project_js_id': project_id,  'user_id': session["user"]["_id"]}
         results = user_projects.find(active_project_query)
         
         active_project_result ={}
@@ -1447,13 +1447,13 @@ def set_active_label():
         augmentation_image_label_jsons = []
         try:
             active_project_result = results[0]
-            original_image_urls = get_images_array_from_user_projects(user_id, project_id, active_label, 'original_image_urls')
-            all_jpeg_image_urls = get_images_array_from_user_projects(user_id, project_id, active_label, 'all_jpeg_image_urls')
-            cropped_image_urls = get_images_array_from_user_projects(user_id, project_id, active_label, 'cropped_image_urls')
-            augmentation_image_urls = get_images_array_from_user_projects(user_id, project_id, active_label, 'augmentation_image_urls')
-            original_image_label_jsons = get_images_array_from_user_projects(user_id, project_id, active_label, 'original_image_label_jsons')
-            all_jpeg_image_label_jsons = get_images_array_from_user_projects(user_id, project_id, active_label, 'all_jpeg_image_label_jsons')
-            augmentation_image_label_jsons = get_images_array_from_user_projects(user_id, project_id, active_label, 'augmentation_image_label_jsons')       
+            original_image_urls = get_images_array_from_user_projects(session["user"]["_id"], project_id, active_label, 'original_image_urls')
+            all_jpeg_image_urls = get_images_array_from_user_projects(session["user"]["_id"], project_id, active_label, 'all_jpeg_image_urls')
+            cropped_image_urls = get_images_array_from_user_projects(session["user"]["_id"], project_id, active_label, 'cropped_image_urls')
+            augmentation_image_urls = get_images_array_from_user_projects(session["user"]["_id"], project_id, active_label, 'augmentation_image_urls')
+            original_image_label_jsons = get_images_array_from_user_projects(session["user"]["_id"], project_id, active_label, 'original_image_label_jsons')
+            all_jpeg_image_label_jsons = get_images_array_from_user_projects(session["user"]["_id"], project_id, active_label, 'all_jpeg_image_label_jsons')
+            augmentation_image_label_jsons = get_images_array_from_user_projects(session["user"]["_id"], project_id, active_label, 'augmentation_image_label_jsons')       
         except:
             pass
         
@@ -1468,11 +1468,11 @@ def delete_project():
         project_id = request.form['project_id']
         
         # Delete selected project
-        query ={'user_id': user_id, 'project_js_id': project_id}
+        query ={'user_id': session["user"]["_id"], 'project_js_id': project_id}
         delete_result = user_projects.delete_one(query)
         
         # Get all remaining projects   
-        query_remaining_projects ={'user_id': user_id}
+        query_remaining_projects ={'user_id': session["user"]["_id"]}
         results_remaining = user_projects.find(query_remaining_projects)
         all_projects =[]
         for result in results_remaining:
@@ -1491,7 +1491,7 @@ def get_active_project2():
         active_project_id = user_session_info[0]['active_project']
         active_label = user_session_info[0]['active_label']
         
-        active_project_query = {'project_js_id': active_project_id,  'user_id': user_id}
+        active_project_query = {'project_js_id': active_project_id,  'user_id': session["user"]["_id"]}
         
         results = user_projects.find(active_project_query)
         active_project_result = results[0]
@@ -1511,14 +1511,14 @@ def get_active_project():
     
     if request.method =='POST':
         
-        query ={'user_id': user_id}
+        query ={'user_id': session["user"]["_id"]}
         user_session_info = user_session_data.find(query)
         
         active_project_id = user_session_info[0]['active_project']
         active_label = user_session_info[0]['active_label']
         
         # Get all of the user's projects
-        active_project_query = {'project_js_id': active_project_id,  'user_id': user_id}
+        active_project_query = {'project_js_id': active_project_id,  'user_id': session["user"]["_id"]}
         results = user_projects.find(active_project_query)
         
         active_project_result =[]
@@ -1569,7 +1569,7 @@ def atagDelete():
     active_project_id = user_session_info[0]['active_project']
     active_label = user_session_info[0]['active_label']
     
-    active_project_query = {'project_js_id': active_project_id,  'user_id': user_id}
+    active_project_query = {'project_js_id': active_project_id,  'user_id': session["user"]["_id"]}
     results = user_projects.find(active_project_query)
     
     active_project_result =[]
@@ -1597,8 +1597,8 @@ def upload_x_files():
 	xproject_id = request.form['project_id']
 	xlabel = request.form['label']
 	file_names = []
-	bucket_name = user_info["gcp_bucket_dict"]["bucket_name"]
-	gcp_subdirectory_path = os.path.join(user_info["gcp_bucket_dict"]["user_images_subdir"], xproject_id, xlabel)
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	gcp_subdirectory_path = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_subdir"], xproject_id, xlabel)
 	target_file_types_array = ["JPG", "JPEG", "jpg", "jpeg", "png", "PNG"]
 	returned_public_urls =[]
 	client = storage.Client()
@@ -1627,13 +1627,13 @@ def upload_x_files():
 		pass
 
     # Update the original_image_urls array for the label in the database
-	user_projects.update_one({ "labels.label": xlabel, 'user_id': user_id,'project_js_id': xproject_id }, { "$set": { "labels.$.original_image_urls": label_image_urls } })
+	user_projects.update_one({ "labels.label": xlabel, 'user_id': session["user"]["_id"],'project_js_id': xproject_id }, { "$set": { "labels.$.original_image_urls": label_image_urls } })
 
 	# Pause for 1 second to allow the database to be updated before querying it
 	time.sleep(1)
 
 	# Get all of the user's projects
-	active_project_query = {'project_js_id': xproject_id,  'user_id': user_id}
+	active_project_query = {'project_js_id': xproject_id,  'user_id': session["user"]["_id"]}
 	results = user_projects.find(active_project_query)
 	
 	active_project_result ={}
@@ -1650,23 +1650,23 @@ def upload_x_files():
 	augmentation_image_label_jsons = []
 	try:
 		active_project_result = results[0]
-		original_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'original_image_urls')
-		all_jpeg_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'all_jpeg_image_urls')
-		cropped_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'cropped_image_urls')
+		original_image_urls = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'original_image_urls')
+		all_jpeg_image_urls = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'all_jpeg_image_urls')
+		cropped_image_urls = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'cropped_image_urls')
   
-		labelled_original_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'labelled_original_image_urls')
-		labelled_all_jpeg_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'labelled_all_jpeg_image_urls')
-		labelled_cropped_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'labelled_cropped_image_urls')
-		labelled_augmentation_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'labelled_augmentation_image_urls')
+		labelled_original_image_urls = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'labelled_original_image_urls')
+		labelled_all_jpeg_image_urls = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'labelled_all_jpeg_image_urls')
+		labelled_cropped_image_urls = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'labelled_cropped_image_urls')
+		labelled_augmentation_image_urls = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'labelled_augmentation_image_urls')
 
-		augmentation_image_urls = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'augmentation_image_urls')
-		original_image_label_jsons = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'original_image_label_jsons')
-		all_jpeg_image_label_jsons = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'all_jpeg_image_label_jsons')
-		augmentation_image_label_jsons = get_images_array_from_user_projects(user_id, xproject_id, xlabel, 'augmentation_image_label_jsons')       
+		augmentation_image_urls = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'augmentation_image_urls')
+		original_image_label_jsons = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'original_image_label_jsons')
+		all_jpeg_image_label_jsons = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'all_jpeg_image_label_jsons')
+		augmentation_image_label_jsons = get_images_array_from_user_projects(session["user"]["_id"], xproject_id, xlabel, 'augmentation_image_label_jsons')       
 	except:
 		pass
 
-	query = {'user_id': user_id }
+	query = {'user_id': session["user"]["_id"] }
 	previous_outputs = user_session_data.find(query)
 	output = previous_outputs[0]
 	previous_project_id =''
@@ -1687,7 +1687,7 @@ def upload_x_files():
 	
 	time.sleep(1)
 	# save new active project in users session data
-	user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': xproject_id, 'active_label': xlabel,'previous_label': previous_label, 'previous_project_id': previous_project_id}) 
+	user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': session["user"]["_id"] , 'active_project': xproject_id, 'active_label': xlabel,'previous_label': previous_label, 'previous_project_id': previous_project_id}) 
 	
 
     
@@ -1734,21 +1734,21 @@ def add_label_records():
         # gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
         # client = storage.Client()
         # bucket = client.get_bucket(bucket_name)
-        write_text_to_gcp_for_user_dir_path(user_images_json_files_normalized, user_id, project_id, active_label_bucket)
+        write_text_to_gcp_for_user_dir_path(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket)
         
         # Write Text to json folder to create it before upload of Json
         # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
         # Save JSON to GCP
         # save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
-        save_json_to_gcp(user_images_json_files_normalized, user_id, project_id, active_label_bucket,fabric_canvas_json)
+        save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
         
         
         
         # Update original_images_normalized_dataset for the label
-        user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
+        user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
         time.sleep(1)        
     	# Update original_images_normalized_dataset for the label
-        user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
+        user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
         #time.sleep(1)
         #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_image_label_jsons": original_image_label_jsons_dict_from_json_string} })                  
 
