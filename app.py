@@ -360,14 +360,10 @@ def assign_values_to_variables(my_email):
 	user_images_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_json_files_normalized"]
 	user_images_json_files_raw = user_info["gcp_bucket_dict"]["user_images_json_files_raw"]
 	user_images_automated_labels_json_files_normalized = user_info["gcp_bucket_dict"]["user_images_automated_labels_json_files_normalized"]
-
-
-
-
-try:
-  create_dir(user_local_models_tmp_dir) # This directory is used for processing tflite zipfiles to extract labels
-except:
-  pass
+	try:
+		create_dir(user_local_models_tmp_dir) # This directory is used for processing tflite zipfiles to extract labels
+	except:
+		pass
 
 CURRENTLY_ACTIVE_FOLDER ="dog"
 
