@@ -552,6 +552,27 @@ def create_user_account():
         
     return render_template("create_account.html", error ='Signup failed')
 
+@app.route('/login', methods =["GET", "POST"])
+def login():
+    user = users_collection.find_one({
+
+      "email": request.form.get('email')
+
+    })
+
+    print(request.form.get('password'))
+
+    if user and pbkdf2_sha256.verify(request.form.get('password'), user['password']):
+        
+        start_session(user)
+           
+        # return render_template('dashboard.html')
+        return redirect(url_for('mydashboard.html'))
+    
+    return render_template("login.html", error ='Invalid login credentials') 
+
+
+
 @app.route('/dashboard/')
 # @login_required
 def dashboard():
