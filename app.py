@@ -35,6 +35,7 @@ from passlib.hash import pbkdf2_sha256
 #===========================================================
 # USER DIRECTORIES
 #===========================================================
+CURRENTLY_ACTIVE_FOLDER ="dog"
 active_folder ="dogs"
 ALLOWED_EXTENSIONS = '' # set(['png', 'jpg', 'jpeg'])
 UPLOAD_FOLDER = 'static/uploads/'
@@ -378,7 +379,7 @@ def assign_values_to_variables(my_email):
 
 
 
-CURRENTLY_ACTIVE_FOLDER ="dog"
+
 
 # GCP_STORAGE_TARGET_PATH = os.path.join(path, "Downloads", "file.txt", "/home")
 
