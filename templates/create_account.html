@@ -25,9 +25,12 @@
       </div>
       <div class="card-body">
     
-        <p style="border-color: red; width: 100%;" class="error error--hidden text-danger"></p>
+        {% if error is defined  %}
+        <p style="border-color: red; width: 100%;" class="error text-danger">Sign up failed</p>
+        {% else %}
+        <p style="border-color: red; width: 100%;" class="error text-danger error--hidden"></p>
+        {% endif %}
 
-  
         <form action="{{ url_for('create_user_account') }}" method="post">
 
           <label for="name">First Name</label>
