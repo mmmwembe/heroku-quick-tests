@@ -3304,6 +3304,25 @@ function saveCanvasJSONFile(){
   alert(' It it does not get to 3296')
 
 
+//--------------------------------------------------------------------------------------------------
+//                            Dashboard and SignOut
+//--------------------------------------------------------------------------------------------------
+
+
+document.getElementById("sign_out_btn").addEventListener("click", signOut);
+
+function signOut() {
+  // alert(' You licked sign-out')
+  window.location.href = "/signout/";
+}
+
+
+document.getElementById("dashboard_btn").addEventListener("click", gotoDashboard);
+
+function gotoDashboard() {
+  // alert(' You licked sign-out')
+  window.location.href = "/dashboard/";
+}
 
 
 
