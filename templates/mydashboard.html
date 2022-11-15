@@ -71,12 +71,12 @@
     <div style="height: 100px; width: 15%;  margin-left: 20px;">
         <div class="box box1"><img src="/static/logo/amina-logo.svg" alt="amina logo" style="height: 100px; width: 80px; margin-top: 20px; margin-left: 20px; display: inline-block;"></div>
     </div>
-    <div style="height: 100px; width: 100%; margin-top: 40px; margin-left: 0px; text-align: left;">
-      <div style="display:inline-block"><h2>My Dashboard</h2></div>
+    <div style="height: 100px; width: 20%; margin-top: 60px; margin-left: 0px; text-align: left;">
+      <div style="display:inline-block; margin-left: 10px; margin-top: 60px;" ><h2>Dashboard</h2></div>
   </div>
     <div style="height: 100px; width: 100%;  margin-left: 20px; margin-top: 60px;">
       {% if session['user']['first_name'] is defined %}
-      Hi {{ session['user']['first_name'] }} 
+        Hi {{ session['user']['first_name'] }} 
       {% endif %}
     </div>
     <div style="height: 100px; width: 100%;  margin-left: 20px; margin-top: 60px;">
