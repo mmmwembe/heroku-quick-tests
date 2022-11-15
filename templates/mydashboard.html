@@ -44,41 +44,27 @@
 
 <body style="background-color: #CFD8DC;">
 
-  <img src="/static/logo/amina-logo.svg" alt=""  width="200px;" height="200px;" style="margin-top: 20px; margin-left: 20px;">
-
-  <input type="hidden" id="user_id" name="user_id" value="{{ session['user']['_id'] }}">
-
-<div class="container">
-
-<div class="header">
-
-      <div class="row" style="text-align: center;">
-
-      <div class="col-sm">
-        {% if session['user']['first_name'] is defined %}
-             Hi {{ session['user']['first_name'] }} 
-        {% endif %}
-      </div>
-      <div class="col-sm">
-
-      </div>
-      <div class="col-sm">
-  
-      </div>
-      <div class="col-sm">
-
-      </div>
-      <div class="col-sm">
-        <button id="sign_out_btn" type="button" class="btn btn-outline-dark">Sign Out</button>
-      </div>
-      
-      </div>
-
+  <div id="container">
+    <div style="height: 100px; width: 15%;  margin-left: 20px;">
+        <div class="box box1"><img src="/static/logo/amina-logo.svg" alt="amina logo" style="height: 100px; width: 80px; margin-top: 20px; margin-left: 20px; display: inline-block;"></div>
+    </div>
+    <div style="height: 100px; width: 100%; margin-top: 40px; margin-left: 0px; text-align: left;">
+      <div style="display:inline-block"><h2>Labeling</h2></div>
+  </div>
+    <div style="height: 100px; width: 100%;  margin-left: 20px; margin-top: 60px;">
+      <button id="dashboard_btn" type="button" class="btn btn-outline-dark">Dashboard</button>
+    </div>
+    <div style="height: 100px; width: 100%;  margin-left: 20px; margin-top: 60px; text-align: center; ">
+      <button id="sign_out_btn" type="button" style="display:inline-block" class="btn btn-outline-dark">Sign Out</button>
+    </div>        
   </div>
 
-<div class="row">
-  
-</div>
+  <input type="hidden" id="user_id" name="user_id" value="{{ session['user']['_id'] }}">
+  {% if session['user']['first_name'] is defined %}
+        Hi {{ session['user']['first_name'] }} 
+   {% endif %}
+
+<div class="container">
 
 <hr>
   <div class="card-deck">
@@ -118,7 +104,7 @@
       <button  type="button" class="btn btn-outline-info"  style="width: 100%; height: 100%;">Test Image Classification Model</button>
     </div>
     <div  id="test_models_object_detection"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-info"  style="width: 100%;; height: 100%;">Test Image Object Detection Model</button>
+      <button  type="button" class="btn btn-outline-info"  style="width: 100%;; height: 100%;">Test Object Detection Model</button>
     </div>
     <div  id="test_models_audio_classification" style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
       <button type="button" class="btn btn-outline-info"  style="width: 100%; height: 100%;">Test Audio Classification Model</button>
@@ -136,7 +122,7 @@
       <button  type="button" class="btn btn-outline-success"  style="width: 100%; height: 100%;">Manage Image Classification Models</button>
     </div>
     <div  id="manage_models_object_detection"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-success"  style="width: 100%;; height: 100%;">Manage Image Object Detection Models</button>
+      <button  type="button" class="btn btn-outline-success"  style="width: 100%;; height: 100%;">Manage Object Detection Models</button>
     </div>
     <div id="manage_models_audio_classification" style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
       <button type="button" class="btn btn-outline-success"  style="width: 100%; height: 100%;">Manage Audio Classification Models</button>
@@ -151,7 +137,7 @@
       <button  type="button" class="btn btn-outline-primary"  style="width: 100%; height: 100%;">Train Image Classification Model</button>
     </div>
     <div id="train_models_object_detection"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-primary"  style="width: 100%;; height: 100%;">Train Image Object Detection Model</button>
+      <button  type="button" class="btn btn-outline-primary"  style="width: 100%;; height: 100%;">Train Object Detection Model</button>
     </div>
     <div id="train_models_audio_classification" style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
       <button type="button" class="btn btn-outline-primary"  style="width: 100%; height: 100%;">Train Audio Classification Model</button>
