@@ -72,20 +72,22 @@
         <div class="box box1"><img src="/static/logo/amina-logo.svg" alt="amina logo" style="height: 100px; width: 80px; margin-top: 20px; margin-left: 20px; display: inline-block;"></div>
     </div>
     <div style="height: 100px; width: 100%; margin-top: 40px; margin-left: 0px; text-align: left;">
-      <div style="display:inline-block"><h2>Labeling</h2></div>
+      <div style="display:inline-block"><h2>My Dashboard</h2></div>
   </div>
     <div style="height: 100px; width: 100%;  margin-left: 20px; margin-top: 60px;">
-      <button id="dashboard_btn" type="button" class="btn btn-outline-dark">Dashboard</button>
+      {% if session['user']['first_name'] is defined %}
+      Hi {{ session['user']['first_name'] }} 
+      {% endif %}
+    </div>
+    <div style="height: 100px; width: 100%;  margin-left: 20px; margin-top: 60px;">
     </div>
     <div style="height: 100px; width: 100%;  margin-left: 20px; margin-top: 60px; text-align: center; ">
-      <button id="sign_out_btn" type="button" style="display:inline-block" class="btn btn-outline-dark">Sign Out</button>
+      <button id="sign_out_btn" type="button" style="display:inline-block" class="btn btn-dark">Sign Out</button>
     </div>        
   </div>
 
   <input type="hidden" id="user_id" name="user_id" value="{{ session['user']['_id'] }}">
-  {% if session['user']['first_name'] is defined %}
-        Hi {{ session['user']['first_name'] }} 
-   {% endif %}
+
 
 <div class="container">
 
@@ -94,13 +96,13 @@
     <img src="/static/project-icons/dashboard-icons/projects-icon.svg" alt="" width="295px;" height="163px;">
     <!--p class="para"><strong>Projects</strong></p-->
     <div id="my_projects" style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-dark"  style="width: 100%; height: 100%;">My Projects</button>
+      <button  type="button" class="btn btn-dark"  style="width: 100%; height: 100%;">My Projects</button>
     </div>
     <div id="start_new_project"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-dark"  style="width: 100%;; height: 100%;">Start New Project</button>
+      <button  type="button" class="btn btn-dark"  style="width: 100%;; height: 100%;">Start New Project</button>
     </div>
     <div  id="open_existing_project" style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button type="button" class="btn btn-outline-dark"  style="width: 100%; height: 100%;">Open Existing Project</button>
+      <button type="button" class="btn btn-dark"  style="width: 100%; height: 100%;">Open Existing Project</button>
     </div>
   </div>
   <hr>
@@ -110,13 +112,13 @@
     <img src="/static/project-icons/dashboard-icons/labeling-icon.svg" alt=""  width="295px;" height="163px;">
     <!--p class="para"><strong>Data & Labeling</strong></p-->
     <div id="labeling_platform" style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-warning text black"  style="width: 100%; height: 100%;">Labeling Platform</button>
+      <button  type="button" class="btn btn-warning"  style="width: 100%; height: 100%;">Labeling Platform</button>
     </div>
     <div id="labeling_community"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-warning text black"  style="width: 100%;; height: 100%;">Labeling Community</button>
+      <button  type="button" class="btn btn-warning"  style="width: 100%;; height: 100%;">Labeling Community</button>
     </div>
     <div  id="labeling_gigs" style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button type="button" class="btn btn-outline-warning text black"  style="width: 100%; height: 100%;">Labeling Gigs</button>
+      <button type="button" class="btn btn-warning"  style="width: 100%; height: 100%;">Labeling Gigs</button>
     </div>
   </div>
   <hr> 
@@ -124,13 +126,13 @@
   <div class="card-deck">
     <img src="/static/project-icons/dashboard-icons/test-model-icon.svg" alt=""  width="295px;" height="163px;">
     <div id="test_models_image_classification"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-info"  style="width: 100%; height: 100%;">Test Image Classification Model</button>
+      <button  type="button" class="btn btn-info"  style="width: 100%; height: 100%;">Test Image Classification Model</button>
     </div>
     <div  id="test_models_object_detection"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-info"  style="width: 100%;; height: 100%;">Test Object Detection Model</button>
+      <button  type="button" class="btn btn-info"  style="width: 100%;; height: 100%;">Test Object Detection Model</button>
     </div>
     <div  id="test_models_audio_classification" style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button type="button" class="btn btn-outline-info"  style="width: 100%; height: 100%;">Test Audio Classification Model</button>
+      <button type="button" class="btn btn-info"  style="width: 100%; height: 100%;">Test Audio Classification Model</button>
     </div>
   </div>
   <hr>
@@ -142,13 +144,13 @@
   <div class="card-deck">
     <img src="/static/project-icons/dashboard-icons/manage-models.svg" alt=""  width="295px;" height="163px;">
     <div id="manage_models_image_classification"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-success"  style="width: 100%; height: 100%;">Manage Image Classification Models</button>
+      <button  type="button" class="btn btn-success"  style="width: 100%; height: 100%;">Manage Image Classification Models</button>
     </div>
     <div  id="manage_models_object_detection"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-success"  style="width: 100%;; height: 100%;">Manage Object Detection Models</button>
+      <button  type="button" class="btn btn-success"  style="width: 100%;; height: 100%;">Manage Object Detection Models</button>
     </div>
     <div id="manage_models_audio_classification" style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button type="button" class="btn btn-outline-success"  style="width: 100%; height: 100%;">Manage Audio Classification Models</button>
+      <button type="button" class="btn btn-success"  style="width: 100%; height: 100%;">Manage Audio Classification Models</button>
     </div>
   </div>
   <hr>
@@ -157,13 +159,13 @@
   <div class="card-deck">
     <img src="/static/project-icons/dashboard-icons/train-models-icon.svg" alt=""  width="295px;" height="163px;">
     <div id="train_models_image_classification"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-primary"  style="width: 100%; height: 100%;">Train Image Classification Model</button>
+      <button  type="button" class="btn btn-primary"  style="width: 100%; height: 100%;">Train Image Classification Model</button>
     </div>
     <div id="train_models_object_detection"  style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button  type="button" class="btn btn-outline-primary"  style="width: 100%;; height: 100%;">Train Object Detection Model</button>
+      <button  type="button" class="btn btn-primary"  style="width: 100%;; height: 100%;">Train Object Detection Model</button>
     </div>
     <div id="train_models_audio_classification" style="width: 295px; height: 163px;; margin-left: 20px;" class="myButtons">
-      <button type="button" class="btn btn-outline-primary"  style="width: 100%; height: 100%;">Train Audio Classification Model</button>
+      <button type="button" class="btn btn-primary"  style="width: 100%; height: 100%;">Train Audio Classification Model</button>
     </div>
   </div>
   <hr>
