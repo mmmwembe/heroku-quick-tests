@@ -461,13 +461,17 @@ h4 {
 
                 <div class="col-sm">
 
-                    <form method="post" action="{{ url_for('upload_images_for_labeling') }}" enctype="multipart/form-data">
-                        <div class="input-group">
-                            <input class="form-control" id="imageLoader" type="file" name="images_for_labeling[]" multiple="true" autocomplete="off" required>
-                            <input type="submit" value="Upload Images" class="btn  btn-info" style="margin-left: 10px;">
-                        </div>
-                        <input type="hidden" id="current_folder" name="current_folder" value="">
-                        <input type="hidden" name="which-form" value="images-for-labeling">
+                    <form>
+                      <div class="input-group">
+                        <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Choose types of file(s) to download</button>
+                        <ul id="checkbox-container" class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#"><label><input type="checkbox"  name="file_type_checkbox" value="csv"> CSV</label></a></li>
+                          <li><a class="dropdown-item" href="#"><label><input type="checkbox"  name="file_type_checkbox" value="json" > JSON</label></a></li>
+                          <li><a class="dropdown-item" href="#"><label><input type="checkbox"  name="file_type_checkbox" value="Pascal-VOC" > Pascal VOC</label></a></li>
+                        </ul>
+                        <input id="download_button" type="submit" value="Download Labels" class="btn btn-primary form-control" style="margin-left: 10px; width: 100px;">
+                    </div>
+        
                     </form> 
 
                 </div>

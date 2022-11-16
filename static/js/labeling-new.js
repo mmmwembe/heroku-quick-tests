@@ -3326,6 +3326,37 @@ function gotoDashboard() {
 
 
 
+//-----------------------------------------------------------------------------------------------------
+//                            Download Label Annotation Files (CSV, JSON, XML)
+//------------------------------------------------------------------------------------------------------
+
+$('#download_button').click(function(){
+
+    var results = get_types_of_download_files()
+
+    alert('results : ' + results)
+
+
+ });
+
+
+ function get_types_of_download_files(){
+
+     var checkboxes = document.getElementsByName('file_type_checkbox');
+
+     result = [];  
+
+     for (var i=0, n=checkboxes.length;i<n;i++) 
+     {
+         if (checkboxes[i].checked) 
+         {
+             result.push(checkboxes[i].value)
+         }
+     }
+     // alert(' vals : ' + result)
+     return result
+}
+
 
 
 
