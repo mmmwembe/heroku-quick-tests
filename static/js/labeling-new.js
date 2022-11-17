@@ -48,6 +48,7 @@ window.addEventListener('load', (event) => {
     var LABELLED_IMAGES_ARRAY = []
     var IMAGES_CANVAS_JSONs = {} 
     var LABEL_BUCKET_CANVAS_JSON={}
+    var CURRENT_THUMBNAILS_ARRAY =[]
 
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
@@ -1973,6 +1974,8 @@ function get_active_project_and_show_label_buckets(){
             data: {},
             success: function(data) {
 
+                Show_or_Hide_Progress_Bar("hide") // Show or Hide Progress Bar
+
                 var active_project_id = data.active_project_id
                 var active_label = data.active_label
                 var active_project_result = data.active_project_result[0]
@@ -2005,6 +2008,7 @@ function get_active_project_and_show_label_buckets(){
 
                     // Attributes for each label...can use this information in the future
                     var original_image_urls = current_label_info['original_image_urls']
+                    CURRENT_THUMBNAILS_ARRAY = original_image_urls  // This populates the current_thumbnails_array 
                     var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
                     var cropped_image_urls = current_label_info['cropped_image_urls']
                     var augmentation_image_urls = current_label_info['augmentation_image_urls']
@@ -2436,6 +2440,7 @@ function NewLabelBucketCard(data_element){
 
     // Attributes for each label...can use this information in the future
     var original_image_urls = current_label_info['original_image_urls']
+    // CURRENT_THUMBNAILS_ARRAY = original_image_urls  // This populates the current_thumbnails_array 
     var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
     var cropped_image_urls = current_label_info['cropped_image_urls']
     var augmentation_image_urls = current_label_info['augmentation_image_urls']
@@ -2538,7 +2543,7 @@ function NewLabelBucketCard(data_element){
             dataType: 'json',
             data: {'project_id': xproject_id,'active_label': xlabel}, 
             success: function(data){
-        
+ 
             var active_project_id = data.active_project
             var active_label = data.active_label
             var active_project_result = data.active_project_result
@@ -2558,6 +2563,7 @@ function NewLabelBucketCard(data_element){
             
             var current_label_info = filter_project_json_by_label(active_label)
             var original_image_urls = current_label_info['original_image_urls']
+            CURRENT_THUMBNAILS_ARRAY = original_image_urls  // This populates the current_thumbnails_array 
             var labelled_original_image_urls = current_label_info['labelled_original_image_urls']
             var number_original_images = current_label_info['original_image_urls'].length
             var number_labelled_original_image_urls = current_label_info['labelled_original_image_urls'].length
@@ -2726,6 +2732,7 @@ function NewLabelBucketCard(data_element){
             var current_label_info = filter_project_json_by_label(myLabel)
            
             var original_image_urls = current_label_info['original_image_urls']
+            CURRENT_THUMBNAILS_ARRAY = original_image_urls  // This populates the current_thumbnails_array 
             var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
             var cropped_image_urls = current_label_info['cropped_image_urls']
             var augmentation_image_urls = current_label_info['augmentation_image_urls']
@@ -2989,6 +2996,7 @@ function show_label_buckets_from_server_json_data(json_data){
 
         // Attributes for each label...can use this information in the future
         var original_image_urls = current_label_info['original_image_urls']
+        CURRENT_THUMBNAILS_ARRAY = original_image_urls  // This populates the current_thumbnails_array 
         var all_jpeg_image_urls = current_label_info['all_jpeg_image_urls']
         var cropped_image_urls = current_label_info['cropped_image_urls']
         var augmentation_image_urls = current_label_info['augmentation_image_urls']
@@ -3023,6 +3031,11 @@ function show_label_buckets_from_server_json_data(json_data){
 
     //show_label_buckets()
     new_create_label_buckets(data)
+
+    //Hide Progressbar
+
+    Show_or_Hide_Progress_Bar("hide")
+
 
 }
 
@@ -3366,18 +3379,51 @@ $('#download_button').click(function(){
 $('#nextBtn').click(function(){
 
 
-    alert('It gets to nextImage')
+    //alert('It gets to nextImage')
+    
+    if (CURRENT_THUMBNAILS_ARRAY.includes(IMAGE_URL)){
+
+        alert(' It gets to nextImage - Image URL : ' + IMAGE_URL)
+    }
+
 
  });
 
  $('#previousBtn').click(function(){
 
 
-    alert('It gets to previousImage')
+    // alert('It gets to previousImage')
 
+    if (CURRENT_THUMBNAILS_ARRAY.includes(IMAGE_URL)){
 
+        alert(' It gets to previousImage - Image URL : ' + IMAGE_URL)
+    }
 
  });
+
+
+
+ function Show_or_Hide_Progress_Bar(flag){
+
+    if(flag==="show"){
+
+        $("#myProgressBarHolder").attr("style", "display:  !important");
+        $("#myBar").attr("style", "display:  !important");
+        $("#myProgressBarHolder").css("backgroundColor","grey");
+        $("#myBar").css("backgroundColor","green");
+        
+    }
+
+    else if (flag==="hide"){
+
+        $("#myProgressBarHolder").attr("style", "display: none !important");
+        $("#myBar").attr("style", "display: none !important");
+        $("#myProgressBarHolder").css("backgroundColor","#CFD8DC");
+        $("#myBar").css("backgroundColor","#CFD8DC");
+
+    }
+
+}
 
 
 
