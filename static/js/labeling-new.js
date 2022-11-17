@@ -3363,6 +3363,28 @@ $('#download_button').click(function(){
 
 
 
+$('#nextBtn').click(function(){
+
+
+    alert('It gets to nextImage')
+
+ });
+
+ $('#previousBtn').click(function(){
+
+
+    alert('It gets to previousImage')
+
+
+
+ });
+
+
+
+
+
+
+
 
 
     
