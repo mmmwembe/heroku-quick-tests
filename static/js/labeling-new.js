@@ -304,7 +304,7 @@ fabricCanvas.on('mouse:up', function(o){
            //alert(' ACTIVE_LABEL_BUCKET: ' + ACTIVE_LABEL_BUCKET + '   ACTIVE_PROJECT_ID : ' + ACTIVE_PROJECT_ID)
 
            // alert('IMAGES_NORM_DATA_LABEL_MAP ' + JSON.stringify(IMAGES_NORM_DATA_LABEL_MAP))
-           alert(' ACTIVE_LABEL_BUCKET ' + ACTIVE_LABEL_BUCKET)
+           // alert(' ACTIVE_LABEL_BUCKET ' + ACTIVE_LABEL_BUCKET)
 
            post_images_norm_data_label_map(user_id, ACTIVE_PROJECT_ID, ACTIVE_LABEL_BUCKET, IMAGES_NORM_DATA_LABEL_MAP, LABELLED_IMAGES_ARRAY, IMAGES_CANVAS_JSONs)
 
@@ -3382,7 +3382,14 @@ $('#nextBtn').click(function(){
     
     if (CURRENT_THUMBNAILS_ARRAY.includes(IMAGE_URL)){
 
-        alert(' It gets to nextImage - Image URL : ' + IMAGE_URL)
+        // alert(' It gets to nextImage - Image URL : ' + IMAGE_URL)
+        // Update_Background_Image_on_FabricCanvas(img_url)
+
+        const current_img_index = CURRENT_THUMBNAILS_ARRAY.indexOf(IMAGE_URL)
+
+        alert(' It gets to nextImage - Image URL index : ' + current_img_index)
+
+
     }
 
 
@@ -3448,6 +3455,21 @@ function clearVariables(){
 
 }
 
+
+function Update_Background_Image_on_FabricCanvas(img_url){
+
+    updateFabricCanvasBackgroundImage(img_url)
+
+    var img_name = getFileName(IMAGE_URL)
+
+    // Get stored canvas json and display on the canvas
+    if (getStoredSessionValue(img_name) !== null) {
+        const canvas_json = getStoredSessionValue(img_name);
+        fabricCanvas.loadFromJSON($.parseJSON(canvas_json), fabricCanvas.renderAll.bind(fabricCanvas))
+    }
+
+
+}
 
 
 
