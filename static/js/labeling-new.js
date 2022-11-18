@@ -54,7 +54,7 @@ window.addEventListener('load', (event) => {
 
     var user_id = localStorage.getItem("user_id")// document.getElementById("user_id").value
 
-    alert(' localStorage.getItem("user_id") user_id from flask session is : ' + user_id )
+    // alert(' localStorage.getItem("user_id") user_id from flask session is : ' + user_id )
 
     //$('#download_file_types').multiselect();
 
@@ -1368,11 +1368,11 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
         
     }
 
-    alert('It gets to  line 1322 ')
+    // alert('It gets to  line 1322 ')
     // If project name exists - hide button
     if(CURRENT_PROJECT.length > 0){
 
-        alert('It does not get to 1326 ')
+        // alert('It does not get to 1326 ')
 
         Hide_StartNewProject_Button_and_Show_ProjectLabel()
 
@@ -1395,7 +1395,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     }
 
-    alert(' It gets to line 1347 right after 1322')
+    // alert(' It gets to line 1347 right after 1322')
 
     $("#StartNewProjectButton").click(function (){
         myModal.toggle()

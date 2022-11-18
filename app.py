@@ -1313,7 +1313,7 @@ def create_new_project():
         
         time.sleep(1)
         # save new active project in users session data
-        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': user_id , 'active_project': project_id, 'active_label': ''}) 
+        user_session_data.insert_one({ '_id': uuid.uuid4().hex, 'user_id': session["user"]["_id"], 'active_project': project_id, 'active_label': ''}) 
          
         # Get all of the user's projects
         active_project_query = {'project_js_id': project_id,  'user_id': session["user"]["_id"]}
