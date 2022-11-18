@@ -3387,7 +3387,9 @@ $('#nextBtn').click(function(){
 
         if(new_image_url){
 
-        Update_Background_Image_on_FabricCanvas(new_image_url)
+            IMAGE_URL = new_image_url
+
+            Update_Background_Image_on_FabricCanvas(new_image_url)
 
         }
         else{
@@ -3404,12 +3406,28 @@ $('#nextBtn').click(function(){
  $('#previousBtn').click(function(){
 
 
-    // alert('It gets to previousImage')
-
     if (CURRENT_THUMBNAILS_ARRAY.includes(IMAGE_URL)){
 
-        alert(' It gets to previousImage - Image URL : ' + IMAGE_URL)
+        const current_img_index = CURRENT_THUMBNAILS_ARRAY.indexOf(IMAGE_URL)
+
+        alert(' It gets to previousImage - Image URL index : ' + current_img_index)
+
+        var new_image_url = CURRENT_THUMBNAILS_ARRAY.hasOwnProperty(current_img_index - 1) ? CURRENT_THUMBNAILS_ARRAY[current_img_index - 1]  : ""; 
+
+        if(new_image_url){
+
+            IMAGE_URL = new_image_url
+
+            Update_Background_Image_on_FabricCanvas(new_image_url)
+
+        }
+        else{
+
+            alert(' This is the first image')
+        }
+
     }
+
 
  });
 
