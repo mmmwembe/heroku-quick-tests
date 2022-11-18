@@ -1643,6 +1643,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 alert('---------------- get_active_project_and_show_label_buckets()----------------')
                 get_active_project_and_show_label_buckets()
 
+                Show_or_Hide_Progress_Bar("hide")
+
                 /*
                 var active_project_result = data.active_project_result
                 alert('Line 1542 create_new_project   active_project_result : ' + JSON.stringify(data.active_project_result))
@@ -3402,8 +3404,11 @@ $('#nextBtn').click(function(){
  });
 
 
+ // Add this to post_project_json_info
 
  function Show_or_Hide_Progress_Bar(flag){
+
+    alert('It gets here....3409')
 
     if(flag==="show"){
 

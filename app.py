@@ -1236,7 +1236,7 @@ def create_new_project():
 			'_id':  proj_id,   
 			'project_js_id': project_id,
 			'project_name': project_name,
-			'user_id': user_id,
+			'user_id': session["user"]["_id"],
 			'labels_color_map': labels_color_map_dict_from_json_string,
             'labels_string' : labels_string,
 			'date_created': ISODate,
