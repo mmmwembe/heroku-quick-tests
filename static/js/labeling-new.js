@@ -3251,7 +3251,7 @@ function remove_element_from_array(myArray, element){
 
 function post_images_norm_data_label_map(user_id, project_id, active_label, images_norm_data_label_map, labelled_images_array, images_canvas_jsons){
 
-    alert('JSONIFIED 3223---images_canvas_jsons : ' + JSON.stringify(images_canvas_jsons))
+    //alert('JSONIFIED 3223---images_canvas_jsons : ' + JSON.stringify(images_canvas_jsons))
     // IMAGES_CANVAS_JSONs
     
     $.ajax({
@@ -3276,11 +3276,11 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
            // var returned_labelled_images = data.labelled_images_array
            // alert('Line 3209 add_label_records  returned_labelled_images: ' + JSON.stringify(returned_labelled_images))
 
-           alert(' CHANGED JSON RETURN DATA TO original_image_label_jsons : ' + JSON.stringify(data.original_image_label_jsons))
+           //  alert(' CHANGED JSON RETURN DATA TO original_image_label_jsons : ' + JSON.stringify(data.original_image_label_jsons))
 
             // alert(' 3258 original_image_label_jsons_dict_from_json_string ' + JSON.stringify(data.original_image_label_jsons_dict_from_json_string))
 
-           alert(' Line 3266 sub_dir_path_with_active_folder : ' + data.sub_dir_path_with_active_folder)
+           // alert(' Line 3266 sub_dir_path_with_active_folder : ' + data.sub_dir_path_with_active_folder)
 
         }
         
@@ -3293,7 +3293,7 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
 //--------------------------------------------------------------------------------------------------------------------------------
 //                                           Save JSON
 //--------------------------------------------------------------------------------------------------------------------------------
-alert(' It gets to line 3275')
+// alert(' It gets to line 3275')
 
 function saveCanvasJSONFile(){
 
@@ -3316,7 +3316,7 @@ function saveCanvasJSONFile(){
 
 }
 
-  alert(' It it does not get to 3296')
+  // alert(' It it does not get to 3296')
 
 
 //--------------------------------------------------------------------------------------------------
