@@ -3375,10 +3375,6 @@ $('#download_button').click(function(){
 
 
 
-
-
-
-
 $('#nextBtn').click(function(){
 
 
@@ -3428,6 +3424,27 @@ $('#nextBtn').click(function(){
         $("#myBar").css("backgroundColor","#CFD8DC");
 
     }
+
+}
+
+
+function clearVariables(){
+
+    NUM_OF_IMAGES="";
+    LABELED_IMAGES_TRACKER = []
+    NUM_LABELLED_IMAGES;
+    NUM_IMAGES_TOTAL;
+    ACTIVE_PROJECT_ID=""
+    ACTIVE_LABEL_BUCKET=""
+    ACTIVE_PROJECT_JSON;
+    ALL_USER_PROJECTS;
+    CURRENT_PROJECT="";
+    PROJECT_JSON
+    IMAGES_NORM_DATA_LABEL_MAP = {} 
+    LABELLED_IMAGES_ARRAY = []
+    IMAGES_CANVAS_JSONs = {} 
+    LABEL_BUCKET_CANVAS_JSON={}
+    CURRENT_THUMBNAILS_ARRAY =[]
 
 }
 
