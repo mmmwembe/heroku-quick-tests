@@ -201,6 +201,7 @@ for(let i = 0; i < all_cards.length; i++) {
 document.getElementById("sign_out_btn").addEventListener("click", signOut);
 
 function signOut() {
+  clearEntireLocalStorage()
   // alert(' You licked sign-out')
   window.location.href = "/signout/";
 }
@@ -299,7 +300,11 @@ function choiceSelected(id){
 }
 
 
+function clearEntireLocalStorage(){
 
+localStorage.clear();
+
+}
 
 
 </script>

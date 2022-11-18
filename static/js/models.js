@@ -135,6 +135,14 @@ window.addEventListener('load', (event) => {
 
 
 
+    function clearEntireLocalStorage(){
+
+        localStorage.clear();
+  
+      }
+
+
+
 
 
 

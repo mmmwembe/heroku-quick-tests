@@ -3328,6 +3328,7 @@ document.getElementById("sign_out_btn").addEventListener("click", signOut);
 
 function signOut() {
   // alert(' You licked sign-out')
+  clearEntireLocalStorage()
   window.location.href = "/signout/";
 }
 
