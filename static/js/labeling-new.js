@@ -3381,7 +3381,7 @@ $('#nextBtn').click(function(){
 
         const current_img_index = CURRENT_THUMBNAILS_ARRAY.indexOf(IMAGE_URL)
 
-        alert(' It gets to nextImage - Image URL index : ' + current_img_index)
+        // alert(' It gets to nextImage - Image URL index : ' + current_img_index)
 
         var new_image_url = CURRENT_THUMBNAILS_ARRAY.hasOwnProperty(current_img_index + 1) ? CURRENT_THUMBNAILS_ARRAY[current_img_index + 1]  : ""; 
 
@@ -3410,7 +3410,7 @@ $('#nextBtn').click(function(){
 
         const current_img_index = CURRENT_THUMBNAILS_ARRAY.indexOf(IMAGE_URL)
 
-        alert(' It gets to previousImage - Image URL index : ' + current_img_index)
+        // alert(' It gets to previousImage - Image URL index : ' + current_img_index)
 
         var new_image_url = CURRENT_THUMBNAILS_ARRAY.hasOwnProperty(current_img_index - 1) ? CURRENT_THUMBNAILS_ARRAY[current_img_index - 1]  : ""; 
 
