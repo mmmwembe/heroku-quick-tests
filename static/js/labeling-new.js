@@ -2051,6 +2051,9 @@ function get_active_project_and_show_label_buckets(){
                 //show_label_buckets()
                 new_create_label_buckets(data)
 
+
+                alert(' 2055 active_label : ' + active_label)
+
             }
         
         });

@@ -1485,7 +1485,7 @@ def get_active_project2():
     
     if request.method =='POST':
         
-        query ={'user_id': user_id}
+        query ={'user_id': session["user"]["_id"]}
         user_session_info = user_session_data.find(query)
         
         active_project_id = user_session_info[0]['active_project']
