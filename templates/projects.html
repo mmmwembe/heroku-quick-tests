@@ -85,10 +85,10 @@
           <tr>
             <td>{{ project['project_name']  }}</td>
             <td>
-
                 {% for key, value in labels_color_map.items() %}
-                <h1>Label: {{key}}</h1>
-                <h2>Color : {{value}}</h2>
+                <div style="text-align: center;background-color: {{value}} ; display:table; margin:auto;" id="label">
+                    {{key}}
+                </div>
                 {% endfor %}
                 
             </td>
