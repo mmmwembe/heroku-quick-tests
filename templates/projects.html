@@ -86,7 +86,7 @@
             <td>{{ project['project_name']  }}</td>
             <td>
                 {% for key, value in labels_color_map.items() %}
-                <div style="outline:solid; outline-offset:-10px;  overflow:visible; height: 30px;text-align: center;background-color: {{value}} ; display:table; margin:auto;" id="label">
+                <div style="overflow:visible; height: 30px; width: {{value|length + 5}}px;  border-radius: 5px; border: 5px solid {{value}}  ; text-align: center;background-color: {{value}} ; display:table; margin:auto;" id="label">
                     {{key}}
                 </div>
                 {% endfor %}
