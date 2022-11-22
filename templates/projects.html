@@ -87,10 +87,7 @@
             <td>
                 {% for key, value in labels_color_map.items() %}
 
-                {% string_length = key|length %}
-                {% string_length10 = string_length + 10 %}
-
-                <div style="overflow:visible; height: 30px; width: {{string_length10}} px;  border-radius: 10px; border: 5px solid {{value}}  ; text-align: center;background-color: {{value}} ; display:table; margin:auto;" id="label">
+                <div style="overflow:visible; height: 30px; width: auto; margin: 10px;  border-radius: 10px; border: 5px solid {{value}}  ; text-align: center;background-color: {{value}} ; display:table; margin:auto;" id="label">
                     {{key}}
                 </div>
                 {% endfor %}
