@@ -1969,6 +1969,8 @@ $.ajax({
 
 function get_active_project_and_show_label_buckets(){
 
+    alert(' It gets to 1972....get_active_project....')
+
         $.ajax({
             type: "POST",
             url: '/get_active_project',
