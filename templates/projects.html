@@ -112,6 +112,19 @@
 
 
 
+
+    {% for label_row in labels_color_map.items()  | batch(3, '&nbsp;') %}
+    <div class="row">
+        {% for key, value in label_row  %}
+        <div class="span4">{{value}}{{key}}</div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+
+
+
+
    </div>
 
 <script>
