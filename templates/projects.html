@@ -114,7 +114,7 @@
                 
                 </div>
             </td>
-            <td>
+            <td style="text-align: center; vertical-align: middle;">
                  
                 <div class="form-group">
                   <input type="hidden" id="delete_project{{loop.index}}" value="{{ project_id }}">
@@ -386,6 +386,9 @@ for(let i = 0; i < label_divs.length; i++) {
         TRAINING_LABELS.push(label_with_project)
 
       }
+
+      label=''
+      color=''
 
       alert('TRAINING_LABELS.push(label_with_project) ' + TRAINING_LABELS)
 
