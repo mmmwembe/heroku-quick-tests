@@ -113,21 +113,18 @@
 
 
 
-    {% for label_row in labels_color_map.items()  | batch(3, '&nbsp;') %}
-    <div class="row">
-        {% for article in label_row  %}
-        <div class="span4">{{article.value}}{{article.key}}</div>
-        {% endfor %}
-    </div>
-    {% endfor %}
 
 
-
-
+    <div id="newLabelParent"></div>
 
    </div>
 
 <script>
+
+    var LABELS_COLOR_MAP = {}   // label (key) and color (value)
+    var current_label;
+    var current_color;
+    var labels_string = ''
 
 
 
@@ -265,7 +262,15 @@ $.ajax({
 
             window.localStorage.setItem("all_user_projects", all_user_projects);
 
+
+
             alert('You have some projects ')
+
+            all_user_projects.forEach(user_project => {
+            for (let key in user_project) {
+              alert(`${key}: ${user_project[key]}`)
+            }
+          })
 
 
         }
@@ -278,6 +283,50 @@ $.ajax({
   });
 
 }
+
+
+
+
+function addNewLabel(){
+
+const newlabelClassItem = document.createElement('div')
+newlabelClassItem.className ="labelclass"
+newlabelClassItem.id = current_label
+newlabelClassItem.style= "border: 3px solid " + current_color + " z-index: 2; background-color: transparent;  margin : 2px; border-radius: 10px; height: 35px;  width: 90%;";
+newlabelClassItem.style.fontSize = "16";
+newlabelClassItem.innerHTML ="<strong> "+ current_label + " </strong>";
+newlabelClassItem.onclick = showSelectedLabel // function shows the selected label by highlighting background with the bordercolor
+
+parentLabelClassItem.append(newlabelClassItem)
+
+}
+
+
+function showSelectedLabel(){
+
+current_label = $(this).attr('id')
+current_color = $(this).css("borderColor");
+
+var all_labels = document.getElementsByClassName('labelclass');
+for(let i = 0; i < all_labels.length; i++) {
+
+    if (all_labels[i].getAttribute("id").toString() === current_label.toString()){
+
+        $(this).css("backgroundColor",current_color);
+
+        // showCurrentLabel(current_color, current_label)
+
+    }
+    else {
+
+        // all_labels[i].style.backgroundColor ="transparent"
+    }
+
+}
+
+}
+
+
 
 
 
