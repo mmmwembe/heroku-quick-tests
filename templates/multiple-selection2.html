@@ -33,13 +33,13 @@
     <style>
         .header {
             text-align: center;
-            background-color: rgb(68, 25, 211);
+            background-color: rgb(25, 121, 211);
             color: white;
             padding: 10px;
         }
 
         .wrapper {
-            width: 20%;
+            width: 40%;
             margin: auto;
             border-radius: 8px;
             box-shadow: 0 3px 10px rgb(54, 54, 54);
@@ -57,7 +57,7 @@
             outline: none;
             padding: 12px;
             border: none;
-            background-color: rgb(68, 25, 211);
+            background-color: rgb(10, 126, 16);
             border-radius: 8px;
             color: white;
             cursor: pointer;
@@ -68,10 +68,19 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        .ScrollStyle
+      {
+          max-height: 400px;
+          overflow-y: scroll;
+          border:2px solid rgb(107, 102, 107)
+      }
     </style>
 </head>
 
 <body>
+
+
     <div class="wrapper">
         <div class="header">
             <h3>Items</h3>
@@ -94,28 +103,64 @@
                 <label for="black">Black</label>
                 <input id="black" type="checkbox" value="Black">
             </div>
-            <button id="submit">Save</button>
+            <button id="submit"><strong>Train Classification Model</strong></button>
 
         </div>
     </div>
+
+
+
+
+    <div class="ScrollStyle" style="height:100%">
+        <div class="section_wrapper" style ="width: 40%; margin: auto; border-radius: 8px; box-shadow: 0 3px 10px rgb(100, 100, 100); overflow: hidden;">
+            <div class="section_header" style="text-align: center; background-color: rgb(25, 121, 211); color: white; padding: 10px;">
+                <h3>Labels</h3>
+            </div>
+
+            <div id="selected_labels">      
+            </div>
+            <button id="train_classifier_model_btn" style="display: block; margin: 10px auto; outline: none; padding: 12px; border: none; background-color: rgb(10, 126, 16);border-radius: 8px; color: white; cursor: pointer; width: auto;"><strong>Train Classification Model</strong></button>
+            
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
     <p class="result"></p>
 
     <script>
-        var itemForm = document.getElementById('itemForm'); // getting the parent container of all the checkbox inputs
-        var checkBoxes = itemForm.querySelectorAll('input[type="checkbox"]'); // get all the check box
-        document.getElementById('submit').addEventListener('click', getData); //add a click event to the save button
+       // var itemForm = document.getElementById('itemForm'); // getting the parent container of all the checkbox inputs
+       // var checkBoxes = itemForm.querySelectorAll('input[type="checkbox"]'); // get all the check box
+       // document.getElementById('submit').addEventListener('click', getData); //add a click event to the save button
+
+
+
+        var selected_labels = document.getElementById('selected_labels'); // getting the parent container of all the checkbox inputs
+        var checkBoxes = selected_labels.querySelectorAll('input[type="checkbox"]'); // get all the check box
+        document.getElementById('train_classifier_model_btn').addEventListener('click', getData); //add a click event to the save button
 
         let result = [];
 
         function getData() { // this function will get called when the save button is clicked
+
             result = [];
+            var checkBoxes = selected_labels.querySelectorAll('input[type="checkbox"]'); 
             checkBoxes.forEach(item => { // loop all the checkbox item
                 if (item.checked) {  //if the check box is checked
                     let data = {    // create an object
                         item: item.value,
                         selected: item.checked
                     }
-                    result.push(data); //stored the objects to result array
+
+                     result.push(item.value)
+                    //result.push(data); //stored the objects to result array
                 }
             })
             document.querySelector('.result').textContent = JSON.stringify(result); // display result
@@ -127,6 +172,84 @@
         $.each($("input[name='name']:checked"), function(){            
             fav.push($(this).val());
         });
+
+
+        var TRAINING_LABELS = []
+
+
+        var new_data = ['lalu7ius6fksobqunu8/apples','lalu7ius6fksobqunu8/oranges','lalu7ius6fksobqunu8/mandarins','lalu7ius6fksobqunu8/nectarines','lalu7ius6fksobqunu8/blueberries','lalu7ius6fksobqunu8/raspberries','lalu7ius6fksobqunu8/passionfruit','lalu7ius6fksobqunu8/rockmelons','lalu7ius6fksobqunu8/honeydew_']
+
+
+
+
+        create_selected_labels_menu(new_data)
+
+
+        function create_selected_labels_menu(data){
+
+            var longest_label = data.sort(function (a, b) {return b.length - a.length;})[0];
+
+            // alert('longest string in data : ' + longest_label)
+
+            for (var i = 0; i < data.length; i += 1) {
+
+                var new_row = NewLabel(data[i])
+
+                document.getElementById('selected_labels').appendChild(new_row)
+            
+            }
+
+        }
+
+        function NewLabel(project_label){
+
+            var split_array = project_label.split('/')
+
+            const newLabel = document.createElement('div')
+            newLabel.style= "padding: 10px; margin-left: 40px; "
+
+            const label_div = document.createElement('label')
+            label_div.style="width: 50%;"
+            label_div.for = split_array[1]
+            label_div.innerHTML = split_array[1]
+
+            const check_box = document.createElement('input')
+            //check_box.className ="xlabel"
+            check_box.style= "margin-left: 20px;"
+            check_box.id = split_array[1]
+            // check_box.type = "checkbox"
+            check_box.setAttribute("type","checkbox")
+            check_box.setAttribute("value",project_label)
+            check_box.checked = true
+            // check_box.innerHTML = split_array[1]
+            check_box.setAttribute("project_id",split_array[0])
+            check_box.setAttribute("project_id_and_label",project_label)
+
+            // alert(' label : ' + split_array[1])
+
+            newLabel.append(label_div)
+            newLabel.append(check_box)
+
+            return newLabel
+
+        }
+
+
+        function removeAllLabelDivs(){
+        const elements = document.getElementsByClassName("xlabel");
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+    }
+
+   
+
+
+
+
+
+
+
 
 
 
