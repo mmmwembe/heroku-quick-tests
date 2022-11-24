@@ -126,6 +126,8 @@
     var current_color;
     var labels_string = ''
 
+    var TRAINING_LABELS = []
+
 
 
 // localStorage.clear();
@@ -344,15 +346,30 @@ for(let i = 0; i < label_divs.length; i++) {
       var color = $('#'+label_div_id ).attr('color')
 
       $('#'+label_div_id).css('background-color',  color); 
-      $('#'+label_div_id).css('color', 'white'); 
+      $('#'+label_div_id).css('color', 'black'); 
 
       alert(' line 342 - project_id ' + project_js_id + ' label : ' + label  + ' color : ' + color)
 
+      var label_with_project = project_id +'/' + label
+
+      if (TRAINING_LABELS.includes(label_with_project)){
+
+        // do nothing
+
+      }
+      else {
+
+        TRAINING_LABELS.push(label_with_project)
+
+      }
 
   });
 
 
 }
+
+
+alert('TRAINING_LABELS.push(label_with_project) ' + TRAINING_LABELS)
 
 
 
