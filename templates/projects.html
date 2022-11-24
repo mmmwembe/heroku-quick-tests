@@ -29,6 +29,21 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
 
+  <style>
+    .ScrollStyle
+      {
+          max-height: 400px;
+          overflow-y: scroll;
+          border:2px solid rgb(107, 102, 107)
+      }
+
+    .xLabelClickedClass:hover
+        {
+        cursor: pointer;
+    }
+
+  </style>
+
 </head>
 <body style="background-color: #CFD8DC;">
 
@@ -85,6 +100,10 @@
           <tr>
             <td>{{ project['project_name']  }}</td>
             <td>
+
+              
+                 <div class="ScrollStyle" style="height:100%">
+
                 {% for key, value in labels_color_map.items() %}
 
                 <div style="height: auto; width: auto; margin: 1px; padding: 2px;  border-radius: 10px; border: 5px solid {{value}}  ; text-align: center; font-size: 150%;  color: black;"  id="{{key}}"   class="xLabelClickedClass"  color="{{value}}" label="{{key}}" project_id="{{project_id}}">
@@ -92,6 +111,7 @@
                 </div>
                 {% endfor %}
                 
+                </div>
             </td>
             <td>
                  
