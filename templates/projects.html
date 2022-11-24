@@ -126,12 +126,12 @@
             </td>
             <td>
                 <input type="hidden" id="open_project{{loop.index}}" value="{{ project_id }}">       
-                <button id="{{ project_id }}-open_project_btn-{{loop.index}}"  class="btn btn-success xOpenProjectBtnClass" project_id="{{ project_id }}" type="button" class="btn btn-success" onclick="OpenProject(this.id)"><i class="fas fa-edit"></i> Open Project</button> 
+                <button id="{{ project_id }}-open_project_btn-{{loop.index}}" style ="margin-bottom: 10px;" class="btn btn-success xOpenProjectBtnClass" project_id="{{ project_id }}" type="button" class="btn btn-success" onclick="OpenProject(this.id)"><i class="fas fa-edit"></i> Open Project</button> 
                 
                 <div class="ScrollStyle" style="height:100%">
                   <div class="section_wrapper" style ="width: 100%; margin: auto; border-radius: 8px; box-shadow: 0 3px 10px rgb(100, 100, 100); overflow: hidden;">
                       <div class="section_header" style="text-align: center; background-color: rgb(25, 121, 211); color: white; padding: 10px;">
-                          <h3>Labels</h3>
+                          <strong>Labels</strong>
                       </div>
           
                       <div id="selected_labels">      
