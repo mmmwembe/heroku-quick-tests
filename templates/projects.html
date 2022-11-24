@@ -87,7 +87,7 @@
             <td>
                 {% for key, value in labels_color_map.items() %}
 
-                <div style="height: 30px; width: auto; margin: 10px;  border-radius: 10px; border: 5px solid {{value}}  ; text-align: center;background-color: {{value}}; " id="label">
+                <div style="height: 30px; width: auto; margin: 10px; padding: 10px;  border-radius: 10px; border: 5px solid {{value}}  ; text-align: center; font-size: 150%;  color: {{value}};"  id="{{key}}"   class="xLabelClickedClass"  color="{{value}}" label="{{key}}" project_id="{{project_id}}">
                     {{key}}
                 </div>
                 {% endfor %}
@@ -326,6 +326,26 @@ for(let i = 0; i < all_labels.length; i++) {
 
 }
 
+
+label_divs = document.getElementsByClassName('xLabelClickedClass');
+
+for(let i = 0; i < label_divs.length; i++) {
+
+      label_divs[i].addEventListener("click", function(e) {
+
+      var label_div_id = e.target.id
+
+      var project_js_id = $('#'+label_div_id ).attr('project_id')
+      var label = $('#'+label_div_id ).attr('label')
+      var color = $('#'+label_div_id ).attr('color')
+
+      alert(' line 342 - project_id ' + project_js_id + ' label : ' + label  + ' color : ' + color)
+
+
+  });
+
+
+}
 
 
 
