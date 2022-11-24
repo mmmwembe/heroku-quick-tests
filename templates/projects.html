@@ -353,17 +353,19 @@ label_divs = document.getElementsByClassName('xLabelClickedClass');
 
 for(let i = 0; i < label_divs.length; i++) {
 
+      var label=''
+      var color=''
 
       label_divs[i].addEventListener('mouseover',function(){ $(this).css('background-color',  $(this).attr('color'));  });
-      label_divs[i].addEventListener('mouseout', function(){ $(this).css('background-color', '');  });
+      label_divs[i].addEventListener('mouseout', function(){ $(this).css('background-color', color ?  color : '');  });
 
       label_divs[i].addEventListener("click", function(e) {
 
       var label_div_id = e.target.id
 
       var project_js_id = $('#'+label_div_id).attr('project_id')
-      var label = $('#'+label_div_id ).attr('label')
-      var color = $('#'+label_div_id ).attr('color')
+      label = $('#'+label_div_id ).attr('label')
+      color = $('#'+label_div_id ).attr('color')
 
       // $('#'+label_div_id).css('background-color',  color); 
       document.getElementById(label_div_id).style.backgroundColor = color
