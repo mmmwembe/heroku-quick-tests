@@ -40,6 +40,7 @@
     .xLabelClickedClass:hover
         {
         cursor: pointer;
+        transition: border-width 0.6s linear;
     }
 
   </style>
@@ -357,8 +358,8 @@ for(let i = 0; i < label_divs.length; i++) {
       var label=''
       var color=''
 
-      label_divs[i].addEventListener('mouseover',function(){ $(this).css('background-color',  $(this).attr('color'));  });
-      label_divs[i].addEventListener('mouseout', function(){ $(this).css('background-color', color ?  color : '');  });
+      // label_divs[i].addEventListener('mouseover',function(){ $(this).css('background-color',  $(this).attr('color'));  });
+      // label_divs[i].addEventListener('mouseout', function(){ $(this).css('background-color', color ?  color : '');  });
 
       label_divs[i].addEventListener("click", function(e) {
 
@@ -387,8 +388,8 @@ for(let i = 0; i < label_divs.length; i++) {
 
       }
 
-      label=''
-      color=''
+      //label=''
+      //color=''
 
       alert('TRAINING_LABELS.push(label_with_project) ' + TRAINING_LABELS)
 
