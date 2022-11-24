@@ -457,6 +457,8 @@ for(let i = 0; i < label_divs.length; i++) {
 
             // alert('longest string in data : ' + longest_label)
 
+            removeAllLabelDivs() // Remove previously listed labels so that they are not duplicated
+
             for (var i = 0; i < data.length; i += 1) {
 
                 var new_row = NewLabel(data[i])
@@ -472,15 +474,17 @@ for(let i = 0; i < label_divs.length; i++) {
             var split_array = project_label.split('/')
 
             const newLabel = document.createElement('div')
+            newLabel.className="xlabel"
             newLabel.style= "padding: 10px; margin-left: 5px; "
 
             const label_div = document.createElement('label')
+            label_div.className="xlabel"
             label_div.style="width: 50%;"
             label_div.for = split_array[1]
             label_div.innerHTML = split_array[1]
 
             const check_box = document.createElement('input')
-            //check_box.className ="xlabel"
+            check_box.className ="xlabel"
             check_box.style= "margin-left: 20px;"
             check_box.id = split_array[1]
             // check_box.type = "checkbox"
@@ -500,6 +504,14 @@ for(let i = 0; i < label_divs.length; i++) {
 
         }
 
+
+
+        function removeAllLabelDivs(){
+        const elements = document.getElementsByClassName("xlabel");
+        while(elements.length > 0){
+            elements[0].parentNode.removeChild(elements[0]);
+        }
+       }
 
 
 
