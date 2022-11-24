@@ -158,6 +158,17 @@
 
 <script>
 
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const d = new Date()
+    var year = d.getFullYear();
+    var month = d.getMonth() + 1;
+    var month_text = months[d.getMonth()];
+    var day = d.getDate();
+    var today = new Date();
+    var ISODate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var Date_Month_Text = today.getDate() + '-' + month_text +'-'+ today.getFullYear()
+    var iso_date_timestamp 
+
     var LABELS_COLOR_MAP = {}   // label (key) and color (value)
     var current_label;
     var current_color;
@@ -440,6 +451,15 @@ for(let i = 0; i < label_divs.length; i++) {
             TRAINING_LABELS = result
             alert('UPDATED TRAINING LABELS List ' + TRAINING_LABELS)
             // document.querySelector('.result').textContent = JSON.stringify(result); // display result
+
+            // Submit Training Request for Image Classification Model
+            var model_type="classification"
+            // var time_submitted_isodate
+            var model_name ="test-model-1"
+
+            post_sub_training_request(model_type, TRAINING_LABELS, ISODate, model_name)
+
+
         }
 
 
@@ -513,6 +533,36 @@ for(let i = 0; i < label_divs.length; i++) {
             elements[0].parentNode.removeChild(elements[0]);
         }
        }
+
+
+       function post_sub_training_request(model_type, labels_for_training, time_submitted_isodate, model_name){
+
+        var first_label = labels_for_training[0]
+        var project_id = first_label.split('/')[0]
+    
+        $.ajax({
+            type: "POST",
+            url: '/train_classification_model',
+            dataType: 'json',
+            data: { 
+                    'project_id' :  project_id, 
+                    'model_type' :  model_type, 
+                    'time_submitted' : time_submitted_isodate,
+                    'labels_for_training' : labels_for_training,  
+                    'model_name' : model_name,                                                                 
+                },
+            success: function(data) {
+
+              alert(' model request - from Server : ' + data.model)
+
+
+            }
+            
+        });   
+
+    }
+
+
 
 
 

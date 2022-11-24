@@ -151,6 +151,40 @@ def upload_x_files():
 
 
 
+@app.route('/train_classification_model', methods=['POST','GET'])
+def train_classification_model():
+
+    if request.method =='POST':
+        
+        project_id = request.form['project_id']
+        model_type = request.form['model_type']
+        time_submitted = request.form['time_submitted']
+        labels_for_training = request.form['labels_for_training']
+        model_name = request.form['model_name']
+        
+        model_id = uuid.uuid4().hex
+
+		# create project item
+        model_item = {
+			'_id':  model_id,   
+			'project_js_id': project_id,
+			'model_name': model_name,
+			'user_id': session["user"]["_id"],
+			'model_type': model_type,
+            'time_submitted' : time_submitted,
+			'time_training_started': '',
+			'time_training_finished': '',
+			'labels_for_training': labels_for_training,
+   			'images_root_dir': session["user"]["user_images_subdir"],
+   			'models_root_dir': session["user"]["user_models_classification_subdir"],
+      		'model_url': '',
+
+  		}
+        
+        
+                    
+    return jsonify(model="classification")
+    # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
 
 
