@@ -115,8 +115,8 @@
 
     {% for label_row in labels_color_map.items()  | batch(3, '&nbsp;') %}
     <div class="row">
-        {% for key, value in label_row  %}
-        <div class="span4">{{value}}{{key}}</div>
+        {% for article in label_row  %}
+        <div class="span4">{{article.value}}{{article.key}}</div>
         {% endfor %}
     </div>
     {% endfor %}
