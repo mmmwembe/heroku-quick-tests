@@ -1783,7 +1783,8 @@ def train_model():
           'date_submitted': time_submitted,
           'time_training_started':'',
           'time_training_finished':'',
-          'images_root_dir': '', 
+          'images_root_dir': session["user"]["gcp_bucket_dict"]["user_images_subdir"], 
+          'models_root_dir': session["user"]["gcp_bucket_dict"]["user_models_classification_subdir"], 
   		  }
         
 
