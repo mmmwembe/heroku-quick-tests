@@ -1815,7 +1815,7 @@ def train_model():
         
 
           
-    return jsonify(model_item = model_item)
+    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict)
 
 
 if __name__ == '__main__':
