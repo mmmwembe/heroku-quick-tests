@@ -457,7 +457,7 @@ for(let i = 0; i < label_divs.length; i++) {
             // var time_submitted_isodate
             var model_name ="test-model-1"
 
-            post_sub_training_request(model_type, TRAINING_LABELS, ISODate, model_name)
+            post_training_request(model_type, TRAINING_LABELS, ISODate, model_name)
 
 
         }
@@ -535,7 +535,7 @@ for(let i = 0; i < label_divs.length; i++) {
        }
 
 
-       function post_sub_training_request(model_type, labels_for_training, time_submitted_isodate, model_name){
+       function post_training_request(model_type, labels_for_training, time_submitted_isodate, model_name){
 
         var first_label = labels_for_training[0].split('/')
         var project_id = first_label[0]
