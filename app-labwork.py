@@ -183,7 +183,7 @@ def train_classification_model():
         
         
                     
-    return jsonify(model="classification")
+    return jsonify(model="classification...from Flask mate!!!")
     # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
 
 
