@@ -1238,12 +1238,13 @@ def create_new_project():
 			'project_name': project_name,
 			'user_id': session["user"]["_id"],
 			'labels_color_map': labels_color_map_dict_from_json_string,
-            'labels_string' : labels_string,
+      'labels_string' : labels_string,
 			'date_created': ISODate,
 			'date_modified': '',
 			'labels': labels,
 			'active_label': '',
-            'active_project_id' : ''
+      'active_project_id' : '',
+      'models': {'user_id': session["user"]["_id"], 'classification_models': [], 'object_detection_models': [],'audio_classification_models': []}
   		}
         
                     
