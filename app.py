@@ -1776,7 +1776,9 @@ def train_model():
           'project_js_id': project_id,
           'user_id': session["user"]["_id"],
           'labels_for_training': labels_for_training.split(","),
+          'training_images_hash_array':'',
           'model_name':  model_name,
+          'model_type': model_type,
   		  }
         
 
