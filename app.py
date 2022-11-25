@@ -1779,12 +1779,23 @@ def train_model():
         else  :
           models_root_dir =''      
           
+        
+        array_labels_for_training = labels_for_training.split(",")
+        
+        
+        labels_full_path_dict = {}
+        for x in array_labels_for_training:
+          project_label_path_array = x.split('/')
+          label = project_label_path_array[1] 
+          labels_full_path_dict[label] = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_subdir"],x)
+        
 		# create model item
         model_item = {
           '_id':  model_id,   
           'project_js_id': project_id,
           'user_id': session["user"]["_id"],
-          'labels_for_training': labels_for_training.split(","),
+          'labels_for_training': array_labels_for_training,
+          'labels_full_path_dict': labels_full_path_dict,
           'training_images_hash_array':'',
           'model_name':  model_name,
           'model_type': model_type,
@@ -1792,9 +1803,15 @@ def train_model():
           'date_submitted': time_submitted,
           'time_training_started':'',
           'time_training_finished':'',
+          'training_status':'',
           'images_root_dir': session["user"]["gcp_bucket_dict"]["user_images_subdir"], 
           'models_root_dir': models_root_dir, 
+          'colab_python_file_url': '',
   		  }
+        
+        # save colab python file and return URL
+        
+        # insert colab file path into model_item path
         
 
           
