@@ -549,7 +549,7 @@ for(let i = 0; i < label_divs.length; i++) {
                     'project_id' :  project_id, 
                     'model_type' :  model_type, 
                     'time_submitted' : time_submitted_isodate,
-                    'labels_for_training' : labels_for_training,  
+                    'labels_for_training' : labels_for_training.toString(),  
                     'model_name' : model_name                                                                 
                 },
             success: function(data) {

@@ -1756,8 +1756,6 @@ def add_label_records():
     return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = user_images_json_files_normalized)
 
 
-
-
 @app.route('/train_model', methods=['POST','GET'])
 def train_model():
 
@@ -1777,7 +1775,7 @@ def train_model():
           '_id':  model_id,   
           'project_js_id': project_id,
           'user_id': session["user"]["_id"],
-          'labels_for_training': labels_for_training,
+          'labels_for_training': labels_for_training.split(","),
           'model_name':  model_id,
   		  }
         
