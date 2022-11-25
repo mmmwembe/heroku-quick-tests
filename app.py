@@ -1776,15 +1776,7 @@ def train_model():
           'project_js_id': project_id,
           'user_id': session["user"]["_id"],
           'labels_for_training': labels_for_training.split(","),
-          'training_images_hash_array': '',
-          'model_type': model_type,
-          'model_name':  model_name,
-          'time_submitted' : time_submitted,
-          'time_training_started': '',
-          'time_training_finished': '',
-          'images_root_dir': session["user"]["user_images_subdir"],
-          'models_root_dir': session["user"]["user_models_classification_subdir"],
-          'model_url': '',
+          'model_name':  model_id,
   		  }
         
 
