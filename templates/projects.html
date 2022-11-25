@@ -313,8 +313,7 @@ $.ajax({
             window.localStorage.setItem("all_user_projects", all_user_projects);
 
 
-
-            alert('You have some projects ')
+            // alert('You have some projects ')
 
             all_user_projects.forEach(user_project => {
             for (let key in user_project) {
@@ -399,7 +398,7 @@ for(let i = 0; i < label_divs.length; i++) {
       document.getElementById(label_div_id).style.backgroundColor = color
       $('#'+label_div_id).css('color', 'black'); 
 
-      alert(' line 342 - project_id ' + project_js_id + ' label : ' + label  + ' color : ' + color)
+      // alert(' line 342 - project_id ' + project_js_id + ' label : ' + label  + ' color : ' + color)
 
       var label_with_project = project_js_id +'/' + label
 
@@ -419,7 +418,7 @@ for(let i = 0; i < label_divs.length; i++) {
       //label=''
       //color=''
 
-      alert('TRAINING_LABELS.push(label_with_project) ' + TRAINING_LABELS)
+      // alert('TRAINING_LABELS.push(label_with_project) ' + TRAINING_LABELS)
 
   });
 
@@ -544,18 +543,18 @@ for(let i = 0; i < label_divs.length; i++) {
     
         $.ajax({
             type: "POST",
-            url: '/train_classification_model',
+            url: '/train_model',
             dataType: 'json',
             data: { 
                     'project_id' :  project_id, 
                     'model_type' :  model_type, 
                     'time_submitted' : time_submitted_isodate,
                     'labels_for_training' : labels_for_training,  
-                    'model_name' : model_name,                                                                 
+                    'model_name' : model_name                                                                 
                 },
             success: function(data) {
 
-              alert(' model request - from Server : ' + data.model)
+              alert(' model request - from Server : ' + JSON.stringify(data))
 
 
             }
