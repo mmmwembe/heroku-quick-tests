@@ -1769,7 +1769,16 @@ def train_model():
         model_name = request.form['model_name']      
               
         model_id = uuid.uuid4().hex
-
+        
+        if model_type=="classification":
+          models_root_dir = session["user"]["gcp_bucket_dict"]["user_models_classification_subdir"]
+        elif model_type=="object detection":
+          models_root_dir = session["user"]["gcp_bucket_dict"]["user_models_detection_subdir"]     
+        elif model_type=="audio classification":
+          models_root_dir = session["user"]["gcp_bucket_dict"]["user_audio_classification_subdir"]                  
+        else  :
+          models_root_dir =''      
+          
 		# create model item
         model_item = {
           '_id':  model_id,   
@@ -1784,7 +1793,7 @@ def train_model():
           'time_training_started':'',
           'time_training_finished':'',
           'images_root_dir': session["user"]["gcp_bucket_dict"]["user_images_subdir"], 
-          'models_root_dir': session["user"]["gcp_bucket_dict"]["user_models_classification_subdir"], 
+          'models_root_dir': models_root_dir, 
   		  }
         
 
