@@ -1969,7 +1969,7 @@ $.ajax({
 
 function get_active_project_and_show_label_buckets(){
 
-    alert(' It gets to 1972....get_active_project....')
+    // alert(' It gets to 1972....get_active_project....')
 
         $.ajax({
             type: "POST",
@@ -1986,7 +1986,7 @@ function get_active_project_and_show_label_buckets(){
                 //alert('/get_active_project')
                 //alert('line 1806 -- active_project : ' + active_project_id)
                 //alert('active_label: ' + active_label)
-                alert(' line 1857 active_project_result from /get_active_project ' + JSON.stringify(active_project_result))
+                // alert(' line 1857 active_project_result from /get_active_project ' + JSON.stringify(active_project_result))
 
                 // Set Environment Variables
                 ACTIVE_PROJECT_ID = active_project_id
@@ -2054,7 +2054,7 @@ function get_active_project_and_show_label_buckets(){
                 new_create_label_buckets(data)
 
 
-                alert(' 2055 active_label : ' + active_label)
+                // alert(' 2055 active_label : ' + active_label)
 
             }
         
@@ -3441,7 +3441,7 @@ $('#nextBtn').click(function(){
 
  function Show_or_Hide_Progress_Bar(flag){
 
-    alert('It gets here....3409')
+    // alert('It gets here....3409')
 
     if(flag==="show"){
 
