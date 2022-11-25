@@ -1813,7 +1813,7 @@ def train_model():
         # save colab python file and return URL
         
         # insert colab file path into model_item path
-        user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "models.$.classification_models": model_item } })
+        user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "models.$.classification_models": model_item } }, upsert = True)
         
 
           

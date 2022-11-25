@@ -186,7 +186,7 @@ def train_classification_model():
     return jsonify(model="classification...from Flask mate!!!")
     # return redirect('labeling-new.html', user_id = user_id, project_name = project_name, project_id = project_id, labels_color_map = labels_color_map, ISODate = ISODate)
     
-    user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "gcp_bucket_dict.$.original_images_normalized_dataset": label_record_item } })
+    user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "models.$.classification_models": label_record_item } })
 
 
 
