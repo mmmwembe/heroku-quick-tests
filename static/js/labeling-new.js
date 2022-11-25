@@ -1640,8 +1640,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 },
             success: function(data) {
 
-                alert('---------------- get_active_project_and_show_label_buckets()----------------')
-                get_active_project_and_show_label_buckets()
+                // alert('---------------- get_active_project_and_show_label_buckets()----------------')
+                // get_active_project_and_show_label_buckets()
+                // OPTIMIZE OPTIMIZE OPTIMIZE
 
                 Show_or_Hide_Progress_Bar("hide")
 
