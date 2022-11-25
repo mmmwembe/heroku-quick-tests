@@ -1763,19 +1763,27 @@ def train_model():
 
     if request.method =='POST':
         
+        # user_id = request.form['user_id']
         project_id = request.form['project_id']
-        model_type = request.form['model_type']
+        model_type = request.form['model_type']        
         time_submitted = request.form['time_submitted']
         labels_for_training = request.form['labels_for_training']
-        model_name = request.form['model_name']
-        
+        model_name = request.form['model_name']      
+              
         model_id = uuid.uuid4().hex
 
-		# create project item
+		# create model item
+        model_item = {
+          '_id':  model_id,   
+          'project_js_id': project_id,
+          'user_id': session["user"]["_id"],
+          'labels_for_training': labels_for_training,
+          'model_name':  model_id,
+  		  }
+        
 
-                    
-    return jsonify(model=model_type)
-
+          
+    return jsonify(model_item = model_item)
 
 
 if __name__ == '__main__':
