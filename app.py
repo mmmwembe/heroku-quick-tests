@@ -1780,7 +1780,10 @@ def train_model():
           'model_name':  model_name,
           'model_type': model_type,
           'model_url': '',
-          'time_submitted': time_submitted,
+          'date_submitted': time_submitted,
+          'time_training_started':'',
+          'time_training_finished':'',
+          'images_root_dir': session["user"]["user_images_subdir"],
   		  }
         
 
