@@ -537,8 +537,10 @@ for(let i = 0; i < label_divs.length; i++) {
 
        function post_sub_training_request(model_type, labels_for_training, time_submitted_isodate, model_name){
 
-        var first_label = labels_for_training[0]
-        var project_id = first_label.split('/')[0]
+        var first_label = labels_for_training[0].split('/')
+        var project_id = first_label[0]
+
+        alert('project_id : ' + project_id)
     
         $.ajax({
             type: "POST",
