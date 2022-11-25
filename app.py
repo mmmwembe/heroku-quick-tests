@@ -1779,6 +1779,8 @@ def train_model():
           'training_images_hash_array':'',
           'model_name':  model_name,
           'model_type': model_type,
+          'model_url': '',
+          'time_submitted': time_submitted,
   		  }
         
 
