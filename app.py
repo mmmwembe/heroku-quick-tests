@@ -1788,7 +1788,7 @@ def train_model():
         for x in array_labels_for_training:
           project_label_path_array = x.split('/')
           label = project_label_path_array[1] 
-          labels_full_path_dict[label] = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_subdir"],x)
+          labels_full_path_dict[label] = os.path.join("gs://", session["user"]["gcp_bucket_dict"]["bucket_name"], session["user"]["gcp_bucket_dict"]["user_images_subdir"],x)
         
 		# create model item
         model_item = {
@@ -1805,7 +1805,7 @@ def train_model():
           'time_training_started':'',
           'time_training_finished':'',
           'training_status':'',
-          'images_root_dir': session["user"]["gcp_bucket_dict"]["user_images_subdir"], 
+          'images_root_dir': os.path.join("gs://", session["user"]["gcp_bucket_dict"]["bucket_name"] , session["user"]["gcp_bucket_dict"]["user_images_subdir"]), 
           'models_root_dir': models_root_dir, 
           'colab_python_file_url': '',
   		  }
