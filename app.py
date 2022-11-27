@@ -1818,9 +1818,11 @@ def train_model():
         # user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "models.$.classification_models": model_item } }, upsert = True)
         
         sum = colab_add_two_numbers(100,100)
+        
+        colab_notebook = create_colab_notebook(model_item)
 
           
-    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum)
+    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook = colab_notebook)
 
 
 if __name__ == '__main__':
