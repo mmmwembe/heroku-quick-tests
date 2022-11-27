@@ -1820,7 +1820,7 @@ def train_model():
         sum = colab_add_two_numbers(100,100)
 
           
-    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict)
+    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum)
 
 
 if __name__ == '__main__':
