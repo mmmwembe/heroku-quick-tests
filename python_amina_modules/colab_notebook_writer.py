@@ -116,7 +116,7 @@ def create_colab_notebook(data, user_id):
     
     filepath = "tmp/{}/amina-train-image-classifier.ipynb.".format(user_id)
     
-    nb.write(nb, filepath, version=nb.NO_CONVERT)
+    nbf.write(nb, filepath, version=nbf.NO_CONVERT)
     
     return filepath
 
