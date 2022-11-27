@@ -1820,12 +1820,12 @@ def train_model():
         sum = colab_add_two_numbers(100,100)
         
         colab_notebook_url = create_colab_notebook(model_item, session["user"]["_id"])
-        nb = nbf.v4.new_notebook()
-        colab_notebook = nbf.read(open(colab_notebook_url),as_version=nbf.NO_CONVERT)
+        # nb = nbf.v4.new_notebook()
+        # colab_notebook = nbf.read(open(colab_notebook_url),as_version=nbf.NO_CONVERT)
         
 
           
-    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook = colab_notebook)
+    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  colab_notebook_url)
 
 
 if __name__ == '__main__':
