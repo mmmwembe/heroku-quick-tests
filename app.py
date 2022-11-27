@@ -1821,7 +1821,7 @@ def train_model():
         
         colab_notebook_url = create_colab_notebook(model_item, session["user"]["_id"])
         nb = nbf.v4.new_notebook()
-        colab_notebook = nbf.read(colab_notebook_url)
+        colab_notebook = nbf.read(open(colab_notebook_url),as_version=nbf.NO_CONVERT)
         
 
           
