@@ -31,6 +31,8 @@ import time
 from passlib.hash import pbkdf2_sha256
 import nbformat as nbf
 
+from python_amina_modules.colab_notebook_writer import *
+
 
 #===========================================================
 # USER DIRECTORIES
@@ -1815,6 +1817,7 @@ def train_model():
         # insert colab file path into model_item path
         # user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "models.$.classification_models": model_item } }, upsert = True)
         
+        sum = colab_add_two_numbers(100,100)
 
           
     return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict)
