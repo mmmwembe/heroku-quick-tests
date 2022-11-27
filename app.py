@@ -380,11 +380,27 @@ def update_user_info_variables():
 	#	except:
 	#		pass
 
-
-
-
-
 # GCP_STORAGE_TARGET_PATH = os.path.join(path, "Downloads", "file.txt", "/home")
+
+def upload_colab_notebook_to_gcp(notebook_filepath, model_id):
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	user_colab_notebooks_dir = session["user"]["gcp_bucket_dict"]["user_colab_notebooks"]
+ 
+	client = storage.Client()
+	bucket = client.get_bucket(bucket_name)
+	sub_dir_path_with_active_folder = os.path.join(user_colab_notebooks_dir,model_id)
+
+	with open(notebook_filepath) as file:
+		# colab_notebook = nbf.read(file, as_version=4)
+		filename = secure_filename(file.filename) 
+		blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+		blob = bucket.blob(blob_full_path)
+		file.seek(0)
+		blob.upload_from_string(file.read(), content_type=file.content_type)
+		blob_public_url = blob.public_url 
+		gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+   
+	return gcs_url   
 
 
 def upload_files_to_gcp(name_of_bucket, subdir_path, active_folder, files_to_upload, allowed_file_types):
@@ -586,7 +602,8 @@ def create_user_account():
 			'user_models_classification_subdir': 'users/{}/user-models-classification'.format(my_user_id),
 			'user_models_detection_subdir': 'users/{}/user-models-detection'.format(my_user_id),
 			'user_all_images_explorer': '',
-			'user_local_models_tmp_dir': 'users/{}/tmp_models'.format(my_user_id)
+			'user_local_models_tmp_dir': 'users/{}/tmp_models'.format(my_user_id),
+   		'user_colab_notebooks': 'users/{}/colab_notebooks'.format(my_user_id)
 
 		}
        
@@ -1286,8 +1303,8 @@ def create_new_project():
 				'number_cropped_images': '',
 				'number_augmentation_images':'',
 				'original_images_normalized_dataset': '', 
-    			'cropped_image_normalized_dataset': '',    
-    			'all_jpeg_normalized_dataset': '',          
+    		'cropped_image_normalized_dataset': '',    
+    		'all_jpeg_normalized_dataset': '',          
 				'original_image_label_jsons': [],
 				'all_jpeg_image_label_jsons': [],
 				'augmentation_image_label_jsons': [],     
@@ -1820,14 +1837,17 @@ def train_model():
         sum = colab_add_two_numbers(100,100)
         
         colab_notebook_url = create_colab_notebook(model_item, session["user"]["_id"])
-        with open(colab_notebook_url) as f:
-          colab_notebook = nbf.read(f, as_version=4)
+        
+        gcp_url = upload_colab_notebook_to_gcp(colab_notebook_url, model_id)
+        
+        #with open(colab_notebook_url) as f:
+        #  colab_notebook = nbf.read(f, as_version=4)
         # nb = nbf.v4.new_notebook()
         # colab_notebook = nbf.read(open(colab_notebook_url),as_version=nbf.NO_CONVERT)
         
 
           
-    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  colab_notebook)
+    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  gcp_url)
 
 
 if __name__ == '__main__':
