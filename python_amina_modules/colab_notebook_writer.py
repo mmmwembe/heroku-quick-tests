@@ -114,7 +114,7 @@ def create_colab_notebook(data):
         nbf.v4.new_markdown_cell(text10), nbf.v4.new_code_cell(code10)                           
         ]
     
-    return nb.writes(nb)
+    return nb
 
 # nbformat.writes(nb, version=nbformat.NO_CONVERT, capture_validation_error=None, **kwargs)
 # Write a notebook to a string in a given format in the given nbformat version.  
