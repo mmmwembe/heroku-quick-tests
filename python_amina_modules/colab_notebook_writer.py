@@ -4,7 +4,7 @@ def colab_add_two_numbers(a,b):
     return a + b
 
 
-def create_colab_notebook(data):
+def create_colab_notebook(data, user_id):
     
     nb = nbf.v4.new_notebook()
     
@@ -114,7 +114,11 @@ def create_colab_notebook(data):
         nbf.v4.new_markdown_cell(text10), nbf.v4.new_code_cell(code10)                           
         ]
     
-    return nb
+    filepath = "/tmp/{}/amina-train-image-classifier.ipynb.".format(user_id)
+    
+    nb.write(nb, filepath, version=nb.NO_CONVERT)
+    
+    return filepath
 
 # nbformat.writes(nb, version=nbformat.NO_CONVERT, capture_validation_error=None, **kwargs)
 # Write a notebook to a string in a given format in the given nbformat version.  
