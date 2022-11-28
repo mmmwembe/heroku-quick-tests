@@ -603,7 +603,7 @@ def create_user_account():
 			'user_models_detection_subdir': 'users/{}/user-models-detection'.format(my_user_id),
 			'user_all_images_explorer': '',
 			'user_local_models_tmp_dir': 'users/{}/tmp_models'.format(my_user_id),
-   		'user_colab_notebooks': 'users/{}/colab_notebooks'.format(my_user_id)
+   		'user_colab_notebooks': 'users/{}/colab_notebooks'.format(my_user_id),
 
 		}
        
@@ -1263,7 +1263,7 @@ def create_new_project():
         'labels': labels,
         'active_label': '',
         'active_project_id' : '',
-        'models': {'user_id': session["user"]["_id"], 'classification_models': [], 'object_detection_models': [],'audio_classification_models': []}
+        'models': {'user_id': session["user"]["_id"], 'classification_models': [], 'object_detection_models': [],'audio_classification_models': []},
   		}
         
                     

@@ -1622,6 +1622,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
 
     function post_project_json_info(user_id, project_name, project_id, labels_color_map, iso_date,num_images,labeled_images,all_labeled_true_false, labels_string_format){
+
+        alert('line 1626 ' + user_id + '/n' +  project_name+ '/n' + project_id+ '/n' + labels_color_map+ '/n' + iso_date,num_images+ '/n' + labeled_images+ '/n' + all_labeled_true_false+ '/n' + labels_string_format)
     
         $.ajax({
             type: "POST",
