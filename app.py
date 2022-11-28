@@ -2,9 +2,9 @@ from flask import Flask, render_template, session, redirect, url_for, request, j
 from werkzeug.utils import secure_filename
 from flask_bootstrap import Bootstrap
 from functools import wraps
-from flask_pymongo import PyMongo
 import pymongo
 from pymongo import MongoClient
+from flask_pymongo import PyMongo
 import json
 from google.cloud import storage 
 import uuid
@@ -65,7 +65,11 @@ bootstrap = Bootstrap(app)
 # blueprintObj = Blueprint("blueprintObject", __name__, template_folder='templates')
 
 try:
-  cluster = MongoClient(os.environ["MONGODB_URL"])
+  # cluster = MongoClient(os.environ["MONGODB_URL"])
+  # cluster = MongoClient(os.environ["MONGODB_URL"])
+  mongodb_client = PyMongo(app, uri="mongodb://localhost:27017/todo_db")
+  cluster = mongodb_client.db
+
 except:
   pass
 
