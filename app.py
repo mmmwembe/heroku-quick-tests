@@ -67,8 +67,8 @@ bootstrap = Bootstrap(app)
 try:
   # cluster = MongoClient(os.environ["MONGODB_URL"])
   # cluster = MongoClient(os.environ["MONGODB_URL"])
-  mongodb_client = PyMongo(app, uri=os.environ["MONGODB_URL"])
-  cluster = mongodb_client.db
+  cluster = PyMongo(app, uri=os.environ["MONGODB_URL"])
+  #cluster = mongodb_client.db
 
 except:
   pass
