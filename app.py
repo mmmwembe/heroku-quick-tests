@@ -66,9 +66,9 @@ bootstrap = Bootstrap(app)
 
 try:
   # cluster = MongoClient(os.environ["MONGODB_URL"])
-  # cluster = MongoClient(os.environ["MONGODB_URL"])
-  mongodb_client = PyMongo(app, uri=os.environ["MONGODB_URL"])
-  cluster = mongodb_client.db
+  cluster = MongoClient(os.environ["MONGODB_URL"])
+  # mongodb_client = PyMongo(app, uri=os.environ["MONGODB_URL"])
+  # cluster = mongodb_client.db
 
 except:
   pass
@@ -676,7 +676,7 @@ def login():
     
     # email = request.form.get('email')
     
-    user = cluster.users_collection.find_one({
+    user = users_collection.find_one({
 
       "email": request.form.get('email')
 
