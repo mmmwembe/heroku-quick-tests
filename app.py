@@ -1856,7 +1856,7 @@ def train_model():
         
         
         
-        # gcp_url = upload_colab_notebook_to_gcp(colab_notebook_url, model_id)
+        gcp_url = upload_colab_notebook_to_gcp(filepath, model_id)
         
         #with open(colab_notebook_url) as f:
         #  colab_notebook = nbf.read(f, as_version=4)
@@ -1865,7 +1865,7 @@ def train_model():
         
 
           
-    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  filepath)
+    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  gcp_url)
 
 
 if __name__ == '__main__':
