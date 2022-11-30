@@ -1860,20 +1860,29 @@ def train_model():
         client = storage.Client()
         bucket = client.get_bucket(bucket_name)
         sub_dir_path_with_active_folder = os.path.join(user_colab_notebooks_dir,model_id)
+        blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+        blob = bucket.blob(blob_full_path) 
         
-        colab_notebook=''
+              
+        notebook_data = nbf.writes(nb, version=nbf.NO_CONVERT)
+        blob = bucket.blob(blob_full_path)
+        blob.upload_from_string(notebook_data, "application/x-ipynb+json")
+        blob_public_url = blob.public_url 
+        gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path) 
         
-        with open(filepath) as file:
-          colab_notebook = nbf.read(file, as_version=4) 
+        #colab_notebook=''
+        
+        #with open(filepath) as file:
+          #colab_notebook = nbf.read(file, as_version=4) 
           #filename = secure_filename(file.filename) 
-          blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
-          blob = bucket.blob(blob_full_path)
+          #blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+          #blob = bucket.blob(blob_full_path)
           # file.seek(0)
           # content_type=file.content_type
           # blob.upload_from_string(file.read(), content_type=file.content_type)
-          blob.upload_from_string(colab_notebook, "application/x-ipynb+json")
-          blob_public_url = blob.public_url 
-          gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)     
+          #blob.upload_from_string(colab_notebook, "application/x-ipynb+json")
+          #blob_public_url = blob.public_url 
+          #gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)     
         
         # gcp_url = upload_colab_notebook_to_gcp(filepath, model_id)
         
