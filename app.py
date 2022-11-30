@@ -33,6 +33,7 @@ import nbformat as nbf
 
 from python_amina_modules.colab_notebook_writer import *
 import tempfile
+import shutil
 
 
 #===========================================================
