@@ -388,6 +388,26 @@ def update_user_info_variables():
 
 # GCP_STORAGE_TARGET_PATH = os.path.join(path, "Downloads", "file.txt", "/home")
 
+def save_colab_notebook_to_gcp(nb, filename, model_id):
+  
+  bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+  user_colab_notebooks_dir = session["user"]["gcp_bucket_dict"]["user_colab_notebooks"]
+  
+  client = storage.Client()
+  bucket = client.get_bucket(bucket_name)
+  sub_dir_path_with_active_folder = os.path.join(user_colab_notebooks_dir,model_id)
+  blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+  blob = bucket.blob(blob_full_path) 
+    
+  notebook_data = nbf.writes(nb, version=nbf.NO_CONVERT)
+  blob = bucket.blob(blob_full_path)
+  blob.upload_from_string(notebook_data, "application/x-ipynb+json")
+  blob_public_url = blob.public_url 
+  gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+  
+  return gcs_url 
+
+
 def upload_colab_notebook_to_gcp(notebook_filepath, model_id):
 	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
 	user_colab_notebooks_dir = session["user"]["gcp_bucket_dict"]["user_colab_notebooks"]
@@ -1852,23 +1872,28 @@ def train_model():
         
         nb = create_colab_notebook(model_item, session["user"]["_id"])
         
-        nbf.write(nb, filepath)
+        gcs_url = save_colab_notebook_to_gcp(nb, filename, model_id)
+        
+        model_item['colab_python_file_url'] = gcs_url
+        
+        
+        # nbf.write(nb, filepath)
         
         # upload file to gcp
-        bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
-        user_colab_notebooks_dir = session["user"]["gcp_bucket_dict"]["user_colab_notebooks"]
-        client = storage.Client()
-        bucket = client.get_bucket(bucket_name)
-        sub_dir_path_with_active_folder = os.path.join(user_colab_notebooks_dir,model_id)
-        blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
-        blob = bucket.blob(blob_full_path) 
+        #bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+        #user_colab_notebooks_dir = session["user"]["gcp_bucket_dict"]["user_colab_notebooks"]
+        #client = storage.Client()
+        #bucket = client.get_bucket(bucket_name)
+        #sub_dir_path_with_active_folder = os.path.join(user_colab_notebooks_dir,model_id)
+        #blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+        #blob = bucket.blob(blob_full_path) 
         
               
-        notebook_data = nbf.writes(nb, version=nbf.NO_CONVERT)
-        blob = bucket.blob(blob_full_path)
-        blob.upload_from_string(notebook_data, "application/x-ipynb+json")
-        blob_public_url = blob.public_url 
-        gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path) 
+        #notebook_data = nbf.writes(nb, version=nbf.NO_CONVERT)
+        #blob = bucket.blob(blob_full_path)
+        #blob.upload_from_string(notebook_data, "application/x-ipynb+json")
+        #blob_public_url = blob.public_url 
+        #gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path) 
         
         #colab_notebook=''
         
