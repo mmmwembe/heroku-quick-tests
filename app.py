@@ -1874,10 +1874,10 @@ def train_model():
         
         gcs_url = save_colab_notebook_to_gcp(nb, filename, model_id)
         
-        model_item['colab_python_file_url'] = gcs_url
+        # model_item['colab_python_file_url'] = gcs_url
         
         # Delete the temp file
-        shutil.rmtree(filepath)
+        # shutil.rmtree(filepath)
         
         
         # nbf.write(nb, filepath)
