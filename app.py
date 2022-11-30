@@ -1854,10 +1854,25 @@ def train_model():
         
         nbf.write(nb, filepath)
         
+        # upload file to gcp
+        bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+        user_colab_notebooks_dir = session["user"]["gcp_bucket_dict"]["user_colab_notebooks"]
+        client = storage.Client()
+        bucket = client.get_bucket(bucket_name)
+        sub_dir_path_with_active_folder = os.path.join(user_colab_notebooks_dir,model_id)
+        
         colab_notebook=''
         
-        with open(filepath) as f:
-          colab_notebook = nbf.read(f, as_version=4)      
+        with open(filepath) as file:
+          colab_notebook = nbf.read(file, as_version=4) 
+          filename = secure_filename(file.filename) 
+          blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
+          blob = bucket.blob(blob_full_path)
+          file.seek(0)
+          content_type=file.content_type
+          blob.upload_from_string(file.read(), content_type=file.content_type)
+          blob_public_url = blob.public_url 
+          gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)     
         
         # gcp_url = upload_colab_notebook_to_gcp(filepath, model_id)
         
@@ -1868,7 +1883,7 @@ def train_model():
         
 
           
-    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  colab_notebook)
+    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  content_type)
 
 
 if __name__ == '__main__':
