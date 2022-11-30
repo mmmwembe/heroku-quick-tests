@@ -1865,7 +1865,7 @@ def train_model():
         
         with open(filepath) as file:
           colab_notebook = nbf.read(file, as_version=4) 
-          filename = secure_filename(file.filename) 
+          #filename = secure_filename(file.filename) 
           blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
           blob = bucket.blob(blob_full_path)
           file.seek(0)
