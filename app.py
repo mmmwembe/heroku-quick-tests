@@ -1876,6 +1876,9 @@ def train_model():
         
         model_item['colab_python_file_url'] = gcs_url
         
+        # Delete the temp file
+        shutil.rmtree(filepath)
+        
         
         # nbf.write(nb, filepath)
         
