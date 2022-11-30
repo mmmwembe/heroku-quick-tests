@@ -32,6 +32,7 @@ from passlib.hash import pbkdf2_sha256
 import nbformat as nbf
 
 from python_amina_modules.colab_notebook_writer import *
+import tempfile
 
 
 #===========================================================
@@ -1839,9 +1840,20 @@ def train_model():
         # insert colab file path into model_item path
         # user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "models.$.classification_models": model_item } }, upsert = True)
         
+        dir_name = "{}-".format(session["user"]["_id"])  
+        
+        tmp_dir = tempfile.mkdtemp(prefix=dir_name) # create temp_directory
+        filename = "amina-train-image-classifier.ipynb"
+        filepath = os.path.join(tmp_dir, filename)  
+        
+        
         sum = colab_add_two_numbers(100,100)
         
-        colab_notebook_url = create_colab_notebook(model_item, session["user"]["_id"])
+        nb = create_colab_notebook(model_item, session["user"]["_id"])
+        
+        nbf.write(nb, filepath)
+        
+        
         
         # gcp_url = upload_colab_notebook_to_gcp(colab_notebook_url, model_id)
         
@@ -1852,7 +1864,7 @@ def train_model():
         
 
           
-    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  colab_notebook_url)
+    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  filepath)
 
 
 if __name__ == '__main__':

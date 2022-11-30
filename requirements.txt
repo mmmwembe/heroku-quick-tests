@@ -51,3 +51,4 @@ six
 uritemplate
 urllib3
 nbformat
+tempfile
