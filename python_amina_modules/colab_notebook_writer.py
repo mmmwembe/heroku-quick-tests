@@ -115,12 +115,14 @@ def create_colab_notebook(data, user_id):
         ]
     
     # filepath = "/tmp/{}/amina-train-image-classifier.ipynb".format(user_id)
-    filepath = "amina-train-image-classifier-{}.ipynb".format(user_id) 
+    filepath = "amina-train-image-classifier-{}.ipynb".format(user_id)  
     
     # nbf.write(nb, filepath)
     # nbf.write(nb, filepath, version=nbf.NO_CONVERT)
     
-    return filepath
+    return nb
+    #return filepath
+
 
 # nbformat.writes(nb, version=nbformat.NO_CONVERT, capture_validation_error=None, **kwargs)
 # Write a notebook to a string in a given format in the given nbformat version.  
