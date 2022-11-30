@@ -1868,9 +1868,10 @@ def train_model():
           #filename = secure_filename(file.filename) 
           blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
           blob = bucket.blob(blob_full_path)
-          file.seek(0)
+          # file.seek(0)
           content_type=file.content_type
-          blob.upload_from_string(file.read(), content_type=file.content_type)
+          # blob.upload_from_string(file.read(), content_type=file.content_type)
+          blob.upload_from_string(colab_notebook, content_type=file.content_type)
           blob_public_url = blob.public_url 
           gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)     
         
