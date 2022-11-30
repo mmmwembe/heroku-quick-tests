@@ -1879,6 +1879,8 @@ def train_model():
   		  }        
         
         # nbf.write(nb, filepath)
+        # Update the classification models in projects
+        user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id}, { "$push": { "models.classification_models": model_item } })
         
         # upload file to gcp
         #bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
