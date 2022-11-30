@@ -1869,9 +1869,9 @@ def train_model():
           blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
           blob = bucket.blob(blob_full_path)
           # file.seek(0)
-          content_type=file.content_type
+          # content_type=file.content_type
           # blob.upload_from_string(file.read(), content_type=file.content_type)
-          blob.upload_from_string(colab_notebook, content_type=file.content_type)
+          blob.upload_from_string(colab_notebook, "application/x-ipynb+json")
           blob_public_url = blob.public_url 
           gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)     
         
@@ -1884,7 +1884,7 @@ def train_model():
         
 
           
-    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  content_type)
+    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  gcs_url)
 
 
 if __name__ == '__main__':
