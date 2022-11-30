@@ -1850,7 +1850,7 @@ def train_model():
         
         # sum = colab_add_two_numbers(100,100)
         filename = "amina-train-image-classifier.ipynb"       
-        nb = create_colab_notebook(model_item, session["user"]["_id"])
+        nb = create_colab_notebook(labels_full_path_dict, session["user"]["_id"])
         gcs_url = save_colab_notebook_to_gcp(nb, filename, model_id)
         
         # model_item["colab_python_file_url"] = gcs_url
