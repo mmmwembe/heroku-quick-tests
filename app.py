@@ -1813,8 +1813,7 @@ def train_model():
         model_type = request.form['model_type']        
         time_submitted = request.form['time_submitted']
         labels_for_training = request.form['labels_for_training']
-        model_name = request.form['model_name']      
-              
+        model_name = request.form['model_name']              
         model_id = uuid.uuid4().hex
         
         if model_type=="classification":
@@ -1836,6 +1835,29 @@ def train_model():
           label = project_label_path_array[1] 
           labels_full_path_dict[label] = os.path.join("gs://", session["user"]["gcp_bucket_dict"]["bucket_name"], session["user"]["gcp_bucket_dict"]["user_images_subdir"],x)
         
+
+        
+        # save colab python file and return URL
+        
+        # insert colab file path into model_item path
+        # user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "models.$.classification_models": model_item } }, upsert = True)
+
+
+        # dir_name = "{}-".format(session["user"]["_id"])  
+        # tmp_dir = tempfile.mkdtemp(prefix=dir_name) # create temp_directory
+
+        # filepath = os.path.join(tmp_dir, filename)  
+        
+        # sum = colab_add_two_numbers(100,100)
+        filename = "amina-train-image-classifier.ipynb"       
+        nb = create_colab_notebook(model_item, session["user"]["_id"])
+        gcs_url = save_colab_notebook_to_gcp(nb, filename, model_id)
+        
+        # model_item["colab_python_file_url"] = gcs_url
+        
+        # Delete the temp file
+        # shutil.rmtree(filepath)
+
 		# create model item
         model_item = {
           '_id':  model_id,   
@@ -1853,32 +1875,8 @@ def train_model():
           'training_status':'',
           'images_root_dir': os.path.join("gs://", session["user"]["gcp_bucket_dict"]["bucket_name"] , session["user"]["gcp_bucket_dict"]["user_images_subdir"]), 
           'models_root_dir': models_root_dir, 
-          'colab_python_file_url': '',
-  		  }
-        
-        # save colab python file and return URL
-        
-        # insert colab file path into model_item path
-        # user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "models.$.classification_models": model_item } }, upsert = True)
-        
-        dir_name = "{}-".format(session["user"]["_id"])  
-        
-        tmp_dir = tempfile.mkdtemp(prefix=dir_name) # create temp_directory
-        filename = "amina-train-image-classifier.ipynb"
-        filepath = os.path.join(tmp_dir, filename)  
-        
-        
-        sum = colab_add_two_numbers(100,100)
-        
-        nb = create_colab_notebook(model_item, session["user"]["_id"])
-        
-        gcs_url = save_colab_notebook_to_gcp(nb, filename, model_id)
-        
-        # model_item['colab_python_file_url'] = gcs_url
-        
-        # Delete the temp file
-        # shutil.rmtree(filepath)
-        
+          'colab_python_file_url': gcs_url,
+  		  }        
         
         # nbf.write(nb, filepath)
         
@@ -1921,7 +1919,7 @@ def train_model():
         
 
           
-    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = sum, colab_notebook =  gcs_url)
+    return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = session["user"]["_id"],  colab_notebook =  gcs_url)
 
 
 if __name__ == '__main__':
