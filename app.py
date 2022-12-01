@@ -1923,6 +1923,18 @@ def train_model():
           
     return jsonify(model_item = model_item, labels_full_path_dict = labels_full_path_dict, sum = session["user"]["_id"],  colab_notebook =  gcs_url)
 
+@app.route('/train_models/', methods=['POST','GET'])
+def train_models():
+
+	query ={'user_id': session["user"]["_id"]}
+	results = user_projects.find(query)
+	all_projects =[]
+	for result in results:
+		all_projects.append(result) # 
+
+	return jsonify(all_projects = all_projects)
+
+
 
 if __name__ == '__main__':
     
