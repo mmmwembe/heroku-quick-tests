@@ -1864,6 +1864,7 @@ def train_model():
           'project_js_id': project_id,
           'user_id': session["user"]["_id"],
           'labels_for_training': array_labels_for_training,
+          'string_labels_for_training': labels_for_training,
           'labels_full_path_dict': labels_full_path_dict,
           'training_images_hash_array':'',
           'model_name':  model_name,
