@@ -97,6 +97,7 @@
 
             {% set project_id = project['project_js_id'] %}
             {% set labels_color_map = project['labels_color_map'] %}
+            {% set models = project['models'] %}
 
             
 
@@ -107,7 +108,7 @@
               
                  <div class="ScrollStyle" style="height:100%">
 
-                {% for key, value in labels_color_map.items() %}
+                {% for key, value in models.items() %}
 
                 <div style="height: auto; width: auto; margin: 1px; padding: 2px;  border-radius: 10px; border: 5px solid {{value}}  ; text-align: center; font-size: 150%;  color: black;"  id="{{key}}"   class="xLabelClickedClass"  color="{{value}}" label="{{key}}" project_id="{{project_id}}">
                     {{key}}
