@@ -86,8 +86,8 @@
     <table  id="xProjectsTable" class="table table-bordered table-striped">
         <thead class="bg-dark text-white">
           <tr>
-            <th style="width: 15%">Name</th>
-            <th style="width: 55%">Labels</th>
+            <th style="width: 15%">Project</th>
+            <th style="width: 55%">Classification Model</th>
             <th style="width: 15%">Delete</th>
             <th style="width: 15%">Open</th>
           </tr>
@@ -115,11 +115,8 @@
                 {% set colab_python_file_url = model_item['colab_python_file_url'] %}
                 {% set date_submitted = model_item['date_submitted'] %}
 
-                <div style="height: auto; width: auto; margin: 1px; padding: 2px;  border-radius: 10px; border: 5px solid {{value}}  ; text-align: center; font-size: 150%;  color: black;"  id="{{key}}"   class="xLabelClickedClass"  color="{{value}}" label="{{key}}" project_id="{{project_id}}">
-                    {{model_name}}
-                    {{colab_python_file_url}}
-                    {{date_submitted}}                    
-                </div>
+
+                <a href="{{colab_python_file_url}}" class="btn btn-outline-dark btn-lg disabled" role="button" aria-disabled="true" download>{{model_name}}</a>
 
 
                 {% endfor %}
