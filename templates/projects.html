@@ -454,7 +454,7 @@ for(let i = 0; i < label_divs.length; i++) {
             // Submit Training Request for Image Classification Model
             var model_type="classification"
             // var time_submitted_isodate
-            var model_name ="test-model-1"
+            var model_name ="test-model-" + new Date().getTime()
 
             post_training_request(model_type, TRAINING_LABELS, ISODate, model_name)
 
