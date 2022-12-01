@@ -116,7 +116,7 @@
                 {% set date_submitted = model_item['date_submitted'] %}
 
 
-                <a href="{{colab_python_file_url}}" class="btn btn-outline-dark btn-lg disabled" role="button" aria-disabled="true" download>{{model_name}}</a>
+                <a href="{{colab_python_file_url}}" style="width: auto;" class="btn btn-outline-dark btn-lg disabled" role="button" aria-disabled="true" download="{{model_name}}.ipynb">{{model_name}}</a>
 
 
                 {% endfor %}
