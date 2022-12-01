@@ -111,12 +111,16 @@
 
                 {% for model_item in classification_models %}
 
-                {% for key, value in model_item.items() %}
+                {% set model_name = model_item['model_name'] %}
+                {% set colab_python_file_url = model_item['colab_python_file_url'] %}
+                {% set date_submitted = model_item['date_submitted'] %}
 
                 <div style="height: auto; width: auto; margin: 1px; padding: 2px;  border-radius: 10px; border: 5px solid {{value}}  ; text-align: center; font-size: 150%;  color: black;"  id="{{key}}"   class="xLabelClickedClass"  color="{{value}}" label="{{key}}" project_id="{{project_id}}">
-                    {{key}}
+                    {{model_name}}
+                    {{colab_python_file_url}}
+                    {{date_submitted}}                    
                 </div>
-                {% endfor %}
+
 
                 {% endfor %}
                 
