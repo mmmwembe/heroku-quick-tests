@@ -1931,9 +1931,20 @@ def train_models():
 	all_projects =[]
 	for result in results:
 		all_projects.append(result) # 
+	# return jsonify(all_projects = all_projects)
+	return render_template('training-models.html', all_projects = all_projects)
+
+
+@app.route('/get_train_models/', methods=['POST','GET'])
+def get_train_models():
+
+	query ={'user_id': session["user"]["_id"]}
+	results = user_projects.find(query)
+	all_projects =[]
+	for result in results:
+		all_projects.append(result) # 
 
 	return jsonify(all_projects = all_projects)
-
 
 
 if __name__ == '__main__':
