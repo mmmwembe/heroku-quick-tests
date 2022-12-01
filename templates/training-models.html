@@ -116,7 +116,7 @@
                 {% set date_submitted = model_item['date_submitted'] %}
 
 
-                <a id="{{model_name}}" href="{{colab_python_file_url}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" role="button" aria-disabled="true" download="{{model_name}}.ipynb" model_url="{{colab_python_file_url}}">{{model_name}}</a>
+                <a id="{{model_name}}" href="{{colab_python_file_url}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" role="button" aria-disabled="true"  model_url="{{colab_python_file_url}}">{{model_name}}</a>
 
 
                 {% endfor %}
@@ -287,11 +287,16 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
     classification_model_urls[i].addEventListener("click", function(e) {
 
+     e.preventDefault();
+        
+
       var model_id = e.target.id
 
       var model_url = $('#'+model_id).attr('model_url')
 
-      alert('model_url : ' + model_url)
+      // alert('model_url : ' + model_url)
+
+      window.location.href = model_url;
 
 
 
