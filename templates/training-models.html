@@ -320,10 +320,11 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
       // readFile(model_url)
 
-    fetch(model_url)
-    .then( r => r.text() )
-    .then( t => {let CONTENT = t; alert(' t value : ' + JSON.stringify(t))} )
-
+      fetch(model_url)
+        .then((res) => { return res.blob(); })
+        .then((data) => {
+            alert('data :' + JSON.stringify(data))
+      });
 
 
 
