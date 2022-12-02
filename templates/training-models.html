@@ -309,12 +309,12 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
       // window.location.href = model_url;
 
-      // let CONTENT =''
-      // fetch(model_url).then((r)=>{r.text().then((d)=>{CONTENT = d})})
+      let CONTENT =''
+      fetch(model_url).then((r)=>{r.text().then((d)=>{CONTENT = d})})
 
-      alert('model_url ' + model_url)
+      alert('CONTENT ' + JSON.stringify(CONTENT))
 
-      readFile(model_url)
+      // readFile(model_url)
 
 
 
