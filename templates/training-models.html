@@ -324,12 +324,19 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
       // readFile(model_url)
 
-      
+      fetch(model_url, { headers: {'Content-Type': 'application/x-ipynb+json'},
+        responseType: 'blob'
+        }).then(response => response.blob())
+        .then(blob => saveAs(blob, 'amina-train-image-classifier.ipynb'));
+
+      /*
       fetch(model_url)
         .then((res) => { return res.blob(); })
         .then((data) => {
             alert('data :' + JSON.stringify(data))
       });
+
+      */
 
 
 
