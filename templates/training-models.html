@@ -116,7 +116,7 @@
                 {% set date_submitted = model_item['date_submitted'] %}
 
 
-                <input  id="{{model_name}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" model_url="{{colab_python_file_url}}" type="submit" value="{{model_name}}">
+                <input id="{{model_name}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" model_url="{{colab_python_file_url}}" type="submit" value="{{model_name}}">
 
                 {% endfor %}
                 
@@ -305,14 +305,16 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
       var model_url = $('#'+model_id).attr('model_url')
 
-      alert('model_url : ' + model_url)
+      // alert('model_url : ' + model_url)
 
       // window.location.href = model_url;
 
-      let CONTENT =''
-      fetch(model_url).then((r)=>{r.text().then((d)=>{CONTENT = d})})
+      FileSaver.saveAs(model_url, model_id);
 
-      alert('CONTENT ' + JSON.stringify(CONTENT))
+      // let CONTENT =''
+      //fetch(model_url).then((r)=>{r.text().then((d)=>{CONTENT = d})})
+
+      // alert('CONTENT ' + JSON.stringify(CONTENT))
 
       // readFile(model_url)
 
