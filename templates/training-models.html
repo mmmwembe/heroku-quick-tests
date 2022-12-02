@@ -287,7 +287,7 @@ const reader = (file) => {
 }
 
 const readFile = (file) => {
-    reader(file).then(result => console.log(result));
+    reader(file).then(result => alert('the big one: ' + result));
 }
 
 
@@ -299,7 +299,7 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
     classification_model_urls[i].addEventListener("click", function(e) {
 
-     e.preventDefault();
+     // e.preventDefault();
         
       var model_id = e.target.id
 
@@ -309,10 +309,12 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
       // window.location.href = model_url;
 
-      let CONTENT =''
-      fetch(model_url).then((r)=>{r.text().then((d)=>{CONTENT = d})})
+      // let CONTENT =''
+      // fetch(model_url).then((r)=>{r.text().then((d)=>{CONTENT = d})})
 
-    alert('CONTENT ' + JSON.stringify(CONTENT))
+      alert('model_url ' + model_url)
+
+      // readFile(model_url)
 
 
 
