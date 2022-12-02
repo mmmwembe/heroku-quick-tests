@@ -309,8 +309,10 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
       // window.location.href = model_url;
 
-      FileSaver.saveAs(model_url, model_id);
+      image_url = "https://storage.googleapis.com/amina-files/users/ac3b286ac0d64beca1fb390e2dbd9a4a/user-images/lb4erxnellb10nmcby/American_Rabbit/American-Rabbit.jpg"
 
+      //FileSaver.saveAs(model_url, model_id);
+      FileSaver.saveAs(image_url, "image.jpg");
       // let CONTENT =''
       //fetch(model_url).then((r)=>{r.text().then((d)=>{CONTENT = d})})
 
