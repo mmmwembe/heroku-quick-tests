@@ -305,7 +305,7 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
       var model_url = $('#'+model_id).attr('model_url')
 
-      // alert('model_url : ' + model_url)
+      alert('model_url : ' + model_url)
 
       // window.location.href = model_url;
 
@@ -320,13 +320,14 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
       // readFile(model_url)
 
+      /*
       fetch(model_url)
         .then((res) => { return res.blob(); })
         .then((data) => {
             alert('data :' + JSON.stringify(data))
       });
 
-
+     */
 
 
   });
