@@ -325,7 +325,7 @@ for(let i = 0; i < classification_model_urls.length; i++) {
                    alert('notebook url : ' + JSON.stringify(data.filepath))
                    alert('notebook contents : ' + JSON.stringify(data.colab_notebook))
 
-                   var file = new Blob([data.colab_notebook], { type: 'application/x-ipynb+json' });
+                   var file = new Blob([JSON.stringify(data.colab_notebook)], { type: 'application/x-ipynb+json' });
                    saveAs(file, "new-image-classifer.ipynb");
 
 
