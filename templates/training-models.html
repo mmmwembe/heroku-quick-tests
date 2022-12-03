@@ -112,6 +112,7 @@
                 {% for model_item in classification_models %}
 
                 {% set model_name = model_item['model_name'] %}
+                {% set model_id = model_item['model_id'] %}
                 {% set colab_python_file_url = model_item['colab_python_file_url'] %}
                 {% set date_submitted = model_item['date_submitted'] %}
 
