@@ -2008,7 +2008,7 @@ def download_colab_notebook():
 	#blob = bucket.blob(blob_full_path)
 	#contents = blob.download_as_string()
  
-	notebook_contents = os.environ["GOOGLE_CREDENTIALS"]
+	# notebook_contents = os.environ["GOOGLE_CREDENTIALS"]
  
 	# notebook_contents = download_colab_notebook_into_memory(filename, model_id)
  
