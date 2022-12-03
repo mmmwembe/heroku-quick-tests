@@ -8,11 +8,11 @@ def create_colab_notebook(data, user_id):
     
     nb = nbf.v4.new_notebook()
     
-    text1 = """\ 1) Change the processor from CPU to GPU. Runtime > Change runtime type > GPU."""
+    text1 = """ 1) Change the processor from CPU to GPU. Runtime > Change runtime type > GPU."""
     
-    text2 = """\ 2) Install and Import Modules needed. """  
+    text2 = """ 2) Install and Import Modules needed. """  
       
-    code2 = """\ 
+    code2 = """ 
         from IPython.display import clear_output
         !pip install tflite-model-maker-nightly
         !pip install tflite-support-nightly
@@ -32,13 +32,13 @@ def create_colab_notebook(data, user_id):
         # Clear output
         clear_output()      
         """
-    text3 = """\ 3) Data - Assign labels and GCP directories of labels """ 
+    text3 = """ 3) Data - Assign labels and GCP directories of labels """ 
            
-    code3 = """\ data = {}""".format(data)     
+    code3 = """data = {}""".format(data)     
     
-    text4 = """\ 4) Define Helper Functions """ 
+    text4 = """ 4) Define Helper Functions """ 
            
-    code4 = """\ 
+    code4 = """
     def copy_from_gcp_bucket_to_cwd(data, data_url):
         for label in data:
             bucket = data[label] +  '/*';
@@ -46,9 +46,9 @@ def create_colab_notebook(data, user_id):
             !gsutil -m cp -r {bucket} {destination_dir}
     """ 
     
-    text5 = """\ 5) Set working directory, parent_folder_name, tflite_model_name and then get create parent directory and subdirectories (data/label1...data/label5...) and model directory. """ 
+    text5 = """ 5) Set working directory, parent_folder_name, tflite_model_name and then get create parent directory and subdirectories (data/label1...data/label5...) and model directory. """ 
            
-    code5 = """\ 
+    code5 = """ 
         cwd = os.getcwd()
         parent_dir_name ="amina-classifier"
         tflite_filename ='model.tflite'
@@ -70,30 +70,30 @@ def create_colab_notebook(data, user_id):
 
         clear_output()     
     """ 
-    text6 = """\ 6) Load input data specific to an on‐device ML app. Split data """ 
+    text6 = """ 6) Load input data specific to an on‐device ML app. Split data """ 
            
-    code6 = """\ 
+    code6 = """ 
         data = DataLoader.from_folder(DATA_URL)
         train_data, test_data = data.split(0.9)
     """     
-    text7 = """\ 7) Customize/Train the TensorFlow model.""" 
+    text7 = """ 7) Customize/Train the TensorFlow model.""" 
            
-    code7 = """\ 
+    code7 = """ 
         model = image_classifier.create(train_data)
     """                  
-    text8 = """\ 8) Evaluate the model.""" 
+    text8 = """ 8) Evaluate the model.""" 
            
-    code8 = """\ 
+    code8 = """ 
         loss, accuracy = model.evaluate(test_data)
     """        
-    text9 = """\ 9) Export to Tensorflow Lite model and label file in `export_dir`.""" 
+    text9 = """ 9) Export to Tensorflow Lite model and label file in `export_dir`.""" 
            
-    code9 = """\ 
+    code9 = """ 
         model.export(export_dir = MODEL_DIR, tflite_filename = tflite_filename)
     """                 
-    text10 = """\ 10) Using tflite-support get labels from tflite model metadata """ 
+    text10 = """ 10) Using tflite-support get labels from tflite model metadata """ 
            
-    code10 = """\ 
+    code10 = """ 
         model_url = os.path.join(MODEL_DIR,tflite_filename)
         final_label_list, string_label_list = amina.get_labels_from_metadata(model_url)
         print('final_label_list', final_label_list)

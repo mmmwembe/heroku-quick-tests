@@ -2014,8 +2014,13 @@ def download_colab_notebook():
  
  
 	filepath = download_file_from_gcp(filename, model_id)      
+ 
+	with open(filepath) as f:
+		colab_notebook = nbf.read(f, as_version=4)
+		#nb = nbf.v4.new_notebook()
+		#colab_notebook = nbf.read(open(colab_notebook_url),as_version=nbf.NO_CONVERT)
 
-	return jsonify(filepath = filepath)
+	return jsonify(filepath = filepath, colab_notebook = colab_notebook)
 
 if __name__ == '__main__':
     

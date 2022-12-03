@@ -313,6 +313,7 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
 
       alert(' filename : ' + filename + ' model_id : ' + model_id)
+      //application/x-ipynb+json
 
         $.ajax({
                 type: "POST",
@@ -323,16 +324,16 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
                    alert('notebook url : ' + JSON.stringify(data.filepath))
                    alert('notebook contents : ' + JSON.stringify(data.colab_notebook))
-                    var file_URL = data.filepath
-                    var oReq = new XMLHttpRequest();
-                    oReq.open("GET", file_URL, true);
+
+                   var oReq = new XMLHttpRequest();
+                   var URLToPDF = "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf";
+                    oReq.open("GET", URLToPDF, true);
                     oReq.responseType = "blob";
                     oReq.onload = function() {
-                        var file = new Blob([oReq.response], { type: 'application/x-ipynb+json' });
-                        saveAs(file, filename);  // Generate file download directly in the browser !
+                        var file = new Blob([oReq.response], { type: 'application/pdf' });
+                        saveAs(file, "mypdffilename.pdf");
                     };
-
-                    oReq.send();
+                    oReq.send();                   
 
                 }
         });
