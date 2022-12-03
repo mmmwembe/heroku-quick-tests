@@ -322,7 +322,8 @@ for(let i = 0; i < classification_model_urls.length; i++) {
                 data: { 'filename' : filename, 'model_id': model_id},
                 success: function(data) { 
 
-                   alert('notebook url : ' + JSON.stringify(data.filepath))
+                   alert('notebook url : ' + data.filepath)
+                   alert('notebook tmp_dir : ' + data.tmp_dir)
                    alert('notebook contents : ' + JSON.stringify(data.colab_notebook))
 
                    var file = new Blob([JSON.stringify(data.colab_notebook)], { type: 'application/x-ipynb+json' });
@@ -741,7 +742,7 @@ for(let i = 0; i < label_divs.length; i++) {
                 type: "POST",
                 url: '/delete_tmp_file',
                 dataType: 'json',
-                data: { 'filepath' : tmp_dir},
+                data: { 'tmp_dir' : tmp_dir},
                 success: function(data) { 
                    alert('Response from Server : ' + data.result)
                 }
