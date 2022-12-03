@@ -409,7 +409,7 @@ def download_file_from_gcp(filename, model_id):
   # save file in tmp directory
   blob.download_to_filename(filepath)
   
-  return filepath
+  return filepath,tmp_dir
 
 
 def download_colab_notebook_into_memory(filename, model_id):
@@ -2012,15 +2012,31 @@ def download_colab_notebook():
  
 	# notebook_contents = download_colab_notebook_into_memory(filename, model_id)
  
+         # Delete the temp file
+        # shutil.rmtree(filepath)
  
-	filepath = download_file_from_gcp(filename, model_id)      
+ 
+	filepath,tmp_dir = download_file_from_gcp(filename, model_id)      
  
 	with open(filepath) as f:
 		colab_notebook = nbf.read(f, as_version=4)
 		#nb = nbf.v4.new_notebook()
 		#colab_notebook = nbf.read(open(colab_notebook_url),as_version=nbf.NO_CONVERT)
 
-	return jsonify(filepath = filepath, colab_notebook = colab_notebook)
+	return jsonify(filepath = filepath, colab_notebook = colab_notebook, tmp_dir = tmp_dir)
+
+@app.route('/delete_tmp_file', methods=['POST','GET'])
+def delete_tmp_file():
+
+	# filepath = request.form['filepath']
+	tmp_dir = request.form['tmp_dir']
+  # Delete temp directory and all files in it
+	shutil.rmtree(tmp_dir)
+ 
+	# shutil.rmtree(filepath)
+	return jsonify(result="temp directory deleted")
+
+
 
 if __name__ == '__main__':
     

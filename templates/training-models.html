@@ -326,10 +326,12 @@ for(let i = 0; i < classification_model_urls.length; i++) {
                    alert('notebook contents : ' + JSON.stringify(data.colab_notebook))
 
                    var file = new Blob([JSON.stringify(data.colab_notebook)], { type: 'application/x-ipynb+json' });
-                   saveAs(file, "new-image-classifer.ipynb");
+                   saveAs(file, filename);
+
+                   delete_tmp_file(data.tmp_dir)
 
 
-
+                    /*
                    var oReq = new XMLHttpRequest();
                    var URLToPDF = data.filepath // "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf";
                     oReq.open("GET", URLToPDF, true);
@@ -338,7 +340,9 @@ for(let i = 0; i < classification_model_urls.length; i++) {
                         var file = new Blob([oReq.response], { type: 'application/x-ipynb+json' });
                         saveAs(file, filename);
                     };
-                    oReq.send();                   
+                    oReq.send();       
+                    
+                    */
 
                 }
         });
@@ -730,6 +734,20 @@ for(let i = 0; i < label_divs.length; i++) {
 
     }
 
+
+    function delete_tmp_file(tmp_dir){
+
+        $.ajax({
+                type: "POST",
+                url: '/delete_tmp_file',
+                dataType: 'json',
+                data: { 'filepath' : tmp_dir},
+                success: function(data) { 
+                   alert('Response from Server : ' + data.result)
+                }
+        });
+
+    }
 
 
 
