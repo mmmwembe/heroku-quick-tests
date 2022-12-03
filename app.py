@@ -1970,20 +1970,9 @@ def download_colab_notebook():
 	model_id = request.form['model_id']
 	filename = request.form['filename']
  
-	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
-	user_colab_notebooks_dir = session["user"]["gcp_bucket_dict"]["user_colab_notebooks"]
+	notebook_contents = download_colab_notebook_into_memory(filename, model_id)      
 
-	storage_client = storage.Client()
-
-	bucket = storage_client.bucket(bucket_name)
-	sub_dir_path_with_active_folder = os.path.join(user_colab_notebooks_dir,model_id)
-	blob_full_path = os.path.join(sub_dir_path_with_active_folder, filename)
- 
- 
- 
-	# notebook_contents = download_colab_notebook_into_memory(filename, model_id)      
-
-	return jsonify(notebook_contents = blob_full_path)
+	return jsonify(notebook_contents = notebook_contents)
 
 if __name__ == '__main__':
     
