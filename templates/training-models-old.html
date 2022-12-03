@@ -110,61 +110,21 @@
                  <div class="ScrollStyle" style="height:100%">
 
 
+                    
 
-                  <table id="xInnerTable" class="table table-bordered table-striped">
-                    <thead class="bg-dark text-white">
-                      <tr>
-                        <th>#</th>
-                        <th>Model Name</th>
-                        <th>Tflite Model</th>        
-                        <th>Model Version</th>        
-                        <th>Test Model</th>    
-                        <th>Colab Notebook</th>     
-                        <th>Training Status</th>
-                        <th>Date Trained</th>        
-                        <th>Delete</th>    
-                        <th>Share</th>   
-                      </tr>
-                    </thead>
-                    <tbody id="innerTableBody">
+                {% for model_item in classification_models %}
+
+                {% set model_name = model_item['model_name'] %}
+                {% set model_id = model_item['_id'] %}
+                {% set colab_python_file_url = model_item['colab_python_file_url'] %}
+                {% set date_submitted = model_item['date_submitted'] %}
 
 
-                      {% for model_item in classification_models %}
+                <input id="{{model_id}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}">
 
-                      {% set model_name = model_item['model_name'] %}
-                      {% set model_id = model_item['_id'] %}
-                      {% set colab_python_file_url = model_item['colab_python_file_url'] %}
-                      {% set date_submitted = model_item['date_submitted'] %}
-
-
-                      <tr>
-                        <td>{{loop.index}}</td>
-                        <td>{{model_name}}</td>
-                        <td></td>        
-                        <td></td>        
-                        <td></td>    
-                        <td><input id="{{model_id}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}"></td>     
-                        <td></td>
-                        <td></td>        
-                        <td style="text-align: center; vertical-align: middle;">
-                          <div class="form-group">
-                            <input type="hidden" id="delete_model_item{{loop.index}}" value="{{ model_id }}">
-                            <button type="submit" id="{{ model_id }}-delete_model_item-{{loop.index}}" model_id ="{{ project_id }}" class="xDeleteModelItemBtnClass" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
-                         </div>
-                        </form>
-                      </td>   
-                        <td>Share</td>  
-                      </tr>
-
-                      {% endfor %}
-
-                    </tbody>
-                  </table>  
-
-
-
-
-                </div> <!---End of "ScrollStyle" Class--->
+                {% endfor %}
+                
+                </div>
 
             </td>
 
