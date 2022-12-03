@@ -326,11 +326,11 @@ for(let i = 0; i < classification_model_urls.length; i++) {
                    alert('notebook contents : ' + JSON.stringify(data.colab_notebook))
 
                    var oReq = new XMLHttpRequest();
-                   var URLToPDF = "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf";
+                   var URLToPDF = data.filepath // "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf";
                     oReq.open("GET", URLToPDF, true);
                     oReq.responseType = "blob";
                     oReq.onload = function() {
-                        var file = new Blob([oReq.response], { type: 'application/pdf' });
+                        var file = new Blob([oReq.response], { type: 'application/x-ipynb+json' });
                         saveAs(file, "mypdffilename.pdf");
                     };
                     oReq.send();                   
