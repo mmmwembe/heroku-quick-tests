@@ -321,7 +321,7 @@ for(let i = 0; i < classification_model_urls.length; i++) {
                 data: { 'filename' : filename, 'model_id': model_id},
                 success: function(data) { 
 
-                   // alert('notebook contents : ' + JSON.stringify(data.filepath))
+                   alert('notebook contents : ' + JSON.stringify(data.colab_notebook))
                     var file_URL = data.filepath
                     var oReq = new XMLHttpRequest();
                     oReq.open("GET", file_URL, true);
