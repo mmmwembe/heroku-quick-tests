@@ -136,14 +136,14 @@
                       {% set colab_python_file_url = model_item['colab_python_file_url'] %}
                       {% set date_submitted = model_item['date_submitted'] %}
 
-
+                       <!----btn btn-outline-dark btn-lg xClassifcationModelClass-->
                       <tr>
                         <td>{{loop.index}}</td>
                         <td>{{model_name}}</td>
                         <td></td>        
                         <td></td>        
                         <td></td>    
-                        <td><input id="{{model_id}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}"></td>     
+                        <td style="text-align: center; vertical-align: middle;"><input id="{{model_id}}" style="background:url('/static/project-icons/google-colab-logo.svg'); width: 64px; height: 64px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}"></td>     
                         <td></td>
                         <td></td>        
                         <td style="text-align: center; vertical-align: middle;">
