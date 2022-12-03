@@ -321,7 +321,17 @@ for(let i = 0; i < classification_model_urls.length; i++) {
                 data: { 'filename' : filename, 'model_id': model_id},
                 success: function(data) { 
 
-                    alert('notebook contents : ' + JSON.stringify(data.notebook_contents))
+                   // alert('notebook contents : ' + JSON.stringify(data.filepath))
+                    var file_URL = data.filepath
+                    var oReq = new XMLHttpRequest();
+                    oReq.open("GET", file_URL, true);
+                    oReq.responseType = "blob";
+                    oReq.onload = function() {
+                        var file = new Blob([oReq.response], { type: 'application/x-ipynb+json' });
+                        saveAs(file, filename);  // Generate file download directly in the browser !
+                    };
+
+                    oReq.send();
 
                 }
         });

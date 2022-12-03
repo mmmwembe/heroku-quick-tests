@@ -2015,7 +2015,7 @@ def download_colab_notebook():
  
 	filepath = download_file_from_gcp(filename, model_id)      
 
-	return jsonify(notebook_contents = filepath)
+	return jsonify(filepath = filepath)
 
 if __name__ == '__main__':
     
