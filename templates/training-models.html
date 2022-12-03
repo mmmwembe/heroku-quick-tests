@@ -117,7 +117,7 @@
                 {% set date_submitted = model_item['date_submitted'] %}
 
 
-                <input id="{{model_name}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}">
+                <input id="{{model_id}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}">
 
                 {% endfor %}
                 
@@ -303,11 +303,14 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
      // e.preventDefault();
         
-      var filename = e.target.id
+      var model_name = e.target.id
 
-      var model_url = $('#'+filename).attr('model_url')
+      var model_url = $('#'+model_name).attr('model_url')
 
-      var model_id = $('#'+filename).attr('model_id')
+      var model_id = $('#'+model_name).attr('model_id')
+
+      var filename = model_url.substring(model_url.lastIndexOf('/')+1);
+
 
       alert(' filename : ' + filename + ' model_id : ' + model_id)
 
