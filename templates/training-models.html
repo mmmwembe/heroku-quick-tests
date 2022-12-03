@@ -666,34 +666,50 @@ for(let i = 0; i < label_divs.length; i++) {
     }
 
 
-
-
-    var oReq = new XMLHttpRequest();
-    // The Endpoint of your server 
     var URLToPDF = "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf";
+    var mime_type = 'application/octet-stream'
+    var file_name_with_ext = "mypdffilename.pdf"
 
-    // Configure XMLHttpRequest
-    oReq.open("GET", URLToPDF, true);
+    download_file_from_url(URLToPDF, mime_type, file_name_with_ext)
 
-    // Important to use the blob response type
-    oReq.responseType = "blob";
+    var colab_file_url = "https://storage.googleapis.com/amina-files/users/ac3b286ac0d64beca1fb390e2dbd9a4a/colab_notebooks/065717cfe71a46aaa41918dc81a27ff0/amina-train-image-classifier.ipynb"
+    var mime_type = 'application/octet-stream'
+    var file_name_with_ext = "image_classifier.ipynb"
 
-    // When the file request finishes
-    // Is up to you, the configuration for error events etc.
-    oReq.onload = function() {
-        // Once the file is downloaded, open a new window with the PDF
-        // Remember to allow the POP-UPS in your browser
-        var file = new Blob([oReq.response], { 
-            type: 'application/pdf' 
-        });
+    
+    download_file_from_url(colab_file_url, mime_type, file_name_with_ext)
+
+
+    function download_file_from_url(url, mime_type, file_name_with_ext){
+
+        // https://ourcodeworld.com/articles/read/545/how-to-trigger-the-direct-download-of-a-pdf-with-javascript
+
+        var oReq = new XMLHttpRequest();
+        // The Endpoint of your server 
         
-        // Generate file download directly in the browser !
-        saveAs(file, "mypdffilename.pdf");
-    };
 
-    oReq.send();
+        // Configure XMLHttpRequest
+        oReq.open("GET", url, true);
 
+        // Important to use the blob response type
+        oReq.responseType = "blob";
 
+        // When the file request finishes
+        // Is up to you, the configuration for error events etc.
+        oReq.onload = function() {
+            // Once the file is downloaded, open a new window with the PDF
+            // Remember to allow the POP-UPS in your browser
+            var file = new Blob([oReq.response], { 
+                type: mime_type 
+            });
+            
+            // Generate file download directly in the browser !
+            saveAs(file, filename_with_ext);
+        };
+
+        oReq.send();
+
+    }
 
 
 
