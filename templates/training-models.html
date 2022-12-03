@@ -116,7 +116,7 @@
                 {% set date_submitted = model_item['date_submitted'] %}
 
 
-                <input id="{{model_name}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" model_url="{{colab_python_file_url}}" type="submit" value="{{model_name}}">
+                <input id="{{model_name}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}">
 
                 {% endfor %}
                 
@@ -302,9 +302,32 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
      // e.preventDefault();
         
-      var model_id = e.target.id
+      var filename = e.target.id
 
-      var model_url = $('#'+model_id).attr('model_url')
+      var model_url = $('#'+filename).attr('model_url')
+
+      var model_id = $('#'+filename).attr('model_id')
+
+      alert(' filename : ' + filename + ' model_id : ' + model_id)
+
+        $.ajax({
+                type: "POST",
+                url: '/download_colab_notebook',
+                dataType: 'json',
+                data: { 'filename' : filename, 'model_id': model_id},
+                success: function(data) { 
+
+                    alert('notebook contents : ' + JSON.stringify(data.notebook_contents))
+
+                }
+        });
+
+
+
+
+
+
+
 
       // alert('model_url : ' + model_url)
 
@@ -323,13 +346,13 @@ for(let i = 0; i < classification_model_urls.length; i++) {
       // alert('CONTENT ' + JSON.stringify(CONTENT))
 
       // readFile(model_url)
-
+      /*
       fetch(model_url, { headers: {'Content-Type': 'application/x-ipynb+json'},
         responseType: 'blob'
         }).then(response => response.blob())
         .then(blob => saveAs(blob, 'amina-train-image-classifier.ipynb'));
 
-      /*
+
       fetch(model_url)
         .then((res) => { return res.blob(); })
         .then((data) => {
