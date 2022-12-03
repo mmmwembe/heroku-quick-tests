@@ -116,7 +116,7 @@
                 {% set colab_python_file_url = model_item['colab_python_file_url'] %}
                 {% set date_submitted = model_item['date_submitted'] %}
 
-                <a href="{{colab_python_file_url}}" download=""></a>
+                <a href="{{colab_python_file_url}}" download="">{{model_name}}</a>
                 <input id="{{model_id}}" style="width: 100%; margin-top: 10px;" class="btn btn-outline-dark btn-lg xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}">
 
                 {% endfor %}
