@@ -173,3 +173,12 @@ Snowing
 Sun glare
 Sun in view
 
+Diatoms
+Achnanthidium
+Caloneis
+Chamaepinnularia
+Craticula
+Cymbopleura
+Navicula
+Neidium
+
