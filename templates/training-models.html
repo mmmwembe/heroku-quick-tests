@@ -153,7 +153,13 @@
                          </div>
                         </form>
                       </td>   
-                        <td>Share</td>  
+                      <td style="text-align: center; vertical-align: middle;">
+                        <div class="form-group">
+                          <input type="hidden" id="share_model_item{{loop.index}}" value="{{ model_id }}">
+                          <button type="submit" id="{{ model_id }}-share_model_item-{{loop.index}}" model_id ="{{ project_id }}" class="xShareModelItemBtnClass" style="background:url('/static/project-icons/icons8-share.svg'); width: 64px; height: 64px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+                       </div>
+                      </form>
+                    </td> 
                       </tr>
 
                       {% endfor %}
