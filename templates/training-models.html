@@ -56,10 +56,10 @@
         <div class="row" style="text-align: center;">
   
         <div class="col-sm">
-            
+          <button id="dashboard_btn" type="button" class="btn btn-outline-dark">Dashboard</button>
         </div>
         <div class="col-sm">
-            <button id="dashboard_btn" type="button" class="btn btn-outline-dark">Dashboard</button>
+          <button id="user_projects_btn" type="button" class="btn btn-outline-dark">My Projects</button>
         </div>
         <div class="col-sm">
     
@@ -485,6 +485,13 @@ function gotoDashboard() {
 }
 
 
+document.getElementById("user_projects_btn").addEventListener("click", gotoUserProjects);
+
+function gotoUserProjects() {
+  // alert(' You licked sign-out')
+  window.location.href = "/choose_project/";
+}
+
 
 
 
@@ -751,9 +758,9 @@ for(let i = 0; i < label_divs.length; i++) {
                 },
             success: function(data) {
 
-              alert(' model request - from Server : ' + JSON.stringify(data.labels_full_path_dict))
-              alert(' sum of two numbers a and b : ' +  data.sum)
-              alert(' Colab notebook : ' +  JSON.stringify(data.colab_notebook))
+              // alert(' model request - from Server : ' + JSON.stringify(data.labels_full_path_dict))
+              // alert(' sum of two numbers a and b : ' +  data.sum)
+              // alert(' Colab notebook : ' +  JSON.stringify(data.colab_notebook))
 
             }
             

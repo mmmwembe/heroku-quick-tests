@@ -1556,7 +1556,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 var server_user_id = data.user_id
                 var server_project_name = data.project_name
                 var server_project_id = data.project_id
-                // alert('user id: ' + server_user_id)
+                alert('line 1559 user id: ' + server_user_id)
                 // alert('server project name: ' + server_project_name)
                 // alert('server project id: ' + server_project_id )
                 
@@ -3095,7 +3095,7 @@ function add_gallery_column(img_url,counter, labelled_imgs){
         var img_index = $(this).attr('image_index'); 
         var image_url = $(this).attr('image_url');  
         IMAGE_URL = $(this).attr('image_url');       
-        alert("Line 3042 URL of image clicked : " + image_url + '\n' + 'div clicked : '  + img_clicked + '\n' +  " image index: " + img_index ) 
+        // alert("Line 3042 URL of image clicked : " + image_url + '\n' + 'div clicked : '  + img_clicked + '\n' +  " image index: " + img_index ) 
         // -----------------------------------------------------------------------------------------------------------
         //        updateFabricCanvasBackgroundImage(img_url)  Update Canvas Background from Thumbnail
         //------------------------------------------------------------------------------------------------------------
