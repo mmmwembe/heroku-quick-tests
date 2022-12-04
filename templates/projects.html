@@ -325,7 +325,7 @@ $.ajax({
         }
 
         else {
-            alert('You have no projects mate!')
+            alert('You have no projects!')
         }
 
     }
@@ -554,9 +554,9 @@ for(let i = 0; i < label_divs.length; i++) {
                 },
             success: function(data) {
 
-              alert(' model request - from Server : ' + JSON.stringify(data.labels_full_path_dict))
-              alert(' sum of two numbers a and b : ' +  data.sum)
-              alert(' Colab notebook : ' +  JSON.stringify(data.colab_notebook))
+              //alert(' model request - from Server : ' + JSON.stringify(data.labels_full_path_dict))
+              //alert(' sum of two numbers a and b : ' +  data.sum)
+              //alert(' Colab notebook : ' +  JSON.stringify(data.colab_notebook))
 
               location.href = "/train_models/"
 

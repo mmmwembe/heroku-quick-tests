@@ -1623,7 +1623,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
     function post_project_json_info(user_id, project_name, project_id, labels_color_map, iso_date,num_images,labeled_images,all_labeled_true_false, labels_string_format){
 
-        alert('line 1626 ' + user_id + '/n' +  project_name+ '/n' + project_id+ '/n' + labels_color_map+ '/n' + iso_date,num_images+ '/n' + labeled_images+ '/n' + all_labeled_true_false+ '/n' + labels_string_format)
+        // alert('line 1626 ' + user_id + '/n' +  project_name+ '/n' + project_id+ '/n' + labels_color_map+ '/n' + iso_date,num_images+ '/n' + labeled_images+ '/n' + all_labeled_true_false+ '/n' + labels_string_format)
     
         $.ajax({
             type: "POST",
@@ -1647,6 +1647,10 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
                 // OPTIMIZE OPTIMIZE OPTIMIZE
 
                 Show_or_Hide_Progress_Bar("hide")
+
+                // Get active project and show label buckets
+
+                get_active_project_and_show_label_buckets()
 
                 /*
                 var active_project_result = data.active_project_result
@@ -2921,7 +2925,7 @@ function new_create_label_buckets(data){
 
         //}
 
-        document.getElementById('cropped_images_label_buckets_container').appendChild(new_row)
+        document.getElementById('label_buckets_container').appendChild(new_row)
 
     }
 

@@ -162,3 +162,14 @@ Flemish Giant
 Hare
 Lionhead
 
+
+Smoke Dust Clear Foggy Precipitation
+Clear
+Dust
+Foggy
+Raining
+Smoke
+Snowing
+Sun glare
+Sun in view
+
