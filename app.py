@@ -2049,7 +2049,7 @@ def delete_model_item():
   
 	colab_url = request.form['colab_url']
 	model_name = request.form['model_name'] 
-	url_segments = colab_url.split('model_name')
+	url_segments = colab_url.rpartition('/')
 	gcp_dir = url_segments[0]
  
 	#query ={'user_id': session["user"]["_id"]}
