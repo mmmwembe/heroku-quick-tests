@@ -56,13 +56,13 @@
         <div class="row" style="text-align: center;">
   
         <div class="col-sm">
+
+        </div>
+        <div class="col-sm">
           <button id="dashboard_btn" type="button" class="btn btn-outline-dark">Dashboard</button>
         </div>
         <div class="col-sm">
-          <button id="user_projects_btn" type="button" class="btn btn-outline-dark">My Projects</button>
-        </div>
-        <div class="col-sm">
-    
+          <button id="user_projects_btn" type="button" class="btn btn-outline-dark">My Projects</button> 
         </div>
         <div class="col-sm">
             <button id="sign_out_btn" type="button" class="btn btn-outline-dark">Sign Out</button>
@@ -137,14 +137,14 @@
                       {% set date_submitted = model_item['date_submitted'] %}
                       {% set labels = model_item['string_labels_for_training'] %}
                       {% set model_type = model_item['model_type'] %}
-                       <!----btn btn-outline-dark btn-lg xClassifcationModelClass-->
+                       <!----btn btn-outline-dark btn-lg xClassificationModelClass-->
                       <tr>
                         <td style="text-align: center; vertical-align: middle;">{{loop.index}}</td>
                         <td style="text-align: center; vertical-align: middle;">{{model_name}}</td>
                         <td style="text-align: center; vertical-align: middle;"><input id="{{model_id}}" style="background:url('/static/project-icons/model_with_download.svg'); width: 108px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xTfliteModelClass"  model_download_url=""  model_id="{{model_id}}" type="submit" value=""></td>      
                         <!--td></td-->        
                         <td style="text-align: center; vertical-align: middle;"><input id="{{model_id}}" style="background:url('/static/project-icons/icons8-test-passed-50.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xTestModelClass" model_download_url=""  model_id="{{model_id}}" type="submit" value=""></td> 
-                        <td style="text-align: center; vertical-align: middle;"><input id="{{model_id}}" style="background:url('/static/project-icons/google-colab-with-download.svg'); width: 108px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}"></td>     
+                        <td style="text-align: center; vertical-align: middle;"><input id="{{model_id}}" style="background:url('/static/project-icons/google-colab-with-download.svg'); width: 108px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xClassificationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}"></td>     
                         <td><p><small class="text-muted">labels go here</small></p></td>
                         <!--td></td-->        
                         <td style="text-align: center; vertical-align: middle;">
@@ -369,7 +369,7 @@ const readFile = (file) => {
 */
 
 
-classification_model_urls = document.getElementsByClassName('xClassifcationModelClass');
+classification_model_urls = document.getElementsByClassName('xClassificationModelClass');
 
 for(let i = 0; i < classification_model_urls.length; i++) {
 
@@ -386,7 +386,7 @@ for(let i = 0; i < classification_model_urls.length; i++) {
       var filename = model_url.substring(model_url.lastIndexOf('/')+1);
 
 
-      alert(' filename : ' + filename + ' model_id : ' + model_id)
+      alert(' filename : ' + filename + ' model_id : ' + model_id +  ' model_url ' + model_url)
       //application/x-ipynb+json
 
         $.ajax({
@@ -396,7 +396,7 @@ for(let i = 0; i < classification_model_urls.length; i++) {
                 data: { 'filename' : filename, 'model_id': model_id},
                 success: function(data) { 
 
-                   // alert('notebook url : ' + data.filepath)
+                   alert('notebook url : ' + data.filepath)
                    // alert('notebook tmp_dir : ' + data.tmp_dir)
                    // alert('notebook contents : ' + JSON.stringify(data.colab_notebook))
 
