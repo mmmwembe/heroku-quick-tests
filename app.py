@@ -2064,11 +2064,14 @@ def delete_model_item():
  
  	# Delete the model_item for model_id retrieved
 	if model_type=="classification":
-		user_projects.update_one({'user_id': session["user"]["_id"],'models.classification_models._id': model_id},{ '$unset': { 'models.classification_models': {'_id': model_id } } })
+		pass
+		#user_projects.update_one({'user_id': session["user"]["_id"],'models.classification_models._id': model_id},{ '$unset': { 'models.classification_models': {'_id': model_id } } })
 	elif model_type=="object detection":
-		user_projects.update_one({'user_id': session["user"]["_id"],'models.object_detection_models._id': model_id},{ '$unset': { 'models.object_detection_models': {'_id': model_id } } }) 
+		pass
+		#user_projects.update_one({'user_id': session["user"]["_id"],'models.object_detection_models._id': model_id},{ '$unset': { 'models.object_detection_models': {'_id': model_id } } }) 
 	elif model_type=="audio classification":
-		user_projects.update_one({'user_id': session["user"]["_id"],'models.audio_classification_models._id': model_id},{ '$unset': { 'models.audio_classification_models': {'_id': model_id } } })             
+		pass
+		#user_projects.update_one({'user_id': session["user"]["_id"],'models.audio_classification_models._id': model_id},{ '$unset': { 'models.audio_classification_models': {'_id': model_id } } })             
 	else  :
 		pass   
 
