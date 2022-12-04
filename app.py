@@ -2057,7 +2057,7 @@ def delete_model_item():
 	#all_projects =[]
 	#for result in results:
 	#	all_projects.append(result) # 
-	return jsonify(gcp_dir = gcp_dir)
+	return jsonify(gcp_dir = gcp_dir, colab_url = colab_url)
 	#return render_template('training-models.html', all_projects = all_projects)
 
 
