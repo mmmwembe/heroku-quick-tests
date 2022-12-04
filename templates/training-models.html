@@ -143,11 +143,16 @@
                       <tr>
                         <td style="text-align: center; vertical-align: middle;">{{loop.index}}</td>
                         <td style="text-align: center; vertical-align: middle;">{{model_name}}</td>
+                        {% if model_latest is defined and variable %}
                         <td style="text-align: center; vertical-align: middle;"><input id="tflite-model-{{model_id}}" style="background:url('/static/project-icons/model_with_download.svg'); width: 108px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xTfliteModelClass"  model_download_url=""  model_id="{{model_id}}" type="submit" value=""></td>      
+                        {% else %}
+                        <td></td>
+                        {% endif %}  
                         <!--td></td--> 
                       {% if model_latest is defined and variable %}
                         <td style="text-align: center; vertical-align: middle;"><input id="test-model-{{model_id}}" style="background:url('/static/project-icons/icons8-test-passed-50.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xTestModelClass" model_download_url=""  model_id="{{model_id}}" type="submit" value=""></td> 
                         {% else %}
+                        <td></td>
                       {% endif %}        
                         <td style="text-align: center; vertical-align: middle;"><input id="colab-file-{{model_id}}" style="background:url('/static/project-icons/google-colab-with-download.svg'); width: 108px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xClassificationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}"></td>     
                         <td><p><small class="text-muted">labels go here</small></p></td>
