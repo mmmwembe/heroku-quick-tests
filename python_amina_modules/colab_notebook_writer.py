@@ -32,7 +32,7 @@ def create_colab_notebook(data, user_id):
     
     nb.cells.append(nbf.v4.new_markdown_cell('\n'.join(['3) Data - Assign labels and GCP directories of labels ']))) 
            
-    nb.cells.append(nbf.v4.new_code_cell('\n'.join(['data ="{}".format(data)'])))   
+    nb.cells.append(nbf.v4.new_code_cell('\n'.join(['data ="{}"'.format(data)])))   
     
     nb.cells.append(nbf.v4.new_markdown_cell('\n'.join(['4) Define Helper Functions ']))) 
            
