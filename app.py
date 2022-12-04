@@ -2083,6 +2083,25 @@ def delete_model_item():
 	#return render_template('training-models.html', all_projects = all_projects)
 
 
+@app.route('/save_trained_model/', methods=['POST'])
+def save_trained_model():
+  
+	#if 'files' not in request.files:
+		#flash('No file part')
+		#return redirect(request.url)
+	#files = request.files.getlist('files')
+ 
+	#user_id = request.form.get('user_id')
+	#project_id = request.form.get('project_id')
+	#model_id = request.form.get('model_id')
+	#model_type = request.form.get('model_type')
+ 
+ 
+	return jsonify(result="success"),200
+
+
+
+
 if __name__ == '__main__':
     
     app.run()

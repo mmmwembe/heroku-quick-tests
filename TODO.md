@@ -6,4 +6,5 @@
 6) Add object detection train models viewer - similar to classification one
 7) Add google image search capability to label bucket
 8) Add audio classification training and testing capabilities
+9) Optimize upload - for large images - perhaps resize then upload
 
