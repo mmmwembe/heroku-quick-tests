@@ -185,33 +185,6 @@
 
             </td>
 
-            <!--td style="text-align: center; vertical-align: middle;">
-                 
-                <div class="form-group">
-                  <input type="hidden" id="delete_project{{loop.index}}" value="{{ project_id }}">
-                  <button type="submit" id="{{ project_id }}-delete_project-{{loop.index}}" project_id ="{{ project_id }}" class="xDeleteProjectBtnClass" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
-               </div>
-            </form>
-            </td>
-            <td>
-                <input type="hidden" id="open_project{{loop.index}}" value="{{ project_id }}">       
-                <button id="{{ project_id }}-open_project_btn-{{loop.index}}" style ="margin-bottom: 10px;" class="btn btn-success xOpenProjectBtnClass" project_id="{{ project_id }}" type="button" class="btn btn-success" onclick="OpenProject(this.id)"><i class="fas fa-edit"></i> Open Project</button> 
-                
-                <div class="ScrollStyle" style="height:100%">
-                  <div class="section_wrapper" style ="width: 100%; margin: auto; border-radius: 8px; box-shadow: 0 3px 10px rgb(100, 100, 100); overflow: hidden;">
-                      <div class="section_header" style="text-align: center; background-color: rgb(25, 121, 211); color: white; padding: 10px;">
-                          <strong>Labels</strong>
-                      </div>
-          
-                      <div id="selected_labels">      
-                      </div>
-                      <button id="train_classifier_model_btn" style="display: block; margin: 10px auto; outline: none; padding: 12px; border: none; background-color: rgb(10, 126, 16);border-radius: 8px; color: white; cursor: pointer; width: auto;"><strong>Train Classification Model</strong></button>
-                      <p class="result"></p>
-                  </div>
-                </div>    
-
-            </td-->
-
            </tr>
            {% endfor %}
         </tbody>
@@ -362,23 +335,6 @@ for(let i = 0; i < open_project_btns.length; i++) {
 }
 
 
-/*
-
-const reader = (file) => {
-    return new Promise((resolve., reject) => {
-        const fileReader = new FileReader();
-        fileReader.onload = () => resolve(fileReader.result);
-        fileReader.readAsDataURL(file);
-    });
-}
-
-const readFile = (file) => {
-    reader(file).then(result => alert('the big one: ' + result));
-}
-
-*/
-
-
 classification_model_urls = document.getElementsByClassName('xClassificationModelClass');
 
 for(let i = 0; i < classification_model_urls.length; i++) {
@@ -395,11 +351,8 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
       var filename = model_url.substring(model_url.lastIndexOf('/')+1);
 
-
-      alert(' filename : ' + filename + ' model_id : ' + model_id +  ' model_url ' + model_url)
+      // alert(' filename : ' + filename + ' model_id : ' + model_id +  ' model_url ' + model_url)
       //application/x-ipynb+json
-
-
 
         $.ajax({
                 type: "POST",
