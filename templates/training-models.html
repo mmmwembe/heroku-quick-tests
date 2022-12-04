@@ -137,13 +137,20 @@
                       {% set date_submitted = model_item['date_submitted'] %}
                       {% set labels = model_item['string_labels_for_training'] %}
                       {% set model_type = model_item['model_type'] %}
+                      {% set model_latest = model_item['model_latest'] %}
+                      
                        <!----btn btn-outline-dark btn-lg xClassificationModelClass-->
                       <tr>
                         <td style="text-align: center; vertical-align: middle;">{{loop.index}}</td>
                         <td style="text-align: center; vertical-align: middle;">{{model_name}}</td>
                         <td style="text-align: center; vertical-align: middle;"><input id="tflite-model-{{model_id}}" style="background:url('/static/project-icons/model_with_download.svg'); width: 108px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xTfliteModelClass"  model_download_url=""  model_id="{{model_id}}" type="submit" value=""></td>      
                         <!--td></td-->        
-                        <td style="text-align: center; vertical-align: middle;"><input id="test-model-{{model_id}}" style="background:url('/static/project-icons/icons8-test-passed-50.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xTestModelClass" model_download_url=""  model_id="{{model_id}}" type="submit" value=""></td> 
+                        <td style="text-align: center; vertical-align: middle;"><input id="test-model-{{model_id}}" style="background:url('/static/project-icons/icons8-test-passed-50.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xTestModelClass" model_download_url=""  model_id="{{model_id}}" type="submit" value=""
+                          {% if model_latest is defined %}
+                            {% else %}
+                                disabled
+                            {% endif %}
+                          ></td> 
                         <td style="text-align: center; vertical-align: middle;"><input id="colab-file-{{model_id}}" style="background:url('/static/project-icons/google-colab-with-download.svg'); width: 108px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xClassificationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}"></td>     
                         <td><p><small class="text-muted">labels go here</small></p></td>
                         <!--td></td-->        
@@ -398,9 +405,9 @@ for(let i = 0; i < classification_model_urls.length; i++) {
                 data: { 'filename' : filename, 'model_id': model_id},
                 success: function(data) { 
 
-                   alert('notebook url : ' + data.filepath)
+                   // alert('notebook url : ' + data.filepath)
                    // alert('notebook tmp_dir : ' + data.tmp_dir)
-                   alert('notebook contents : ' + JSON.stringify(data.colab_notebook))
+                   // alert('notebook contents : ' + JSON.stringify(data.colab_notebook))
 
                    var file = new Blob([JSON.stringify(data.colab_notebook)], { type: 'application/x-ipynb+json' });
                    saveAs(file, filename);
