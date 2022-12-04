@@ -398,7 +398,7 @@ for(let i = 0; i < classification_model_urls.length; i++) {
 
                    alert('notebook url : ' + data.filepath)
                    // alert('notebook tmp_dir : ' + data.tmp_dir)
-                   // alert('notebook contents : ' + JSON.stringify(data.colab_notebook))
+                   lert('notebook contents : ' + JSON.stringify(data.colab_notebook))
 
                    var file = new Blob([JSON.stringify(data.colab_notebook)], { type: 'application/x-ipynb+json' });
                    saveAs(file, filename);
