@@ -2048,17 +2048,38 @@ def delete_tmp_file():
 def delete_model_item():
   
 	colab_url = request.form['colab_url']
-	model_name = request.form['model_name'] 
+	model_name = request.form['model_name']
+	model_id  = request.form['model_id']
+	model_type  = request.form['model_type']
+  
 	url_segments = colab_url.rpartition('/')
-	gcp_dir = url_segments[0]
+	gcp_dir_to_delete = url_segments[0]
  
-	#query ={'user_id': session["user"]["_id"]}
-	#results = user_projects.find(query)
-	#all_projects =[]
-	#for result in results:
-	#	all_projects.append(result) # 
-	return jsonify(gcp_dir = gcp_dir, colab_url = colab_url)
-	#return render_template('training-models.html', all_projects = all_projects)
+ 	# Delete gcp cloud storage subdirectory with the colab file
+	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+	storage_client = storage.Client()
+	bucket = storage_client.bucket(bucket_name)
+	blob = bucket.blob(gcp_dir_to_delete)
+	blob.delete()
+ 
+ 	# Delete the model_item for model_id retrieved
+	if model_type=="classification":
+		user_projects.update_one({'user_id': session["user"]["_id"],'models.classification_models._id': model_id},{ '$unset': { 'models.classification_models': {'_id': model_id } } })
+	elif model_type=="object detection":
+		user_projects.update_one({'user_id': session["user"]["_id"],'models.object_detection_models._id': model_id},{ '$unset': { 'models.object_detection_models': {'_id': model_id } } }) 
+	elif model_type=="audio classification":
+		user_projects.update_one({'user_id': session["user"]["_id"],'models.audio_classification_models._id': model_id},{ '$unset': { 'models.audio_classification_models': {'_id': model_id } } })             
+	else  :
+		pass   
+
+ 	# Update query results for all projects to repopulate train-models table
+	query ={'user_id': session["user"]["_id"]}
+	results = user_projects.find(query)
+	all_projects =[]
+	for result in results:
+		all_projects.append(result) # 
+	# return jsonify(gcp_dir = gcp_dir_to_delete, colab_url = colab_url)
+	return render_template('training-models.html', all_projects = all_projects)
 
 
 if __name__ == '__main__':

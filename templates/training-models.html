@@ -136,7 +136,7 @@
                       {% set colab_python_file_url = model_item['colab_python_file_url'] %}
                       {% set date_submitted = model_item['date_submitted'] %}
                       {% set labels = model_item['string_labels_for_training'] %}
-
+                      {% set model_type = model_item['model_type'] %}
                        <!----btn btn-outline-dark btn-lg xClassifcationModelClass-->
                       <tr>
                         <td style="text-align: center; vertical-align: middle;">{{loop.index}}</td>
@@ -150,7 +150,7 @@
                         <td style="text-align: center; vertical-align: middle;">
                           <div class="form-group">
                             <input type="hidden" id="delete_model_item{{loop.index}}" value="{{ model_id }}">
-                            <button type="submit" id="{{ model_id }}-delete_model_item-{{loop.index}}" model_id ="{{ model_id }}" class="xDeleteModelItemBtnClass" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" colab_url="{{colab_python_file_url}}" model_name="{{model_name}}"></button>
+                            <button type="submit" id="{{ model_id }}-delete_model_item-{{loop.index}}" model_id ="{{ model_id }}" class="xDeleteModelItemBtnClass" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" colab_url="{{colab_python_file_url}}" model_name="{{model_name}}" model_id="{{model_id}}"  model_type="{{model_type}}"></button>
                          </div>
                         </form>
                       </td>   
@@ -268,23 +268,18 @@ $('.xDeleteModelItemBtnClass').on('click', function(e){
   var btn_id = $(this).attr('id')
   var model_name = $('#'+btn_id).attr('model_name')
   var colab_url = $('#'+btn_id).attr('colab_url')
+  var model_id = $('#'+btn_id).attr('model_id')
+  var model_type = $('#'+btn_id).attr('model_type')
 
   $.ajax({
       type: "POST",
       url: '/delete_model_item/',
       dataType: 'json',
-      data: { 'colab_url' : colab_url, 'model_name' : model_name },
+      data: { 'colab_url' : colab_url, 'model_name' : model_name , 'model_id' : model_id , 'model_type' : model_type },
       success: function(data) { 
-
-          alert('gcp_dir : ' + data.gcp_dir + '\n' + 'colab_url : ' + data.colab_url)
-
+          // alert('gcp_dir : ' + data.gcp_dir + '\n' + 'colab_url : ' + data.colab_url)
       }
    });
-
-
-
-
-
 
 
 }); 
