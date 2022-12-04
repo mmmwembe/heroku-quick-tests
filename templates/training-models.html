@@ -140,23 +140,23 @@
                       <tr>
                         <td>{{loop.index}}</td>
                         <td>{{model_name}}</td>
-                        <td></td>        
+                        <td style="text-align: center; vertical-align: middle;"><input id="{{model_id}}" style="background:url('/static/project-icons/model_with_download.svg'); width: 108px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}"></td>      
                         <td></td>        
                         <td></td>    
-                        <td style="text-align: center; vertical-align: middle;"><input id="{{model_id}}" style="background:url('/static/project-icons/google-colab-with-download.svg'); width: 108px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xClassifcationModelClass" model_url="{{colab_python_file_url}}"  model_id="{{model_id}}" type="submit" value="{{model_name}}"></td>     
+                        <td style="text-align: center; vertical-align: middle;"><input id="{{model_id}}" style="background:url('/static/project-icons/google-colab-with-download.svg'); width: 108px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;" class="xTfliteModelClass" model_download_url=""  model_id="{{model_id}}" type="submit" value=""></td>     
                         <td></td>
                         <td></td>        
                         <td style="text-align: center; vertical-align: middle;">
                           <div class="form-group">
                             <input type="hidden" id="delete_model_item{{loop.index}}" value="{{ model_id }}">
-                            <button type="submit" id="{{ model_id }}-delete_model_item-{{loop.index}}" model_id ="{{ project_id }}" class="xDeleteModelItemBtnClass" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+                            <button type="submit" id="{{ model_id }}-delete_model_item-{{loop.index}}" model_id ="{{ model_id }}" class="xDeleteModelItemBtnClass" style="background:url('/static/project-icons/delete-icon-48x48-bluish.png'); width: 50px; height: 50px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                          </div>
                         </form>
                       </td>   
                       <td style="text-align: center; vertical-align: middle;">
                         <div class="form-group">
                           <input type="hidden" id="share_model_item{{loop.index}}" value="{{ model_id }}">
-                          <button type="submit" id="{{ model_id }}-share_model_item-{{loop.index}}" model_id ="{{ project_id }}" class="xShareModelItemBtnClass" style="background:url('/static/project-icons/icons8-share.svg'); width: 64px; height: 64px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
+                          <button type="submit" id="{{ model_id }}-share_model_item-{{loop.index}}" model_id ="{{ model_id }}" class="xShareModelItemBtnClass" style="background:url('/static/project-icons/icons8-share.svg'); width: 48px; height: 48px; background-size: cover; border: none; cursor: pointer; color: transparent;"></button>
                        </div>
                       </form>
                     </td> 

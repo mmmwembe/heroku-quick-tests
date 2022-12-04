@@ -1923,6 +1923,7 @@ def train_model():
           'model_downloads':[],
           'images_root_dir': os.path.join("gs://", session["user"]["gcp_bucket_dict"]["bucket_name"] , session["user"]["gcp_bucket_dict"]["user_images_subdir"]), 
           'models_root_dir': models_root_dir, 
+          'model_latest': '',
           'colab_python_file_url': gcs_url,
   		  }        
         
