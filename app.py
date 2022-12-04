@@ -2074,13 +2074,13 @@ def delete_model_item():
 		pass   
 
  	# Update query results for all projects to repopulate train-models table
-	query ={'user_id': session["user"]["_id"]}
-	results = user_projects.find(query)
-	all_projects =[]
-	for result in results:
-		all_projects.append(result) # 
-	# return jsonify(gcp_dir = gcp_dir_to_delete, colab_url = colab_url)
-	return render_template('training-models.html', all_projects = all_projects)
+	#query ={'user_id': session["user"]["_id"]}
+	#results = user_projects.find(query)
+	#all_projects =[]
+	#for result in results:
+	#	all_projects.append(result) # 
+	return jsonify(gcp_dir = gcp_dir_to_delete, colab_url = colab_url)
+	#return render_template('training-models.html', all_projects = all_projects)
 
 
 if __name__ == '__main__':
