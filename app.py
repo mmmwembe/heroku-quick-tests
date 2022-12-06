@@ -253,6 +253,15 @@ def write_text_to_gcp(user_id, xproject_id, xlabel):
     blob = bucket.blob(blob_full_path)
     blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
 
+
+def write_text_to_gcp_v2(user_id, xproject_id, blob_full_path):
+    bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
+    blob = bucket.blob(blob_full_path)
+    blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
+    return blob.public_url
+
 def write_text_to_gcp_for_user_dir_path(user_info_dir, user_id, xproject_id, xlabel):
     bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
     gcp_subdirectory_path = os.path.join(user_info_dir, xproject_id, xlabel)
@@ -1841,12 +1850,13 @@ def add_label_records():
         # bucket = client.get_bucket(bucket_name)
         
         # write_text_to_gcp_for_user_dir_path(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket)
-        write_text_to_gcp_for_user_dir_path(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], session["user"]["_id"], project_id, active_label_bucket)
+        # write_text_to_gcp_for_user_dir_path(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], session["user"]["_id"], project_id, active_label_bucket)
                 
         # Write Text to json folder to create it before upload of Json
         # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
         # Save JSON to GCP
         # save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
+        blob_full_path = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, project_id + ".txt" )
         
         # save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
         # session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"]
@@ -1866,7 +1876,7 @@ def add_label_records():
         #time.sleep(1)
   #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_image_label_jsons": original_image_label_jsons_dict_from_json_string} })                  
 
-    return jsonify(label_record_item = session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"])          
+    return jsonify(label_record_item = blob_full_path)          
     # return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = user_images_json_files_normalized)
 
 
