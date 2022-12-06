@@ -313,8 +313,9 @@ users_collection = db["user_login_system"]
 pre_approved_email_addresses = db["pre_approved_email_addresses"]
 user_projects = db["user_projects"]
 user_session_data = db["user_session_data"]
-
-
+user_classification_model_session_data = db["user_classification_model_session_data"]
+user_object_detection_session_data = db["user_object_detection_session_data"]
+user_audio_classification_session_data = db["user_audio_classification_session_data"]
 
 
 # "user_images_json_files_normalized": "users/d29fa1462a0e421d8ae59e6c71177002/user-images-json-files-normalized", 
@@ -1802,7 +1803,10 @@ def add_label_records():
         original_image_label_jsons = json.loads(request.form['original_image_label_jsons'])
         # original_image_label_jsons = request.form['original_image_label_jsons']
         # original_image_label_jsons_dict_from_json_string = eval("{0}".format(original_image_label_jsons))        
-        fabric_canvas_json = request.form['original_image_label_jsons']        
+        fabric_canvas_json = request.form['original_image_label_jsons']      
+        
+        
+          
               
         proj_id = uuid.uuid4().hex
 
@@ -1822,23 +1826,28 @@ def add_label_records():
         # gcp_active_directory_file_urls = get_public_url_files_array_from_google_cloud_storage(bucket_name, sub_dir_path_with_active_folder, target_file_types_array)
         # client = storage.Client()
         # bucket = client.get_bucket(bucket_name)
-        write_text_to_gcp_for_user_dir_path(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket)
+        
+        #write_text_to_gcp_for_user_dir_path(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket)
         
         # Write Text to json folder to create it before upload of Json
         # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
         # Save JSON to GCP
         # save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
-        save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
+        
+# save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
         
         
         
         # Update original_images_normalized_dataset for the label
-        user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
+        
+ # user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
+        
         time.sleep(1)        
     	# Update original_images_normalized_dataset for the label
-        user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
+     
+  #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
         #time.sleep(1)
-        #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_image_label_jsons": original_image_label_jsons_dict_from_json_string} })                  
+  #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_image_label_jsons": original_image_label_jsons_dict_from_json_string} })                  
 
           
     return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = user_images_json_files_normalized)
@@ -2095,6 +2104,7 @@ def save_trained_model():
 	#project_id = request.form.get('project_id')
 	#model_id = request.form.get('model_id')
 	#model_type = request.form.get('model_type')
+	pass
  
  
 	return jsonify(result="success"),200
