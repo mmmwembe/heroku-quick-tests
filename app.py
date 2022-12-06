@@ -325,6 +325,14 @@ def save_json_to_gcp_return_url(subdirectory_path, user_id, xproject_id, xlabel,
     
     return blob.public_url
 
+def save_json_to_gcp_return_url_v2(blob_full_path, json_object_to_save): 
+    bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
+    blob = bucket.blob(blob_full_path)
+    blob.upload_from_string(data=json.dumps(json_object_to_save),content_type='application/json')
+    return blob.public_url
+
 
 try:
   create_dir(UPLOAD_FOLDER)
@@ -1874,6 +1882,14 @@ def add_label_records():
           gcp_url = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
         except:
           pass
+        time.sleep(1) 
+                
+        try:
+          blob_full_path_norm = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, active_label_bucket + ".json" )
+          gcp_url_json_norm_data = save_json_to_gcp_return_url_v2(blob_full_path, images_norm_data_label_map_dict_from_json_string)
+        except:
+          pass
+        time.sleep(1)         
         # save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
         # session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"]
         # 
