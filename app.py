@@ -1903,7 +1903,7 @@ def add_label_records():
         
  # user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
         
-        time.sleep(1)        
+      # time.sleep(1)        
     	# Update original_images_normalized_dataset for the label
      
   #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
