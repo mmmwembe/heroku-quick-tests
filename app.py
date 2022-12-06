@@ -262,6 +262,20 @@ def write_text_to_gcp_v2(user_id, blob_full_path):
     blob.upload_from_string("Created by : " + user_id)        
     return blob.public_url
 
+def write_text_to_gcp_v3(user_id, blob_full_path):
+    bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
+    blob = bucket.blob(blob_full_path)
+    # blob.upload_from_string("Created by : " + user_id)
+    if not blob.exists():
+        iso_date = datetime.datetime.now().isoformat()
+        blob.upload_from_string("Created by : " + user_id + " Date : " + iso_date)     
+    else:
+      pass        
+    return blob.public_url
+
+
 def write_text_to_gcp_for_user_dir_path(user_info_dir, user_id, xproject_id, xlabel):
     bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
     gcp_subdirectory_path = os.path.join(user_info_dir, xproject_id, xlabel)
@@ -1873,7 +1887,7 @@ def add_label_records():
         
  # user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
         
-        # time.sleep(1)        
+        time.sleep(1)        
     	# Update original_images_normalized_dataset for the label
      
   #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
