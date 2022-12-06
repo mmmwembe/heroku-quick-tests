@@ -1812,12 +1812,12 @@ def add_label_records():
 
 		# create project item
         label_record_item = {
-			'_id':  proj_id,   
-			'project_js_id': project_id,
-			'user_id': user_id,
-			'labels_color_map': images_norm_data_label_map_dict_from_json_string,
-			'active_label_bucket': active_label_bucket,
-  		}
+          '_id':  proj_id,   
+          'project_js_id': project_id,
+          'user_id': user_id,
+          'labels_color_map': images_norm_data_label_map_dict_from_json_string,
+          'active_label_bucket': active_label_bucket,
+  		 }
         
         # 
         # sub_directory_path = user_images_json_files_normalized
@@ -1849,8 +1849,8 @@ def add_label_records():
         #time.sleep(1)
   #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_image_label_jsons": original_image_label_jsons_dict_from_json_string} })                  
 
-          
-    return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = user_images_json_files_normalized)
+    return jsonify(label_record_item = label_record_item)          
+    # return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = user_images_json_files_normalized)
 
 
 @app.route('/train_model', methods=['POST','GET'])
