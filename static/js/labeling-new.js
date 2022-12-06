@@ -47,8 +47,9 @@ window.addEventListener('load', (event) => {
     var IMAGES_NORM_DATA_LABEL_MAP = {} // IMAGES_NORM_DATA_LABEL_MAP[image_name] = norm_data;
     var LABELLED_IMAGES_ARRAY = []
     var IMAGES_CANVAS_JSONs = {} 
-    var LABEL_BUCKET_CANVAS_JSON={}
-    var CURRENT_THUMBNAILS_ARRAY =[]
+    var LABEL_BUCKET_CANVAS_JSON = {}
+    var CURRENT_THUMBNAILS_ARRAY = []
+    var PROJECT_NORM_DATA_JSONs = {}
 
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
@@ -267,7 +268,7 @@ fabricCanvas.on('mouse:up', function(o){
         // alert('IMAGE_URL line 256 : ' + IMAGE_URL)
     
         norm_data =  {'test_train_validation' : 'TESTING', 'image_url': IMAGE_URL, 'label': current_label, 'norm_x_min': norm_x_min, 'norm_y_min': norm_y_min, 'norm_x_tr' : '', 'norm_y_tr' :'', 'norm_x_max' : norm_x_max, 'norm_y_max' : norm_y_max, 'norm_x_bl': '', 'norm_y_bl':'', 'label_status' : LABEL_STATUS, 'ISODate': iso_date_timestamp }
-        alert(' NORMALIZED DATA ' + JSON.stringify(norm_data))
+        // alert(' NORMALIZED DATA ' + JSON.stringify(norm_data))
 
         rectangle.set({
             'originator': user_id,
@@ -305,6 +306,9 @@ fabricCanvas.on('mouse:up', function(o){
 
            // alert('IMAGES_NORM_DATA_LABEL_MAP ' + JSON.stringify(IMAGES_NORM_DATA_LABEL_MAP))
            // alert(' ACTIVE_LABEL_BUCKET ' + ACTIVE_LABEL_BUCKET)
+           PROJECT_NORM_DATA_JSONs[ACTIVE_LABEL_BUCKET][img_name] = json
+
+           alert(' PROJECT_NORM_DATA_JSONs ' + JSON.stringify(PROJECT_NORM_DATA_JSONs))
 
            post_images_norm_data_label_map(user_id, ACTIVE_PROJECT_ID, ACTIVE_LABEL_BUCKET, IMAGES_NORM_DATA_LABEL_MAP, LABELLED_IMAGES_ARRAY, IMAGES_CANVAS_JSONs)
 
