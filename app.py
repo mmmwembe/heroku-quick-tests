@@ -1840,8 +1840,9 @@ def add_label_records():
         # client = storage.Client()
         # bucket = client.get_bucket(bucket_name)
         
-        #write_text_to_gcp_for_user_dir_path(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket)
-        
+        # write_text_to_gcp_for_user_dir_path(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket)
+        write_text_to_gcp_for_user_dir_path(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], session["user"]["_id"], project_id, active_label_bucket)
+                
         # Write Text to json folder to create it before upload of Json
         # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
         # Save JSON to GCP
@@ -1850,7 +1851,8 @@ def add_label_records():
         # save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
         # session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"]
         # 
-        gcp_url = save_json_to_gcp_return_url(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], session["user"]["_id"], project_id, active_label_bucket,images_norm_data_label_map_dict_from_json_string)        
+        gcp_url ="it wrote the text at least..."
+        # gcp_url = save_json_to_gcp_return_url(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], session["user"]["_id"], project_id, active_label_bucket,images_norm_data_label_map_dict_from_json_string)        
         
         
         # Update original_images_normalized_dataset for the label
