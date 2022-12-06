@@ -254,12 +254,12 @@ def write_text_to_gcp(user_id, xproject_id, xlabel):
     blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
 
 
-def write_text_to_gcp_v2(user_id, xproject_id, blob_full_path):
+def write_text_to_gcp_v2(user_id, blob_full_path):
     bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
     blob = bucket.blob(blob_full_path)
-    blob.upload_from_string("Created by : " + user_id + " Date : " + getISODate())
+    blob.upload_from_string("Created by : " + user_id)
     return blob.public_url
 
 def write_text_to_gcp_for_user_dir_path(user_info_dir, user_id, xproject_id, xlabel):
@@ -1856,8 +1856,12 @@ def add_label_records():
         # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
         # Save JSON to GCP
         # save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
-        blob_full_path = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, project_id + ".txt" )
-        
+        blob_full_path = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, active_label_bucket + ".txt" )
+         
+        try:
+          gcp_url = write_text_to_gcp_v2(user_id,blob_full_path)
+        except:
+          pass
         # save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
         # session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"]
         # 
