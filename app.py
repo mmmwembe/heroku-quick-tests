@@ -259,10 +259,7 @@ def write_text_to_gcp_v2(user_id, blob_full_path):
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
     blob = bucket.blob(blob_full_path)
-    blob.upload_from_string("Created by : " + user_id)
-    if not blob.exists():
-        iso_date = datetime.datetime.now().isoformat()
-        blob.upload_from_string("Created by : " + user_id + " Date : " + iso_date)          
+    blob.upload_from_string("Created by : " + user_id)        
     return blob.public_url
 
 def write_text_to_gcp_for_user_dir_path(user_info_dir, user_id, xproject_id, xlabel):
