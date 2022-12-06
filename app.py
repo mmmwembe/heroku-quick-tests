@@ -270,9 +270,7 @@ def write_text_to_gcp_v3(user_id, blob_full_path):
     # blob.upload_from_string("Created by : " + user_id)
     if not blob.exists():
         iso_date = datetime.datetime.now().isoformat()
-        blob.upload_from_string("Created by : " + user_id + " Date : " + iso_date)     
-    else:
-      pass        
+        blob.upload_from_string("Created by : " + user_id + " Date : " + iso_date)       
     return blob.public_url
 
 
