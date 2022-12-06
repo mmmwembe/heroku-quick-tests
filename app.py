@@ -1859,7 +1859,7 @@ def add_label_records():
         blob_full_path = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, active_label_bucket + ".txt" )
          
         try:
-          gcp_url = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
+          write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
         except:
           pass
         # save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
