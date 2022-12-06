@@ -1841,7 +1841,7 @@ def add_label_records():
         # bucket = client.get_bucket(bucket_name)
         
         # write_text_to_gcp_for_user_dir_path(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket)
-        # write_text_to_gcp_for_user_dir_path(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], session["user"]["_id"], project_id, active_label_bucket)
+        write_text_to_gcp_for_user_dir_path(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], session["user"]["_id"], project_id, active_label_bucket)
                 
         # Write Text to json folder to create it before upload of Json
         # write_text_to_gcp_for_json_files(user_id, project_id, active_label_bucket)
