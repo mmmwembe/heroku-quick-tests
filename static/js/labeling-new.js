@@ -306,7 +306,7 @@ fabricCanvas.on('mouse:up', function(o){
 
            // alert('IMAGES_NORM_DATA_LABEL_MAP ' + JSON.stringify(IMAGES_NORM_DATA_LABEL_MAP))
            // alert(' ACTIVE_LABEL_BUCKET ' + ACTIVE_LABEL_BUCKET)
-           PROJECT_NORM_DATA_JSONs[ACTIVE_LABEL_BUCKET] = json
+           PROJECT_NORM_DATA_JSONs[ACTIVE_LABEL_BUCKET].push({img_name : norm_data})
 
            alert(' PROJECT_NORM_DATA_JSONs ' + JSON.stringify(PROJECT_NORM_DATA_JSONs))
 
