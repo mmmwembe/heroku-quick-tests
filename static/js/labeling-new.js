@@ -306,9 +306,9 @@ fabricCanvas.on('mouse:up', function(o){
 
            // alert('IMAGES_NORM_DATA_LABEL_MAP ' + JSON.stringify(IMAGES_NORM_DATA_LABEL_MAP))
            // alert(' ACTIVE_LABEL_BUCKET ' + ACTIVE_LABEL_BUCKET)
-           PROJECT_NORM_DATA_JSONs[ACTIVE_LABEL_BUCKET].push({img_name : JSON.stringify(norm_data)})
+           // PROJECT_NORM_DATA_JSONs[ACTIVE_LABEL_BUCKET].push({img_name : JSON.stringify(norm_data)})
 
-           alert(' PROJECT_NORM_DATA_JSONs ' + JSON.stringify(PROJECT_NORM_DATA_JSONs))
+           // alert(' PROJECT_NORM_DATA_JSONs ' + JSON.stringify(PROJECT_NORM_DATA_JSONs))
 
            post_images_norm_data_label_map(user_id, ACTIVE_PROJECT_ID, ACTIVE_LABEL_BUCKET, IMAGES_NORM_DATA_LABEL_MAP, LABELLED_IMAGES_ARRAY, IMAGES_CANVAS_JSONs)
 
