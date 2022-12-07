@@ -1891,13 +1891,17 @@ def add_label_records():
                               
         try:
           gcp_url1 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
+          time.sleep(0.25) 
           gcp_url2 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_norm)
-          gcp_url3 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_canvas)                    
+          time.sleep(0.25)           
+          gcp_url3 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_canvas) 
+          time.sleep(0.25)                                        
         except:
           pass
-        time.sleep(0.5)         
+        
         try:
           gcp_url_json_norm_data = save_json_to_gcp_return_url_v2(blob_full_path_norm, images_norm_data_label_map)
+          time.sleep(0.25)             
           gcp_url_json_canvas_data = save_json_to_gcp_return_url_v2(blob_full_path_canvas, fabric_canvas_json)          
         except:
           pass 
