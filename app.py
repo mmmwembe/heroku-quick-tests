@@ -1376,6 +1376,8 @@ def create_new_project():
         'active_project_id' : '',
         'models': {'user_id': session["user"]["_id"], 'classification_models': [], 'object_detection_models': [],'audio_classification_models': []},
         'labels_json_urls': {'norm_data': '', 'canvas_json': ''},
+        'labels_json_urls_norm_data': '',    
+        'labels_json_urls_canvas': '',     
   		}
         
                     
