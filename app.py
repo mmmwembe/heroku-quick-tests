@@ -1878,29 +1878,28 @@ def add_label_records():
         # Save JSON to GCP
         # save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
         blob_full_path = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, active_label_bucket + ".txt" )
-        gcp_url = '' 
+        blob_full_path_norm = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, active_label_bucket + ".json" )  
+        blob_full_path_canvas = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_canvas_jsons_subdir"], project_id, active_label_bucket, active_label_bucket + ".json" ) 
+                     
+        gcp_url1 = '' 
+        gcp_url2 = ''
+        gcp_url3 = ''
+        gcp_url_json_norm_data =''
+        gcp_url_json_canvas_data =''
+                              
         try:
-          gcp_url = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
+          gcp_url1 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
+          gcp_url2 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_norm)
+          gcp_url3 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_canvas)                    
         except:
           pass
-        time.sleep(0.5) 
-        
-        
-        gcp_url_json_norm_data =''        
+        time.sleep(0.5)         
         try:
-          blob_full_path_norm = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, active_label_bucket + ".json" )
           gcp_url_json_norm_data = save_json_to_gcp_return_url_v2(blob_full_path_norm, images_norm_data_label_map)
+          gcp_url_json_canvas_data = save_json_to_gcp_return_url_v2(blob_full_path_canvas, fabric_canvas_json)          
         except:
-          pass
-        
+          pass 
         time.sleep(0.5) 
-        
-        gcp_url_json_canvas_data =''        
-        try:
-          blob_full_path_canvas = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_canvas_jsons_subdir"], project_id, active_label_bucket, active_label_bucket + ".json" )
-          gcp_url_json_canvas_data = save_json_to_gcp_return_url_v2(blob_full_path_canvas, fabric_canvas_json)
-        except:
-          pass        
         
         # time.sleep(1)         
         # save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
@@ -1921,7 +1920,7 @@ def add_label_records():
         #time.sleep(1)
   #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_image_label_jsons": original_image_label_jsons_dict_from_json_string} })                  
 
-    return jsonify(label_record_item = gcp_url_json_norm_data)          
+    return jsonify(label_record_item = gcp_url_json_norm_data, )          
     # return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = user_images_json_files_normalized)
 
 
