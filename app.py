@@ -1883,15 +1883,25 @@ def add_label_records():
           gcp_url = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
         except:
           pass
-        time.sleep(1) 
+        time.sleep(0.5) 
         
         
         gcp_url_json_norm_data =''        
         try:
           blob_full_path_norm = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, active_label_bucket + ".json" )
-          gcp_url_json_norm_data = save_json_to_gcp_return_url_v2(blob_full_path, images_norm_data_label_map)
+          gcp_url_json_norm_data = save_json_to_gcp_return_url_v2(blob_full_path_norm, images_norm_data_label_map)
         except:
           pass
+        
+        time.sleep(0.5) 
+        
+        gcp_url_json_canvas_data =''        
+        try:
+          blob_full_path_canvas = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_canvas_jsons_subdir"], project_id, active_label_bucket, active_label_bucket + ".json" )
+          gcp_url_json_canvas_data = save_json_to_gcp_return_url_v2(blob_full_path_canvas, fabric_canvas_json)
+        except:
+          pass        
+        
         # time.sleep(1)         
         # save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
         # session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"]
