@@ -1912,7 +1912,7 @@ def add_label_records():
         
         if gcp_url_json_norm_data and gcp_url_json_canvas_data:
                 
-          user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels_json_urls_norm_data": { active_label_bucket : gcp_url_json_norm_data },  "labels_json_urls_canvas": { active_label_bucket : gcp_url_json_canvas_data } } })   
+          user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "labels_json_urls_norm_data": { active_label_bucket : gcp_url_json_norm_data },  "labels_json_urls_canvas": { active_label_bucket : gcp_url_json_canvas_data } } })   
         
         # time.sleep(1)         
         # save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
