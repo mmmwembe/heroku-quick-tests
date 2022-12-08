@@ -800,7 +800,7 @@ def login():
         
         update_user_info_variables()
         
-        # email = email
+        # email = email 
         # user_info = users_collection.find_one({"email": email})
         # user_id = user_info["_id"]
         # user_info = session['user']
@@ -1913,10 +1913,18 @@ def add_label_records():
         # labels_json_urls_norm_data   
         # labels_json_urls_canvas
         
-        if gcp_url_json_norm_data and gcp_url_json_canvas_data:
-                
-          user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "labels_json_urls_norm_data": { active_label_bucket : gcp_url_json_norm_data },  "labels_json_urls_canvas": { active_label_bucket : gcp_url_json_canvas_data } } })   
+        #if gcp_url_json_norm_data and gcp_url_json_canvas_data:     
+          #user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "labels_json_urls_norm_data": { active_label_bucket : gcp_url_json_norm_data },  "labels_json_urls_canvas": { active_label_bucket : gcp_url_json_canvas_data } } })   
         
+        if gcp_url_json_norm_data:   
+          query_norm_data = {'user_id': session["user"]["_id"],'project_js_id': project_id  }
+          newvalues_norm_data = { "$push": { "labels_json_urls.norm_data": { active_label_bucket : gcp_url_json_norm_data } } }
+          user_projects.update_one(query_norm_data, newvalues_norm_data)
+          
+        if gcp_url_json_canvas_data:             
+          query_canvas_json = {'user_id': session["user"]["_id"],'project_js_id': project_id }
+          newvalues_canvas_json = { "$push": { "labels_json_urls.canvas_json": {active_label_bucket : gcp_url_json_canvas_data} } }
+          user_projects.update_one(query_canvas_json, newvalues_canvas_json)
         # time.sleep(1)         
         # save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
         # session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"]

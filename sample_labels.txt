@@ -173,7 +173,7 @@ Snowing
 Sun glare
 Sun in view
 
-Diatoms
+## Diatoms
 Achnanthidium
 Caloneis
 Chamaepinnularia
