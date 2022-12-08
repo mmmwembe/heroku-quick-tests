@@ -337,6 +337,32 @@ def save_json_to_gcp_return_url_v2(blob_full_path, json_object_to_save):
 def isElementInArray(element, collection: iter):
     return element in collection
 
+def does_pymongo_result_contain_label(mongo_result, label):
+
+  output = False
+  results_keys = []
+  results_values = []
+
+  for index in range(len(mongo_result)):
+    for key in mongo_result[index]:
+      results_keys.append(key)
+      results_values.append(mongo_result[index][key])
+  
+  output = isElementInArray(label, results_keys)
+
+  return output
+
+def does_blob_exist_on_gcp(blob_full_path):
+
+  output = False
+  bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+  client = storage.Client()
+  bucket = client.get_bucket(bucket_name)
+  blob = bucket.blob(blob_full_path)
+  output = blob.exists()
+
+  return output
+
 try:
   create_dir(UPLOAD_FOLDER)
   create_dir(IMAGES_FOLDER)
@@ -1883,7 +1909,9 @@ def add_label_records():
         # Save JSON to GCP
         # save_json_to_gcp(user_id, project_id, active_label_bucket,fabric_canvas_json)
         blob_full_path = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, active_label_bucket + ".txt" )
-        blob_full_path_norm = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, active_label_bucket + ".json" )  
+        blob_full_path_norm = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], project_id, active_label_bucket, active_label_bucket + ".json" )
+        
+        blob_full_path_canvas_txt = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_canvas_jsons_subdir"], project_id, active_label_bucket, active_label_bucket + ".txt" )  
         blob_full_path_canvas = os.path.join(session["user"]["gcp_bucket_dict"]["user_images_canvas_jsons_subdir"], project_id, active_label_bucket, active_label_bucket + ".json" ) 
                      
         gcp_url1 = '' 
@@ -1891,16 +1919,26 @@ def add_label_records():
         gcp_url3 = ''
         gcp_url_json_norm_data =''
         gcp_url_json_canvas_data =''
-                              
-        try:
-          gcp_url1 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
-          time.sleep(0.5) 
-          gcp_url2 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_norm)
-          time.sleep(0.5)           
-          gcp_url3 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_canvas)
-          time.sleep(0.5)         
+        
+        if not does_blob_exist_on_gcp(blob_full_path):
+          try:
+            gcp_url1 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
+            time.sleep(0.5)
+          except:
+            pass    
+
+        if not does_blob_exist_on_gcp(blob_full_path_canvas_txt):
+          try:
+            gcp_url2 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_canvas_txt)
+            time.sleep(0.5)
+          except:
+            pass              
+                    
+        try:   
+          # gcp_url3 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_canvas)
+         # time.sleep(0.5)         
           gcp_url_json_norm_data = save_json_to_gcp_return_url_v2(blob_full_path_norm, images_norm_data_label_map)          
-          #time.sleep(0.25)                                        
+          time.sleep(0.5)                                        
         except:
           pass
         
@@ -1914,15 +1952,19 @@ def add_label_records():
         # labels_json_urls_norm_data   
         # labels_json_urls_canvas
         
+        myProject = user_projects.find_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id  })
+        my_norm_data = myProject["labels_json_urls"]["norm_data"] 
+        my_canvas_data = myProject["labels_json_urls"]["canvas_json"]
+        
         #if gcp_url_json_norm_data and gcp_url_json_canvas_data:     
           #user_projects.update_one({ 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$push": { "labels_json_urls_norm_data": { active_label_bucket : gcp_url_json_norm_data },  "labels_json_urls_canvas": { active_label_bucket : gcp_url_json_canvas_data } } })   
         
-        if gcp_url_json_norm_data:   
+        if not does_pymongo_result_contain_label(my_norm_data, active_label_bucket):   
           query_norm_data = {'user_id': session["user"]["_id"],'project_js_id': project_id  }
           newvalues_norm_data = { "$push": { "labels_json_urls.norm_data": { active_label_bucket : gcp_url_json_norm_data } } }
           user_projects.update_one(query_norm_data, newvalues_norm_data)
           
-        if gcp_url_json_canvas_data:             
+        if not does_pymongo_result_contain_label(my_canvas_data, active_label_bucket):             
           query_canvas_json = {'user_id': session["user"]["_id"],'project_js_id': project_id }
           newvalues_canvas_json = { "$push": { "labels_json_urls.canvas_json": {active_label_bucket : gcp_url_json_canvas_data} } }
           user_projects.update_one(query_canvas_json, newvalues_canvas_json)
