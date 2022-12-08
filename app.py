@@ -333,6 +333,9 @@ def save_json_to_gcp_return_url_v2(blob_full_path, json_object_to_save):
     blob.upload_from_string(data=json.dumps(json_object_to_save),content_type='application/json')
     return blob.public_url
 
+# Check if element is in array
+def isElementInArray(element, collection: iter):
+    return element in collection
 
 try:
   create_dir(UPLOAD_FOLDER)
@@ -1375,9 +1378,9 @@ def create_new_project():
         'active_label': '',
         'active_project_id' : '',
         'models': {'user_id': session["user"]["_id"], 'classification_models': [], 'object_detection_models': [],'audio_classification_models': []},
-        'labels_json_urls': {'norm_data': '', 'canvas_json': ''},
-        'labels_json_urls_norm_data': {},    
-        'labels_json_urls_canvas': {},     
+        'labels_json_urls': {'norm_data': [], 'canvas_json': []},
+        'labels_json_urls_norm_data': [],    
+        'labels_json_urls_canvas': [],     
   		}
         
                     
@@ -1890,22 +1893,22 @@ def add_label_records():
         gcp_url_json_canvas_data =''
                               
         try:
-          gcp_url1 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
-          time.sleep(0.25) 
-          gcp_url2 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_norm)
-          time.sleep(0.25)           
-          gcp_url3 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_canvas) 
-          time.sleep(0.25)                                        
+          #gcp_url1 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
+          #time.sleep(0.25) 
+          #gcp_url2 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_norm)
+          #time.sleep(0.25)           
+          #gcp_url3 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_canvas)    
+          gcp_url_json_norm_data = save_json_to_gcp_return_url_v2(blob_full_path_norm, images_norm_data_label_map)          
+          #time.sleep(0.25)                                        
         except:
           pass
         
         try:
-          gcp_url_json_norm_data = save_json_to_gcp_return_url_v2(blob_full_path_norm, images_norm_data_label_map)
-          time.sleep(0.25)             
+          time.sleep(1)             
           gcp_url_json_canvas_data = save_json_to_gcp_return_url_v2(blob_full_path_canvas, fabric_canvas_json)          
         except:
           pass 
-        time.sleep(0.5) 
+        # time.sleep(0.5) 
         
         # labels_json_urls_norm_data   
         # labels_json_urls_canvas
