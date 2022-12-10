@@ -948,6 +948,8 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         current_color = LABELS_COLOR_MAP[current_label]
 
+        alert('color from line 951 is : ' + current_color)
+
         var all_labels = document.getElementsByClassName('labelclass');
         for(let i = 0; i < all_labels.length; i++) {
 
