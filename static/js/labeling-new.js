@@ -3445,12 +3445,12 @@ $('#download_button').click(function(){
         data: { 'project_id' :  ACTIVE_PROJECT_ID,},
         success: function(data) {
            var results = data.norm_data
-           // alert('Line 3450 Norm data ' + JSON.stringify(data.norm_data))
+           alert('Line 3448 Norm data ' + JSON.stringify(data.norm_data))
 
-           Object.keys(data.norm_data).forEach(function(key) {
+           Object.keys(results).forEach(function(key) {
             var my_label =  key
             var my_label_json_url = data[key]
-          alert('Label  : ' + my_label + ', JSON url : ' + data[key])
+          alert('Line 3453 Label  : ' + my_label + ', JSON url : ' + data[key])
         })
 
         }     
