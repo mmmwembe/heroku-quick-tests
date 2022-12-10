@@ -955,7 +955,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
             if (all_labels[i].getAttribute("id").toString() === current_label.toString()){
 
-                $(this).css("backgroundColor",current_color);
+                all_labels[i].style.backgroundColor =current_color
+
+                // $(this).css("backgroundColor",current_color);
 
                 showCurrentLabel(current_color, current_label)
 
