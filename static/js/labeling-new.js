@@ -2660,7 +2660,7 @@ function NewLabelBucketCard(data_element){
 
             //$('#' + 'card-' + label + '-' + project_js_id).css('background','#8ec252')
 
-        
+            showSelectedLabel_with_args(active_label)
 
           }});
 
