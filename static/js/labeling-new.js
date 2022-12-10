@@ -3457,7 +3457,7 @@ $('#download_button').click(function(){
 
                 //for (var j= 0; j<results[i][key].length; j++) { alert(results[i][key][j])
 
-}
+                //}
             }
          }
 
