@@ -3353,7 +3353,7 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
            // showSelectedLabel_with_args(active_label)
 
 
-           process_response_json_update_label_buckets(data)
+            // process_response_json_update_label_buckets(data)
 
             // alert('Line 3289 add_label_records  label_record_item: ' + results)
             // alert('Line 3290 add_label_records  gcp_url_json_canvas_data: ' + gcp_url_json_canvas_data)  
