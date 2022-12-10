@@ -3447,11 +3447,32 @@ $('#download_button').click(function(){
            var results = data.norm_data
            alert('Line 3448 Norm data ' + JSON.stringify(data.norm_data))
 
-           Object.keys(results).forEach(function(key) {
-            var my_label =  key
-            var my_label_json_url = data[key]
-          alert('Line 3453 Label  : ' + my_label + ', JSON url : ' + data[key])
-        })
+           
+
+
+           for (var i=0; i<results.length; i++) {
+            for (var key in results[i]) {
+
+                alert('Line 3456 key ' +  key)
+
+                //for (var j= 0; j<results[i][key].length; j++) { alert(results[i][key][j])
+
+}
+            }
+         }
+
+
+
+
+      //Object.keys(results).forEach(function(key) {
+      //     var my_label =  key   
+      //      var my_label_json_url = data[key]
+      //    alert('Line 3453 Label  : ' + my_label + ', JSON url : ' + data[key])
+      //  })
+
+
+
+
 
         }     
     });   
