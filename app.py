@@ -1932,7 +1932,7 @@ def add_label_records():
         if not does_blob_exist_on_gcp(blob_full_path_canvas_txt):
           try:
             gcp_url2 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_canvas_txt)
-            time.sleep(0.5)
+            time.sleep(0.1)
           except:
             pass              
                     
@@ -1940,13 +1940,15 @@ def add_label_records():
           # gcp_url3 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path_canvas)
          # time.sleep(0.5)         
           gcp_url_json_norm_data = save_json_to_gcp_return_url_v2(blob_full_path_norm, images_norm_data_label_map)          
-          time.sleep(0.5)                                        
+          time.sleep(0.1)                                        
         except:
           pass
         
         try:
-          time.sleep(0.5)             
-          gcp_url_json_canvas_data = save_json_to_gcp_return_url_v2(blob_full_path_canvas, fabric_canvas_json)          
+           
+          gcp_url_json_canvas_data = save_json_to_gcp_return_url_v2(blob_full_path_canvas, fabric_canvas_json)
+          time.sleep(0.1) 
+                     
         except:
           pass 
         # time.sleep(0.5) 
@@ -1977,7 +1979,7 @@ def add_label_records():
         # gcp_url ="it wrote the text at least..."
         # gcp_url = save_json_to_gcp_return_url(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], session["user"]["_id"], project_id, active_label_bucket,images_norm_data_label_map_dict_from_json_string)        
         
-        time.sleep(0.5)             
+        #time.sleep(0.5)             
         labelled_original_image_urls = get_images_array_from_user_projects(session["user"]["_id"], project_id, active_label_bucket, 'labelled_original_image_urls')
         
         if isElementInArray(IMAGE_URL,labelled_original_image_urls):
@@ -2012,7 +2014,7 @@ def add_label_records():
         #time.sleep(1)
   #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_image_label_jsons": original_image_label_jsons_dict_from_json_string} })                  
 
-    return jsonify(label_record_item = gcp_url_json_norm_data, gcp_url_json_canvas_data = gcp_url_json_canvas_data, IMAGE_URL = IMAGE_URL, all_projects = active_project_result)          
+    return jsonify(label_record_item = gcp_url_json_norm_data, gcp_url_json_canvas_data = gcp_url_json_canvas_data, IMAGE_URL = IMAGE_URL, active_project = active_project_result)          
     # return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = user_images_json_files_normalized)
 
 
