@@ -1925,7 +1925,7 @@ def add_label_records():
         if not does_blob_exist_on_gcp(blob_full_path):
           try:
             gcp_url1 = write_text_to_gcp_v2(session["user"]["_id"],blob_full_path)
-            time.sleep(0.5)
+            time.sleep(0.1)
           except:
             pass    
 
