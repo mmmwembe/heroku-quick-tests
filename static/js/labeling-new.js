@@ -79,7 +79,7 @@ window.addEventListener('load', (event) => {
     //  Clear Local Storage - If needed during coding - update final
     //------------------------------------------------------------
     
-    clearEntireLocalStorage()
+    // clearEntireLocalStorage()
 
     img_thumbnails = document.getElementsByClassName('gallery_column');
 
@@ -922,6 +922,31 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         current_label = $(this).attr('id')
         current_color = $(this).css("borderColor");
+
+        var all_labels = document.getElementsByClassName('labelclass');
+        for(let i = 0; i < all_labels.length; i++) {
+
+            if (all_labels[i].getAttribute("id").toString() === current_label.toString()){
+
+                $(this).css("backgroundColor",current_color);
+
+                showCurrentLabel(current_color, current_label)
+
+            }
+            else {
+
+                all_labels[i].style.backgroundColor ="transparent"
+            }
+
+        }
+
+    }
+
+    function showSelectedLabel_with_args(active_label){
+
+        current_label = active_label
+
+        current_color = LABELS_COLOR_MAP[current_label]
 
         var all_labels = document.getElementsByClassName('labelclass');
         for(let i = 0; i < all_labels.length; i++) {
@@ -3290,6 +3315,9 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
            var _image_url = data.IMAGE_URL
            alert('Line 3291 - IMAGE_URL : ' + _image_url)
            alert('Line 3292 JSON ' + JSON.stringify(data.active_project_result))
+
+           var active_label = data.active_label
+           showSelectedLabel_with_args(active_label)
             // alert('Line 3289 add_label_records  label_record_item: ' + results)
             // alert('Line 3290 add_label_records  gcp_url_json_canvas_data: ' + gcp_url_json_canvas_data)  
 
