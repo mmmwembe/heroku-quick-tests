@@ -948,14 +948,14 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
 
         current_color = LABELS_COLOR_MAP[current_label]
 
-        alert('color from line 951 is : ' + current_color)
+        // alert('color from line 951 is : ' + current_color)
 
         var all_labels = document.getElementsByClassName('labelclass');
         for(let i = 0; i < all_labels.length; i++) {
 
             if (all_labels[i].getAttribute("id").toString() === current_label.toString()){
 
-                all_labels[i].style.backgroundColor =current_color
+                all_labels[i].style.backgroundColor = current_color
 
                 // $(this).css("backgroundColor",current_color);
 
@@ -965,6 +965,35 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             else {
 
                 all_labels[i].style.backgroundColor ="transparent"
+            }
+
+        }
+
+    }
+
+    function showColorOfSelectedThumbnailButton(active_label){
+
+        current_label = active_label
+
+        current_color = LABELS_COLOR_MAP[current_label]
+
+        // alert('color from line 951 is : ' + current_color)
+
+        var all_thumbnail_btns_labels = document.getElementsByClassName('xNewShowThumbNailButtonClass');
+        for(let i = 0; i < all_thumbnail_btns_labels.length; i++) {
+
+            if (all_thumbnail_btns_labels[i].getAttribute("label").toString() === current_label.toString()){
+
+                all_thumbnail_btns_labels[i].style.backgroundColor = current_color
+
+                // $(this).css("backgroundColor",current_color);
+
+                showCurrentLabel(current_color, current_label)
+
+            }
+            else {
+
+                all_thumbnail_btns_labels[i].style.backgroundColor ="transparent"
             }
 
         }
@@ -2564,7 +2593,7 @@ function NewLabelBucketCard(data_element){
 
     var atag_showthumbnails = document.createElement("a");
     atag_showthumbnails.id = label + "-" + project_js_id + '-showthumbnailBtn-' + counter
-    atag_showthumbnails.className ="btn"
+    atag_showthumbnails.className ="btn xNewShowThumbNailButtonClass"
     //atag_showthumbnails.href = "/showImages?label=" + label +  "&project_id="+ project_js_id;
     atag_showthumbnails.style = "width: 100%; height: 50px; margin-bottom: 20px; border: 5px solid " + color; 
     atag_showthumbnails.setAttribute("label",label)
@@ -3320,8 +3349,12 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
            alert('Line 3291 - IMAGE_URL : ' + _image_url)
            alert('Line 3292 JSON ' + JSON.stringify(data.active_project_result))
 
-           var active_label = data.active_label
-           showSelectedLabel_with_args(active_label)
+           // var active_label = data.active_label
+           // showSelectedLabel_with_args(active_label)
+
+
+           process_response_json_update_label_buckets(data)
+
             // alert('Line 3289 add_label_records  label_record_item: ' + results)
             // alert('Line 3290 add_label_records  gcp_url_json_canvas_data: ' + gcp_url_json_canvas_data)  
 
@@ -3627,6 +3660,11 @@ function process_response_json_update_label_buckets(data){
 
     //show_label_buckets()
     new_create_label_buckets(data)
+
+
+    showSelectedLabel_with_args(active_label)
+
+    //showColorOfSelectedThumbnailButton(active_label)
 
 }
 
