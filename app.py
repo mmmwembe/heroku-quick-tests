@@ -1988,11 +1988,19 @@ def add_label_records():
           user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id}, { "$push": { "labels.$.labelled_original_image_urls": IMAGE_URL} })
         
         
-        query ={'user_id': session["user"]["_id"]}
-        results = user_projects.find(query)
-        all_projects =[]
+        # query ={'user_id': session["user"]["_id"]}
+        # results = user_projects.find(query)
+        # all_projects =[]
+        # for result in results:
+        # all_projects.append(result) # 
+        
+        
+        active_project_query = {'project_js_id': project_id,  'user_id': session["user"]["_id"]}
+        results = user_projects.find(active_project_query)
+        
+        active_project_result =[]
         for result in results:
-          all_projects.append(result) # 
+            active_project_result.append(result)
         # Update original_images_normalized_dataset for the label
         
  # user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
@@ -2004,7 +2012,7 @@ def add_label_records():
         #time.sleep(1)
   #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_image_label_jsons": original_image_label_jsons_dict_from_json_string} })                  
 
-    return jsonify(label_record_item = gcp_url_json_norm_data, gcp_url_json_canvas_data = gcp_url_json_canvas_data, IMAGE_URL = IMAGE_URL, all_projects = all_projects)          
+    return jsonify(label_record_item = gcp_url_json_norm_data, gcp_url_json_canvas_data = gcp_url_json_canvas_data, IMAGE_URL = IMAGE_URL, all_projects = active_project_result)          
     # return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = user_images_json_files_normalized)
 
 
