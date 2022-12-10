@@ -1868,6 +1868,7 @@ def add_label_records():
         project_id = request.form['project_id']
         active_label_bucket = request.form['active_label']        
         images_norm_data_label_map = request.form['images_norm_data_label_map']
+        IMAGE_URL = request.form['IMAGE_URL']
         # original_image_label_jsons = request.form['original_image_label_jsons']
         labelled_images_string = request.form['labelled_images_array']
       
@@ -1877,7 +1878,8 @@ def add_label_records():
         original_image_label_jsons = json.loads(request.form['original_image_label_jsons'])
         # original_image_label_jsons = request.form['original_image_label_jsons']
         # original_image_label_jsons_dict_from_json_string = eval("{0}".format(original_image_label_jsons))        
-        fabric_canvas_json = request.form['original_image_label_jsons']      
+        fabric_canvas_json = request.form['original_image_label_jsons'] 
+             
         
         
           
@@ -1966,7 +1968,7 @@ def add_label_records():
           
         if not does_pymongo_result_contain_label(my_canvas_data, active_label_bucket):             
           query_canvas_json = {'user_id': session["user"]["_id"],'project_js_id': project_id }
-          newvalues_canvas_json = { "$push": { "labels_json_urls.canvas_json": {active_label_bucket : gcp_url_json_canvas_data} } }
+          newvalues_canvas_json = { "$push": { "labels_json_urls.canvas_json": { active_label_bucket : gcp_url_json_canvas_data} } }
           user_projects.update_one(query_canvas_json, newvalues_canvas_json)
         # time.sleep(1)         
         # save_json_to_gcp(user_images_json_files_normalized, session["user"]["_id"], project_id, active_label_bucket,fabric_canvas_json)
@@ -1987,7 +1989,7 @@ def add_label_records():
         #time.sleep(1)
   #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': user_id,'project_js_id': project_id }, { "$set": { "labels.$.original_image_label_jsons": original_image_label_jsons_dict_from_json_string} })                  
 
-    return jsonify(label_record_item = gcp_url_json_norm_data, gcp_url_json_canvas_data = gcp_url_json_canvas_data)          
+    return jsonify(label_record_item = gcp_url_json_norm_data, gcp_url_json_canvas_data = gcp_url_json_canvas_data, IMAGE_URL = IMAGE_URL)          
     # return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = user_images_json_files_normalized)
 
 

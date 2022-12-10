@@ -3280,14 +3280,18 @@ function post_images_norm_data_label_map(user_id, project_id, active_label, imag
                 'active_label' :  active_label, 
                 'images_norm_data_label_map' : JSON.stringify(images_norm_data_label_map), 
                 'labelled_images_array' :  labelled_images_array.toString(),    //labelled_images_array
-                'original_image_label_jsons' : JSON.stringify(images_canvas_jsons)                                          
+                'original_image_label_jsons' : JSON.stringify(images_canvas_jsons),
+                'IMAGE_URL' : IMAGE_URL                                          
             },
         success: function(data) {
 
            var results = data.label_record_item
            var gcp_url_json_canvas_data = data.gcp_url_json_canvas_data
-            alert('Line 3289 add_label_records  label_record_item: ' + results)
-            alert('Line 3290 add_label_records  gcp_url_json_canvas_data: ' + gcp_url_json_canvas_data)            
+           var _image_url = data.IMAGE_URL
+           alert('Line 3291 - IMAGE_URL : ' + _image_url)
+            // alert('Line 3289 add_label_records  label_record_item: ' + results)
+            // alert('Line 3290 add_label_records  gcp_url_json_canvas_data: ' + gcp_url_json_canvas_data)  
+
             //var active_project_result = data.active_project_result
             //alert('Line 3126 add_label_records  active_project_result : ' + JSON.stringify(active_project_result))
             // show_label_buckets_from_server_json_data(data)
