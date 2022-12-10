@@ -3438,6 +3438,17 @@ $('#download_button').click(function(){
 
     var results = get_types_of_download_files()
 
+    $.ajax({
+        type: "POST",
+        url: '/get_norm_data',
+        dataType: 'json',
+        data: { 'project_id' :  ACTIVE_PROJECT_ID,},
+        success: function(data) {
+           var results = data.norm_data
+           alert('Line 3450 Norm data ' + JSON.stringify(data.norm_data))
+        }     
+    });   
+
     alert('results : ' + results)
 
 

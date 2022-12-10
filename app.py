@@ -2018,6 +2018,22 @@ def add_label_records():
     # return jsonify(label_record_item = label_record_item, labelled_images_array = labelled_images_array, original_image_label_jsons = original_image_label_jsons, sub_dir_path_with_active_folder = user_images_json_files_normalized)
 
 
+@app.route('/get_norm_data', methods=['POST','GET'])
+def get_norm_data():
+  # API for retrieving normalized data for a project
+
+    if request.method =='POST':
+      
+        project_id = request.form['project_id']
+        
+        project_norm_data =  {}
+        myProject = user_projects.find_one({'user_id': session["user"]["_id"], 'project_js_id': project_id })
+        project_norm_data = myProject["labels_json_urls"]["norm_data"] 
+        
+             
+    return jsonify(norm_data = project_norm_data)          
+
+
 @app.route('/train_model', methods=['POST','GET'])
 def train_model():
 
