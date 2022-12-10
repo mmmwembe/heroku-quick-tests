@@ -1977,6 +1977,7 @@ def add_label_records():
         # gcp_url ="it wrote the text at least..."
         # gcp_url = save_json_to_gcp_return_url(session["user"]["gcp_bucket_dict"]["user_images_json_files_normalized"], session["user"]["_id"], project_id, active_label_bucket,images_norm_data_label_map_dict_from_json_string)        
         
+        time.sleep(0.5)             
         labelled_original_image_urls = get_images_array_from_user_projects(session["user"]["_id"], project_id, active_label_bucket, 'labelled_original_image_urls')
         
         if isElementInArray(IMAGE_URL,labelled_original_image_urls):
@@ -1990,7 +1991,7 @@ def add_label_records():
         
  # user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.labelled_original_image_urls": labelled_images_array } })          
         
-      # time.sleep(1)        
+  
     	# Update original_images_normalized_dataset for the label
      
   #user_projects.update_one({ "labels.label": active_label_bucket, 'user_id': session["user"]["_id"],'project_js_id': project_id }, { "$set": { "labels.$.original_images_normalized_dataset": label_record_item } })
