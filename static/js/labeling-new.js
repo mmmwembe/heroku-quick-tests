@@ -3456,7 +3456,8 @@ $('#download_button').click(function(){
                 alert('Line 3456 key ' +  key)
 
                 var json_url = results[i][key]
-                alert(' Line 3459 json_url: ' + json_url) 
+                norm_data_json = load_json(json_url)
+                alert(' Line 3460 json_url: ' + JSON.stringify(norm_data_json)) 
 
                 //for (var j= 0; j<results[i][key].length; j++) { alert(results[i][key][j])
 
@@ -3708,6 +3709,13 @@ function process_response_json_update_label_buckets(data){
 
     //showColorOfSelectedThumbnailButton(active_label)
 
+}
+
+
+
+async function load_json(url) {
+    let obj = await (await fetch(url)).json();
+    return obj
 }
 
 
