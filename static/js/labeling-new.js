@@ -3456,8 +3456,9 @@ $('#download_button').click(function(){
                 alert('Line 3456 key ' +  key)
 
                 var json_url = results[i][key]
-                norm_data_json = load_json(json_url)
-                alert(' Line 3460 json_url: ' + JSON.stringify(norm_data_json)) 
+                // norm_data_json = load_json(json_url)
+                norm_data_json = load_json_v2(json_url)
+                alert(' Line 3461 json_url: ' + JSON.stringify(norm_data_json)) 
 
                 //for (var j= 0; j<results[i][key].length; j++) { alert(results[i][key][j])
 
@@ -3718,7 +3719,12 @@ async function load_json(url) {
     return obj
 }
 
-
+function load_json_v2(url){
+    url_string =''
+    $.getJSON(url, function(data) {
+        url_string = data
+    })
+}
 
 
 
