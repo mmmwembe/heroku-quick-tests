@@ -3471,7 +3471,7 @@ $('#download_button').click(function(){
             //downloadAsCSV(NORM_DATA_JSON_ARRAY_FOR_CSV, 'data.csv')
             // Download as CSV
             var csv_file_name_for_saving = 'my-data-' + iso_date_timestamp + '.csv'
-            var csv_file = convertJSON2CSV(NORM_DATA_JSON_ARRAY_FOR_CSV)
+            var csv_file = convertJSON2CSV(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
             var csv_blob = new Blob([csv_file], { type: 'text/csv' });
             saveAs(csv_blob, csv_file_name_for_saving);
          }
