@@ -3456,9 +3456,11 @@ $('#download_button').click(function(){
                 alert('Line 3456 key ' +  key)
 
                 var norm_data_p = results[i][key]
+
+                var sorted_item = get_sorted_item_from_json_object(norm_data_p)
                 // norm_data_json = load_json(json_url)
                 // norm_data_json = load_json_v2(json_url)
-                alert(' Line 3461 norm_data_p : ' + JSON.stringify(norm_data_p)) 
+                alert(' Line 3461 sorted_item: ' + JSON.stringify(sorted_item)) 
 
                 //for (var j= 0; j<results[i][key].length; j++) { alert(results[i][key][j])
 
@@ -3724,6 +3726,15 @@ function load_json_v2(url){
     $.getJSON(url, function(data) {
         url_string = data
     })
+}
+
+
+function get_sorted_item_from_json_object(obj){
+
+  var item = {"test_train_validation": obj["test_train_validation"],"image_url": obj["image_url"],"label": obj["label"],"norm_x_min": obj["norm_x_min"],"norm_y_min": obj["norm_y_min"],
+              "norm_x_tr": obj["norm_x_tr"],"norm_y_tr":"","norm_x_max":obj["norm_x_max"],"norm_y_max":obj["norm_y_max"],"norm_x_bl":"","norm_y_bl":"","label_status":"active","ISODate":obj["ISODate"]}
+
+   return item
 }
 
 
