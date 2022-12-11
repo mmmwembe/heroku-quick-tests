@@ -3444,8 +3444,8 @@ $('#download_button').click(function(){
         dataType: 'json',
         data: { 'project_id' :  ACTIVE_PROJECT_ID,},
         success: function(data) {
-           var results = data.norm_data
-           alert('Line 3448 Norm data ' + JSON.stringify(data.norm_data))
+           var results = data.new_norm_data
+           alert('Line 3448 New Norm data ' + JSON.stringify(data.new_norm_data))
 
            
 
@@ -3455,10 +3455,10 @@ $('#download_button').click(function(){
 
                 alert('Line 3456 key ' +  key)
 
-                var json_url = results[i][key]
+                var norm_data_p = results[i][key]
                 // norm_data_json = load_json(json_url)
-                norm_data_json = load_json_v2(json_url)
-                alert(' Line 3461 json_url: ' + JSON.stringify(norm_data_json)) 
+                // norm_data_json = load_json_v2(json_url)
+                alert(' Line 3461 norm_data_p : ' + JSON.stringify(norm_data_p)) 
 
                 //for (var j= 0; j<results[i][key].length; j++) { alert(results[i][key][j])
 

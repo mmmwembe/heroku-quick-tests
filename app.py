@@ -34,6 +34,7 @@ import nbformat as nbf
 from python_amina_modules.colab_notebook_writer import *
 import tempfile
 import shutil
+from urllib.request import urlopen
 
 
 #===========================================================
@@ -76,6 +77,20 @@ except:
   pass
 
 
+def get_key_value_arrays(my_canvas_data):
+  results_keys = []
+  results_values = []
+  for index in range(len(my_canvas_data)):
+      for key in my_canvas_data[index]:
+        results_keys.append(key)
+        results_values.append(my_canvas_data[index][key])
+
+  return results_keys, results_values
+
+def get_image_label_json(url):
+  response = urlopen(url)
+  data_json = json.loads(response.read())
+  return data_json
 
 # NOTES - Connecting Heroku to Google Cloud Storage
 # 1) Setup bucket on gcp in project
@@ -2028,10 +2043,17 @@ def get_norm_data():
         
         project_norm_data =  {}
         myProject = user_projects.find_one({'user_id': session["user"]["_id"], 'project_js_id': project_id })
-        project_norm_data = myProject["labels_json_urls"]["norm_data"] 
+        project_norm_data = myProject["labels_json_urls"]["norm_data"]
+        
+        
+        key_arrays, results_values = get_key_value_arrays(project_norm_data)
+        NORM_DATA = []
+        for json_url in results_values:
+          data_json = get_image_label_json(json_url)
+          NORM_DATA.append(eval("{0}".format(data_json))) 
         
              
-    return jsonify(norm_data = project_norm_data)          
+    return jsonify(norm_data = project_norm_data, new_norm_data = NORM_DATA)          
 
 
 @app.route('/train_model', methods=['POST','GET'])
