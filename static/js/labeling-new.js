@@ -3444,32 +3444,38 @@ $('#download_button').click(function(){
         dataType: 'json',
         data: { 'project_id' :  ACTIVE_PROJECT_ID,},
         success: function(data) {
-           var results = data.new_norm_data
-           alert('Line 3448 New Norm data ' + JSON.stringify(data.new_norm_data))
-
-           
+           var server_results = data.new_norm_data
+           // alert('Line 3448 New Norm data ' + JSON.stringify(data.new_norm_data))
 
            NORM_DATA_JSON_ARRAY_FOR_CSV = []
 
-           for (var i=0; i<results.length; i++) {
-            for (var key in results[i]) {
+           for (var i=0; i<server_results.length; i++) {
+            for (var key in server_results[i]) {
 
-                alert('Line 3456 key ' +  key)
-
-                var norm_data_p = results[i][key]
-
+                //alert('Line 3456 key ' +  key)
+                var norm_data_p = server_results[i][key]
                 var sorted_item = get_sorted_item_from_json_object(norm_data_p)
                 NORM_DATA_JSON_ARRAY_FOR_CSV.push(sorted_item)
                 // norm_data_json = load_json(json_url)
                 // norm_data_json = load_json_v2(json_url)
                  
-                //for (var j= 0; j<results[i][key].length; j++) { alert(results[i][key][j])
+                //for (var j= 0; j<results[i][key].length; j++) { alert(server_results[i][key][j])
 
                 //}
             }
          }
 
-         alert(' Line 3472 NORM_DATA_JSON_ARRAY_FOR_CSV: ' + JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
+         // alert(' Line 3472 NORM_DATA_JSON_ARRAY_FOR_CSV: ' + JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
+
+         if(results.includes('CSV')){
+         downloadAsCSV(NORM_DATA_JSON_ARRAY_FOR_CSV, 'data.csv')
+         }
+         if(results.includes('JSON')){
+          downloadAsJSON(NORM_DATA_JSON_ARRAY_FOR_CSV, 'data.json')
+         }
+         if(results.length === 0){
+           alert(' Choose type of file to download - CSV, JSON, XML')
+         }       
 
 
 
