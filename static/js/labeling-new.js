@@ -3449,6 +3449,7 @@ $('#download_button').click(function(){
 
            
 
+           NORM_DATA_JSON_ARRAY_FOR_CSV = []
 
            for (var i=0; i<results.length; i++) {
             for (var key in results[i]) {
@@ -3458,15 +3459,17 @@ $('#download_button').click(function(){
                 var norm_data_p = results[i][key]
 
                 var sorted_item = get_sorted_item_from_json_object(norm_data_p)
+                NORM_DATA_JSON_ARRAY_FOR_CSV.push(sorted_item)
                 // norm_data_json = load_json(json_url)
                 // norm_data_json = load_json_v2(json_url)
-                alert(' Line 3461 sorted_item: ' + JSON.stringify(sorted_item)) 
-
+                 
                 //for (var j= 0; j<results[i][key].length; j++) { alert(results[i][key][j])
 
                 //}
             }
          }
+
+         alert(' Line 3472 NORM_DATA_JSON_ARRAY_FOR_CSV: ' + JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
 
 
 
