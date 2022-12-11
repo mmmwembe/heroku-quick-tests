@@ -3462,7 +3462,7 @@ $('#download_button').click(function(){
             // NORM_DATA_JSON_ARRAY_FOR_CSV = JSON.parse(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV, null, 2))
             var csv_file_name_for_saving = 'my-data-' + iso_date_timestamp + '.csv'
 
-            CVS_ROWS = csvmaker(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV, null, 2)) 
+            CVS_ROWS = csvmaker(NORM_DATA_JSON_ARRAY_FOR_CSV) 
 
             //var csv_file = convertJSON2CSV(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
             //var csv_blob = new Blob([csv_file], { type: 'text/csv' });
