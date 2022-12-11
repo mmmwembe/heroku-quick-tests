@@ -3457,10 +3457,10 @@ $('#download_button').click(function(){
                 var sorted_item = get_sorted_item_from_json_object(norm_data_p)
                 NORM_DATA_JSON_ARRAY_FOR_CSV.push(sorted_item)
 
-                var csv_file_name_for_saving = 'my-data-' + iso_date_timestamp + '.csv'
-                var csv_file = convertJSON2CSV(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
-                var csv_blob = new Blob([csv_file], { type: 'text/csv' });
-                saveAs(csv_blob, csv_file_name_for_saving);
+                //var csv_file_name_for_saving = 'my-data-' + iso_date_timestamp + '.csv'
+                //var csv_file = convertJSON2CSV(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
+                //var csv_blob = new Blob([csv_file], { type: 'text/csv' });
+                //saveAs(csv_blob, csv_file_name_for_saving);
 
         alert(' Line 3465 NORM_DATA_JSON_ARRAY_FOR_CSV: ' + JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
                 // norm_data_json = load_json(json_url)
