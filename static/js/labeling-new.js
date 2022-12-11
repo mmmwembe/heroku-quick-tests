@@ -3462,7 +3462,9 @@ $('#download_button').click(function(){
             // NORM_DATA_JSON_ARRAY_FOR_CSV = JSON.parse(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV, null, 2))
             var csv_file_name_for_saving = 'my-data-' + iso_date_timestamp + '.csv'
 
-            CVS_ROWS = csvmaker(NORM_DATA_JSON_ARRAY_FOR_CSV) 
+           var bounding_boxes_json_string = JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)
+
+            CVS_ROWS = ConvertToCSV_v2(bounding_boxes_json_string) // csvmaker(NORM_DATA_JSON_ARRAY_FOR_CSV) 
 
             //var csv_file = convertJSON2CSV(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
             //var csv_blob = new Blob([csv_file], { type: 'text/csv' });
@@ -3783,7 +3785,23 @@ const csvmaker = function (data) {
     return csvRows.join('\n')
 }
 
+function ConvertToCSV_v2(objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
 
+    for (var i = 0; i < array.length; i++) {
+        var line = '';
+        for (var index in array[i]) {
+            if (line != '') line += ','
+
+            line += array[i][index];
+        }
+
+        str += line + '\r\n';
+    }
+
+    return str;
+}
 
 
 
