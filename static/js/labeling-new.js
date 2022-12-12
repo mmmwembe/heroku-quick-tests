@@ -3472,9 +3472,9 @@ $('#download_button').click(function(){
             alert(' Line 3475 CVS_ROWS: ' + JSON.stringify(CVS_ROWS))
 
 
-            var json_fileName = 'my-json-data' + iso_date_timestamp +  '.json'
-            var fileToSave = new Blob([JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)], {type: 'application/json'});
-            saveAs(fileToSave, json_fileName);
+            //var json_fileName = 'my-json-data' + iso_date_timestamp +  '.json'
+            //var fileToSave = new Blob([JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)], {type: 'application/json'});
+            //saveAs(fileToSave, json_fileName);
 
 
 
