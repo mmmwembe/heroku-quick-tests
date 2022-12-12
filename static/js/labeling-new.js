@@ -3448,6 +3448,8 @@ $('#download_button').click(function(){
         success: function(data) {
            var server_results = data.new_norm_data
 
+           alert(' server_results  : ' + JSON.stringify(server_results) )
+
            NORM_DATA_JSON_ARRAY_FOR_CSV = []
 
            for (var i=0; i<server_results.length; i++) {
@@ -3457,8 +3459,6 @@ $('#download_button').click(function(){
                 var norm_data_p = server_results[i][key]
                 var sorted_item = get_sorted_item_from_json_object(norm_data_p)
                 NORM_DATA_JSON_ARRAY_FOR_CSV.push(sorted_item)
-
-                //alert(' norm_data_p  : ' + JSON.stringify(norm_data_p) )
 
             }
          }
