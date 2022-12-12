@@ -3462,14 +3462,14 @@ $('#download_button').click(function(){
          }
 
             // NORM_DATA_JSON_ARRAY_FOR_CSV = JSON.parse(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV, null, 2))
-            var csv_file_name_for_saving = 'my-data-' + iso_date_timestamp + '.csv'
+            var csv_file_name_for_saving = 'my-data' + '.csv'
 
            var bounding_boxes_json_string = JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)
 
             CVS_ROWS = ConvertToCSV_v2(bounding_boxes_json_string) // csvmaker(NORM_DATA_JSON_ARRAY_FOR_CSV) 
 
             // var csv_file = convertJSON2CSV(CVS_ROWS)
-            var csv_blob = new Blob([csv_file], { type: "text/csv;charset=utf-8;" });
+            var csv_blob = new Blob([csv_file], { type: 'text/csv' });  //"text/csv;charset=utf-8;" 
             saveAs(csv_blob, csv_file_name_for_saving);
 
           alert(' Line 3471 CVS_ROWS: ' + JSON.stringify(CVS_ROWS))
