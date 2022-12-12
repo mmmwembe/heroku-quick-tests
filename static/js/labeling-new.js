@@ -602,6 +602,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             saveAs(csv_blob, csv_file_name_for_saving);
 
             // downloadAsCSV(all_bounding_boxes_json, csv_file_name_for_saving)
+            alert(' line 605 - download click...')
 
     };
 
