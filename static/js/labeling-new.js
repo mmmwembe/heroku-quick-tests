@@ -3447,7 +3447,6 @@ $('#download_button').click(function(){
         data: { 'project_id' :  ACTIVE_PROJECT_ID,},
         success: function(data) {
            var server_results = data.new_norm_data
-           // alert('Line 3448 New Norm data ' + JSON.stringify(data.new_norm_data))
 
            NORM_DATA_JSON_ARRAY_FOR_CSV = []
 
@@ -3458,33 +3457,21 @@ $('#download_button').click(function(){
                 var sorted_item = get_sorted_item_from_json_object(norm_data_p)
                 NORM_DATA_JSON_ARRAY_FOR_CSV.push(sorted_item)
 
+                alert(' norm_data_p  : ' + norm_data_p )
+
             }
          }
-
             iso_date_timestamp = new Date().toISOString()
 
-            // NORM_DATA_JSON_ARRAY_FOR_CSV = JSON.parse(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV, null, 2))
+         if(results.includes('CSV')){
+
             var csv_file_name_for_saving = 'my-data' + iso_date_timestamp +  '.csv'
-
-           var bounding_boxes_json_string = JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)
-
+            var bounding_boxes_json_string = JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)
             CVS_ROWS = ConvertToCSV_v2(bounding_boxes_json_string) // csvmaker(NORM_DATA_JSON_ARRAY_FOR_CSV) 
-
-            // var csv_file = convertJSON2CSV(CVS_ROWS)
             var csv_blob = new Blob([CVS_ROWS], { type: 'text/csv' });  //"text/csv;charset=utf-8;" 
             saveAs(csv_blob, csv_file_name_for_saving);
+            alert(' Line 3471 CVS_ROWS: ' + JSON.stringify(CVS_ROWS))
 
-          alert(' Line 3471 CVS_ROWS: ' + JSON.stringify(CVS_ROWS))
-
-         // alert(' Line 3472 NORM_DATA_JSON_ARRAY_FOR_CSV: ' + JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
-
-         if(results.includes('CSV')){
-            //downloadAsCSV(NORM_DATA_JSON_ARRAY_FOR_CSV, 'data.csv')
-            // Download as CSV
-            var csv_file_name_for_saving = 'my-data-' + iso_date_timestamp + '.csv'
-            var csv_file = convertJSON2CSV(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
-            var csv_blob = new Blob([csv_file], { type: 'text/csv' });
-            saveAs(csv_blob, csv_file_name_for_saving);
          }
          if(results.includes('JSON')){
           //downloadAsJSON(NORM_DATA_JSON_ARRAY_FOR_CSV, 'data.json')
@@ -3511,7 +3498,7 @@ $('#download_button').click(function(){
         }     
     });   
 
-    alert('results : ' + results)
+    // alert('results : ' + results)
 
 
  });
