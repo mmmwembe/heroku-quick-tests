@@ -3464,12 +3464,12 @@ $('#download_button').click(function(){
 
 
             iso_date_timestamp = new Date().toISOString()
-            var csv_file_name_for_saving = 'my-data' + iso_date_timestamp +  '.csv'
+            var csv_file_name_for_saving = 'my-data-' + iso_date_timestamp +  '.csv'
             var bounding_boxes_json_string = JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)
             CVS_ROWS = ConvertToCSV_v2(bounding_boxes_json_string) // csvmaker(NORM_DATA_JSON_ARRAY_FOR_CSV) 
             var csv_blob = new Blob([CVS_ROWS], { type: 'text/csv' });  //"text/csv;charset=utf-8;" 
             saveAs(csv_blob, csv_file_name_for_saving);
-            alert(' Line 3475 CVS_ROWS: ' + JSON.stringify(CVS_ROWS))
+            //alert(' Line 3475 CVS_ROWS: ' + JSON.stringify(CVS_ROWS))
 
 
             //var json_fileName = 'my-json-data' + iso_date_timestamp +  '.json'
@@ -3493,7 +3493,7 @@ $('#download_button').click(function(){
           //downloadAsJSON(NORM_DATA_JSON_ARRAY_FOR_CSV, 'data.json')
           // var file_name_for_saving = 'my-data-' + iso_date_timestamp + '.json'
           // downloadAsJSON(NORM_DATA_JSON_ARRAY_FOR_CSV,file_name_for_saving)
-          var json_fileName = 'my-json-data' + iso_date_timestamp +  '.json'
+          var json_fileName = 'my-json-data-' + iso_date_timestamp +  '.json'
           var fileToSave = new Blob([JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)], {type: 'application/json'});
           saveAs(fileToSave, json_fileName);
 
