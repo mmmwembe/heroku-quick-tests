@@ -3461,8 +3461,10 @@ $('#download_button').click(function(){
             }
          }
 
+            iso_date_timestamp = new Date().toISOString()
+
             // NORM_DATA_JSON_ARRAY_FOR_CSV = JSON.parse(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV, null, 2))
-            var csv_file_name_for_saving = 'my-data' + '.csv'
+            var csv_file_name_for_saving = 'my-data' + iso_date_timestamp +  '.csv'
 
            var bounding_boxes_json_string = JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)
 
