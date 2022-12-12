@@ -3471,6 +3471,18 @@ $('#download_button').click(function(){
             saveAs(csv_blob, csv_file_name_for_saving);
             alert(' Line 3475 CVS_ROWS: ' + JSON.stringify(CVS_ROWS))
 
+
+            var json_fileName = 'my-json-data' + iso_date_timestamp +  '.json'
+            // var bounding_boxes_json_string = JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)
+   
+            // var json_blob = new Blob([bounding_boxes_json_string], { type: 'text/csv' });  //"text/csv;charset=utf-8;" 
+            // saveAs(json_blob, bounding_boxes_json_string);
+            // alert(' Line 3480 bounding_boxes_json_string: ' + bounding_boxes_json_string)
+            var fileToSave = new Blob([JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)], {type: 'application/json'});
+            saveAs(fileToSave, json_fileName);
+
+
+
          if(results.includes('CSV')){
 
             var csv_file_name_for_saving = 'my-data' + iso_date_timestamp +  '.csv'
