@@ -3469,7 +3469,7 @@ $('#download_button').click(function(){
             CVS_ROWS = ConvertToCSV_v2(bounding_boxes_json_string) // csvmaker(NORM_DATA_JSON_ARRAY_FOR_CSV) 
 
             // var csv_file = convertJSON2CSV(CVS_ROWS)
-            var csv_blob = new Blob([csv_file], { type: 'text/csv' });  //"text/csv;charset=utf-8;" 
+            var csv_blob = new Blob([CVS_ROWS], { type: 'text/csv' });  //"text/csv;charset=utf-8;" 
             saveAs(csv_blob, csv_file_name_for_saving);
 
           alert(' Line 3471 CVS_ROWS: ' + JSON.stringify(CVS_ROWS))
