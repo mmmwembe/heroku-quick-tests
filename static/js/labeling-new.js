@@ -3457,7 +3457,7 @@ $('#download_button').click(function(){
                 var sorted_item = get_sorted_item_from_json_object(norm_data_p)
                 NORM_DATA_JSON_ARRAY_FOR_CSV.push(sorted_item)
 
-                alert(' norm_data_p  : ' + JSON.stringify(norm_data_p) )
+                //alert(' norm_data_p  : ' + JSON.stringify(norm_data_p) )
 
             }
          }
