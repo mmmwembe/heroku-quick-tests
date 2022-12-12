@@ -3473,19 +3473,14 @@ $('#download_button').click(function(){
 
 
             var json_fileName = 'my-json-data' + iso_date_timestamp +  '.json'
-            // var bounding_boxes_json_string = JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)
-   
-            // var json_blob = new Blob([bounding_boxes_json_string], { type: 'text/csv' });  //"text/csv;charset=utf-8;" 
-            // saveAs(json_blob, bounding_boxes_json_string);
-            // alert(' Line 3480 bounding_boxes_json_string: ' + bounding_boxes_json_string)
             var fileToSave = new Blob([JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)], {type: 'application/json'});
             saveAs(fileToSave, json_fileName);
 
 
 
-         if(results.includes('CSV')){
+         if(results.includes('csv')){
 
-            var csv_file_name_for_saving = 'my-data' + iso_date_timestamp +  '.csv'
+            var csv_file_name_for_saving = 'my-data-2-' + iso_date_timestamp +  '.csv'
             var bounding_boxes_json_string = JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)
             CVS_ROWS = ConvertToCSV_v2(bounding_boxes_json_string) // csvmaker(NORM_DATA_JSON_ARRAY_FOR_CSV) 
             var csv_blob = new Blob([CVS_ROWS], { type: 'text/csv' });  //"text/csv;charset=utf-8;" 
@@ -3494,10 +3489,13 @@ $('#download_button').click(function(){
             //alert(' server_results  : ' + JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
 
          }
-         if(results.includes('JSON')){
+         if(results.includes('json')){
           //downloadAsJSON(NORM_DATA_JSON_ARRAY_FOR_CSV, 'data.json')
           // var file_name_for_saving = 'my-data-' + iso_date_timestamp + '.json'
           // downloadAsJSON(NORM_DATA_JSON_ARRAY_FOR_CSV,file_name_for_saving)
+          var json_fileName = 'my-json-data' + iso_date_timestamp +  '.json'
+          var fileToSave = new Blob([JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV)], {type: 'application/json'});
+          saveAs(fileToSave, json_fileName);
 
          }
          if(results.length === 0){
