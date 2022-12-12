@@ -50,6 +50,7 @@ window.addEventListener('load', (event) => {
     var LABEL_BUCKET_CANVAS_JSON = {}
     var CURRENT_THUMBNAILS_ARRAY = []
     var PROJECT_NORM_DATA_JSONs = {}
+    var NORM_DATA_JSON_ARRAY_FOR_CSV = []
 
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
@@ -597,7 +598,7 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
             // alert(' csv file ' + csv_file)
 
             // Save CSV_BLOB
-            var csv_blob = new Blob([csv_file], { type: 'text/csv' });
+            var csv_blob = new Blob([csv_file], { type: 'text/csv;charset=utf-8;' });
             saveAs(csv_blob, csv_file_name_for_saving);
 
             // downloadAsCSV(all_bounding_boxes_json, csv_file_name_for_saving)
@@ -3466,9 +3467,9 @@ $('#download_button').click(function(){
 
             CVS_ROWS = ConvertToCSV_v2(bounding_boxes_json_string) // csvmaker(NORM_DATA_JSON_ARRAY_FOR_CSV) 
 
-            //var csv_file = convertJSON2CSV(JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
-            //var csv_blob = new Blob([csv_file], { type: 'text/csv' });
-            //saveAs(csv_blob, csv_file_name_for_saving);
+            // var csv_file = convertJSON2CSV(CVS_ROWS)
+            var csv_blob = new Blob([csv_file], { type: "text/csv;charset=utf-8;" });
+            saveAs(csv_blob, csv_file_name_for_saving);
 
           alert(' Line 3471 CVS_ROWS: ' + JSON.stringify(CVS_ROWS))
 
@@ -3759,6 +3760,14 @@ function get_sorted_item_from_json_object(obj){
 
    return item
 }
+
+function get_sorted_csv_row_from_json_object(obj){
+
+    var cvs_row = [obj["test_train_validation"], obj["image_url"], obj["label"],obj["norm_x_min"], obj["norm_y_min"],
+                   obj["norm_x_tr"],"",obj["norm_x_max"],obj["norm_y_max"],"","","active",obj["ISODate"]]
+  
+     return cvs_row
+  }
 
 
 const csvmaker = function (data) {
