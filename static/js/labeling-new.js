@@ -3451,7 +3451,7 @@ $('#download_button').click(function(){
            NORM_DATA_JSON_ARRAY_FOR_CSV = []
 
            for (var i=0; i<server_results.length; i++) {
-            
+
             for (var key in server_results[i]) {
                 //alert('Line 3456 key ' +  key)
                 var norm_data_p = server_results[i][key]
@@ -3476,8 +3476,9 @@ $('#download_button').click(function(){
          }
          if(results.includes('JSON')){
           //downloadAsJSON(NORM_DATA_JSON_ARRAY_FOR_CSV, 'data.json')
-          var file_name_for_saving = 'my-data-' + iso_date_timestamp + '.json'
-          downloadAsJSON(NORM_DATA_JSON_ARRAY_FOR_CSV,file_name_for_saving)
+          // var file_name_for_saving = 'my-data-' + iso_date_timestamp + '.json'
+          // downloadAsJSON(NORM_DATA_JSON_ARRAY_FOR_CSV,file_name_for_saving)
+
          }
          if(results.length === 0){
            alert(' Choose type of file to download - CSV, JSON, XML')
