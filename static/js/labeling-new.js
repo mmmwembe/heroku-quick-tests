@@ -3448,7 +3448,6 @@ $('#download_button').click(function(){
         success: function(data) {
            var server_results = data.new_norm_data
 
-           alert(' server_results  : ' + JSON.stringify(server_results) )
 
            NORM_DATA_JSON_ARRAY_FOR_CSV = []
 
@@ -3462,6 +3461,10 @@ $('#download_button').click(function(){
 
             }
          }
+
+
+         alert(' server_results  : ' + JSON.stringify(NORM_DATA_JSON_ARRAY_FOR_CSV))
+
             iso_date_timestamp = new Date().toISOString()
 
          if(results.includes('CSV')){
