@@ -3451,6 +3451,7 @@ $('#download_button').click(function(){
            NORM_DATA_JSON_ARRAY_FOR_CSV = []
 
            for (var i=0; i<server_results.length; i++) {
+            
             for (var key in server_results[i]) {
                 //alert('Line 3456 key ' +  key)
                 var norm_data_p = server_results[i][key]
