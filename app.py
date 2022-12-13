@@ -2055,6 +2055,36 @@ def get_norm_data():
              
     return jsonify(norm_data = project_norm_data, new_norm_data = NORM_DATA)          
 
+@app.route('/getdata', methods=['POST','GET'])
+def getdata():
+  # API for retrieving normalized data for a project
+
+    # if request.method =='GET':
+      
+    project_id = 'lbehbisngqh71en6dv6' # request.form['project_id']
+    user_id ='92520572d6ac46b98a61745b61c327e7' # session["user"]["_id"]
+    
+    project_norm_data =  {}
+    myProject = user_projects.find_one({'user_id': user_id, 'project_js_id': project_id })
+    project_norm_data = myProject["labels_json_urls"]["norm_data"]
+    
+    
+    key_arrays, results_values = get_key_value_arrays(project_norm_data)
+    NORM_DATA = []
+    for json_url in results_values:
+      data_json = get_image_label_json(json_url)
+      NORM_DATA.append(eval("{0}".format(data_json))) 
+    
+    DATA_JSON_ARRAY = []
+    for element in NORM_DATA:
+      keys = element.keys()
+      for k in keys:
+        csv_row_dict = element[k]
+        #print(csv_row_dict)
+        DATA_JSON_ARRAY.append(csv_row_dict)
+            
+             
+    return jsonify(data = DATA_JSON_ARRAY)    
 
 @app.route('/train_model', methods=['POST','GET'])
 def train_model():
