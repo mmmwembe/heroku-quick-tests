@@ -2057,7 +2057,8 @@ def get_norm_data():
 
 @app.route('/getdata', methods=['POST','GET'])
 def getdata():
-  # API for retrieving normalized data for a project
+  # API for retrieving normalized data for a project fro object detection
+  # In this example, the user_id and project_id are fixed. 
 
     # if request.method =='GET':
       
@@ -2084,7 +2085,7 @@ def getdata():
         DATA_JSON_ARRAY.append(csv_row_dict)
             
              
-    return jsonify(data = DATA_JSON_ARRAY)    
+    return jsonify(DATA_JSON_ARRAY)    
 
 @app.route('/train_model', methods=['POST','GET'])
 def train_model():
