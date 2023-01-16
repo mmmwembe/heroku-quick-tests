@@ -132,7 +132,7 @@ window.addEventListener('load', (event) => {
 
 
      // model = loadModel(DEFAULT_MODEL)
-
+/*
     tflite.ObjectDetector.create("https://storage.googleapis.com/2021_tflite_glitch_models/dust-sun-fog-clear-rain-snow-blurry/model-obj-detect-dust-sun-fog-clear-blurry-rain-snow.tflite").then((loadedModel) => {
 
         model = loadedModel;
@@ -141,6 +141,7 @@ window.addEventListener('load', (event) => {
 
     });
 
+    */
 
     
     predictButton.addEventListener("click", async () => {
