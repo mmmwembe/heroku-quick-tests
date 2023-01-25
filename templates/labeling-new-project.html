@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labeling Images </title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+<!--link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"-->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/521/fabric.min.js"></script>
+<script src="https://www.marvinj.org/releases/marvinj-1.0.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+
+
+<script type="text/javascript">
+    var active_project_id = '{{ active_project_id }}'
+    var active_label = '{{ active_label }}'
+</script>
+
+<style> 
+* {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.imageViewer {
+    width: auto;
+    height: auto;
+    max-height:400px; 
+    max-width:600px;
+    aspect-ratio: attr(width) / attr(height);
+ }
+
+.canvas {
+  width: 100%;
+  height: auto;
+  display:block;
+  padding: 0;
+  margin: auto;
+}
+.canvas-container { 
+  margin:0 auto ;
+}
+
+.row:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+
+@media only screen and (min-width: 768px) {
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+
+.header {
+  background-color: #252526;
+  color: #ffffff;
+  padding: 2px;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 8px;
+  margin-bottom: 7px;
+  background-color :#35363A;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.menu li:hover {
+  background-color: #5854DC;
+}
+
+.aside {
+  background-color: #9ACD32;
+  padding: 15px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.footer {
+  background-color: #252526;
+  color: #ffffff;
+  text-align: center;
+  font-size: 18px;
+  padding: 15px;
+}
+
+th{ 
+   color:#fff;
+  }
+
+th, td {
+    font-size: 15px;   
+    font-weight: bold;
+}
+
+#GradingTable th, tr, td {
+
+    width:100%; border: 1px solid black; border-collapse: collapse;
+}
+#myTable tr {
+    background-color: #eee;
+    border-top: 1px solid #fff;
+}
+#myTable tr:hover {
+    background-color: #ccc;
+}
+#myTable th {
+    background-color: #fff;
+}
+#myTable td:hover {
+    cursor: pointer;
+}
+
+.modal-header {
+     color: white;
+     background-color: rgb(97, 101, 102);  
+}
+
+.modal-body {
+     color: rgb(10, 10, 10);
+     background-color: rgb(222, 228, 230);  
+}
+
+body.modal-open .modal {
+    display: flex !important;
+    height: 100%;
+} 
+
+body.modal-open .modal .modal-dialog {
+    margin: auto;
+}
+
+/*      Thumbnail Gallery Styles         */
+
+* {box-sizing: border-box;}
+
+/* The grid: Four equal columns that floats next to each other */
+.gallery_column {float: left; width: 25%; padding: 5px;}
+
+/* Style the images inside the grid */
+.gallery_column img {opacity: 0.8; cursor: pointer; }
+
+.gallery_column img:hover {opacity: 1;}
+
+/* Clear floats after the columns */
+.row:after {content: "";display: table;clear: both;}
+
+.ScrollStyle
+{
+    max-height: 400px;
+    overflow-y: scroll;
+    border:2px solid rgb(107, 102, 107)
+}
+
+.scrollabletextbox {
+    height:250px;
+    width:150px;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 82%;
+    overflow:scroll;
+
+    } 
+
+.labelclass:hover
+    {
+    cursor: pointer;
+ }
+
+
+.label_buckets_header {
+    display: inline-block; 
+    width: 100%;
+}
+
+.caption_label_buckets{
+    float: left
+ }
+
+.toggle_hide_show_label_buckets{
+  float: right
+}
+
+h4 {
+   margin: 2rem 0rem 1rem;
+   }
+
+#gallery_thumbnails_header h4{
+
+  margin: 0;
+  padding: 0;
+
+}
+
+.table-image {td, th {vertical-align: middle;}}
+
+.box img {
+    width: 100%;
+    height: 100%;
+}
+
+.box1 img {
+    object-fit: cover;
+}
+
+
+#container {
+	display: flex;
+  align-content: center;
+  justify-content: center;
+
+}
+
+#container div {
+    align-items: center;
+    margin: 0px;
+    width:100%;
+}
+
+</style>
+
+</head>
+<body style="background-color: #CFD8DC;">
+
+  <div id="container">
+    <div style="height: 100px; width: 15%;  margin-left: 20px;">
+        <div class="box box1"><img src="/static/logo/amina-logo.svg" alt="amina logo" style="height: 100px; width: 80px; margin-top: 20px; margin-left: 20px; display: inline-block;"></div>
+    </div>
+    <div style="height: 100px; width: 100%; margin-top: 40px; margin-left: 0px; text-align: left;">
+      <div style="display:inline-block"><h2>Labeling</h2></div>
+  </div>
+    <div style="height: 100px; width: 100%;  margin-left: 20px; margin-top: 60px;">
+      <button id="dashboard_btn" type="button" class="btn btn-outline-dark">Dashboard</button>
+    </div>
+    <div style="height: 100px; width: 100%;  margin-left: 20px; margin-top: 60px; text-align: center; ">
+      <button id="sign_out_btn" type="button" style="display:inline-block" class="btn btn-outline-dark">Sign Out</button>
+    </div>        
+  </div>
+
+<!--div class="header">
+
+  <div class="row" style="text-align: center;">
+
+  <div class="wrapper">
+      <div class="box box1"><img src="/static/logo/amina-logo.svg" alt="amina logo" style="height: 150px; width: 120px; margin-top: 20px; margin-left: 20px; display: inline-block;"></div>
+  </div>;
+
+  <div class="col-sm">
+      <strong><a href="/classify/">Image Classification</a> </strong>
+  </div>
+  <div class="col-sm">
+      <strong> Object Detection </strong>
+  </div>
+  <div class="col-sm">
+      <strong><a href="#">Labeling</a> </strong>
+  </div>
+  <div class="col-sm">
+      <strong><a href = "/models/"> Models </a> </strong>
+  </div>
+  <div class="col-sm">
+  <strong><a href="#">Data</a> </strong>
+  </div>
+  
+</div>
+
+</div-->
+
+<div class="container" style="height: 100%";>
+
+    <div class="row" style="height:50px">
+
+    </div>
+
+
+    <div class="row">
+
+
+    <div class="container mt-3">
+    
+    </div>
+    
+
+    <div class="col-3 col-s-3">
+        
+
+      <!--THUMBNAIL GALLERY STARTS HERE -->
+      <!-- The four columns -->
+      <div class="ScrollStyle" style="height:100%">
+
+          <div id="gallery_thumbnails_header" style="width:100%; background-color: #C1C1C1;"><h4></h4></div>
+
+          <div class="container" style="width:100%;" >
+
+            <div id="gallery_parent" style="width:100%"></div>
+
+          </div>
+                           
+      </div>
+
+    </div>
+
+    <div class="col-6 col-s-9" style="border:2px solid red; text-align:center;">
+
+        <div id="imageView" class="imageViewer"  style="border:2px solid purple">
+
+            <canvas id="fabricCanvas" style="border: 8px solid green"></canvas>
+
+            <img id="selected-image" src="" style="display: none;" />
+
+        </div>
+    </div>
+    
+
+    <div class="col-3 col-s-12">
+
+
+        <!--Label Map -->
+
+        <div class="ScrollStyle" style="height:100%">
+
+            <h3 id="projectLabel" class="ml-3"></h3>
+            <div id="labels-error-message" style="color:red;"></div> 
+            <button id="StartNewProjectButton" type="button" class="btn btn-success" style="margin: 5px; width: 200px; height: 150px;"><strong> Start New Project </strong></button>
+            <button id="OpenExistingProjectButton" type="button" class="btn btn-primary" style="margin: 5px; width: 200px; height: 150px;"><strong> Open Project </strong></button>            
+            <div id="currentLabel"></div>
+            <div id="currentLabel2" style="margin: auto; width: 100%; padding: 5px;">
+              <p id="p_tag_currentLabel"></p>
+            </div>
+            <br>
+            <div id="newLabelParent"></div>
+    
+            <textarea id="labels_textarea" class="scrollabletextbox" style="text-align:left; font-size: 16px;  border:6px outset #494848; background-color: #F6F6F6;" name="note" rows="10" cols="25" placeholder="dog&#13;&#10;cat&#13;&#10;chicken&#13;&#10;cow&#13;&#10;horse&#13;&#10;girraffe&#13;&#10;crocodile&#13;&#10;shark"></textarea>
+    
+            <br>
+            <button id="addOrEdit_button" type="button"  class="btn btn-dark" style="margin: 5px; width: 150px;">Edit Label(s)</button>
+            <br>
+            <button id="save_button" type="button"  class="btn btn-success" style="margin: 5px; width: 150px;">Save Labels</button>
+            <br>
+            <button id="cancel_button" type="button" class="btn btn-danger" style="margin: 5px; width: 150px;"> Cancel </button>
+            <br>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+
+    <div class="col-3 col-s-3">
+
+    </div>
+
+    <div class="col-6 col-s-9">
+
+        <div class="container" >
+
+            <div class="row">
+
+                <div class="col-sm">
+             
+                </div>
+                <div class="col-sm">
+              
+                </div>
+
+                <div class="col-sm" style="padding: 0px; margin-bottom: 0px;">
+
+                    <button id="download-csv-button" type="button" class="btn btn-primary btn-lg"  style="width:100%; float:right" id="downloadCSVBtn">
+                     Download 
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    
+    <div class="col-3 col-s-12">
+
+    
+    </div>
+
+    <div class="row" style="height:50px">
+
+    </div>
+
+
+    <div class="footer">
+
+
+        <div class="container" >
+            
+            <div class="row">
+
+                <div class="col-sm">
+
+                    <form>
+                      <div class="input-group">
+                        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">File type(s)</button>
+                        <ul id="checkbox-container" class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#"><label><input type="checkbox"  name="file_type_checkbox" value="csv" checked> CSV</label></a></li>
+                          <li><a class="dropdown-item" href="#"><label><input type="checkbox"  name="file_type_checkbox" value="json"> JSON</label></a></li>
+                          <li><a class="dropdown-item" href="#"><label><input type="checkbox"  name="file_type_checkbox" value="Pascal-VOC"> Pascal VOC</label></a></li>
+                        </ul>
+                        <input id="download_button" type="submit" value="Download Labels" class="btn btn-primary form-control" style="margin-left: 10px; width: 100px;">
+                    </div>
+        
+                    </form> 
+
+                </div>
+                <div class="col-sm">
+
+
+                            <button type="button" class="btn btn-primary btn-lg"  id="previousBtn">
+                            <span class="glyphicon glyphicon-triangle-left"></span> Prev
+                            </button>
+                        
+                            <button type="button" class="btn btn-success btn-lg" id="nextBtn">
+                            <span class="glyphicon glyphicon-triangle-right"></span>   Next
+                            </button>
+
+
+                </div>
+
+                <div class="col-sm">
+      
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+        <!----------------------------------------MODAL FOR CREATING PROJECT -------------------------------------------------->
+        <div class="container">
+            <!-- Trigger the modal with a button -->
+            <!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button-->
+          
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog modal-lg" style="width:30%">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Create Project</h4>
+                    <button id="closeCornerBtn" type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+          
+                  <form>
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                     <div class="form-group">
+                       <label for="project_name" style ="text-align: left"><strong>Enter Project Name</strong></label>
+                       <input type="text" class="form-control" id="project_name" name="project_name" required="true"> 
+                      </div>
+                  </div>
+            
+                  <!-- Modal footer -->
+          
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                      <button id="close" type="button" class="btn btn-danger" data-bs-dismiss="modal" style="margin-right:5px;">Close</button>
+                      <button id="createProjectBtn" type="button" class="btn btn-primary">Create Project</button>
+                  </div>
+          
+                </div>
+                
+              </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+  <!--------------------------------------MAIN-CONTAINER USED FOR LABEL BUCKETS--------------------------------------------------------------------->
+
+    <div class="row">
+        
+        <div class="label_buckets_header">
+            <div class="caption_label_buckets">
+                <h2>Label Buckets</h2>
+            </div>
+            <div class="toggle_hide_show_label_buckets" >
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" style="vertical-align: middle;" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked" style="vertical-align: middle;">Show/Hide</label>
+                </div>
+            </div>
+          </div>
+
+
+        <div id="myProgressBarHolder" style="width: 100%; background-color: grey;">
+            <div id="myBar"  style="width: 1%; height: 30px; background-color: green;"></div>
+        </div>
+        
+        <div id="label_buckets_container" class="container">
+
+        </div>
+
+        {% if active_project_id %} 
+        <div>
+            <input type="hidden" id="active_project_id" name="active_project_id" value="{{ active_project_id }}">
+            <input type="hidden" id="active_label" name="active_label" value="{{ active_label }}">
+        </div>
+        {% endif %}
+
+
+    </div>
+
+
+    <div class="row">
+        
+      <div class="label_buckets_header ">
+          <div class="caption_label_buckets">
+              <!--h2>Cropped Images Label Buckets</h2-->
+          </div>
+          <div class="toggle_hide_show_label_buckets" >
+              <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" style="vertical-align: middle;" checked>
+                  <label class="form-check-label" for="flexSwitchCheckChecked" style="vertical-align: middle;">Show/Hide</label>
+              </div>
+          </div>
+        </div>
+
+      <div id="cropped_images_label_buckets_container" class="container">
+
+
+
+
+      </div>
+
+
+  </div>
+
+
+
+    <div class="row">
+
+
+    </div>
+
+
+
+    </div>
+
+        <!-- Load TFLite Task Library -->
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js" type="text/javascript"></script>
+        <!-- Load the coco-ssd model to use to recognize things in images -->
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.8/dist/tf-tflite.min.js"></script>
+
+        <script src="/static/js/labeling-new.js" crossorigin="anonymous"></script>
+
+
+    </body>
+</html>

@@ -1542,6 +1542,14 @@ def choose_project():
 
 	return render_template('projects.html', all_projects = all_projects)
 
+@app.route('/start_new_project/', methods=['POST','GET'])
+def start_new_project():
+
+	return render_template('labeling-new-project.html')
+
+
+
+
 @app.route('/set_active_project', methods=['POST','GET'])
 def set_active_project():
     
