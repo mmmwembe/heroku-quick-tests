@@ -1425,9 +1425,9 @@ fabricCanvas.on('mouse:dblclick', (e1) => {
     // If so, get CURRENT_PROJECT from the stored json
     if (window.localStorage.hasOwnProperty('project_json')){
 
-        PROJECT_JSON = window.localStorage.getItem("project_json");
-        var retrieved_json_object = JSON.parse(PROJECT_JSON)
-        CURRENT_PROJECT = retrieved_json_object.project_name
+        //PROJECT_JSON = window.localStorage.getItem("project_json");
+        //var retrieved_json_object = JSON.parse(PROJECT_JSON)
+        //CURRENT_PROJECT = retrieved_json_object.project_name
         //alert('localStorage Current Project ' + CURRENT_PROJECT)
         
     }
