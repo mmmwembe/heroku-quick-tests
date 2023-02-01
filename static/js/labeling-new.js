@@ -52,6 +52,8 @@ window.addEventListener('load', (event) => {
     var PROJECT_NORM_DATA_JSONs = {}
     var NORM_DATA_JSON_ARRAY_FOR_CSV = []
 
+    var LOOP_CROP_LABEL_setInterval;
+
     var first_20_colors = ['#112FDF', '#FF0006', '#00A546','#D95C00', '#862E85', '#AFD800','#512479', '#31CBF1', '#FCAE03','#FC368D', '#723BB0', '#E12A1F','#FF014A', '#0094D4', '#879AF9','#E40061', '#F7DC43', '#3C55E6','#590F26', '#243274'];
 
     var user_id = localStorage.getItem("user_id")// document.getElementById("user_id").value
@@ -3598,6 +3600,45 @@ $('#nextBtn').click(function(){
 
 
  });
+
+
+ $('#autoLoop_Crop_and_Label_Btn').click(function(){
+
+    LOOP_CROP_LABEL_setInterval = setInterval(Loop_Crop_and_Label, 2000);
+
+ });
+
+ function Loop_Crop_and_Label(){
+
+    if (CURRENT_THUMBNAILS_ARRAY.includes(IMAGE_URL)){
+
+        const current_img_index = CURRENT_THUMBNAILS_ARRAY.indexOf(IMAGE_URL)
+
+        // alert(' It gets to nextImage - Image URL index : ' + current_img_index)
+
+        var new_image_url = CURRENT_THUMBNAILS_ARRAY.hasOwnProperty(current_img_index + 1) ? CURRENT_THUMBNAILS_ARRAY[current_img_index + 1]  : ""; 
+
+        if(new_image_url){
+
+            IMAGE_URL = new_image_url
+
+            Update_Background_Image_on_FabricCanvas(new_image_url)
+
+        }
+        else{
+
+            alert(' This is the last image')
+            clearInterval(LOOP_CROP_LABEL_setInterval);
+        }
+
+    }
+
+ }
+
+
+
+
+
 
 
  // Add this to post_project_json_info
