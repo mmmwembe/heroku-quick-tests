@@ -3627,6 +3627,8 @@ $('#nextBtn').click(function(){
             // add group of rectangles to canvas
             add_group_of_rects()
 
+            setTimeout(function() {}, 5000);
+
         }
         else{
 
