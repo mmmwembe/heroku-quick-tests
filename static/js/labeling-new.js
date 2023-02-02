@@ -3624,6 +3624,9 @@ $('#nextBtn').click(function(){
 
             Update_Background_Image_on_FabricCanvas(new_image_url)
 
+            // add group of rectangles to canvas
+            add_group_of_rects()
+
         }
         else{
 
@@ -3635,6 +3638,21 @@ $('#nextBtn').click(function(){
 
  }
 
+
+ 
+function add_group_of_rects(){
+
+    var rect1 = new fabric.Rect({left: 0,top: 0,width: 150,height: 50,fill: 'green',angle: 0,opacity: 0.5});
+    var rect2 = new fabric.Rect({left: 150,top: 0,width: 150,height: 50,fill: 'yellow',angle: 0,opacity: 0.3});
+    var rect3 = new fabric.Rect({left: 300,top: 0,width: 150,height: 50,fill: 'blue',angle: 0,opacity: 0.5});
+    var rect4 = new fabric.Rect({left: 0,top: 50,width: 150,height: 50,fill: 'magenta',angle: 0,opacity: 0.75});
+    var rect5 = new fabric.Rect({left: 0,top: 100,width: 150,height: 50,fill: 'gray',angle: 0,opacity: 0.80});
+  
+   var group = new fabric.Group([rect1,rect2,rect3,rect4,rect5])
+   fabricCanvas.add(group);
+   fabricCanvas.renderAll()
+  
+  }
 
 
 
