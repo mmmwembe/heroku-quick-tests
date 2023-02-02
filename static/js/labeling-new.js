@@ -3638,7 +3638,7 @@ $('#nextBtn').click(function(){
             Update_Background_Image_on_FabricCanvas(new_image_url)
 
             // add group of rectangles to canvas
-            add_group_of_rects()
+            // add_group_of_rects()
 
             setTimeout(function() {}, 5000);
 
