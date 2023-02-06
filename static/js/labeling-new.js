@@ -158,6 +158,8 @@ window.addEventListener('load', (event) => {
             });
 
 
+            // Add the code for opacity here
+
             var rect1 = new fabric.Rect({left: 0,top: 0,width: 150,height: 50,fill: 'green',angle: 0,opacity: 0.5});
             var rect2 = new fabric.Rect({left: 0,top: 50,width: 150,height: 50,fill: 'magenta',angle: 0,opacity: 0.75});
             var rect3 = new fabric.Rect({left: 0,top: 100,width: 150,height: 50,fill: 'gray',angle: 0,opacity: 0.80});
@@ -165,6 +167,19 @@ window.addEventListener('load', (event) => {
            var group = new fabric.Group([rect1,rect2])
            fabricCanvas.add(group);
            fabricCanvas.renderAll()
+
+
+
+           var cropped_image_dataURL = fabricCanvas.toDataURL({
+            format: 'image/jpeg',
+            left: rect1.left,      //  canvas.offsetLeft,
+            top: rect1.top,        // canvas.offsetTop,
+            width: rect1.width,
+            height: rect1.height,
+            selection: false
+        })
+
+        alert(' line 182 - cropped_image_dataURL ' + JSON.stringify(cropped_image_dataURL))
 
 
 
