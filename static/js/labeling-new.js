@@ -197,7 +197,7 @@ window.addEventListener('load', (event) => {
                 data: { 
                    imgBase64: cropped_image_dataURL,
                    user_id : "user_id", 
-                   image_name : "image_name",
+                   image_name : "image_name.jpg",
                    label_num : "label_num",
                    current_folder: "WORKING_LABELS_FOLDER"
                 },
