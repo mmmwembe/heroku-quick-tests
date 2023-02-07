@@ -179,7 +179,34 @@ window.addEventListener('load', (event) => {
             selection: false
         })
 
-        alert(' line 182 - cropped_image_dataURL ' + JSON.stringify(cropped_image_dataURL))
+              // Remove data:image/png;base64, at beginning of the cropped_image_dataURL string
+            cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
+            // var imgBase64 = cropped_image_dataURL
+
+            // Save image to server
+            // saveCroppedSection()
+
+            // alert(' line 182 - cropped_image_dataURL ' + JSON.stringify(cropped_image_dataURL))
+
+
+
+
+            $.ajax({
+                type: "POST",
+                url: "/saveCroppedImage",
+                data: { 
+                   imgBase64: cropped_image_dataURL,
+                   user_id : "user_id", 
+                   image_name : "image_name",
+                   label_num : "label_num",
+                   current_folder: "WORKING_LABELS_FOLDER"
+                },
+                success: function(data) {
+                  var new_url = data.url
+                  alert('Line 206 cropped-image-dataURL : ' + JSON.stringify(new_url))
+                }
+            
+              });
 
 
 
