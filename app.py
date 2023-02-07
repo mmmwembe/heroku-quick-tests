@@ -1366,7 +1366,7 @@ def saveCroppedImage():
 
 
 @app.route('/saveCroppedImage200', methods=['POST','GET'])
-def saveCroppedImage():
+def saveCroppedImage200():
 
     if request.method =='POST':
 
