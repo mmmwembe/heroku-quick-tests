@@ -1356,6 +1356,7 @@ def saveCroppedImage():
 
         img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
         img.save(cropped_image_file_path)
+        
         # saveImageBase42StringAsImage(cropped_image_dataURL)
 
         # static/images/user1/canvas_jsons
@@ -1378,12 +1379,13 @@ def saveCroppedImage200():
         img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
         # img.save(cropped_image_file_path)
         # saveImageBase42StringAsImage(cropped_image_dataURL)
+        img_bytes = img.tobytes()
 
         # static/images/user1/canvas_jsons
         
         # encoded_string = base64.b64encode(cropped_image_dataURL)
    
-    return jsonify(result = 'success', url=cropped_image_dataURL)
+    return jsonify(result = 'success', url=img_bytes)
 
 
 @app.route('/image_url/', methods=['POST','GET'])
