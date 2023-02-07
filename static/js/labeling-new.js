@@ -188,7 +188,7 @@ window.addEventListener('load', (event) => {
 
             // alert(' line 182 - cropped_image_dataURL ' + JSON.stringify(cropped_image_dataURL))
 
-
+           // https://stackoverflow.com/questions/55941068/change-image-size-with-pil-in-a-google-cloud-storage-bucket-from-a-vm-in-gcloud
 
 
             $.ajax({
