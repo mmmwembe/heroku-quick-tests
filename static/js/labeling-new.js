@@ -193,7 +193,7 @@ window.addEventListener('load', (event) => {
 
             $.ajax({
                 type: "POST",
-                url: "/saveCroppedImage",
+                url: "/saveCroppedImage200",
                 data: { 
                    imgBase64: cropped_image_dataURL,
                    user_id : "user_id", 
