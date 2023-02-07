@@ -1379,7 +1379,7 @@ def saveCroppedImage200():
         img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
         # img.save(cropped_image_file_path)
         # saveImageBase42StringAsImage(cropped_image_dataURL)
-        img_bytes = img.tobytes()
+        img_bytes = bytes(cropped_image_dataURL, "utf-8")
 
         # static/images/user1/canvas_jsons
         
