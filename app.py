@@ -1370,9 +1370,6 @@ def saveCroppedImage():
 def saveCroppedImage200():
 
     if request.method =='POST':
-
-
-
         cropped_image_dataURL = request.form['imgBase64']
         # print(cropped_image_dataURL)
 
