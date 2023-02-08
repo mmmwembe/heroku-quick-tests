@@ -1356,7 +1356,6 @@ def saveCroppedImage():
 
         img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
         img.save(cropped_image_file_path)
-        
         # saveImageBase42StringAsImage(cropped_image_dataURL)
 
         # static/images/user1/canvas_jsons
@@ -1370,13 +1369,15 @@ def saveCroppedImage():
 def saveCroppedImage200():
 
     if request.method =='POST':
+
+
+
         cropped_image_dataURL = request.form['imgBase64']
         # print(cropped_image_dataURL)
 
         img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
         # img.save(cropped_image_file_path)
         # saveImageBase42StringAsImage(cropped_image_dataURL)
-        # img_bytes = bytes(cropped_image_dataURL, "utf-8")
 
         # static/images/user1/canvas_jsons
         
