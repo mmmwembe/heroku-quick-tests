@@ -171,7 +171,7 @@ window.addEventListener('load', (event) => {
 
 
            var cropped_image_dataURL = fabricCanvas.toDataURL({
-            format: 'image/jpeg',
+            format: 'image/png',   // format: 'image/jpeg',
             left: rect1.left,      //  canvas.offsetLeft,
             top: rect1.top,        // canvas.offsetTop,
             width: rect1.width,
@@ -200,7 +200,9 @@ window.addEventListener('load', (event) => {
                    user_id : "user_id", 
                    image_name : "image_name.jpg",
                    label_num : "label_num",
-                   current_folder: "WORKING_LABELS_FOLDER"
+                   current_folder: "WORKING_LABELS_FOLDER",
+                   rect_width: rect1.width,
+                   rect_height: rect1.height, 
                 },
                 success: function(data) {
                   var new_url = data.url

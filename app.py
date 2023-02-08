@@ -1373,17 +1373,23 @@ def saveCroppedImage200():
 
 
         cropped_image_dataURL = request.form['imgBase64']
+        rect_width = request.form['rect_width'] 
+        rect_height = request.form['rect_height']   
+           
+        
+        
         # print(cropped_image_dataURL)
 
         img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
         # img.save(cropped_image_file_path)
         # saveImageBase42StringAsImage(cropped_image_dataURL)
+        img_bytes = img.resize((rect_width, rect_height), 2).tobytes()
 
         # static/images/user1/canvas_jsons
         
         # encoded_string = base64.b64encode(cropped_image_dataURL)
    
-    return jsonify(result = 'success', url=cropped_image_dataURL)
+    return jsonify(result = 'success', url=img_bytes)
 
 
 @app.route('/image_url/', methods=['POST','GET'])
