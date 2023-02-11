@@ -1404,9 +1404,8 @@ def saveCroppedImage200():
         # cropped_image_file_path = 'static/images/'  + file_name + extension.replace(".", "-") + '-' + label_num + '.png'
         # image_data = re.sub('^data:image/.+;base64,', '', cropped_image_dataURL).decode('base64')
         # image_data_string = StringIO.StringIO(cropped_image_dataURL)
-        
-        now = datetime.now()
-        image_file_name = now.strftime("%m-%d-%Y, %H-%M-%S") + ".png"
+  
+        image_file_name = datetime.datetime.now().strftime("%Y_%m_%d-%I_%M_%S_%p") + ".png"
         
 
         # gcs_url = save_cropped_image_to_gcp(image_file_name, "image/png", image_data_string, project,label)
