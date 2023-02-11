@@ -1377,19 +1377,26 @@ def saveCroppedImage200():
         rect_height = request.form['rect_height']   
            
         
-        
-        # print(cropped_image_dataURL)
+        cropped_image_file_path = 'static/images/' + session["user"]["_id"] + '/cropped-labels/'+ currentFolder + '/' + file_name +  extension.replace(".", "-") + '-' + label_num + '.png'
+        # cropped_image_file_path = 'static/images/'  + file_name + extension.replace(".", "-") + '-' + label_num + '.png'
 
         img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
+        img.save(cropped_image_file_path)
+                
+        # print(cropped_image_dataURL)
+
+        # img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
+        
         # img.save(cropped_image_file_path)
         # saveImageBase42StringAsImage(cropped_image_dataURL)
-        img_bytes = img.tobytes("xbm", "rgb")
+        
+        # img_bytes = img.tobytes("xbm", "rgb")
         # img_bytes = img.resize((int(rect_width), int(rect_height)), 2).tobytes()
         # static/images/user1/canvas_jsons
         # encoded_string = base64.b64encode(cropped_image_dataURL)
         # https://stackoverflow.com/questions/55941068/change-image-size-with-pil-in-a-google-cloud-storage-bucket-from-a-vm-in-gcloud
    
-    return jsonify(result = 'success', url=img_bytes)
+    return jsonify(result = 'success', url=cropped_image_file_path)
 
 
 @app.route('/image_url/', methods=['POST','GET'])
