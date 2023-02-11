@@ -197,6 +197,8 @@ window.addEventListener('load', (event) => {
                 url: "/saveCroppedImage200",
                 data: { 
                    imgBase64: cropped_image_dataURL,
+                   active_label_bucket :  ACTIVE_LABEL_BUCKET,
+                   active_project_id :  ACTIVE_PROJECT_ID,                   
                    user_id : "user_id", 
                    image_name : "image_name.png",
                    label_num : "label_num",

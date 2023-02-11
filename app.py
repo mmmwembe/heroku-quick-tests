@@ -559,6 +559,9 @@ def upload_colab_notebook_to_gcp(notebook_filepath, model_id):
    
 	return gcs_url   
 
+def base64ToString(b):
+    return base64.b64decode(b).decode('utf-8')
+
 def save_cropped_image_to_gcp(image_file_name, image_file_type, image_data_string, project,label):
   
   # image_file_type = "image/png"
@@ -1398,7 +1401,8 @@ def saveCroppedImage200():
         cropped_image_dataURL = request.form['imgBase64']
         rect_width = request.form['rect_width'] 
         rect_height = request.form['rect_height']   
-           
+        active_label_bucket = request.form['active_label_bucket'] 
+        active_project_id = request.form['active_project_id']              
         
         cropped_image_file_path = 'static/images/' + session["user"]["_id"] + '/cropped-labels/'+ 'sample-image-001.png'
         # cropped_image_file_path = 'static/images/'  + file_name + extension.replace(".", "-") + '-' + label_num + '.png'
@@ -1407,8 +1411,9 @@ def saveCroppedImage200():
   
         image_file_name = datetime.datetime.now().strftime("%Y_%m_%d-%I_%M_%S_%p") + ".png"
         
+        image_data_string = base64ToString(cropped_image_dataURL)
 
-        # gcs_url = save_cropped_image_to_gcp(image_file_name, "image/png", image_data_string, project,label)
+        gcs_url = save_cropped_image_to_gcp(image_file_name, "image/png", image_data_string, active_project_id,active_label_bucket)
 
         #img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
         #img.save(cropped_image_file_path)
@@ -1426,7 +1431,7 @@ def saveCroppedImage200():
         # encoded_string = base64.b64encode(cropped_image_dataURL)
         # https://stackoverflow.com/questions/55941068/change-image-size-with-pil-in-a-google-cloud-storage-bucket-from-a-vm-in-gcloud
    
-    return jsonify(result = 'success', url=image_file_name)
+    return jsonify(result = 'success', url=gcs_url)
 
 
 @app.route('/image_url/', methods=['POST','GET'])
