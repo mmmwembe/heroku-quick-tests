@@ -1404,7 +1404,8 @@ def saveCroppedImage200():
         active_label_bucket = request.form['active_label_bucket'] 
         active_project_id = request.form['active_project_id']              
         
-        cropped_image_file_path = 'static/images/' + session["user"]["_id"] + '/cropped-labels/'+ 'sample-image-001.png'
+        #cropped_image_file_path = 'static/images/' + session["user"]["_id"] + '/cropped-labels/'+ 'sample-image-001.png'
+        cropped_image_file_path ='sample-image-001.png'        
         # cropped_image_file_path = 'static/images/'  + file_name + extension.replace(".", "-") + '-' + label_num + '.png'
         # image_data = re.sub('^data:image/.+;base64,', '', cropped_image_dataURL).decode('base64')
         # image_data_string = StringIO.StringIO(cropped_image_dataURL)
@@ -1415,16 +1416,15 @@ def saveCroppedImage200():
         image_data_bytes = base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))
         #image_data_bytes = BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8")))
 
-        gcs_url = save_cropped_image_to_gcp(image_file_name, image_data_bytes, image_data_string, active_project_id,active_label_bucket)
+        #gcs_url = save_cropped_image_to_gcp(image_file_name, image_data_bytes, image_data_string, active_project_id,active_label_bucket)
 
-        #img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
-        #img.save(cropped_image_file_path)
+        img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
+        img.save(cropped_image_file_path)
                 
         # print(cropped_image_dataURL)
-
-        # img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
         
-        # img.save(cropped_image_file_path)
+        img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
+        img.save(cropped_image_file_path)
         # saveImageBase42StringAsImage(cropped_image_dataURL)
         
         # img_bytes = img.tobytes("xbm", "rgb")
@@ -1433,7 +1433,7 @@ def saveCroppedImage200():
         # encoded_string = base64.b64encode(cropped_image_dataURL)
         # https://stackoverflow.com/questions/55941068/change-image-size-with-pil-in-a-google-cloud-storage-bucket-from-a-vm-in-gcloud
    
-    return jsonify(result = 'success', url=gcs_url)
+    return jsonify(result = 'success', url=cropped_image_file_path)
 
 
 @app.route('/image_url/', methods=['POST','GET'])
