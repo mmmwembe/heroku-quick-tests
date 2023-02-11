@@ -1380,8 +1380,8 @@ def saveCroppedImage200():
         cropped_image_file_path = 'static/images/' + session["user"]["_id"] + '/cropped-labels/'+ 'sample-image-001.png'
         # cropped_image_file_path = 'static/images/'  + file_name + extension.replace(".", "-") + '-' + label_num + '.png'
 
-        #img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
-        #img.save(cropped_image_file_path)
+        img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
+        img.save(cropped_image_file_path)
                 
         # print(cropped_image_dataURL)
 
