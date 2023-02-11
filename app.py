@@ -1432,7 +1432,7 @@ def saveCroppedImage200():
         # encoded_string = base64.b64encode(cropped_image_dataURL)
         # https://stackoverflow.com/questions/55941068/change-image-size-with-pil-in-a-google-cloud-storage-bucket-from-a-vm-in-gcloud
    
-    return jsonify(result = 'success', url=)
+    return jsonify(result = 'success', url=image_data_bytes)
 
 
 @app.route('/image_url/', methods=['POST','GET'])
