@@ -180,7 +180,7 @@ window.addEventListener('load', (event) => {
         })
 
               // Remove data:image/png;base64, at beginning of the cropped_image_dataURL string
-           // cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
+           cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
 
             // var imgBase64 = cropped_image_dataURL
 
