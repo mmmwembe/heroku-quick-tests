@@ -559,6 +559,26 @@ def upload_colab_notebook_to_gcp(notebook_filepath, model_id):
    
 	return gcs_url   
 
+def save_cropped_image_to_gcp(image_file_name, image_file_type, image_data_string, project,label):
+  
+  # image_file_type = "image/png"
+  
+  bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
+  user_cropped_image_dir = session["user"]["gcp_bucket_dict"]["cropped_images_subdir"]
+  
+  client = storage.Client()
+  bucket = client.get_bucket(bucket_name)
+  sub_dir_path_with_active_folder = os.path.join(user_cropped_image_dir,project,label)
+  blob_full_path = os.path.join(sub_dir_path_with_active_folder, image_file_name)
+  blob = bucket.blob(blob_full_path) 
+    
+  blob = bucket.blob(blob_full_path)
+  blob.upload_from_string(image_data_string, image_file_type)
+  blob_public_url = blob.public_url 
+  gcs_url = "https://storage.googleapis.com/{}/{}".format(bucket_name,blob_full_path)
+  
+  return gcs_url 
+
 
 def upload_files_to_gcp(name_of_bucket, subdir_path, active_folder, files_to_upload, allowed_file_types):
 	bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
@@ -1383,7 +1403,13 @@ def saveCroppedImage200():
         cropped_image_file_path = 'static/images/' + session["user"]["_id"] + '/cropped-labels/'+ 'sample-image-001.png'
         # cropped_image_file_path = 'static/images/'  + file_name + extension.replace(".", "-") + '-' + label_num + '.png'
         # image_data = re.sub('^data:image/.+;base64,', '', cropped_image_dataURL).decode('base64')
-        image_data_string = StringIO.StringIO(cropped_image_dataURL)
+        # image_data_string = StringIO.StringIO(cropped_image_dataURL)
+        
+        now = datetime.now()
+        image_file_name = now.strftime("%m-%d-%Y, %H-%M-%S") + ".png"
+        
+
+        # gcs_url = save_cropped_image_to_gcp(image_file_name, "image/png", image_data_string, project,label)
 
         #img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
         #img.save(cropped_image_file_path)
@@ -1401,7 +1427,7 @@ def saveCroppedImage200():
         # encoded_string = base64.b64encode(cropped_image_dataURL)
         # https://stackoverflow.com/questions/55941068/change-image-size-with-pil-in-a-google-cloud-storage-bucket-from-a-vm-in-gcloud
    
-    return jsonify(result = 'success', url=cropped_image_dataURL)
+    return jsonify(result = 'success', url=image_file_name)
 
 
 @app.route('/image_url/', methods=['POST','GET'])
