@@ -1428,12 +1428,13 @@ def saveCroppedImage200():
         # saveImageBase42StringAsImage(cropped_image_dataURL)
         
         image_binary = base64.b64decode(cropped_image_dataURL)
+        
         bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
         user_cropped_image_dir = session["user"]["gcp_bucket_dict"]["cropped_images_subdir"]
   
         client = storage.Client()
         bucket = client.get_bucket(bucket_name)
-        sub_dir_path_with_active_folder = os.path.join(user_cropped_image_dir,project,label)
+        sub_dir_path_with_active_folder = os.path.join(user_cropped_image_dir,active_project_id,active_label_bucket)
         blob_full_path = os.path.join(sub_dir_path_with_active_folder, image_file_name)
     
         # Create a client for Google Cloud Storage
