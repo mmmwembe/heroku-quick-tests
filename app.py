@@ -1429,7 +1429,8 @@ def saveCroppedImage200():
         
         image_binary = base64.b64decode(cropped_image_dataURL)
         
-        image = Image.open(BytesIO(image_binary))
+        #image = Image.open(BytesIO(image_binary))
+        image200 = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
         
         bucket_name = session["user"]["gcp_bucket_dict"]["bucket_name"]
         user_cropped_image_dir = session["user"]["gcp_bucket_dict"]["cropped_images_subdir"]
@@ -1449,7 +1450,7 @@ def saveCroppedImage200():
         blob = bucket.blob(blob_full_path)
         
         with BytesIO() as image_file:
-          image.save(image_file, format="PNG")
+          image200.save(image_file, format="PNG")
           image_file.seek(0)
           blob.upload_from_file(image_file, content_type="image/png")
         # blob.upload_from_string(image_binary, content_type="image/png")
