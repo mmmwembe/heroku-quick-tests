@@ -1416,7 +1416,7 @@ def saveCroppedImage200():
         #gcs_url = save_cropped_image_to_gcp(image_file_name, "image/png", image_data_string, active_project_id,active_label_bucket)
 
         img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
-        #img.save(cropped_image_file_path)
+        img.save(cropped_image_file_path)
                 
         # print(cropped_image_dataURL)
 
