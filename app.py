@@ -1411,12 +1411,12 @@ def saveCroppedImage200():
   
         image_file_name = datetime.datetime.now().strftime("%Y_%m_%d-%I_%M_%S_%p") + ".png"
         
-        image_data_string = base64ToString(cropped_image_dataURL)
+        #image_data_string = base64ToString(cropped_image_dataURL)
 
         #gcs_url = save_cropped_image_to_gcp(image_file_name, "image/png", image_data_string, active_project_id,active_label_bucket)
 
-        #img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
-        #img.save(cropped_image_file_path)
+        img = Image.open(BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))))
+        img.save(cropped_image_file_path)
                 
         # print(cropped_image_dataURL)
 
@@ -1431,7 +1431,7 @@ def saveCroppedImage200():
         # encoded_string = base64.b64encode(cropped_image_dataURL)
         # https://stackoverflow.com/questions/55941068/change-image-size-with-pil-in-a-google-cloud-storage-bucket-from-a-vm-in-gcloud
    
-    return jsonify(result = 'success', url=image_data_string)
+    return jsonify(result = 'success', url=cropped_image_file_path)
 
 
 @app.route('/image_url/', methods=['POST','GET'])
