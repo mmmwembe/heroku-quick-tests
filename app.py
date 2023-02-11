@@ -1411,8 +1411,9 @@ def saveCroppedImage200():
   
         image_file_name = datetime.datetime.now().strftime("%Y_%m_%d-%I_%M_%S_%p") + ".png"
         
-        #image_data_string = base64ToString(cropped_image_dataURL)
-        image_data_bytes = BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8")))
+        # image_data_bytes = base64ToString(cropped_image_dataURL)
+        image_data_bytes = base64.decodebytes(bytes(cropped_image_dataURL, "utf-8"))
+        #image_data_bytes = BytesIO(base64.decodebytes(bytes(cropped_image_dataURL, "utf-8")))
 
         gcs_url = save_cropped_image_to_gcp(image_file_name, image_data_bytes, image_data_string, active_project_id,active_label_bucket)
 
