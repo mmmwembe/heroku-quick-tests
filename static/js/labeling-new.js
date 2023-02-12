@@ -226,10 +226,12 @@ window.addEventListener('load', (event) => {
                   alert('Line 206 cropped-image-dataURL : ' + JSON.stringify(new_url))
 
 
-                  var imgElement = document.createElement("img");
-                  imgElement.src = new_url;
-                  imgElement.crossOrigin ="anonymous"
-                  cropped_image_display.appendChild(imgElement);
+                  //var imgElement = document.createElement("img");
+                  //imgElement.src = new_url;
+                  //imgElement.crossOrigin ="anonymous"
+                  //cropped_image_display.appendChild(imgElement);
+
+                  $('#external_image').attr('src', new_url);
 
 
                 }
