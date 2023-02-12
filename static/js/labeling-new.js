@@ -131,8 +131,6 @@ window.addEventListener('load', (event) => {
 
    function updateFabricCanvasBackgroundImage(NEW_IMAGE_URL){
 
-       var rect1, rect2, rect3
-
         var remoteImageForFabric = new Image();
         remoteImageForFabric.crossOrigin = "Anonymous";
         remoteImageForFabric.src = "";
@@ -162,9 +160,9 @@ window.addEventListener('load', (event) => {
 
             // Add the code for opacity here
 
-            rect1 = new fabric.Rect({left: 0,top: 0,width: 150,height: 50,fill: 'green',angle: 0,opacity: 0.5});
-            rect2 = new fabric.Rect({left: 0,top: 50,width: 150,height: 50,fill: 'magenta',angle: 0,opacity: 0.75});
-            rect3 = new fabric.Rect({left: 0,top: 100,width: 150,height: 50,fill: 'gray',angle: 0,opacity: 0.80});
+            var rect1 = new fabric.Rect({left: 0,top: 0,width: 150,height: 50,fill: 'green',angle: 0,opacity: 0.5});
+            var rect2 = new fabric.Rect({left: 0,top: 50,width: 150,height: 50,fill: 'magenta',angle: 0,opacity: 0.75});
+            var rect3 = new fabric.Rect({left: 0,top: 100,width: 150,height: 50,fill: 'gray',angle: 0,opacity: 0.80});
           
            var group = new fabric.Group([rect1,rect2])
            fabricCanvas.add(group);
@@ -172,13 +170,7 @@ window.addEventListener('load', (event) => {
 
 
 
-        }
-        //remoteImageForFabric.src = "https://images-na.ssl-images-amazon.com/images/S/aplus-seller-content-images-us-east-1/ATVPDKIKX0DER/A1GLDJYFYVCUE8/B0044FL7SG/kFRS1LS1QWWr._UX500_TTW_.jpg";
-        remoteImageForFabric.src = NEW_IMAGE_URL;
-
-
-
-        var cropped_image_dataURL = fabricCanvas.toDataURL({
+           var cropped_image_dataURL = fabricCanvas.toDataURL({
             format: 'png',   // format: 'image/jpeg',
             left: rect1.left,      //  canvas.offsetLeft,
             top: rect1.top,        // canvas.offsetTop,
@@ -250,8 +242,9 @@ window.addEventListener('load', (event) => {
 
 
 
-
-
+        }
+        //remoteImageForFabric.src = "https://images-na.ssl-images-amazon.com/images/S/aplus-seller-content-images-us-east-1/ATVPDKIKX0DER/A1GLDJYFYVCUE8/B0044FL7SG/kFRS1LS1QWWr._UX500_TTW_.jpg";
+        remoteImageForFabric.src = NEW_IMAGE_URL;
 
    }
 
