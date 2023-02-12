@@ -171,7 +171,7 @@ window.addEventListener('load', (event) => {
 
 
            var cropped_image_dataURL = fabricCanvas.toDataURL({
-            format: 'image/png',   // format: 'image/jpeg',
+            format: 'png',   // format: 'image/jpeg',
             left: rect1.left,      //  canvas.offsetLeft,
             top: rect1.top,        // canvas.offsetTop,
             width: rect1.width,
@@ -187,6 +187,10 @@ window.addEventListener('load', (event) => {
         imgElement.src = cropped_image_dataURL;
         //document.body.appendChild(imgElement);
         cropped_image_display.appendChild(imgElement);
+
+
+        var pngURL = canvas.toDataURL();
+        $('#placeHolder').html('<img src="'+pngURL+'"/>');
 
               // Remove data:image/png;base64, at beginning of the cropped_image_dataURL string
 
