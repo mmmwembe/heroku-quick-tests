@@ -170,14 +170,9 @@ window.addEventListener('load', (event) => {
            fabricCanvas.add(group);
            fabricCanvas.renderAll()
 
-        }
-        //remoteImageForFabric.src = "https://images-na.ssl-images-amazon.com/images/S/aplus-seller-content-images-us-east-1/ATVPDKIKX0DER/A1GLDJYFYVCUE8/B0044FL7SG/kFRS1LS1QWWr._UX500_TTW_.jpg";
-        remoteImageForFabric.src = NEW_IMAGE_URL;
 
 
-        
-
-        var cropped_image_dataURL = fabricCanvas.toDataURL({
+           var cropped_image_dataURL = fabricCanvas.toDataURL({
             format: 'png',   // format: 'image/jpeg',
             left: rect1.left,      //  canvas.offsetLeft,
             top: rect1.top,        // canvas.offsetTop,
@@ -196,10 +191,14 @@ window.addEventListener('load', (event) => {
         cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
               // Remove data:image/png;base64, at beginning of the cropped_image_dataURL string
 
+
            //const cropped_image_display = document.getElementById('cropped-image-container');
            //var img = document.createElement('img');
            //img.setAttribute('src', cropped_image_dataURL);
            //cropped_image_display.appendChild(img);
+
+      
+
             // var imgBase64 = cropped_image_dataURL
 
             // Save image to server
@@ -208,6 +207,7 @@ window.addEventListener('load', (event) => {
             // alert(' line 182 - cropped_image_dataURL ' + JSON.stringify(cropped_image_dataURL))
 
            // https://stackoverflow.com/questions/55941068/change-image-size-with-pil-in-a-google-cloud-storage-bucket-from-a-vm-in-gcloud
+
 
             $.ajax({
                 type: "POST",
@@ -239,6 +239,16 @@ window.addEventListener('load', (event) => {
                 }
             
               });
+
+
+
+
+
+        }
+        //remoteImageForFabric.src = "https://images-na.ssl-images-amazon.com/images/S/aplus-seller-content-images-us-east-1/ATVPDKIKX0DER/A1GLDJYFYVCUE8/B0044FL7SG/kFRS1LS1QWWr._UX500_TTW_.jpg";
+        remoteImageForFabric.src = NEW_IMAGE_URL;
+
+
 
 
 
