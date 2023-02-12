@@ -180,18 +180,13 @@ window.addEventListener('load', (event) => {
         })
 
 
-        cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
-
         const cropped_image_display = document.getElementById('cropped-image-container');
         var imgElement = document.createElement("img");
         imgElement.src = cropped_image_dataURL;
         //document.body.appendChild(imgElement);
         cropped_image_display.appendChild(imgElement);
 
-
-        var pngURL = canvas.toDataURL();
-        $('#placeHolder').html('<img src="'+pngURL+'"/>');
-
+        cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
               // Remove data:image/png;base64, at beginning of the cropped_image_dataURL string
 
 
