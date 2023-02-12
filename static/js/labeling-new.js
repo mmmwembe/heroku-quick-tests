@@ -224,6 +224,13 @@ window.addEventListener('load', (event) => {
                 success: function(data) {
                   var new_url = data.url
                   alert('Line 206 cropped-image-dataURL : ' + JSON.stringify(new_url))
+
+                  
+                  var imgElement = document.createElement("img");
+                  imgElement.src = new_url;
+                  cropped_image_display.appendChild(imgElement);
+
+
                 }
             
               });
