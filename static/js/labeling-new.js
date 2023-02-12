@@ -179,14 +179,23 @@ window.addEventListener('load', (event) => {
             selection: false
         })
 
+
+        var imgElement = document.createElement("img");
+        imgElement.src = cropped_image_dataURL;
+        document.body.appendChild(imgElement);
+
+
+
+
               // Remove data:image/png;base64, at beginning of the cropped_image_dataURL string
-           cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
+           // cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
 
-           const cropped_image_display = document.getElementById('cropped-image-container');
+           //const cropped_image_display = document.getElementById('cropped-image-container');
+           //var img = document.createElement('img');
+           //img.setAttribute('src', cropped_image_dataURL);
+           //cropped_image_display.appendChild(img);
 
-           var img = document.createElement('img');
-           img.setAttribute('src', cropped_image_dataURL);
-           cropped_image_display.appendChild(img);
+      
 
             // var imgBase64 = cropped_image_dataURL
 
