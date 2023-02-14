@@ -3,7 +3,7 @@
 var y = document.getElementById("mycanvas").fabric;
 var url = y.toDataURL("png", 1);
 
-
+Canvas("fabricCanvas")
     //----------------------------------------------------------
     // Show Marked Images and Enable Download
     //----------------------------------------------------------

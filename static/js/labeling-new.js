@@ -169,6 +169,7 @@ window.addEventListener('load', (event) => {
         var canvasInstance = document.getElementById("fabricCanvas").fabric;
         var data_url = canvasInstance.toDataURL("png", 1);
 
+        const cropped_image_display = document.getElementById('cropped-image-container');
         var img = document.createElement('img');
         img.setAttribute('src', data_url);
         cropped_image_display.appendChild(img);
