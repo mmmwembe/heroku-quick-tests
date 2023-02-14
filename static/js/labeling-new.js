@@ -173,6 +173,7 @@ window.addEventListener('load', (event) => {
         //var img = document.createElement('img');
         //img.setAttribute('src', data_url);
         //cropped_image_display.appendChild(img);
+        alert('data_url string: ' + data_url)
 
 
    }
