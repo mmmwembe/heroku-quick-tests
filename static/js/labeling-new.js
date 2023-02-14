@@ -177,10 +177,10 @@ window.addEventListener('load', (event) => {
             height: 100,
             selection: false})
 
-        //const cropped_image_display = document.getElementById('cropped-image-container');
-        //var img = document.createElement('img');
-        //img.setAttribute('src', data_url);
-        //cropped_image_display.appendChild(img);
+        const cropped_image_display = document.getElementById('cropped-image-container');
+        var img = document.createElement('img');
+        img.setAttribute('src', cropped_image_dataURL);
+        cropped_image_display.appendChild(img);
         alert('data_url string: ' + cropped_image_dataURL)
 
 
