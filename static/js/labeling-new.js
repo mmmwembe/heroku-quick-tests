@@ -181,7 +181,34 @@ window.addEventListener('load', (event) => {
         var img = document.createElement('img');
         img.setAttribute('src', cropped_image_dataURL);
         cropped_image_display.appendChild(img);
-        alert('data_url string: ' + cropped_image_dataURL)
+        // alert('data_url string: ' + cropped_image_dataURL)
+
+
+        cropped_image_dataURL= cropped_image_dataURL.replace("data:image/png;base64,", "");
+        // Remove data:image/png;base64, at beginning of the cropped_image_dataURL string
+    
+        $.ajax({
+            type: "POST",
+            url: "/saveCroppedImage200",
+            data: { 
+               imgBase64: cropped_image_dataURL,
+               active_label_bucket :  ACTIVE_LABEL_BUCKET,
+               active_project_id :  ACTIVE_PROJECT_ID,                   
+               user_id : "user_id", 
+               image_name : "image_name.png",
+               label_num : "label_num",
+               current_folder: "WORKING_LABELS_FOLDER",
+               rect_width: 100,
+               rect_height: 100, 
+            },
+            success: function(data) {
+              var new_url = data.url
+              alert('Line 206 cropped-image-dataURL : ' + JSON.stringify(new_url))
+              $('#external_image').attr('src', new_url);
+    
+            }
+        
+          });
 
 
    }
@@ -238,15 +265,7 @@ window.addEventListener('load', (event) => {
         success: function(data) {
           var new_url = data.url
           alert('Line 206 cropped-image-dataURL : ' + JSON.stringify(new_url))
-
-
-          //var imgElement = document.createElement("img");
-          //imgElement.src = new_url;
-          //imgElement.crossOrigin ="anonymous"
-          //cropped_image_display.appendChild(imgElement);
-
           $('#external_image').attr('src', new_url);
-
 
         }
     
