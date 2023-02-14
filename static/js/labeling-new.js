@@ -166,14 +166,22 @@ window.addEventListener('load', (event) => {
 
         // Get instance of Canvas with updated background image
         // Retrieve instance of Fabricjs Canvas
-        var canvasInstance = document.getElementById("fabricCanvas").fabric;
-        var data_url = canvasInstance.toDataURL("png", 1);
+        //var canvasInstance = document.getElementById("fabricCanvas").fabric;
+        //var data_url = canvasInstance.toDataURL("png", 1);
+
+        var cropped_image_dataURL = fabricCanvas.toDataURL({
+            format: 'png',   // format: 'image/jpeg',
+            left: 0,      //  canvas.offsetLeft,
+            top: 0,        // canvas.offsetTop,
+            width: 150,
+            height: 100,
+            selection: false})
 
         //const cropped_image_display = document.getElementById('cropped-image-container');
         //var img = document.createElement('img');
         //img.setAttribute('src', data_url);
         //cropped_image_display.appendChild(img);
-        alert('data_url string: ' + data_url)
+        alert('data_url string: ' + cropped_image_dataURL)
 
 
    }
