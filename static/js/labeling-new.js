@@ -152,12 +152,17 @@ window.addEventListener('load', (event) => {
             fabricCanvas.setDimensions({width:TARGET_CANVAS_WIDTH, height:TARGET_CANVAS_HEIGHT});
 
             // fabricCanvas.add(imgToDrawOnFabricCanvas);
-            fabricCanvas.setBackgroundImage(imgToDrawOnFabricCanvas, fabricCanvas.renderAll.bind(fabricCanvas), {
+           // fabricCanvas.setBackgroundImage(imgToDrawOnFabricCanvas, fabricCanvas.renderAll.bind(fabricCanvas), {
+            //    scaleX: fabricCanvas.width / sourceImageWidth,
+            //    scaleY: fabricCanvas.height / sourceImageHeight 
+            //});
+
+            // Add the code for opacity here
+
+            fabricCanvas.add(imgToDrawOnFabricCanvas, fabricCanvas.renderAll.bind(fabricCanvas), {
                 scaleX: fabricCanvas.width / sourceImageWidth,
                 scaleY: fabricCanvas.height / sourceImageHeight 
             });
-
-            // Add the code for opacity here
 
 
         }
