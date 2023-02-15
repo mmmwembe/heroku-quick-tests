@@ -159,10 +159,9 @@ window.addEventListener('load', (event) => {
 
             // Add the code for opacity here
 
-            fabricCanvas.add(imgToDrawOnFabricCanvas, fabricCanvas.renderAll.bind(fabricCanvas), {
-                scaleX: fabricCanvas.width / sourceImageWidth,
-                scaleY: fabricCanvas.height / sourceImageHeight 
-            });
+            fabricCanvas.add(imgToDrawOnFabricCanvas);
+
+            // fabricCanvas.add(imgToDrawOnFabricCanvas, fabricCanvas.renderAll.bind(fabricCanvas), {scaleX: fabricCanvas.width / sourceImageWidth,scaleY: fabricCanvas.height / sourceImageHeight });
 
 
         }
