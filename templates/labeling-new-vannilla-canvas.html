@@ -3,8 +3,16 @@
 <head>
 	<title>Canvas Example</title>
 	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
 		canvas {
 			border: 1px solid black;
+			width: 50%;
+			max-width: 800px;
 		}
 	</style>
 </head>
@@ -17,12 +25,19 @@
 	<script>
 		const canvas = document.getElementById("fabricCanvas");
 		const ctx = canvas.getContext("2d");
+		canvas.width = window.innerWidth * 0.5;
+		canvas.height = window.innerWidth * 0.5 * 0.75; // set height based on aspect ratio
+
 		let image_url = "https://storage.googleapis.com/amina-files/users/9…ul4i57a/Grape_tomatoes/2023_02_16-01_05_36_AM.png";
 
 		// Load the background image onto the canvas
 		let bgImage = new Image();
+		bgImage.crossOrigin = "anonymous";
 		bgImage.onload = function() {
-			ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
+			let aspectRatio = bgImage.width / bgImage.height;
+			let newWidth = canvas.width;
+			let newHeight = newWidth / aspectRatio;
+			ctx.drawImage(bgImage, 0, 0, newWidth, newHeight);
 		}
 		bgImage.src = image_url;
 
