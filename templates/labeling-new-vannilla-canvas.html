@@ -1,115 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Canvas Image Cropping</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.min.css">
-  <!-- Custom CSS -->
-  <style>
-    body {
-      background-color: #CFD8DC;
-    }
-
-    .logo-img {
-      height: 100px;
-      width: 80px;
-      margin-top: 20px;
-    }
-
-    .caption {
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 10px;
-      font-size: 24px;
-    }
-
-    #fabricCanvas {
-      border: 1px solid black;
-    }
-  </style>
+<title>Canvas Example</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<style>
+body {
+background-color: #CFD8DC;
+}
+.container {
+text-align: center;
+}
+#canvasContainer {
+margin-top: 20px;
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-4">
-        <img src="/static/logo/amina-logo.svg" alt="Logo" class="logo-img">
-        <h2 class="caption">Labeling</h2>
-      </div>
-      <div class="col-8 text-end">
-        <button class="btn btn-primary me-3">Dashboard</button>
-        <button class="btn btn-danger">Sign Out</button>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="row">
+<div class="col-md-4" style="display:inline-block">
+<img src="/static/logo/amina-logo.svg" height="100" width="80" style="margin-top: 20px;">
+</div>
+<div class="col-md-4" style="display:inline-block">
+<h2 style="margin: 0; line-height: 100px; vertical-align: middle;">Labeling</h2>
+</div>
+<div class="col-md-4" style="display:inline-block">
+<button class="btn btn-primary" style="margin-right: 20px;">Dashboard</button>
+<button class="btn btn-secondary">Sign Out</button>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<div id="canvasContainer" style="text-align:center">
+<canvas id="fabricCanvas"></canvas>
+</div>
+</div>
+<div class="col-md-2"></div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<div style="text-align:center">
+<button class="btn btn-primary" id="nextBtn">Next</button>
+<button class="btn btn-secondary" id="cropBtn">Crop</button>
+</div>
+</div>
+<div class="col-md-2"></div>
+</div>
+</div>
 
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-3">
-        <!-- Left column content goes here -->
-      </div>
-      <div class="col-6 text-center">
-        <canvas id="fabricCanvas" width="600" height="400"></canvas>
-      </div>
-      <div class="col-3">
-        <!-- Right column content goes here -->
-      </div>
-    </div>
-  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+<script>
+const canvas = new fabric.Canvas('fabricCanvas');
 
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-3">
-        <!-- Left column content goes here -->
-      </div>
-      <div class="col-6 text-center">
-        <button id="nextBtn" class="btn btn-primary me-3">Next</button>
-        <button id="cropBtn" class="btn btn-success">Crop</button>
-      </div>
-      <div class="col-3">
-        <!-- Right column content goes here -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Bootstrap JS and jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
-  <!-- Fabric JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.1/fabric.min.js"></script>
-  <script>
-    // Initialize canvas instance
-// Get the canvas element
-const canvas = document.getElementById('fabricCanvas');
-
-// Set up the canvas
-const canvasSetup = new fabric.Canvas(canvas);
-
-// Set the initial image URL
-let image_url = 'https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Grape_tomatoes/american-rabbit-001.jpg';
-
-// Load the image onto the canvas
-fabric.Image.fromURL(image_url, function (img) {
-  canvasSetup.setBackgroundImage(img, canvasSetup.renderAll.bind(canvasSetup), {
-    scaleX: canvas.width / img.width,
-    scaleY: canvas.height / img.height
-  });
+let imageUrl = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Grape_tomatoes/american-rabbit-001.jpg";
+fabric.Image.fromURL(imageUrl, (img) => {
+canvas.backgroundImage = img;
+canvas.renderAll();
 });
 
-// Add an event listener to the "nextBtn" button
-const nextBtn = document.getElementById('nextBtn');
-nextBtn.addEventListener('click', function() {
-  // Set the new image URL
-  image_url = 'https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Cherry_tomatoes/White-American-Rabbit.jpg';
-
-  // Load the new image onto the canvas
-  fabric.Image.fromURL(image_url, function (img) {
-    canvasSetup.setBackgroundImage(img, canvasSetup.renderAll.bind(canvasSetup), {
-      scaleX: canvas.width / img.width,
-      scaleY: canvas.height / img.height
-    });
-  });
+const nextBtn = document.getElementById("nextBtn");
+nextBtn.addEventListener("click", () => {
+imageUrl = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Cherry_tomatoes/White-American-Rabbit.jpg";
+fabric.Image.fromURL(imageUrl, (img) => {
+canvas.backgroundImage = img;
+canvas.renderAll();
 });
 
 // Add an event listener to the "cropBtn" button
