@@ -1,118 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Canvas Example</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<style>
-body {
-background-color: #CFD8DC;
-}
-.container {
-text-align: center;
-}
-#canvasContainer {
-margin-top: 20px;
-}
-</style>
+	<title>Canvas Example</title>
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		canvas {
+			border: 1px solid black;
+			width: 50%;
+			max-width: 800px;
+		}
+	</style>
 </head>
 <body>
-<div class="container">
-<div class="row">
-<div class="col-md-4" style="display:inline-block">
-<img src="/static/logo/amina-logo.svg" height="100" width="80" style="margin-top: 20px;">
-</div>
-<div class="col-md-4" style="display:inline-block">
-<h2 style="margin: 0; line-height: 100px; vertical-align: middle;">Labeling</h2>
-</div>
-<div class="col-md-4" style="display:inline-block">
-<button class="btn btn-primary" style="margin-right: 20px;">Dashboard</button>
-<button class="btn btn-secondary">Sign Out</button>
-</div>
-</div>
-</div>
-<div class="container">
-<div class="row">
-<div class="col-md-2"></div>
-<div class="col-md-8">
-<div id="canvasContainer" style="text-align:center">
-<canvas id="fabricCanvas"></canvas>
-</div>
-</div>
-<div class="col-md-2"></div>
-</div>
-</div>
-<div class="container">
-<div class="row">
-<div class="col-md-2"></div>
-<div class="col-md-8">
-<div style="text-align:center">
-<button class="btn btn-primary" id="nextBtn">Next</button>
-<button class="btn btn-secondary" id="cropBtn">Crop</button>
-</div>
-</div>
-<div class="col-md-2"></div>
-</div>
-</div>
+	<canvas id="fabricCanvas"></canvas>
+	<button id="nextBtn">Next Image</button>
+	<button id="cropBtn">Crop Image</button>
+	<div id="croppedImage"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
-<script>
-const canvas = new fabric.Canvas('fabricCanvas');
+	<script>
+		const canvas = document.getElementById("fabricCanvas");
+		const ctx = canvas.getContext("2d");
+		canvas.width = window.innerWidth * 0.5;
+		canvas.height = window.innerWidth * 0.5 * 0.75; // set height based on aspect ratio
 
-let imageUrl = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Grape_tomatoes/american-rabbit-001.jpg";
-fabric.Image.fromURL(imageUrl, (img) => {
-canvas.backgroundImage = img;
-canvas.renderAll();
-});
+		let image_url = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Grape_tomatoes/american-rabbit-001.jpg";
 
-const nextBtn = document.getElementById("nextBtn");
-nextBtn.addEventListener("click", () => {
-imageUrl = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Cherry_tomatoes/White-American-Rabbit.jpg";
-fabric.Image.fromURL(imageUrl, (img) => {
-canvas.backgroundImage = img;
-canvas.renderAll();
-});
+		// Load the background image onto the canvas
+		let bgImage = new Image();
+		bgImage.crossOrigin = "anonymous";
+		bgImage.onload = function() {
+			let aspectRatio = bgImage.width / bgImage.height;
+			let newWidth = canvas.width;
+			let newHeight = newWidth / aspectRatio;
+			ctx.drawImage(bgImage, 0, 0, newWidth, newHeight);
+		}
+		bgImage.src = image_url;
 
-// Add an event listener to the "cropBtn" button
-const cropBtn = document.getElementById('cropBtn');
-cropBtn.addEventListener('click', function() {
-  // Define the rectangle to crop
-  const rect1 = new fabric.Rect({
-    left: 20,
-    top: 0,
-    width: 150,
-    height: 50,
-    fill: 'rgba(0,0,0,0)',
-    stroke: 'red',
-    strokeWidth: 2
-  });
+		// Handle the nextBtn click event
+		document.getElementById("nextBtn").addEventListener("click", function() {
+			image_url = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Cherry_tomatoes/White-American-Rabbit.jpg";
+			bgImage.src = image_url;
+		});
 
-  // Add the rectangle to the canvas
-  canvasSetup.add(rect1);
+		// Handle the cropBtn click event
+		document.getElementById("cropBtn").addEventListener("click", function() {
+			// Define the rectangle to be cropped
+			const rect1 = { left: 0, top: 0, width: 150, height: 50 };
 
-  // Crop the canvas
-  const croppedCanvas = canvasSetup.cropToDatalessJSON(rect1);
+			// Create a new canvas to hold the cropped image
+			const croppedCanvas = document.createElement("canvas");
+			croppedCanvas.width = rect1.width;
+			croppedCanvas.height = rect1.height;
 
-  // Remove the rectangle from the canvas
-  canvasSetup.remove(rect1);
+			// Copy the cropped image to the new canvas
+			const croppedCtx = croppedCanvas.getContext("2d");
+			croppedCtx.drawImage(canvas, rect1.left, rect1.top, rect1.width, rect1.height, 0, 0, croppedCanvas.width, croppedCanvas.height);
 
-  // Create a new canvas with the cropped image
-  const newCanvas = document.createElement('canvas');
-  newCanvas.width = rect1.width;
-  newCanvas.height = rect1.height;
-
-  // Load the cropped image onto the new canvas
-  fabric.util.loadImage(croppedCanvas, function(img) {
-    const croppedImage = new fabric.Image(img, {
-      left: 0,
-      top: 0
-    });
-    const croppedCanvasSetup = new fabric.Canvas(newCanvas);
-    croppedCanvasSetup.add(croppedImage);
-    document.body.appendChild(croppedCanvasSetup.getElement());
-  });
-});
-
-</script>
+			// Convert the cropped canvas to an image and display it on the page
+			const croppedImage = new Image();
+			croppedImage.src = croppedCanvas.toDataURL();
+			document.getElementById("croppedImage").appendChild(croppedImage);
+		});
+	</script>
 </body>
 </html>
