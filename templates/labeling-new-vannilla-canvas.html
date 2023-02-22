@@ -3,92 +3,28 @@
 <head>
 	<title>Canvas Example</title>
 	<style>
-		body {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-
 		canvas {
 			border: 1px solid black;
-			width: 50%;
-			max-width: 800px;
+			margin: 20px auto;
+			display: block;
 		}
-
+		button {
+			margin: 20px;
+		}
 		.buttons-container {
 			display: flex;
-			flex-direction: row;
 			justify-content: center;
-			margin-top: 20px;
-		}
-
-		.buttons-container button {
-			margin: 0 20px;
-		}
-
-		#autoCropBtn {
-			margin-left: 20px;
+			align-items: center;
 		}
 	</style>
 </head>
 <body>
-	<canvas id="fabricCanvas"></canvas>
+	<canvas id="fabricCanvas" width="800" height="600"></canvas>
 	<div class="buttons-container">
 		<button id="nextBtn">Next Image</button>
 		<button id="cropBtn">Crop Image</button>
 		<button id="autoCropBtn">Auto Crop</button>
 	</div>
-	<div id="croppedImage"></div>
-
-	<script>
-
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth * 0.5;
-canvas.height = window.innerWidth * 0.5 * 0.75;
-
-let image_url = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Grape_tomatoes/american-rabbit-001.jpg";
-
-const bgImage = new Image();
-bgImage.crossOrigin = "anonymous";
-bgImage.onload = function() {
-  const aspectRatio = bgImage.width / bgImage.height;
-  const newWidth = canvas.width;
-  const newHeight = newWidth / aspectRatio;
-  ctx.drawImage(bgImage, 0, 0, newWidth, newHeight);
-};
-bgImage.src = image_url;
-
-const nextBtn = document.getElementById("nextBtn");
-const cropBtn = document.getElementById("cropBtn");
-const autoCropBtn = document.getElementById("autoCropBtn");
-
-nextBtn.addEventListener("click", function() {
-  image_url = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Cherry_tomatoes/White-American-Rabbit.jpg";
-  bgImage.src = image_url;
-});
-
-cropBtn.addEventListener("click", function() {
-  const rect1 = { left: 0, top: 0, width: 150, height: 50 };
-
-  const croppedCanvas = document.createElement("canvas");
-  croppedCanvas.width = rect1.width;
-  croppedCanvas.height = rect1.height;
-
-  const croppedCtx = croppedCanvas.getContext("2d");
-  croppedCtx.drawImage(canvas, rect1.left, rect1.top, rect1.width, rect1.height, 0, 0, croppedCanvas.width, croppedCanvas.height);
-
-  const croppedImage = new Image();
-  croppedImage.src = croppedCanvas.toDataURL();
-  document.getElementById("croppedImage").appendChild(croppedImage);
-});
-
-autoCropBtn.addEventListener("click", function() {
-  alert("autoCropBtn clicked");
-});
-
-
-</script>
+	<script src="/static/js/canvas.js"></script>
 </body>
 </html>
