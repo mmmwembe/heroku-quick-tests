@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Canvas Example</title>
-    <style>
-      #fabricCanvas {
-        margin: 0 auto;
-        display: block;
-        border: 1px solid black;
-        margin-top: 20px;
-      }
-      #buttonsDiv {
-        margin: 20px auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      #buttonsDiv button {
-        margin: 0 20px;
-      }
-      #autoCropDiv {
-        height: 400px;
-        overflow-y: scroll;
-      }
-    </style>
-  </head>
-  <body>
-    <canvas id="fabricCanvas"></canvas>
-    <div id="buttonsDiv">
-      <button id="nextBtn">Next</button>
-      <button id="cropBtn">Crop</button>
-      <button id="autoCropBtn">Auto Crop</button>
-    </div>
-    <div id="autoCropDiv"></div>
-    <script src="/static/js/canvas.js"></script>
-  </body>
+<head>
+	<title>Canvas Example</title>
+	<script src="/static/js/canvas.js"></script>
+	<style type="text/css">
+		canvas {
+			border: 1px solid black;
+			margin-top: 20px;
+		}
+
+		#buttonContainer {
+			margin: 20px 0;
+			display: flex;
+			justify-content: center;
+		}
+
+		button {
+			margin: 0 20px;
+		}
+
+		#autoCropDiv {
+			height: 400px;
+			overflow-y: scroll;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="fabricCanvas"></canvas>
+	<div id="buttonContainer">
+		<button id="nextBtn">Next</button>
+		<button id="cropBtn">Crop</button>
+		<button id="autocropBtn">Auto Crop</button>
+	</div>
+	<div id="autoCropDiv"></div>
+</body>
 </html>

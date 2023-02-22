@@ -1,63 +1,58 @@
-// Get the canvas element and set its width
-const canvas = document.getElementById("fabricCanvas");
+// Get canvas and context
+const canvas = document.getElementById('fabricCanvas');
+const context = canvas.getContext('2d');
 
-// Set the width of the canvas to be 50% of the window width
-canvas.width = window.innerWidth * 0.5;
+// Set canvas width
+canvas.style.width = '30%';
+canvas.width = canvas.offsetWidth;
 
-// Get the canvas context
-const ctx = canvas.getContext("2d");
+// Set initial background image
+let imageUrl = 'https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Cherry_tomatoes/White-American-Rabbit.jpg';
 
-// Set the initial background image
-let imageUrl = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Cherry_tomatoes/White-American-Rabbit.jpg";
-const img = new Image();
-img.crossOrigin = "anonymous";
-img.onload = function() {
-  // Calculate the aspect ratio of the image
-  const aspectRatio = img.width / img.height;
+// Set up image object
+const image = new Image();
+image.crossOrigin = 'anonymous';
+image.src = imageUrl;
+image.onload = () => {
+	// Resize canvas height based on aspect ratio of image
+	const aspectRatio = image.width / image.height;
+	canvas.style.height = `${canvas.offsetWidth / aspectRatio}px`;
+	canvas.height = canvas.offsetHeight;
 
-  // Calculate the new height of the canvas based on the aspect ratio
-  const newHeight = canvas.width / aspectRatio;
+	// Draw image on canvas
+	context.drawImage(image, 0, 0, canvas.width, canvas.height);
+}
 
-  // Resize the canvas to fit the image
-  canvas.height = newHeight;
-
-  // Draw the image onto the canvas
-  ctx.drawImage(img, 0, 0, canvas.width, newHeight);
-};
-img.src = imageUrl;
-
-// Get the button elements
-const nextBtn = document.getElementById("nextBtn");
-const cropBtn = document.getElementById("cropBtn");
-const autoCropBtn = document.getElementById("autoCropBtn");
-
-// Add event listeners to the buttons
-nextBtn.addEventListener("click", function() {
-  imageUrl = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Grape_tomatoes/american-rabbit-001.jpg";
-  img.src = imageUrl;
+// Button listeners
+const nextBtn = document.getElementById('nextBtn');
+nextBtn.addEventListener('click', () => {
+	// Change image URL and redraw canvas
+	imageUrl = 'https://storage.googleapis.com/amina-files/users/92520572d6ac46b98a61745b61c327e7/user-images/ldcd9eygkpgul4i57a/Grape_tomatoes/american-rabbit-001.jpg';
+	image.src = imageUrl;
 });
 
-cropBtn.addEventListener("click", function() {
-  const croppedCanvas = document.createElement("canvas");
-  const croppedCtx = croppedCanvas.getContext("2d");
-  croppedCanvas.width = 150;
-  croppedCanvas.height = 50;
-  croppedCtx.drawImage(canvas, 0, 0, croppedCanvas.width, croppedCanvas.height, 0, 0, croppedCanvas.width, croppedCanvas.height);
+const cropBtn = document.getElementById('cropBtn');
+cropBtn.addEventListener('click', () => {
+	// Crop rectangle
+	const rect = { left: 0, top: 0, width: 150, height: 50 };
+	const croppedImage = context.getImageData(rect.left, rect.top, rect.width, rect.height);
 
-  const croppedImageElement = document.createElement("img");
-  croppedImageElement.src = croppedCanvas.toDataURL();
-  document.body.appendChild(croppedImageElement);
+	// Create new canvas for cropped image
+	const croppedCanvas = document.createElement('canvas');
+	croppedCanvas.width = rect.width;
+	croppedCanvas.height = rect.height;
+	croppedCanvas.getContext('2d').putImageData(croppedImage, 0, 0);
+
+	// Display cropped image on page
+	const croppedImageElement = new Image();
+	croppedImageElement.src = croppedCanvas.toDataURL();
+	document.getElementById('autoCropDiv').appendChild(croppedImageElement);
 });
 
-autoCropBtn.addEventListener("click", function() {
-  // alert("autoCropBtn clicked");
-  const croppedCanvas = document.createElement("canvas");
-  const croppedCtx = croppedCanvas.getContext("2d");
-  croppedCanvas.width = 150;
-  croppedCanvas.height = 50;
-  croppedCtx.drawImage(canvas, 0, 0, croppedCanvas.width, croppedCanvas.height, 0, 0, croppedCanvas.width, croppedCanvas.height);
+const autocropBtn = document.getElementById('autocropBtn');
+autocropBtn.addEventListener('click', () => {
+	//alert('autoCropBtn clicked');
 
-  const croppedImageElement = document.createElement("img");
-  croppedImageElement.src = croppedCanvas.toDataURL();
-  document.getElementById("autoCropDiv").appendChild(croppedImageElement);
-});
+	// Crop rectangle
+	const rect = { left: 0, top: 0, width: 150, height: 50 };
+	const croppedImage = context.getImageData(rect.left, rect.top
