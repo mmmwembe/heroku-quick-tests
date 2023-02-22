@@ -1,5 +1,7 @@
 // Get the canvas element and set its width
 const canvas = document.getElementById("fabricCanvas");
+
+// Set the width of the canvas to be 50% of the window width
 canvas.width = window.innerWidth * 0.5;
 
 // Get the canvas context
@@ -10,7 +12,17 @@ let imageUrl = "https://storage.googleapis.com/amina-files/users/92520572d6ac46b
 const img = new Image();
 img.crossOrigin = "anonymous";
 img.onload = function() {
-  ctx.drawImage(img, 0, 0, canvas.width, canvas.width * img.height / img.width);
+  // Calculate the aspect ratio of the image
+  const aspectRatio = img.width / img.height;
+
+  // Calculate the new height of the canvas based on the aspect ratio
+  const newHeight = canvas.width / aspectRatio;
+
+  // Resize the canvas to fit the image
+  canvas.height = newHeight;
+
+  // Draw the image onto the canvas
+  ctx.drawImage(img, 0, 0, canvas.width, newHeight);
 };
 img.src = imageUrl;
 
