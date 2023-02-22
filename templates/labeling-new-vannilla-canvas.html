@@ -1,43 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
     <title>Canvas Example</title>
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-
-      canvas {
+      #fabricCanvas {
+        margin: 0 auto;
+        display: block;
         border: 1px solid black;
+        margin-top: 20px;
       }
-
-      #buttons {
+      #buttonsDiv {
+        margin: 20px auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 20px 0;
       }
-
-      #buttons > button {
+      #buttonsDiv button {
         margin: 0 20px;
       }
-
       #autoCropDiv {
+        height: 400px;
         overflow-y: scroll;
-        width: 100%;
-        height: 100%;
       }
     </style>
   </head>
   <body>
     <canvas id="fabricCanvas"></canvas>
-    <div id="buttons">
+    <div id="buttonsDiv">
       <button id="nextBtn">Next</button>
       <button id="cropBtn">Crop</button>
       <button id="autoCropBtn">Auto Crop</button>
