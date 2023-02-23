@@ -1,55 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Canvas Example</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <style>
-    .canvas-container {
-      height: 25vw;
-      margin: auto;
-      border: 3px solid green;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Canvas Example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="container-fluid">
+
+<div class="container-fluid">
     <div class="row">
-      <div class="col-3" style="width: 25%; height: 25vw;"></div>
-      <div class="col-6" style="width: 50%; height: 25vw;">
-        <div class="canvas-container">
-          <canvas id="my-canvas"></canvas>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <canvas id="myCanvas" style="border:3px solid green;"></canvas>
         </div>
-      </div>
-      <div class="col-3" style="width: 25%; height: 25vw;"></div>
+        <div class="col-md-3"></div>
     </div>
-    <div class="row">
-      <div class="col-3" style="width: 25%; height: 25vw;"></div>
-      <div class="col-6" style="width: 50%; height: 25vw;"></div>
-      <div class="col-3" style="width: 25%; height: 25vw;"></div>
-    </div>
-    <div class="row">
-      <div class="col-3" style="width: 25%; height: 25vw;"></div>
-      <div class="col-6" style="width: 50%; height: 25vw;"></div>
-      <div class="col-3" style="width: 25%; height: 25vw;"></div>
-    </div>
-    <div class="row">
-      <div class="col-3" style="width: 25%; height: 25vw;"></div>
-      <div class="col-6" style="width: 50%; height: 25vw;"></div>
-      <div class="col-3" style="width: 25%; height: 25vw;"></div>
-    </div>
-  </div>
 
-  <script>
-    // Get the canvas element and set its size to match the container
-    var canvas = document.getElementById("my-canvas");
-    var container = document.querySelector(".canvas-container");
-    canvas.width = container.offsetWidth;
-    canvas.height = container.offsetHeight;
+    <div class="row mt-3 mb-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 d-flex justify-content-center">
+            <button id="nextBtn" class="btn btn-primary mr-2">Next</button>
+            <button id="cropBtn" class="btn btn-primary mr-2">Crop</button>
+            <button id="autoCropBtn" class="btn btn-primary">Auto Crop</button>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
 
-    // Initialize the canvas
-    var ctx = canvas.getContext("2d");
-    ctx.fillStyle = "red";
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div id="croppedImageDiv" style="border:3px solid blue;"></div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('myCanvas');
+    canvas.width = canvas.parentNode.offsetWidth * 0.4;
+    canvas.height = canvas.width * 0.3;
+
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-  </script>
+</script>
+
 </body>
 </html>
