@@ -1,37 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Canvas Example</title>
-	<script src="/static/js/canvas.js"></script>
-	<style type="text/css">
-		canvas {
-			border: 1px solid black;
-			margin-top: 20px;
-		}
-
-		#buttonContainer {
-			margin: 20px 0;
-			display: flex;
-			justify-content: center;
-		}
-
-		button {
-			margin: 0 20px;
-		}
-
-		#autoCropDiv {
-			height: 400px;
-			overflow-y: scroll;
-		}
-	</style>
+  <title>Canvas Example</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .canvas-container {
+      height: 25vw;
+      margin: auto;
+      border: 3px solid green;
+    }
+  </style>
 </head>
 <body>
-	<canvas id="fabricCanvas"></canvas>
-	<div id="buttonContainer">
-		<button id="nextBtn">Next</button>
-		<button id="cropBtn">Crop</button>
-		<button id="autocropBtn">Auto Crop</button>
-	</div>
-	<div id="autoCropDiv"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3" style="width: 25%; height: 25vw;"></div>
+      <div class="col-6" style="width: 50%; height: 25vw;">
+        <div class="canvas-container">
+          <canvas id="my-canvas"></canvas>
+        </div>
+      </div>
+      <div class="col-3" style="width: 25%; height: 25vw;"></div>
+    </div>
+    <div class="row">
+      <div class="col-3" style="width: 25%; height: 25vw;"></div>
+      <div class="col-6" style="width: 50%; height: 25vw;"></div>
+      <div class="col-3" style="width: 25%; height: 25vw;"></div>
+    </div>
+    <div class="row">
+      <div class="col-3" style="width: 25%; height: 25vw;"></div>
+      <div class="col-6" style="width: 50%; height: 25vw;"></div>
+      <div class="col-3" style="width: 25%; height: 25vw;"></div>
+    </div>
+    <div class="row">
+      <div class="col-3" style="width: 25%; height: 25vw;"></div>
+      <div class="col-6" style="width: 50%; height: 25vw;"></div>
+      <div class="col-3" style="width: 25%; height: 25vw;"></div>
+    </div>
+  </div>
+
+  <script>
+    // Get the canvas element and set its size to match the container
+    var canvas = document.getElementById("my-canvas");
+    var container = document.querySelector(".canvas-container");
+    canvas.width = container.offsetWidth;
+    canvas.height = container.offsetHeight;
+
+    // Initialize the canvas
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "red";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  </script>
 </body>
 </html>
