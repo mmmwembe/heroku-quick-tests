@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Canvas and Buttons Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Canvas Example</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
@@ -19,37 +16,53 @@
       </div>
       <div class="row">
         <div class="col-3"></div>
-        <div class="col-6 text-center mt-3">
-          <button class="btn btn-primary" id="nextBtn">Next</button>
-          <button class="btn btn-primary" id="cropBtn">Crop</button>
-          <button class="btn btn-primary" id="autoCropBtn">Auto Crop</button>
+        <div class="col-6">
+          <button id="nextBtn" class="btn btn-primary">Next</button>
+          <button id="cropBtn" class="btn btn-primary">Crop</button>
+          <button id="autoCropBtn" class="btn btn-primary">Auto Crop</button>
         </div>
         <div class="col-3"></div>
       </div>
       <div class="row">
         <div class="col-3"></div>
-        <div class="col-6 mt-3">
+        <div class="col-6">
           <div id="croppedImageDiv"></div>
         </div>
         <div class="col-3"></div>
       </div>
       <div class="row">
         <div class="col-3"></div>
-        <div class="col-6"></div>
+        <div class="col-6">
+          <p id="status"></p>
+        </div>
         <div class="col-3"></div>
       </div>
     </div>
-    <script>
-      var canvas = document.getElementById("myCanvas");
-      var ctx = canvas.getContext("2d");
-      canvas.width = canvas.parentNode.offsetWidth * 0.4;
-      canvas.height = canvas.width * 0.3;
-      canvas.style.border = "3px solid green";
 
+    <script>
+      // Set the canvas size
+      var canvas = document.getElementById("myCanvas");
+      var container = document.querySelector(".container");
+      var canvasWidth = container.offsetWidth * 0.4;
+      var canvasHeight = container.offsetWidth * 0.3;
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
+      // Set the canvas border and style
+      canvas.style.border = "3px solid green";
+      canvas.style.backgroundColor = "transparent";
+      
+      // Initiate the canvas in javascript
+      var ctx = canvas.getContext("2d");
+      ctx.beginPath();
+      ctx.arc(canvasWidth/2, canvasHeight/2, canvasHeight/3, 0, 2*Math.PI);
+      ctx.stroke();
+      
+      // Set the width and height of the croppedImageDiv
       var croppedImageDiv = document.getElementById("croppedImageDiv");
-      croppedImageDiv.style.width = canvas.width + "px";
-      croppedImageDiv.style.height = canvas.height + "px";
+      croppedImageDiv.style.width = canvasWidth + "px";
+      croppedImageDiv.style.height = canvasHeight + "px";
       croppedImageDiv.style.border = "3px solid blue";
+      croppedImageDiv.style.backgroundColor = "transparent";
     </script>
   </body>
 </html>
