@@ -1,66 +1,45 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Canvas Example</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-          <canvas id="myCanvas"></canvas>
-        </div>
-        <div class="col-3"></div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Example</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3" style="height: 25vw;"></div>
+      <div class="col-6" style="height: 25vw;">
+        <canvas id="myCanvas" style="border: 3px solid green;"></canvas>
       </div>
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-          <button id="nextBtn" class="btn btn-primary">Next</button>
-          <button id="cropBtn" class="btn btn-primary">Crop</button>
-          <button id="autoCropBtn" class="btn btn-primary">Auto Crop</button>
-        </div>
-        <div class="col-3"></div>
+      <div class="col-3" style="height: 25vw;"></div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12 col-md-4 text-center">
+        <button id="nextBtn" class="btn btn-primary mb-2">Next</button>
       </div>
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-          <div id="croppedImageDiv"></div>
-        </div>
-        <div class="col-3"></div>
+      <div class="col-12 col-md-4 text-center">
+        <button id="cropBtn" class="btn btn-primary mb-2">Crop</button>
       </div>
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-          <p id="status"></p>
-        </div>
-        <div class="col-3"></div>
+      <div class="col-12 col-md-4 text-center">
+        <button id="autoCropBtn" class="btn btn-primary mb-2">Auto Crop</button>
       </div>
     </div>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div id="croppedImageDiv" style="border: 3px solid blue;"></div>
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </div>
 
-    <script>
-      // Set the canvas size
-      var canvas = document.getElementById("myCanvas");
-      var container = document.querySelector(".container");
-      var canvasWidth = container.offsetWidth * 0.4;
-      var canvasHeight = container.offsetWidth * 0.3;
-      canvas.width = canvasWidth;
-      canvas.height = canvasHeight;
-      // Set the canvas border and style
-      canvas.style.border = "3px solid green";
-      canvas.style.backgroundColor = "transparent";
-      
-      // Initiate the canvas in javascript
-      var ctx = canvas.getContext("2d");
-
-      
-      // Set the width and height of the croppedImageDiv
-      var croppedImageDiv = document.getElementById("croppedImageDiv");
-      croppedImageDiv.style.width = canvasWidth + "px";
-      croppedImageDiv.style.height = canvasHeight + "px";
-      croppedImageDiv.style.border = "3px solid blue";
-      croppedImageDiv.style.backgroundColor = "transparent";
-    </script>
-  </body>
+  <!-- Include Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="/static/js/canvas.js"></script>
+</body>
 </html>
