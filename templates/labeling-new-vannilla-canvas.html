@@ -1,49 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html>
+  <head>
     <title>Canvas Example</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
-<body>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <canvas id="myCanvas" style="border:3px solid green;"></canvas>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+          crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <canvas id="myCanvas" style="border: 3px solid green;"></canvas>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-3"></div>
+      </div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <button id="nextBtn" class="btn btn-primary" style="margin: 20px;">Next</button>
+          <button id="cropBtn" class="btn btn-primary" style="margin: 20px;">Crop</button>
+          <button id="autoCropBtn" class="btn btn-primary" style="margin: 20px;">Auto Crop</button>
+        </div>
+        <div class="col-3"></div>
+      </div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <div id="croppedImageDiv" style="border: 3px solid blue;"></div>
+        </div>
+        <div class="col-3"></div>
+      </div>
     </div>
 
-    <div class="row mt-3 mb-3">
-        <div class="col-md-3"></div>
-        <div class="col-md-6 d-flex justify-content-center">
-            <button id="nextBtn" class="btn btn-primary mr-2">Next</button>
-            <button id="cropBtn" class="btn btn-primary mr-2">Crop</button>
-            <button id="autoCropBtn" class="btn btn-primary">Auto Crop</button>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
+    <script>
+      const canvas = document.getElementById('myCanvas');
+      const context = canvas.getContext('2d');
 
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div id="croppedImageDiv" style="border:3px solid blue;"></div>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-</div>
+      canvas.width = canvas.parentElement.offsetWidth * 0.4;
+      canvas.height = canvas.width * 0.75;
 
-<script>
-    const canvas = document.getElementById('myCanvas');
-    canvas.width = canvas.parentNode.offsetWidth * 0.4;
-    canvas.height = canvas.width * 0.3;
+      const croppedImageDiv = document.getElementById('croppedImageDiv');
+      croppedImageDiv.style.width = canvas.width + "px";
+      croppedImageDiv.style.height = canvas.height + "px";
+    </script>
 
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-</script>
-
-</body>
+  </body>
 </html>
+
