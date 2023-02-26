@@ -1250,8 +1250,8 @@ def labeling():
  
  
 	#return render_template('labeling.html', images_in_dir=gcp_active_directory_file_urls, user_id = user_id)
-	# return render_template('labeling-new.html', images_in_dir=gcp_active_directory_file_urls, user_id = session["user"]["_id"])
-	return render_template('labeling-new-vannilla-canvas.html', images_in_dir=gcp_active_directory_file_urls, user_id = session["user"]["_id"])
+	return render_template('labeling-new.html', images_in_dir=gcp_active_directory_file_urls, user_id = session["user"]["_id"])
+	#return render_template('labeling-new-vannilla-canvas.html', images_in_dir=gcp_active_directory_file_urls, user_id = session["user"]["_id"])
 
 @app.route('/models/', methods=['POST','GET'])
 def models():
