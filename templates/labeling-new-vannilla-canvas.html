@@ -2,64 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Canvas Crop Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Canvas Cropping Demo</title>
-  <!-- Add Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <!-- Add custom CSS -->
-  <style>
-    .cell {
-      height: 25%;
-      border: 1px solid #000;
-      box-sizing: border-box;
-    }
-
-    #canvas {
-      border: 3px solid green;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-
-    #croppedImageDiv {
-      border: 3px solid blue;
-      box-sizing: border-box;
-    }
-  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
-      <div class="col-3 cell"></div>
-      <div class="col-6 cell">
-        <canvas id="canvas"></canvas>
+      <div class="col-3"></div>
+      <div class="col-6">
+        <canvas id="canvas" width="0" height="0" style="border:3px solid green;"></canvas>
       </div>
-      <div class="col-3 cell"></div>
+      <div class="col-3"></div>
     </div>
     <div class="row">
-      <div class="col-3 cell"></div>
-      <div class="col-6 cell">
-        <button id="nextBtn" class="btn btn-primary">Next Image</button>
-        <button id="cropBtn" class="btn btn-secondary">Crop</button>
-        <button id="autoCropBtn" class="btn btn-secondary">Auto Crop</button>
+      <div class="col-3"></div>
+      <div class="col-6 d-flex justify-content-between" style="margin-top:20px;margin-bottom:20px;">
+        <button id="nextBtn">Next</button>
+        <button id="cropBtn">Crop</button>
+        <button id="autoCropBtn">Auto Crop</button>
       </div>
-      <div class="col-3 cell"></div>
+      <div class="col-3"></div>
     </div>
     <div class="row">
-      <div class="col-3 cell"></div>
-      <div class="col-6 cell">
-        <div id="croppedImageDiv"></div>
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div id="croppedImageDiv" style="border:3px solid blue;"></div>
       </div>
-      <div class="col-3 cell"></div>
+      <div class="col-3"></div>
     </div>
   </div>
-
-  <!-- Add Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <!-- Add custom JS -->
   <script src="/static/js/canvas.js"></script>
 </body>
 </html>
