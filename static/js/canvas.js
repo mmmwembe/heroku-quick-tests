@@ -1,11 +1,24 @@
-// Get the canvas element
-var canvas = document.getElementById('canvas');
+// Get the canvas element and set its dimensions
+var canvas = document.getElementById("canvas");
+canvas.width = canvas.parentNode.offsetWidth * 0.5;
+canvas.height = canvas.parentNode.offsetHeight * 0.25;
 
-// Get the context of the canvas element
-var ctx = canvas.getContext('2d');
+// Add event listeners to the buttons
+var nextBtn = document.getElementById("nextBtn");
+var cropBtn = document.getElementById("cropBtn");
+var autoCropBtn = document.getElementById("autoCropBtn");
 
-// Set the fill style of the canvas
-ctx.fillStyle = 'white';
+nextBtn.addEventListener("click", function() {
+	// Handle the "Next" button click
+  alert("// Handle the Next button click")
+});
 
-// Fill the canvas with the fill style
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+cropBtn.addEventListener("click", function() {
+	// Handle the "Crop" button click
+  alert("// Handle the Crop button click")
+});
+
+autoCropBtn.addEventListener("click", function() {
+	// Handle the "Auto Crop" button click
+  alert("// Handle the Auto Crop button click")
+});

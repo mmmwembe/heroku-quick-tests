@@ -1,39 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Canvas Example</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <title>My Webpage</title>
+    <script src="/static/js/canvas.js"></script>
   </head>
   <body>
     <div class="container">
-      <div class="row" style="height: 50%;">
-        <div class="col-12 col-md-4"></div>
-        <div class="col-12 col-md-4" style="border: 3px solid green;">
-          <canvas id="canvas" width="100%" height="100%"></canvas>
+      <div class="row" style="height: 25vh">
+        <div class="col"></div>
+        <canvas id="canvas" class="col-6 border border-3 border-success"></canvas>
+        <div class="col"></div>
+      </div>
+      <div class="row" style="height: 25vh">
+        <div class="col"></div>
+        <div class="col-6 text-center">
+          <button class="btn btn-primary btn-lg mx-2 my-4" id="nextBtn">Next</button>
+          <button class="btn btn-primary btn-lg mx-2 my-4" id="cropBtn">Crop</button>
+          <button class="btn btn-primary btn-lg mx-2 my-4" id="autoCropBtn">Auto Crop</button>
         </div>
-        <div class="col-12 col-md-4"></div>
+        <div class="col"></div>
       </div>
-      <div class="row" style="height: 80%;">
-        <div class="col-12 col-md-4"></div>
-        <div class="col-12 col-md-4 text-center">
-          <button class="btn btn-primary btn-lg" style="width: 30%;">Next</button>
-          <button class="btn btn-primary btn-lg" style="width: 30%;">Crop</button>
-          <button class="btn btn-primary btn-lg" style="width: 30%;">Auto Crop</button>
-        </div>
-        <div class="col-12 col-md-4"></div>
+      <div class="row" style="height: 25vh">
+        <div class="col"></div>
+        <div id="croppedImgDiv" class="col-6 border border-2 border-danger"></div>
+        <div class="col"></div>
       </div>
-      <div class="row" style="height: 50%;">
-        <div class="col-12 col-md-4"></div>
-        <div class="col-12 col-md-4 text-center" style="border: 2px solid red; height: 400px;" id="croppedImgDiv"></div>
-        <div class="col-12 col-md-4"></div>
-      </div>
+      <div class="row" style="height: 25vh"></div>
     </div>
-    <script src="/static/js/canvas.js"></script>
   </body>
 </html>
-
